@@ -1,0 +1,70 @@
+% Copernicus manuscript
+\documentclass[tc, ms, noauthor]{copernicus}
+
+% Copernicus final print
+%\documentclass[tc]{copernicus}
+
+% Copernicus discussion paper
+%\documentclass[tcd, hvmath]{copernicus_discussions}
+
+% Extra packages
+%\usepackage{color}
+%\usepackage{hyperref}
+
+% All floats at the end of the manuscripts
+\usepackage{endfloat}
+
+% Add to-do notes
+\usepackage{todonotes}
+\newcommand{\missingref}[0]{\todo[color=cyan]{Need ref.}}
+
+% Set figures repository
+\graphicspath{{figures/}}
+
+% ----------------------------------------------------------------------
+\begin{document}
+
+\title{Choosing climate forcing for numerical simulations of the Cordilleran ice sheet}
+\runningtitle{Cordilleran ice sheet climate forcing}
+
+%\author{Julien Seguinot et al.}
+%\affil{Department of Physical Geography and Quaternary Geology, Stockholm University, S-106 91 Stockholm, Sweden}
+\runningauthor{J. Seguinot et al.}
+\correspondence{J. Seguinot\\ (julien.seguinot@natgeo.su.se)}
+
+\received{}
+\pubdiscuss{}
+\revised{}
+\accepted{}
+\published{}
+
+\maketitle
+
+% ----------------------------------------------------------------------
+\begin{abstract}
+We present an ensemble of numerical simulations of the former Cordilleran ice sheet forced by present-day climatologies from five different datasets. Surface air temperature and precipitation rates from the NCEP/NCAR reanalysis, the Climate Forecast System Reanalysis, the ERA-Interim reanalysis and the North American Regional Reanalysis are used to force the ice sheet model PISM. Glacial conditions are mimicked by applying constant temperature offsets over the entire modelling domain, and a positive degree-day model is used to compute surface mass balance. The modelled ice sheet appears highly sensitive to the choice of climate forcing. Best results were obtained from the North American Regional Reanalysis, a high-resolution regional reanalysis which assimilates precipitation.
+\end{abstract}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+\input{sections/intro}
+\input{sections/climate}
+\input{sections/model}
+\input{sections/results}
+\input{sections/discuss}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+\conclusions  %% \conclusions[modified heading if necessary]
+\label{sec:conclusion}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+%\begin{acknowledgements}
+%\end{acknowledgements}
+% ----------------------------------------------------------------------
+
+\bibliographystyle{copernicus}
+\bibliography{/home/julien/work/biblio/ref}
+\end{document}
+
