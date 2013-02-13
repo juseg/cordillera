@@ -16,21 +16,21 @@ A second drawback of the dataset in an ice sheet modelling view is the lack of d
 
 \subsection{Reanalysis data}
 
-In addition to the WorldClim data, we use three global and one regional climate reanalysis to force the ice sheet model. Monthly climatologies from the NCEP/NCAR reanalysis\needref and the North American Regional Reanalysis (NARR)\needref were obtained from the NOAA ESRL's PSD website\needref, and monthly climatologies from the ERA-Interim\needref and Climate System Forecast Reanalyses (CFSR)\needref were computed from their monthly mean timeseries. As a mixed product of observation and circulation model, we believe that reanalysis may perform best in poorly monitored regions such as the northernmost American Cordillera. Additional information on the data used is gatherd in table \ref{tab:reanalyses}\todo{fill the table}.
+In addition to the WorldClim data, we use surface air temperature and precipitation rate data from three global and one regional climate reanalysis to force the ice sheet model: the NCEP/NCAR reanalysis, the ERA-Interim reanalysis, the Climate System Forecast Reanalysis (CFSR) and the North American Regional Reanalysis (NARR). Monthly climatologies from NCEP/NCAR and NARR reanalysis were provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at \url{http://www.esrl.noaa.gov/psd/} and monthly climatologies from the ERA-Interim and CFSR reanalyses were computed from their monthly mean timeseries. Further information on the data used is gatherd in Table \ref{tab:reanalyses}. As a mixed product from observations and a circulation model, we believe that reanalysis may perform best in poorly monitored regions such as the northernmost American Cordillera.
 
 \begin{table}[t]
-	\caption{Characteristic of reanalysis data used as a forcing for the ice sheet model.}
+	\caption{Characteristic of reanalysis climatologies used to force the ice sheet model.}
 	\label{tab:reanalyses}
 	\vskip4mm
 	\centering
 	\begin{tabular}{lllll}
 		\tophline
-		Reanalysis& coverage& time period&  resolution& reference\\
+		Reanalysis& Spatial coverage& Averaging period& Resolution& Description\\
 		\middlehline
-		NCEP/NCAR&  global&   1981 -- 2010& ??& ??\\
-		ERA-Interim&global&   1979 -- 2011& ??& ??\\
-		CFSR&       global&   1979 -- 2010& ??& ??\\
-		NARR&       global&   1979 -- 2000& ??& ??\\
+		NCEP/NCAR&  global&     1981 -- 2010& 1.875\degree& \citet{data:ncar}\\
+		ERA-Interim&global&     1979 -- 2011& 1.000\degree& \citet{data:erai}\\
+		CFSR&       global&     1979 -- 2010& 0.325\degree& \citet{data:cfsr}\\
+		NARR&       North America& 1979 -- 2000& 32\,km& \citet{data:narr}\\
 		\bottomhline
 	\end{tabular}
 \end{table}
