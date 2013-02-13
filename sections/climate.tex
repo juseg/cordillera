@@ -71,6 +71,12 @@ In regions like Northern Yukon and Alaska, dry winters and warm summers prevent 
 
 \subsection{Preprocessing and lapse-rate corrections}
 
+Air surface temperature and precipitation rates from the NCEP/NCAR reanalysis, the ERA-Interim reanalysis, the CFSR, the NARR and WorldClim data were reprojected to Canadian Atlas Lambert (EPSG code XXXX\todo{add EPSG code}) conformal conic projection. The data were bilinearly interpolated to the model resolution of 10\,km, which is not shown by figures~\ref{fig:temp} and~\ref{fig:prec}.
+
+For the WorldClim data, data holes in oceanic areas were filled by a nearest-neighbour extrapolation to allow ice to extend to these regions.
+
+For the CFSR, an alternative forcing was prepared by smoothing the precipitation fields to avoid artifacts seen in figure~\ref{fig:prec}. This was done by averaging data locally in a circular neighbourhood of 7 pixels in diameter prior to reprojection. However the effect of smoothin the precipitation field is very limited as we will see further. All the preprocessing steps were made in GRASS~GIS using scripts made available on the first author's website.
+
 \begin{figure}[t]
 	\vspace*{2mm}
 	\begin{center}
@@ -79,4 +85,6 @@ In regions like Northern Yukon and Alaska, dry winters and warm summers prevent 
 	\caption{Reference topography used for temperature lapse-rate corrections from the five climate datasets used in the study and ETOPO1 topography used as basal condition for the ice flow model.}
 	\label{fig:topo}
 \end{figure}
+
+Throughout the simulation, the numerical model dynamically applies temperature lapse-rate corrections that account for both differences between the climate reference topography and the ice flow model topography, and the thickness of overlying ice thickness. The reference topography from the five forcing datasets as well as the ETOPO1\citep{data:etopo1} topography used to force the ice flow model are shown in figure~\ref{fig:topo}. A lapse-rate of 6\unit{\degree C\,km^{-1}} was used in all simulations. No lapse-rate corrections are applied to precipitation rate.
 
