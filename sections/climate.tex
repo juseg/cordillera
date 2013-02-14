@@ -50,7 +50,7 @@ In addition to the WorldClim data, we use surface air temperature and precipitat
 
 Figure~\ref{fig:temp} shows the spatial distribution of summer (JJA) air surface temperatures from the five climate datasets used in the study, and winter (DJF) air surface temperatures from the WorldClim interpolated observation data. Summer temperatures are most relevant to the glacier model as they drive summer melt.
 
-As can be expected, temperatures decrease with latitude, and regions further inland experience colder winters. It should be noted that the temperature gradient is much stronger in the winter than it is in the summer, and that at low elevations, temperatures get well above zero during the summer months in the entire modelling domain. In other words, there is a strong seasonality contrast beween coastal and inland regions, and regions where mean annual temperatures are well below freezing do experience warm summers.
+Temperatures generally decrease from south to north and regions further inland experience colder winters. It should be noted that the temperature gradient is much stronger in the winter than it is in the summer. At low elevations temperature get well above zero during the summer months over the entire modelling domain. In other words, there is a strong seasonality contrast beween coastal and inland regions, and regions where mean annual temperatures are well below freezing do experience warm summers.
 
 \begin{figure}[t]
 	\vspace*{2mm}
@@ -63,19 +63,17 @@ As can be expected, temperatures decrease with latitude, and regions further inl
 
 Figure~\ref{fig:prec} shows the spatial distribution of winter (DJF) precipitation rates from the five climate datasets used in the study, and summer (JJA) precipitation rates from the WorldClim interpolated observation data. Winter precipitation is most relevant to the glacier model as it drives winter accumulation.
 
-Once again expectedly, coastal regions recieve much more precipitation than inland ones due to the unborken topographical barrier of the Boundary Ranges / Coast Mountains / Cascadia. It should be noted that from a glacier mass-balance view, this contrast is made even stronger by the difference of timing of the precipitation peak through the year. Although coastal regions experience most precipitation in the accumulation season, inland regions experience dry winters and most of the precipitation falls as rain during the summer months.
+Coastal regions generally recieve much more precipitation than inland ones as a results of the continuous topographic barrier formed by the Boundary Ranges, the Coast Mountains and the Cascadia. In a glacier mass-balance view, this contrast is made even stronger by the difference in timing of the precipitation peak through the year. Although coastal regions experience most precipitation during the accumulation season, inland regions experience dry winters and most of the precipitation falls as rain during the summer months.
 
-In regions like Northern Yukon and Alaska, dry winters and warm summers prevent snow accumulation and glacial inception despite of mean annual temperatures being well below zero at present. In order to account for these strong gradients in seasonality, we use monthly means to drive the ice sheet model. Previous runs made with mean annual temperature and precipitation forcing and not presented here lead to unrealistic ice cover in Northern Yukon and Alaska even under present-day climate while leaving the Coast Mountains free of ice.
+In regions like Northern Yukon and Alaska, dry winters and warm summers are unfavourable conditions to accumulation and glacial inception despite of the strongly negative mean annual temperatures at present. In order to account for these strong gradients in seasonality, we use monthly means to drive the ice sheet model. Previous runs forced by annual means of temperature and precipitation not presented here systematically conducted to unrealistic ice build-up in northern Yukon and Alaska under present-day climate while leaving the Coast Mountains free of ice.
 
 % ----------------------------------------------------------------------
 
 \subsection{Preprocessing and lapse-rate corrections}
 
-Air surface temperature and precipitation rates from the NCEP/NCAR reanalysis, the ERA-Interim reanalysis, the CFSR, the NARR and WorldClim data were reprojected to Canadian Atlas Lambert (EPSG code XXXX\todo{add EPSG code}) conformal conic projection. The data were bilinearly interpolated to the model resolution of 10\,km, which is not shown by figures~\ref{fig:temp} and~\ref{fig:prec}.
+Air surface temperature and precipitation rates from the NCEP/NCAR, ERA-Interim, CFSR and NARR reanalyses and WorldClim data were reprojected to Canadian Atlas Lambert conformal conic projection (EPSG code~3978) and bilinearly interpolated to the model resolution of 10\,km. In addition, WorldClim data was extrapolated to marine surfaces using a nearest-neighbour approach. These last two steps are not presented on figures~\ref{fig:temp} and~\ref{fig:prec}.
 
-For the WorldClim data, data holes in oceanic areas were filled by a nearest-neighbour extrapolation to allow ice to extend to these regions.
-
-For the CFSR, an alternative forcing was prepared by smoothing the precipitation fields to avoid artifacts seen in figure~\ref{fig:prec}. This was done by averaging data locally in a circular neighbourhood of 7 pixels in diameter prior to reprojection. However the effect of smoothin the precipitation field is very limited as we will see further. All the preprocessing steps were made in GRASS~GIS using scripts made available on the first author's website.
+For the CFSR, an alternative forcing was prepared by smoothing the precipitation field in order to correct for artifacts seen in figure~\ref{fig:prec}. This was done by averaging data locally in a circular neighbourhood of 7 pixels in diameter prior to reprojection. Yet we will show that this smoothing has very limited effect on the ice sheet model outcome. All the preprocessing steps described above were made in GRASS~GIS using scripts available on the first author's website.
 
 \begin{figure}[t]
 	\vspace*{2mm}
@@ -86,5 +84,5 @@ For the CFSR, an alternative forcing was prepared by smoothing the precipitation
 	\label{fig:topo}
 \end{figure}
 
-Throughout the simulation, the numerical model dynamically applies temperature lapse-rate corrections that account for both differences between the climate reference topography and the ice flow model topography, and the thickness of overlying ice thickness. The reference topography from the five forcing datasets as well as the ETOPO1\citep{data:etopo1} topography used to force the ice flow model are shown in figure~\ref{fig:topo}. A lapse-rate of 6\unit{\degree C\,km^{-1}} was used in all simulations. No lapse-rate corrections are applied to precipitation rate.
+Throughout the simulation, the numerical model dynamically applies temperature lapse-rate corrections that account for differences between the climate forcing reference topography and the ice flow model topography on the one hand, and the evolution of ice thickness on the over hand. For reanalysis data, the circulation model surface topography (or surface geopotential height) was used as reference topography. For the WorldClim data, the aggregated hole-filled SRTM altitude field is used as reference topography. As a basal condition for the ice flow model, we use the ETOPO1\citep{data:etopo1} combined topography and bathymetry dataset. The reference topographies from the five forcing datasets, alongside the ETOPO1 data are shown in figure~\ref{fig:topo}. A lapse-rate of 6\unit{\degree C\,km^{-1}} is used in all simulations and no lapse-rate corrections apply to precipitation rates.
 
