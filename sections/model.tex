@@ -6,7 +6,6 @@
 
 \begin{figure}\begin{framed}
 	\textbf{Technical note for Constantine}
-	\todo{Remove this note}
 
 	All my simulations use the same set of options except of a different \verb|-atmosphere_given_file| (climate forcing) and \verb|-atmosphere_delta_T_file| (temperature offset). Here comes the options that I used; I think you saw them a couple of times now. I simplified paths and filenames and remove output options for readability
 
@@ -47,4 +46,68 @@
 	\end{verbatim}
 
 \end{framed}\end{figure}
+
+%\subsection{Surface mass-balance}
+%
+%Monthly temperatures and precipitation rates are converted into accumulation and ablation at the ice surface using a temperature-index (positive degree-day) model\missingref. The surface mass-balance model is certainly the most critical of the ice sheet model to the present study, and although a positive degree-day model is a very crude approximation of processes occurring at the glacier surface, we will show that a positive degree-day model captures reasonable regional patterns of accumulation and ablation when using accurate climate data.
+%
+%The number of positive degree-days, defined as the integrand of positive temperatures over time, is computed annually using a formula derived by \citet{calov-greve-2011} that accounts for day-to-day variability of temperature by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
+%
+%\begin{equation}
+%	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
+%		\frac{\sigma}{\sqrt{2\pi}}
+%		\exp\left({-\frac{T(t)^2}{2\sigma^2}}\right)
+%		+\frac{T(t)}{2}
+%		\mathrm{erfc} \left(-\frac{T(t)}{\sqrt{2}\sigma}\right)
+%	\right]
+%\end{equation}
+%
+%Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function.
+%
+%Accumulation is computed as the amount of precipitation that falls at times when temperature is below freezing \todo{Check PISM accu. model}.
+%
+%\subsection{Ice flow dynamics}
+%To resolve ice dynamics, PISM specifically uses a heuristic combination of two classical and well-based zeroth-order shallow-ice approximations through a weighting function \citep{bueler-brown-2009}. The Shallow Shelf Approximation \citep[SSA,][]{morland-1987,weis-etal-1999} is used as a ``sliding law'' for the Shallow Ice Approximation \citep[SSA,][]{hutter-1983}. Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
+%
+%\begin{equation}
+%	\vec{v} = f(|\vec{v_{\mathrm{SSA}}}|)\vec{v_{\mathrm{SIA}}}
+%	+ (1-f(|\vec{v_{\mathrm{SSA}}}|))\vec{v_{\mathrm{SSA}}},
+%\end{equation}
+%
+%with
+%
+%\begin{equation}
+%	f(|\vec{v_{\mathrm{SSA}}}|) = 1
+%	- \frac{2}{\pi}\arctan{\frac{|\vec{v_{\mathrm{SSA}}}|^2}{100^2}}.
+%\end{equation}
+%
+%This approach, although using a heuristic, allows realistic representation of horizontal shear and longitudinal stresses where they matter \citep{bueler-brown-2009}.
+%
+%
+%The SSA velocities are determined by a a pseudo-plastic sliding law in which the yield stress is depends on the availability of basal water and a prescibed till friction angle. We apply lower friction angles at lower elevation to model more slippery beds due to the presence of marine sediments.
+%
+%\begin{equation}
+%	\phi = \left\{\begin{array}{llc}
+%		10\,\unit{\degree C} & \mathrm{for} &               z<  0\,\unit{m} \\
+%		z/10 + 10°           & \mathrm{for} &   0\,\unit{m}<z<200\,\unit{m} \\
+%		30\,\unit{\degree C} & \mathrm{for} & 200\,\unit{m}<z               \\
+%	\end{array}\right.
+%\end{equation}
+%
+%\subsection{Glacier bed interface}
+%
+%The ice-sheet bed topography responds to the ice-loads following a regional isostasy model with flexure and relaxation.
+%
+%Geothermal heat flux is prescribed to 70\,\unit{W\,m^{-2}}
+%
+%\subsection{Simulation design and numerical implementation}
+%
+%The simulations were run with PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,aschwanden-etal-2012} and more extensively online \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+
+%Model equations are discretized horizontally on a 10~km-resolution, 150 by 300 points grid, and vertically within the ice on 21 irregularly-spaced layers. Time-stepping is adaptive, but a maximum allowed time step of 0.08 is used to ensure monthly capture of climate data by the surface mass-balance model.
+%
+%The simulations were run in parallel on 9~computation nodes of 8~cores each, for a total of 72~cores, on the supercomputer ekman at the PDC center for high performance computing of Kungliga Tekniska högskolan in Stockholm. Each simulation completed in about 10~hours.
+
+%In this study we model glacial inception and growth of the Cordilleran ice sheet to a state nearing its last glacial maximum. For each present-day climate forcing we run a series of six simulations by applying a constant, homogeneous temperature offset of 4 to 9 \unit{\degree C} over the entire model domain. Each simulation initializes from ice-free conditions and is run for 10~000~years, a time interval we think to be representative of the rapid growth of the ice sheet from nearly ice-free conditions to last glacial maximum extent \missingref. No precipitation corrections were used.
+%
 
