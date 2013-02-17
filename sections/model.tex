@@ -86,34 +86,38 @@ Although a positive degree-day model is a very crude approximation of processes 
 
 Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function.}
 
-%\subsection{Ice flow dynamics}
-%To resolve ice dynamics, PISM specifically uses a heuristic combination of two classical and well-based zeroth-order shallow-ice approximations through a weighting function \citep{bueler-brown-2009}. The Shallow Shelf Approximation \citep[SSA,][]{morland-1987,weis-etal-1999} is used as a ``sliding law'' for the Shallow Ice Approximation \citep[SSA,][]{hutter-1983}. Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
-%
-%\begin{equation}
-%	\vec{v} = f(|\vec{v_{\mathrm{SSA}}}|)\vec{v_{\mathrm{SIA}}}
-%	+ (1-f(|\vec{v_{\mathrm{SSA}}}|))\vec{v_{\mathrm{SSA}}},
-%\end{equation}
-%
-%with
-%
-%\begin{equation}
-%	f(|\vec{v_{\mathrm{SSA}}}|) = 1
-%	- \frac{2}{\pi}\arctan{\frac{|\vec{v_{\mathrm{SSA}}}|^2}{100^2}}.
-%\end{equation}
-%
-%This approach, although using a heuristic, allows realistic representation of horizontal shear and longitudinal stresses where they matter \citep{bueler-brown-2009}.
-%
-%
-%The SSA velocities are determined by a a pseudo-plastic sliding law in which the yield stress is depends on the availability of basal water and a prescibed till friction angle. We apply lower friction angles at lower elevation to model more slippery beds due to the presence of marine sediments.
-%
-%\begin{equation}
-%	\phi = \left\{\begin{array}{llc}
-%		10\,\unit{\degree C} & \mathrm{for} &               z<  0\,\unit{m} \\
-%		z/10 + 10°           & \mathrm{for} &   0\,\unit{m}<z<200\,\unit{m} \\
-%		30\,\unit{\degree C} & \mathrm{for} & 200\,\unit{m}<z               \\
-%	\end{array}\right.
-%\end{equation}
-%
+\subsection{Ice dynamics}
+
+Ice flow velocities are computed by a heuristic where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
+
+\todo[inline]{
+	\textbf{Include SSA+SIA \citet{bueler-brown-2009} formula}
+
+	Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
+
+	\begin{equation}
+		\vec{v} = f(|\vec{v_{\mathrm{SSA}}}|)\vec{v_{\mathrm{SIA}}}
+	  + (1-f(|\vec{v_{\mathrm{SSA}}}|))\vec{v_{\mathrm{SSA}}},
+	\end{equation}
+
+	with
+
+	\begin{equation}
+		f(|\vec{v_{\mathrm{SSA}}}|) = 1
+		- \frac{2}{\pi}\arctan{\frac{|\vec{v_{\mathrm{SSA}}}|^2}{100^2}}.
+	\end{equation}
+}
+
+SSA velocities are determined by a a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescibed till friction angle$\phi$. We apply lower friction angles at low elevation to mimick the more slippery beds associated to the presence of marine sediments:
+
+\begin{equation}
+	\phi = \left\{\begin{array}{llc}
+		10\,\unit{\degree C} & \mathrm{for} &               z<  0\,\unit{m} \\
+		z/10 + 10°           & \mathrm{for} &   0\,\unit{m}<z<200\,\unit{m} \\
+		30\,\unit{\degree C} & \mathrm{for} & 200\,\unit{m}<z               \\
+	\end{array}\right.
+\end{equation}
+
 %\subsection{Glacier bed interface}
 %
 %The ice-sheet bed topography responds to the ice-loads following a regional isostasy model with flexure and relaxation.
