@@ -4,6 +4,8 @@
 \label{sec:setup}
 % ----------------------------------------------------------------------
 
+%The simulations were run with PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,aschwanden-etal-2012} and more extensively online \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+
 \begin{figure}\begin{framed}
 	\textbf{Technical note for Constantine}
 
@@ -124,14 +126,9 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 %
 %Geothermal heat flux is prescribed to 70\,\unit{W\,m^{-2}}
 %
-%\subsection{Simulation design and numerical implementation}
-%
-%The simulations were run with PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,aschwanden-etal-2012} and more extensively online \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+\subsection{Simulation design and numerical implementation}
 
-%Model equations are discretized horizontally on a 10~km-resolution, 150 by 300 points grid, and vertically within the ice on 21 irregularly-spaced layers. Time-stepping is adaptive, but a maximum allowed time step of 0.08 is used to ensure monthly capture of climate data by the surface mass-balance model.
-%
-%The simulations were run in parallel on 9~computation nodes of 8~cores each, for a total of 72~cores, on the supercomputer ekman at the PDC center for high performance computing of Kungliga Tekniska högskolan in Stockholm. Each simulation completed in about 10~hours.
+In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimick glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval which we think to be representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \needref.
 
-%In this study we model glacial inception and growth of the Cordilleran ice sheet to a state nearing its last glacial maximum. For each present-day climate forcing we run a series of six simulations by applying a constant, homogeneous temperature offset of 4 to 9 \unit{\degree C} over the entire model domain. Each simulation initializes from ice-free conditions and is run for 10~000~years, a time interval we think to be representative of the rapid growth of the ice sheet from nearly ice-free conditions to last glacial maximum extent \needref. No precipitation corrections were used.
-%
+Our computational domain consists of 10~km-resolution, 150 by 300 points horizontal grid. Equations that involve a vertical coordinate are solved on 51 irregularly-spaced layers in ice and 11 regularly spaced layers in rock\todo{Check PISM doc}. The simulations were run in parallel on 32 cores, on NSC's supercomputer triolith\needref.
 
