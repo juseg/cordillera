@@ -4,7 +4,7 @@
 \label{sec:setup}
 % ----------------------------------------------------------------------
 
-%The simulations were run with PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,aschwanden-etal-2012} and more extensively online \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,aschwanden-etal-2012} and more extensively online \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
 
 \begin{figure}\begin{framed}
 	\textbf{Technical note for Constantine}
@@ -122,7 +122,7 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 
 \subsection{Glacier bed interface}
 
-The glacier bed topography response to the ice load is computed by a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}. To compute basal temperatures with higher accuracy, the thermal model is extended 1\,km into the bedrock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as basal condition to this model.
+The glacier bed topography response to the ice load is computed by a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{check ref.}. To compute basal temperatures with higher accuracy, the thermal model is extended 1\,km into the bedrock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as basal condition to this model.
 
 \subsection{Simulation design and numerical implementation}
 
