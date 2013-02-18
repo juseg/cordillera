@@ -120,12 +120,10 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 	\end{array}\right.
 \end{equation}
 
-%\subsection{Glacier bed interface}
-%
-%The ice-sheet bed topography responds to the ice-loads following a regional isostasy model with flexure and relaxation.
-%
-%Geothermal heat flux is prescribed to 70\,\unit{W\,m^{-2}}
-%
+\subsection{Glacier bed interface}
+
+The glacier bed topography response to the ice load is computed by a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}. To compute basal temperatures with higher accuracy, the thermal model is extended 1\,km into the bedrock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as basal condition to this model.
+
 \subsection{Simulation design and numerical implementation}
 
 In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimick glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval which we think to be representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \needref.
