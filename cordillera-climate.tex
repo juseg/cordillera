@@ -17,9 +17,11 @@
 % Add to-do notes and enlarge right margin
 \usepackage{todonotes}
 \usepackage[left=54pt, top=81pt, textwidth=398pt, marginparsep=11pt, marginparwidth=93pt, textheight=625pt, footskip=30pt]{geometry}
-\newcommand{\needref}[0]{\todo[color=cyan]{Need ref.}}
-\newcommand{\qiong}[2][]{\todo[color=pink,{#1}]{\textbf{Qiong:} #2}}
-\newcommand{\askconstantine}[2][]{\todo[{#1}]{\textbf{Constantine:} #2}}
+\newcommand{\needref}[0]{\todo[color=cyan]{Reference needed}}
+\newcommand{\arjen}[2][]{\todo[color=lime,{#1}]{\textbf{Arjen suggests:} #2}}
+\newcommand{\constantine}[2][]{\todo[color=yellow,{#1}]{\textbf{Constantine suggests:} #2}}
+\newcommand{\qiong}[2][]{\todo[color=pink,{#1}]{\textbf{Qiong suggests:} #2}}
+\newcommand{\ask}[2][]{\todo[color=lightgray,{#1}]{\textbf{Julien asks:} #2}}
 
 % Set figures repository
 \graphicspath{{figures/}}

@@ -25,10 +25,9 @@ We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation o
 	\end{tabular}
 \end{table}
 
-Monthly temperatures and precipitation rates are converted to surface accumulation and ablation using a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing.\askconstantine{Is this true? What is the current threshold in stable 0.5?} Ablation is computed from the number of positive degree-days, defined as the integrand of temperatures above 0\,\degree\,C in one year. Positive degree-days are computed by the \citet{calov-greve-2011} formula to account for day-to-day variability unrepresented in the monthly climate forcing. The ablation model use different degree-day factors for snow and ice and accounts for refreezing. Complete description of the ablation model is available in PISM documentation \citep[{\url{http://www.pism-docs.org}},][]{web:pism} and model parameters are explicited in table~\ref{tab:pdd}.
+Monthly temperatures and precipitation rates are converted to surface accumulation and ablation using a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing.\ask{Is this true? What is the current threshold in stable 0.5?} Ablation is computed from the number of positive degree-days, defined as the integrand of temperatures above 0\,\degree\,C in one year. Positive degree-days are computed by the \citet{calov-greve-2011} formula to account for day-to-day variability unrepresented in the monthly climate forcing. The ablation model use different degree-day factors for snow and ice and accounts for refreezing. Complete description of the ablation model is available in PISM documentation \citep[{\url{http://www.pism-docs.org}},][]{web:pism} and model parameters are explicited in table~\ref{tab:pdd}.
 
-\todo[inline]{
-	\textbf{Include the \citet{calov-greve-2011} integrand formula?}
+\ask[inline]{\emph{Should I include the \citet{calov-greve-2011} integrand formula?}
 
 	The number of positive degree-days, defined as the integrand of positive temperatures over time, is computed annually using a formula derived by \citet{calov-greve-2011} that accounts for day-to-day variability of temperature by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
 
@@ -43,14 +42,13 @@ Monthly temperatures and precipitation rates are converted to surface accumulati
 
 Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function.}
 
-A positive degree-day model is a very crude approximation of physical processes occurring at a glacier's surface. Yet we believe that it captures regional patterns of accumulation and ablation resonable enough for our study if accurate climate data is used, as we will show further.\todo{Is this paragraph really needed?}
+A positive degree-day model is a very crude approximation of physical processes occurring at a glacier's surface. Yet we believe that it captures regional patterns of accumulation and ablation resonable enough for our study if accurate climate data is used, as we will show further.\ask{Is this paragraph really needed?}
 
 \subsection{Ice thermodynamics}
 
 Ice flow velocities are computed by a heuristic where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
 
-\todo[inline]{
-	\textbf{Include SSA+SIA \citet{bueler-brown-2009} formula?}
+\ask[inline]{\emph{Should I include the SSA+SIA \citet{bueler-brown-2009} formula?}
 
 	Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
 
@@ -79,7 +77,7 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 	\end{array}\right.
 \end{equation}
 
-The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{check ref.}.
+The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{Check \citet{lingle-clark-1985}}.
 
 \subsection{Simulation design}
 
