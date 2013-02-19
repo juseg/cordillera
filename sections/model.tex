@@ -81,9 +81,7 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 
 The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{check ref.}.
 
-\subsection{Simulation design and numerical implementation}
+\subsection{Simulation design}
 
-In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimick glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval which we think to be representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \needref.
-
-Our computational domain consists of 10~km-resolution, 150 by 300 points horizontal grid. Equations that involve a vertical coordinate are solved on 51 irregularly-spaced layers in ice and 11 regularly spaced layers in rock\todo{Check PISM doc}. The simulations were run in parallel on 32 cores, on NSC's supercomputer triolith\needref.
+In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimick glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval which we think to be representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \needref. Our simulations were run in parallel on 32 cores at the Swedish National Supercomputing Center.
 
