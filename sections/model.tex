@@ -45,7 +45,7 @@ Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error fu
 
 A positive degree-day model is a very crude approximation of physical processes occurring at a glacier's surface. Yet we believe that it captures regional patterns of accumulation and ablation resonable enough for our study if accurate climate data is used, as we will show further.\todo{Is this paragraph really needed?}
 
-\subsection{Ice dynamics}
+\subsection{Ice thermodynamics}
 
 Ice flow velocities are computed by a heuristic where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
 
@@ -67,6 +67,8 @@ Ice flow velocities are computed by a heuristic where the Shallow Shelf Approxim
 	\end{equation}
 }
 
+SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points. SIA velocities follow temperature-dependant creep. Temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions on 51 irregularly spaced layers in ice and 11 regularly spaced layers in rock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as lower boundary condition to the thermal model, and surface air temperature from the various climate forcing is used as upper boundary condition.
+
 SSA velocities are determined by a a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescibed till friction angle$\phi$. We apply lower friction angles at low elevation to mimick the more slippery beds associated to the presence of marine sediments:
 
 \begin{equation}
@@ -77,9 +79,7 @@ SSA velocities are determined by a a pseudo-plastic sliding law where the yield 
 	\end{array}\right.
 \end{equation}
 
-\subsection{Glacier bed interface}
-
-The glacier bed topography response to the ice load is computed by a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{check ref.}. To compute basal temperatures with higher accuracy, the thermal model is extended 1\,km into the bedrock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as basal condition to this model.
+The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{check ref.}.
 
 \subsection{Simulation design and numerical implementation}
 
