@@ -25,9 +25,7 @@ We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation o
 	\end{tabular}
 \end{table}
 
-Monthly temperatures and precipitation rates are converted to surface accumulation and ablation using a temperature-index (positive degree-day) model\needref. Accumulation is computed as the amount of precipitation that falls at times when temperature is below freezing \todo{Check PISM doc}. Ablation is a transfer function of the number of positive degree-day, defined as the sum of mean daily temperatures through the year. Positive degree-day are computed by the \citet{calov-greve-2011} integrand to account for day-to-day variability which is not represented in the monthly climate forcing. The ablation model use a different coefficient for snow and ice and accounts for refreezing. Model parameters are explicited in table~\ref{tab:pdd}
-
-Although a positive degree-day model is a very crude approximation of processes occurring at the glacier surface, we will show that it captures reasonable regional patterns of accumulation and ablation when using accurate climate data.
+Monthly temperatures and precipitation rates are converted to surface accumulation and ablation using a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing.\askconstantine{Is this true? What is the current threshold in stable 0.5?} Ablation is computed from the number of positive degree-days, defined as the integrand of temperatures above 0\,\degree\,C in one year. Positive degree-days are computed by the \citet{calov-greve-2011} formula to account for day-to-day variability unrepresented in the monthly climate forcing. The ablation model use different degree-day factors for snow and ice and accounts for refreezing. Complete description of the ablation model is available in PISM documentation \citep[{\url{http://www.pism-docs.org}},][]{web:pism} and model parameters are explicited in table~\ref{tab:pdd}.
 
 \todo[inline]{
 	\textbf{Include the \citet{calov-greve-2011} integrand formula?}
@@ -45,12 +43,14 @@ Although a positive degree-day model is a very crude approximation of processes 
 
 Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function.}
 
+A positive degree-day model is a very crude approximation of physical processes occurring at a glacier's surface. Yet we believe that it captures regional patterns of accumulation and ablation resonable enough for our study if accurate climate data is used, as we will show further.\todo{Is this paragraph really needed?}
+
 \subsection{Ice dynamics}
 
 Ice flow velocities are computed by a heuristic where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
 
 \todo[inline]{
-	\textbf{Include SSA+SIA \citet{bueler-brown-2009} formula}
+	\textbf{Include SSA+SIA \citet{bueler-brown-2009} formula?}
 
 	Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
 
