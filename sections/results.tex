@@ -25,6 +25,7 @@ Figure~\ref{fig:cool06} shows the outcome simulations run with a 6\degC temperat
 	\end{center}
 	\todo[inline]{Change panel order to match climate section}
 	\qiong[inline]{Move ticks on the colorbar. The 1 is confusing.}
+	\todo[inline]{This figure is heavy. It should be possible to simply paths and reduce the file size. Matplotlib's mpl.rc('path', simplify=True) may be the answer.}
 	\caption{Extent of ice cover after 10\,kyr as a function of applied temperature offsets for each climate forcing.}
 	\label{fig:extent}
 \end{figure*}
@@ -52,6 +53,7 @@ Final ice volume and final ice coverage at the end of all simulations is quantif
 		\includegraphics[width=13cm]{cordillera-climate-best}
 	\end{center}
 	\todo[inline]{Change panel order to match climate section}
+	\todo[inline]{The must would be to overlay geomorphic ice extent.}
 	\caption{Ice surface topography (black contours every 1000\,m) and velocity (\unit{m\,yr^{-1}}) after 10\,kyr using temperature offsets that lead to similar areas of ice cover for each climate forcing.}
 	\label{fig:best}
 \end{figure*}
