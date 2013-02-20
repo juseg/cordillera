@@ -20,7 +20,7 @@ A second drawback of the dataset in an ice sheet modelling view is the lack of d
 
 In addition to the WorldClim data, we use surface air temperature and precipitation rate data from three global and one regional climate reanalysis to force the ice sheet model: the NCEP/NCAR reanalysis, the ERA-Interim reanalysis, the Climate System Forecast Reanalysis (CFSR) and the North American Regional Reanalysis (NARR). Monthly climatologies from NCEP/NCAR and NARR reanalysis were provided by the NOAA/OAR/ESRL PSD, Boulder, Colorado, USA, from their Web site at \url{http://www.esrl.noaa.gov/psd/} and monthly climatologies from the ERA-Interim and CFSR reanalyses were computed from their monthly mean timeseries. Further information on the data used is gatherd in Table \ref{tab:reanalyses}. As a mixed product from observations and a circulation model, we believe that reanalysis may perform best in poorly monitored regions such as the northernmost American Cordillera.
 
-\begin{table}[t]
+\begin{table*}[t]
 	\caption{Characteristic of reanalysis climatologies used to force the ice sheet model.}
 	\label{tab:reanalyses}
 	\vskip4mm
@@ -35,7 +35,7 @@ In addition to the WorldClim data, we use surface air temperature and precipitat
 		NARR&       North America& 1979 -- 2000& 32\,km& \citet{data:narr}\\
 		\bottomhline
 	\end{tabular}
-\end{table}
+\end{table*}
 
 % ----------------------------------------------------------------------
 
@@ -43,7 +43,7 @@ In addition to the WorldClim data, we use surface air temperature and precipitat
 
 \qiong[inline]{Merge this part with observations. This is description of observation data.}
 
-\begin{figure}[t]
+\begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
 		\includegraphics[width=13cm]{cordillera-climate-temp}
@@ -51,13 +51,13 @@ In addition to the WorldClim data, we use surface air temperature and precipitat
 	\qiong[inline]{Use same order in text and figures}
 	\caption{Summer temperature maps from the five datasets used in this study and winter temperature map from the WorldClim dataset.}
 	\label{fig:temp}
-\end{figure}
+\end{figure*}
 
 Figure~\ref{fig:temp} shows the spatial distribution of summer (JJA) air surface temperatures from the five climate datasets used in the study, and winter (DJF) air surface temperatures from the WorldClim interpolated observation data. Summer temperatures are most relevant to the glacier model as they drive summer melt.
 
 Temperatures generally decrease from south to north and regions further inland experience colder winters. It should be noted that the temperature gradient is much stronger in the winter than it is in the summer. At low elevations temperature get well above zero during the summer months over the entire modelling domain. In other words, there is a strong seasonality contrast beween coastal and inland regions, and regions where mean annual temperatures are well below freezing do experience warm summers.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
 		\includegraphics[width=13cm]{cordillera-climate-prec}
@@ -65,7 +65,7 @@ Temperatures generally decrease from south to north and regions further inland e
 	\qiong[inline]{Use same order in text and figures}
 	\caption{Winter precipitation rate maps from the five datasets used in this study and summer precipitation map from the WorldClim dataset.}
 	\label{fig:prec}
-\end{figure}
+\end{figure*}
 
 Figure~\ref{fig:prec} shows the spatial distribution of winter (DJF) precipitation rates from the five climate datasets used in the study, and summer (JJA) precipitation rates from the WorldClim interpolated observation data. Winter precipitation is most relevant to the glacier model as it drives winter accumulation.
 
@@ -81,7 +81,7 @@ Air surface temperature and precipitation rates from the NCEP/NCAR, ERA-Interim,
 
 For the CFSR, an alternative forcing was prepared by smoothing the precipitation field in order to correct for artifacts seen in figure~\ref{fig:prec}. This was done by averaging data locally in a circular neighbourhood of 7 pixels in diameter prior to reprojection. Yet we will show that this smoothing has very limited effect on the ice sheet model outcome. All the preprocessing steps described above were made in GRASS~GIS using scripts available on the first author's website.
 
-\begin{figure}[t]
+\begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
 		\includegraphics[width=13cm]{cordillera-climate-topo}
@@ -89,7 +89,7 @@ For the CFSR, an alternative forcing was prepared by smoothing the precipitation
 	\qiong[inline]{Use same order in text and figures}
 	\caption{Reference topography used for temperature lapse-rate corrections from the five climate datasets used in the study and ETOPO1 topography used as basal condition for the ice flow model.}
 	\label{fig:topo}
-\end{figure}
+\end{figure*}
 
 Throughout the simulation, the numerical model dynamically applies temperature lapse-rate corrections that account for differences between the climate forcing reference topography and the ice flow model topography on the one hand, and the evolution of ice thickness on the over hand. For reanalysis data, the circulation model surface topography (or surface geopotential height) was used as reference topography. For the WorldClim data, the aggregated hole-filled SRTM altitude field is used as reference topography. As a basal condition for the ice flow model, we use the ETOPO1\citep{data:etopo1} combined topography and bathymetry dataset. The reference topographies from the five forcing datasets, alongside the ETOPO1 data are shown in figure~\ref{fig:topo}. A lapse-rate of 6\unit{\degree C\,km^{-1}} is used in all simulations and no lapse-rate corrections apply to precipitation rates.
 
