@@ -9,7 +9,7 @@ We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation o
 \subsection{Surface mass-balance}
 
 \begin{table}[t]
-	\caption{Values of the positive degree-day model parameters.}
+	\caption{Positive degree-day model parameters.}
 	\label{tab:pdd}
 	\vskip4mm
 	\centering
@@ -25,28 +25,24 @@ We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation o
 	\end{tabular}
 \end{table}
 
-Monthly temperature and precipitation rate are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing.\ask{Is this true? What is the current threshold in stable 0.5?} Ablation is computed from the number of positive degree-days, defined as the integrand of temperatures above 0\,\degree\,C in one year. Positive degree-days are computed by the \citet{calov-greve-2011} formula to account for day-to-day variability, which is not represented in the monthly climate forcing. The ablation model use different degree-day factors for snow and ice and accounts for refreezing. Complete description of the ablation model is available in PISM documentation \citep[{\url{http://www.pism-docs.org}},][]{web:pism} and model parameters are expressed in table~\ref{tab:pdd}.
+Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing\ask{Is this true? What is the current threshold in stable 0.5?}. Ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degree\,C in one year. Positive degree-days are calculated by the \citet{calov-greve-2011} formula to accounts for day-to-day temperature variability by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
 
-\ask[inline]{\emph{Should I include the \citet{calov-greve-2011} integrand formula?}
+\begin{equation}
+	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
+		\frac{\sigma}{\sqrt{2\pi}}
+		\exp\left({-\frac{T(t)^2}{2\sigma^2}}\right)
+		+\frac{T(t)}{2}
+		\mathrm{erfc} \left(-\frac{T(t)}{\sqrt{2}\sigma}\right)
+	\right]
+\end{equation}
 
-	The number of positive degree-days is computed annually using a formula derived by \citet{calov-greve-2011} that accounts for day-to-day variability of temperature by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
+Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function. The ablation model employs different degree-day factors for snow and ice and accounts for refreezing (table~\ref{tab:pdd}).
 
-	\begin{equation}
-		\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
-			\frac{\sigma}{\sqrt{2\pi}}
-			\exp\left({-\frac{T(t)^2}{2\sigma^2}}\right)
-			+\frac{T(t)}{2}
-			\mathrm{erfc} \left(-\frac{T(t)}{\sqrt{2}\sigma}\right)
-		\right]
-	\end{equation}
-
-Where $[t_0; t_1]$ is one year and $\mathrm{erfc}$ is the complementary error function.}
-
-A positive degree-day model is a very crude approximation of physical processes occurring at a glacier's surface. Yet we believe that it captures regional patterns of accumulation and ablation that are reasonable enough for our study if accurate climate data is used, as we will show further.\ask{Is this paragraph really needed?}
+A positive degree-day model is a crude parametrization of physical processes occurring at a glacier's surface. Yet we believe that it captures reasonably accurate patterns of accumulation and ablation for our study area considering the employed climate data.
 
 \subsection{Ice thermodynamics}
 
-Ice flow velocities are computed by a heuristic where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
+Ice flow velocities are computed by a heuristic \arjen{not sure what this expresses!!} where the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. 
 
 \ask[inline]{\emph{Should I include the SSA+SIA \citet{bueler-brown-2009} formula?}
 
@@ -65,21 +61,25 @@ Ice flow velocities are computed by a heuristic where the Shallow Shelf Approxim
 	\end{equation}
 }
 
+\arjen[inline]{unless variations in these determine your best fit input dataset, I would not include them in this paper.}
+
 SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points. SIA velocities follow temperature-dependant creep. Temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions on 51 irregularly spaced layers in ice and 11 regularly spaced layers in rock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as lower boundary condition to the thermal model, and the surface air temperature from the various climate forcing is used as upper boundary condition.
 
 SSA velocities are determined by a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescribed till friction angle$\phi$. We apply lower friction angles at low elevation to mimic the more slippery beds associated to the presence of marine sediments:
 
 \begin{equation}
-	\phi = \left\{\begin{array}{llc}
-		10\,\unit{\degree C} & \mathrm{for} &               z<  0\,\unit{m} \\
-		z/10 + 10°           & \mathrm{for} &   0\,\unit{m}<z<200\,\unit{m} \\
-		30\,\unit{\degree C} & \mathrm{for} & 200\,\unit{m}<z               \\
+	\phi = \left\{\begin{array}{llrll}
+		10      & \mathrm{for} &      &z&<  0 \\
+		z/10+10 & \mathrm{for} &   0 <&z&<200 \\
+		30      & \mathrm{for} & 200 <&z&     \\
 	\end{array}\right.
 \end{equation}
 
-The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{Check \citet{lingle-clark-1985}}.
+With $\phi$ in degrees and $z$ in meters above present sea level. The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}\todo{Check \citet{lingle-clark-1985}}.
 
 \subsection{Simulation design}
 
 In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimic glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \needref. Our simulations were run in parallel on 32 cores at the Swedish National Supercomputing Center.
+
+\arjen[inline]{Check Stroeven et al. (2010): "Radiocarbon ages from wood and fossils underlying McConnell till indicate that the McConnell glaciation began after 29,600  300 14C yr BP (Matthews et al., 1990), but glaciers did not advance into major valleys before 26,350  280 14C yr BP (Jackson and Harington, 1991), and a fully developed CIS did not exist until after 23,900  1140 14C yr BP (Lowdon and Blake,1981). Published radiocarbon ages indicate that the St. Elias lobe of the CIS was in retreat by 13,660  180 14C yr BP (Rampton, 1971) and the Selwyn lobe by 12,590  120 14C yr BP (Ward, 1989) (Fig. 2)." and references therein.}
 

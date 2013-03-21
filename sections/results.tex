@@ -13,6 +13,7 @@ Using climate forcing from WorldClim data, the NCEP/NCAR, ERA-Iterim, CFSR and N
 	\end{center}
 	\caption{Ice surface topography (black contours every 1000\,m) and velocity (\unit{m\,yr^{-1}}) after 10\,kyr under a climate 6\degC colder than present for each climate forcing.}
 	\label{fig:cool06}
+  \arjen[inline]{Why do you inconsistently use K and degrees C?}
 \end{figure*}
 
 Figure~\ref{fig:cool06} shows the outcome of simulations run with a 6\degC temperature offset for each of the 6 climate forcings. In all simulations, ice accumulates and glaciers form as a result of the artificially cooled climate. Yet the magnitude of glaciation appears very different from one climate forcing to another. Whereas the NCAR and CFSR forcings produce a large ice sheet that covers most of the model domain land, the WorldClim, ERA-Interim and NARR forcings lead to more restrictive ice cover, bounded to mountain ice caps in the case of WorldClim data. The smoothing of CFSR precipitation data has limited visual effect on the resulting ice sheet geometry.
@@ -23,6 +24,7 @@ Figure~\ref{fig:cool06} shows the outcome of simulations run with a 6\degC tempe
 		\includegraphics[width=13cm]{cordillera-climate-extent}
 	\end{center}
 	\qiong[inline]{Move ticks on the colorbar. The 1 is confusing.}
+  \arjen[inline]{I think just removing "1" is enough. No other number are in need of moving I think.}
 	\caption{Extent of ice cover after 10\,kyr as a function of applied temperature offsets for each climate forcing.}
 	\label{fig:extent}
 \end{figure*}
@@ -37,6 +39,7 @@ Figure~\ref{fig:extent} shows the extent of ice cover at the end of each of thes
 		\includegraphics[width=9cm]{cordillera-climate-ivolarea}
 	\end{center}
 	\todo[inline]{Use black-and-white-proof markers and highlight the ``best'' runs.}
+  \arjen[inline]{The shape of these are modulated by the modelling domain. It looks as if the curves are at maximum difference for 5-6 degrees C and are closer again 7-9 degrees C, but perhaps the latter is an artefact from the fact that the ice sheets cannot grow beyond the domain boundaries?}
 	\caption{Total ice volume and glaciated area after 10\,kyr as a function of temperature offset and climate forcing.}
 	\label{fig:ivolarea}
 \end{figure}

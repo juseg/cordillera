@@ -18,13 +18,14 @@
 \usepackage{todonotes}
 \usepackage[left=54pt, top=81pt, textwidth=398pt, marginparsep=11pt, marginparwidth=93pt, textheight=625pt, footskip=30pt]{geometry}
 \newcommand{\needref}[0]{\todo[color=cyan]{Reference needed}}
-\newcommand{\arjen}[2][]{\todo[color=lime,{#1}]{\textbf{Arjen suggests:} #2}}
-\newcommand{\constantine}[2][]{\todo[color=yellow,{#1}]{\textbf{Constantine suggests:} #2}}
-\newcommand{\qiong}[2][]{\todo[color=pink,{#1}]{\textbf{Qiong suggests:} #2}}
-\newcommand{\ask}[2][]{\todo[color=lightgray,{#1}]{\textbf{Julien asks:} #2}}
+\newcommand{\arjen}[2][]{\todo[color=lime,{#1}]{\textbf{Arjen:} #2}}
+\newcommand{\constantine}[2][]{\todo[color=yellow,{#1}]{\textbf{Constantine:} #2}}
+\newcommand{\qiong}[2][]{\todo[color=pink,{#1}]{\textbf{Qiong:} #2}}
+\newcommand{\ask}[2][]{\todo[color=lightgray,{#1}]{\textbf{Julien:} #2}}
 
 % Personal shortcuts
 \newcommand{\degC}[0]{\,\unit{\degree C} }
+\newcommand{\masl}[0]{\,\unit{m a.s.l.} }
 
 % Set figures repository
 \graphicspath{{figures/}}
@@ -55,6 +56,8 @@
 		\item Numerically modelling the Cordilleran ice sheet. This is a point in itself as it has not quite being done so far as far as I am aware of.
 	\end{enumerate}
 	So I tried my best to include both ideas in the title. Yet this is preliminary...}}
+
+\arjen[inline]{The effect of climate forcing on numerical simulations of the Cordilleran ice sheet at the last glacial maximum}
 
 % ----------------------------------------------------------------------
 \begin{abstract}
