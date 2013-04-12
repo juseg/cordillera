@@ -124,12 +124,13 @@ def ivolarea():
       iarea = []
       ivol  = []
       for cool in coolings:
+        nc = Dataset('../data/%s-%02g.nc' % (clim, cool))
+        iarea.append((nc.variables['thk'][0]>1).sum()/1e4)
         nc = Dataset('../data/%s-%02g-ts.nc' % (clim, cool))
-        #iarea.append(nc.variables['iarea'][-1]/1e12)
         ivol.append(nc.variables['ivol'][-1]/1e15)
 
       # plot
-      #ax1.plot(coolings, iarea, '.-')
+      ax1.plot(coolings, iarea, '.-')
       ax2.plot(coolings, ivol, '.-')
 
     # add legend
