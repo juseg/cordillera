@@ -6,6 +6,11 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from iceplot import plot as iplt
 
+from matplotlib import rc
+rc('text', usetex=True)
+rc('text.latex', unicode=True)
+rc('mathtext', default='regular')
+
 ### Globals ###
 
 mapsize = (30., 60.)
@@ -95,6 +100,50 @@ def extent():
       title    = '%(label)s',
       output   = 'cordillera-climate-extent')
 
+def ivolarea():
+    """Plot volume and area curves"""
+
+    # initialize figure
+    mm = 1/25.4
+    figw = 85.
+    figh = 60.
+    fig = plt.figure(figsize=(figw*mm,figh*mm))
+    ax1 = plt.axes([10/figw, 10/figh, 30/figw, 30/figh])
+    ax2 = plt.axes([50/figw, 10/figh, 30/figw, 30/figh])
+    ax1.set_xlabel('Temperature offset')
+    ax1.set_ylabel(u'Glaciated area ($\mathsf{10^6~km^2}$)')
+    ax2.set_xlabel('Temperature offset')
+    ax2.set_ylabel(u'Ice volume ($\mathsf{10^6~km^3}$)')
+
+    # select input data
+    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    coolings = range(10)
+
+    # read input data
+    for clim in climates:
+      iarea = []
+      ivol  = []
+      for cool in coolings:
+        nc = Dataset('../data/%s-%02g-ts.nc' % (clim, cool))
+        #iarea.append(nc.variables['iarea'][-1]/1e12)
+        ivol.append(nc.variables['ivol'][-1]/1e15)
+
+      # plot
+      #ax1.plot(coolings, iarea, '.-')
+      ax2.plot(coolings, ivol, '.-')
+
+    # add legend
+    ax2.legend(
+      [labels[clim] for clim in climates],
+      bbox_to_anchor = (10/figw, 45/figh, 70/figw, 10/figh),
+      bbox_transform=fig.transFigure,
+      loc=3, ncol=2, mode="expand", borderaxespad=0.)
+
+    # save
+    output = 'cordillera-climate-ivolarea'
+    fig.savefig('cordillera-climate-ivolarea.png')
+    fig.savefig('cordillera-climate-ivolarea.pdf')
+
 ### Command-line interface ###
 
 if __name__ == "__main__":
@@ -106,10 +155,13 @@ if __name__ == "__main__":
       help='plot icemaps for so-called best runs')
     parser.add_argument('--extent', action='store_true',
       help='plot stacked ice extent from all runs')
+    parser.add_argument('--ivolarea', action='store_true',
+      help='plot colume and area curves')
     args = parser.parse_args()
 
     if args.cool is not None: cool(args.cool)
     if args.best is True: best()
     if args.extent is True: extent()
+    if args.ivolarea is True: ivolarea()
 
 
