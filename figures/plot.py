@@ -4,7 +4,9 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
+from matplotlib import colors as mcolors
 from iceplot import plot as iplt
+from iceplot import cm as icm
 
 from matplotlib import rc
 rc('text', usetex=True)
@@ -13,8 +15,10 @@ rc('mathtext', default='regular')
 
 ### Globals ###
 
+pismdir = '/home/julien/work/code/pism'
 mapsize = (30., 60.)
 labels = {
+  'etopo':  'ETOPO1',
   'cfsr':   'CFSR',
   'cfsrs7': 'smoothed CFSR',
   'erai':   'ERA-Interim',
@@ -25,25 +29,93 @@ labels = {
 
 ### Base function ###
 
-def _plot_maps(climates, clabel, output, func, cticks=None):
+def _plot_maps(climates, clabel, output, func, ci=-1, cticks=None):
     """Base function to plot maps"""
 
     # initialize figure
     fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
 
     # loop on climate datasets
+    sm = []
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      sm = func(i, clim)
+      sm.append(func(i, clim))
 
     # add colorbar
-    cb = fig.colorbar(sm, fig.grid.cbar_axes[0], ticks=cticks)
+    cb = fig.colorbar(sm[ci], fig.grid.cbar_axes[0], ticks=cticks)
     cb.set_label(clabel)
 
     # save
     print 'saving ' + output
     fig.savefig(output + '.png')
     fig.savefig(output + '.pdf')
+
+### Climate plotting functions ###
+
+def temp():
+    """Plot air temperature maps"""
+
+    seasons  = ['jja']*3 + ['djf'] + ['jja']*2
+
+    def func(i, clim):
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      plt.title('%s %s' % (labels[clim], seasons[i].upper()))
+      var = nc.variables['air_temp']
+      if seasons[i] == 'jja': data = (var[5]  + var[6] + var[7]).T/3
+      if seasons[i] == 'djf': data = (var[11] + var[0] + var[1]).T/3
+      data = np.ma.masked_equal(data, 0)
+      return plt.imshow(data - 273.15,
+        cmap = plt.cm.Spectral_r,
+        norm = mcolors.Normalize(-30, 30))
+
+    _plot_maps(
+      climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar'],
+      clabel   = u'air temperature (°C)',
+      output   = 'cordillera-climate-temp',
+      func     = func)
+
+def prec():
+    """Plot precipitation maps"""
+
+    seasons  = ['djf']*3 + ['jja'] + ['djf']*2
+
+    def func(i, clim):
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      plt.title('%s %s' % (labels[clim], seasons[i].upper()))
+      var = nc.variables['precipitation']
+      if seasons[i] == 'jja': data = (var[5]  + var[6] + var[7]).T/3
+      if seasons[i] == 'djf': data = (var[11] + var[0] + var[1]).T/3
+      return plt.imshow(data,
+        cmap = plt.cm.YlGnBu,
+        norm = mcolors.LogNorm(0.1, 10))
+
+    _plot_maps(
+      climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar'],
+      clabel   = u'precipitation rate (m/yr)',
+      output   = 'cordillera-climate-prec',
+      func     = func)
+
+def topo():
+    """Plot topography maps"""
+
+    def func(i, clim):
+      plt.title(labels[clim])
+      if clim == 'etopo':
+        nc = Dataset(pismdir + '/input/boot/cordillera-etopo1bed-10km.nc')
+        return plt.imshow(nc.variables['topg'][:].T,
+          cmap = icm.topo,
+          norm = mcolors.Normalize(-6000, 6000))
+      else:
+        nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+        return plt.imshow(nc.variables['usurf'][:].T,
+          cmap = icm.land_topo,
+          norm = mcolors.Normalize(0, 6000))
+
+    _plot_maps(
+      climates = ['wc', 'erai', 'narr', 'etopo', 'cfsr', 'ncar'],
+      clabel   = u'surface topography (m)',
+      output   = 'cordillera-climate-topo',
+      func     = func, ci = 3)
 
 ### Results plotting functions ###
 
@@ -150,6 +222,12 @@ def ivolarea():
 if __name__ == "__main__":
     import argparse
     parser = argparse.ArgumentParser()
+    parser.add_argument('--temp', action='store_true',
+      help='plot input temperature maps')
+    parser.add_argument('--prec', action='store_true',
+      help='plot input precipitation maps')
+    parser.add_argument('--topo', action='store_true',
+      help='plot input topography maps')
     parser.add_argument('--cool',
       help='plot icemaps for given temperature offset')
     parser.add_argument('--best', action='store_true',
@@ -160,6 +238,9 @@ if __name__ == "__main__":
       help='plot colume and area curves')
     args = parser.parse_args()
 
+    if args.temp is True: temp()
+    if args.prec is True: prec()
+    if args.topo is True: topo()
     if args.cool is not None: cool(args.cool)
     if args.best is True: best()
     if args.extent is True: extent()
