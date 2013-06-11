@@ -25,7 +25,7 @@ We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation o
 	\end{tabular}
 \end{table}
 
-Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing\ask{Is this true? What is the current threshold in stable 0.5?}. Ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degree\,C in one year. Positive degree-days are calculated by the \citet{calov-greve-2011} formula to accounts for day-to-day temperature variability by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
+Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Accumulation is computed as the amount of precipitation that falls when temperature is below freezing\ask{Is this true? What is the current threshold in stable 0.5?}. Ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degree\,C in one year. Positive degree-days are calculated by the \citet{calov-greve-2005} formula to accounts for day-to-day temperature variability by assuming a normal distribution of variance $\sigma=5\degree C$ along a central (input) value $T$:
 
 \begin{equation}
 	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
