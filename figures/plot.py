@@ -119,6 +119,40 @@ def prec():
       output   = 'cordillera-climate-prec',
       func     = func)
 
+def precdiff():
+    """Plot precipitation difference maps"""
+
+    # initialize figure
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # read WorldClim data
+    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    var = nc.variables['precipitation']
+    ref = (var[11] + var[0] + var[1]).T/3
+    ref = np.ma.masked_equal(ref, 0)
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      plt.title(labels[clim])
+      var = nc.variables['precipitation']
+      data = (var[11] + var[0] + var[1]).T/3
+      im = plt.imshow(data/ref-1 ,
+        cmap = plt.cm.PuOr,
+        norm = mcolors.Normalize(-2, 2))
+
+    # add colorbar
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
+    cb.set_label(u'normalized DJF precipitation rate difference to WorldClim data')
+
+    # save
+    output   = 'cordillera-climate-precdiff'
+    print 'saving ' + output
+    fig.savefig(output + '.png')
+    fig.savefig(output + '.pdf')
+
 def topo():
     """Plot topography maps"""
 
@@ -251,6 +285,8 @@ if __name__ == "__main__":
       help='plot input temperature maps')
     parser.add_argument('--prec', action='store_true',
       help='plot input precipitation maps')
+    parser.add_argument('--precdiff', action='store_true',
+      help='plot input precipitation difference maps')
     parser.add_argument('--topo', action='store_true',
       help='plot input topography maps')
     parser.add_argument('--cool',
@@ -265,6 +301,7 @@ if __name__ == "__main__":
 
     if args.temp is True: temp()
     if args.prec is True: prec()
+    if args.precdiff is True: precdiff()
     if args.topo is True: topo()
     if args.cool is not None: cool(args.cool)
     if args.best is True: best()
