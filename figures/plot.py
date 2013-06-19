@@ -2,9 +2,12 @@
 # coding: utf-8
 
 import numpy as np
+import shapefile
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
+from matplotlib.collections import LineCollection
+from mpl_toolkits.basemap import Basemap
 from iceplot import plot as iplt
 from iceplot import cm as icm
 
@@ -16,6 +19,7 @@ rc('mathtext', default='regular')
 ### Globals ###
 
 pismdir = '/home/julien/work/code/pism'
+shpfile = '/home/julien/work/data/dyke-deglaciation/16.8-ka.shp'
 mapsize = (30., 60.)
 labels = {
   'etopo':  'ETOPO1',
@@ -29,7 +33,7 @@ labels = {
 
 ### Base function ###
 
-def _plot_maps(climates, clabel, output, func, ci=-1, cticks=None):
+def _plot_maps(climates, clabel, output, func, ci=-1, cticks=None, margin=False):
     """Base function to plot maps"""
 
     # initialize figure
@@ -40,6 +44,26 @@ def _plot_maps(climates, clabel, output, func, ci=-1, cticks=None):
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       sm.append(func(i, clim))
+
+    # add LGM ice margin
+    if margin is True:
+      nc = Dataset('../data/%s-00.nc' % (climates[0]))
+      m = Basemap(projection='lcc',
+        lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
+        llcrnrlat=nc.variables['lat'][0,0],
+        urcrnrlat=nc.variables['lat'][-1,-1],
+        llcrnrlon=nc.variables['lon'][0,0],
+        urcrnrlon=nc.variables['lon'][-1,-1])
+      sf = shapefile.Reader(shpfile)
+      for record, shape in zip(sf.records(),sf.shapes()):
+        lons,lats = zip(*shape.points)
+        data = np.array(m(lons, lats)).T/10000
+        #lines.set_facecolors('blue')
+        #lines.set_edgecolors('k')
+        #lines.set_linewidth(0.1)
+      for ax in fig.grid:
+        lines = LineCollection([data,], antialiaseds=(1,))
+        ax.add_collection(lines)
 
     # add colorbar
     cb = fig.colorbar(sm[ci], fig.grid.cbar_axes[0], ticks=cticks)
@@ -119,15 +143,15 @@ def topo():
 
 ### Results plotting functions ###
 
-def _plot_icemaps(climates, offsets, title, output):
-    """Base function to plot icemaps"""
+def _plot_icemaps(climates, offsets, title, output, margin=False):
+    """Base function to plot icemaps and LGM margin"""
 
     def func(i, clim):
       nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
       plt.title(title % {'label': labels[clim], 'dt': offsets[i]})
       return iplt.icemap(nc)
 
-    _plot_maps(climates, 'ice surface velocity (m/s)', output, func)
+    _plot_maps(climates, 'ice surface velocity (m/s)', output, func, margin=margin)
 
 def _plot_extents(climates, title, output):
     """Base functiont to plot ice extents"""
@@ -155,7 +179,8 @@ def best():
       climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar'],
       offsets  = ['09', '07', '08', '05', '04', '05'],
       title    = '%(label)s - %(dt)s K',
-      output   = 'cordillera-climate-best')
+      output   = 'cordillera-climate-best',
+      margin   = True)
 
 def cool(cool):
     """Plot icemaps for given temperature offset"""
