@@ -31,93 +31,67 @@ labels = {
   'wc':     'WorldClim',
   'wcnn':   'WorldClim'}
 
-### Base function ###
+### Base functions ###
 
-def _plot_maps(climates, clabel, output, func, ci=-1, cticks=None, margin=False):
-    """Base function to plot maps"""
+def _seasonmean(var, season):
+    if season == 'jja': data = (var[5]  + var[6] + var[7]).T/3
+    if season == 'djf': data = (var[11] + var[0] + var[1]).T/3
+    return np.ma.masked_equal(data, 0)
 
-    # initialize figure
-    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
-
-    # loop on climate datasets
-    sm = []
-    for i, clim in enumerate(climates):
-      ax = plt.axes(fig.grid[i])
-      sm.append(func(i, clim))
-
-    # add LGM ice margin
-    if margin is True:
-      nc = Dataset('../data/%s-00.nc' % (climates[0]))
-      m = Basemap(projection='lcc',
-        lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
-        llcrnrlat=nc.variables['lat'][0,0],
-        urcrnrlat=nc.variables['lat'][-1,-1],
-        llcrnrlon=nc.variables['lon'][0,0],
-        urcrnrlon=nc.variables['lon'][-1,-1])
-      sf = shapefile.Reader(shpfile)
-      for record, shape in zip(sf.records(),sf.shapes()):
-        lons,lats = zip(*shape.points)
-        data = np.array(m(lons, lats)).T/10000
-        #lines.set_facecolors('blue')
-        #lines.set_edgecolors('k')
-        #lines.set_linewidth(0.1)
-      for ax in fig.grid:
-        lines = LineCollection([data,], antialiaseds=(1,))
-        ax.add_collection(lines)
-
-    # add colorbar
-    cb = fig.colorbar(sm[ci], fig.grid.cbar_axes[0], ticks=cticks)
-    cb.set_label(clabel)
-
-    # save
+def _savefig(output):
     print 'saving ' + output
-    fig.savefig(output + '.png')
-    fig.savefig(output + '.pdf')
+    plt.savefig(output + '.png')
+    plt.savefig(output + '.pdf')
 
 ### Climate plotting functions ###
 
 def temp():
     """Plot air temperature maps"""
 
+    # initialize figure
+    climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar']
     seasons  = ['jja']*3 + ['djf'] + ['jja']*2
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
 
-    def func(i, clim):
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
       nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
       plt.title('%s %s' % (labels[clim], seasons[i].upper()))
       var = nc.variables['air_temp']
-      if seasons[i] == 'jja': data = (var[5]  + var[6] + var[7]).T/3
-      if seasons[i] == 'djf': data = (var[11] + var[0] + var[1]).T/3
-      data = np.ma.masked_equal(data, 0)
-      return plt.imshow(data - 273.15,
+      data = _seasonmean(var, seasons[i])
+      im = plt.imshow(data - 273.15,
         cmap = plt.cm.Spectral_r,
         norm = mcolors.Normalize(-30, 30))
 
-    _plot_maps(
-      climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar'],
-      clabel   = u'air temperature (°C)',
-      output   = 'cordillera-climate-temp',
-      func     = func)
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'air temperature (°C)')
+    _savefig('cordillera-climate-temp')
 
 def prec():
     """Plot precipitation maps"""
 
+    # initialise figure
+    climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar']
     seasons  = ['djf']*3 + ['jja'] + ['djf']*2
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
 
-    def func(i, clim):
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
       nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
       plt.title('%s %s' % (labels[clim], seasons[i].upper()))
       var = nc.variables['precipitation']
-      if seasons[i] == 'jja': data = (var[5]  + var[6] + var[7]).T/3
-      if seasons[i] == 'djf': data = (var[11] + var[0] + var[1]).T/3
-      return plt.imshow(data,
+      data = _seasonmean(var, seasons[i])
+      im = plt.imshow(data,
         cmap = plt.cm.YlGnBu,
         norm = mcolors.LogNorm(0.1, 10))
 
-    _plot_maps(
-      climates = ['wc', 'erai', 'narr', 'wc', 'cfsr', 'ncar'],
-      clabel   = u'precipitation rate (m/yr)',
-      output   = 'cordillera-climate-prec',
-      func     = func)
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'precipitation rate (m/yr)')
+    _savefig('cordillera-climate-prec')
 
 def precdiff():
     """Plot precipitation difference maps"""
@@ -126,11 +100,10 @@ def precdiff():
     climates = ['erai', 'narr', 'cfsr', 'ncar']
     fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
 
-    # read WorldClim data
+    # read WorldClim data as reference
     nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
     var = nc.variables['precipitation']
-    ref = (var[11] + var[0] + var[1]).T/3
-    ref = np.ma.masked_equal(ref, 0)
+    ref = _seasonmean(var, 'djf')
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
@@ -138,98 +111,131 @@ def precdiff():
       nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
       plt.title(labels[clim])
       var = nc.variables['precipitation']
-      data = (var[11] + var[0] + var[1]).T/3
+      data = _seasonmean(var, 'djf')
       im = plt.imshow(data/ref-1 ,
         cmap = plt.cm.PuOr,
         norm = mcolors.Normalize(-2, 2))
 
-    # add colorbar
+    # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
     cb.set_label(u'normalized DJF precipitation rate difference to WorldClim data')
-
-    # save
-    output   = 'cordillera-climate-precdiff'
-    print 'saving ' + output
-    fig.savefig(output + '.png')
-    fig.savefig(output + '.pdf')
+    _savefig('cordillera-climate-precdiff')
 
 def topo():
     """Plot topography maps"""
 
-    def func(i, clim):
+    # initialise figure
+    climates = ['wc', 'erai', 'narr', 'etopo', 'cfsr', 'ncar']
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
       plt.title(labels[clim])
       if clim == 'etopo':
         nc = Dataset(pismdir + '/input/boot/cordillera-etopo1bed-10km.nc')
-        return plt.imshow(nc.variables['topg'][:].T,
+        im = plt.imshow(nc.variables['topg'][:].T,
           cmap = icm.topo,
           norm = mcolors.Normalize(-6000, 6000))
       else:
         nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
-        return plt.imshow(nc.variables['usurf'][:].T,
+        plt.imshow(nc.variables['usurf'][:].T,
           cmap = icm.land_topo,
           norm = mcolors.Normalize(0, 6000))
 
-    _plot_maps(
-      climates = ['wc', 'erai', 'narr', 'etopo', 'cfsr', 'ncar'],
-      clabel   = u'surface topography (m)',
-      output   = 'cordillera-climate-topo',
-      func     = func, ci = 3)
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'surface topography (m)')
+    _savefig('cordillera-climate-topo')
 
 ### Results plotting functions ###
 
-def _plot_icemaps(climates, offsets, title, output, margin=False):
-    """Base function to plot icemaps and LGM margin"""
-
-    def func(i, clim):
-      nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
-      plt.title(title % {'label': labels[clim], 'dt': offsets[i]})
-      return iplt.icemap(nc)
-
-    _plot_maps(climates, 'ice surface velocity (m/s)', output, func, margin=margin)
-
-def _plot_extents(climates, title, output):
-    """Base functiont to plot ice extents"""
-
-    def func(i, clim):
-      icecover = 10
-      for dt in range(9,-1,-1):
-        nc = Dataset('../data/%s-%02g.nc' % (clim, dt))
-        thkmask = nc.variables['thk'][0] > 1
-        icecover = np.where(nc.variables['thk'][0] > 1, dt, icecover)
-      plt.title(title % {'label': labels[clim]})
-      #cs = plt.contour(icecover.T,
-        #levels = range(0, 10),
-        #colors = 'black',
-        #linewidths = 0.2)
-      return plt.contourf(icecover.T,
-        levels = range(-1, 10),
-        cmap   = plt.cm.Blues_r)
-
-    _plot_maps(climates, u'temperature offset (°C)', output, func, range(10))
-
 def best():
     """Plot icemaps for the best runs"""
-    _plot_icemaps(
-      climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar'],
-      offsets  = ['09', '07', '08', '05', '04', '05'],
-      title    = '%(label)s - %(dt)s K',
-      output   = 'cordillera-climate-best',
-      margin   = True)
+
+    # initialize figure
+    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    offsets  = ['09', '07', '08', '05', '05', '04']
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
+      plt.title('%s - %s K' % (labels[clim], offsets[i]))
+      im = iplt.icemap(nc)
+
+    # add LGM ice margin
+    m = Basemap(projection='lcc',
+      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
+      llcrnrlat=nc.variables['lat'][0,0],
+      urcrnrlat=nc.variables['lat'][-1,-1],
+      llcrnrlon=nc.variables['lon'][0,0],
+      urcrnrlon=nc.variables['lon'][-1,-1])
+    sf = shapefile.Reader(shpfile)
+    for record, shape in zip(sf.records(),sf.shapes()):
+      lons,lats = zip(*shape.points)
+      data = np.array(m(lons, lats)).T/10000
+      #lines.set_facecolors('blue')
+      #lines.set_edgecolors('k')
+      #lines.set_linewidth(0.1)
+    for ax in fig.grid:
+      lines = LineCollection([data,], antialiaseds=(1,))
+      ax.add_collection(lines)
+
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'ice surface velocity (m/s)')
+    _savefig('cordillera-climate-best')
 
 def cool(cool):
     """Plot icemaps for given temperature offset"""
-    _plot_icemaps(
-      climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar'],
-      offsets  = [cool]*6,
-      title    = '%(label)s',
-      output   = 'cordillera-climate-cool' + cool)
+
+    # initialize figure
+    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    offsets  = [cool]*6
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
+      plt.title(labels[clim])
+      im = iplt.icemap(nc)
+
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'ice surface velocity (m/s)')
+    _savefig('cordillera-climate-cool' + cool)
 
 def extent():
     """Plot stacked ice extents"""
-    _plot_extents(
-      climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar'],
-      title    = '%(label)s',
-      output   = 'cordillera-climate-extent')
+
+    # initialize figure
+    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    offsets  = [cool]*6
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      plt.title(labels[clim])
+      icecover = 10
+      for dt in range(9,-1,-1):
+        nc = Dataset('../data/%s-%02g.nc' % (clim, dt))
+        icecover = np.where(nc.variables['thk'][0] > 1, dt, icecover)
+      #cs = plt.contour(icecover.T,
+      #  levels = range(0, 10),
+      #  colors = 'black',
+      #  linewidths = 0.2)
+      cs = plt.contourf(icecover.T,
+        levels = range(-1, 10),
+        cmap   = plt.cm.Blues_r)
+
+    # add colorbar and save
+    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(10))
+    cb.set_label(u'temperature offset (°C)')
+    _savefig('cordillera-climate-extent')
 
 def ivolarea():
     """Plot volume and area curves"""
