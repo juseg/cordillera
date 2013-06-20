@@ -69,6 +69,35 @@ def temp():
     cb.set_label(u'air temperature (°C)')
     _savefig('cordillera-climate-temp')
 
+def tempdiff():
+    """Plot temperaturedifference maps"""
+
+    # initialize figure
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # read WorldClim data as reference
+    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    var = nc.variables['air_temp']
+    ref = _seasonmean(var, 'jja')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      plt.title(labels[clim])
+      var = nc.variables['air_temp']
+      data = _seasonmean(var, 'jja')
+      im = plt.imshow(data - ref,
+        cmap = plt.cm.RdBu_r,
+        norm = mcolors.Normalize(-10, 10),
+        )
+
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
+    cb.set_label(u'JJA air temperature difference to WorldClim data (°C)')
+    _savefig('cordillera-climate-tempdiff')
+
 def prec():
     """Plot precipitation maps"""
 
@@ -108,7 +137,7 @@ def precdiff():
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
       plt.title(labels[clim])
       var = nc.variables['precipitation']
       data = _seasonmean(var, 'djf')
@@ -187,6 +216,33 @@ def best():
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
     cb.set_label(u'ice surface velocity (m/s)')
     _savefig('cordillera-climate-best')
+
+def bestdiff():
+    """Plot differences in ice thickness for the best runs"""
+
+    # initialize figure
+    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    offsets  = ['09', '07', '08', '05', '05', '04']
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      ax = plt.axes(fig.grid[i])
+      nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
+      plt.title('%s - %s K' % (labels[clim], offsets[i]))
+      data = nc.variables['usurf'][0].T
+      if i == 0:
+        ref = data
+        im = iplt.icemap(nc)
+      else:
+        im = plt.imshow(data - ref,
+          cmap = plt.cm.RdBu,
+          norm = mcolors.Normalize(-3000, 3000))
+
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'ice surface elevation difference to %s %s K simulation (m)' % (labels[climates[0]], offsets[0]))
+    _savefig('cordillera-climate-bestdiff')
 
 def cool(cool):
     """Plot icemaps for given temperature offset"""
@@ -289,6 +345,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--temp', action='store_true',
       help='plot input temperature maps')
+    parser.add_argument('--tempdiff', action='store_true',
+      help='plot input temperature difference maps')
     parser.add_argument('--prec', action='store_true',
       help='plot input precipitation maps')
     parser.add_argument('--precdiff', action='store_true',
@@ -299,19 +357,23 @@ if __name__ == "__main__":
       help='plot icemaps for given temperature offset')
     parser.add_argument('--best', action='store_true',
       help='plot icemaps for so-called best runs')
+    parser.add_argument('--bestdiff', action='store_true',
+      help='plot ice thickness difference for the best runs')
     parser.add_argument('--extent', action='store_true',
       help='plot stacked ice extent from all runs')
     parser.add_argument('--ivolarea', action='store_true',
       help='plot colume and area curves')
     args = parser.parse_args()
 
-    if args.temp is True: temp()
-    if args.prec is True: prec()
+    if args.temp     is True: temp()
+    if args.tempdiff is True: tempdiff()
+    if args.prec     is True: prec()
     if args.precdiff is True: precdiff()
-    if args.topo is True: topo()
+    if args.topo     is True: topo()
     if args.cool is not None: cool(args.cool)
-    if args.best is True: best()
-    if args.extent is True: extent()
+    if args.best     is True: best()
+    if args.bestdiff is True: bestdiff()
+    if args.extent   is True: extent()
     if args.ivolarea is True: ivolarea()
 
 
