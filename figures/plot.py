@@ -185,14 +185,17 @@ def best():
     # initialize figure
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
     offsets  = ['09', '07', '08', '05', '05', '04']
-    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
+    fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='none')
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
       plt.title('%s - %s K' % (labels[clim], offsets[i]))
-      im = iplt.icemap(nc)
+      iplt.bedtopoimage(nc)
+      iplt.icemargincontour(nc, linecolors=None, colors='white', alpha=0.5)
+      iplt.icemargincontour(nc)
+      cs = iplt.surftopocontour(nc)
 
     # add LGM ice margin
     m = Basemap(projection='lcc',
@@ -205,15 +208,13 @@ def best():
     for record, shape in zip(sf.records(),sf.shapes()):
       lons,lats = zip(*shape.points)
       data = np.array(m(lons, lats)).T/10000
-      #lines.set_facecolors('blue')
-      #lines.set_edgecolors('k')
-      #lines.set_linewidth(0.1)
     for ax in fig.grid:
-      lines = LineCollection([data,], antialiaseds=(1,))
+      lines = LineCollection([data,], antialiaseds=(1,), colors='#000080')
+      lines.zorder=0.5
       ax.add_collection(lines)
 
     # add colorbar and save
-    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb = fig.colorbar(cs, fig.grid.cbar_axes[0])
     cb.set_label(u'ice surface velocity (m/s)')
     _savefig('cordillera-climate-best')
 
