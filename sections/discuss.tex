@@ -4,5 +4,27 @@
 \label{sec:discussion}
 % ----------------------------------------------------------------------
 
-\emph{Coming soon...}
+\subsection{Differences with reconstructed LGM margin}
+
+We compared our modelled ice sheet geometries to a reconstruction of the ice margin based on glacial geomorphology and radiocarbon ages \citep{dyke-2004}. We use the 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) time-slice, which in this reconstruction corresponds to the LGM extent in most parts of the Cordilleran ice sheet, known to have occurred earlier than for the Laurentide ice sheet. Our model results deviates from this reconstruction in different ways, some of which are controlled by climate forcing.
+
+First, the model produces too extensive ice cover in the east. There is at least two ways to interpret this. In our simulations, a continuous ice cover forms rapidly over the western ranges, which receive more precipitation than the rest of the domain. As individual ice caps merged to form a continuous ice cover, they may have enhanced the topographical barrier already formed by the western ranges, which would lead to further reduction of precipitation and warmer temperature in the interior. This effect, which we do not include, has shown to have determinant effects in Greenland.
+
+Secondly, simulations produces anomalous accumulation in parts of the Arctic Ocean. We interpret this as resulting from or simplistic application of homogeneous temperature offsets over the whole modelling domain. Theses regions are marine today, and as a result have lower summer temperature than the adjacent land (Figures~\ref{fig:temp}). In our simulation, they become land as we lower sea-level, while retaining the imprint of present-day lower temperature. The same effect occur over Great Bear Lake in some simulations.
+
+These digressions taken apart, we can compare the results of different simulations to the mapped LGM ice sheet margin. NARR performs best.
+
+\subsection{Sensitivity to climate forcing}
+
+The outcome of our numerical simulations is strongly dependant to which dataset is used as climate forcing (Figures~\ref{fig:cool06}-\ref{fig:best}). These differences are to be attributed to the variations in distributions of temperature and precipitation (Figures~\ref{fig:temp}-\ref{fig:prec}) between forcing datasets. Concerning reanalysis dataset, we interpret these differences as mainly the results of different GCM resolutions (Figures~\ref{fig:topo}, Table~\ref{tab:reanalyses}).
+
+As described in section~\ref{sec:climate}, the topography of the Northern American Cordillera is such that its western ranges form a continuous orographic barrier, causing high precipitation along the Pacific coast while leaving much of the interior arid. However the capability of a GCM to reproduce these precipitation contrasts is bound to its resolution. In a model of coarser resolution such as used in the NCEP/NCAR reanalysis, these high mountain ranges are reduced to smoothed hills and the modelled distribution of precipitation is also smoother.
+
+Even under present-day conditions, our run that was forced by the NCEP/NCAR reanalysis produced an ice-sheet, which is unrealistic.
+
+\subsection{Potential method improvements}
+
+Our simplistic temperature offset is certainly a crude simplification of past climate changes over the region. Although it is clear that these temperature changes were neither homogeneous nor constant in time, and probably associated with precipitation changes, their patterns are not trivial and potential strongly inter-dependant with the Cordilleran and Laurentide ice sheet evolution. A more correct approach would be to use coupling to a GCM of intermediate complexity.
+
+Some simplifications were made in the surface mass-balance model. Our PDD model do not include refreezing. Refreezing of melted snow and ice, however, can form a large proportion of the surface mass-balance of an ice sheet.\needref Furthermore, we model temperature variability using a constant, homogeneous value of standard deviation. This approaches implies large biases of surface mass-balance\needref, particularly over a region with such various climates as the Northern American Cordillera.
 
