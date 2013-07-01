@@ -1,4 +1,4 @@
-
+% section/intro.tex
 % ----------------------------------------------------------------------
 \introduction
 \label{sec:intro}
@@ -16,15 +16,6 @@ Climatologies obtained from uncoupled GCM palaeo-climate simulations such as pro
 The other side of the coin is that avoiding this circular dependence unfortunately goes hand-in-hand with a need for simplifying assumptions on Earth's past climate. They include energy balance modelling approaches \citep{tarasov-peltier-1997} and geographic parametrizations of surface mass balance \citep{robert-1991} or climate forcing \citep{johnson-fastook-2002}. Standing on a middle ground, temperature offset methods \citep{greve-etal-1999,bintanja-etal-2005} make use of the high level of detail available in present climate datasets such as gridded observation datasets, GCM output or reanalyses, while using simplifying representations of past climate deviations from this present state.
 
 Here, we propose to address some of the uncertainties concerning climate forcing of numerical glacier models by evaluating their response, in terms of glacier extent, to inputs from several climate datasets. Few studies of this kind are presently available. \citet{quiquet-etal-2012} assessed the sensitivity of a Greenland ice sheet model to various atmospheric forcing, including a regional parametrization \citep{fausto-etal-2009}, output from several GCMs and a climate reanalysis. \citet{rodgers-etal-2004,charbit-etal-2007} tested the sensitivity of a model of the Northern Hemisphere ice sheets to different PMIP LGM simulations. Here, to limit degrees of freedom in our model, and obtain results independent from palaeo-ice sheet reconstructions such as the ICE-4G, we use a simple temperature offset approach similar to \citep{greve-etal-1999,bintanja-etal-2005} and assess ice sheet model sensitivity to the choice of present-day climate data. Rather than using GCM output, we force our model with climate reanalysis data, which include observational information through data assimilation \citep{bengtsson-etal-2007}. Furthermore, we focus our study regionally to the former Cordilleran Ice Sheet in Northern America.
-
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics[width=8cm]{cordillera-climate-locmap}
-	\end{center}
-	\caption{Shaded relief map of northern North America. The frame delimits this study's modelling domain. The outlines of the former ice sheets depict ice cover at 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) after \citet{dyke-2004}. The background map was made with ETOPO1 \citep{data:etopo1} and Natural Earth Data \citep{data:naturalearth}.}
-	\label{fig:locmap}
-\end{figure}
 
 The Cordilleran Ice Sheet (Fig.~\ref{fig:locmap}) covered an area that presently experiences strong regional variations in climate. In a numerical modelling perspective, it is one of the least studied palaeo-ice sheets of the Northern Hemisphere, despite the fact that significant geomorphological data is available to constrain its extent \citep{jackson-clague-1991,dukrodkin-1999,kaufman-manley-2004,kleman-etal-2010,margold-etal-2011}. Although the Cordilleran Ice Sheet was not the primary target of these simulations, it has previously been modelled as part of efforts to model ice sheets in North America \citep{marshall-clarke-1999,calov-etal-2002,tarasov-peltier-1997,tarasov-peltier-2004,gregoire-etal-2012}, the Northern Hemisphere \citep{huybrechts-tsiobbel-1996,greve-etal-1999,charbit-etal-2002,charbit-etal-2007,charbit-etal-2013,johnson-fastook-2002,rodgers-etal-2004,bintanja-etal-2005,zweck-huybrechts-2005,abeouchi-etal-2007} or world-wide \citep{yoshimori-etal-2001}. While these studies reproduce the magnitude of North American glaciation at the Last Glacial Maximum (LGM) reasonably well, there exist a tendency in simulations independent from ice sheet reconstructions such as the ICE-4G to predict excessive ice cover in parts of northern Yukon Territory and continental Alaska that have remained ice-free throughout the Pleistocene \citep{dukrodkin-1999,kaufman-manley-2004}.
 

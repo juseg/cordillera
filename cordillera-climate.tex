@@ -1,3 +1,6 @@
+% cordillera-climate.tex
+% ----------------------------------------------------------------------
+
 % Copernicus manuscript
 \documentclass[tc, ms, noauthor]{copernicus}
 
@@ -7,15 +10,11 @@
 % Copernicus discussion paper
 %\documentclass[tcd, hvmath]{copernicus_discussions}
 
-% Extra packages
+% Coloured hyperlinks
 \usepackage[colorlinks,citecolor=blue]{hyperref}
-\usepackage{framed}
 
 % Recognize utf-8 special characters
 \usepackage[utf8]{inputenc}
-
-% All floats at the end of the manuscripts
-\usepackage{endfloat}
 
 % Add to-do notes and enlarge right margin
 \usepackage{todonotes}
@@ -35,49 +34,45 @@
 
 % ----------------------------------------------------------------------
 \begin{document}
+% ----------------------------------------------------------------------
 
+% Title and authors
 \title{The effect of climate forcing on numerical simulations of the Cordilleran Ice Sheet at the Last Glacial Maximum}
 \runningtitle{Climate forcing for Cordilleran ice sheet simulations}
-
 %\author{Julien Seguinot et al.}
 %\affil{Department of Physical Geography and Quaternary Geology, Stockholm University, S-106 91 Stockholm, Sweden}
 \runningauthor{J. Seguinot et al.}
 \correspondence{J. Seguinot\\ (julien.seguinot@natgeo.su.se)}
 
+% For Copernicus
 \received{}
 \pubdiscuss{}
 \revised{}
 \accepted{}
 \published{}
 
+% Title
 \maketitle
 
-% ----------------------------------------------------------------------
-\begin{abstract}
-\julien[noline]{The abstract is preliminary.}
-We present an ensemble of numerical simulations of the former Cordilleran ice sheet forced by present-day climatologies from five different datasets. Surface air temperature and precipitation rates from the NCEP/NCAR reanalysis, the Climate Forecast System Reanalysis, the ERA-Interim reanalysis and the North American Regional Reanalysis are used to force the ice sheet model PISM. Glacial conditions are mimicked by applying constant temperature offsets over the entire modelling domain, and a positive degree-day model is used to compute surface mass balance. The modelled ice sheet appears highly sensitive to the choice of climate forcing. Best results were obtained from the North American Regional Reanalysis, a high-resolution regional reanalysis which assimilates precipitation.
-\end{abstract}
-% ----------------------------------------------------------------------
 
-% ----------------------------------------------------------------------
+% Sections
+\input{sections/abstract}
 \input{sections/intro}
 \input{sections/climate}
 \input{sections/model}
 \input{sections/results}
 \input{sections/discuss}
-% ----------------------------------------------------------------------
+\input{sections/concl}
 
-% ----------------------------------------------------------------------
-\conclusions  %% \conclusions[modified heading if necessary]
-\label{sec:conclusion}
-\emph{Coming soon...}
-% ----------------------------------------------------------------------
-
-% ----------------------------------------------------------------------
+% Acknowledgements
 %\begin{acknowledgements}
 %\end{acknowledgements}
-% ----------------------------------------------------------------------
 
+% References
 \bibliographystyle{copernicus}
 \bibliography{references}
+
+% Floats
+\input{floats/tables}
+\input{floats/figures}
 \end{document}
