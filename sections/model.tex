@@ -4,11 +4,11 @@
 \label{sec:model}
 % ----------------------------------------------------------------------
 
-We use PISM, a parallel ice sheet model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,winkelmann-etal-2011,aschwanden-etal-2012} and more extensively on-line \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+We use PISM, a Parallel Ice Sheet Model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,winkelmann-etal-2011,aschwanden-etal-2012} and more extensively on-line \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
 
 \subsection{Surface mass-balance}
 
-Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated by the \citet{calov-greve-2005} formula to accounts for day-to-day temperature variability by assuming a normal distribution of variance $\sigma=5\degC$ along a central (input) value $T$:
+Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated by the \citet{calov-greve-2005} formula to accounts for day-to-day temperature variability by assuming a normal distribution along a central (input) value $T$:
 
 \begin{equation}
 	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
@@ -19,7 +19,7 @@ Monthly temperature and precipitation are converted to surface accumulation and 
 	\right],
 \end{equation}
 
-where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The ablation model uses degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on present glaciers from the Coast and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
+where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The temperature standard deviation $\sigma$  is a constant model parameter and was assigned a value of 3.068094\degC which corresponds to the summer (JJA) mean, model domain-averaged monthly standard deviation of daily mean temperature from monthly mean temperature, as computed from NARR data similarly to \citet{seguinot-inreview}. The ablation model uses degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on present glaciers from the Coast and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 
 A positive degree-day model is a crude parametrization of physical processes occurring at a glacier's surface. Yet we believe that it captures reasonably accurate patterns of accumulation and ablation for our study area considering the employed climate data.
 
