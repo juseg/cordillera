@@ -8,7 +8,7 @@ We use PISM, a Parallel Ice Sheet Model (version stable 0.5.11). Documentation o
 
 \subsection{Surface mass-balance}
 
-Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated by the \citet{calov-greve-2005} formula to accounts for day-to-day temperature variability by assuming a normal distribution along a central (input) value $T$:
+Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated using the \citet{calov-greve-2005} formula to account for a day-to-day temperature variability by assuming a normal distribution along a central (input) value $T$:
 
 \begin{equation}
 	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
@@ -21,11 +21,11 @@ Monthly temperature and precipitation are converted to surface accumulation and 
 
 where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The temperature standard deviation $\sigma$  is a constant model parameter and was assigned a value of 3.068094\degC which corresponds to the summer (JJA) mean, model domain-averaged monthly standard deviation of daily mean temperature from monthly mean temperature, as computed from NARR data similarly to \citet{seguinot-inreview}. The ablation model uses degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on present glaciers from the Coast and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 
-A positive degree-day model is a crude parametrization of physical processes occurring at a glacier's surface. Yet we believe that it captures reasonably accurate patterns of accumulation and ablation for our study area considering the employed climate data.
+A positive degree-day model is a crude parametrization of physical processes occurring at a glacier's surface. Yet we believe that it captures reasonably accurately patterns of accumulation and ablation for our study area considering the employed climate data.
 
 \subsection{Ice thermodynamics}
 
-Ice flow velocities are computed by a heuristic the Shallow Shelf Approximation (SSA) is used as a ``sliding law'' to a polythermal Shallow Ice Approximation (SIA) \citep{bueler-brown-2009}. Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of SIA velocities $\vec{v_{\mathrm{SIA}}}$ and SSA velocities $\vec{v_{\mathrm{SSA}}}$ by
+Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of Shallow Ice Approximation (SIA) velocities $\vec{v_{\mathrm{SIA}}}$ and Shallow Shelf Approximation (SSA) velocities $\vec{v_{\mathrm{SSA}}}$ \citep{bueler-brown-2009} by
 
 \begin{equation}
 	\vec{v} = f(|\vec{v_{\mathrm{SSA}}}|)\vec{v_{\mathrm{SIA}}}
@@ -39,9 +39,9 @@ with
 	- \frac{2}{\pi}\arctan{\frac{|\vec{v_{\mathrm{SSA}}}|^2}{100^2}}.
 \end{equation}
 
-SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points. SIA velocities follow temperature-dependant creep. Temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions on 51 irregularly spaced layers in ice and 11 regularly spaced layers in rock. An homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as lower boundary condition to the thermal model, and the surface air temperature from the various climate forcing is used as upper boundary condition.
+SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points. SIA velocities follow temperature-dependent creep. Temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions in 51 irregularly spaced layers in ice and 11 regularly spaced layers in bedrock. A homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as a lower boundary condition to this composite thermal model, and the surface air temperature from various climate forcing is used as an upper boundary condition.
 
-SSA velocities are determined by a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescribed till friction angle$\phi$. We apply lower friction angles at low elevation to mimic the more slippery beds associated to the presence of marine sediments:
+SSA velocities are determined by a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescribed till friction angle $\phi$. We apply lower friction angles at low elevation to mimic the more slippery beds associated to the presence of marine sediments:
 
 \begin{equation}
 	\phi = \left\{\begin{array}{llrll}
@@ -51,7 +51,7 @@ SSA velocities are determined by a pseudo-plastic sliding law where the yield st
 	\end{array}\right.
 \end{equation}
 
-With $\phi$ in degrees and $z$ in meters above present sea level. The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}.
+Where $\phi$ is given in degrees and $z$ in meters above the present sea level. The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}.
 
 \subsection{Simulation design}
 
