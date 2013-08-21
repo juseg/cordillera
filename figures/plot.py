@@ -184,7 +184,7 @@ def best():
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    offsets  = ['09', '07', '08', '05', '05', '04']
+    offsets  = ['11', '10', '11', '06', '06', '07']
     fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='none')
 
     # loop on climate datasets
@@ -270,27 +270,26 @@ def extent():
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    offsets  = [cool]*6
     fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='single')
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       plt.title(labels[clim])
-      icecover = 10
-      for dt in range(9,-1,-1):
+      icecover = 16
+      for dt in range(15,-1,-1):
         nc = Dataset('../data/%s-%02g.nc' % (clim, dt))
         icecover = np.where(nc.variables['thk'][0] > 1, dt, icecover)
       #cs = plt.contour(icecover.T,
-      #  levels = range(0, 10),
+      #  levels = range(0, 16),
       #  colors = 'black',
       #  linewidths = 0.2)
       cs = plt.contourf(icecover.T,
-        levels = range(-1, 10),
+        levels = range(-1, 16),
         cmap   = plt.cm.Blues_r)
 
     # add colorbar and save
-    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(10))
+    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(16))
     cb.set_label(u'temperature offset (°C)')
     _savefig('cordillera-climate-extent')
 
@@ -311,7 +310,7 @@ def ivolarea():
 
     # select input data
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    coolings = range(10)
+    coolings = range(16)
 
     # read input data
     for clim in climates:
