@@ -4,11 +4,11 @@
 \label{sec:model}
 % ----------------------------------------------------------------------
 
-We use PISM, a Parallel Ice Sheet Model (version stable 0.5.11). Documentation on the code can be found in several publications \citep[e.g.,][]{bueler-brown-2009,winkelmann-etal-2011,aschwanden-etal-2012} and more extensively on-line \citep[{\url{http://www.pism-docs.org}},][]{web:pism}.
+We use PISM, a Parallel Ice Sheet Model (version stable 0.5.11, e.g., \citet{bueler-brown-2009,winkelmann-etal-2011,aschwanden-etal-2012,web:pism}.
 
 \subsection{Surface mass-balance}
 
-Monthly temperature and precipitation are converted to surface accumulation and ablation by a temperature-index (positive degree-day) model. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated using the \citet{calov-greve-2005} formula to account for a day-to-day temperature variability by assuming a normal distribution along a central (input) value $T$:
+Monthly mean surface air temperature and monthly precipitation are converted to ice surface accumulation and ablation by a temperature-index (positive degree-day) model\needref. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases to zero linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated using a expression by \citet{calov-greve-2005} which account for temperature variability assuming a normal distribution along a central (input) value $T$:
 
 \begin{equation}
 	\mathrm{PDD} = \int_{t_0}^{t_1} dt \left[
@@ -19,29 +19,28 @@ Monthly temperature and precipitation are converted to surface accumulation and 
 	\right],
 \end{equation}
 
-where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The temperature standard deviation $\sigma$  is a constant model parameter and was assigned a value of 3.068094\degC which corresponds to the summer (JJA) mean, model domain-averaged monthly standard deviation of daily mean temperature from monthly mean temperature, as computed from NARR data similarly to \citet{seguinot-inreview}. The ablation model uses degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on present glaciers from the Coast and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
-
-A positive degree-day model is a crude parametrization of physical processes occurring at a glacier's surface. Yet we believe that it captures reasonably accurately patterns of accumulation and ablation for our study area considering the employed climate data.
+where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The temperature standard deviation $\sigma$  is a constant model parameter and was assigned a value of 3.068094\degC which corresponds to the summer (JJA) mean, model domain-averaged monthly standard deviation of daily mean temperature from monthly mean temperature, as computed from NARR data similarly to \citet{seguinot-inreview}. The ablation model incorporates degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on contemporary glaciers from the Coast Mountains and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 
 \subsection{Ice thermodynamics}
 
-Depth-averaged velocities $\vec{v}$ are computed as a weighted sum of Shallow Ice Approximation (SIA) velocities $\vec{v_{\mathrm{SIA}}}$ and Shallow Shelf Approximation (SSA) velocities $\vec{v_{\mathrm{SSA}}}$ \citep{bueler-brown-2009} by
+The depth-averaged ice velocity $\vec{v}$ is computed as a weighted sum of the Shallow Ice Approximation (SIA) velocity $\vec{v_{\mathrm{SIA}}}$ and the Shallow Shelf Approximation (SSA) velocity $\vec{v_{\mathrm{SSA}}}$ \citep{bueler-brown-2009} by
 
 \begin{equation}
 	\vec{v} = f(|\vec{v_{\mathrm{SSA}}}|)\vec{v_{\mathrm{SIA}}}
   + (1-f(|\vec{v_{\mathrm{SSA}}}|))\vec{v_{\mathrm{SSA}}},
 \end{equation}
 
-with
+where
 
 \begin{equation}
 	f(|\vec{v_{\mathrm{SSA}}}|) = 1
 	- \frac{2}{\pi}\arctan{\frac{|\vec{v_{\mathrm{SSA}}}|^2}{100^2}}.
 \end{equation}
 
-SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points. SIA velocities follow temperature-dependent creep. Temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions in 51 irregularly spaced layers in ice and 11 regularly spaced layers in bedrock. A homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} is provided as a lower boundary condition to this composite thermal model, and the surface air temperature from various climate forcing is used as an upper boundary condition.
+SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points (the modelling domain). SIA velocities follow temperature-dependent creep\needref. Ice temperatures are derived from an enthalpy formulation \citep{aschwanden-etal-2012} and computed in three dimensions in up to 51 irregularly spaced layers in ice and in 11 regularly spaced layers in bedrock. A homogeneous geothermal heat flux of 70\,\unit{W\,m^{-2}} provides the lower boundary condition to this composite thermal model, and surface air temperature from various climate forcing provides the upper boundary condition.
 
-SSA velocities are determined by a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescribed till friction angle $\phi$. We apply lower friction angles at low elevation to mimic the more slippery beds associated to the presence of marine sediments:
+SSA velocities are determined by a pseudo-plastic sliding law where the yield stress depends on the availability of basal water and a prescribed till friction angle $\phi$. We apply a range of till friction angles between 10 and 30\,\degree, where the lower friction angles occur at low elevation to mimic the more deformable beds associated with presence of marine sediments:
+\julien[inline]{phi here is independent from basal water which is computed by the model (and sliding depends on both) so the 10 to 30 degree range is meant to reflect different bedrock/sediment surfaces rather than dry vs wet beds.}
 
 \begin{equation}
 	\phi = \left\{\begin{array}{llrll}
@@ -51,9 +50,9 @@ SSA velocities are determined by a pseudo-plastic sliding law where the yield st
 	\end{array}\right.
 \end{equation}
 
-Where $\phi$ is given in degrees and $z$ in meters above the present sea level. The glacier bed topography responds to the ice load following a regional isostasy model with flexure and relaxation \citep{lingle-clark-1985}.
+Where $\phi$ is given in degrees and $z$ in meters above contemporary sea level. The elevation of the basal topography responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
 
 \subsection{Simulation design}
 
-In this study we model glacial inception and growth of the Cordilleran ice sheet to a state approaching its last glacial maximum. We mimic glacial conditions by applying constant temperature offsets homogeneously over the entire domain. Each simulation starts from ice-free conditions and is run for 10,000 years, a time interval representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free condition to last glacial maximum extent \citep{clague-1989}. Our simulations were run in parallel on 32 cores at the Swedish National Supercomputing Center.
+In this study we model glacial inception and growth of the Cordilleran Ice Sheet towards a configuration as last attained during the LGM. We mimic LGM conditions by applying constant temperature offsets homogeneously over the modelling domain. Each simulation starts from ice-free conditions and runs for 10\,kyr, a time interval representative of the rapid build-up of the last Cordilleran Ice Sheet from nearly ice-free to full glacial conditions \citep{clague-1989}. Our simulations were performed in parallel on 32 cores at the Swedish National Supercomputing Center.
 
