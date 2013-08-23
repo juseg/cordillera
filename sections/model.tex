@@ -37,6 +37,8 @@ SSA velocities are determined by a pseudo-plastic sliding law where the yield st
 
 Where $\phi$ is given in degrees and $z$ in meters above contemporary sea level. Basal topography is derived from the ETOPO1\citep{data:etopo1} combined topography and bathymetry dataset (Fig.~\ref{fig:topo}). It responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
 
+% ----------------------------------------------------------------------
+
 \subsection{Surface mass-balance}
 
 Ice surface accumulation and ablation are computed from monthly mean surface air temperature and monthly precipitation by a temperature-index (positive degree-day) model\citep{hock-2003}. Ice accumulation is equal to precipitation when temperature is below 0\,\degC, and decreases to zero linearly with temperature between 0 and 2\,\degC. Ice ablation is computed from the number of positive degree-days, defined as the integral of temperatures above 0\,\degC in one year. Positive degree-days are calculated using a expression by \citet{calov-greve-2005} that accounts for temperature variability assuming a normal distribution along a central (input) value $T$:
@@ -51,6 +53,8 @@ Ice surface accumulation and ablation are computed from monthly mean surface air
 \end{equation}
 
 where the integration interval $[t_0; t_1]$ is one week and $\mathrm{erfc}$ is the complementary error function. The temperature standard deviation $\sigma$ is a constant model parameter and was assigned a value of 3.068094\degC which is the summer (JJA) mean, model domain-averaged monthly standard deviation of daily mean temperature from monthly mean temperature, as computed from NARR data similarly to \citet{seguinot-inreview}. The ablation model incorporates degree-day factors of 3.04~\unit{mm\,K^{-1}\,day^{-1}} for snow and 4.59~\unit{mm\,K^{-1}\,day^{-1}} for ice, as derived from mass-balance measurements on contemporary glaciers from the Coast Mountains and Rocky Mountains in British Columbia \citep{shea-etal-2009}.
+
+% ----------------------------------------------------------------------
 
 \subsection{Atmospheric corrections}
 
