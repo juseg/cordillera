@@ -184,7 +184,7 @@ def best():
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    offsets  = ['11', '10', '11', '06', '06', '07']
+    offsets  = ['08', '06', '07', '04', '04', '04']
     fig = iplt.gridfigure(mapsize, (2, len(climates)/2), cbar_mode='none')
 
     # loop on climate datasets
@@ -276,20 +276,20 @@ def extent():
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       plt.title(labels[clim])
-      icecover = 16
-      for dt in range(15,-1,-1):
+      icecover = 11
+      for dt in range(10,-1,-1):
         nc = Dataset('../data/%s-%02g.nc' % (clim, dt))
         icecover = np.where(nc.variables['thk'][0] > 1, dt, icecover)
       #cs = plt.contour(icecover.T,
-      #  levels = range(0, 16),
+      #  levels = range(0, 11),
       #  colors = 'black',
       #  linewidths = 0.2)
       cs = plt.contourf(icecover.T,
-        levels = range(-1, 16),
+        levels = range(-1, 11),
         cmap   = plt.cm.Blues_r)
 
     # add colorbar and save
-    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(16))
+    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(11))
     cb.set_label(u'temperature offset (°C)')
     _savefig('cordillera-climate-extent')
 
@@ -310,7 +310,7 @@ def ivolarea():
 
     # select input data
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    coolings = range(16)
+    coolings = range(11)
 
     # read input data
     for clim in climates:
