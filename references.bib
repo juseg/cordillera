@@ -5,6 +5,8 @@ Journal strings
 @string{BAMS= {Bull. Am. Meteorol. Soc.}}
 @string{CD=   {Clim. Dyn.}}
 @string{CP=   {Clim. Past}}
+@string{CSE=  {Comput. Sci. Eng.}}
+@string{EMS=  {Environ. Modell. Softw.}}
 @string{GPQ=  {Géogr. phys. Quatern.}}
 @string{GRL=  {Geophys. Res. Lett.}}
 @string{IJC=  {Int. J. Climatol.}}
@@ -219,12 +221,6 @@ Methods
   title={A numerical model of interactions between a marine ice sheet and the solid earth: {A}pplication to a {W}est {A}ntarctic ice stream},
   journal=JGR,volume=90,number={C1},pages={1100-1114},year=1985}
 
-@article{huybrechts-2002,
-  author={P. Huybrechts},
-  title={Sea-level changes at the LGM from ice-dynamic reconstructions of the Greenland
-and Antarctic ice sheets during the glacial cycles},
-  journal=QSR,volume=21,pages={203-231},year=1996}
-
 @article{hock-2003,
 	author={Hock, R.},
 	title={Temperature index melt modelling in mountain areas},
@@ -263,14 +259,37 @@ and Antarctic ice sheets during the glacial cycles},
   title={An enthalpy formulation for glaciers and ice sheets},
   journal=JG,volume=58,number=209,pages={441-457},year=2012}
 
+Software
+--------
+
+@article{soft:grass,
+  author={Neteler, M. and Bowman, M.H. and Landa, M. and Metz, M.},
+  title={GRASS GIS: a multi-purpose Open Source GIS},
+  journal=EMS,volume=31,pages={124-130},year=2011,
+  url={http://grass.osgeo.org},
+  doi={10.1016/j.envsoft.2011.11.014}}
+
+@article{soft:mpl}
+  author={John D. Hunter},
+  title={Matplotlib: A 2D Graphics Environment},
+  Journal=CSE,volume=9,number=3,pages={90-95},year=2007,
+  url={http://matplotlib.org/}}
+
+@article{soft:scipy,
+  author={Travis E. Oliphant},
+  title={Python for Scientific Computing},
+  Journal=CSE,volume=9,number=3,pages={10-20},year=2007,
+  url={http://www.scipy.org/}}
+
+@misc{web:nc4py,
+  author={{netcdf4-python}},year=2013,
+  title={Python/numpy interface to netCDF},
+  url={http://netcdf4-python.googlecode.com/}}
+
 @misc{web:pism,
   author={the PISM authors},year=2013,
   title={{PISM}, a {P}arallel {I}ce {S}heet {M}odel},
   url={http://www.pism-docs.org}}
-
-@misc{web:psd,
-  author={{NOAA/OAR/ESRL Physical Sciences Division}},year=2013,
-  url={http://www.esrl.noaa.gov/psd/}}
 
 Future improvements
 -------------------
@@ -279,7 +298,7 @@ Future improvements
   author={Janssens, Ives and Huybrechts, Philippe},
 	title={The treatment of meltwater retention in mass-balance parameterizations of the Greenland ice sheet},
 	journal=AG,volume=31,number=1,pages={133-140},year=2000,
-		doi={10.3189/172756400781819941}}
+	doi={10.3189/172756400781819941}}
 
 @article{langen-etal-2012,
 	author={Langen, P. L. and Solgaard, A. M. and Hvidberg, C. S.},
@@ -362,3 +381,8 @@ Forcing data
   journal={Eos, Transactions American Geophysical Union},
   volume=80,number=6,pages={69-70},year=1999,
   doi={10.1029/99EO00050}}
+
+@misc{web:psd,
+  author={{NOAA/OAR/ESRL Physical Sciences Division}},year=2013,
+  url={http://www.esrl.noaa.gov/psd/}}
+
