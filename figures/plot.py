@@ -286,7 +286,7 @@ def extent():
       #  linewidths = 0.2)
       cs = plt.contourf(icecover.T,
         levels = range(-1, 11),
-        cmap   = plt.cm.Blues_r)
+        cmap   = plt.cm.Spectral)
 
     # add colorbar and save
     cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(11))
