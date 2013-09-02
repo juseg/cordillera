@@ -10,20 +10,21 @@
 % Copernicus discussion paper
 %\documentclass[tcd, hvmath]{copernicus_discussions}
 
+% Copernicus-like latex2rtf compatible
+%\input{copernicus_rtf}
+
 % Coloured hyperlinks
 \usepackage[colorlinks,citecolor=blue]{hyperref}
 
 % Recognize utf-8 special characters
 \usepackage[utf8]{inputenc}
 
-% Add to-do notes and enlarge right margin
-\usepackage{todonotes}
-\usepackage[left=54pt,top=81pt,textwidth=398pt,marginparsep=11pt,marginparwidth=93pt,textheight=625pt,footskip=30pt]{geometry}
-\newcommand{\needref}[0]{\todo[color=cyan]{Reference needed}}
-\newcommand{\julien}[2][]{\todo[color=lightgray,{#1}]{\textbf{Julien:} #2}}
-\newcommand{\arjen}[2][]{\todo[color=lime,{#1}]{\textbf{Arjen:} #2}}
-\newcommand{\qiong}[2][]{\todo[color=pink,{#1}]{\textbf{Qiong:} #2}}
-\newcommand{\irina}[2][]{\todo[color=yellow,{#1}]{\textbf{Irina:} #2}}
+% To-do footnotes
+\newcommand{\needref}[0]{\footnote{Reference needed}}
+\newcommand{\julien}[1][]{\footnote{\textbf{Julien:} #1}}
+\newcommand{\arjen}[1][]{\footnote{\textbf{Arjen:} #1}}
+\newcommand{\qiong}[1][]{\footnote{\textbf{Qiong:} #1}}
+\newcommand{\irina}[1][]{\footnote{\textbf{Irina:} #1}}
 
 % Set figures repository
 \graphicspath{{figures/}}
@@ -50,7 +51,6 @@
 % Title
 \maketitle
 
-
 % Sections
 \input{sections/abstract}
 \input{sections/intro}
@@ -69,6 +69,7 @@
 \bibliography{references}
 
 % Floats
+\newpage
 \input{floats/tables}
 \input{floats/figures}
 

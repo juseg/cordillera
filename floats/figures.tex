@@ -1,17 +1,22 @@
 % floats/figures.tex
 % ----------------------------------------------------------------------
 
+\emph{See to-do notes on Figure \ref{fig:locmap}
+    \irina[inline]{include all geographic names}
+    \arjen[inline]{elevation scale white-end confused with glaciers}
+    \arjen[inline]{remove Arctic circle and miles scale}
+    \arjen[inline]{use CIS, LIS and IIS for ice sheet names}
+    \arjen[inline]{use N, S, E and W instead of minus, add 75\degree N label}
+and \ref{fig:ivolarea}
+    \julien[inline]{Make the figure print-proof and highlight markers corresponding to the ``best'' runs.}
+}
+
 % fig:locmap
 \begin{figure}[t]
 	\vspace*{2mm}
 	\begin{center}
 		\includegraphics[width=8cm]{cordillera-climate-locmap}
 	\end{center}
-    \irina[inline]{include all geographic names}
-    \arjen[inline]{elevation scale white-end confused with glaciers}
-    \arjen[inline]{remove Arctic circle and miles scale}
-    \arjen[inline]{use CIS, LIS and IIS for ice sheet names}
-    \arjen[inline]{use N, S, E and W instead of minus, add 75\degree N label}
 	\caption{Shaded relief map of northern North America with the extent of the Cordilleran (CIS), Laurentide (LIS) and Innuitian (IIS) ice sheets at 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) \citep{dyke-2004}. The background map consists of ETOPO1 \citep{data:etopo1} and Natural Earth Data \citep{data:naturalearth}. Assembled with GRASS~GIS \citep{soft:grass} and Inkscape \citep{web:inkscape}}
 	\label{fig:locmap}
 \end{figure}
@@ -72,7 +77,6 @@
 	\begin{center}
 		\includegraphics[width=9cm]{cordillera-climate-ivolarea}
 	\end{center}
-	\julien[inline]{I will make the figure readable in black-and-white and highlight markers corresponding to the ``best'' runs.}
 	\caption{Total ice volume and glaciated area after 10\,kyr as a function of temperature offset and climate forcing. Drawn using Matplotlib \citep{soft:mpl}.}
 	\label{fig:ivolarea}
 \end{figure}
@@ -96,4 +100,3 @@
 	\caption{Schematic representation of the orographic precipitation effect over the Coast Mountains. In a GCM of lower resolution, the precipitation peak appear smoother and the precipitation shadow is not as pronounced. Drawn using Inkscape \citep{web:inkscape}.}
 	\label{fig:oroprecip}
 \end{figure}
-

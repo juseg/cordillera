@@ -1,0 +1,34 @@
+% copernicus_rtf.tex
+% ------------------
+
+% Base class and packages
+\documentclass{article}
+\usepackage{color}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+
+% Replacements for bibtex commands
+\newcommand{\citep}[1]{(\textcolor{blue}{#1})}
+\newcommand{\citet}[1]{\textcolor{blue}{#1}}
+
+% Replacements for Copernicus commands
+\newcommand{\introduction}[0]{\section{Introduction}}
+\newcommand{\conclusions}[0]{\section{Conclusions}}
+\newcommand{\tophline}[0]{\hline}
+\newcommand{\middlehline}[0]{\hline}
+\newcommand{\bottomhline}[0]{\hline}
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\degree}[0]{\ensuremath{^{\circ}}}
+
+% Ignore other Copernicus commands
+\newcommand{\runningtitle}[1]{}
+\newcommand{\runningauthor}[1]{}
+\newcommand{\received}[1]{}
+\newcommand{\correspondence}[1]{}
+\newcommand{\pubdiscuss}[1]{}
+\newcommand{\revised}[1]{}
+\newcommand{\accepted}[1]{}
+\newcommand{\published}[1]{}
+
