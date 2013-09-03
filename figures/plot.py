@@ -310,10 +310,11 @@ def ivolarea():
 
     # select input data
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    styles   = ['s-', 'D-', 'o-', '^-', 'v-', 'h-']
     coolings = range(11)
 
     # read input data
-    for clim in climates:
+    for clim, style in zip(climates, styles):
       iarea = []
       ivol  = []
       for cool in coolings:
@@ -323,8 +324,8 @@ def ivolarea():
         ivol.append(nc.variables['ivol'][-1]/1e15)
 
       # plot
-      ax1.plot(coolings, iarea, '.-')
-      ax2.plot(coolings, ivol, '.-')
+      ax1.plot(coolings, iarea, style, mew=0, ms=3)
+      ax2.plot(coolings, ivol, style, mew=0, ms=3)
 
     # add legend
     ax2.legend(
