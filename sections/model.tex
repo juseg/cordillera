@@ -10,8 +10,7 @@ We use PISM, a Parallel Ice Sheet Model, version stable~0.5.12 (e.g.,) \citep{bu
 
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the Shallow Ice Approximation (SIA) \citep{winkelmann-etal-2011}. SIA and SSA velocities are computed by finite difference methods on a 10km-resolution horizontal grid of 300 by 150 points (the modelling domain). Ice softness depends on temperature and water content through an enthalpy formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Enthalpy is computed in three dimensions in up to 51 irregularly spaced layers in ice and temperature is further computed in 11 regularly spaced layers in bedrock. A uniform geothermal heat flux of 70\,\unit{W\,m^{-2}} provides the lower boundary condition to the bedrock thermal model, and surface air temperature from the climate forcing provides the upper boundary condition to the ice enthalpy model.
 
-A pseudo-plastic sliding law \citep{aschwanden-etal-2013} (supplement) relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr-Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a function of contemporary bed elevation, with lowest values occurring at low elevations.
-\needref
+A pseudo-plastic sliding law \citep{aschwanden-etal-2013} (supplement) relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr-Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a function of contemporary bed elevation, with lowest values occurring at low elevations,
 \julien{phi is independent from basal water which is computed by the model (and sliding depends on both) so the 10 to 30 degree range is meant to reflect different bedrock/sediment surfaces rather than dry vs wet beds.}
 
 \begin{equation}
@@ -22,7 +21,7 @@ A pseudo-plastic sliding law \citep{aschwanden-etal-2013} (supplement) relates t
 	\end{array}\right.
 \end{equation}
 
-Where $\phi$ is given in degrees and $z$ in meters above contemporary sea level. This models weakening of the till associated with the presence of marine sediments. Basal topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography and bathymetry dataset \citep{data:etopo1}.\julien{NaturalEarth data are vectors (coastline, rivers, etc.) used in Fig. 1, not model input.} It responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
+where $\phi$ is given in degrees and $z$ in meters above contemporary sea level. This models weakening of the till associated with the presence of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Basal topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography and bathymetry dataset \citep{data:etopo1}.\julien{NaturalEarth data are vectors (coastline, rivers, etc.) used in Fig. 1, not model input.} It responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
 
 % ----------------------------------------------------------------------
 
