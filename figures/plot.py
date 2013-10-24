@@ -38,10 +38,10 @@ def _seasonmean(var, season):
     if season == 'djf': data = (var[11] + var[0] + var[1]).T/3
     return np.ma.masked_equal(data, 0)
 
-def _savefig(output):
+def _savefig(output, png=True, pdf=True):
     print 'saving ' + output
-    plt.savefig(output + '.png')
-    plt.savefig(output + '.pdf')
+    if png: plt.savefig(output + '.png')
+    if pdf: plt.savefig(output + '.pdf')
 
 ### Climate plotting functions ###
 
@@ -98,6 +98,36 @@ def tempdiff():
     cb.set_label(u'JJA air temperature difference to WorldClim data (°C)')
     _savefig('cordillera-climate-tempdiff')
 
+def tempheatmap():
+    """Plot temperature heat maps"""
+
+    # climate datasets
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+
+    # read WorldClim data as reference
+    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    var = nc.variables['air_temp']
+    ref = _seasonmean(var, 'jja') - 273.15
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      var = nc.variables['air_temp']
+      data = _seasonmean(var, 'jja') - 273.15
+      data = np.ma.masked_where(ref.mask, data)
+      minmax = (-5, 25)
+      ax = plt.subplot(220+i)
+      im = plt.hist2d(ref.compressed(), data.compressed(),
+        range=(minmax, minmax), bins=120,
+        cmap=plt.cm.Reds, norm=mcolors.LogNorm())
+      ax.plot(minmax, minmax,'k')
+      ax.set_xlim(minmax)
+      ax.set_ylim(minmax)
+      ax.set_title(labels[clim])
+
+    # save
+    _savefig('cordillera-climate-tempheatmap')
+
 def prec():
     """Plot precipitation maps"""
 
@@ -149,6 +179,38 @@ def precdiff():
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
     cb.set_label(u'normalized DJF precipitation rate difference to WorldClim data')
     _savefig('cordillera-climate-precdiff')
+
+def precheatmap():
+    """Plot precipitation heat maps"""
+
+    # climate datasets
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+
+    # read WorldClim data as reference
+    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    var = nc.variables['precipitation']
+    ref = _seasonmean(var, 'djf')
+
+    # loop on climate datasets
+    for i, clim in enumerate(climates):
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      var = nc.variables['precipitation']
+      data = _seasonmean(var, 'djf')
+      data = np.ma.masked_where(ref.mask, data)
+      minmax = (-2, 1)
+      ax = plt.subplot(220+i)
+      im = plt.hist2d(
+        np.log10(ref.compressed()),
+        np.log10(data.compressed()),
+        range=(minmax, minmax), bins=240,
+        cmap=plt.cm.Blues, norm=mcolors.LogNorm())
+      ax.plot(minmax, minmax,'k')
+      ax.set_xlim(minmax)
+      ax.set_ylim(minmax)
+      ax.set_title(labels[clim])
+
+    # save
+    _savefig('cordillera-climate-precheatmap')
 
 def topo():
     """Plot topography maps"""
@@ -348,10 +410,14 @@ if __name__ == "__main__":
       help='plot input temperature maps')
     parser.add_argument('--tempdiff', action='store_true',
       help='plot input temperature difference maps')
+    parser.add_argument('--tempheatmap', action='store_true',
+      help='plot input temperature heat maps')
     parser.add_argument('--prec', action='store_true',
       help='plot input precipitation maps')
     parser.add_argument('--precdiff', action='store_true',
       help='plot input precipitation difference maps')
+    parser.add_argument('--precheatmap', action='store_true',
+      help='plot input precipitation heat maps')
     parser.add_argument('--topo', action='store_true',
       help='plot input topography maps')
     parser.add_argument('--cool',
@@ -368,8 +434,10 @@ if __name__ == "__main__":
 
     if args.temp     is True: temp()
     if args.tempdiff is True: tempdiff()
+    if args.tempheatmap is True: tempheatmap()
     if args.prec     is True: prec()
     if args.precdiff is True: precdiff()
+    if args.precheatmap is True: precheatmap()
     if args.topo     is True: topo()
     if args.cool is not None: cool(args.cool)
     if args.best     is True: best()
