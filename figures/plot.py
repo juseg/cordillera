@@ -70,7 +70,7 @@ def temp():
     _savefig('cordillera-climate-temp')
 
 def tempdiff():
-    """Plot temperaturedifference maps"""
+    """Plot temperature difference maps"""
 
     # initialize figure
     climates = ['erai', 'narr', 'cfsr', 'ncar']
@@ -84,7 +84,7 @@ def tempdiff():
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
       plt.title(labels[clim])
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja')
@@ -137,7 +137,7 @@ def precdiff():
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
       plt.title(labels[clim])
       var = nc.variables['precipitation']
       data = _seasonmean(var, 'djf')
