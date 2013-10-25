@@ -69,6 +69,26 @@ def temp():
     cb.set_label(u'air temperature (°C)')
     _savefig('cordillera-climate-temp')
 
+def tempbox():
+    """Plot air temperature boxes"""
+
+    # initialize figure
+    climates = ['wc', 'erai', 'narr', 'cfsr', 'ncar']
+    data = []
+
+    # plot
+    for clim in climates:
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      var = nc.variables['air_temp']
+      tmp = _seasonmean(var, 'jja') - 273.15
+      if clim != 'wc': tmp = np.ma.masked_where(data[0].mask, tmp)
+      data.append(tmp)
+    data = map(np.ma.compressed, data)
+    plt.boxplot(data)
+
+    # save
+    _savefig('cordillera-climate-tempbox')
+
 def tempdiff():
     """Plot temperature difference maps"""
 
@@ -408,6 +428,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--temp', action='store_true',
       help='plot input temperature maps')
+    parser.add_argument('--tempbox', action='store_true',
+      help='plot input temperature boxes')
     parser.add_argument('--tempdiff', action='store_true',
       help='plot input temperature difference maps')
     parser.add_argument('--tempheatmap', action='store_true',
@@ -433,6 +455,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.temp     is True: temp()
+    if args.tempbox  is True: tempbox()
     if args.tempdiff is True: tempdiff()
     if args.tempheatmap is True: tempheatmap()
     if args.prec     is True: prec()
