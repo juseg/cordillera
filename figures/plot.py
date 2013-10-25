@@ -203,34 +203,56 @@ def precdiff():
 def precheatmap():
     """Plot precipitation heat maps"""
 
+    from matplotlib.ticker import FormatStrFormatter
+    from mpl_toolkits.axes_grid1 import ImageGrid
+
     # climate datasets
     climates = ['erai', 'narr', 'cfsr', 'ncar']
+    fig = plt.figure(figsize=(85/25.4, 85/25.4))
+    grid = ImageGrid(fig, [ 8/85.,  4/85., 75/85., 75/85.],
+      nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
 
     # read WorldClim data as reference
     nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
     var = nc.variables['precipitation']
     ref = _seasonmean(var, 'djf')
+    refdata = ref.compressed()
 
     # loop on climate datasets
-    for i, clim in enumerate(climates):
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+    for clim, ax in zip(climates, grid):
+
+      # read other data
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
       var = nc.variables['precipitation']
       data = _seasonmean(var, 'djf')
-      data = np.ma.masked_where(ref.mask, data)
-      minmax = (-2, 1)
-      ax = plt.subplot(220+i)
-      im = plt.hist2d(
-        np.log10(ref.compressed()),
-        np.log10(data.compressed()),
-        range=(minmax, minmax), bins=240,
-        cmap=plt.cm.Blues, norm=mcolors.LogNorm())
+      data = np.ma.array(data, mask=ref.mask).compressed()
+
+      # plot
+      minmax = (0.01, 10)
+      hist, x, y = np.histogram2d(np.log10(refdata), np.log10(data),
+        range=np.log10((minmax, minmax)), bins=120)
+      ax.imshow(hist.T,
+        cmap=plt.cm.Blues, norm=mcolors.LogNorm(),
+        extent=[0.01, 10, 0.01, 10])
+      #ax.scatter(refdata, data, marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
+
+      # set axes properties
       ax.set_xlim(minmax)
       ax.set_ylim(minmax)
-      ax.set_title(labels[clim])
+      ax.set_xscale('log')
+      ax.set_yscale('log')
+      ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
+      ax.yaxis.set_major_formatter(FormatStrFormatter('%g'))
+      ax.text(0.015, 5, labels[clim])
+      ax.text(1, 0.015, labels['wc'])
+
+      # calc mean deviation
+      print (data-refdata).mean()
 
     # save
-    _savefig('cordillera-climate-precheatmap')
+    fig.suptitle('DJF mean precipitation rate (m/yr)')
+    _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
     """Plot topography maps"""
