@@ -121,32 +121,50 @@ def tempdiff():
 def tempheatmap():
     """Plot temperature heat maps"""
 
+    from mpl_toolkits.axes_grid1 import ImageGrid
+
     # climate datasets
     climates = ['erai', 'narr', 'cfsr', 'ncar']
+    fig = plt.figure(figsize=(85/25.4, 85/25.4))
+    grid = ImageGrid(fig, [ 8/85.,  4/85., 75/85., 75/85.],
+      nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
 
     # read WorldClim data as reference
     nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
     var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja') - 273.15
+    refdata = ref.compressed()
 
     # loop on climate datasets
-    for i, clim in enumerate(climates):
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+    for clim, ax in zip(climates, grid):
+
+      # read other data
+      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja') - 273.15
-      data = np.ma.masked_where(ref.mask, data)
+      data = np.ma.array(data, mask=ref.mask).compressed()
+
+      # plot
       minmax = (-5, 25)
-      ax = plt.subplot(220+i)
-      im = plt.hist2d(ref.compressed(), data.compressed(),
+      ax.hist2d(refdata, data,
         range=(minmax, minmax), bins=120,
         cmap=plt.cm.Reds, norm=mcolors.LogNorm())
+      #ax.scatter(refdata, data, c='r', marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
+
+      # set axes properties
       ax.set_xlim(minmax)
       ax.set_ylim(minmax)
-      ax.set_title(labels[clim])
+      ax.text(-3, 22, labels[clim])
+      ax.text(15, -3, labels['wc'])
+
+      # calc mean deviation
+      print (data-refdata).mean()
 
     # save
-    _savefig('cordillera-climate-tempheatmap')
+    fig.suptitle(u'JJA mean surface air temperature (°C)')
+    _savefig('cordillera-climate-tempheatmap', pdf=True)
+
 
 def prec():
     """Plot precipitation maps"""
