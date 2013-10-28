@@ -389,7 +389,7 @@ def cool(cool):
     _savefig('cordillera-climate-cool' + cool)
 
 def duration():
-    """Plot effect of glaciation duration"""
+    """Plot effect of glaciation duration on multiple maps"""
 
     # initialize figure
     clim = 'narr'
@@ -449,6 +449,60 @@ def duration():
 
     # save
     _savefig('cordillera-climate-duration')
+
+def durationstack():
+    """Plot effect of glaciation duration on a single map"""
+
+    # initialize figure
+    clim = 'narr'
+    alloffsets = range(16)
+    mapoffsets = range(7, 12)
+    c = ['k']*7 + ['#ff3333', '#cc3366', '#993399', '#6633cc', '#3333ff'] + ['k']*4
+    tarea = 2.1823
+    lgmtimes = []
+    figw, figh = 80., 70.
+    fig = plt.figure(figsize=(figw*mm, figh*mm))
+    grid = [
+      fig.add_axes([10/figw, 5/figh, 30/figw, 60/figh]),
+      fig.add_axes([45/figw, 5/figh, 30/figw, 60/figh])]
+
+    # plot glaciatied area curves
+    ax = plt.axes(grid[0])
+    for dt in range(16):
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
+      time = nc.variables['time'][1:] / 31556925974.7
+      iarea = (nc.variables['thk'][1:]>10).sum(axis=(1, 2))/1e4
+      plt.plot(time, iarea, ('-' if dt in mapoffsets else '--'), color=c[dt])
+      lgmtimes.append((np.abs(iarea-tarea)).argmin())
+    ax.set_xlim((0, 10))
+    ax.set_ylim((0, 4))
+    plt.plot([0, 100],[tarea, tarea], 'k')
+
+    # plot maps
+    ax = plt.axes(grid[1])
+    ax.get_xaxis().set_visible(False)
+    ax.get_yaxis().set_visible(False)
+    for dt in mapoffsets:
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
+      iplt.icemargincontour(nc, t=lgmtimes[dt], linecolors=c[dt])
+
+    # add LGM ice margin
+    from matplotlib.patches import Polygon
+    m = Basemap(projection='lcc',
+      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
+      llcrnrlat=nc.variables['lat'][0,0],
+      urcrnrlat=nc.variables['lat'][-1,-1],
+      llcrnrlon=nc.variables['lon'][0,0],
+      urcrnrlon=nc.variables['lon'][-1,-1])
+    sf = shapefile.Reader(shpfile)
+    for record, shape in zip(sf.records(),sf.shapes()):
+      lons,lats = zip(*shape.points)
+      data = np.array(m(lons, lats)).T/10000
+      poly = Polygon(data, facecolor='#cccccc', linewidth=0)
+      plt.gca().add_patch(poly)
+
+    # save
+    _savefig('cordillera-climate-durationstack')
 
 def extent():
     """Plot stacked ice extents"""
@@ -552,7 +606,9 @@ if __name__ == "__main__":
     parser.add_argument('--bestdiff', action='store_true',
       help='plot ice thickness difference for the best runs')
     parser.add_argument('--duration', action='store_true',
-      help='plot effect of glaciation duration')
+      help='plot effect of glaciation duration on multiple maps')
+    parser.add_argument('--durationstack', action='store_true',
+      help='plot effect of glaciation duration on a single map')
     parser.add_argument('--extent', action='store_true',
       help='plot stacked ice extent from all runs')
     parser.add_argument('--ivolarea', action='store_true',
@@ -572,6 +628,7 @@ if __name__ == "__main__":
     if args.bestdiff is True: bestdiff()
     if args.extent   is True: extent()
     if args.duration is True: duration()
+    if args.durationstack is True: durationstack()
     if args.ivolarea is True: ivolarea()
 
 
