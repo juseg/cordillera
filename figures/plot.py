@@ -370,6 +370,30 @@ def bestdiff():
     cb.set_label(u'ice surface elevation difference to %s %s K simulation (m)' % (labels[climates[0]], offsets[0]))
     _savefig('cordillera-climate-bestdiff')
 
+def biatm():
+    """Plot hybrid atmosphere output"""
+
+    # initialize figure
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+    fig = iplt.gridfigure(mapsize, (2, 4), cbar_mode='single')
+
+    # loop on climate datasets
+    fig.grid[0].text(-20, 150, 'effect of temperature',
+      rotation='vertical', verticalalignment='center')
+    fig.grid[4].text(-20, 150, 'effect of precipitation',
+      rotation='vertical', verticalalignment='center')
+    for i, clim in enumerate(climates):
+      fig.grid[i].set_title(labels[clim])
+      for j, biclim in enumerate(['t%spwcnn' % clim, 'twcnnp%s' % clim]):
+        ax = plt.axes(fig.grid[i+4*j])
+        nc = Dataset('../data/%s-05.nc' % biclim)
+        im = iplt.icemap(nc)
+
+    # add colorbar and save
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
+    cb.set_label(u'ice surface velocity (m/s)')
+    _savefig('cordillera-climate-biatm')
+
 def cool(cool):
     """Plot icemaps for given temperature offset"""
 
@@ -578,6 +602,8 @@ if __name__ == "__main__":
       help='plot icemaps for so-called best runs')
     parser.add_argument('--bestdiff', action='store_true',
       help='plot ice thickness difference for the best runs')
+    parser.add_argument('--biatm', action='store_true',
+      help='plot hybrid atmosphere output')
     parser.add_argument('--duration', action='store_true',
       help='plot effect of glaciation duration on multiple maps')
     parser.add_argument('--durationstack', action='store_true',
@@ -599,6 +625,7 @@ if __name__ == "__main__":
     if args.cool is not None: cool(args.cool)
     if args.best     is True: best()
     if args.bestdiff is True: bestdiff()
+    if args.biatm    is True: biatm()
     if args.extent   is True: extent()
     if args.duration is True: duration()
     if args.durationstack is True: durationstack()
