@@ -34,6 +34,23 @@ labels = {
 
 ### Base functions ###
 
+def _drawlgm(nc, grid,**kwargs):
+    """Add LGM ice margin from Dyke (2004)"""
+    from matplotlib.patches import Polygon
+    m = Basemap(projection='lcc',
+      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
+      llcrnrlat=nc.variables['lat'][0,0],
+      urcrnrlat=nc.variables['lat'][-1,-1],
+      llcrnrlon=nc.variables['lon'][0,0],
+      urcrnrlon=nc.variables['lon'][-1,-1])
+    sf = shapefile.Reader(shpfile)
+    for ax in grid:
+      for shape in sf.shapes():
+        lons,lats = zip(*shape.points)
+        data = np.array(m(lons, lats)).T/10000
+        poly = Polygon(data, **kwargs)
+        ax.add_patch(poly)
+
 def _seasonmean(var, season):
     if season == 'jja': data = (var[5]  + var[6] + var[7]).T/3
     if season == 'djf': data = (var[11] + var[0] + var[1]).T/3
@@ -320,23 +337,8 @@ def best():
       iplt.icemargincontour(nc)
       cs = iplt.surftopocontour(nc)
 
-    # add LGM ice margin
-    m = Basemap(projection='lcc',
-      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
-      llcrnrlat=nc.variables['lat'][0,0],
-      urcrnrlat=nc.variables['lat'][-1,-1],
-      llcrnrlon=nc.variables['lon'][0,0],
-      urcrnrlon=nc.variables['lon'][-1,-1])
-    sf = shapefile.Reader(shpfile)
-    for record, shape in zip(sf.records(),sf.shapes()):
-      lons,lats = zip(*shape.points)
-      data = np.array(m(lons, lats)).T/10000
-    for ax in fig.grid:
-      lines = LineCollection([data,], antialiaseds=(1,), colors='#000080')
-      lines.zorder=0.5
-      ax.add_collection(lines)
-
-    # add colorbar and save
+    # add LGM ice margin, colorbar and save
+    _drawlgm(nc, fig.grid, edgecolor='#000080', facecolor='none', zorder=0.5)
     cb = fig.colorbar(cs, fig.grid.cbar_axes[0])
     cb.set_label(u'ice surface velocity (m/s)')
     _savefig('cordillera-climate-best')
@@ -431,23 +433,8 @@ def duration():
       iplt.icemargincontour(nc, t=lgmtimes[dt])
       iplt.surftopocontour(nc, t=lgmtimes[dt])
 
-    # add LGM ice margin
-    m = Basemap(projection='lcc',
-      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
-      llcrnrlat=nc.variables['lat'][0,0],
-      urcrnrlat=nc.variables['lat'][-1,-1],
-      llcrnrlon=nc.variables['lon'][0,0],
-      urcrnrlon=nc.variables['lon'][-1,-1])
-    sf = shapefile.Reader(shpfile)
-    for record, shape in zip(sf.records(),sf.shapes()):
-      lons,lats = zip(*shape.points)
-      data = np.array(m(lons, lats)).T/10000
-    for ax in grid[1:]:
-      lines = LineCollection([data,], antialiaseds=(1,), colors='#000080')
-      lines.zorder=0.5
-      ax.add_collection(lines)
-
-    # save
+    # add LGM ice margin and save
+    _drawlgm(nc, grid[1:], edgecolor='#000080', facecolor='none', zorder=0.5)
     _savefig('cordillera-climate-duration')
 
 def durationstack():
@@ -486,22 +473,8 @@ def durationstack():
       nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
       iplt.icemargincontour(nc, t=lgmtimes[dt], linecolors=c[dt])
 
-    # add LGM ice margin
-    from matplotlib.patches import Polygon
-    m = Basemap(projection='lcc',
-      lat_1=49, lat_2=77, lat_0=49, lon_0=-95,
-      llcrnrlat=nc.variables['lat'][0,0],
-      urcrnrlat=nc.variables['lat'][-1,-1],
-      llcrnrlon=nc.variables['lon'][0,0],
-      urcrnrlon=nc.variables['lon'][-1,-1])
-    sf = shapefile.Reader(shpfile)
-    for record, shape in zip(sf.records(),sf.shapes()):
-      lons,lats = zip(*shape.points)
-      data = np.array(m(lons, lats)).T/10000
-      poly = Polygon(data, facecolor='#cccccc', linewidth=0)
-      plt.gca().add_patch(poly)
-
-    # save
+    # add LGM ice margin and save
+    _drawlgm(nc, [ax], facecolor='#cccccc', linewidth=0)
     _savefig('cordillera-climate-durationstack')
 
 def extent():
