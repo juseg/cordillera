@@ -4,6 +4,18 @@
 \label{sec:discussion}
 % ----------------------------------------------------------------------
 
+\subsection{Comparison of forcing climatologies}
+\emph{Fig. topo-prec: there are large differences in climate forcing. (1) Temperature diff are due to topography, except for cold NCAR. (2) Precipitation diff related to orographic effects, except for CFSR (Fig.~\ref{fig:tempheatmap}-\ref{fig:oroprecip}).}
+
+\subsection{Sensitivity to climate forcing}
+\emph{Most differences are due to precip, except for NCAR (Fig.~\ref{fig:biatm}).}
+
+The outcome of our numerical simulations strongly depends on which dataset is used for climate forcing (Fig.~\ref{fig:cool05}-\ref{fig:best}). This results from differences in temperature and precipitation (Fig.~\ref{fig:temp}-\ref{fig:prec}) between forcing datasets, to which the glacier model is highly sensitive.
+
+Difference between modelled ice sheet geometries is notably visible in northern Yukon Territory and Alaska, where previous modelling studies commonly produced too extensive ice cover, whereas geomorphological data show that the ice cover was sparse. Concerning reanalysis datasets, we interpret these differences as mainly the result of different GCM resolutions and related model physics (Fig.~\ref{fig:topo}, Table~\ref{tab:reanalyses}).
+
+As described in section~\ref{sec:climate}, the topography of the Northern American Cordillera is such that its western ranges form a continuous orographic barrier, causing high precipitation along the Pacific coast while leaving much of the interior arid. However the ability of a GCM to reproduce these contrasts in precipitation is bounded by resolution. In a model of coarser resolution such as used in the NCEP/NCAR reanalysis, these high mountain ranges are reduced to smoothed hills and the modelled distribution of precipitation is also smoother (Fig.~\ref{fig:oroprecip}). This interpretation does not apply to the CFSR climatology, which exhibits high inland precipitation rates despite of the high model resolution (Table~\ref{tab:reanalyses}).
+
 \subsection{Comparison to reconstructed LGM margin}
 
 We compare the numerically modelled ice sheet geometries to a reconstruction of the ice margin at 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) by \citet{dyke-2004}, based on glacial geomorphology and radiocarbon dating. This corresponds to the LGM extent of most of the Cordilleran ice sheet, which occurred later than in the Laurentide ice sheet \citep{dyke-2004}.
@@ -13,15 +25,10 @@ For all climate forcing used, the modelled eastern margin of the ice sheet exten
 
 Our simulations produce anomalous\irina{Any evidence that there was no ice cover there? Refer to the source.} ice cover on parts of the continental shelf in the Arctic Ocean. These regions experience a marine climate, including lower summer temperature than on the adjacent land (Fig.~\ref{fig:temp}). However in our simulations, sea-level is lowered by 120~m, turning large parts of the low-sloping continental shelf into land. A similar effect occurs over Great Bear Lake in some simulations, particularly those driven by the NCEP/NCAR forcing (Fig.~\ref{fig:extent}). This anomalous ice cover is to be interpreted as an artefact arising from our simplistic temperature offset method, and has little effect on the rest of the results.
 
-\subsection{Sensitivity to climate forcing}
+\subsection{Sensitivity to glaciation duration}
+\emph{Glaciation duration has upper bound, but it may have been shorter. Shorter gives better results, so 10Ka may be too much, or at least it shows that our approach may be too simplistic. Longer gives worst result: the LGM CIS is not at steady-state (Fig.~\ref{fig:durationstack}).}
 
-The outcome of our numerical simulations strongly depends on which dataset is used for climate forcing (Fig.~\ref{fig:cool05}-\ref{fig:best}). This results from differences in temperature and precipitation (Fig.~\ref{fig:temp}-\ref{fig:prec}) between forcing datasets, to which the glacier model is highly sensitive.
-
-Difference between modelled ice sheet geometries is notably visible in northern Yukon Territory and Alaska, where previous modelling studies commonly produced too extensive ice cover, whereas geomorphological data show that the ice cover was sparse. Concerning reanalysis datasets, we interpret these differences as mainly the result of different GCM resolutions and related model physics (Fig.~\ref{fig:topo}, Table~\ref{tab:reanalyses}).
-
-As described in section~\ref{sec:climate}, the topography of the Northern American Cordillera is such that its western ranges form a continuous orographic barrier, causing high precipitation along the Pacific coast while leaving much of the interior arid. However the ability of a GCM to reproduce these contrasts in precipitation is bounded by resolution. In a model of coarser resolution such as used in the NCEP/NCAR reanalysis, these high mountain ranges are reduced to smoothed hills and the modelled distribution of precipitation is also smoother (Fig.~\ref{fig:oroprecip}). This interpretation does not apply to the CFSR climatology, which exhibits high inland precipitation rates despite of the high model resolution (Table~\ref{tab:reanalyses}).
-
-\subsection{Potential method improvements}
+\subsection{Other potential method improvements}
 
 Our simplistic temperature offset method is certainly a crude simplification of past climate changes over the region. Although it is clear that these temperature changes were neither homogeneous nor constant in time, and probably associated with precipitation changes, their patterns are not trivial and may potentially display a strong inter-dependence with the evolution of the Cordilleran and Laurentide ice sheets. A more correct, yet more complex approach would be to use coupling to a GCM of intermediate complexity \citep{yoshimori-etal-2001,calov-etal-2002,abeouchi-etal-2007,charbit-etal-2013}.
 

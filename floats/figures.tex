@@ -15,7 +15,7 @@
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-topo}
+		\includegraphics{cordillera-climate-topo}
 	\end{center}
 	\caption{Topography maps from WorldClim, ERA-Interim reanalysis, NARR (North American Regional Reanalysis), CFSR (Climate System Forecast Reanalysis), and NCEP/NCAR reanalysis climatologies used as a reference for temperature lapse-rate corrections, and topography map from ETOPO1 used as basal topography. Fig.~\ref{fig:topo}-\ref{fig:best} drawn using Matplotlib \citep{soft:mpl}.}
 	\label{fig:topo}
@@ -25,7 +25,7 @@
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-temp}
+		\includegraphics{cordillera-climate-temp}
 	\end{center}
 	\caption{Summer (JJA) and winter (DJF) temperature maps from WorldClim, and summer (JJA) temperature maps from ERA-Interim reanalysis, NARR (North American Regional Reanalysis), CFSR (Climate System Forecast Reanalysis), and NCEP/NCAR reanalysis climatologies.}
 	\label{fig:temp}
@@ -35,7 +35,7 @@
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-prec}
+		\includegraphics{cordillera-climate-prec}
 	\end{center}
 	\caption{Winter (DJF) and summer (JJA) precipitation maps from WorldClim, and winter (DFJ) temperature maps from ERA-Interim reanalysis, NARR (North American Regional Reanalysis), CFSR (Climate System Forecast Reanalysis), and NCEP/NCAR reanalysis climatologies. 	Additional forcing data was prepared to correct for wave-like precipitation artefacts in CFSR (section~\ref{sec:climate}).}
 	\label{fig:prec}
@@ -45,7 +45,7 @@
 \begin{figure}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=9cm]{cordillera-climate-ivolarea}
+		\includegraphics{cordillera-climate-ivolarea}
 	\end{center}
 	\caption{Total glaciated area and ice volume after 10\,kyr as a function of temperature offset and climate forcing.}
 	\label{fig:ivolarea}
@@ -55,7 +55,7 @@
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-extent}
+		\includegraphics{cordillera-climate-extent}
 	\end{center}
 	\caption{Extent of ice cover after 10\,kyr as a function of applied temperature offsets for each climate forcing.}
 	\label{fig:extent}
@@ -65,28 +65,98 @@
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-cool05}
+		\includegraphics{cordillera-climate-cool05}
 	\end{center}
 	\caption{Ice surface topography (black contours every 1000\,m) and velocity (\unit{m\,yr^{-1}}) after 10\,kyr under a climate 5\,\unit{\degree C} colder than present for each climate forcing.}
 	\label{fig:cool05}
 \end{figure*}
 
-% fig:best
+% fig:tempheatmap
+\begin{figure}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-tempheatmap}
+	\end{center}
+	\caption{tempheatmap}
+	\label{fig:tempheatmap}
+\end{figure}
+
+% fig:precheatmap
+\begin{figure}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-precheatmap}
+	\end{center}
+	\caption{precheatmap}
+	\label{fig:precheatmap}
+\end{figure}
+
+% fig:tempdiff
+\begin{figure}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-tempdiff}
+	\end{center}
+	\caption{tempdiff}
+	\label{fig:tempdiff}
+\end{figure}
+
+% fig:precdiff
+\begin{figure}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-precdiff}
+	\end{center}
+	\caption{precdiff}
+	\label{fig:precdiff}
+\end{figure}
+
+% fig:biatm
 \begin{figure*}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=13cm]{cordillera-climate-best}
+		\includegraphics{cordillera-climate-biatm}
 	\end{center}
-	\caption{Ice surface topography (black contours every 1000\,m) after 10\,kyr using temperature offsets that lead to similar areas of ice cover for each climate forcing. 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) ice margin (blue line) from \citet{dyke-2004}.}
-	\label{fig:best}
+	\caption{biatm}
+	\label{fig:biatm}
+\end{figure*}
+
+% fig:biatmbars
+\begin{figure*}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-biatmbars}
+	\end{center}
+	\caption{biatmbars}
+	\label{fig:biatmbars}
 \end{figure*}
 
 % fig:oroprecip
 \begin{figure}[t]
 	\vspace*{2mm}
 	\begin{center}
-		\includegraphics[width=8cm]{cordillera-climate-oroprecip}
+		\includegraphics{cordillera-climate-oroprecip}
 	\end{center}
 	\caption{Schematic representation of the orographic precipitation effect over the Coast Mountains. In a GCM of lower resolution, the precipitation peak appears smoother and the precipitation shadow is not as pronounced. Drawn using Inkscape \citep{web:inkscape}.}
 	\label{fig:oroprecip}
+\end{figure}
+
+% fig:best
+\begin{figure*}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-best}
+	\end{center}
+	\caption{Ice surface topography (black contours every 1000\,m) after 10\,kyr using temperature offsets that lead to similar areas of ice cover for each climate forcing. 14\,$^{14}$C\,ka\,BP (16.8\,cal\,ka\,BP) ice margin (blue line) from \citet{dyke-2004}.}
+	\label{fig:best}
+\end{figure*}
+
+% fig:durationstack
+\begin{figure}[t]
+	\vspace*{2mm}
+	\begin{center}
+		\includegraphics{cordillera-climate-durationstack}
+	\end{center}
+	\caption{durationstack}
+	\label{fig:durationstack}
 \end{figure}
