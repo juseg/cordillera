@@ -394,6 +394,64 @@ def biatm():
     cb.set_label(u'ice surface velocity (m/s)')
     _savefig('cordillera-climate-biatm')
 
+def biatmbars():
+    """Plot hybrid atmosphere bar chart"""
+
+    # climate datasets
+    climates = ['erai', 'narr', 'cfsr', 'ncar']
+    both = []; temp = []; prec = []
+
+    # read reference data (volume)
+    nc = Dataset('../data/wcnn-05-ts.nc')
+    ref = nc.variables['ivol'][-1]/1e15
+
+    # read reference data (area)
+    #nc = Dataset('../data/wcnn-05.nc')
+    #ref = (nc.variables['thk'][0]).sum()/1e4
+
+    # read other data (volume)
+    for i, clim in enumerate(climates):
+      nc = Dataset('../data/%s-05-ts.nc' % clim)
+      both.append(nc.variables['ivol'][-1]/1e15)
+      nc = Dataset('../data/t%spwcnn-05-ts.nc' % clim)
+      temp.append(nc.variables['ivol'][-1]/1e15)
+      nc = Dataset('../data/twcnnp%s-05-ts.nc' % clim)
+      prec.append(nc.variables['ivol'][-1]/1e15)
+
+    # read other data (area)
+    #for i, clim in enumerate(climates):
+    #  nc = Dataset('../data/%s-05.nc' % clim)
+    #  both.append((nc.variables['thk'][0]).sum()/1e4)
+    #  nc = Dataset('../data/t%spwcnn-05.nc' % clim)
+    #  temp.append((nc.variables['thk'][0]).sum()/1e4)
+    #  nc = Dataset('../data/twcnnp%s-05.nc' % clim)
+    #  prec.append((nc.variables['thk'][0]).sum()/1e4)
+
+    # initialize figure
+    w = 0.25
+    pos = np.arange(len(climates)) - w/2
+    fig = plt.figure(figsize=(85*mm, 60*mm))
+    ax = plt.axes([10/85., 5/60., 70/85., 50/60.])
+
+    # plot bars
+    barkwargs = {'linewidth': 0.2, 'alpha': 0.5}
+    ax.bar(pos, both-ref, w, color='#333333',
+      label='cumulative', **barkwargs)
+    ax.bar(pos-w/2, temp-ref, w, color='#ff3333',
+      label='temperature', **barkwargs)
+    ax.bar(pos+w/2, prec-ref, w, color='#3333ff',
+      label='precipitation', **barkwargs)
+
+    # adjust axes
+    plt.axhline(0, color='k', linewidth=0.2)
+    plt.xticks(pos+w/2, [labels[clim] for clim in climates])
+    plt.ylabel(u'Ice volume anomaly ($\mathsf{10^6~km^3}$)')
+    plt.legend(loc=2)
+    #plt.ylabel(u'Glaciated area anomaly ($\mathsf{10^6~km^2}$)')
+
+    # save
+    _savefig('cordillera-climate-biatmbars')
+
 def cool(cool):
     """Plot icemaps for given temperature offset"""
 
@@ -604,6 +662,8 @@ if __name__ == "__main__":
       help='plot ice thickness difference for the best runs')
     parser.add_argument('--biatm', action='store_true',
       help='plot hybrid atmosphere output')
+    parser.add_argument('--biatmbars', action='store_true',
+      help='plot hybrid atmosphere bar chart')
     parser.add_argument('--duration', action='store_true',
       help='plot effect of glaciation duration on multiple maps')
     parser.add_argument('--durationstack', action='store_true',
@@ -626,6 +686,7 @@ if __name__ == "__main__":
     if args.best     is True: best()
     if args.bestdiff is True: bestdiff()
     if args.biatm    is True: biatm()
+    if args.biatmbars is True: biatmbars()
     if args.extent   is True: extent()
     if args.duration is True: duration()
     if args.durationstack is True: durationstack()

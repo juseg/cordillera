@@ -36,5 +36,8 @@ for clim in erai narr cfsr ncar; do
     [ ! -f $file ] \
       && ssh scooter "ncks -O -v $vars $run.nc /tmp/$file" \
       && scp scooter:/tmp/$file .
+    file=$biclim-05-ts.nc
+    [ ! -f $file ] \
+      && scp scooter:$run-ts.nc $file
   done
 done
