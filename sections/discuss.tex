@@ -4,17 +4,27 @@
 \label{sec:discussion}
 % ----------------------------------------------------------------------
 
+The outcome of our numerical simulations shows a very large sensitivity to the choice of climate forcing data (Fig.~\ref{fig:ivolarea}-\ref{fig:cool05}).To understand the origin of these discrepancies, we compare the distributions of surface air temperature and precipitation rate among between datasets and test their effect on modelled ice sheet geometries. We then compare our findings to a reconstruction of the LGM Cordilleran Ice Sheet margin, and discuss some of the key assumptions of this study.
+
 \subsection{Comparison of forcing climatologies}
-\emph{Fig. topo-prec: there are large differences in climate forcing. (1) Temperature diff are due to topography, except for cold NCAR. (2) Precipitation diff related to orographic effects, except for CFSR (Fig.~\ref{fig:tempheatmap}-\ref{fig:oroprecip}).}
+
+The PDD model that we use is potentially highly sensitive to temperature and precipitation forcing. More particularly, winter (DJF) precipitation and summer (JJA) temperature respectively predominantly drive accumulation and melt at the surface of the modelled ice sheet. As illustrated (Fig.~\ref{fig:topo}-\ref{fig:prec}), significant differences between datasets exist in their distribution exist.
+
+Surface air temperature from the WorldClim observational data is fairly well resolved by reanalysis data (Fig.~\ref{fig:tempheatmap}), apart of the NCAR reanalysis which shows a large spread around the WorldClim values. For ERA-Interim, NARR and CFSR reanalyses, it seems that most of the differences are due to unresolved local topographic detail (Fig.~\ref{fig:tempdiff}). NCAR shows a significant cold anomaly over the entire region. It is known from literature that NCAR produces too cold temperature at high latitudes. Finally NARR data seem to be a bit too warm.
+
+Regarding precipitation data, more significant differences exist between datasets. All reanalysis data used seem to overestimate precipitation rates over most of the modelling domain (Fig.~\ref{fig:precheatmap}). The overestimation is the largest for CFSR data. Again, NCAR shows the largest discrepancy and this is probably due to the coarse model resolution. When looking at the spatial distribution of precipitation anomalies, it appears that precipitation is underestimated on most of the major reliefs, while it is overestimated on the lowlands and plateaux located beyond these reliefs (Fig.~\ref{fig:precdiff}). We think this is an orographic precipitation effect linked to horizontal GCM resolution (Fig.~\ref{fig:oroprecip}). Precipitation rate, however, is generally and largely overestimated in CFSR data, despite of high model resolution.
 
 \subsection{Sensitivity to climate forcing}
-\emph{Most differences are due to precip, except for NCAR (Fig.~\ref{fig:biatm}).}
 
 The outcome of our numerical simulations strongly depends on which dataset is used for climate forcing (Fig.~\ref{fig:cool05}-\ref{fig:best}). This results from differences in temperature and precipitation (Fig.~\ref{fig:temp}-\ref{fig:prec}) between forcing datasets, to which the glacier model is highly sensitive.
 
 Difference between modelled ice sheet geometries is notably visible in northern Yukon Territory and Alaska, where previous modelling studies commonly produced too extensive ice cover, whereas geomorphological data show that the ice cover was sparse. Concerning reanalysis datasets, we interpret these differences as mainly the result of different GCM resolutions and related model physics (Fig.~\ref{fig:topo}, Table~\ref{tab:reanalyses}).
 
 As described in section~\ref{sec:climate}, the topography of the Northern American Cordillera is such that its western ranges form a continuous orographic barrier, causing high precipitation along the Pacific coast while leaving much of the interior arid. However the ability of a GCM to reproduce these contrasts in precipitation is bounded by resolution. In a model of coarser resolution such as used in the NCEP/NCAR reanalysis, these high mountain ranges are reduced to smoothed hills and the modelled distribution of precipitation is also smoother (Fig.~\ref{fig:oroprecip}). This interpretation does not apply to the CFSR climatology, which exhibits high inland precipitation rates despite of the high model resolution (Table~\ref{tab:reanalyses}).
+
+To distinguish the role of temperature and precipitation biases outlined above in forcing the ice sheet model, we run a series of additional experiments using artificial, “hybrid” atmospheres that consist of temperature data from WorldClim, and precipitation data from each of the four reanalysis, and the other way around. These eight simulations were run using a temperature offset value of 5\,K, and temperature lapse rates were computed using the reference topography from the appropriate data.
+
+Although only temperature or precipitation changes are applied, this experiment again resulted in a largely different modelled ice sheet geometries (Fig.~\ref{fig:biatm}). Varying temperature forcing alone however, had limited effect, expect in the case of NCAR, due to its cold bias previously mentioned. For ERA-Interim, NARR and CFSR data, variations in precipitations dominate the ice sheet response, whereas for NCAR data, both temperature and precipitation are responsible for the anomalously large ice sheets produced (Fig.~\ref{fig:biatmbars}). 
 
 \subsection{Comparison to reconstructed LGM margin}
 
@@ -25,8 +35,11 @@ For all climate forcing used, the modelled eastern margin of the ice sheet exten
 
 Our simulations produce anomalous\irina{Any evidence that there was no ice cover there? Refer to the source.} ice cover on parts of the continental shelf in the Arctic Ocean. These regions experience a marine climate, including lower summer temperature than on the adjacent land (Fig.~\ref{fig:temp}). However in our simulations, sea-level is lowered by 120~m, turning large parts of the low-sloping continental shelf into land. A similar effect occurs over Great Bear Lake in some simulations, particularly those driven by the NCEP/NCAR forcing (Fig.~\ref{fig:extent}). This anomalous ice cover is to be interpreted as an artefact arising from our simplistic temperature offset method, and has little effect on the rest of the results.
 
-\subsection{Sensitivity to glaciation duration}
-\emph{Glaciation duration has upper bound, but it may have been shorter. Shorter gives better results, so 10Ka may be too much, or at least it shows that our approach may be too simplistic. Longer gives worst result: the LGM CIS is not at steady-state (Fig.~\ref{fig:durationstack}).}
+\subsection{Sensitivity to englaciation duration}
+
+Among the most decisive assumptions for the present study figures certainly the hypothesis that the Cordilleran Ice Sheet built up from ice free conditions to LGM conditions in 10Ka, which motivates our choice of simulation length. Although geomorphological data shows that this period could not have been much longer, they provide no lower bound for it. The growth of the Cordilleran Ice Sheet to full glacial condition could have lasted less than 10Ka.
+
+In our simulations, using NARR data and temperatures more than 7 degrees below present, the modelled ice sheet reaches near-LGM ice cover in less than 10Ka (Fig.~\ref{fig:durationstack}). A shorter glaciation period lead to fewer ice cover in the eastern part of the modelling domain, where precipitation is limiting the rate of growth, but further glaciation along the Pacific margin to the south, where warm temperatures normally stop glacier advance. This shows that our choice of 10Ka may be somewhat too much. On the other hand our representation of climate history is voluntarily simplistic, and the effects of a more complex palaeo-climate history on the Cordilleran Ice Sheet will need to be studied further.
 
 \subsection{Other potential method improvements}
 
