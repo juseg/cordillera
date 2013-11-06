@@ -2,6 +2,21 @@
 
 vars=lat,lon,topg,thk,usurf,csurf
 
+# input basal topography
+file=etopo1bed.nc
+[ ! -f $file ] \
+  && scp scooter:pism/input/boot/cordillera-etopo1bed-10km.nc $file
+
+# input atmosphere files
+for clim in 'wc' wcnn erai narr cfsrs7 cfsr ncar; do
+  for int in nn bl; do
+    atm=cordillera-$clim-10km-$int
+    file=$clim-$int.nc
+    [ ! -f $file ] \
+      && scp scooter:pism/input/atm/$atm.nc $file
+  done
+done
+
 # final output and timeseries
 for clim in wcnn erai narr cfsrs7 cfsr ncar; do
   for cool in $(seq -f %02g 00 10); do

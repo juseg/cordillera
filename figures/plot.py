@@ -19,8 +19,6 @@ rc('mathtext', default='regular')
 ### Globals ###
 
 mm = 1/25.4
-pismdir = '/home/julien/work/code/pism'
-shpfile = '/home/julien/work/data/dyke-deglaciation/16.8-ka.shp'
 mapsize = (30., 60.)
 figkwa = dict(axes_pad=2*mm, cbar_pad=2*mm, cbar_size=4*mm)
 labels = {
@@ -50,7 +48,7 @@ def _drawlgm(nc, grid,**kwargs):
       urcrnrlat=nc.variables['lat'][-1,-1],
       llcrnrlon=nc.variables['lon'][0,0],
       urcrnrlon=nc.variables['lon'][-1,-1])
-    sf = shapefile.Reader(shpfile)
+    sf = shapefile.Reader('../data/16.8-ka.shp')
     for ax in grid:
       for shape in sf.shapes():
         lons,lats = zip(*shape.points)
@@ -81,7 +79,7 @@ def temp():
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset('../data/%s-nn.nc' % clim)
       _annotate('%s %s' % (labels[clim], seasons[i].upper()))
       var = nc.variables['air_temp']
       data = _seasonmean(var, seasons[i])
@@ -103,7 +101,7 @@ def tempbox():
 
     # plot
     for clim in climates:
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset('../data/%s-nn.nc' % clim)
       var = nc.variables['air_temp']
       tmp = _seasonmean(var, 'jja') - 273.15
       if clim != 'wc': tmp = np.ma.masked_where(data[0].mask, tmp)
@@ -122,14 +120,14 @@ def tempdiff():
     fig = iplt.gridfigure(mapsize, (2, 2), cbar_mode='single', **figkwa)
 
     # read WorldClim data as reference
-    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja')
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      nc = Dataset('../data/%s-bl.nc' % clim)
       _annotate(labels[clim])
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja')
@@ -154,7 +152,7 @@ def tempheatmap():
       nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
 
     # read WorldClim data as reference
-    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja') - 273.15
     refdata = ref.compressed()
@@ -163,7 +161,7 @@ def tempheatmap():
     for clim, ax in zip(climates, grid):
 
       # read other data
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset('../data/%s-nn.nc' % clim)
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja') - 273.15
       data = np.ma.array(data, mask=ref.mask).compressed()
@@ -200,7 +198,7 @@ def prec():
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset('../data/%s-nn.nc' % clim)
       _annotate('%s %s' % (labels[clim], seasons[i].upper()))
       var = nc.variables['precipitation']
       data = _seasonmean(var, seasons[i])
@@ -221,14 +219,14 @@ def precdiff():
     fig = iplt.gridfigure(mapsize, (2, 2), cbar_mode='single', **figkwa)
 
     # read WorldClim data as reference
-    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
     ref = _seasonmean(var, 'djf')
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-bl.nc' % clim)
+      nc = Dataset('../data/%s-bl.nc' % clim)
       _annotate(labels[clim])
       var = nc.variables['precipitation']
       data = _seasonmean(var, 'djf')
@@ -254,7 +252,7 @@ def precheatmap():
       nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
 
     # read WorldClim data as reference
-    nc = Dataset(pismdir + '/input/atm/cordillera-wc-10km-nn.nc')
+    nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
     ref = _seasonmean(var, 'djf')
     refdata = ref.compressed()
@@ -263,7 +261,7 @@ def precheatmap():
     for clim, ax in zip(climates, grid):
 
       # read other data
-      nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+      nc = Dataset('../data/%s-nn.nc' % clim)
       var = nc.variables['precipitation']
       data = _seasonmean(var, 'djf')
       data = np.ma.array(data, mask=ref.mask).compressed()
@@ -307,12 +305,12 @@ def topo():
       ax = plt.axes(fig.grid[i])
       _annotate(labels[clim])
       if clim == 'etopo':
-        nc = Dataset(pismdir + '/input/boot/cordillera-etopo1bed-10km.nc')
+        nc = Dataset('../data/etopo1bed.nc')
         im = plt.imshow(nc.variables['topg'][:].T,
           cmap = icm.topo,
           norm = mcolors.Normalize(-6000, 6000))
       else:
-        nc = Dataset(pismdir + '/input/atm/cordillera-%s-10km-nn.nc' % clim)
+        nc = Dataset('../data/%s-nn.nc' % clim)
         plt.imshow(nc.variables['usurf'][:].T,
           cmap = icm.land_topo,
           norm = mcolors.Normalize(0, 6000))
