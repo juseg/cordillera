@@ -17,3 +17,5 @@
 # Older versions
 /versions
 
+# Statistics
+stats/count.csv
