@@ -326,9 +326,9 @@ def best():
     """Plot icemaps for the best runs"""
 
     # initialize figure
-    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    offsets  = ['08', '06', '07', '04', '04', '04']
-    fig = iplt.gridfigure(mapsize, (2, 3), cbar_mode='none', **figkwa)
+    climates = ['wcnn', 'erai', 'narr'] #['cfsrs7', 'cfsr', 'ncar']
+    offsets  = ['08', '06', '07'] #['04', '04', '04']
+    fig = iplt.gridfigure(mapsize, (1, 3), cbar_mode='none', **figkwa)
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
@@ -350,9 +350,9 @@ def bestdiff():
     """Plot differences in ice thickness for the best runs"""
 
     # initialize figure
-    climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
-    offsets  = ['09', '07', '08', '05', '05', '04']
-    fig = iplt.gridfigure(mapsize, (2, 3), cbar_mode='single', **figkwa)
+    climates = ['wcnn', 'erai', 'narr'] #['cfsrs7', 'cfsr', 'ncar']
+    offsets  = ['08', '06', '07'] #['04', '04', '04']
+    fig = iplt.gridfigure(mapsize, (1, 3), cbar_mode='single', **figkwa)
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
