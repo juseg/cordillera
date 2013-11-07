@@ -1,17 +1,15 @@
 % copernicus_rtf.tex
 % ------------------
+ % For use with: latex2rtf -E0 -f0 -M8
 
 % Base class and packages
 \documentclass{article}
 \usepackage{color}
+\usepackage{natbib}
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{setspace}
 \onehalfspacing
-
-% Replacements for bibtex commands
-\newcommand{\citep}[1]{(\textcolor{blue}{#1})}
-\newcommand{\citet}[1]{\textcolor{blue}{#1}}
 
 % Replacements for Copernicus commands
 \newcommand{\introduction}[0]{\section{Introduction}}
@@ -21,8 +19,11 @@
 \newcommand{\bottomhline}[0]{\hline}
 \newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
 \newcommand{\degree}[0]{\ensuremath{^{\circ}}}
+\newcommand{\doi}[1]{doi:~#1}
 
 % Ignore other Copernicus commands
+\renewcommand{\author}[2][default]{}
+\newcommand{\affil}[2][default]{}
 \newcommand{\runningtitle}[1]{}
 \newcommand{\runningauthor}[1]{}
 \newcommand{\received}[1]{}
