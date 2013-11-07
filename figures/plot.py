@@ -208,7 +208,7 @@ def prec():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'precipitation rate (m/yr)')
+    cb.set_label(u'precipitation rate (m/a)')
     _savefig('cordillera-climate-prec')
 
 def precdiff():
@@ -290,7 +290,7 @@ def precheatmap():
       print (data-refdata).mean()
 
     # save
-    fig.suptitle('DJF mean precipitation rate (m/yr)')
+    fig.suptitle('DJF mean precipitation rate (m/a)')
     _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
@@ -551,7 +551,7 @@ def durationstack():
     ax.set_xlim((0, 10))
     ax.set_ylim((0, 4))
     ax.set_yticks(range(5))
-    ax.set_xlabel('Model time (Ka)')
+    ax.set_xlabel('Model time (ka)')
     ax.set_ylabel(u'Glaciated area ($\mathsf{10^6~km^2}$)')
 
     # plot maps
