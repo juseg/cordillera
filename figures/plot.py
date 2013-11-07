@@ -651,12 +651,12 @@ def oroprecip():
     """Draw orographic precipitation effect sketch"""
 
     # initialize figure
-    figw, figh = 80., 95.
+    figw, figh = 85., 90.
     fig = plt.figure(0, (figw*mm, figh*mm))
     grid = [
-      fig.add_axes([5/figw, 70/figh, 70/figw, 20/figh], frameon=False),
-      fig.add_axes([5/figw, 40/figh, 70/figw, 20/figh], frameon=False),
-      fig.add_axes([5/figw, 10/figh, 70/figw, 20/figh], frameon=False)]
+      fig.add_axes([2/figw, 62/figh, 81/figw, 22/figh]),#, frameon=False),
+      fig.add_axes([2/figw, 32/figh, 81/figw, 22/figh]),#, frameon=False),
+      fig.add_axes([2/figw,  2/figh, 81/figw, 22/figh])]#, frameon=False)]
 
     # draw reality panel
     ax = grid[0]
@@ -667,36 +667,40 @@ def oroprecip():
     u = (x-32)/3
     prec = 3-2*np.tanh(u) + 12*np.exp(-u**2)
     ax.plot(x, prec, 'b-', clip_on=False)
-    ax.arrow(0, 15, 20, 0, head_width=1, head_length=1.5, fc='k', ec='k')
-    ax.text(0, 16, 'prevailing winds', color='k')
-    ax.text(0,  6, 'precipitation', color='b')
-    ax.text(0,  1, 'topography', color='k')
-    ax.set_xlabel('Reality')
+    ax.arrow(4, 15, 12, 0, head_width=1, head_length=1.5, fc='k', ec='k')
+    ax.text(4, 16, 'prevailing winds', color='k')
+    ax.text(1,  6, 'precipitation', color='b')
+    ax.text(1,  1, 'topography', color='k')
+    ax.set_title('Reality')
 
     # draw high resolution GCM panel
     ax = grid[1]
     x    = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
     topo = [0, 0,  0,  0,  0,  0,  5, 15,  1,  0,  0,  0,  0,  0,  0]
     prec = [5, 5,  5,  5,  5,  7, 12, 10,  3,  2,  2,  2,  2,  2,  2]
-    ax.plot(x, topo, 'k.-', clip_on=False)
-    ax.plot(x, prec, 'b.-', clip_on=False)
-    ax.set_xlabel('High resolution GCM')
+    ax.plot(x, topo, 'k-')
+    ax.plot(x, prec, 'b-')
+    ax.plot(x[1:-1], topo[1:-1], 'k.')
+    ax.plot(x[1:-1], prec[1:-1], 'b.')
+    ax.set_title('High resolution circulation model')
 
     # draw low resolution GCM panel
     ax = grid[2]
     x    = [0, 5, 20, 35, 50, 65, 70]
     topo = [0, 0,  1,  5,  1,  0,  0]
     prec = [5, 5,  7,  8,  5,  4,  4]
-    ax.plot(x, topo, 'k-', clip_on=False)
-    ax.plot(x, prec, 'b-', clip_on=False)
-    ax.plot(x[1:-1], topo[1:-1], 'k.', clip_on=False)
-    ax.plot(x[1:-1], prec[1:-1], 'b.', clip_on=False)
-    ax.set_xlabel('Low resolution GCM')
+    ax.plot(x, topo, 'k-')
+    ax.plot(x, prec, 'b-')
+    ax.plot(x[1:-1], topo[1:-1], 'k.')
+    ax.plot(x[1:-1], prec[1:-1], 'b.')
+    ax.set_title('Low resolution circulation model')
 
     # set axes properties
     for ax in grid:
       ax.set_xticks([])
-      ax.set_yticks([0,5,10,15,20])
+      ax.set_yticks(range(0,21,5))
+      ax.set_ylim([-2,22])
+      #ax.grid(ls='-', lw=0.01)
       ax.tick_params(
         left='off', right='off', gridOn=True,
         labelleft='off', labelright='off')
