@@ -645,6 +645,65 @@ def ivolarea():
     fig.savefig('cordillera-climate-ivolarea.png')
     fig.savefig('cordillera-climate-ivolarea.pdf')
 
+### Sketches functions ###
+
+def oroprecip():
+    """Draw orographic precipitation effect sketch"""
+
+    # initialize figure
+    figw, figh = 80., 95.
+    fig = plt.figure(0, (figw*mm, figh*mm))
+    grid = [
+      fig.add_axes([5/figw, 70/figh, 70/figw, 20/figh], frameon=False),
+      fig.add_axes([5/figw, 40/figh, 70/figw, 20/figh], frameon=False),
+      fig.add_axes([5/figw, 10/figh, 70/figw, 20/figh], frameon=False)]
+
+    # draw reality panel
+    ax = grid[0]
+    x    = [0, 27, 29, 30, 32, 33, 35, 37, 38, 40, 70]
+    topo = [0,  0,  5,  3, 10,  8, 20,  5, 10,  0,  0]
+    ax.plot(x, topo, 'k-', clip_on=False)
+    x = np.arange(0, 70.1, 0.5)
+    u = (x-32)/3
+    prec = 3-2*np.tanh(u) + 12*np.exp(-u**2)
+    ax.plot(x, prec, 'b-', clip_on=False)
+    ax.arrow(0, 15, 20, 0, head_width=1, head_length=1.5, fc='k', ec='k')
+    ax.text(0, 16, 'prevailing winds', color='k')
+    ax.text(0,  6, 'precipitation', color='b')
+    ax.text(0,  1, 'topography', color='k')
+    ax.set_xlabel('Reality')
+
+    # draw high resolution GCM panel
+    ax = grid[1]
+    x    = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70]
+    topo = [0, 0,  0,  0,  0,  0,  5, 15,  1,  0,  0,  0,  0,  0,  0]
+    prec = [5, 5,  5,  5,  5,  7, 12, 10,  3,  2,  2,  2,  2,  2,  2]
+    ax.plot(x, topo, 'k.-', clip_on=False)
+    ax.plot(x, prec, 'b.-', clip_on=False)
+    ax.set_xlabel('High resolution GCM')
+
+    # draw low resolution GCM panel
+    ax = grid[2]
+    x    = [0, 5, 20, 35, 50, 65, 70]
+    topo = [0, 0,  1,  5,  1,  0,  0]
+    prec = [5, 5,  7,  8,  5,  4,  4]
+    ax.plot(x, topo, 'k-', clip_on=False)
+    ax.plot(x, prec, 'b-', clip_on=False)
+    ax.plot(x[1:-1], topo[1:-1], 'k.', clip_on=False)
+    ax.plot(x[1:-1], prec[1:-1], 'b.', clip_on=False)
+    ax.set_xlabel('Low resolution GCM')
+
+    # set axes properties
+    for ax in grid:
+      ax.set_xticks([])
+      ax.set_yticks([0,5,10,15,20])
+      ax.tick_params(
+        left='off', right='off', gridOn=True,
+        labelleft='off', labelright='off')
+
+    # save
+    _savefig('cordillera-climate-oroprecip')
+
 ### Command-line interface ###
 
 if __name__ == "__main__":
@@ -684,6 +743,8 @@ if __name__ == "__main__":
       help='plot stacked ice extent from all runs')
     parser.add_argument('--ivolarea', action='store_true',
       help='plot colume and area curves')
+    parser.add_argument('--oroprecip', action='store_true',
+      help='Draw orographic precipitation effect sketch')
     args = parser.parse_args()
 
     if args.temp     is True: temp()
@@ -703,5 +764,6 @@ if __name__ == "__main__":
     if args.duration is True: duration()
     if args.durationstack is True: durationstack()
     if args.ivolarea is True: ivolarea()
+    if args.oroprecip is True: oroprecip()
 
 
