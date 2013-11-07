@@ -527,25 +527,32 @@ def durationstack():
     alloffsets = range(16)
     mapoffsets = range(7, 12)
     c = ['k']*7 + ['#ff3333', '#cc3366', '#993399', '#6633cc', '#3333ff'] + ['k']*4
-    tarea = 2.1823
+    tarea = 2.
     lgmtimes = []
     figw, figh = 80., 70.
     fig = plt.figure(figsize=(figw*mm, figh*mm))
     grid = [
-      fig.add_axes([10/figw, 5/figh, 30/figw, 60/figh]),
-      fig.add_axes([45/figw, 5/figh, 30/figw, 60/figh])]
+      fig.add_axes([8/figw, 8/figh, 30/figw, 60/figh]),
+      fig.add_axes([48/figw, 8/figh, 30/figw, 60/figh])]
 
     # plot glaciatied area curves
     ax = plt.axes(grid[0])
-    for dt in range(16):
+    for dt in alloffsets:
       nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
       time = nc.variables['time'][1:] / 31556925974.7
       iarea = (nc.variables['thk'][1:]>10).sum(axis=(1, 2))/1e4
-      plt.plot(time, iarea, ('-' if dt in mapoffsets else '--'), color=c[dt])
+      ax.plot(time, iarea, ('-' if dt in mapoffsets else '--'), c=c[dt])
       lgmtimes.append((np.abs(iarea-tarea)).argmin())
+      if iarea[-1] < 4:
+        ax.text(10.33, iarea[-1], u'%2i °C' % dt, va='center')
+
+    # set axes properties
+    ax.plot([0, 10],[tarea, tarea], 'k')
     ax.set_xlim((0, 10))
     ax.set_ylim((0, 4))
-    plt.plot([0, 100],[tarea, tarea], 'k')
+    ax.set_yticks(range(5))
+    ax.set_xlabel('Model time (Ka)')
+    ax.set_ylabel(u'Glaciated area ($\mathsf{10^6~km^2}$)')
 
     # plot maps
     ax = plt.axes(grid[1])
