@@ -201,14 +201,14 @@ def prec():
       nc = Dataset('../data/%s-nn.nc' % clim)
       _annotate('%s %s' % (labels[clim], seasons[i].upper()))
       var = nc.variables['precipitation']
-      data = _seasonmean(var, seasons[i])
+      data = _seasonmean(var, seasons[i])*1000/12.
       im = plt.imshow(data,
         cmap = plt.cm.YlGnBu,
-        norm = mcolors.LogNorm(0.1, 10))
+        norm = mcolors.LogNorm(10, 1000))
 
     # add colorbar and save
-    cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'precipitation rate (m/a)')
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0], format='%g')
+    cb.set_label(u'precipitation rate (mm/month)')
     _savefig('cordillera-climate-prec')
 
 def precdiff():
@@ -254,7 +254,7 @@ def precheatmap():
     # read WorldClim data as reference
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
-    ref = _seasonmean(var, 'djf')
+    ref = _seasonmean(var, 'djf')*1000/12.
     refdata = ref.compressed()
 
     # loop on climate datasets
@@ -263,16 +263,16 @@ def precheatmap():
       # read other data
       nc = Dataset('../data/%s-nn.nc' % clim)
       var = nc.variables['precipitation']
-      data = _seasonmean(var, 'djf')
+      data = _seasonmean(var, 'djf')*1000/12.
       data = np.ma.array(data, mask=ref.mask).compressed()
 
       # plot
-      minmax = (0.01, 10)
+      minmax = (1, 1000)
       hist, x, y = np.histogram2d(np.log10(refdata), np.log10(data),
         range=np.log10((minmax, minmax)), bins=120)
       ax.imshow(hist.T,
         cmap=plt.cm.Blues, norm=mcolors.LogNorm(),
-        extent=[0.01, 10, 0.01, 10])
+        extent=[1, 1000, 1, 1000])
       #ax.scatter(refdata, data, marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
 
@@ -283,14 +283,14 @@ def precheatmap():
       ax.set_yscale('log')
       ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
       ax.yaxis.set_major_formatter(FormatStrFormatter('%g'))
-      ax.text(0.015, 5, labels[clim])
-      ax.text(1, 0.015, labels['wc'])
+      ax.text(1.5, 500, labels[clim])
+      ax.text(100, 1.5, labels['wc'])
 
       # calc mean deviation
       print (data-refdata).mean()
 
     # save
-    fig.suptitle('DJF mean precipitation rate (m/a)')
+    fig.suptitle('DJF mean precipitation rate (mm/month)')
     _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
