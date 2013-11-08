@@ -221,7 +221,7 @@ def precdiff():
     # read WorldClim data as reference
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
-    ref = _seasonmean(var, 'djf')
+    ref = _seasonmean(var, 'djf')*1000/12.
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
@@ -229,14 +229,15 @@ def precdiff():
       nc = Dataset('../data/%s-bl.nc' % clim)
       _annotate(labels[clim])
       var = nc.variables['precipitation']
-      data = _seasonmean(var, 'djf')
-      im = plt.imshow(data/ref-1 ,
+      data = _seasonmean(var, 'djf')*1000/12.
+      im = plt.imshow(data - ref,
         cmap = plt.cm.PuOr,
-        norm = mcolors.Normalize(-2, 2))
+        norm = mcolors.SymLogNorm(10., 1.0, -300., 300.))
 
     # add colorbar and save
-    cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
-    cb.set_label(u'normalized DJF precipitation rate difference to WorldClim data')
+    cb = fig.colorbar(im, fig.grid.cbar_axes[0],
+      ticks=[-300, -200, -100, -50, -10, 0, 10, 50, 100, 200, 300])
+    cb.set_label('DJF precipitation rate difference to WorldClim data (mm/month)')
     _savefig('cordillera-climate-precdiff')
 
 def precheatmap():
