@@ -15,7 +15,6 @@ The central part of an ice sheet model consist of the computation of flow veloci
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the Shallow Ice Approximation (SIA) \citep{bueler-brown-2009,winkelmann-etal-2011}. SIA and SSA velocities are computed by finite difference methods on a 10\,km-resolution horizontal grid of 300 by 150 points (the modelling domain). Ice softness depends on temperature and water content through an enthalpy formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Enthalpy is computed in three dimensions in up to 51 irregularly spaced layers within the ice, and temperature is additionally computed in 11 regularly spaced layers in bedrock to a depth of 1\,km. A uniform geothermal heat flux of 70\,\unit{W\,m^{-2}} provides the lower boundary condition to the bedrock thermal model, and surface air temperature from the climate forcing provides the upper boundary condition to the ice enthalpy model.
 
 A pseudo-plastic sliding law \citep{aschwanden-etal-2013} (supplement) relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr-Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a function of current bed elevation, with lowest values occurring at low elevations,
-\julien{phi is independent from basal water which is computed by the model (and sliding depends on both) so the 10 to 30 degree range is meant to reflect different bedrock/sediment surfaces rather than dry vs wet beds.}
 
 \begin{equation}
 	\phi = \left\{\begin{array}{llrll}
@@ -25,7 +24,7 @@ A pseudo-plastic sliding law \citep{aschwanden-etal-2013} (supplement) relates t
 	\end{array}\right.
 \end{equation}
 
-where $\phi$ is given in degrees and $z$ in meters above current sea level. This models weakening of the till associated with the presence of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Basal topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography and bathymetry dataset with a resolution of 1\,arc-minute \citep{data:etopo1}.\julien{NaturalEarth data are vectors (coastline, rivers, etc.) used in Fig. 1, not model input.} Sea level is lowered by 120\,m and basal topography responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
+where $\phi$ is given in degrees and $z$ in meters above current sea level. This models weakening of the till associated with the presence of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Basal topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography and bathymetry dataset with a resolution of 1\,arc-minute \citep{data:etopo1}. Sea level is lowered by 120\,m and basal topography responds to ice load following a regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
 
 % ----------------------------------------------------------------------
 
@@ -40,4 +39,3 @@ The positive degree-day integral \citep{calov-greve-2005} is numerically approxi
 \subsection{Atmospheric corrections}
 
 Prior to surface mass balance computation, the model dynamically applies a lapse-rate correction to surface air temperature. This correction accounts for the evolution of ice thickness on the one hand, and differences between the climate forcing reference topography and the ice flow model basal topography on the other hand. It uses a reference topography distinct from the modelled basal topography and specific to each climate forcing dataset (Fig.~\ref{fig:topo}). An annual lapse rate of 6\,\unit{\degree C\,km^{-1}} is used in all simulations. No corrections apply to precipitation changes with elevation.
-
