@@ -208,7 +208,7 @@ def prec():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], format='%g')
-    cb.set_label(u'precipitation rate (mm/month)')
+    cb.set_label(u'precipitation rate ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-prec')
 
 def precdiff():
@@ -237,7 +237,7 @@ def precdiff():
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0],
       ticks=[-300, -200, -100, -50, -10, 0, 10, 50, 100, 200, 300])
-    cb.set_label('DJF precipitation rate difference to WorldClim data (mm/month)')
+    cb.set_label('DJF precipitation rate difference to WorldClim data ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-precdiff')
 
 def precheatmap():
@@ -291,7 +291,7 @@ def precheatmap():
       print (data-refdata).mean()
 
     # save
-    fig.suptitle('DJF mean precipitation rate (mm/month)')
+    fig.suptitle('DJF mean precipitation rate ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
@@ -344,7 +344,7 @@ def best():
     # add LGM ice margin, colorbar and save
     _drawlgm(nc, fig.grid, edgecolor='#000080', facecolor='none', zorder=0.5)
     cb = fig.colorbar(cs, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m/s)')
+    cb.set_label(u'ice surface velocity ($m\,a^{-1}$)')
     _savefig('cordillera-climate-best')
 
 def bestdiff():
@@ -392,7 +392,7 @@ def biatm():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m/s)')
+    cb.set_label(u'ice surface velocity ($m\,a^{-1}$)')
     _savefig('cordillera-climate-biatm')
 
 def biatmbars():
@@ -470,7 +470,7 @@ def cool(cool):
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m/s)')
+    cb.set_label(u'ice surface velocity ($m\,a^{-1}$)')
     _savefig('cordillera-climate-cool' + cool)
 
 def duration():
