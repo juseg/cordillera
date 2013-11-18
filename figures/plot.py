@@ -436,7 +436,7 @@ def biatmbars():
     # plot bars
     barkwargs = {'linewidth': 0.2, 'alpha': 0.5}
     ax.bar(pos, both-ref, w, color='#333333',
-      label='cumulative', **barkwargs)
+      label='both effects', **barkwargs)
     ax.bar(pos-w/2, temp-ref, w, color='#ff3333',
       label='temperature', **barkwargs)
     ax.bar(pos+w/2, prec-ref, w, color='#3333ff',
