@@ -12,8 +12,7 @@ from iceplot import plot as iplt
 from iceplot import cm as icm
 
 from matplotlib import rc
-rc('text', usetex=True)
-rc('text.latex', unicode=True)
+rc('mathtext', default='regular')
 
 ### Globals ###
 
@@ -88,7 +87,7 @@ def temp():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'air temperature (°C)')
+    cb.set_label(u'surface air temperature (°C)')
     _savefig('cordillera-climate-temp')
 
 def tempbox():
@@ -136,7 +135,7 @@ def tempdiff():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
-    cb.set_label(u'JJA air temperature difference to WorldClim data (°C)')
+    cb.set_label(u'JJA surface air temperature difference to WorldClim data (°C)')
     _savefig('cordillera-climate-tempdiff')
 
 def tempheatmap():
@@ -211,7 +210,7 @@ def prec():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], format='%g')
-    cb.set_label(u'precipitation rate (mm\,month⁻¹)')
+    cb.set_label(r'precipitation rate ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-prec')
 
 def precdiff():
@@ -240,7 +239,7 @@ def precdiff():
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0],
       ticks=[-300, -200, -100, -50, -10, 0, 10, 50, 100, 200, 300])
-    cb.set_label(u'DJF precipitation rate difference to WorldClim data (mm\,month⁻¹)')
+    cb.set_label(r'DJF precipitation rate difference to WorldClim data ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-precdiff')
 
 def precheatmap():
@@ -299,7 +298,7 @@ def precheatmap():
     # add colorbar and save
     cb = fig.colorbar(im, ax.cax, format='%g')
     cb.set_label(u'number of grid points')
-    fig.text(37/85., 2/72., u'DJF mean precipitation rate (mm\,month⁻¹)', ha='center')
+    fig.text(37/85., 2/72., r'DJF mean precipitation rate ($mm\,month^{-1}$)', ha='center')
     _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
@@ -326,13 +325,13 @@ def topo():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'surface topography (m)', labelpad=-5)
+    cb.set_label(u'surface topography (m)')
     _savefig('cordillera-climate-topo')
 
 ### Results plotting functions ###
 
 def best():
-    """Plot icemaps for the best runs"""
+    """Plot best runs agains LGM ice margin"""
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr'] #['cfsrs7', 'cfsr', 'ncar']
@@ -351,8 +350,6 @@ def best():
 
     # add LGM ice margin, colorbar and save
     _drawlgm(nc, fig.grid, edgecolor='#000080', facecolor='none', zorder=0.5)
-    cb = fig.colorbar(cs, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m\,a⁻¹)')
     _savefig('cordillera-climate-best')
 
 def bestdiff():
@@ -400,7 +397,7 @@ def biatm():
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m\,a⁻¹)')
+    cb.set_label(r'ice surface velocity ($m\,a^{-1}$)')
     _savefig('cordillera-climate-biatm')
 
 def biatmbars():
@@ -443,7 +440,7 @@ def biatmbars():
     ax = plt.axes([10/85., 5/60., 73/85., 53/60.])
 
     # plot bars
-    barkwargs = {'linewidth': 0.2, 'alpha': 0.5}
+    barkwargs = {'linewidth': 0.5, 'alpha': 0.5}
     ax.bar(pos, both-ref, w, color='#333333',
       label='both effects', **barkwargs)
     ax.bar(pos-w/2, temp-ref, w, color='#ff3333',
@@ -452,9 +449,9 @@ def biatmbars():
       label='precipitation', **barkwargs)
 
     # adjust axes
-    plt.axhline(0, color='k', linewidth=0.2)
+    plt.axhline(0, color='k', linewidth=0.5)
     plt.xticks(pos+w/2, [labels[clim] for clim in climates])
-    plt.ylabel(u'Ice volume anomaly ($\mathsf{10^6~km^3}$)')
+    plt.ylabel(r'Ice volume anomaly ($10^6 km^3\!$)')
     plt.legend(loc=2)
     #plt.ylabel(u'Glaciated area anomaly ($\mathsf{10^6~km^2}$)')
 
@@ -478,7 +475,7 @@ def cool(cool):
 
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
-    cb.set_label(u'ice surface velocity (m\,a⁻¹)')
+    cb.set_label(r'ice surface velocity ($m\,a^{-1}$)')
     _savefig('cordillera-climate-cool' + cool)
 
 def duration():
@@ -561,7 +558,7 @@ def durationstack():
     ax.set_ylim((0, 4))
     ax.set_yticks(range(5))
     ax.set_xlabel('Model time (ka)')
-    ax.set_ylabel(u'Glaciated area ($\mathsf{10^6~km^2}$)')
+    ax.set_ylabel(r'Glaciated area ($10^6 km^2\!$)')
 
     # plot maps
     ax = plt.axes(grid[1])
@@ -614,13 +611,9 @@ def ivolarea():
     ax1 = plt.axes([ 8/figw, 8/figh, 32/figw, 32/figh])
     ax2 = plt.axes([51/figw, 8/figh, 32/figw, 32/figh])
     ax1.set_xlabel('Temperature offset')
-    ax1.set_ylabel(u'Glaciated area ($\mathsf{10^6~km^2}$)')
-    #ax1.text(-1.5, 2, u'Glaciated area ($\mathsf{10^6~km^2}$)',
-    #  rotation='vertical', va='center', ha='right')
+    ax1.set_ylabel(r'Glaciated area ($10^6 km^2\!$)')
     ax2.set_xlabel('Temperature offset')
-    ax2.set_ylabel(u'Ice volume ($\mathsf{10^6~km^3}$)')
-    #ax2.text(-1.5, 6, u'Ice volume ($\mathsf{10^6~km^3}$)',
-    #  rotation='vertical', va='center', ha='right')
+    ax2.set_ylabel(r'Ice volume ($10^6 km^3\!$)')
 
     # select input data
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
