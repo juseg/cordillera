@@ -146,9 +146,11 @@ def tempheatmap():
 
     # climate datasets
     climates = ['erai', 'narr', 'cfsr', 'ncar']
-    fig = plt.figure(figsize=(85/25.4, 85/25.4))
-    grid = ImageGrid(fig, [ 8/85.,  4/85., 75/85., 75/85.],
-      nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
+    fig = plt.figure(figsize=(85/25.4, 72/25.4))
+    grid = ImageGrid(fig, [ 6/85.,  8/72., 68/85., 62/72.],
+      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "1",
+      cbar_mode='single', cbar_location='right',
+      cbar_pad=2*mm, cbar_size=4*mm)
 
     # read WorldClim data as reference
     nc = Dataset('../data/wc-nn.nc')
@@ -167,23 +169,25 @@ def tempheatmap():
 
       # plot
       minmax = (-5, 25)
-      ax.hist2d(refdata, data,
+      im = ax.hist2d(refdata, data,
         range=(minmax, minmax), bins=120,
-        cmap=plt.cm.Reds, norm=mcolors.LogNorm())
+        cmap=plt.cm.Reds, norm=mcolors.LogNorm())[3]
       #ax.scatter(refdata, data, c='r', marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
 
       # set axes properties
       ax.set_xlim(minmax)
       ax.set_ylim(minmax)
-      ax.text(-3, 22, labels[clim])
-      ax.text(15, -3, labels['wc'])
+      ax.text(-3, 21, labels[clim])
+      ax.text(14, -3, labels['wc'])
 
       # calc mean deviation
       print (data-refdata).mean()
 
-    # save
-    fig.suptitle(u'JJA mean surface air temperature (°C)')
+    # add colorbar and save
+    cb = fig.colorbar(im, grid.cbar_axes[0], format='%g')
+    cb.set_label(u'number of grid points')
+    fig.text(37/85., 2/72., u'JJA mean surface air temperature (°C)', ha='center')
     _savefig('cordillera-climate-tempheatmap', pdf=True)
 
 def prec():
@@ -247,9 +251,11 @@ def precheatmap():
 
     # climate datasets
     climates = ['erai', 'narr', 'cfsr', 'ncar']
-    fig = plt.figure(figsize=(85/25.4, 85/25.4))
-    grid = ImageGrid(fig, [ 8/85.,  4/85., 75/85., 75/85.],
-      nrows_ncols=(2, 2), axes_pad=2/25.4, label_mode = "1")
+    fig = plt.figure(figsize=(85/25.4, 72/25.4))
+    grid = ImageGrid(fig, [ 6/85.,  8/72., 68/85., 62/72.],
+      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "1",
+      cbar_mode='single', cbar_location='right',
+      cbar_pad=2*mm, cbar_size=4*mm)
 
     # read WorldClim data as reference
     nc = Dataset('../data/wc-nn.nc')
@@ -270,7 +276,7 @@ def precheatmap():
       minmax = (1, 1000)
       hist, x, y = np.histogram2d(np.log10(refdata), np.log10(data),
         range=np.log10((minmax, minmax)), bins=120)
-      ax.imshow(hist.T,
+      im = ax.imshow(hist.T,
         cmap=plt.cm.Blues, norm=mcolors.LogNorm(),
         extent=[1, 1000, 1, 1000])
       #ax.scatter(refdata, data, marker='o', alpha=0.002)
@@ -283,14 +289,16 @@ def precheatmap():
       ax.set_yscale('log')
       ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
       ax.yaxis.set_major_formatter(FormatStrFormatter('%g'))
-      ax.text(1.5, 500, labels[clim])
-      ax.text(100, 1.5, labels['wc'])
+      ax.text(1.5, 400, labels[clim])
+      ax.text( 80, 1.5, labels['wc'])
 
       # calc mean deviation
       print (data-refdata).mean()
 
-    # save
-    fig.suptitle(u'DJF mean precipitation rate (mm\,month⁻¹)')
+    # add colorbar and save
+    cb = fig.colorbar(im, ax.cax, format='%g')
+    cb.set_label(u'number of grid points')
+    fig.text(37/85., 2/72., u'DJF mean precipitation rate (mm\,month⁻¹)', ha='center')
     _savefig('cordillera-climate-precheatmap', pdf=True)
 
 def topo():
