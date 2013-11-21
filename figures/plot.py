@@ -148,7 +148,7 @@ def tempheatmap():
     climates = ['erai', 'narr', 'cfsr', 'ncar']
     fig = plt.figure(figsize=(85/25.4, 72/25.4))
     grid = ImageGrid(fig, [ 6/85.,  8/72., 68/85., 62/72.],
-      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "1",
+      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "L",
       cbar_mode='single', cbar_location='right',
       cbar_pad=2*mm, cbar_size=4*mm)
 
@@ -168,7 +168,7 @@ def tempheatmap():
       data = np.ma.array(data, mask=ref.mask).compressed()
 
       # plot
-      minmax = (-5, 25)
+      minmax = (-2.5, 27.5)
       im = ax.hist2d(refdata, data,
         range=(minmax, minmax), bins=120,
         cmap=plt.cm.Reds, norm=mcolors.LogNorm())[3]
@@ -178,8 +178,8 @@ def tempheatmap():
       # set axes properties
       ax.set_xlim(minmax)
       ax.set_ylim(minmax)
-      ax.text(-3, 21, labels[clim])
-      ax.text(14, -3, labels['wc'])
+      ax.text(-0.5, 23.5, labels[clim])
+      ax.text(15.5, -0.5, labels['wc'])
 
       # calc mean deviation
       print (data-refdata).mean()
@@ -253,7 +253,7 @@ def precheatmap():
     climates = ['erai', 'narr', 'cfsr', 'ncar']
     fig = plt.figure(figsize=(85/25.4, 72/25.4))
     grid = ImageGrid(fig, [ 6/85.,  8/72., 68/85., 62/72.],
-      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "1",
+      nrows_ncols=(2, 2), axes_pad=2*mm, label_mode = "L",
       cbar_mode='single', cbar_location='right',
       cbar_pad=2*mm, cbar_size=4*mm)
 
@@ -289,8 +289,9 @@ def precheatmap():
       ax.set_yscale('log')
       ax.xaxis.set_major_formatter(FormatStrFormatter('%g'))
       ax.yaxis.set_major_formatter(FormatStrFormatter('%g'))
-      ax.text(1.5, 400, labels[clim])
-      ax.text( 80, 1.5, labels['wc'])
+      ax.text(10**0.2, 10**2.6, labels[clim])
+      ax.text(10**1.8, 10**0.2, labels['wc'])
+      if clim == 'ncar': ax.set_xticklabels(['','',10,100,1000])
 
       # calc mean deviation
       print (data-refdata).mean()
