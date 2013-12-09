@@ -379,7 +379,7 @@ def bestdiff():
     cb.set_label(u'ice surface elevation difference to %s %s K simulation (m)' % (labels[climates[0]], offsets[0]))
     _savefig('cordillera-climate-bestdiff')
 
-def biatm():
+def biatm(draw_lgm_on_icemap=False):
     """Plot hybrid atmosphere output"""
 
     # initialize figure
@@ -395,10 +395,12 @@ def biatm():
         nc = Dataset('../data/%s-05.nc' % biclim)
         im = iplt.icemap(nc)
 
-    # add colorbar and save
+    # add LGM margin, colorbar and save
+    if draw_lgm_on_icemap: _drawlgm(nc, fig.grid, ec='b', fc='none')
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
     cb.set_label(r'ice surface velocity ($m\,a^{-1}$)')
-    _savefig('cordillera-climate-biatm')
+    suffix = ('+lgm' if draw_lgm_on_icemap else '')
+    _savefig('cordillera-climate-biatm' + suffix)
 
 def biatmbars():
     """Plot hybrid atmosphere bar chart"""
@@ -458,7 +460,7 @@ def biatmbars():
     # save
     _savefig('cordillera-climate-biatmbars')
 
-def cool(cool):
+def cool(cool, draw_lgm_on_icemap=False):
     """Plot icemaps for given temperature offset"""
 
     # initialize figure
@@ -473,10 +475,12 @@ def cool(cool):
       _annotate(labels[clim])
       im = iplt.icemap(nc)
 
-    # add colorbar and save
+    # add LGM margin, colorbar and save
+    if draw_lgm_on_icemap: _drawlgm(nc, fig.grid, ec='b', fc='none')
     cb = fig.colorbar(im, fig.grid.cbar_axes[0])
     cb.set_label(r'ice surface velocity ($m\,a^{-1}$)')
-    _savefig('cordillera-climate-cool' + cool)
+    suffix = ('+lgm' if draw_lgm_on_icemap else '')
+    _savefig('cordillera-climate-cool' + cool + suffix)
 
 def duration():
     """Plot effect of glaciation duration on multiple maps"""
@@ -595,7 +599,8 @@ def extent():
         levels = range(-1, 11),
         cmap   = plt.cm.Spectral)
 
-    # add colorbar and save
+    # add LGM ice margin, colorbar and save
+    _drawlgm(nc, fig.grid, ec='k', fc='none')
     cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(11))
     cb.set_label(u'temperature offset (°C)')
     _savefig('cordillera-climate-extent')
@@ -749,6 +754,8 @@ if __name__ == "__main__":
       help='plot colume and area curves')
     parser.add_argument('--oroprecip', action='store_true',
       help='Draw orographic precipitation effect sketch')
+    parser.add_argument('--draw-lgm-on-icemap', action='store_true',
+      help='plot input temperature maps')
     args = parser.parse_args()
 
     if args.temp     is True: temp()
@@ -759,10 +766,10 @@ if __name__ == "__main__":
     if args.precdiff is True: precdiff()
     if args.precheatmap is True: precheatmap()
     if args.topo     is True: topo()
-    if args.cool is not None: cool(args.cool)
+    if args.cool is not None: cool(args.cool, args.draw_lgm_on_icemap)
     if args.best     is True: best()
     if args.bestdiff is True: bestdiff()
-    if args.biatm    is True: biatm()
+    if args.biatm    is True: biatm(args.draw_lgm_on_icemap)
     if args.biatmbars is True: biatmbars()
     if args.extent   is True: extent()
     if args.duration is True: duration()
