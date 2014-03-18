@@ -110,7 +110,7 @@ def tempbox():
     # save
     _savefig('cordillera-climate-tempbox')
 
-def tempdiff():
+def tempdiff(tempdiff_lapse_rate=False):
     """Plot temperature difference maps"""
 
     # initialize figure
@@ -121,6 +121,7 @@ def tempdiff():
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja')
+    zref = nc.variables['usurf'][:].T
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
@@ -129,6 +130,9 @@ def tempdiff():
       _annotate(labels[clim])
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja')
+      z = nc.variables['usurf'][:].T
+      if tempdiff_lapse_rate:
+        data += 0.006*(z-zref)
       im = plt.imshow(data - ref,
         cmap = plt.cm.RdBu_r,
         norm = mcolors.Normalize(-10, 10))
@@ -136,7 +140,7 @@ def tempdiff():
     # add colorbar and save
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
     cb.set_label(u'JJA surface air temperature difference to WorldClim data (°C)')
-    _savefig('cordillera-climate-tempdiff')
+    _savefig('cordillera-climate-tempdiff' + tempdiff_lapse_rate*'+lr')
 
 def tempheatmap():
     """Plot temperature heat maps"""
@@ -756,11 +760,13 @@ if __name__ == "__main__":
       help='Draw orographic precipitation effect sketch')
     parser.add_argument('--draw-lgm-on-icemap', action='store_true',
       help='plot input temperature maps')
+    parser.add_argument('--tempdiff-lapse-rate', action='store_true',
+      help='apply lapse in tempdiff map')
     args = parser.parse_args()
 
     if args.temp     is True: temp()
     if args.tempbox  is True: tempbox()
-    if args.tempdiff is True: tempdiff()
+    if args.tempdiff is True: tempdiff(args.tempdiff_lapse_rate)
     if args.tempheatmap is True: tempheatmap()
     if args.prec     is True: prec()
     if args.precdiff is True: precdiff()
