@@ -5,7 +5,7 @@ vars=lat,lon,topg,thk,usurf,csurf
 # input basal topography
 file=etopo1bed.nc
 [ ! -f $file ] \
-  && scp scooter:pism/input/boot/cordillera-etopo1bed-10km.nc $file
+  && scp scooter:pism05/input/boot/cordillera-etopo1bed-10km.nc $file
 
 # input atmosphere files
 for clim in 'wc' wcnn erai narr cfsrs7 cfsr ncar; do
@@ -13,7 +13,7 @@ for clim in 'wc' wcnn erai narr cfsrs7 cfsr ncar; do
     atm=cordillera-$clim-10km-$int
     file=$clim-$int.nc
     [ ! -f $file ] \
-      && scp scooter:pism/input/atm/$atm.nc $file
+      && scp scooter:pism05/input/atm/$atm.nc $file
   done
 done
 
@@ -21,7 +21,7 @@ done
 for clim in wcnn erai narr cfsrs7 cfsr ncar; do
   for cool in $(seq -f %02g 00 10); do
     atm=cordillera-$clim-10km-bl
-    run=pism/output/$atm/stepcool${cool}sll120+ccli+till1030/y0010000
+    run=pism05/output/$atm/stepcool${cool}sll120+ccli+till1030/y0010000
     file=$clim-$cool.nc
     [ ! -f $file ] \
       && ssh scooter "ncks -O -v $vars $run.nc /tmp/$file" \
@@ -35,7 +35,7 @@ done
 # NARR extra files
 for cool in $(seq -f %02g 00 15); do
     atm=cordillera-narr-10km-bl
-    run=pism/output/$atm/stepcool${cool}sll120+ccli+till1030/y0010000
+    run=pism05/output/$atm/stepcool${cool}sll120+ccli+till1030/y0010000
     file=narr-$cool-extra.nc
     [ ! -f $file ] \
       && ssh scooter "ncks -O -v $vars $run-extra.nc /tmp/$file" \
@@ -46,7 +46,7 @@ done
 for clim in erai narr cfsr ncar; do
   for biclim in twcnnp${clim} t${clim}pwcnn; do
     atm=cordillera-$biclim-10km-bl
-    run=pism/output/$atm/stepcool05sll120+ccli+till1030/y0010000
+    run=pism05/output/$atm/stepcool05sll120+ccli+till1030/y0010000
     file=$biclim-05.nc
     [ ! -f $file ] \
       && ssh scooter "ncks -O -v $vars $run.nc /tmp/$file" \
