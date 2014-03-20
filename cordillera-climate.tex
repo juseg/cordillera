@@ -244,9 +244,7 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
 \begin{table*}[t]
 	\caption{Characteristics of reanalysis climatologies used to inform the mass balance component of PISM.}
 	\label{tab:reanalyses}
-	\vskip4mm
-	\centering
-	\begin{tabular}{lllll}
+	{\begin{tabular}{lcccc}
 		\tophline
 		Reanalysis& Spatial coverage& Averaging period& Resolution& Description\\
 		\middlehline
@@ -255,165 +253,118 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
     CFSR        & global        & 1979--2010 & 0.325{\degree} & \citet{data:cfsr} \\
     NARR        & North America & 1979--2000 & 32\,km       & \citet{data:narr} \\
 		\bottomhline
-	\end{tabular}
+	\end{tabular}}
+  \belowtable{}
 \end{table*}
 
 % fig:locmap
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics[width=8cm]{cordillera-climate-locmap}
-	\end{center}
+\begin{figure}
+	\includegraphics[width=8cm]{cordillera-climate-locmap}
 	\caption{Shaded relief map of northern North America with the extent of the Cordilleran (CIS), Laurentide (LIS) and Innuitian (IIS) ice sheets at 14\,\unit{\chem{^{14}C}\,kyr\,BP} (16.8\,cal\,kyr\,BP) \citep{dyke-2004}. While this age denotes the LIS after retreat from its LGM, it closely corresponds to the LGM extent of most of the Cordilleran ice sheet \citep{porter-swanson-1998,dyke-2004,stroeven-etal-2010}. The rectangular box denotes the modelling domain of the Cordilleran ice sheet of 1500 by 3000\,km. Major mountain ranges covered by the ice sheet include the Wrangell and St.-Elias mountains (W-SE), the Selwyn and MacKenzie mountains (S-MK), the Coast Mountains and the Rocky Mountains. The background map consists of ETOPO1 \citep{data:etopo1} and Natural Earth Data \citep{data:naturalearth} and was assembled with GRASS~GIS \citep{soft:grass}.}
 	\label{fig:locmap}
 \end{figure}
 
 % fig:topo
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-topo}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-topo}
 	\caption{Topography maps from WorldClim \citep{data:worldclim}, ERA-Interim reanalysis \citep{data:erai}, North American Regional Reanalysis \citep[NARR;][]{data:narr}, ETOPO1 \citep{data:etopo1}, Climate Forecast System Reanalysis \citep[CFSR;][]{data:cfsr}, and NCEP/NCAR reanalysis \citep{data:ncar}. Whereas ETOPO1 is used as basal topography for the ice sheet model, all other data are used as a~reference for temperature lapse-rate corrections. Figs.~\ref{fig:topo}--\ref{fig:durationstack} are drawn using Matplotlib \citep{soft:mpl}.}
 	\label{fig:topo}
 \end{figure*}
 
 % fig:temp
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-temp}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-temp}
 	\caption{Summer (JJA) and winter (DJF) temperature maps from WorldClim \citep{data:worldclim}, and summer (JJA) temperature maps from ERA-Interim reanalysis \citep{data:erai}, North American Regional Reanalysis \citep[NARR;][]{data:narr}, Climate Forecast System Reanalysis \citep[CFSR;][]{data:cfsr}, and NCEP/NCAR reanalysis \citep{data:ncar} climatologies.}
 	\label{fig:temp}
 \end{figure*}
 
 % fig:prec
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-prec}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-prec}
 	\caption{Winter (DJF) and summer (JJA) precipitation maps from WorldClim \citep{data:worldclim}, and winter (DFJ) temperature maps from ERA-Interim reanalysis \citep{data:erai}, North American Regional Reanalysis \citep[NARR;][]{data:narr}, Climate Forecast System Reanalysis \citep[CFSR;][]{data:cfsr}, and NCEP/NCAR reanalysis \citep{data:ncar} climatologies. Additional forcing data was prepared to correct for wave-like precipitation artefacts in CFSR (Sect.~\ref{sec:climate}).}
 	\label{fig:prec}
 \end{figure*}
 
 % fig:ivolarea
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-ivolarea}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-ivolarea}
 	\caption{Total glaciated area and ice volume after 10\,kyr as a~function of temperature offset for each climate forcing used.}
 	\label{fig:ivolarea}
 \end{figure}
 
 % fig:extent
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-extent}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-extent}
 	\caption{Extent of ice cover after 10\,kyr as a~function of applied temperature offsets for each climate forcing used. A~reconstructed LGM ice sheet margin by \citet{dyke-2004} (Fig.~\ref{fig:locmap}) is given for reference (black line).}
 	\label{fig:extent}
 \end{figure*}
 
 % fig:cool05
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-cool05}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-cool05}
 	\caption{Ice surface topography (1\,\unit{km} contours) and velocity (\unit{m\,yr^{-1}}) after 10\,kyr under a~climate 5\,\unit{{\degree}C} colder than present for each climate forcing used.}
 	\label{fig:cool05}
 \end{figure*}
 
 % fig:tempheatmap
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-tempheatmap}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-tempheatmap}
 	\caption{Density maps showing a~comparison of summer (JJA) surface air temperature data from the WorldClim climatology, against that of each reanalysis. Apparent horizontal lines are an artefact of different horizontal resolutions. Colour mapping is based on a~logarythmic scale. Note the cold bias of NCEP/NCAR data relative to WorldClim data.}
 	\label{fig:tempheatmap}
 \end{figure}
 
 % fig:tempdiff
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-tempdiff}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-tempdiff}
 	\caption{Summer (JJA) surface air temperature difference maps against WorldClim data, after bi-linear spatial interpolation. Note the cold bias of NCEP/NCAR data and temperature anomalies due to unresolved topographic detail.}
 	\label{fig:tempdiff}
 \end{figure}
 
 % fig:precheatmap
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-precheatmap}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-precheatmap}
 	\caption{Density maps showing a~comparison of winter (DJF) precipitation rate from the WorldClim climatology, against that of each reanalysis. Apparent horizontal lines are an artefact of different horizontal resolutions. Apparent vertical lines at low values are an artefact of the low precision of WorldClim data. Colour mapping is based on a~logarythmic scale. Note the wet bias of all reanalysis data relative to WorldClim data.}
 	\label{fig:precheatmap}
 \end{figure}
 
 % fig:precdiff
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-precdiff}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-precdiff}
 	\caption{Winter (DJF) precipitation rate difference maps against WorldClim data, after bi-linear spatial interpolation. Note the wet bias of all reanalysis data and the large anomalies of CFSR and NCEP/NCAR data.}
 	\label{fig:precdiff}
 \end{figure}
 
 % fig:oroprecip
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-oroprecip}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-oroprecip}
 	\caption{Schematic representation of the orographic precipitation effect over a~mountain range. In a~GCM of low resolution, the precipitation peak appears downwind-shifted and smoother and the precipitation shadow is less pronounced than in a~high resolution GCM.}
 	\label{fig:oroprecip}
 \end{figure}
 
 % fig:biatm
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-biatm}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-biatm}
 	\caption{Ice surface topography (1\,\unit{km} contours) and velocity (\unit{m\,yr^{-1}}) after 10\,kyr using ``hybrid'' climate forcing with precipitation rate from WorldClim and surface air temperature from each reanalysis (upper row), and surface air temperature from WorldClim and precipitation rate from each reanalysis (lower row). In other words, the upper row shows the effect of temperature anomalies, and the lower row the effect of precipitation anomalies, for each reanalysis, relative to WorldClim data. Each simulation uses a~5\,\unit{{\degree}C} offset for comparison with Fig.~\ref{fig:cool05}.}
 	\label{fig:biatm}
 \end{figure*}
 
 % fig:biatmbars
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-biatmbars}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-biatmbars}
 	\caption{Effect of temperature and precipitation anomalies (separately and jointly) from each reanalysis on modelled final ice volume relative to the result of the WorldClim 5\,\unit{{\degree}C} offset simulation. Corresponding ice sheet geometries are presented in Figs.~\ref{fig:cool05} and~\ref{fig:biatm}.}
 	\label{fig:biatmbars}
 \end{figure}
 
 % fig:best
-\begin{figure*}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-best}
-	\end{center}
+\begin{figure*}
+	\includegraphics{cordillera-climate-best}
 	\caption{Ice surface topography (1\,km contours) after 10\,kyr using temperature offsets resulting in glaciated areas of circa $2 \times 10^6\,\unit{km^2}$. A~reconstructed LGM ice sheet margin by \citet{dyke-2004} (Fig.~\ref{fig:locmap}) is given for reference (blue line).}
 	\label{fig:best}
 \end{figure*}
 
 % fig:durationstack
-\begin{figure}[t]
-	\vspace*{2mm}
-	\begin{center}
-		\includegraphics{cordillera-climate-durationstack}
-	\end{center}
+\begin{figure}
+	\includegraphics{cordillera-climate-durationstack}
 	\caption{Left panel: model sensitivity to simulation length. Modelled glaciated area, using NARR forcing data, and temperature offsets from 0 to 15\,\unit{{\degree}C}, solid lines corresponding to values from 7 to 11\,\unit{{\degree}C}. Right panel: modelled ice margin corresponding to temperature offsets from 7 to 11\,\unit{{\degree}C} when total glaciated area reach the approximate size of the LGM Cordilleran ice sheet of $2 \times 10^6\,\unit{km^2}$. A~reconstructed LGM ice sheet margin by \citet{dyke-2004} (Fig.~\ref{fig:locmap}) is given for reference (grey shading). Note that shorter (and colder) simulations lead to more restrictive glaciation of the continental eastern margin but further ice extent in the maritime south-western part of the modelling domain.}
 	\label{fig:durationstack}
 \end{figure}
