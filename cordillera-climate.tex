@@ -29,7 +29,6 @@
 
 % Title
 \title{The effect of climate forcing on numerical simulations of the Cordilleran ice sheet at the Last Glacial Maximum}
-\runningtitle{Climate forcing for Cordilleran ice sheet simulations}
 
 % Authors
 \author[1]{J.~Seguinot}
@@ -40,16 +39,17 @@
 \runningauthor{J.~Seguinot et~al.}
 \correspondence{J.~Seguinot (julien.seguinot@natgeo.su.se)}
 
+% Running title
+\runningtitle{Climate forcing for Cordilleran ice sheet simulations}
+
 % Affiliations
 \affil[1]{Department of Physical Geography and Quaternary Geology, Stockholm University, Stockholm, Sweden}
 \affil[2]{Geophysical Institute, University of Alaska Fairbanks, Fairbanks, AK, USA}
 \affil[3]{Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences, Potsdam, Germany}
 
 % For Copernicus
-\received{}
-\pubdiscuss{}
-\revised{}
-\accepted{}
+\received{22~November 2013}
+\accepted{5~December 2013}
 \published{}
 
 % Title
@@ -95,7 +95,7 @@ The central part of an ice sheet model consists of the computation of flow veloc
 
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the Shallow Ice Approximation (SIA) \citep{bueler-brown-2009,winkelmann-etal-2011}. SIA and SSA velocities are computed by finite difference methods on a~10\,km resolution horizontal grid of 300 by 150 points (the modelling domain). Ice softness depends on temperature and water content through an enthalpy formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Enthalpy is computed in three dimensions in up to 51 irregularly spaced layers within the ice, and temperature is additionally computed in 11 regularly spaced layers in bedrock to a~depth of 1\,km. Surface air temperature from the climate forcing provides the upper boundary condition to the ice enthalpy model, and a~geothermal heat flux of 70\,\unit{mW\,m^{-2}} provides the lower boundary condition to the bedrock thermal model. Although this uniform value does not account for the high spatial geothermal variability in the region, it is on average representative of available heat flow measurements \citep{artemieva-mooney-2001,blackwell-richards-2004}. Whereas spatial variations in the geothermal heat flux may significantly affect basal conditions \citep{pattyn-2010}, this study focuses on reconstructing the former extent of the Cordilleran ice sheet, on which it has relatively little effect \citep{rogozhina-etal-2012}.
 
-A~pseudo-plastic sliding law \citep{aschwanden-etal-2013} relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr-Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a~function of current bed elevation, with lowest values occurring at low elevations,
+A~pseudo-plastic sliding law \citep{aschwanden-etal-2013} relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a~function of current bed elevation, with lowest values occurring at low elevations,
 
 \begin{align}
   \phi =
@@ -225,10 +225,10 @@ One must keep in mind, however, that these results are only accurate for our cho
 
 % Acknowledgements
 \begin{acknowledgements}
-We thank Ed Bueler and Andy Aschwanden for providing constant support on PISM and patiently answering our questions on the code internals, Laurent Brodeau and Soon-Heum Ko for assistance concerning software installations on supercomputing resources, and all PISM authors for providing the model open-source. This work was supported by the Swedish Research Council (VR) grant \#2008-3449 to A. P. Stroeven and by NASA grant \#NNX13AM16G to E. Bueler. Computer resources were provided by the Swedish National Infrastructure for Computing (SNIC) allocation \#2013/1-145 to A. P. Stroeven at the National Supercomputing Center (NSC). 
+We thank Ed Bueler and Andy Aschwanden for providing constant support on PISM and patiently answering our questions on the code internals, Laurent Brodeau and Soon-Heum Ko for assistance concerning software installations on supercomputing resources, and all PISM authors for providing the model open-source. This work was supported by the Swedish Research Council (VR) grant {\#}2008-3449 to A. P. Stroeven and by NASA grant {\#}NNX13AM16G to E. Bueler. Computer resources were provided by the Swedish National Infrastructure for Computing (SNIC) allocation {\#}2013/1-145 to A. P. Stroeven at the National Supercomputing Center (NSC).\\ 
 
 % Author contributions
-\textit{Author contributions.}
+\hack{\noindent}\textit{Author contributions.}
 J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev implemented necessary code changes in PISM; I. Rogozhina helped with model set-up and experiment design; A. P. Stroeven initiated the Cordilleran ice sheet modelling project; and Q. Zhang prepared some of the forcing data. All authors contributed to paper writing.
 \end{acknowledgements}
 
@@ -249,10 +249,10 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
 		\tophline
 		Reanalysis& Spatial coverage& Averaging period& Resolution& Description\\
 		\middlehline
-    NCEP/NCAR   & global        & 1981--2010 & 1.875{\degree} & \citet{data:ncar} \\
-    ERA-Interim & global        & 1979--2011 & 1.000{\degree} & \citet{data:erai} \\
-    CFSR        & global        & 1979--2010 & 0.325{\degree} & \citet{data:cfsr} \\
-    NARR        & North America & 1979--2000 & 32\,km       & \citet{data:narr} \\
+		NCEP/NCAR   & global        & 1981--2010 & 1.875{\degree} & \citet{data:ncar} \\
+		ERA-Interim & global        & 1979--2011 & 1.000{\degree} & \citet{data:erai} \\
+		CFSR        & global        & 1979--2010 & 0.325{\degree} & \citet{data:cfsr} \\
+		NARR        & North America & 1979--2000 & 32\,km       & \citet{data:narr} \\
 		\bottomhline
 	\end{tabular}}
   \belowtable{}
@@ -260,8 +260,8 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
 
 % fig:locmap
 \begin{figure}
-	\includegraphics[width=8cm]{cordillera-climate-locmap}
-	\caption{Shaded relief map of northern North America with the extent of the Cordilleran (CIS), Laurentide (LIS) and Innuitian (IIS) ice sheets at 14\,\unit{\chem{^{14}C}\,kyr\,BP} (16.8\,cal\,kyr\,BP) \citep{dyke-2004}. While this age denotes the LIS after retreat from its LGM, it closely corresponds to the LGM extent of most of the Cordilleran ice sheet \citep{porter-swanson-1998,dyke-2004,stroeven-etal-2010}. The rectangular box denotes the modelling domain of the Cordilleran ice sheet of 1500 by 3000\,km. Major mountain ranges covered by the ice sheet include the Wrangell and St.-Elias mountains (W-SE), the Selwyn and MacKenzie mountains (S-MK), the Coast Mountains and the Rocky Mountains. The background map consists of ETOPO1 \citep{data:etopo1} and Natural Earth Data \citep{data:naturalearth} and was assembled with GRASS~GIS \citep{soft:grass}.}
+	\includegraphics[width=80mm]{cordillera-climate-locmap}
+	\caption{Shaded relief map of northern North America with the extent of the Cordilleran (CIS), Laurentide (LIS) and Innuitian (IIS) ice sheets at 14\,\unit{\chem{^{14}C}\,kyr\,BP} (16.8\,cal\,kyr\,BP) \citep{dyke-2004}. While this age denotes the LIS after retreat from its LGM, it closely corresponds to the LGM extent of most of the Cordilleran ice sheet \citep{porter-swanson-1998,dyke-2004,stroeven-etal-2010}. The rectangular box denotes the modelling domain of the Cordilleran ice sheet of 1500 by 3000\,km. Major mountain ranges covered by the ice sheet include the Wrangell and St.-Elias mountains (W--SE), the Selwyn and MacKenzie mountains (S--MK), the Coast Mountains and the Rocky Mountains. The background map consists of ETOPO1 \citep{data:etopo1} and Natural Earth Data \citep{data:naturalearth} and was assembled with GRASS~GIS \citep{soft:grass}.}
 	\label{fig:locmap}
 \end{figure}
 
@@ -372,4 +372,5 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
 
 % ----------------------------------------------------------------------
 \end{document}
+\endinput
 % ----------------------------------------------------------------------
