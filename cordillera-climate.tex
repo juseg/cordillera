@@ -97,13 +97,14 @@ The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the Shall
 
 A~pseudo-plastic sliding law \citep{aschwanden-etal-2013} relates the bed-parallel shear stress and the sliding velocity. The yield stress is modelled using the Mohr-Coulomb criterion. The till friction angle $\phi$ varies from 10 to 30\degree\ and is a~function of current bed elevation, with lowest values occurring at low elevations,
 
-\begin{equation}
-	\phi = \left\{\begin{array}{llrll}
-		10      & \mathrm{for} &      &z&<  0 \\
-		z/10+10 & \mathrm{for} &   0 <&z&<200 \\
-		30      & \mathrm{for} & 200 <&z&     \\
-	\end{array}\right.
-\end{equation}
+\begin{align}
+  \phi =
+  \begin{cases}
+    10      & \text{for }       z<  0 \\
+    z/10+10 & \text{for }    0 <z<200 \\
+    30      & \text{for }  200 <z     \\
+  \end{cases}
+\end{align}
 
 where $\phi$ is given in degrees and $z$ in meters above current sea level. This model thus accounts for a~weakening of till associated with the presence of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Basal topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}. Sea level is lowered by 120\,m and basal topography responds to ice load following a~regional isostasy model that includes lithospheric flexure and mantle relaxation \citep{lingle-clark-1985}.
 
