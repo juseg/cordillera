@@ -16,11 +16,10 @@
 % Coloured hyperlinks
 \usepackage[colorlinks,citecolor=blue]{hyperref}
 
-% Recognize utf-8 special characters
+% Encoding
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
 
-% Set figures repository
+% Figure directory
 \graphicspath{{figures/}}
 
 % ----------------------------------------------------------------------
@@ -233,13 +232,12 @@ J. Seguinot ran the simulations and wrote most of the paper; C. Khroulev impleme
 \end{acknowledgements}
 
 % References
-\bibliographystyle{copernicus}
-\bibliography{references}
+\input{references.bbl}
+\newpage
 
 % ----------------------------------------------------------------------
 % Floats
 % ----------------------------------------------------------------------
-\newpage
 
 % tab:reanalyses
 \begin{table*}[t]

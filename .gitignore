@@ -1,6 +1,5 @@
 # Files produces by latex
 *.aux
-*.bbl
 *.blg
 *.fff
 *.log
