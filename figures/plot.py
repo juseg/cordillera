@@ -117,10 +117,16 @@ def tempdiff(tempdiff_lapse_rate=False):
     climates = ['erai', 'narr', 'cfsr', 'ncar']
     fig = iplt.gridfigure(mapsize, (2, 2), cbar_mode='single', **figkwa)
 
-    # read WorldClim data as reference
+    # extract WorldClim data mask
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['air_temp']
+    mask = _seasonmean(var, 'jja').mask
+
+    # read WorldClim data as reference
+    nc = Dataset('../data/wcnn-bl.nc')
+    var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja')
+    ref = np.ma.array(ref, mask=mask)
     zref = nc.variables['usurf'][:].T
 
     # loop on climate datasets
@@ -155,10 +161,16 @@ def tempheatmap(tempdiff_lapse_rate=False):
       cbar_mode='single', cbar_location='right',
       cbar_pad=2*mm, cbar_size=4*mm)
 
-    # read WorldClim data as reference
+    # extract WorldClim data mask
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['air_temp']
+    mask = _seasonmean(var, 'jja').mask
+
+    # read WorldClim data as reference
+    nc = Dataset('../data/wcnn-bl.nc')
+    var = nc.variables['air_temp']
     ref = _seasonmean(var, 'jja') - 273.15
+    ref = np.ma.array(ref, mask=mask)
     refdata = ref.compressed()
     zref = nc.variables['usurf'][:].T
 
@@ -166,7 +178,7 @@ def tempheatmap(tempdiff_lapse_rate=False):
     for clim, ax in zip(climates, grid):
 
       # read other data
-      nc = Dataset('../data/%s-nn.nc' % clim)
+      nc = Dataset('../data/%s-bl.nc' % clim)
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja') - 273.15
       z = nc.variables['usurf'][:].T
@@ -228,10 +240,17 @@ def precdiff():
     climates = ['erai', 'narr', 'cfsr', 'ncar']
     fig = iplt.gridfigure(mapsize, (2, 2), cbar_mode='single', **figkwa)
 
-    # read WorldClim data as reference
+    # extract WorldClim data mask
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
-    ref = _seasonmean(var, 'djf')*1000/12.
+    mask = _seasonmean(var, 'djf').mask
+
+    # read WorldClim data as reference
+    nc = Dataset('../data/wcnn-bl.nc')
+    var = nc.variables['precipitation']
+    ref = _seasonmean(var, 'djf')*910/12.
+    ref = np.ma.array(ref, mask=mask)
+    zref = nc.variables['usurf'][:].T
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
@@ -239,7 +258,7 @@ def precdiff():
       nc = Dataset('../data/%s-bl.nc' % clim)
       _annotate(labels[clim])
       var = nc.variables['precipitation']
-      data = _seasonmean(var, 'djf')*1000/12.
+      data = _seasonmean(var, 'djf')*910/12.
       im = plt.imshow(data - ref,
         cmap = plt.cm.PuOr,
         norm = mcolors.SymLogNorm(10., 1.0, -300., 300.))
@@ -264,19 +283,25 @@ def precheatmap():
       cbar_mode='single', cbar_location='right',
       cbar_pad=2*mm, cbar_size=4*mm)
 
-    # read WorldClim data as reference
+    # extract WorldClim data mask
     nc = Dataset('../data/wc-nn.nc')
     var = nc.variables['precipitation']
-    ref = _seasonmean(var, 'djf')*1000/12.
+    mask = _seasonmean(var, 'djf').mask
+
+    # read WorldClim data as reference
+    nc = Dataset('../data/wcnn-bl.nc')
+    var = nc.variables['precipitation']
+    ref = _seasonmean(var, 'djf')*910/12.
+    ref = np.ma.array(ref, mask=mask)
     refdata = ref.compressed()
 
     # loop on climate datasets
     for clim, ax in zip(climates, grid):
 
       # read other data
-      nc = Dataset('../data/%s-nn.nc' % clim)
+      nc = Dataset('../data/%s-bl.nc' % clim)
       var = nc.variables['precipitation']
-      data = _seasonmean(var, 'djf')*1000/12.
+      data = _seasonmean(var, 'djf')*910/12.
       data = np.ma.array(data, mask=ref.mask).compressed()
 
       # plot
