@@ -1,0 +1,64 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+\usepackage[colorlinks,citecolor=blue]{hyperref}
+\usepackage{natbib}
+\usepackage{doi}
+
+\sloppy
+\setlength{\parskip}{1.2ex}
+\setlength{\parindent}{0em}
+\renewcommand\familydefault{\sfdefault}
+
+\graphicspath{{../figures/}}
+\definecolor{journalname}{rgb}{0.34,0.59,0.82}
+%\providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}
+
+\begin{document}
+
+\textbf{Authors' response to Referee {\#}2}
+\bigskip
+
+% ----------------------------------------------------------------------
+\def\referee#1{\bigskip\textcolor{journalname}{\textit{#1}}}
+
+Dear Referee {\#}2,
+
+\referee{Before publication, I do have one scientific concern about the way the experiments were carried out. The model setup (Section 2) includes only brief mention of isostatic effects. These are really significant in a run of this sort because the elevation of the ice surface could be as much as $\sim$1800 m too high without the effect. Given that lapse rates are used to re-scale the climate data to elevations that are altered by the presence of the ice sheet, and that the sliding relation is strongly controlled by bedrock elevation, I think a more detailed discussion of isostacy is warranted. Specifically, given that the goal is an LGM configuration, I'd like assurance that the bedrock elevation has come close to equilibrium at the 10ka point that is reported on. This assurance should be simple to provide with minor modifications to the model setup section.}
+
+Thank you for your comment. We apologize for the lack of detail on these issues in the discussion paper, which possibly lead to confusion from your side.
+
+The bedrock deformation model used in our study describes the flexure of an elastic lithosphere on top of an infinite half-space viscous mantle \citep{lingle-clark-1985}. It can be described by a single differential equation of the bed elevation $u(x, y, t)$,
+
+\begin{equation}
+    2 \nu |\nabla| \frac{\partial u}{\partial t}
+    + \rho_r g u
+    + D \nabla^4 u
+    = \sigma_{zz},
+\end{equation}
+
+where $\nu=1\times10^{21}$\,Pa\,s is mantle viscosity, $\rho_r = 3300$\,kg\,m$^{-3}$ is lithosphere density, $D=5\times10^{24}$\,N\,m is the lithosphere's flexural rigidity, and $\sigma_{zz}$ corresponds to the ice load \citet{bueler-etal-2007}. In the left-hand part of this equation, the first term accounts for mantle relaxation, the second for point-wise isostasy, and the third for elastic flexure. Please refer to \citet{bueler-etal-2007} for a definition of the pseudo-differential operator $|\nabla|$. Because mantle viscosity $\nu$ is non-zero, there exist a time lag between ice sheet growth and the isostatic bedrock response.
+
+We would like to emphasize that most of our simulations do not reach a climatic equilibrium. In fact, simulations ran to climatic equilibrium (not shown in the paper) produce excessive ice cover in continental regions regardless of the forcing climatology used. Moreover, geomorphological and palaeoclimatic records give support for a short-lived Cordilleran ice sheet. Because the modelled ice sheet is in constant expansion, and because of the first term in the above equation, bedrock elevation do not come to equilibrium with the ice sheet configuration in our runs.
+
+Although we do not believe that bedrock elevation must have been at equilibrium with the ice sheet configuration at the LGM, we recognize that through our simplistic palaeoclimatic approach, isostatic effects are another significant source of error on modelled ice surface elevation, which we omitted to discuss in our manuscript.
+
+Finally, we also would like to emphasize that the sliding relation is controlled by initial bedrock elevation, and is not altered by its evolution through the run. Your comments show that we need more details about computation of bedrock deformation and its effects in the manuscript. These will for sure be added in the revised version.
+
+\referee{The only writing problem I found was in figure 5, `logarythmic' should be `logarithmic'. Many thanks to the authors for getting the wording right the first time.}
+
+Thank you for noticing this mistake. We will correct it.
+
+\begin{thebibliography}{69}
+
+\bibitem[{Lingle and Clark(1985)}]{lingle-clark-1985}
+Lingle,~C.~S. and Clark,~J.~A.: A~numerical model of interactions between a~marine ice sheet and the solid Earth: application to a~West Antarctic ice stream, J. Geophys. Res., 90, 1100--1114, \doi{10.1029/JC090iC01p01100}, 1985.
+
+\bibitem[{Bueler et~al.(2007)}]{bueler-etal-2007}
+Bueler,~E. and Lingle,~C.~S. and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105, \doi{10.3189/172756407782871567}, 2007
+
+\end{thebibliography}
+
+\end{document}
