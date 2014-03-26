@@ -154,7 +154,7 @@ def tempdiff(tempdiff_lapse_rate=False, tcd_colors=False):
              + tempdiff_lapse_rate*'+lr'
              + tcd_colors*'+tcdc')
 
-def tempheatmap(tempdiff_lapse_rate=False):
+def tempheatmap(tempdiff_lapse_rate=False, tcd_colors=False):
     """Plot temperature heat maps"""
 
     from mpl_toolkits.axes_grid1 import ImageGrid
@@ -196,7 +196,8 @@ def tempheatmap(tempdiff_lapse_rate=False):
       minmax = (-2.5, 27.5)
       im = ax.hist2d(refdata, data,
         range=(minmax, minmax), bins=120,
-        cmap=plt.cm.Reds, norm=mcolors.LogNorm())[3]
+        cmap=('Reds' if tcd_colors else 'CMRmap_r'),
+        norm=mcolors.LogNorm())[3]
       #ax.scatter(refdata, data, c='r', marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
 
@@ -213,7 +214,9 @@ def tempheatmap(tempdiff_lapse_rate=False):
     cb = fig.colorbar(im, grid.cbar_axes[0], format='%g')
     cb.set_label(u'number of grid points')
     fig.text(37/85., 2/72., u'JJA mean surface air temperature (°C)', ha='center')
-    _savefig('cordillera-climate-tempheatmap' + tempdiff_lapse_rate*'+lr')
+    _savefig('cordillera-climate-tempheatmap'
+             + tempdiff_lapse_rate*'+lr'
+             + tcd_colors*'+tcdc')
 
 def prec():
     """Plot precipitation maps"""
@@ -275,7 +278,7 @@ def precdiff():
     cb.set_label(r'DJF precipitation rate difference to WorldClim data ($mm\,month^{-1}$)')
     _savefig('cordillera-climate-precdiff')
 
-def precheatmap():
+def precheatmap(tcd_colors=False):
     """Plot precipitation heat maps"""
 
     from matplotlib.ticker import FormatStrFormatter
@@ -315,7 +318,8 @@ def precheatmap():
       hist, x, y = np.histogram2d(np.log10(refdata), np.log10(data),
         range=np.log10((minmax, minmax)), bins=120)
       im = ax.imshow(hist.T,
-        cmap=plt.cm.Blues, norm=mcolors.LogNorm(),
+        cmap=('Blues' if tcd_colors else 'CMRmap_r'),
+        norm=mcolors.LogNorm(),
         extent=[1, 1000, 1, 1000])
       #ax.scatter(refdata, data, marker='o', alpha=0.002)
       ax.plot(minmax, minmax,'k')
@@ -338,7 +342,7 @@ def precheatmap():
     cb = fig.colorbar(im, ax.cax, format='%g')
     cb.set_label(u'number of grid points')
     fig.text(37/85., 2/72., r'DJF mean precipitation rate ($mm\,month^{-1}$)', ha='center')
-    _savefig('cordillera-climate-precheatmap', pdf=True)
+    _savefig('cordillera-climate-precheatmap' + tcd_colors*'+tcdc')
 
 def topo():
     """Plot topography maps"""
@@ -804,10 +808,10 @@ if __name__ == "__main__":
     if args.temp     is True: temp()
     if args.tempbox  is True: tempbox()
     if args.tempdiff is True: tempdiff(args.tempdiff_lapse_rate, args.tcd_colors)
-    if args.tempheatmap is True: tempheatmap(args.tempdiff_lapse_rate)
+    if args.tempheatmap is True: tempheatmap(args.tempdiff_lapse_rate, args.tcd_colors)
     if args.prec     is True: prec()
     if args.precdiff is True: precdiff()
-    if args.precheatmap is True: precheatmap()
+    if args.precheatmap is True: precheatmap(args.tcd_colors)
     if args.topo     is True: topo()
     if args.cool is not None: cool(args.cool, args.draw_lgm_on_icemap)
     if args.best     is True: best()
