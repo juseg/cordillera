@@ -14,11 +14,14 @@
 \definecolor{journalname}{rgb}{0.34,0.59,0.82}
 
 \begin{document}
-
 \textbf{Authors' response to Referee {\#}1}
 \bigskip
 
 % ----------------------------------------------------------------------
+% Interactive comment text begins
+% ----------------------------------------------------------------------
+
+\renewcommand\thefigure{AC\arabic{figure}}
 \def\referee#1{\bigskip\textcolor{journalname}{\textit{#1}}}
 
 Dear Referee {\#}1,
@@ -29,11 +32,11 @@ Thank you very much for this supportive review. Your comments raise valid points
 
 In fact, no. In Figs.~8 and~9 of the discussion paper, temperature climatologies are compared without lapse-rate correction. Due to differences in resolution of surface topography between climatological datasets used, this caused appearance of numerous topographic artefacts on paper Fig.~9. Following your comment, we produced updated figures to include a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$, as applied in the simulations.
 
-For paper Fig.~9 (temperature difference maps, Fig.~1 in this comment), lapse-rate correction results in smoother temperature difference maps, where effective temperature discrepancies are no longer overshadowed by local topographic anomalies (this comment's Fig.~2). Because temperature differences in this new map are much reduced, we adjusted colour scaling to emphasize smaller values (this comment's Fig.~3).
+For paper Fig.~9 (temperature difference maps, Fig.~AC1), lapse-rate correction results in smoother temperature difference maps, where effective temperature discrepancies are no longer overshadowed by local topographic anomalies (Fig.~AC2). Because temperature differences in this new map are much reduced, we adjusted colour scaling to emphasize smaller values (Fig.~AC3).
 
-For paper Fig.~8 (temperature density maps), we now use bilinearly-interpolated temperature maps, rather than the original data (as presented in paper Fig.~2--4). This results in smoother density plots than those presented in the discussion paper (this comment's Fig.~4). In a second step, we apply a lapse-rate correction to project all reanalysis data onto the WorldClim (higher resolution) topography (this comment's Fig.~5). It now becomes clear that much of the discrepancies observed were due to lapse-rate effects.
+For paper Fig.~8 (temperature density maps), we now use bilinearly-interpolated temperature maps, rather than the original data (as presented in Fig.~2--4). This results in smoother density plots than those presented in the discussion paper (Fig.~AC4). In a second step, we apply a lapse-rate correction to project all reanalysis data onto the WorldClim (higher resolution) topography (Fig.~AC5). It now becomes clear that much of the discrepancies observed were due to lapse-rate effects.
 
-For consistency, paper Fig.~10 (precipitation density maps) was also updated using bilinearly-interpolated data (this comment's Fig.~6). Note that for all density maps, colour maps were changed to allow for a higher level of detail.
+For consistency, paper Fig.~10 (precipitation density maps) was also updated using bilinearly-interpolated data (this comment's Fig.~AC6). Note that for all density maps, colour maps were changed to allow for a higher level of detail.
 
 While these new figures present an altered version of climate forcing data used in our study, they more closely reflect how this data is read in by the ice sheet model, which seems appropriate for the discussion section. Moreover, the new maps reveal more clearly the strengths and weakness of different datasets, and support more strongly our interpretation of the ``hybrid'' climate forcing experiments presented in Sect.~5.2. We will definitely include these new figures in the revised manuscript. Thank you very much for this constructive comment.
 
@@ -50,6 +53,8 @@ To avoid confusion, we will use negative values in the revised manuscript.
 A short discussion of these effects is given in Sect.~5.3, in the context of comparison of simulation results to the geomorphological last glacial maximum ice margin. However you raise here an issue that we had not consider, regarding potential ice sheet evolution to more similar states when accounting for precipitation changes. In the East more particularly, where in most of our simulations, the ice margin do not attain a steady configuration, its position after 10\,kyr is largely determined by its rate of advance during the simulation length, which in turn depends on the amount of precipitation received. Therefore, precipitation corrections in this region could significantly slow down the ice margin advance, resulting in more similar configuration after 10\,kyr. We will include a discussion of this effect in Sect.~5.5.
 
 % ----------------------------------------------------------------------
+% Interactive comment text ends
+% ----------------------------------------------------------------------
 
 \clearpage
 
@@ -58,26 +63,31 @@ A short discussion of these effects is given in Sect.~5.3, in the context of com
     \includegraphics[width=70mm]{cordillera-climate-tempdiff+tcdc}
     \caption{Summer temperature difference maps, as in paper Fig.~9.}
 \end{figure}
+
 \begin{figure}
     \center
     \includegraphics[width=70mm]{cordillera-climate-tempdiff+lr+tcdc}
     \caption{Summer temperature difference maps, after applying a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$.}
 \end{figure}
+
 \begin{figure}
     \center
     \includegraphics[width=70mm]{cordillera-climate-tempdiff+lr}
     \caption{Summer temperature difference maps, after applying a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$ and an updated colour mapping.}
 \end{figure}
+
 \begin{figure}
     \center
     \includegraphics[width=70mm]{cordillera-climate-tempheatmap}
     \caption{Summer temperature density maps, after bilinear interpolation.}
 \end{figure}
+
 \begin{figure}
     \center
     \includegraphics[width=70mm]{cordillera-climate-tempheatmap+lr}
     \caption{Summer temperature density maps, after bilinear interpolation and lapse-rate correction.}
 \end{figure}
+
 \begin{figure}
     \center
     \includegraphics[width=70mm]{cordillera-climate-precheatmap}
