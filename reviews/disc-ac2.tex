@@ -5,7 +5,6 @@
 \usepackage[pdftex]{color}
 \usepackage[colorlinks,citecolor=blue]{hyperref}
 \usepackage{natbib}
-\usepackage{doi}
 
 \sloppy
 \setlength{\parskip}{1.2ex}
@@ -14,7 +13,6 @@
 
 \graphicspath{{../figures/}}
 \definecolor{journalname}{rgb}{0.34,0.59,0.82}
-%\providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}
 
 \begin{document}
 
@@ -22,6 +20,10 @@
 \bigskip
 
 % ----------------------------------------------------------------------
+% Interactive comment text begins
+% ----------------------------------------------------------------------
+
+\def\doi#1{doi:\allowbreak\href{http://dx.doi.org/#1}{#1}}
 \def\referee#1{\bigskip\textcolor{journalname}{\textit{#1}}}
 
 Dear Referee {\#}2,
@@ -60,5 +62,9 @@ Lingle,~C.~S. and Clark,~J.~A.: A~numerical model of interactions between a~mari
 Bueler,~E. and Lingle,~C.~S. and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105, \doi{10.3189/172756407782871567}, 2007
 
 \end{thebibliography}
+
+% ----------------------------------------------------------------------
+% Interactive comment text ends
+% ----------------------------------------------------------------------
 
 \end{document}
