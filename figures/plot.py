@@ -378,14 +378,14 @@ def best():
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr'] #['cfsrs7', 'cfsr', 'ncar']
-    offsets  = ['08', '06', '07'] #['04', '04', '04']
+    offsets  = [-8, -6, -7] #[-4, -4, -4]
     fig = iplt.gridfigure(mapsize, (1, 3), cbar_mode='none', **figkwa)
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
-      nc = Dataset('../data/%s-%s.nc' % (clim, offsets[i]))
-      _annotate('%s - %s K' % (labels[clim], offsets[i]))
+      nc = Dataset('../data/%s-%02i.nc' % (clim, -offsets[i]))
+      _annotate('%s, %s K' % (labels[clim], offsets[i]))
       iplt.bedtopoimage(nc)
       iplt.icemargincontour(nc, linecolors=None, colors='white', alpha=0.5)
       iplt.icemargincontour(nc)
@@ -530,8 +530,8 @@ def duration():
 
     # initialize figure
     clim = 'narr'
-    alloffsets = range(16)
-    mapoffsets = range(7, 12)
+    alloffsets = range(-15, 1)
+    mapoffsets = range(-11, -6)
     tarea = 2.1823
     lgmtimes = []
     figw, figh = 115., 135.
@@ -546,8 +546,8 @@ def duration():
 
     # plot glaciatied area curves
     ax = plt.axes(grid[0])
-    for dt in range(16):
-      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
+    for dt in alloffsets:
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, -dt))
       time = nc.variables['time'][1:] / 31556925974.7
       iarea = (nc.variables['thk'][1:]>10).sum(axis=(1, 2))/1e4
       plt.plot(time, iarea, ('b-' if dt in mapoffsets else 'b--'))
@@ -561,7 +561,7 @@ def duration():
       ax = plt.axes(grid[i+1])
       ax.get_xaxis().set_visible(False)
       ax.get_yaxis().set_visible(False)
-      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, -dt))
       iplt.bedtopoimage(nc, t=lgmtimes[dt])
       iplt.icemargincontour(nc, t=lgmtimes[dt],
         linecolors=None, colors='white', alpha=0.5)
@@ -577,8 +577,8 @@ def durationstack():
 
     # initialize figure
     clim = 'narr'
-    alloffsets = range(16)
-    mapoffsets = range(7, 12)
+    alloffsets = range(-15, 1)
+    mapoffsets = range(-11, -6)
     c = ['k']*7 + ['#ff3333', '#cc3366', '#993399', '#6633cc', '#3333ff'] + ['k']*4
     tarea = 2.
     lgmtimes = []
@@ -591,13 +591,13 @@ def durationstack():
     # plot glaciatied area curves
     ax = plt.axes(grid[0])
     for dt in alloffsets:
-      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, -dt))
       time = nc.variables['time'][1:] / 31556925974.7
       iarea = (nc.variables['thk'][1:]>10).sum(axis=(1, 2))/1e4
-      ax.plot(time, iarea, ('-' if dt in mapoffsets else '--'), c=c[dt])
+      ax.plot(time, iarea, ('-' if dt in mapoffsets else '--'), c=c[-dt])
       lgmtimes.append((np.abs(iarea-tarea)).argmin())
       if iarea[-1] < 4:
-        ax.text(10.33, iarea[-1], u'%2i °C' % dt, va='center')
+        ax.text(10.33, iarea[-1], u'%2i °C' % dt, va='center', color=c[-dt])
 
     # set axes properties
     ax.plot([0, 10],[tarea, tarea], 'k')
@@ -612,8 +612,8 @@ def durationstack():
     ax.get_xaxis().set_visible(False)
     ax.get_yaxis().set_visible(False)
     for dt in mapoffsets:
-      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, dt))
-      iplt.icemargincontour(nc, t=lgmtimes[dt], linecolors=c[dt])
+      nc = Dataset('../data/%s-%02g-extra.nc' % (clim, -dt))
+      iplt.icemargincontour(nc, t=lgmtimes[dt], linecolors=c[-dt])
 
     # add LGM ice margin and save
     _drawlgm(nc, [ax], facecolor='#cccccc', linewidth=0)
@@ -624,27 +624,25 @@ def extent():
 
     # initialize figure
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
+    offsets = np.arange(-10, 1)
     fig = iplt.gridfigure(mapsize, (2, 3), cbar_mode='single', **figkwa)
 
     # loop on climate datasets
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       _annotate(labels[clim])
-      icecover = 11
-      for dt in range(10,-1,-1):
-        nc = Dataset('../data/%s-%02g.nc' % (clim, dt))
+      icecover = -12
+      for dt in offsets:
+        nc = Dataset('../data/%s-%02i.nc' % (clim, -dt))
         icecover = np.where(nc.variables['thk'][0] > 1, dt, icecover)
-      #cs = plt.contour(icecover.T,
-      #  levels = range(0, 11),
-      #  colors = 'black',
-      #  linewidths = 0.2)
       cs = plt.contourf(icecover.T,
-        levels = range(-1, 11),
-        cmap   = plt.cm.Spectral)
+        levels = np.append(offsets, 1)-0.5,
+        cmap   = 'Spectral_r')
 
     # add LGM ice margin, colorbar and save
     _drawlgm(nc, fig.grid, ec='k', fc='none')
-    cb = fig.colorbar(cs, fig.grid.cbar_axes[0], ticks=range(11))
+    cb = fig.colorbar(cs, ax.cax, ticks=offsets)
+    #ax.cax.tick_params(length=0) # to remove tick marks
     cb.set_label(u'temperature offset (°C)')
     _savefig('cordillera-climate-extent')
 
@@ -666,21 +664,21 @@ def ivolarea():
     # select input data
     climates = ['wcnn', 'erai', 'narr', 'cfsrs7', 'cfsr', 'ncar']
     styles   = ['s-', 'D-', 'o-', '^-', 'v-', 'h-']
-    coolings = range(11)
+    offsets  = np.arange(-10, 1)
 
     # read input data
     for clim, style in zip(climates, styles):
       iarea = []
       ivol  = []
-      for cool in coolings:
-        nc = Dataset('../data/%s-%02g.nc' % (clim, cool))
+      for dt in offsets:
+        nc = Dataset('../data/%s-%02i.nc' % (clim, -dt))
         iarea.append((nc.variables['thk'][0]>1).sum()/1e4)
-        nc = Dataset('../data/%s-%02g-ts.nc' % (clim, cool))
+        nc = Dataset('../data/%s-%02i-ts.nc' % (clim, -dt))
         ivol.append(nc.variables['ivol'][-1]/1e15)
 
       # plot
-      ax1.plot(coolings, iarea, style, mew=0, ms=3)
-      ax2.plot(coolings, ivol, style, mew=0, ms=3)
+      ax1.plot(offsets, iarea, style, mew=0, ms=3)
+      ax2.plot(offsets, ivol, style, mew=0, ms=3)
 
     # add legend
     ax1.set_yticks(range(5))
