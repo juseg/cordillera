@@ -34,6 +34,9 @@ Blackwell,~D.~D. and Richards,~M.: Geothermal Map of North America, American Ass
 \bibitem[{Bueler and Brown(2009)}]{bueler-brown-2009}
 Bueler,~E. and Brown,~J.: Shallow shelf approximation as a ``sliding law'' in a~thermodynamically coupled ice sheet model, J. Geophys. Res., 114, F03008, \doi{10.1029/2008JF001179}, 2009.
 
+\bibitem[{Bueler et~al.(2007)}]{bueler-etal-2007}
+Bueler,~E. and Lingle,~C.~S. and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105, \doi{10.3189/172756407782871567}, 2007
+
 \bibitem[{Calov and Greve(2005)}]{calov-greve-2005}
 Calov,~R. and Greve,~R.: A~semi-analytical solution for the positive degree-day model with stochastic temperature variations, J. Glaciol., 51, 173--175, \doi{10.3189/172756505781829601}, 2005.
 
