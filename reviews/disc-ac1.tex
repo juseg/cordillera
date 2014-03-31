@@ -31,11 +31,11 @@ Thank you very much for reading our manuscript and writing this supportive revie
 
 In fact, no. In Figs.~8 and~9 of the discussion paper, temperature climatologies are compared without lapse-rate correction. Due to differences in resolution of surface topography between climatological datasets used, this caused appearance of numerous topographic artefacts on paper Fig.~9. Following your comment, we produced updated figures that include a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$, as applied in the simulations.
 
-The implementation of lapse-rate correction in Fig.~9 (temperature difference maps, Fig.~AC1)  results in smoother temperature difference maps, where effective temperature discrepancies are no longer overshadowed by local topographic anomalies (Fig.~AC2). Because temperature differences in this new map are much reduced, we adjusted colour scaling to emphasize smaller values (Fig.~AC3).
+The implementation of lapse-rate correction in Fig.~9 (temperature difference maps, Fig.~AC1) results in smoother temperature difference maps, where effective temperature discrepancies are no longer overshadowed by local topographic anomalies (Fig.~AC2). Because temperature differences in this new map are much reduced, we adjusted colour scaling to emphasize smaller values.
 
-Also, the new Fig.~8 (temperature density maps) now uses bilinearly-interpolated temperature maps, rather than the original data (as presented in Fig.~2--4). This results in smoother density plots than those presented in the discussion paper (Fig.~AC4). In a second step, we apply a lapse-rate correction to project all reanalysis data onto the WorldClim (higher resolution) topography (Fig.~AC5). It now becomes clear that much of the discrepancies observed were due to lapse-rate effects.
+Also, the new Fig.~8 (temperature density maps) now uses bilinearly-interpolated temperature maps, rather than the original data (as presented in Fig.~2--4). This results in smoother density plots than those presented in the discussion paper (Fig.~AC3). In a second step, we apply a lapse-rate correction to project all reanalysis data onto the WorldClim (higher resolution) topography (Fig.~AC4). It now becomes clear that much of the discrepancies observed were due to lapse-rate effects.
 
-For consistency, Fig.~10 (precipitation density maps) was also updated using bilinearly-interpolated data (this comment's Fig.~AC6). Note that for all density maps, colour scales were changed to allow for a higher level of detail.
+For consistency, Fig.~10 (precipitation density maps) was also updated using bilinearly-interpolated data (this comment's Fig.~AC5). Note that for all density maps, colour scales were changed to allow for a higher level of detail.
 
 While these new figures present an altered version of climate forcing data used in our study, they more closely reflect how this data is read in by the ice sheet model, which seems appropriate for the discussion section. Moreover, the new maps reveal more clearly the strengths and weakness of different datasets, and support more strongly our interpretation of the ``hybrid'' climate forcing experiments presented in Sect.~5.2. We will definitely include these new figures in the revised manuscript. Thank you very much for this constructive comment.
 
@@ -59,26 +59,20 @@ A short discussion of these effects is given in Sect.~5.3, in the context of com
 
 \begin{figure}
     \centering
-    \includegraphics[width=70mm]{cordillera-climate-tempdiff+nolr+tcdc}
+    \includegraphics[width=70mm]{cordillera-climate-tempdiff+nolr}
     \caption{Summer temperature difference maps, as in paper Fig.~9.}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=70mm]{cordillera-climate-tempdiff+tcdc}
+    \includegraphics[width=70mm]{cordillera-climate-tempdiff}
     \caption{Summer temperature difference maps, after applying a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$.}
 \end{figure}
 
 \begin{figure}
     \centering
-    \includegraphics[width=70mm]{cordillera-climate-tempdiff}
-    \caption{Summer temperature difference maps, after applying a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$ and an updated colour mapping.}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=70mm]{cordillera-climate-tempheatmap+nolr}
     \caption{Summer temperature density maps, after bilinear interpolation.}
+    \includegraphics[width=70mm]{cordillera-climate-tempheatmap+nolr}
 \end{figure}
 
 \begin{figure}
