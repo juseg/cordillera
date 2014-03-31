@@ -110,7 +110,7 @@ def tempbox():
     # save
     _savefig('cordillera-climate-tempbox')
 
-def tempdiff(tempdiff_lapse_rate=False, tcd_colors=False):
+def tempdiff(no_lapse_rate=False, tcd_colors=False):
     """Plot temperature difference maps"""
 
     # initialize figure
@@ -137,7 +137,7 @@ def tempdiff(tempdiff_lapse_rate=False, tcd_colors=False):
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja')
       z = nc.variables['usurf'][:].T
-      if tempdiff_lapse_rate:
+      if not no_lapse_rate:
         data += 0.006*(z-zref)
       if tcd_colors:
         norm = mcolors.Normalize(-10.0, 10.0)
@@ -151,10 +151,10 @@ def tempdiff(tempdiff_lapse_rate=False, tcd_colors=False):
     cb = fig.colorbar(im, fig.grid.cbar_axes[0], ticks=None)
     cb.set_label(u'JJA surface air temperature difference to WorldClim data (°C)')
     _savefig('cordillera-climate-tempdiff'
-             + tempdiff_lapse_rate*'+lr'
+             + no_lapse_rate*'+nolr'
              + tcd_colors*'+tcdc')
 
-def tempheatmap(tempdiff_lapse_rate=False, tcd_colors=False):
+def tempheatmap(no_lapse_rate=False, tcd_colors=False):
     """Plot temperature heat maps"""
 
     from mpl_toolkits.axes_grid1 import ImageGrid
@@ -188,7 +188,7 @@ def tempheatmap(tempdiff_lapse_rate=False, tcd_colors=False):
       var = nc.variables['air_temp']
       data = _seasonmean(var, 'jja') - 273.15
       z = nc.variables['usurf'][:].T
-      if tempdiff_lapse_rate:
+      if not no_lapse_rate:
         data +=0.006*(z-zref)
       data = np.ma.array(data, mask=ref.mask).compressed()
 
@@ -215,7 +215,7 @@ def tempheatmap(tempdiff_lapse_rate=False, tcd_colors=False):
     cb.set_label(u'number of grid points')
     fig.text(37/85., 2/72., u'JJA mean surface air temperature (°C)', ha='center')
     _savefig('cordillera-climate-tempheatmap'
-             + tempdiff_lapse_rate*'+lr'
+             + no_lapse_rate*'+nolr'
              + tcd_colors*'+tcdc')
 
 def prec():
@@ -801,14 +801,14 @@ if __name__ == "__main__":
       help='plot input temperature maps')
     parser.add_argument('--tcd-colors', action='store_true',
       help='use colors from discussion version')
-    parser.add_argument('--tempdiff-lapse-rate', action='store_true',
-      help='apply lapse in tempdiff map')
+    parser.add_argument('--no-lapse-rate', action='store_true',
+      help='no lapse rate correction in temperature comparisons')
     args = parser.parse_args()
 
     if args.temp     is True: temp()
     if args.tempbox  is True: tempbox()
-    if args.tempdiff is True: tempdiff(args.tempdiff_lapse_rate, args.tcd_colors)
-    if args.tempheatmap is True: tempheatmap(args.tempdiff_lapse_rate, args.tcd_colors)
+    if args.tempdiff is True: tempdiff(args.no_lapse_rate, args.tcd_colors)
+    if args.tempheatmap is True: tempheatmap(args.no_lapse_rate, args.tcd_colors)
     if args.prec     is True: prec()
     if args.precdiff is True: precdiff()
     if args.precheatmap is True: precheatmap(args.tcd_colors)
