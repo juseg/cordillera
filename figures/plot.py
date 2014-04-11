@@ -385,7 +385,7 @@ def best():
     for i, clim in enumerate(climates):
       ax = plt.axes(fig.grid[i])
       nc = Dataset('../data/%s-%02i.nc' % (clim, -offsets[i]))
-      _annotate('%s, %s K' % (labels[clim], offsets[i]))
+      _annotate(u'%s, %s °C' % (labels[clim], offsets[i]))
       iplt.bedtopoimage(nc)
       iplt.icemargincontour(nc, linecolors=None, colors='white', alpha=0.5)
       iplt.icemargincontour(nc)
