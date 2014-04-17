@@ -656,9 +656,9 @@ def ivolarea():
     fig = plt.figure(figsize=(figw*mm,figh*mm))
     ax1 = plt.axes([ 8/figw, 8/figh, 32/figw, 32/figh])
     ax2 = plt.axes([51/figw, 8/figh, 32/figw, 32/figh])
-    ax1.set_xlabel('Temperature offset')
+    ax1.set_xlabel(u'Temperature offset (°C)')
     ax1.set_ylabel(r'Glaciated area ($10^6 km^2\!$)')
-    ax2.set_xlabel('Temperature offset')
+    ax2.set_xlabel(u'Temperature offset (°C)')
     ax2.set_ylabel(r'Ice volume ($10^6 km^3\!$)')
 
     # select input data
