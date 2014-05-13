@@ -5,3 +5,6 @@ cordillera-cycle.fls
 cordillera-cycle.log
 cordillera-cycle.out
 cordillera-cycle.pdf
+
+# Figures
+figures/cordillera-cycle-*.pdf
