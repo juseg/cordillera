@@ -6,5 +6,11 @@ cordillera-cycle.log
 cordillera-cycle.out
 cordillera-cycle.pdf
 
+# Data
+data/ice*.dbf
+data/ice*.shp
+data/ice*.shx
+data/of_1574.zip
+
 # Figures
 figures/cordillera-cycle-*.pdf
