@@ -11,11 +11,11 @@ data/%.shp: data/of_1574.zip
 data/deglac.zip:
 	cd data && wget http://ftp2.cits.rncan.gc.ca/pub/geott/ess_pubs/214/214399/of_1574.zip
 
-figures: figures/*.pdf
+figures: $(patsubst %.py, %.png, $(wildcard figures/cordillera-cycle-*.py))
 
-figures/%.pdf: figures/%.py
+figures/%.png: figures/%.py
 	cd figures && python2 $*.py
 
 clean:
-	rm -f figures/$(PAPER)-*.pdf
+	rm -f figures/$(PAPER)-*.{pdf,png}
 	latexmk -CA

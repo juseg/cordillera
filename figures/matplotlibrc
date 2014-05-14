@@ -9,4 +9,4 @@ image.origin	   	: lower
 mathtext.default 	: regular
 
 savefig.dpi         : 254
-savefig.format      : pdf
+savefig.format      : png
