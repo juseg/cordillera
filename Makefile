@@ -1,4 +1,5 @@
-PAPER=cordillera-cycle
+PAPER = cordillera-cycle
+FIGS = locmap.png atm.png multirec-snapshots.png multirec-timeseries.png
 
 all: data figures $(PAPER).tex
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
@@ -11,10 +12,19 @@ data/%.shp: data/of_1574.zip
 data/deglac.zip:
 	cd data && wget http://ftp2.cits.rncan.gc.ca/pub/geott/ess_pubs/214/214399/of_1574.zip
 
-figures: $(patsubst %.py, %.png, $(wildcard figures/cordillera-cycle-*.py))
+figures: $(addprefix figures/$(PAPER)-,$(FIGS))
 
-figures/%.png: figures/%.py
-	cd figures && python2 $*.py
+figures/$(PAPER)-locmap.png: figures/$(PAPER)-locmap.py
+	cd $(<D) && python2 $(<F)
+
+figures/$(PAPER)-atm.png: figures/$(PAPER)-atm.py
+	cd $(<D) && python2 $(<F)
+
+figures/$(PAPER)-multirec-snapshots.png: figures/$(PAPER)-multirec.py
+	cd $(<D) && python2 $(<F)
+
+figures/$(PAPER)-multirec-timeseries.png: figures/$(PAPER)-multirec.py
+	cd $(<D) && python2 $(<F)
 
 clean:
 	rm -f figures/$(PAPER)-*.{pdf,png}
