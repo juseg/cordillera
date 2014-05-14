@@ -1,5 +1,6 @@
 PAPER = cordillera-cycle
-FIGS = locmap.png atm.png multirec-snapshots.png multirec-timeseries.png
+FIGS = locmap.png atm.png duration.png \
+		multirec-snapshots.png multirec-timeseries.png
 
 all: data figures $(PAPER).tex
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
@@ -18,6 +19,9 @@ figures/$(PAPER)-locmap.png: figures/$(PAPER)-locmap.py
 	cd $(<D) && python2 $(<F)
 
 figures/$(PAPER)-atm.png: figures/$(PAPER)-atm.py
+	cd $(<D) && python2 $(<F)
+
+figures/$(PAPER)-duration.png: figures/$(PAPER)-duration.py
 	cd $(<D) && python2 $(<F)
 
 figures/$(PAPER)-multirec-snapshots.png: figures/$(PAPER)-multirec.py
