@@ -112,10 +112,10 @@ ts_ax1.yaxis.set_label_coords(-5/200., 0.5)
 ts_ax2.yaxis.set_label_coords(-5/200., 0.5)
 ts_ax2.set_xlabel('model time (kyr)')
 ts_ax2.legend(loc='upper left', ncol=2)
-ts_fig.savefig('cordillera-cycle-multirec-timeseries.png')
+ts_fig.savefig('multirec-timeseries.png')
 
 # add colorbar and save snapshots
 print 'saving snapshots...'
 #cb = sn_fig.colorbar(im, ax.cax, orientation='horizontal')
 #cb.set_label(r'ice surface velocity ($m\,a^{-1}$)')
-sn_fig.savefig('cordillera-cycle-multirec-snapshots.png')
+sn_fig.savefig('multirec-snapshots.png')

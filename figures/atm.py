@@ -49,4 +49,4 @@ cb = fig.colorbar(im, ax.cax, orientation='horizontal', ticks=[0, 2, 4, 6])
 cb.set_label('July std. dev.')
 
 # save
-fig.savefig('cordillera-cycle-atm')
+fig.savefig('atm')

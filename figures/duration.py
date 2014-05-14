@@ -33,5 +33,5 @@ ax.contour(icecover, [1e-6], colors='k', linewidths=1.0)
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
 cb.set_label('Duration of ice cover (kyr)')
-fig.savefig('cordillera-cycle-duration.png')
+fig.savefig('duration.png')
 nc.close()

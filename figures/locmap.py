@@ -69,4 +69,4 @@ rect = mplt.Rectangle((-2500e3, 0), 1500e3, 3000e3,
                       ec='k', fc='none', lw=2.0*bwu, zorder=10)
 ax.add_patch(rect)
 
-fig.savefig('cordillera-cycle-locmap')
+fig.savefig('locmap')

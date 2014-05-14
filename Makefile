@@ -13,23 +13,23 @@ data/%.shp: data/of_1574.zip
 data/deglac.zip:
 	cd data && wget http://ftp2.cits.rncan.gc.ca/pub/geott/ess_pubs/214/214399/of_1574.zip
 
-figures: $(addprefix figures/$(PAPER)-,$(FIGS))
+figures: $(addprefix figures/,$(FIGS))
 
-figures/$(PAPER)-locmap.png: figures/$(PAPER)-locmap.py
+figures/locmap.png: figures/locmap.py
 	cd $(<D) && python2 $(<F)
 
-figures/$(PAPER)-atm.png: figures/$(PAPER)-atm.py
+figures/atm.png: figures/atm.py
 	cd $(<D) && python2 $(<F)
 
-figures/$(PAPER)-duration.png: figures/$(PAPER)-duration.py
+figures/duration.png: figures/duration.py
 	cd $(<D) && python2 $(<F)
 
-figures/$(PAPER)-multirec-snapshots.png: figures/$(PAPER)-multirec.py
+figures/multirec-snapshots.png: figures/multirec.py
 	cd $(<D) && python2 $(<F)
 
-figures/$(PAPER)-multirec-timeseries.png: figures/$(PAPER)-multirec.py
+figures/multirec-timeseries.png: figures/multirec.py
 	cd $(<D) && python2 $(<F)
 
 clean:
-	rm -f figures/$(PAPER)-*.{pdf,png}
+	rm -f $(addprefix figures/,$(FIGS))
 	latexmk -CA
