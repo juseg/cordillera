@@ -4,7 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
-from matplotlib.colors import Normalize
+from matplotlib.colors import BoundaryNorm, Normalize
 from iceplot import plot as iplt
 
 # file path
@@ -26,18 +26,24 @@ print 'reading extra output...'
 nc = Dataset(extra_file % 'grip')
 time = nc.variables['time']
 mask = nc.variables['mask']
+topg = nc.variables['topg']
 
 # compute deglaciation age
 print 'computing deglaciation age...'
-deglacage = np.ma.masked_all_like(mask[0].T)
+deglacage = np.ones_like(mask[0].T)*120.0
 for i, t in enumerate(time[:]/ka):
-    deglacage = np.ma.where(mask[i].T == 2, -t, deglacage)
+    print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
+    deglacage = np.where(mask[i].T == 2, -t, deglacage)
 
 # plot
-im = plt.imshow(deglacage, cmap='spectral_r')
+ages = [0, 8, 10, 12, 14, 16, 18, 20, 22, 80]
+im = ax.imshow(topg[0].T, cmap='Greys', norm=Normalize(-3000, 6000))
+cs = ax.contourf(deglacage, levels=ages, cmap='Reds_r', alpha=0.75,
+                  norm=BoundaryNorm(ages, 256))
+ax.contour(deglacage, levels=ages, colors='k', linewidths=0.2)
 
 # add colorbar and save
-cb = fig.colorbar(im, ax.cax)
+cb = fig.colorbar(cs, ax.cax, ticks=ages)
 cb.set_label('Deglaciation age (kyr)')
 fig.savefig('deglac.png')
 nc.close()
