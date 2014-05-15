@@ -27,6 +27,12 @@ figures/deglac.png: figures/deglac.py
 figures/duration.png: figures/duration.py
 	cd $(<D) && python2 $(<F)
 
+figures/hires-snapshots.png: figures/hires.py
+	cd $(<D) && python2 $(<F)
+
+figures/hires-timeseries.png: figures/hires.py
+	cd $(<D) && python2 $(<F)
+
 figures/multirec-snapshots.png: figures/multirec.py
 	cd $(<D) && python2 $(<F)
 
