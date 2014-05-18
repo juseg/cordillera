@@ -6,32 +6,25 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from iceplot import plot as iplt
-
-# file paths
-dt_file = '/home/julien/pism/input/dt/%s-3222-cool580.nc'  # % rec
-run_path = '/home/julien/pism/output/cordillera-narr-20km-bl/' \
-           '%s3222cool580+ccyc+till1545/y0120000'  # % rec
-
-# unit conversion
-mm = 1/25.4
-ka = 365.0 * 24 * 60 * 60 * 1000
+from paperglobals import *
 
 # records used
+res = '20km'
 records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
 labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
 colors = ['b', 'g', 'r', 'c', 'm', 'y']
 
 # initialize time-series figure
 figw, figh = 122.51, 80.01
-ts_fig = mplt.figure(2, (figw*mm, figh*mm))
+ts_fig = mplt.figure(2, (figw*in2mm, figh*in2mm))
 ts_ax1 = ts_fig.add_axes([10/figw, 45/figh, 110/figw, 32.5/figh])
 ts_ax2 = ts_fig.add_axes([10/figw, 10/figh, 110/figw, 32.5/figh])
 
 # initialize snapshots figure
 rect = [2.5/figw, 2.5/figh, 110/figw, 95/figh]
-sn_fig = iplt.gridfigure((17.5, 35.0), (3, len(records)), axes_pad=2.5*mm,
+sn_fig = iplt.gridfigure((17.5, 35.0), (3, len(records)), axes_pad=2.5*in2mm,
                          cbar_mode='none', cbar_location='bottom',
-                         cbar_pad=2.5*mm, cbar_size=5*mm)
+                         cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 sn_grid = sn_fig.grid
 
 # loop on records
@@ -40,40 +33,35 @@ for i, rec in enumerate(records):
     # load forcing time series
     print 'reading %s temperature offset time series...' % rec
     nc = Dataset(dt_file % rec)
-    dt_time = nc.variables['time'][:]
+    dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
 
     # load output time series
     print 'reading %s ice volume time series...' % rec
-    nc = Dataset(run_path % rec + '-ts.nc')
-    ts_time = nc.variables['time'][:]
+    nc = Dataset(run_path % (res, rec) + '-ts.nc')
+    ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
 
     # locate snapshot times using time series
     snapindexes = [
-        #np.ma.argmin(np.ma.array(ts_ivol, mask=(ts_time<-115*ka)+(-110*ka<ts_time))),  # Eem
-        #np.ma.argmax(np.ma.array(ts_ivol, mask=(ts_time<-100*ka)+(-80*ka<ts_time))),  # 80ka
-        np.ma.argmax(np.ma.array(ts_ivol, mask=(ts_time<-80*ka)+(-40*ka<ts_time))),  # MIS4
-        np.ma.argmin(np.ma.array(ts_ivol, mask=(ts_time<-60*ka)+(-20*ka<ts_time))),  # MIS3
-        np.ma.argmax(np.ma.array(ts_ivol, mask=(ts_time<-40*ka)+(-00*ka<ts_time))),  # MIS2
-        #np.ma.argmax(np.ma.array(ts_ivol, mask=(ts_time<-13*ka)+(-11*ka<ts_time))),  # YD
-        #np.ma.argmin(np.ma.array(ts_ivol, mask=(ts_time<-20*ka)+(-00*ka<ts_time))),  # Holo
-    ]
+        bounded_argmax(ts_ivol, ts_time, -80, -40),  # MIS4
+        bounded_argmin(ts_ivol, ts_time, -60, -20),  # MIS3
+        bounded_argmax(ts_ivol, ts_time, -40, -00)]  # MIS2
     snaptimes = ts_time[snapindexes]
 
     # plot time series
     print 'plotting %s time series...' % rec
-    ts_ax1.plot(dt_time/1e3, dt_temp, color=colors[i], label=rec)
-    ts_ax2.plot(ts_time/ka, ts_ivol, color=colors[i], label=rec)
-    ts_ax2.plot(snaptimes/ka, ts_ivol[snapindexes], color=colors[i], ls=' ',
+    ts_ax1.plot(dt_time, dt_temp, color=colors[i], label=labels[i])
+    ts_ax2.plot(ts_time, ts_ivol, color=colors[i], label=labels[i])
+    ts_ax2.plot(snaptimes, ts_ivol[snapindexes], color=colors[i], ls=' ',
                 marker='o', mew=0.0)
 
     # load extra output
     print 'reading %s extra output...' % rec
-    nc = Dataset(run_path % rec + '-extra.nc')
-    time = nc.variables['time'][:]
+    nc = Dataset(run_path % (res, rec) + '-extra.nc')
+    time = nc.variables['time'][:]*s2ka
     thk = nc.variables['thk']
 
     # round snapshot times to nearest slice
@@ -83,7 +71,7 @@ for i, rec in enumerate(records):
 
     # plot maps
     for j, t in enumerate(snapindexes):
-        print 'plotting %s at %s...' % (rec, snaptimes[j]/ka)
+        print 'plotting %s at %s...' % (rec, snaptimes[j])
         ax = sn_grid[i+j*len(records)]
         mplt.sca(ax)
         iplt.bedtopoimage(nc, t)
@@ -92,7 +80,7 @@ for i, rec in enumerate(records):
                              linewidths=0.2)
         iplt.surftopocontour(nc, t, levels=range(1000, 5000, 1000))
         #im = iplt.surfvelimage(nc, t, alpha=0.5)
-        mplt.text(13/15., 28/30., '%s kyr' % (snaptimes[j]/ka),
+        mplt.text(13/15., 28/30., '%s kyr' % (snaptimes[j]),
                  va='top', ha='right',
                  bbox=dict(ec='none', fc='w', alpha=0.75),
                  transform=ax.transAxes)
