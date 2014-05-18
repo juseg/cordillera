@@ -12,6 +12,8 @@ s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 # file paths
 pism_dir = '/home/julien/pism/'
+atm_file = pism_dir + 'input/atm/cordillera-narr-%s-bl.nc'  # % res
+boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'  # % res
 dt_file = pism_dir + 'input/dt/%s-3222-cool580.nc'  # % rec
 run_path = pism_dir + 'output/cordillera-narr-%s-bl/' \
                       '%s3222cool580+ccyc+till1545/y0120000'  # % res, rec
@@ -31,9 +33,22 @@ markers = {'grip':    's',   'ngrip': 'D',
 
 
 # functions
+def annotate(ax, s):
+    return ax.text(13/15., 28/30., s,
+                   va='top', ha='right',
+                   bbox=dict(ec='k', fc='w', alpha=1.0),
+                   transform=ax.transAxes)
+
+
 def bounded_argmin(a, coord, bmin, bmax):
     return np.ma.argmin(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
 def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
+
+
+def remove_ticks(grid):
+    for ax in grid:
+        ax.xaxis.set_visible(False)
+        ax.yaxis.set_visible(False)
