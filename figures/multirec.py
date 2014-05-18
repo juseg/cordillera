@@ -8,11 +8,9 @@ from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from iceplot import plot as iplt
 from paperglobals import *
 
-# records used
+# simulations used
 res = '20km'
 records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
-labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
-colors = ['b', 'g', 'r', 'c', 'm', 'y']
 
 # initialize time-series figure
 figw, figh = 122.51, 80.01
@@ -53,10 +51,10 @@ for i, rec in enumerate(records):
 
     # plot time series
     print 'plotting %s time series...' % rec
-    ts_ax1.plot(dt_time, dt_temp, color=colors[i], label=labels[i])
-    ts_ax2.plot(ts_time, ts_ivol, color=colors[i], label=labels[i])
-    ts_ax2.plot(snaptimes, ts_ivol[snapindexes], color=colors[i], ls=' ',
-                marker='o', mew=0.0)
+    ts_ax1.plot(dt_time, dt_temp, color=colors[rec])
+    ts_ax2.plot(ts_time, ts_ivol, color=colors[rec])
+    ts_ax2.plot(snaptimes, ts_ivol[snapindexes], ls=' ', mew=0.2, ms=4,
+                color=colors[rec], marker=markers[rec], label=labels[rec])
 
     # load extra output
     print 'reading %s extra output...' % rec
@@ -95,8 +93,8 @@ ts_ax1.set_ylim(-10.0, 2.0)
 ts_ax1.xaxis.set_ticklabels([])
 ts_ax1.set_ylabel('temperature offset (K)')
 ts_ax2.set_ylabel(r'ice volume (10$^6$ km$^3$)')
-ts_ax1.yaxis.set_label_coords(-5/200., 0.5)
-ts_ax2.yaxis.set_label_coords(-5/200., 0.5)
+ts_ax1.yaxis.set_label_coords(-0.05, 0.5)
+ts_ax2.yaxis.set_label_coords(-0.05, 0.5)
 ts_ax2.set_xlabel('model time (kyr)')
 ts_ax2.legend(loc='upper left', ncol=2)
 ts_fig.savefig('multirec-timeseries.png')
