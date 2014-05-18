@@ -8,18 +8,17 @@ from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from iceplot import plot as iplt
 
 # file paths
-dt_file = '/home/julien/pism/input/dt/%s-cool600.nc'  # % rec
-run_path = '/home/julien/pism/output/cordillera-narr-10km-bl/' \
-           '%scool600+pddc+pddref00+mt8+lc+nofloat+part' \
-           '+gflx70+ssa+pp+nfrac02+till1545/y0120000'  # % rec
+dt_file = '/home/julien/pism/input/dt/%s-3222-cool580.nc'  # % rec
+run_path = '/home/julien/pism/output/cordillera-narr-20km-bl/' \
+           '%s3222cool580+ccyc+till1545/y0120000'  # % rec
 
 # unit conversion
 mm = 1/25.4
 ka = 365.0 * 24 * 60 * 60 * 1000
 
 # records used
-records = ['grip', 'epica', 'vostok', 'odp1012', 'odp1020']
-labels = ['GRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
+records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
+labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
 colors = ['b', 'g', 'r', 'c', 'm', 'y']
 
 # initialize time-series figure
@@ -39,7 +38,7 @@ sn_grid = sn_fig.grid
 for i, rec in enumerate(records):
 
     # load forcing time series
-    print 'reading %s temperature offset tme series...' % rec
+    print 'reading %s temperature offset time series...' % rec
     nc = Dataset(dt_file % rec)
     dt_time = nc.variables['time'][:]
     dt_temp = nc.variables['delta_T'][:]
@@ -92,7 +91,7 @@ for i, rec in enumerate(records):
         iplt.surftopocontour(nc, t, levels=range(250, 5000, 250),
                              linewidths=0.2)
         iplt.surftopocontour(nc, t, levels=range(1000, 5000, 1000))
-        im = iplt.surfvelimage(nc, t, alpha=0.5)
+        #im = iplt.surfvelimage(nc, t, alpha=0.5)
         mplt.text(13/15., 28/30., '%s kyr' % (snaptimes[j]/ka),
                  va='top', ha='right',
                  bbox=dict(ec='none', fc='w', alpha=0.75),
