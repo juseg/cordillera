@@ -3,6 +3,7 @@
 
 import numpy as np
 import brewer2mpl
+from netCDF4 import Dataset
 from matplotlib.colors import LinearSegmentedColormap
 
 
@@ -67,6 +68,24 @@ def bounded_argmin(a, coord, bmin, bmax):
 def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
+
+def get_mis_times(filename):
+    """Return MIS indexes and times computed from output timeseries"""
+
+    # load output time series
+    nc = Dataset(filename)
+    ts_time = nc.variables['time'][:]*s2ka
+    ts_ivol = nc.variables['ivol'][:]*1e-15
+    nc.close()
+
+    # locate snapshot times using time series
+    mis = np.array([
+        bounded_argmax(ts_ivol, ts_time, -80, -40),  # MIS4
+        bounded_argmin(ts_ivol, ts_time, -60, -20),  # MIS3
+        bounded_argmax(ts_ivol, ts_time, -40, -00)])  # MIS2
+
+    # return indices and time values
+    return mis, ts_time[mis]
 
 def remove_ticks(grid):
     for ax in grid:

@@ -25,9 +25,16 @@ sn_fig = iplt.gridfigure((17.5, 35.0), (3, len(records)), axes_pad=2.5*in2mm,
                          cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 sn_grid = sn_fig.grid
 
-# loop on records
-mis = np.zeros((len(records), 3))
+# get MIS indexes from TS file
+mis_idces = np.zeros((len(records), 3), dtype=int)
+mis_times = np.zeros((len(records), 3), dtype=int)
+
+# loop on records[i]
 for i, rec in enumerate(records):
+
+    # get MIS times
+    print 'computing %s glacial extrema from output time series...' % rec
+    mis_idces[i], mis_times[i] = get_mis_times(run_path % (res, rec) + '-ts.nc')
 
     # load forcing time series
     print 'reading %s temperature offset time series...' % rec
@@ -43,19 +50,11 @@ for i, rec in enumerate(records):
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
 
-    # locate snapshot times using time series
-    snapindexes = [
-        bounded_argmax(ts_ivol, ts_time, -80, -40),  # MIS4
-        bounded_argmin(ts_ivol, ts_time, -60, -20),  # MIS3
-        bounded_argmax(ts_ivol, ts_time, -40, -00)]  # MIS2
-    snaptimes = ts_time[snapindexes]
-    mis[i] = snaptimes
-
     # plot time series
     print 'plotting %s time series...' % rec
     ts_ax1.plot(dt_time, dt_temp, color=colors[rec])
     ts_ax2.plot(ts_time, ts_ivol, color=colors[rec])
-    ts_ax2.plot(snaptimes, ts_ivol[snapindexes], ls=' ', mew=0.2, ms=4,
+    ts_ax2.plot(mis_times[i], ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
                 color=colors[rec], marker=markers[rec], label=labels[rec])
 
     # load extra output
@@ -66,7 +65,7 @@ for i, rec in enumerate(records):
 
     # round snapshot times to nearest slice
     print 'rounding %s snapshot times...' % rec
-    snapindexes = [(np.abs(time[:]-t)).argmin() for t in snaptimes]
+    snapindexes = [(np.abs(time[:]-t)).argmin() for t in mis_times[i]]
     snaptimes = time[snapindexes]
 
     # plot maps
@@ -89,11 +88,11 @@ for i, rec in enumerate(records):
     nc.close()
 
 # mark MIS stages
-mismin = mis.min(axis=0)
-mismax = mis.max(axis=0)
+mistmin = mis_times.min(axis=0)
+mistmax = mis_times.max(axis=0)
 for i in range(3):
-    print 'MIS %i between %f and %f kyr' % (4-i, -mismin[i], -mismax[i])
-    ts_ax2.axvspan(mismin[i], mismax[i], color='0.75', lw=0.0)
+    print 'MIS %i between %f and %f kyr' % (4-i, -mistmin[i], -mistmax[i])
+    ts_ax2.axvspan(mistmin[i], mistmax[i], color='0.75', lw=0.0)
 
 # set axes properties and save time series
 print 'saving time series...'
