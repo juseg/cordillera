@@ -103,6 +103,18 @@ def draw_boot_topo(grid, res):
     nc.close()
     return im
 
+
+def draw_coastline(grid, res):
+    nc = Dataset(boot_file % res)
+    x = nc.variables['x']
+    y = nc.variables['y']
+    topg = nc.variables['topg']
+    for ax in grid:
+        cs = ax.contour(x, y, topg[:].T, levels=[0.0], colors='k')
+    nc.close()
+    return cs
+
+
 def remove_ticks(grid):
     for ax in grid:
         ax.xaxis.set_visible(False)
