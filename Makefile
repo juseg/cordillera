@@ -1,7 +1,5 @@
 PAPER = cordillera-cycle
-FIGS = locmap.png atm.png deglac.png duration.png \
-		multirec.png timeseries.png \
-		hires-snapshots.png hires-timeseries.png
+FIGS = atm.png deglac.png duration.png locmap.png multirec.png timeseries.png
 
 all: data figures $(PAPER).tex
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
@@ -17,28 +15,7 @@ data/of_1574.zip:
 
 figures: $(addprefix figures/,$(FIGS))
 
-figures/locmap.png: figures/locmap.py
-	cd $(<D) && python2 $(<F)
-
-figures/atm.png: figures/atm.py
-	cd $(<D) && python2 $(<F)
-
-figures/deglac.png: figures/deglac.py
-	cd $(<D) && python2 $(<F)
-
-figures/duration.png: figures/duration.py
-	cd $(<D) && python2 $(<F)
-
-figures/hires-snapshots.png: figures/hires.py
-	cd $(<D) && python2 $(<F)
-
-figures/hires-timeseries.png: figures/hires.py
-	cd $(<D) && python2 $(<F)
-
-figures/multirec.png: figures/multirec.py
-	cd $(<D) && python2 $(<F)
-
-figures/timeseries.png: figures/timeseries.py
+figures/%.png: figures/%.py
 	cd $(<D) && python2 $(<F)
 
 clean:

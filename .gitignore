@@ -1,3 +1,6 @@
+# Temporary files
+*~
+
 # Files produced by latex
 cordillera-cycle.aux
 cordillera-cycle.fdb_latexmk
@@ -13,5 +16,6 @@ data/ice*.shx
 data/of_1574.zip
 
 # Figures
+figures/*.pyc
 figures/*.pdf
 figures/*.png
