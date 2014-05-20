@@ -4,7 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
-from matplotlib.colors import LogNorm, Normalize
+from matplotlib.colors import BoundaryNorm
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
 
@@ -24,28 +24,36 @@ remove_ticks(grid)
 
 # plot temperature
 print 'plotting temperature maps...'
-im = grid[0].imshow(temp[0].T-273.15, cmap='Spectral_r', norm=Normalize(-30, 30))
-im = grid[3].imshow(temp[6].T-273.15, cmap='Spectral_r', norm=Normalize(-30, 30))
+levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]
+norm=BoundaryNorm(levs, 256)
+for i in range(2):
+    im = grid[0+3*i].contourf(temp[6*i].T-273.15, cmap='RdBu_r',
+                              levels=levs, norm=norm)
 cax = fig.add_axes([2.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
-cb = fig.colorbar(im, cax, orientation='horizontal', ticks=[-30, 0, 30])
+cb = fig.colorbar(im, cax, orientation='horizontal')
 cb.set_label(u'Temperature (°C)')
 
 # plot precipitation
 print 'plotting precipitation maps...'
-im = grid[1].imshow(prec[0].T*1000/12., cmap='YlGnBu', norm=LogNorm(10, 1000))
-im = grid[4].imshow(prec[6].T*1000/12., cmap='YlGnBu', norm=LogNorm(10, 1000))
+levs = np.logspace(1/3., 3, 9).round(0)
+#levs = [2, 5, 10, 20, 50, 100, 200, 500, 1000]
+norm = BoundaryNorm(levs, 256)
+for i in range(2):
+    im = grid[1+3*i].contourf(prec[6*i].T*1000/12., cmap='Greens',
+                              levels=levs, norm=norm)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
-cb = fig.colorbar(im, cax, orientation='horizontal', ticks=[20, 100, 400],
-                  format='%g')
+cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
 cb.set_label(r'Precipitation (mm)')
-
 
 # plot standard deviation
 print 'plotting standard deviation maps...'
-im = grid[2].imshow(stdv[0].T, cmap='RdPu', norm=Normalize(0, 12))
-im = grid[5].imshow(stdv[6].T, cmap='RdPu', norm=Normalize(0, 12))
+levs = np.linspace(0.0, 12.0, 9)
+norm = BoundaryNorm(levs, 256)
+for i in range(2):
+    im = grid[2+3*i].contourf(stdv[6*i].T, cmap='Reds',
+                              levels=levs, norm=norm)
 cax = fig.add_axes([57.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
-cb = fig.colorbar(im, cax, orientation='horizontal', ticks=[0, 6, 12])
+cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[2::2])
 cb.set_label(u'PDD SD (°C)')
 nc.close()
 
@@ -57,9 +65,8 @@ for ax in grid:
 nc.close()
 
 # annotate
-for i in range(3):
-    annotate(grid[i+0], 'January')
-    annotate(grid[i+3], 'July')
+annotate(grid[2], 'January')
+annotate(grid[5], 'July')
 
 # save
 fig.savefig('atm')
