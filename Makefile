@@ -7,7 +7,7 @@ all: data figures $(PAPER).tex
 data: data/ice145k.shp
 
 data/%.shp: data/of_1574.zip
-	cd data && unzip -j of_1574.zip data/shp/$*.{dbf,shp,shx}  && touch $*.{dbf,shp,shx}
+	cd data && unzip -j of_1574.zip data/shp/ice??k.{dbf,shp,shx} && touch ice??k.{dbf,shp,shx}
 
 data/of_1574.zip:
 	mkdir data

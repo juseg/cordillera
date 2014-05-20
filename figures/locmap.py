@@ -5,6 +5,7 @@ from matplotlib import pyplot as mplt
 import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
 import cartopy.feature as cfeature
+from paperglobals import *
 
 in2mm = 1/25.4
 pt2mm = 72*in2mm
@@ -53,11 +54,24 @@ ax.add_feature(cfeature.NaturalEarthFeature(
 #    category='cultural', name='admin_1_states_provinces_lines', scale=scale,
 #    edgecolor='#0978ab', facecolor='#f5f4f2', lw=1.0*bwu))
 
-# add Dyke 2005 16.8 ka deglaciation outline
-for rec in shpreader.Reader('../data/ice145k.shp').records():
-    if rec.attributes['SYMB'] == 'ICE':
-        ax.add_geometries(rec.geometry, proj,
-                          edgecolor='#b00000', facecolor='none', lw=2.0*bwu)
+# add Dyke 2005 deglacial outlines
+# available ages: 18.0, 17.5, 17.0, 16.5, 16.0, 15.5, 15.0, 14.5, 14.0,
+#                 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 10.5, 10.25, 10.0
+# calibrate ages: 21.4, 20.8, 20.2, 19.65, 19.1, 18.5, 17.9, 17.35, 16.8,
+#                 16.2, 15.6, 14.8, 14.1, 13.45, 13.0, 12.7, 12.0, 11.45
+raw_ages = [18.0, 17.0, 16.0, 15.0, 14.0, 13.0, 12.0, 11.0, 10.0]
+cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8, 15.6, 14.1, 13.0, 11.45]
+cmap = mplt.get_cmap('Reds')
+amax = cal_ages[0]
+amin = cal_ages[-1]
+colors = cmap([(a-amin)/(amax-amin) for a in cal_ages])
+for age, color in zip(raw_ages, colors):
+    filename = '../data/ice%ik.shp' % age
+    print 'reading %s ...' % filename
+    for rec in shpreader.Reader(filename).records():
+        if rec.attributes['SYMB'] == 'ICE':
+            ax.add_geometries(rec.geometry, proj,
+                              edgecolor='none', facecolor=color)
 
 # add graticules
 ax.add_feature(cfeature.NaturalEarthFeature(
