@@ -7,7 +7,7 @@ from matplotlib import pyplot as mplt
 from paperglobals import *
 
 # simulations used
-res = '20km'
+res = '10km'
 records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
 
 # initialize time-series figure
@@ -42,6 +42,16 @@ for i, rec in enumerate(records):
     ax2.plot(ts_time, ts_ivol, color=colors[rec])
     ax2.plot(mis_times[i], ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
              color=colors[rec], marker=markers[rec], label=labels[rec])
+
+# plot high resolution simu for comparison
+res = '5km'
+rec = 'grip'
+print 'plotting hi-res %s time series...' % rec
+nc = Dataset(run_path % (res, rec) + '-ts.nc')
+ts_time = nc.variables['time'][:]*s2ka
+ts_ivol = nc.variables['ivol'][:]*1e-15
+nc.close()
+ax2.plot(ts_time, ts_ivol, color=colors[rec], dashes=(1, 1))
 
 # mark MIS stages
 mistmin = mis_times.min(axis=0)
