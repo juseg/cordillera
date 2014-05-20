@@ -4,7 +4,7 @@
 import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
-from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.colors import LinearSegmentedColormap, Normalize
 
 
 # unit conversion
@@ -53,14 +53,7 @@ markers = {'grip':    's',   'ngrip': 'D',
            'odp1012': 'v', 'odp1020': '^'}
 
 
-# functions
-def annotate(ax, s):
-    return ax.text(13/15., 28/30., s,
-                   va='top', ha='right',
-                   bbox=dict(ec='k', fc='w', alpha=1.0),
-                   transform=ax.transAxes)
-
-
+# analysis functions
 def bounded_argmin(a, coord, bmin, bmax):
     return np.ma.argmin(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
@@ -86,6 +79,29 @@ def get_mis_times(filename):
 
     # return indices and time values
     return mis, ts_time[mis]
+
+
+# plotting functions
+def annotate(ax, s):
+    return ax.text(13/15., 28/30., s,
+                   va='top', ha='right',
+                   bbox=dict(ec='k', fc='w', alpha=1.0),
+                   transform=ax.transAxes)
+
+def draw_boot_topo(grid, res):
+    nc = Dataset(boot_file % res)
+    x = nc.variables['x']
+    y = nc.variables['y']
+    topg = nc.variables['topg']
+    w = (3*x[0]-x[1])/2
+    e = (3*x[-1]-x[-2])/2
+    n = (3*y[0]-y[1])/2
+    s = (3*y[-1]-y[-2])/2
+    for ax in grid:
+        im = ax.imshow(topg[:].T, cmap='Greys', norm=Normalize(-3000, 6000),
+                       extent=(w, e, n, s))
+    nc.close()
+    return im
 
 def remove_ticks(grid):
     for ax in grid:

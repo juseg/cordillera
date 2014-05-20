@@ -21,18 +21,7 @@ fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
                       cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
 # plot topographic map
-nc = Dataset(boot_file % res)
-x = nc.variables['x']
-y = nc.variables['y']
-topg = nc.variables['topg']
-w = (3*x[0]-x[1])/2
-e = (3*x[-1]-x[-2])/2
-n = (3*y[0]-y[1])/2
-s = (3*y[-1]-y[-2])/2
-for ax in fig.grid:
-    ax.imshow(topg[:].T, cmap='Greys', norm=Normalize(-3000, 6000),
-              extent=(w, e, n, s))
-nc.close()
+draw_boot_topo(fig.grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
