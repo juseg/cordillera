@@ -26,6 +26,7 @@ sn_fig = iplt.gridfigure((17.5, 35.0), (3, len(records)), axes_pad=2.5*in2mm,
 sn_grid = sn_fig.grid
 
 # loop on records
+mis = np.zeros((len(records), 3))
 for i, rec in enumerate(records):
 
     # load forcing time series
@@ -48,6 +49,7 @@ for i, rec in enumerate(records):
         bounded_argmin(ts_ivol, ts_time, -60, -20),  # MIS3
         bounded_argmax(ts_ivol, ts_time, -40, -00)]  # MIS2
     snaptimes = ts_time[snapindexes]
+    mis[i] = snaptimes
 
     # plot time series
     print 'plotting %s time series...' % rec
@@ -85,6 +87,13 @@ for i, rec in enumerate(records):
 
     # close extra file
     nc.close()
+
+# mark MIS stages
+mismin = mis.min(axis=0)
+mismax = mis.max(axis=0)
+for i in range(3):
+    print 'MIS %i between %f and %f kyr' % (4-i, -mismin[i], -mismax[i])
+    ts_ax2.axvspan(mismin[i], mismax[i], color='0.75', lw=0.0)
 
 # set axes properties and save time series
 print 'saving time series...'
