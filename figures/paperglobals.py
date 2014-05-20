@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import numpy as np
+import brewer2mpl
 from matplotlib.colors import LinearSegmentedColormap
 
 
@@ -20,13 +21,32 @@ run_path = pism_dir + 'output/cordillera-narr-%s-bl/' \
 
 
 # colors
-# redcm = LinearSegmentedColormap.from_list('reds', [darkred, 'w'])
+bmap = brewer2mpl.get_map('Paired', 'qualitative', 6)
+cols = bmap.mpl_colors
+lightblue, darkblue = cols[0:2]
+lightgreen, darkgreen = cols[2:4]
+lightred, darkred = cols[4:6]
+
+
+# alternative for controlled brightness
+#rbmap = brewer2mpl.get_map('Reds', 'sequential', 9)
+#bbmap = brewer2mpl.get_map('Blues', 'sequential', 9)
+#gbmap = brewer2mpl.get_map('Greens', 'sequential', 9)
+#rcols = rbmap.mpl_colors
+#gcols = gbmap.mpl_colors
+#bcols = bbmap.mpl_colors
+#lightred, darkred = rcols[3], rcols[6]
+#lightblue, darkblue = bcols[3], bcols[6]
+#lightgreen, darkgreen = gcols[3], gcols[6]
+
+
+# record properties
 labels = {'grip':    'GRIP',       'ngrip': 'NGRIP',
           'epica':   'EPICA',     'vostok': 'Vostok',
           'odp1012': 'ODP 1012', 'odp1020': 'ODP 1020'}
-colors = {'grip':    'b',   'ngrip': 'c',
-          'epica':   'r',  'vostok': 'm',
-          'odp1012': 'g', 'odp1020': 'y'}
+colors = {'grip':    darkblue,    'ngrip': lightblue,
+          'epica':   darkred,    'vostok': lightred,
+          'odp1012': darkgreen, 'odp1020': lightgreen}
 markers = {'grip':    's',   'ngrip': 'D',
            'epica':   'o',  'vostok': 'h',
            'odp1012': 'v', 'odp1020': '^'}
