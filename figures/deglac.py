@@ -6,44 +6,70 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
 from iceplot import plot as iplt
+from paperglobals import *
 
-# file path
-extra_file = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-             '%scool580+pddc+pddref00+mt8+lc+nofloat+part' \
-             '+gflx70+ssa+pp+nfrac02+till1545/full-extra.nc'
-
-# unit conversion
-mm = 1/25.4
-ka = 365.0 * 24 * 60 * 60 * 1000
+# parameters
+res = '10km'
+records = ['grip', 'vostok']
+ages = range(8, 23, 1)
+levs = [0] + ages
+cmap = plt.get_cmap('Spectral_r')
+cmap.set_over('g')
 
 # initialize figure
-fig = iplt.gridfigure((62.5, 125), (1, 1), axes_pad=2.5*mm,
-                      cbar_mode='single', cbar_pad=2.5*mm, cbar_size=5*mm)
-ax = plt.axes(fig.grid[0])
+fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
+                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
-# read extra output
-print 'reading extra output...'
-nc = Dataset(extra_file % 'grip')
-time = nc.variables['time']
-mask = nc.variables['mask']
+# plot topographic map
+nc = Dataset(boot_file % res)
+x = nc.variables['x']
+y = nc.variables['y']
 topg = nc.variables['topg']
+w = (3*x[0]-x[1])/2
+e = (3*x[-1]-x[-2])/2
+n = (3*y[0]-y[1])/2
+s = (3*y[-1]-y[-2])/2
+for ax in fig.grid:
+    ax.imshow(topg[:].T, cmap='Greys', norm=Normalize(-3000, 6000),
+              extent=(w, e, n, s))
+nc.close()
 
-# compute deglaciation age
-print 'computing deglaciation age...'
-deglacage = np.ones_like(mask[0].T)*120.0
-for i, t in enumerate(time[:]/ka):
-    print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-    deglacage = np.where(mask[i].T == 2, -t, deglacage)
+# loop on records
+for i, rec in enumerate(records):
+    ax = fig.grid[i]
 
-# plot
-ages = [0, 8, 10, 12, 14, 16, 18, 20, 22, 80]
-im = ax.imshow(topg[0].T, cmap='Greys', norm=Normalize(-3000, 6000))
-cs = ax.contourf(deglacage, levels=ages, cmap='Reds_r', alpha=0.75,
-                  norm=BoundaryNorm(ages, 256))
-ax.contour(deglacage, levels=ages, colors='k', linewidths=0.2)
+    # read extra output
+    print 'reading %s extra output...' % rec
+    nc = Dataset(run_path % (res, rec) + '-extra.nc')
+    x = nc.variables['x']
+    y = nc.variables['y']
+    time = nc.variables['time']
+    mask = nc.variables['mask']
+
+    # compute deglaciation age
+    print 'computing deglaciation age...'
+    wasicefree = np.ones_like(mask[0].T)*0
+    readvance = np.ones_like(mask[0].T)*0
+    deglacage = np.ones_like(mask[0].T)*-1.0
+    for i, t in enumerate(time[:]*s2ka):
+        print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
+        icy = (mask[i].T == 2)
+        if -14.0 < t < -10.0:
+            readvance = np.where(icy*wasicefree, 1, readvance)
+            wasicefree = 1-icy
+        deglacage = np.where(icy, -t, deglacage)
+
+    # plot
+    cs = ax.contourf(x, y, deglacage, levels=levs, cmap=cmap, alpha=0.75,
+                     norm=BoundaryNorm(levs, 256), extend='max')
+    ax.contour(x, y, deglacage, levels=levs, colors='k', linewidths=0.25)
+    ax.contourf(x, y, readvance, levels=[0.5, 1.5], colors='none', hatches='//')
+    ax.contour(x, y, readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
+    ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5, zorder=10)
 
 # add colorbar and save
+print 'saving deglac...'
 cb = fig.colorbar(cs, ax.cax, ticks=ages)
 cb.set_label('Deglaciation age (kyr)')
-fig.savefig('deglac.png')
+fig.savefig('deglac')
 nc.close()
