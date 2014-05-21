@@ -46,15 +46,11 @@ lightred, darkred = cols[4:6]
 
 
 # record properties
-labels = {'grip':    'GRIP',       'ngrip': 'NGRIP',
-          'epica':   'EPICA',     'vostok': 'Vostok',
-          'odp1012': 'ODP 1012', 'odp1020': 'ODP 1020'}
-colors = {'grip':    darkblue,    'ngrip': lightblue,
-          'epica':   darkred,    'vostok': lightred,
-          'odp1012': darkgreen, 'odp1020': lightgreen}
-markers = {'grip':    's',   'ngrip': 'D',
-           'epica':   'o',  'vostok': 'h',
-           'odp1012': 'v', 'odp1020': '^'}
+records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
+labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
+colors = [darkblue, lightblue, darkred, lightred, darkgreen, lightgreen]
+markers = ['s', 'D', 'o', 'h', 'v', '^']
+offsets = [5.8, 6.0, 5.6, 5.6, 5.8, 5.8]
 
 
 # analysis functions

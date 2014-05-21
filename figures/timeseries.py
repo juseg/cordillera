@@ -8,8 +8,6 @@ from paperglobals import *
 
 # simulations used
 res = '10km'
-records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
-offsets = [5.8, 6.0, 5.6, 5.6, 5.8, 5.8]
 
 # initialize time-series figure
 figw, figh = 122.51, 80.01
@@ -40,10 +38,10 @@ for i, rec in enumerate(records):
     nc.close()
 
     # plot time series
-    ax1.plot(dt_time, dt_temp, color=colors[rec])
-    ax2.plot(ts_time, ts_ivol, color=colors[rec])
+    ax1.plot(dt_time, dt_temp, color=colors[i])
+    ax2.plot(ts_time, ts_ivol, color=colors[i])
     ax2.plot(mis_times[i], ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
-             color=colors[rec], marker=markers[rec], label=labels[rec])
+             color=colors[i], marker=markers[i], label=labels[i])
 
 # plot high resolution simu for comparison
 res = '5km'
@@ -54,7 +52,7 @@ nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
 ts_time = nc.variables['time'][:]*s2ka
 ts_ivol = nc.variables['slvol'][:]
 nc.close()
-ax2.plot(ts_time, ts_ivol, color=colors[rec], dashes=(1, 1))
+ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
 
 # mark MIS stages
 mistmin = mis_times.min(axis=0)
