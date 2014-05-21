@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
+from netCDF4 import MFDataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
 from iceplot import plot as iplt
@@ -11,10 +11,11 @@ from paperglobals import *
 # parameters
 res = '10km'
 records = ['grip', 'vostok']
+offsets = [5.8, 5.6]
 ages = range(8, 23, 1)
 levs = [0] + ages
-cmap = plt.get_cmap('Spectral_r')
-cmap.set_over('g')
+cmap = plt.get_cmap('RdBu_r')
+cmap.set_over(darkgreen)
 
 # initialize figure
 fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -26,10 +27,11 @@ draw_boot_topo(fig.grid, res)
 # loop on records
 for i, rec in enumerate(records):
     ax = fig.grid[i]
+    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = Dataset(run_path % (res, rec) + '-extra.nc')
+    nc = MFDataset(this_run_path + '-extra*')
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -51,7 +53,7 @@ for i, rec in enumerate(records):
     # plot
     cs = ax.contourf(x, y, deglacage, levels=levs, cmap=cmap, alpha=0.75,
                      norm=BoundaryNorm(levs, 256), extend='max')
-    ax.contour(x, y, deglacage, levels=levs, colors='k', linewidths=0.25)
+    #ax.contour(x, y, deglacage, levels=levs, colors='k', linewidths=0.25)
     ax.contourf(x, y, readvance, levels=[0.5, 1.5], colors='none', hatches='//')
     ax.contour(x, y, readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
     ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5, zorder=10)
