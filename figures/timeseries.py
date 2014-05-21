@@ -52,7 +52,7 @@ nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
 ts_time = nc.variables['time'][:]*s2ka
 ts_ivol = nc.variables['slvol'][:]
 nc.close()
-ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+ax2.plot(ts_time, ts_ivol, color=colors[0], dashes=(1, 1))
 
 # mark MIS stages
 mistmin = mis_times.min(axis=0)
