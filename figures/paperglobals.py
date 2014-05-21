@@ -4,11 +4,13 @@
 import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
-from matplotlib.colors import LinearSegmentedColormap, Normalize
+from matplotlib.colors import LogNorm, Normalize
+from iceplot.cm import velocity
 
 
 # unit conversion
 in2mm = 1/25.4
+pt2mm = 72*in2mm
 s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 
@@ -26,12 +28,14 @@ dt = 5.8
 rec = 'grip'
 
 # colors
-bmap = brewer2mpl.get_map('Paired', 'qualitative', 6)
-cols = bmap.mpl_colors
-lightblue, darkblue = cols[0:2]
-lightgreen, darkgreen = cols[2:4]
-lightred, darkred = cols[4:6]
-
+palette = brewer2mpl.get_map('Paired', 'qualitative', 6).mpl_colors
+lightblue, darkblue = palette[0:2]
+lightgreen, darkgreen = palette[2:4]
+lightred, darkred = palette[4:6]
+topo_cmap = 'Greys'
+topo_norm = Normalize(-3000, 6000)
+vel_cmap = velocity
+vel_norm = LogNorm(1e1, 1e4)
 
 # alternative for controlled brightness
 #rbmap = brewer2mpl.get_map('Reds', 'sequential', 9)
@@ -88,6 +92,7 @@ def annotate(ax, s):
                    bbox=dict(ec='k', fc='w', alpha=1.0),
                    transform=ax.transAxes)
 
+
 def draw_boot_topo(grid, res):
     nc = Dataset(boot_file % res)
     x = nc.variables['x']
@@ -98,7 +103,7 @@ def draw_boot_topo(grid, res):
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2
     for ax in grid:
-        im = ax.imshow(topg[:].T, cmap='Greys', norm=Normalize(-3000, 6000),
+        im = ax.imshow(topg[:].T, cmap=topo_cmap, norm=topo_norm,
                        extent=(w, e, n, s))
     nc.close()
     return im

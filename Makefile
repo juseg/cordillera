@@ -1,5 +1,5 @@
 PAPER = cordillera-cycle
-FIGS = atm.png deglac.png duration.png locmap.png multirec.png timeseries.png
+FIGS = atm.png deglac.png duration.png locmap.png snapshots.png timeseries.png
 
 all: data figures $(PAPER).tex
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
