@@ -36,7 +36,7 @@ for i, rec in enumerate(records):
     # load output time series
     nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
-    ts_ivol = nc.variables['ivol'][:]*1e-15
+    ts_ivol = nc.variables['slvol'][:]
     nc.close()
 
     # plot time series
@@ -52,7 +52,7 @@ dt = 5.8
 print 'plotting hi-res %s time series...' % rec
 nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
 ts_time = nc.variables['time'][:]*s2ka
-ts_ivol = nc.variables['ivol'][:]*1e-15
+ts_ivol = nc.variables['slvol'][:]
 nc.close()
 ax2.plot(ts_time, ts_ivol, color=colors[rec], dashes=(1, 1))
 
@@ -69,7 +69,7 @@ ax1.set_xlim(-120.0, 0.0)
 ax1.set_ylim(-10.0, 2.0)
 ax1.xaxis.set_ticklabels([])
 ax1.set_ylabel('temperature offset (K)')
-ax2.set_ylabel(r'ice volume (10$^6$ km$^3$)')
+ax2.set_ylabel('ice volume (m s.-l. eq.)')
 ax1.yaxis.set_label_coords(-0.05, 0.5)
 ax2.yaxis.set_label_coords(-0.05, 0.5)
 ax2.set_xlabel('model time (kyr)')
