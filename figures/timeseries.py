@@ -9,6 +9,7 @@ from paperglobals import *
 # simulations used
 res = '10km'
 records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
+offsets = [5.8, 6.0, 5.6, 5.6, 5.8, 5.8]
 
 # initialize time-series figure
 figw, figh = 122.51, 80.01
@@ -21,18 +22,19 @@ mis_times = np.zeros((len(records), 3), dtype=float)
 # loop on records[i]
 for i, rec in enumerate(records):
     print 'plotting %s time series...' % rec
+    dt = offsets[i]
 
     # get MIS times
-    mis_idces[i], mis_times[i] = get_mis_times(run_path % (res, rec) + '-ts.nc')
+    mis_idces[i], mis_times[i] = get_mis_times(run_path % (res, rec, dt*100) + '-ts.nc')
 
     # load forcing time series
-    nc = Dataset(dt_file % rec)
+    nc = Dataset(dt_file % (rec, dt*100))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
 
     # load output time series
-    nc = Dataset(run_path % (res, rec) + '-ts.nc')
+    nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
@@ -46,8 +48,9 @@ for i, rec in enumerate(records):
 # plot high resolution simu for comparison
 res = '5km'
 rec = 'grip'
+dt = 5.8
 print 'plotting hi-res %s time series...' % rec
-nc = Dataset(run_path % (res, rec) + '-ts.nc')
+nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
 ts_time = nc.variables['time'][:]*s2ka
 ts_ivol = nc.variables['ivol'][:]*1e-15
 nc.close()

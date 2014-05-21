@@ -16,10 +16,14 @@ s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 pism_dir = '/home/julien/pism/'
 atm_file = pism_dir + 'input/atm/cordillera-narr-%s-bl.nc'  # % res
 boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'  # % res
-dt_file = pism_dir + 'input/dt/%s-3222-cool580.nc'  # % rec
+dt_file = pism_dir + 'input/dt/%s-3222-cool%i.nc'  # % rec, 10*dt
 run_path = pism_dir + 'output/cordillera-narr-%s-bl/' \
-                      '%s3222cool580+ccyc+till1545/y0120000'  # % res, rec
+                      '%s3222cool%i+ccyc+till1545/y0120000'  # % res, rec, 10*dt
 
+# default params
+res = '10km'
+dt = 5.8
+rec = 'grip'
 
 # colors
 bmap = brewer2mpl.get_map('Paired', 'qualitative', 6)
