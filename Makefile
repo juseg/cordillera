@@ -1,23 +1,20 @@
 PAPER = cordillera-cycle
 FIGS = atm.png deglac.png duration.png locmap.png snapshots.png timeseries.png
 
-all: data figures $(PAPER).tex
+all: $(PAPER).tex figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
-
-data: data/ice145k.shp
-
-data/%.shp: data/of_1574.zip
-	cd data && unzip -j of_1574.zip data/shp/ice??k.{dbf,shp,shx} && touch ice??k.{dbf,shp,shx}
-
-data/of_1574.zip:
-	mkdir data
-	cd data && wget http://ftp2.cits.rncan.gc.ca/pub/geott/ess_pubs/214/214399/of_1574.zip
 
 figures: $(addprefix figures/,$(FIGS))
 
-figures/%.png: figures/%.py
+figures/%.png: figures/%.py data
 	cd $(<D) && python2 $(<F)
 
+data: data/ice18k.shp
+
+data/ice18k.shp:
+	cd data && bash get.sh
+
 clean:
+	rm -f data/ice*k.{dbf,shp,shx}
 	rm -f $(addprefix figures/,$(FIGS))
 	latexmk -CA
