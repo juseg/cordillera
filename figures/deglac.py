@@ -18,7 +18,7 @@ cmap = plt.get_cmap('RdBu_r')
 cmap.set_over(darkgreen)
 
 # initialize figure
-fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
+fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
                       cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
 # plot topographic map
@@ -56,7 +56,8 @@ for i, rec in enumerate(records):
     #ax.contour(x, y, deglacage, levels=levs, colors='k', linewidths=0.25)
     ax.contourf(x, y, readvance, levels=[0.5, 1.5], colors='none', hatches='//')
     ax.contour(x, y, readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
-    ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5, zorder=10)
+    ax.contour(x, y, deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
+    ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5)
 
     # annotate
     annotate(ax, rec.upper())

@@ -14,7 +14,7 @@ records = ['grip', 'epica']
 offsets = [5.8, 5.6]
 
 # initialize figure
-fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
+fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
                       cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
 # draw topo and coastline
@@ -35,9 +35,10 @@ for i, rec in enumerate(records):
     icecover *= 120.0/len(nc.variables['time'])
 
     # plot
-    levels = range(10,121,10)
-    cf = ax.contourf(x, y, icecover, levels=[1e-6]+levels, cmap='RdBu', alpha=0.75)
-    ax.contour(x, y, icecover, [1e-6], colors='k', linewidths=1.0)
+    levs = range(0,121,20)
+    levs[0] = 1e-6
+    cf = ax.contourf(x, y, icecover, levels=levs, cmap='Greens', alpha=0.75)
+    ax.contour(x, y, icecover, [levs[0]], colors='k')
 
     # close extra file
     annotate(ax, rec.upper())
