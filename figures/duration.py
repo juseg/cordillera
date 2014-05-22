@@ -6,32 +6,44 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
 from iceplot import plot as iplt
+from paperglobals import *
 
-# file path
-extra_file = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-             '%scool580+pddc+pddref00+mt8+lc+nofloat+part' \
-             '+gflx70+ssa+pp+nfrac02+till1545/full-extra.nc'
+# simulations used
+res = '10km'
+records = ['grip', 'epica']
+offsets = [5.8, 5.6]
 
 # initialize figure
-mm = 1/25.4
-fig = iplt.gridfigure((62.5, 125), (1, 1), axes_pad=2.5*mm,
-                      cbar_mode='single', cbar_pad=2.5*mm, cbar_size=5*mm)
-ax = plt.axes(fig.grid[0])
+fig = iplt.gridfigure((45.0, 90.0), (1, len(records)), axes_pad=2.5*in2mm,
+                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
-# load extra output and compute duration of ice cover
-nc = Dataset(extra_file % 'grip')
-icecover = (nc.variables['mask'][:] == 2).sum(axis=0).T
-icecover *= 120.0/len(nc.variables['time'])
+# draw topo and coastline
+draw_boot_topo(fig.grid, res)
 
-# plot
-levels = range(10,121,10)
-im = iplt.bedtopoimage(nc, 0, cmap='Greys', norm=Normalize(-3000, 6000))
-cf = ax.contourf(icecover, levels=[1e-6]+levels, cmap='Blues', alpha=0.75)
-ax.contour(icecover, levels, colors='k', linewidths=0.2)
-ax.contour(icecover, [1e-6], colors='k', linewidths=1.0)
+# loop on records[i]
+for i, rec in enumerate(records):
+    print 'reading %s extra output...' % rec
+    ax = fig.grid[i]
+    this_run_path = run_path % (res, rec, offsets[i]*100)
+
+    # load extra output
+    nc = Dataset(this_run_path + '-extra.nc')
+    mask = nc.variables['mask']
+    x = nc.variables['x']
+    y = nc.variables['y']
+    icecover = (mask[:] == 2).sum(axis=0).T
+    icecover *= 120.0/len(nc.variables['time'])
+
+    # plot
+    levels = range(10,121,10)
+    cf = ax.contourf(x, y, icecover, levels=[1e-6]+levels, cmap='RdBu', alpha=0.75)
+    ax.contour(x, y, icecover, [1e-6], colors='k', linewidths=1.0)
+
+    # close extra file
+    annotate(ax, rec.upper())
+    nc.close()
 
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
 cb.set_label('Duration of ice cover (kyr)')
 fig.savefig('duration.png')
-nc.close()
