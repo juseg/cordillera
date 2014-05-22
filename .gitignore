@@ -19,3 +19,7 @@ data/of_1574.zip
 figures/*.pyc
 figures/*.pdf
 figures/*.png
+
+# Statistics
+stats/count.csv
+stats/progress.pdf
