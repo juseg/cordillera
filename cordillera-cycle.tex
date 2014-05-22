@@ -239,11 +239,34 @@ cosmogenic exposure dates.
 
 % References
 %\input{references.bbl}
-%\newpage
+\newpage
 
 % ----------------------------------------------------------------------
 % Floats
 % ----------------------------------------------------------------------
+
+% tab:records
+\begin{table*}[t]
+  \caption{Palaeo-temperature proxy records and scaling parameters used to
+           prepare temperature offset time-series used to force the ice sheet
+           model through the last 120\,\unit{kyr}. $T_{[32;22]}$ refers to the
+           mean temperature anomaly during the period -32 to~-22~\unit{kyr} after
+           scaling.}
+  \label{tab:records}
+  {\begin{tabular}{lcccc}
+    \tophline
+    Record & Proxy & Scaling factor & $T_{[32;22]}$ & Source\\
+    \middlehline
+    GRIP     & \chem{\delta^{18}O} & ?\% & -5.8{\degree}C & \aref \\
+    NGRIP    & \chem{\delta^{18}O} & ?\% & -6.0{\degree}C & \aref \\
+    EPICA    & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C & \aref \\
+    Vostok   & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C & \aref \\
+    ODP~1012 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C & \aref \\
+    ODP~1020 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C & \aref \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
 
 % fig:locmap
 \begin{figure}
@@ -255,42 +278,57 @@ cosmogenic exposure dates.
 % fig:atm
 \begin{figure}
   \includegraphics{atm}
-  \caption{Focring climatology. In construction.
-           \idea{Show seasonal variability}}
+  \caption{Monthly mean near-surface air temperature, precipitation and
+           standard deviation of daily mean temperature for January and July
+           months from the North American Regional Reanalysis (NARR)
+           climatology, used as input fields to the ice sheet model. Note the
+           strong contrasts in seasonality, timing of the precipitation peak,
+           and temperature variability over the model domain, notably between
+           the maritime and continental regions.}
   \label{fig:atm}
 \end{figure}
 
 % fig:timeseries
 \begin{figure}
   \includegraphics{timeseries}
-  \caption{Multi-record timeseries. In construction.
-           \todo{Add NGRIP}
-           \idea{Use same colors but different patterns for similar records}}
+  \caption{\textbf{(top)} temperature offset time-series from ice and sediment
+           core records used as palaeo-climate forcing for the ice sheet model
+           (Table~\ref{tab:records}). \textbf{(bottom)} Modelled ice volume
+           through the last 120\,\unit{kyr}, expressed in meters of sea-level
+           equivalent. The grey spans indicate the ranges of modelled times of
+           glacial extrema corresponding to MIS~4 (61.9--55.4\,\unit{kyr}), 3
+           (52.2--45.6\,\unit{kyr}), and 2 (last glacial maximum,
+           29.5--16.9\,\unit{kyr}).}
   \label{fig:timeseries}
 \end{figure}
 
 % fig:snapshots
 \begin{figure}
   \includegraphics{snapshots}
-  \caption{Multi-record snapshots. In construction.
-           \todo{Add NGRIP}}
+  \caption{Snapshots of modelled ice surface topography (1\,\unit{km} contours)
+           and velocity (\unit{m\,yr^{-1}}) at modelled times of glacial
+           extrema, corresponding to MIS~4, 3, and 2.}
   \label{fig:snapshots}
 \end{figure}
 
 % fig:duration
 \begin{figure}
   \includegraphics{duration}
-  \caption{Ice cover duration. In construction.
-           \todo{Add Antarctic-record high-resolution simulation}}
+  \caption{Modelled duration of ice cover during the last 120\,\unit{kyr}.
+           Aside the location of present-day ice caps, note the persistence of
+           a central ice dome over the Skeena mountains during most of the
+           simulation. On the other hand, the maximal extent of the ice sheet
+           corresponds to short durations of ice cover along most of the margin.}
   \label{fig:duration}
 \end{figure}
 
 % fig:deglac
 \begin{figure}
   \includegraphics{deglac}
-  \caption{Deglaciation age. In construction.
-           \todo{Add Antarctic-record high-resolution simulation}
-           \idea{Compare to Dyke deglaciation outlines}}
+  \caption{Modelled age of the last deglaciation. Areas where the MIS~4 glacial
+           advance exceeded the last glacial maximum advanced are marked in
+           green. Hatches denote the Younger Dryas re-advance, which is most
+           significant in the GRIP-driven simulation.}
   \label{fig:deglac}
 \end{figure}
 
