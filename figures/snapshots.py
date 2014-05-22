@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset, MFDataset
+from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from iceplot import plot as iplt
@@ -33,7 +33,7 @@ for i, rec in enumerate(records):
     mis_idces, mis_times = get_mis_times(this_run_path + '-ts.nc')
 
     # load extra output
-    nc = MFDataset(this_run_path + '-extra*')
+    nc = Dataset(this_run_path + '-extra.nc')
     time = nc.variables['time'][:]*s2ka
     topg = nc.variables['topg']
     usurf = nc.variables['uvelsurf']

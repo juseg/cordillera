@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import MFDataset
+from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
 from iceplot import plot as iplt
@@ -10,7 +10,7 @@ from paperglobals import *
 
 # parameters
 res = '10km'
-records = ['grip', 'vostok']
+records = ['grip', 'epica']
 offsets = [5.8, 5.6]
 ages = range(8, 23, 1)
 levs = [0] + ages
@@ -31,7 +31,7 @@ for i, rec in enumerate(records):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = MFDataset(this_run_path + '-extra*')
+    nc = Dataset(this_run_path + '-extra.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -57,6 +57,9 @@ for i, rec in enumerate(records):
     ax.contourf(x, y, readvance, levels=[0.5, 1.5], colors='none', hatches='//')
     ax.contour(x, y, readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
     ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5, zorder=10)
+
+    # annotate
+    annotate(ax, rec.upper())
 
 # add colorbar and save
 print 'saving deglac...'
