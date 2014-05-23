@@ -23,10 +23,10 @@
 \graphicspath{{figures/}}
 
 % My commands
-\def\idea#1{\textcolor[rgb]{0,0.5,0}{\textbf{[IDEA: #1]}}}
-\def\note#1{\textcolor[rgb]{0,0,0.5}{\textbf{[NOTE: #1]}}}
-\def\todo#1{\textcolor[rgb]{0.5,0,0}{\textbf{[TODO: #1]}}}
-\def\aref{\textcolor[rgb]{0.5,0,0}{\textbf{[REF]}}}
+\newcommand{\idea}[1]{\textbf{[IDEA: #1]}}
+\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
+\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
+\newcommand{\aref}[0]{\textbf{[REF]}}
 \def\citep#1{}
 \def\citet#1{}
 
