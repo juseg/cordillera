@@ -147,11 +147,6 @@ and two alkenone unsaturation index records from Northwest Pacific oceanic
 sediment cores. Model output is compared to geomorphological evidence in terms
 of timing and extent of glaciation and patterns of deglaciation.
 
-% Greenland Ice Core Project (GRIP)
-% North Greenland Ice Core Project (NGRIP)
-% European Project for Ice Coring in Antarctica (EPICA)
-% Lake Vostok (Vostok)
-% Ocean Drilling Program (ODP)
 
 % ----------------------------------------------------------------------
 \section{Model setup}
@@ -228,7 +223,7 @@ This model thus accounts for a~weakening of till associated with the presence
 of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Because the
 distribution of marine sediments is assumed constant throughout the run, the
 till friction angle $\phi$ is not affected by changes in bed elevation. Basal
-topography (Fig.~\ref{fig:topo}) is derived from the ETOPO1 combined topography
+topography is derived from the ETOPO1 combined topography
 and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}.
 
 Sea level is lowered as a function of time according to the SPECMAP
@@ -267,19 +262,38 @@ Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 \subsection{Atmospheric forcing}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology
-on the one hand, and time-dependent temperature offsets on the other hand. The
+modified by a lapse-rate correction and time-dependent temperature offsets. The
 present-day climatology was computed from the near-surface air temperature and
 precipitation rate fields of the North American Regional Reanalysis (NARR) over
-the period xxxx--xxxx.
+the period xxxx--xxxx (Fig.~\ref{fig:atm}). Modern climate of the North
+American Cordillera is characterised by strong geographic variations of
+seasonality, timing of the precipitation peak and daily temperature variability.
+Our choice of data from the NARR is motivated by the need for an accurate,
+high-resolution precipitation forcing, as outlined in a previous sensitivity
+study.
+
+Temperature offset time-series are reconstructed from proxy records from
+the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
+(NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
+Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
+located off the Californian shore. Palaeo-temperatures from the GRIP and NGRIP
+records were calculated using a quadratic equation \aref:
+
+\todo{add equation here,}
+
+while temperature reconstructions from the Antarctic and oceanic cores was
+provided by their authors. In addition, all records were scaled linearly in
+order to simulate comparable ice volumes and realistic ice extents at the last
+glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
 Prior to surface mass balance computation, the model dynamically applies
 a~lapse-rate correction to surface air temperature. This correction accounts
 for the evolution of ice thickness on the one hand, and differences between the
 climate forcing reference topography and the ice flow model basal topography on
 the other hand. It uses a~reference topography distinct from the modelled basal
-topography and specific to each climate forcing dataset (Fig.~\ref{fig:topo}).
+topography and specific to each climate forcing dataset.
 An annual lapse rate of 6\,\unit{{\degree}C\,km^{-1}} is used in all
-simulations. No corrections apply to precipitation changes with elevation.
+simulations.
 
 
 % ----------------------------------------------------------------------
