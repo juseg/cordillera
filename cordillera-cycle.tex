@@ -24,6 +24,7 @@
 
 % My commands
 \def\idea#1{\textcolor[rgb]{0,0.5,0}{\textbf{[IDEA: #1]}}}
+\def\note#1{\textcolor[rgb]{0,0,0.5}{\textbf{[NOTE: #1]}}}
 \def\todo#1{\textcolor[rgb]{0.5,0,0}{\textbf{[TODO: #1]}}}
 \def\aref{\textcolor[rgb]{0.5,0,0}{\textbf{[REF]}}}
 \def\citep#1{}
@@ -92,6 +93,9 @@
 
 \end{abstract}
 
+\note{Please read through the abstract, introduction and figure captions. All
+      other sections are very preliminary at this stage. I need some feedback
+      on the (currently embryonic) discussion part.}
 
 % ----------------------------------------------------------------------
 \introduction
@@ -152,6 +156,8 @@ of timing and extent of glaciation and patterns of deglaciation.
 \section{Model setup}
 \label{sec:model}
 % ----------------------------------------------------------------------
+
+\note{Currently, this section contains parts from the previous paper.}
 
 The simulations presented here were run using Parallel Ice Sheet Model (PISM,
 development version~11b0a7f), an open-source, finite-difference, shallow ice
@@ -325,6 +331,9 @@ offset time-series used to drive the model.
 \label{sec:discussion}
 % ----------------------------------------------------------------------
 
+\note{At this stage, this section is just a collection of thoughts that need to
+be developed into paragraphs. Please comment, criticize, add your own ideas.}
+
 \subsection{Timing of glaciation}
 
 Timing of glaciation is better reproduced by Greenland and Antarctic cores than
@@ -360,6 +369,8 @@ cosmogenic exposure dates.
 \conclusions
 \label{sec:concl}
 % ----------------------------------------------------------------------
+
+\note{Nothing here at the moment.}
 
 % Acknowledgements
 %\begin{acknowledgements}
@@ -428,7 +439,10 @@ cosmogenic exposure dates.
            equivalent. The grey spans indicate the ranges of modelled times of
            glacial extrema corresponding to MIS~4 (61.9--55.4\,\unit{kyr}), 3
            (52.2--45.6\,\unit{kyr}), and 2 (last glacial maximum,
-           29.5--16.9\,\unit{kyr}).}
+           29.5--16.9\,\unit{kyr}).
+           \note{The dotted line represents an ongoing 5km-resolution
+           simulation, which may be eventually be used in
+           Figs.~\ref{fig:duration} and \ref{fig:deglac}.}}
   \label{fig:timeseries}
 \end{figure}
 
