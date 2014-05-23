@@ -26,6 +26,8 @@
 \def\idea#1{\textcolor[rgb]{0,0.5,0}{\textbf{[IDEA: #1]}}}
 \def\todo#1{\textcolor[rgb]{0.5,0,0}{\textbf{[TODO: #1]}}}
 \def\aref{\textcolor[rgb]{0.5,0,0}{\textbf{[REF]}}}
+\def\citep#1{}
+\def\citet#1{}
 
 % ----------------------------------------------------------------------
 \begin{document}\hack{\sloppy}
@@ -76,16 +78,16 @@
   cycle. A series of simulations is driven by time-dependent temperature
   offsets from six proxy records located around the globe. Although this
   approach reveals large variations in model response to evolving atmospheric
-  forcing, all simulations produce two major glaciations events during MIS~4
+  forcing, all simulations produce two major glaciation events during MIS~4
   (61.9--55.4\,\unit{kyr}) and MIS~2 (29.5--16.9\,\unit{kyr}). The timing of
   glaciation is
-  better reproduced using temperature forcing derived from Greenland and
-  Antarctic ice-core than from regional ocean sediment cores. During most of
+  better reproduced using temperature reconstructions from Greenland and
+  Antarctic ice cores than from regional ocean sediment cores. During most of
   the last glacial cycle, the modelled ice cover is discontinuous and
   restricted to high mountain areas. However, widespread precipitation over the
   Skeena mountains favours the persistence of a central ice dome throughout the
   glacial cycle. It acts as a nucleation centre before the last glacial maximum
-  and hosts the last remain of Cordilleran ice during the
+  and hosts the last remains of Cordilleran ice during the
   early Holocene (10.9--9.5\,\unit{kyr}).
 
 \end{abstract}
@@ -97,51 +99,53 @@
 % ----------------------------------------------------------------------
 
 During the last glacial cycle, glaciers and ice caps of the North American
-Cordillera have been more extensive than today. At the peak of glaciation, a
+Cordillera were more extensive than today. During the last glacial maximum, a
 contiguous blanket of ice extended from Denali Peak in the north to the Puget
-Sound in the south. This ice mass is known as the former Cordilleran ice sheet
-(Fig.~\ref{fig:locmap}).
+Sound in the south. This ice mass is known as the former Cordilleran ice
+sheet (Fig.~\ref{fig:locmap}).
 
 For more than a century, exploration and geological investigation of the
-Cordillera lead to a large collection of evidence of the former ice cover. This
-evidence consists of mapped boundaries of the former ice extent, direction of
-past sliding velocities and location of former melt-water streams, as well as
-carbon dating and cosmogenic dating of glacier retreat.
+Cordillera have led to a large collection of evidence of the former ice cover. This
+evidence consists of mapped boundaries of the former ice extent, directions of
+past sliding velocities and locations of former melt-water streams, as well as
+the timing of glacier retreat identified from radiocarbon and cosmogenic dating.
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
-the maximal extent attained by the Cordilleran ice sheet during the last
-glacial cycle. However, former ice thickness, and in turn the ice sheet's
-contribution to the last glacial maximum sea-level low-stand, remains poorly
-constrained. Moreover, our understanding of the deglaciation phase is
-restricted to a regional level, while little is known about the ice sheet
-history preceding the last glacial maximum extent. Although time-evolving,
-whole ice-sheet reconstructions of glacial advance and retreat patters are
-available for the Laurentide and Eurasian ice sheet, such is not the case for
-the Cordilleran ice sheet.
+the maximal extent attained by the Cordilleran ice sheet during the last glacial
+cycle. However, former ice thickness and the ice sheet's contribution to the
+last glacial maximum sea-level low-stand remain poorly constrained. Moreover,
+our understanding of the glaciation history is mainly restricted to the
+deglaciation phase and a regional level, while little is known about the ice
+sheet evolution prior to the last glacial maximum extent. Although
+time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
+patters are available for the Laurentide and Eurasian ice sheets, such is not
+the case for the Cordilleran ice sheet, where complex patterns of ice flow
+emanating from multiple glaciation centres have been identified.
 
-The present study aims to use a numerical ice sheet model calibrated against
+The present study uses a numerical ice sheet model (PISM) calibrated against
 field-based evidence to perform a quantitative reconstruction of the
 Cordilleran ice sheet history through the last glacial cycle. Although
-numerical modelling has been identified as a tool to improve our understanding
-of Cordilleran ice sheet more than twenty years ago, the ubiquitously
+numerical modelling has been established as a useful tool to improve our
+understanding
+of the Cordilleran ice sheet more than twenty years ago \aref, the ubiquitously
 mountainous topography of the region has presented a major challenge to its
-application, which is only overcome by recent development of numerical ice
-sheet models and underlying scientific tools. In addition to the topographic
+application, which has only been overcome by recent development of numerical ice
+sheet models and underlying scientific computing tools. In addition to the topographic
 complexity, strong climatic contrasts characteristic of the North American
-Cordillera require the use of high-resolution temperature and precipitation
+Cordillera require the use of a high-resolution temperature and precipitation
 forcing as input data to the ice sheet model.
 
-Here we use the Parallel Ice Sheet Model (PISM), forced by a high-resolution
-climatology from the North American Regional Reanalysis (NARR), to model the
-Cordilleran ice sheet evolution through the last glacial cycle. Because past climate
-is mostly unknown, palaeoclimate forcing is simplistically applied as
-six time-dependent temperature offset time-series. These time-series were
+Because past climate conditions are subject to considerable uncertainty, our
+palaeoclimate forcing is a simplistic approximation of time-evolved temperature
+and precipitation fields derived from a combination of a present-day
+atmospheric reanalysis (NARR), lapse-rate corrections and temperature offset
+time series. The latter are
 obtained by scaling six different palaeo-temperature reconstructions from
 proxy records around the globe, including two \chem{\delta^{18}O} records from
 Greenland ice cores, two \chem{\delta^{18}O} records from Antarctic ice cores,
 and two alkenone unsaturation index records from Northwest Pacific oceanic
 sediment cores. Model output is compared to geomorphological evidence in terms
-of timing of glaciation, extent of glaciation and patterns of deglaciation.
+of timing and extent of glaciation and patterns of deglaciation.
 
 % Greenland Ice Core Project (GRIP)
 % North Greenland Ice Core Project (NGRIP)
