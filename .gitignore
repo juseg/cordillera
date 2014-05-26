@@ -1,0 +1,10 @@
+# temporary files
+*~
+
+# figures
+*.pyc
+*.pdf
+*.png
+
+# animation
+*.mp4
