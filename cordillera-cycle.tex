@@ -2,7 +2,7 @@
 % ----------------------------------------------------------------------
 
 % Copernicus manuscript
-\documentclass[tc, ms]{copernicus}
+%\documentclass[tc, ms]{copernicus}
 
 % Copernicus final print
 %\documentclass[tc]{copernicus}
@@ -11,7 +11,7 @@
 %\documentclass[tcd, hvmath]{copernicus_discussions}
 
 % Copernicus-like latex2rtf compatible
-%\input{copernicus_rtf}
+\input{copernicus_rtf}
 
 % Coloured hyperlinks
 \usepackage[colorlinks]{hyperref}
@@ -119,11 +119,11 @@ the maximal extent attained by the Cordilleran ice sheet during the last glacial
 cycle. However, former ice thickness and the ice sheet's contribution to the
 last glacial maximum sea-level low-stand remain poorly constrained. Moreover,
 our understanding of the glaciation history is mainly restricted to the
-deglaciation phase and a regional level, while little is known about the ice
+deglaciation phase and on regional scale, while little is known about the ice
 sheet evolution prior to the last glacial maximum extent. Although
 time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
-patters are available for the Laurentide and Eurasian ice sheets, such is not
-the case for the Cordilleran ice sheet, where complex patterns of ice flow
+patterns are available for the Laurentide and Eurasian ice sheets, such is not
+the case for the Cordilleran ice sheet, where complex arrangements of ice flow
 emanating from multiple glaciation centres have been identified.
 
 The present study uses a numerical ice sheet model (PISM) calibrated against
@@ -170,7 +170,7 @@ It includes independent ice growing on the western Alaskan ranges and the
 Brooks Range and intermediate expanses of ice-free terrain in northern Yukon
 Territory and interior Alaska (Fig.~\ref{fig:locmap}).
 
-To reconstruct the successive phases growth and decay of the last Cordilleran
+To reconstruct the successive phases of growth and decay of the last Cordilleran
 ice sheet, palaeo-climatic conditions of the last glacial cycle are mimicked
 by applying time-dependent temperature offsets derived from multiple
 palaeo-temperature proxy records. Each simulation starts from assumed ice-free
@@ -180,12 +180,8 @@ Center.
 
 \subsection{Ice thermodynamics}
 
-The central part of an ice sheet model consists of the computation of flow
-velocity which itself depends on temperature. PISM is a~shallow model, which
-implies that the balance of stresses is approximated based on their predominant
-components. On the other hand, the model is polythermal: it accounts for
-differences in temperature and softness within the ice column.
-
+PISM is a~shallow model, which implies that the balance of stresses is
+approximated based on their predominant components.
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the
 Shallow Ice Approximation (SIA) \citep{bueler-brown-2009,winkelmann-etal-2011}.
 SIA and SSA velocities are computed by finite difference methods on a~10\,km
@@ -257,8 +253,8 @@ approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology and was
 computed from daily temperature values from the North American Regional
-Reanalysis \citep{data:narr} and excludes variability associated to the annual
-temperature cycle itself \citet{seguinot-rogozhina-2014}. The
+Reanalysis \citep{data:narr} and excludes variability associated with the annual
+temperature cycle itself \note{improvement} \citet{seguinot-rogozhina-2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
@@ -278,7 +274,7 @@ Our choice of data from the NARR is motivated by the need for an accurate,
 high-resolution precipitation forcing, as outlined in a previous sensitivity
 study.
 
-Temperature offset time-series are reconstructed from proxy records from
+Temperature offset time-series are derived from proxy records from
 the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
 (NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
 Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
@@ -287,8 +283,8 @@ records were calculated using a quadratic equation \aref:
 
 \todo{add equation here,}
 
-while temperature reconstructions from the Antarctic and oceanic cores was
-provided by their authors. In addition, all records were scaled linearly in
+while the temperature reconstructions from the Antarctic and oceanic cores were
+provided by their authors. All records were scaled linearly in
 order to simulate comparable ice volumes and realistic ice extents at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
@@ -296,8 +292,7 @@ Prior to surface mass balance computation, the model dynamically applies
 a~lapse-rate correction to surface air temperature. This correction accounts
 for the evolution of ice thickness on the one hand, and differences between the
 climate forcing reference topography and the ice flow model basal topography on
-the other hand. It uses a~reference topography distinct from the modelled basal
-topography and specific to each climate forcing dataset.
+the other hand.
 An annual lapse rate of 6\,\unit{{\degree}C\,km^{-1}} is used in all
 simulations.
 
@@ -312,18 +307,21 @@ model output presents consistent features that can be observed across the range
 of forcing data used. In all simulations, ice cover is relatively restricted
 during most of the glacial cycle, while two major glaciation events occur
 during MIS~4 (61.9--55.4\,\unit{kyr}) and MIS~2 (29.5--16.9\,\unit{kyr},
-Fig.~\ref{fig:timeseries}). A ice volume minimum is attained in between these
+Fig.~\ref{fig:timeseries}). A local ice minimum is consistently attained in between these
 two events during MIS~3 (52.2--45.6\,\unit{kyr}).
 
-On the other hand, the magitude and timing of these events vary significantly
-between our simulations. For instance, GRIP and NGRIP forcing result in highest
-variability in modelled ice volume, while simulations driven by oceanic records
-and the NGRIP reach last glacial maximum ice volume prior to 20.0\,\unit{kyr}.
+However, the magitude and timing of these events vary significantly
+between our simulations. For instance, the use of GRIP and NGRIP forcing
+results in highest variability in modelled ice volume. Simulations driven by
+the Antarctic and GRIP records reach a last glacial maximum in ice volume at
+19.5--16.9\,\unit{kyr}, while simulations driven by oceanic records
+and the NGRIP record attain it prior to 20.0\,\unit{kyr}.
 
-Snapshots of model output show relatively consistent patterns of glaciation
+Despite the different timing,
+snapshots of model output show relatively consistent patterns of glaciation
 (Fig.~\ref{fig:snapshots}). In all simulations, a central ice cap persists over
 the Skeena mountains between the two glaciation events. However, the size of
-this ice cap, as well as the magnitude of the MIS~4, depends on the temperature
+this ice cap, as well as the magnitude of the MIS~4, depends sensitively on the temperature
 offset time-series used to drive the model.
 
 % ----------------------------------------------------------------------
@@ -336,7 +334,7 @@ be developed into paragraphs. Please comment, criticize, add your own ideas.}
 
 \subsection{Timing of glaciation}
 
-Timing of glaciation is better reproduced by Greenland and Antarctic cores than
+Timing of glaciation is better reproduced by Greenland and Antarctic records than
 nearby oceanic records. This is because the oceanic cores are affected by
 variations in strength of a local current (the California current) associated
 with the presence of the ice sheet. The timing of the LGM is better reproduced
@@ -346,9 +344,9 @@ by Antarctic than Greenland records.
 
 During most of the glacial cycle, ice cover is restricted to high mountain
 areas. This is particularly true when using the Greenland-based forcing
-(Fig~\ref{fig:duration}). Most of the glacial maxima margin have a transient
+(Fig~\ref{fig:duration}). Most of the glacial maxima margin has a transient
 character, showing that the ice sheet is far out of balance with climate. There
-persist a central ice dome over the Skeena mountains over the entire glacial
+persists a central ice dome over the Skeena mountains over the entire glacial
 period. This ice dome serves as a nucleation centre at the initiation of the
 advance phase preceding the last glacial maximum. It is here because of more
 widespread precipitation over the Skeena mountains than across other East-West
