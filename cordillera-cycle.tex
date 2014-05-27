@@ -247,8 +247,13 @@ Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 \subsection{Atmospheric forcing}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology
-modified by a lapse-rate correction and time-dependent temperature offsets. The
-present-day climatology was computed from the near-surface air temperature and
+modified by time-dependent temperature offsets and a lapse-rate correction.
+\begin{align}
+    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t) + {\Delta}T_{LR}(t, x, y) \\
+    P_m(t, x, y) &= P_{m0}(x, y)
+\end{align}
+
+The present-day climatology $\{T_m, P_m\}$ was computed from the near-surface air temperature and
 precipitation rate fields of the North American Regional Reanalysis (NARR) over
 the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
@@ -257,15 +262,15 @@ Our choice of data from the NARR is motivated by the need for an accurate,
 high-resolution precipitation forcing, as outlined in a previous sensitivity
 study.
 
-Temperature offset time-series are derived from proxy records from
+Temperature offset time-series ${\Delta}T_{TS}$ are derived from proxy records from
 the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
 (NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
 Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
 located off the Californian shore. Palaeo-temperatures from the GRIP and NGRIP
 records were calculated using a quadratic equation \aref:
 \begin{equation}
-    \Delta T = -11.88(\chem{\delta^{18}O}-\chem{\delta^{18}O}_0)
-               -0.1925(\chem{\delta^{18}O}^2-\chem{\delta^{18}O}_0^2)
+    {\Delta}T_{TS}(t) = -11.88[\chem{\delta^{18}O(t)}-\chem{\delta^{18}O}(0)]
+                        -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2]
 \end{equation}
 while the temperature reconstructions from the Antarctic and oceanic cores were
 provided by their authors. All records were scaled linearly in
@@ -273,12 +278,19 @@ order to simulate comparable ice volumes and realistic ice extents at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
 Prior to surface mass balance computation, the model dynamically applies
-a~lapse-rate correction to surface air temperature. This correction accounts
+a~lapse-rate correction to surface air temperature,
+\begin{align}
+    {\Delta}T_{LR}(t, x, y) &= -\gamma [z_{s}(t, x, y)-z_{ref}] \\
+                            &= -\gamma [h(t, x, y)+z_{b}(t, x, y)-z_{ref}]
+\end{align}
+
+
+This correction accounts
 for the evolution of ice thickness on the one hand, and differences between the
 climate forcing reference topography and the ice flow model basal topography on
-the other hand.
-An annual lapse rate of 6\,\unit{{\degree}C\,km^{-1}} is used in all
-simulations.
+the other hand. An annual lapse rate of
+$\gamma = 6\,\unit{{\degree}C\,km^{-1}}$
+is used in all simulations.
 
 
 % ----------------------------------------------------------------------
