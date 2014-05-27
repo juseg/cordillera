@@ -6,9 +6,6 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from paperglobals import *
 
-# simulations used
-res = '10km'
-
 # initialize time-series figure
 figw, figh = 122.51, 80.01
 fig = mplt.figure(2, (figw*in2mm, figh*in2mm))
@@ -32,7 +29,7 @@ for i, rec in enumerate(records):
     nc.close()
 
     # load output time series
-    nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
+    nc = Dataset(run_path % ('10km', rec, dt*100) + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
@@ -43,16 +40,15 @@ for i, rec in enumerate(records):
     ax2.plot(mis_times[i], ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
              color=colors[i], marker=markers[i], label=labels[i])
 
-# plot high resolution simu for comparison
-res = '5km'
-rec = 'grip'
-dt = 5.8
-print 'plotting hi-res %s time series...' % rec
-nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
-ts_time = nc.variables['time'][:]*s2ka
-ts_ivol = nc.variables['slvol'][:]
-nc.close()
-ax2.plot(ts_time, ts_ivol, color=colors[0], dashes=(1, 1))
+    # look for a high-resolution run
+    try:
+        nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
+        ts_time = nc.variables['time'][:]*s2ka
+        ts_ivol = nc.variables['slvol'][:]
+        nc.close()
+        ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+    except RuntimeError:
+        pass
 
 # mark MIS stages
 mistmin = mis_times.min(axis=0)
