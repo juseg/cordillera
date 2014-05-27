@@ -2,7 +2,7 @@
 % ----------------------------------------------------------------------
 
 % Copernicus manuscript
-%\documentclass[tc, ms]{copernicus}
+\documentclass[tc, ms]{copernicus}
 
 % Copernicus final print
 %\documentclass[tc]{copernicus}
@@ -11,7 +11,7 @@
 %\documentclass[tcd, hvmath]{copernicus_discussions}
 
 % Copernicus-like latex2rtf compatible
-\input{copernicus_rtf}
+%\input{copernicus_rtf}
 
 % Coloured hyperlinks
 \usepackage[colorlinks]{hyperref}
@@ -26,9 +26,9 @@
 \newcommand{\idea}[1]{\textbf{[IDEA: #1]}}
 \newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 \newcommand{\todo}[1]{\textbf{[TODO: #1]}}
-\newcommand{\aref}[0]{\textbf{[REF]}}
-\def\citep#1{}
-\def\citet#1{}
+\newcommand{\aref}[0]{\textbf{[ref.]}}
+\renewcommand{\citep}[1]{\aref}
+\renewcommand{\citet}[1]{\aref}
 
 % ----------------------------------------------------------------------
 \begin{document}\hack{\sloppy}
@@ -119,12 +119,12 @@ the maximal extent attained by the Cordilleran ice sheet during the last glacial
 cycle. However, former ice thickness and the ice sheet's contribution to the
 last glacial maximum sea-level low-stand remain poorly constrained. Moreover,
 our understanding of the glaciation history is mainly restricted to the
-deglaciation phase and on regional scale, while little is known about the ice
+deglaciation phase and on a regional scale, while little is known about the ice
 sheet evolution prior to the last glacial maximum extent. Although
 time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
 patterns are available for the Laurentide and Eurasian ice sheets, such is not
 the case for the Cordilleran ice sheet, where complex arrangements of ice flow
-emanating from multiple glaciation centres have been identified.
+directions emanating from multiple glaciation centres have been identified.
 
 The present study uses a numerical ice sheet model (PISM) calibrated against
 field-based evidence to perform a quantitative reconstruction of the
@@ -165,10 +165,8 @@ sheet model. The model takes basal topography, sea level, geothermal heat flux
 and climate forcing, as input fields and computes the evolution of ice extent
 and thickness in time, its thermal and dynamic state, and
 the associated lithospheric response. Our modelling domain encompasses the
-entire area covered by the Cordilleran ice sheet at the last glacial maximum.
-It includes independent ice growing on the western Alaskan ranges and the
-Brooks Range and intermediate expanses of ice-free terrain in northern Yukon
-Territory and interior Alaska (Fig.~\ref{fig:locmap}).
+entire area covered by the Cordilleran ice sheet at the last glacial maximum
+(Fig.~\ref{fig:locmap}).
 
 To reconstruct the successive phases of growth and decay of the last Cordilleran
 ice sheet, palaeo-climatic conditions of the last glacial cycle are mimicked
@@ -188,45 +186,29 @@ SIA and SSA velocities are computed by finite difference methods on a~10\,km
 resolution horizontal grid of 300 by 150 points (the modelling domain). Ice
 softness depends on temperature and water content through an enthalpy
 formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Enthalpy is
-computed in three dimensions in up to 51 irregularly spaced layers within the
-ice, and temperature is additionally computed in 31 regularly spaced layers in
-bedrock to a~depth of 3\,km. Surface air temperature from the climate forcing
+computed in three dimensions in up to 51 layers within the
+ice, and temperature is additionally computed in 31 layers in bedrock to
+a~depth of 3\,km. Surface air temperature from the atmospheric forcing
 provides the upper boundary condition to the ice enthalpy model, and
 a~geothermal heat flux of 70\,\unit{mW\,m^{-2}} provides the lower boundary
 condition to the bedrock thermal model. Although this uniform value does not
 account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
-\citep{artemieva-mooney-2001,blackwell-richards-2004}. Whereas spatial
-variations in the geothermal heat flux may significantly affect basal
-conditions \citep{pattyn-2010}, this study focuses on reconstructing the former
-extent of the Cordilleran ice sheet, on which it has relatively little effect
-\citep{rogozhina-etal-2012}.
-
-\todo{Describe the new sliding law?}
+\citep{artemieva-mooney-2001,blackwell-richards-2004}.
 
 A~pseudo-plastic sliding law \citep{aschwanden-etal-2013} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
-varies from 15 to 45{\degree}. It is computed once at the beginning of the run,
-as a~function of modern bed elevation, with lowest values occurring at low
-elevations,
-
-\begin{align}
-  \phi =
-  \begin{cases}
-    15      & \text{for }       z<  0 \\
-    z/15+15 & \text{for }    0 <z<200 \\
-    45      & \text{for }  200 <z     \\
-  \end{cases}
-\end{align}
-
-where $\phi$ is given in degrees and $z$ in meters above current sea level.
-This model thus accounts for a~weakening of till associated with the presence
-of marine sediments \citep{martin-etal-2011,aschwanden-etal-2013}. Because the
-distribution of marine sediments is assumed constant throughout the run, the
-till friction angle $\phi$ is not affected by changes in bed elevation. Basal
-topography is derived from the ETOPO1 combined topography
+varies from 15 to 45{\degree}. It is taken as a~function of modern bed
+elevation, with lowest values occurring at low elevation, thus accounting
+for a~weakening of till associated with the presence of marine sediments
+\citep{martin-etal-2011,aschwanden-etal-2013}. The till effective pressure is
+related to the modelled amount of water in the till, using a formula derived
+from laboratory experiments with till extracted from an Antarctic ice stream.
+Basal topography is derived from the ETOPO1 combined topography
 and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}.
+
+\note{Do we need more details (equations) on this new sliding law?}
 
 Sea level is lowered as a function of time according to the SPECMAP
 reconstruction, and basal topography responds to ice load
@@ -240,8 +222,9 @@ lag between ice sheet growth and isostatic bedrock response.
 
 \subsection{Surface mass-balance}
 
-Ice surface accumulation and ablation are computed from monthly mean surface
-air temperature and monthly precipitation by a~temperature-index (positive
+Ice surface accumulation and ablation are computed from monthly mean
+near-surface air temperature, monthly precipitation, and monthly standard
+deviation of near-surface temperature by a~temperature-index (positive
 degree-day) model \citep{hock-2003}. Ice accumulation is equal to precipitation
 when temperature is below 0\,\unit{{\degree}C}, and decreases to zero linearly
 with temperature between 0 and 2\,\unit{{\degree}C}. Ice ablation is computed
@@ -251,10 +234,10 @@ temperatures above 0\,\unit{{\degree}C} in one year.
 The positive degree-day integral \citep{calov-greve-2005} is numerically
 approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
-temperature standard deviation is part of the forcing climatology and was
+temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis \citep{data:narr} and excludes variability associated with the annual
-temperature cycle itself \note{improvement} \citet{seguinot-rogozhina-2014}. The
+Reanalysis \citep{data:narr}, excluding variability associated with the
+seasonal cycle itself \citet{seguinot-rogozhina-2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
@@ -267,7 +250,7 @@ Atmospheric forcing of the model consists of a present-day monthly climatology
 modified by a lapse-rate correction and time-dependent temperature offsets. The
 present-day climatology was computed from the near-surface air temperature and
 precipitation rate fields of the North American Regional Reanalysis (NARR) over
-the period xxxx--xxxx (Fig.~\ref{fig:atm}). Modern climate of the North
+the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
 seasonality, timing of the precipitation peak and daily temperature variability.
 Our choice of data from the NARR is motivated by the need for an accurate,
@@ -280,9 +263,10 @@ the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
 Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
 located off the Californian shore. Palaeo-temperatures from the GRIP and NGRIP
 records were calculated using a quadratic equation \aref:
-
-\todo{add equation here,}
-
+\begin{equation}
+    \Delta T = -11.88(\chem{\delta^{18}O}-\chem{\delta^{18}O}_0)
+               -0.1925(\chem{\delta^{18}O}^2-\chem{\delta^{18}O}_0^2)
+\end{equation}
 while the temperature reconstructions from the Antarctic and oceanic cores were
 provided by their authors. All records were scaled linearly in
 order to simulate comparable ice volumes and realistic ice extents at the last
