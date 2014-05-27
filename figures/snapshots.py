@@ -4,12 +4,15 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
+from matplotlib.colors import BoundaryNorm
+from matplotlib.ticker import FuncFormatter
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from iceplot import plot as iplt
 from paperglobals import *
 
-# simulations used
+# parameters
 res = '10km'
+levs = range(0, 4001, 500)
 
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
@@ -19,10 +22,6 @@ grid = ImageGrid(fig, rect, (3, len(records)), axes_pad=2.5*in2mm,
                  cbar_mode='single', cbar_location='right',
                  cbar_pad=2.5*in2mm, cbar_size=2.5*in2mm)
 remove_ticks(grid)
-
-# get MIS indexes from TS file
-mis_idces = np.zeros((len(records), 3), dtype=int)
-mis_times = np.zeros((len(records), 3), dtype=int)
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -51,10 +50,9 @@ for i, rec in enumerate(records):
         plt.sca(ax)
         iplt.bedtopoimage(nc, t, cmap=topo_cmap, norm=topo_norm)
         iplt.icemargincontour(nc, t)
-        iplt.surftopocontour(nc, t, levels=range(1000, 5000, 1000), lw=0.25)
-        csurf = (usurf[t].T**2 + vsurf[t].T**2)**0.5
-        im = ax.imshow(np.ma.array(csurf, mask=None),
-                       cmap=vel_cmap, norm=vel_norm, alpha=0.75)
+        cs = iplt.surftopocontour(nc, t, levels=levs, cmap='Blues_r',
+                                  norm=BoundaryNorm(levs, 256),
+                                  lw=0.25, alpha=0.75)
         annotate(ax, '%s kyr' % (mis_times[j]))
 
     # close extra file
@@ -72,7 +70,8 @@ for j in range(3):
         transform=ax.transAxes)
 
 # add colorbar and save
-cb = fig.colorbar(im, ax.cax)
-cb.set_label(r'surface velocity ($m\,a^{-1}$)', labelpad=-1.5*pt2mm)
+cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],
+                  format=FuncFormatter(lambda x, pos: '%g' % (x/1000.0)))
+cb.set_label(r'surface elevation (km)')  #, labelpad=-1.5*pt2mm)
 print 'saving snapshots...'
 fig.savefig('snapshots')
