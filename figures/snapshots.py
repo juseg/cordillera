@@ -52,7 +52,7 @@ for i, rec in enumerate(records):
         iplt.icemargincontour(nc, t)
         cs = iplt.surftopocontour(nc, t, levels=levs, cmap='Blues_r',
                                   norm=BoundaryNorm(levs, 256),
-                                  lw=0.25, alpha=0.75)
+                                  linewidths=0.25, alpha=0.75)
         annotate(ax, '%s kyr' % (mis_times[j]))
 
     # close extra file
