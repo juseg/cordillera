@@ -29,7 +29,7 @@ print 'plotting temperature maps...'
 levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]
 norm=BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[0+3*i].contourf(x, y, temp[6*i].T-273.15, cmap='RdBu_r',
+    im = grid[0+3*i].contourf(x[:], y[:], temp[6*i].T-273.15, cmap='RdBu_r',
                               levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([2.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal')
@@ -41,7 +41,7 @@ levs = np.logspace(1/3., 3, 9).round(0)
 #levs = [2, 5, 10, 20, 50, 100, 200, 500, 1000]
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[1+3*i].contourf(x, y, prec[6*i].T*1000/12., cmap='Greens',
+    im = grid[1+3*i].contourf(x[:], y[:], prec[6*i].T*1000/12., cmap='Greens',
                               levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
@@ -52,7 +52,7 @@ print 'plotting standard deviation maps...'
 levs = np.linspace(0.0, 12.0, 9)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[2+3*i].contourf(x, y, stdv[6*i].T, cmap='Reds',
+    im = grid[2+3*i].contourf(x[:], y[:], stdv[6*i].T, cmap='Reds',
                               levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([57.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[2::2])

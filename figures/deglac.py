@@ -51,13 +51,13 @@ for i, rec in enumerate(records):
         deglacage = np.where(icy, -t, deglacage)
 
     # plot
-    cs = ax.contourf(x, y, deglacage, levels=levs, cmap=cmap, alpha=0.75,
+    cs = ax.contourf(x[:], y[:], deglacage, levels=levs, cmap=cmap, alpha=0.75,
                      norm=BoundaryNorm(levs, 256), extend='max')
-    #ax.contour(x, y, deglacage, levels=levs, colors='k', linewidths=0.25)
-    ax.contourf(x, y, readvance, levels=[0.5, 1.5], colors='none', hatches='//')
-    ax.contour(x, y, readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
-    ax.contour(x, y, deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
-    ax.contour(x, y, deglacage, levels=[0], colors='k', linewidths=0.5)
+    #ax.contour(x[:], y[:], deglacage, levels=levs, colors='k', linewidths=0.25)
+    ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5], colors='none', hatches='//')
+    ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
+    ax.contour(x[:], y[:], deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
+    ax.contour(x[:], y[:], deglacage, levels=[0], colors='k', linewidths=0.5)
 
     # annotate
     annotate(ax, rec.upper())

@@ -37,8 +37,8 @@ for i, rec in enumerate(records):
     # plot
     levs = range(0,121,20)
     levs[0] = 1e-6
-    cf = ax.contourf(x, y, icecover, levels=levs, cmap='Greens', alpha=0.75)
-    ax.contour(x, y, icecover, [levs[0]], colors='k')
+    cf = ax.contourf(x[:], y[:], icecover, levels=levs, cmap='Greens', alpha=0.75)
+    ax.contour(x[:], y[:], icecover, [levs[0]], colors='k')
 
     # close extra file
     annotate(ax, rec.upper())
