@@ -103,15 +103,16 @@
 % ----------------------------------------------------------------------
 
 During the last glacial cycle, glaciers and ice caps of the North American
-Cordillera were more extensive than today. During the last glacial maximum, a
+Cordillera were more extensive than today. At the last glacial maximum, a
 contiguous blanket of ice extended from Denali Peak in the north to the Puget
 Sound in the south \aref. This ice mass is known as the former Cordilleran ice
 sheet (Fig.~\ref{fig:locmap}).
+\note{Make sure these locations are marked on Fig.~\ref{fig:locmap}.}
 
 For more than a century, exploration and geological investigation of the
 Cordillera have led to a large collection of evidence of the former ice cover \aref. This
 evidence consists of mapped boundaries of the former ice extent \aref, directions of
-past sliding velocities \aref and locations of former melt-water streams \aref, as well as
+past sliding velocities {\aref} and locations of former melt-water streams \aref, as well as
 the timing of glacier retreat identified from radiocarbon and cosmogenic dating \aref.
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
@@ -119,7 +120,7 @@ the maximal extent attained by the Cordilleran ice sheet during the last glacial
 cycle \aref. However, former ice thickness and the ice sheet's contribution to the
 last glacial maximum sea-level low-stand remain poorly constrained. Moreover,
 our understanding of the glaciation history is mainly restricted to the
-deglaciation phase and on a regional scale, while little is known about the ice
+deglaciation phase and a regional scale, while little is known about the ice
 sheet evolution prior to the last glacial maximum extent \aref. Although
 time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
 patterns are available for the Laurentide and Eurasian ice sheets \aref, such is not
@@ -163,7 +164,7 @@ The simulations presented here were run using Parallel Ice Sheet Model (PISM,
 development version~11b0a7f), an open-source, finite-difference, shallow ice
 sheet model \aref. The model takes basal topography, sea level, geothermal heat flux
 and climate forcing, as input fields and computes the evolution of ice extent
-and thickness in time, its thermal and dynamic state, and
+and thickness in time, the thermal and dynamic state of the ice sheet, and
 the associated lithospheric response. Our modelling domain encompasses the
 entire area covered by the Cordilleran ice sheet at the last glacial maximum
 (Fig.~\ref{fig:locmap}).
@@ -208,17 +209,11 @@ from laboratory experiments with till extracted from an Antarctic ice stream.
 Basal topography is derived from the ETOPO1 combined topography
 and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}.
 
-\note{Do we need more details (equations) on this new sliding law?}
-
 Sea level is lowered as a function of time according to the SPECMAP
 reconstruction, and basal topography responds to ice load
 following a bedrock deformation model that includes point-wise isostasy,
 elastic lithosphere flexure and viscous mantle deformation in a~semi-infinite
-half-space \citep{lingle-clark-1985,bueler-etal-2007}. It uses a lithosphere
-density of 3300\,\unit{kg\,m^{-3}}, a flexural rigidity of $5 \times
-10^{24}$\,\unit{N\,m} and a mantle viscosity of $1 \times
-10^{21}$\,\unit{Pa\,s}. Due to the high mantle viscosity, there exists a time
-lag between ice sheet growth and isostatic bedrock response.
+half-space \citep{lingle-clark-1985,bueler-etal-2007}.
 
 \subsection{Surface mass-balance}
 
@@ -247,13 +242,14 @@ Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 \subsection{Atmospheric forcing}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology
-modified by time-dependent temperature offsets and a lapse-rate correction.
+$\{T_m0, P_m0\}$, modified by temperature-offset time series ${\Delta}T_{TS}$
+and a lapse-rate correction ${\Delta}T_{LR}$.
 \begin{align}
     T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t) + {\Delta}T_{LR}(t, x, y) \\
     P_m(t, x, y) &= P_{m0}(x, y)
 \end{align}
 
-The present-day climatology $\{T_m, P_m\}$ was computed from the near-surface air temperature and
+The present-day climatology $\{T_m0, P_m0\}$ was computed from the near-surface air temperature and
 precipitation rate fields of the North American Regional Reanalysis (NARR) over
 the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
