@@ -10,10 +10,13 @@ figures: $(addprefix figures/,$(FIGS))
 figures/%.png: figures/%.py data
 	cd $(<D) && python2 $(<F)
 
-data: data/ice18k.shp
+data: data/etopo1.nc data/ice18k.shp
+
+data/etopo1.nc:
+	cd data && bash get-etopo1.nc
 
 data/ice18k.shp:
-	cd data && bash get.sh
+	cd data && bash get-dykeshp.sh
 
 clean:
 	rm -f data/ice*k.{dbf,shp,shx}

@@ -2,19 +2,21 @@
 *~
 
 # Files produced by latex
-cordillera-cycle.aux
-cordillera-cycle.fdb_latexmk
-cordillera-cycle.fls
-cordillera-cycle.log
-cordillera-cycle.out
-cordillera-cycle.pdf
-cordillera-cycle.rtf
+/*.aux
+/*.fdb_latexmk
+/*.fls
+/*.log
+/*.out
+/*.pdf
+/*.rtf
 
 # Data
-data/ice*.dbf
-data/ice*.shp
-data/ice*.shx
-data/of_1574.zip
+data/*.dbf
+data/*.nc
+data/*.shp
+data/*.shx
+data/*.tif
+data/*.zip
 
 # Figures
 figures/*.pyc
