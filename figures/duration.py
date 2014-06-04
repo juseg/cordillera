@@ -47,12 +47,21 @@ for i, rec in enumerate(records):
     cf = ax.contourf(x[:], y[:], icecover, levels=levs, alpha=0.75,
                      colors=colors, hatches=hatches)
     cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k', linewidths=0.25)
-    cs.clabel(fontsize=4, fmt='%i kyr', manual=[(-1825e3, 1000e3)])
+    cs.clabel(fontsize=6, fmt='%i kyr', manual=[(-1825e3, 1000e3)])
     ax.contour(x[:], y[:], icecover, [levs[0]], colors='k', linewidths=0.5)
 
     # close extra file
     nc.close()
     annotate(ax, rec.upper())
+
+# locate major mountain ranges
+txtkwa = dict(ha='center', va='center',
+              bbox=dict(ec='k', fc='w', alpha=1.0),
+              arrowprops=dict(arrowstyle="->"))
+ax.annotate('AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3), **txtkwa)
+ax.annotate('SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3), **txtkwa)
+ax.annotate('CM', xy=(-2000e3,  650e3), xytext=(-2350e3,  650e3), **txtkwa)
+ax.annotate('RM', xy=(-1500e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
 
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
