@@ -4,6 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
+from matplotlib.patches import Rectangle
 from paperglobals import *
 
 # initialize time-series figure
@@ -13,6 +14,7 @@ ax1 = fig.add_axes([10/figw, 45/figh, 110/figw, 32.5/figh])
 ax2 = fig.add_axes([10/figw, 10/figh, 110/figw, 32.5/figh])
 mis_idces = np.zeros((len(records), 3), dtype=int)
 mis_times = np.zeros((len(records), 3), dtype=float)
+mis_ivols = np.zeros((len(records), 3), dtype=float)
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -33,6 +35,7 @@ for i, rec in enumerate(records):
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
+    mis_ivols[i] = ts_ivol[mis_idces[i]]
 
     # plot time series
     ax1.plot(dt_time, dt_temp, color=colors[i])
@@ -41,21 +44,37 @@ for i, rec in enumerate(records):
              color=colors[i], marker=markers[i], label=labels[i])
 
     # look for a high-resolution run
-    try:
-        nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
-        ts_time = nc.variables['time'][:]*s2ka
-        ts_ivol = nc.variables['slvol'][:]
-        nc.close()
-        ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
-    except RuntimeError:
-        pass
+    #try:
+    #    nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
+    #    ts_time = nc.variables['time'][:]*s2ka
+    #    ts_ivol = nc.variables['slvol'][:]
+    #    nc.close()
+    #    ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+    #except RuntimeError:
+    #    pass
 
-# mark MIS stages
+# mark true MIS stages
+# source: http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
+ax2.axvspan(-71, -57, fc='0.95', lw=0.25)
+ax2.axvspan(-29, -14, fc='0.95', lw=0.25)
+ax2.text((-120-71)/2, 4.5, 'MIS 5', ha='center')
+ax2.text((-71-57)/2, 0.5, 'MIS 4', ha='center')
+ax2.text((-57-29)/2, 8.0, 'MIS 3', ha='center')
+ax2.text((-29-14)/2, 0.5, 'MIS 2', ha='center')
+ax2.text((-14-0)/2, 8.0, 'MIS 1', ha='center')
+
+# mark modelled glacial extrema
 mistmin = mis_times.min(axis=0)
 mistmax = mis_times.max(axis=0)
+misvmin = mis_ivols.min(axis=0)
+misvmax = mis_ivols.max(axis=0)
+print misvmin, misvmax
 for i in range(3):
     print 'MIS %i between %.1f and %.1f kyr' % (4-i, -mistmin[i], -mistmax[i])
-    ax2.axvspan(mistmin[i], mistmax[i], color='0.75', lw=0.0)
+    ax2.add_patch(Rectangle((mistmin[i], misvmin[i]),
+                             mistmax[i] - mistmin[i],
+                             misvmax[i] - misvmin[i],
+                             fc='none', hatch='//', lw=0.25, alpha=0.75))
 
 # set axes properties and save time series
 print 'saving time series...'
