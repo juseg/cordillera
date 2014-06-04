@@ -4,7 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
-from matplotlib.colors import Normalize
+from matplotlib.colors import BoundaryNorm
 from iceplot import plot as iplt
 from paperglobals import *
 
@@ -12,6 +12,7 @@ from paperglobals import *
 res = '10km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
+cislevs = [28.0, 29.0]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -34,15 +35,24 @@ for i, rec in enumerate(records):
     icecover = (mask[:] == 2).sum(axis=0).T
     icecover *= 120.0/len(nc.variables['time'])
 
-    # plot
-    levs = range(0,121,20)
+    # set contour levels, colors and hatches
+    levs = range(0, 21, 5) + [cislevs[i]] + range(40,121,20)
     levs[0] = 1e-6
-    cf = ax.contourf(x[:], y[:], icecover, levels=levs, cmap='Greens', alpha=0.75)
-    ax.contour(x[:], y[:], icecover, [levs[0]], colors='k')
+    cmap = plt.get_cmap('RdBu')
+    colors = cmap(np.hstack((np.linspace(0.0, 0.5, (len(levs)-1)/2),
+                             np.linspace(0.5, 1.0, (len(levs)-1)/2))))
+    hatches = ['']*5 + ['//'] + ['']*4
+
+    # plot
+    cf = ax.contourf(x[:], y[:], icecover, levels=levs, alpha=0.75,
+                     colors=colors, hatches=hatches)
+    cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k', linewidths=0.25)
+    cs.clabel(fontsize=4, fmt='%i kyr', manual=[(-1825e3, 1000e3)])
+    ax.contour(x[:], y[:], icecover, [levs[0]], colors='k', linewidths=0.5)
 
     # close extra file
-    annotate(ax, rec.upper())
     nc.close()
+    annotate(ax, rec.upper())
 
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
