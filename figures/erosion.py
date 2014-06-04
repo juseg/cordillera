@@ -4,7 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm
+from matplotlib.colors import BoundaryNorm, LogNorm
 from iceplot import plot as iplt
 from paperglobals import *
 
@@ -31,17 +31,21 @@ for i, rec in enumerate(records):
     mask = nc.variables['mask']
     x = nc.variables['x']
     y = nc.variables['y']
+    w = (3*x[0]-x[1])/2
+    e = (3*x[-1]-x[-2])/2 - (x[-1]-x[-2])/2  # weird but works
+    n = (3*y[0]-y[1])/2
+    s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
     u = nc.variables['uvelbase']
     v = nc.variables['uvelbase']
     c = (u[:]**2 + v[:]**2)**0.5
-    dist = c.sum(axis=0).T*100.0
+    dist = c.sum(axis=0).T/10.0  # convert to km
 
     # plot
-    levs = np.logspace(4, 9, 6)
-    cmap = plt.get_cmap('CMRmap')
-    colors=cmap(np.linspace(0, 1, len(levs)-1))
-    cf = ax.contourf(x[:], y[:], dist, levels=levs, alpha=0.75,  # extend='both',
-                     cmap='Reds', norm=BoundaryNorm(levs, 256))
+    #levs = np.logspace(1, 4, 7)
+    #cf = ax.contourf(x[:], y[:], dist, levels=levs, alpha=0.75,
+    #                 cmap='Reds', norm=BoundaryNorm(levs, 256))
+    cf = ax.imshow(dist, extent=(w, e, n, s), alpha=0.75,
+                   cmap='Reds', norm=LogNorm(1e1, 1e4))
     ax.contour(x[:], y[:], dist.mask, [0.5], colors='k')
 
     # close extra file
@@ -49,6 +53,6 @@ for i, rec in enumerate(records):
     nc.close()
 
 # add colorbar and save
-cb = fig.colorbar(cf, ax.cax, format='%.0e')
-cb.set_label('Cumulative basal displacement (m)')
+cb = fig.colorbar(cf, ax.cax, extend='both')
+cb.set_label('Cumulative basal displacement (km)')
 fig.savefig('erosion.png')
