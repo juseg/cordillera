@@ -13,7 +13,7 @@ figures/%.png: figures/%.py data
 data: data/etopo1.nc data/ice18k.shp
 
 data/etopo1.nc:
-	cd data && bash get-etopo1.nc
+	cd data && bash get-etopo1.sh
 
 data/ice18k.shp:
 	cd data && bash get-dykeshp.sh
