@@ -36,7 +36,7 @@ lightred, darkred = palette[4:6]
 topo_cmap = 'Greys'
 topo_norm = Normalize(-3000, 6000)
 vel_cmap = velocity
-vel_norm = LogNorm(1e1, 1e4)
+vel_norm = LogNorm(1e1, 1e3)
 
 # alternative for controlled brightness
 #rbmap = brewer2mpl.get_map('Reds', 'sequential', 9)
