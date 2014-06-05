@@ -171,8 +171,8 @@ of timing and extent of glaciation and patterns of deglaciation.
 
 The simulations presented here were run using Parallel Ice Sheet Model (PISM,
 development version~11b0a7f), an open-source, finite-difference, shallow ice
-sheet model \aref. The model takes basal topography, sea level, geothermal heat flux
-and climate forcing, as input fields and computes the evolution of ice extent
+sheet model \aref. The model inputs basal topography, sea level, geothermal
+heat flux and climate forcing, and computes the evolution of ice extent
 and thickness in time, the thermal and dynamic state of the ice sheet, and
 the associated lithospheric response. Our modelling domain encompasses the
 entire area covered by the Cordilleran ice sheet at the last glacial maximum
@@ -279,7 +279,7 @@ records were calculated using a quadratic equation \aref:
 \end{equation}
 while the temperature reconstructions from the Antarctic and oceanic cores were
 provided by their authors \aref. All records were scaled linearly in
-order to simulate comparable ice volumes and realistic ice extents at the last
+order to simulate realistic and comparable ice extents at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
 Prior to surface mass balance computation, the model dynamically applies
@@ -289,13 +289,11 @@ a~lapse-rate correction to surface air temperature,
                             &= -\gamma [h(t, x, y)+z_{b}(t, x, y)-z_{ref}]
 \end{align}
 
-
-This correction accounts
-for the evolution of ice thickness on the one hand, and differences between the
-climate forcing reference topography and the ice flow model basal topography on
-the other hand. An annual lapse rate of
-$\gamma = 6\,\unit{{\degree}C\,km^{-1}}$
-is used in all simulations.
+This correction accounts for the evolution of ice thickness $h$ on the one
+hand, and for differences between the climate forcing reference topography and
+the ice flow model basal topography $z_{b}-z_{ref}$ on the other hand. An
+annual lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$ is used in all
+simulations.
 
 
 % ----------------------------------------------------------------------
