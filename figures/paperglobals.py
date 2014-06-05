@@ -5,6 +5,7 @@ import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
 from matplotlib.colors import LogNorm, Normalize
+from matplotlib.transforms import ScaledTranslation
 from iceplot.cm import velocity
 
 
@@ -87,10 +88,11 @@ def get_mis_times(filename):
 
 # plotting functions
 def annotate(ax, s):
-    return ax.text(13/15., 28/30., s,
-                   va='top', ha='right',
-                   bbox=dict(ec='k', fc='w', alpha=1.0),
-                   transform=ax.transAxes)
+    fig = ax.get_figure()
+    offset = ScaledTranslation(-2.5*in2mm, -2.5*in2mm, fig.dpi_scale_trans)
+    return ax.text(1, 1, s, va='top', ha='right',
+                   bbox=dict(ec='k', fc='w', alpha=1.0, pad=2.5*pt2mm),
+                   transform=ax.transAxes + offset)
 
 
 def draw_boot_topo(grid, res):
