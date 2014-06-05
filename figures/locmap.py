@@ -11,7 +11,7 @@ from paperglobals import *
 
 in2mm = 1/25.4
 pt2mm = 72*in2mm
-bwu = 0.1*pt2mm  # base width unit
+bwu = 0.5  # base width unit
 scale = '50m'
 
 # Canadian Atlas Lambert projection
@@ -84,8 +84,8 @@ for age in raw_ages:
                 union = rec.geometry
             else:
                 union = union.union(rec.geometry)
-ax.add_geometries(union, proj, edgecolor='none', facecolor='#f5f4f2', alpha=0.5)
-ax.add_geometries(union, proj, edgecolor='#0978ab', facecolor='none', lw=1.0*bwu)
+ax.add_geometries(union, proj, edgecolor='none', facecolor='#f5f4f2', alpha=0.75)
+ax.add_geometries(union, proj, edgecolor='#0978ab', facecolor='none', lw=0.5*bwu)
 
 # add graticules
 ax.add_feature(cfeature.NaturalEarthFeature(

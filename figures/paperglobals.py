@@ -115,7 +115,8 @@ def draw_coastline(grid, res):
     y = nc.variables['y']
     topg = nc.variables['topg']
     for ax in grid:
-        cs = ax.contour(x[:], y[:], topg[:].T, levels=[0.0], colors='k')
+        cs = ax.contour(x[:], y[:], topg[:].T, levels=[0.0],
+                         colors='k', linewidths=0.5)
     nc.close()
     return cs
 

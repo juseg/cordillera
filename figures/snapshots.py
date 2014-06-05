@@ -12,7 +12,6 @@ from paperglobals import *
 
 # parameters
 res = '10km'
-levs = range(0, 4001, 500)
 
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
@@ -49,10 +48,13 @@ for i, rec in enumerate(records):
         ax = grid[i+j*len(records)]
         plt.sca(ax)
         iplt.bedtopoimage(nc, t, cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargincontour(nc, t)
+        iplt.icemargincontour(nc, t, linewidths=0.5)
+        levs = range(0, 4001, 500)
         cs = iplt.surftopocontour(nc, t, levels=levs, cmap='Blues_r',
                                   norm=BoundaryNorm(levs, 256),
-                                  linewidths=0.25, alpha=0.75)
+                                  linewidths=0.1, alpha=0.75)
+        iplt.surftopocontour(nc, t, levels=range(1000, 4001, 1000),
+                             linewidths=0.25)
         annotate(ax, '%s kyr' % (mis_times[j]))
 
     # close extra file
@@ -61,13 +63,13 @@ for i, rec in enumerate(records):
 # add labels
 for i, label in enumerate(labels):
     ax = grid[i]
-    ax.text(0.5, 1.05, labels[i], ha='center', fontweight='bold',
+    ax.text(0.5, 1.05, labels[i], ha='center',
             transform=ax.transAxes)
 for j in range(3):
     ax = grid[j*len(records)]
     ax.text(-0.05, 0.5, 'MIS %i' % (4-j),
-        ha='right', va='center', fontweight='bold', rotation='vertical',
-        transform=ax.transAxes)
+            ha='right', va='center', rotation='vertical',
+            transform=ax.transAxes)
 
 # add colorbar and save
 cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],

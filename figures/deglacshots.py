@@ -35,9 +35,7 @@ plot_times = [lgm_time, -16, -14, -12, -10]
 nc = Dataset(this_run_path + '-extra.nc')
 time = nc.variables['time'][:]*s2ka
 topg = nc.variables['topg']
-# csurf = nc.variables['velsurf_mag']  # I forgot that in the 10km runs
-usurf = nc.variables['uvelsurf']
-vsurf = nc.variables['vvelsurf']
+csurf = nc.variables['velsurf_mag']  # I forgot that in the 10km runs
 thk = nc.variables['thk']
 
 # round pltting times to nearest slice
@@ -50,10 +48,11 @@ for i, t in enumerate(plot_idces):
     plt.sca(ax)
     iplt.bedtopoimage(nc, t, cmap=topo_cmap, norm=topo_norm)
     iplt.icemargincontour(nc, t, linewidths=0.5)
-    iplt.surftopocontour(nc, t, levels=range(200, 5000, 200), linewidths=0.25)
-    iplt.surftopocontour(nc, t, levels=range(1000, 5000, 1000), linewidths=0.5)
-    csurf = (usurf[t].T**2 + vsurf[t].T**2)**0.5
-    im = ax.imshow(csurf, cmap=vel_cmap, norm=LogNorm(10**1.0, 10**3.0), alpha=0.75)
+    iplt.surftopocontour(nc, t, levels=range(200, 5000, 200), linewidths=0.1)
+    iplt.surftopocontour(nc, t, levels=range(1000, 5000, 1000), linewidths=0.25)
+    iplt.surfvelimage
+    im = ax.imshow(csurf[t].T, cmap=vel_cmap, norm=LogNorm(10**1.0, 10**3.0),
+                   alpha=0.75)
     annotate(ax, '%s kyr' % time[t])
 
 # close extra file
