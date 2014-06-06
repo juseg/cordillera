@@ -5,6 +5,7 @@ import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
+from matplotlib.colorbar import ColorbarBase
 from iceplot import plot as iplt
 from paperglobals import *
 
@@ -42,31 +43,39 @@ for i, rec in enumerate(records):
 
     # compute last flow velocities
     print 'computing last flow velocities...'
+    deglacage = np.ones_like(mask[0].T)*-1.0
     lastu = np.zeros_like(u[0].T)
     lastv = np.zeros_like(v[0].T)
     for i, t in enumerate(time[:]*s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
         icy = (mask[i].T == 2)
-        #sliding = np.ma.masked_where(mask[i].T != 2, c[i].T > 1.0)
         sliding = icy * c[i].data.T > 1.0
         lastu = np.where(sliding, u[i].T, lastu)
         lastv = np.where(sliding, v[i].T, lastv)
+        deglacage = np.where(icy, -t, deglacage)
 
     # scale last flow velocity
-    lastu = np.ma.masked_equal(lastu, 0.0)
-    lastv = np.ma.masked_equal(lastv, 0.0)
+    lastu = np.ma.masked_where(deglacage < 0, lastu)
+    lastv = np.ma.masked_where(deglacage < 0, lastv)
     lastc = (lastu**2 + lastv**2)**0.5
-    lastu = np.sign(lastu)*np.log(1+np.abs(lastu)/100.)
-    lastv = np.sign(lastv)*np.log(1+np.abs(lastv)/100.)
-    direc = np.arctan(lastv/lastu)
 
-    # plot
+    # plot parameters
+    cmap='RdBu_r'
+    norm=Normalize(8.0, 22.0)
+    plotres=10.0  # in km
+
+    # plot last velocity stream lines
     print 'plotting...'
-    #ax.quiver(x[:], y[:], lastu, lastv, lastc, scale=100,
-    #          cmap=vel_cmap, norm=vel_norm)
-    ax.streamplot(x[:], y[:], lastu, lastv, color=lastc, density=(5, 10),
-                  cmap=vel_cmap, norm=vel_norm, linewidth=0.5)
-    ax.contour(x[:], y[:], (mask[:] == 2).sum(axis=0).T, levels=[0.5],
+    ax.streamplot(x[:], y[:], lastu, lastv, color=deglacage,
+                  density=(60.0/plotres, 120.0/plotres),
+                  cmap=cmap, norm=norm, linewidth=0.5)
+
+    # plot glaciated and non-sliding areas
+    ax.contourf(x[:], y[:], (deglacage > 0) * (lastc == 0), levels=[0.5, 1.5],
+                colors='none', hatches=['//'])
+    ax.contour(x[:], y[:], (deglacage > 0) * (lastc == 0), levels=[0.5],
+               colors='k', linewidths=0.25)
+    ax.contour(x[:], y[:], deglacage > 0, levels=[0.5],
                colors='k', linewidths=0.5)
 
     # annotate
@@ -74,7 +83,7 @@ for i, rec in enumerate(records):
 
 # add colorbar and save
 print 'saving...'
-#cb = fig.colorbar(cs, ax.cax, ticks=ages)
-#cb.set_label('Deglaciation age (kyr)')
+cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
+cb.set_label('Deglaciation age (kyr)')
 fig.savefig('lastflow')
 nc.close()
