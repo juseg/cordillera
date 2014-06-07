@@ -216,10 +216,9 @@ elevation, with lowest values occurring at low elevation, thus accounting
 for a~weakening of till associated with the presence of marine sediments
 \citep{martin-etal-2011,aschwanden-etal-2013}. The till effective pressure is
 related to the modelled amount of water in the till, using a formula derived
-from laboratory experiments with till extracted from an Antarctic ice stream.
-Basal topography is derived from the ETOPO1 combined topography
+from laboratory experiments with till extracted from an Antarctic ice stream
+\aref. Basal topography is derived from the ETOPO1 combined topography
 and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}.
-
 Sea level is lowered as a function of time according to the SPECMAP
 reconstruction, and basal topography responds to ice load
 following a bedrock deformation model that includes point-wise isostasy,
@@ -242,7 +241,8 @@ approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis \citep{data:narr}, excluding variability associated with the
+Reanalysis (NARR) \citep{data:narr}, after excluding variability associated
+with the
 seasonal cycle itself \citet{seguinot-rogozhina-2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
@@ -253,28 +253,28 @@ Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 \subsection{Atmospheric forcing}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology
-$\{T_m0, P_m0\}$, modified by temperature-offset time series ${\Delta}T_{TS}$
-and a lapse-rate correction ${\Delta}T_{LR}$.
+$\{T_{m0}, P_{m0}\}$, modified by temperature-offset time series
+${\Delta}T_{TS}$ and a lapse-rate correction ${\Delta}T_{LR}$.
 \begin{align}
     T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t) + {\Delta}T_{LR}(t, x, y) \\
     P_m(t, x, y) &= P_{m0}(x, y)
 \end{align}
 
-The present-day climatology $\{T_m0, P_m0\}$ was computed from the near-surface air temperature and
-precipitation rate fields of the North American Regional Reanalysis (NARR) over
+The present-day climatology $\{T_{m0}, P_{m0}\}$ was computed from the
+near-surface air temperature and precipitation rate fields of the NARR over
 the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
 seasonality, timing of the precipitation peak and daily temperature variability.
 Our choice of data from the NARR is motivated by the need for an accurate,
 high-resolution precipitation forcing, as outlined in a previous sensitivity
-study.
+study \aref.
 
 Temperature offset time-series ${\Delta}T_{TS}$ are derived from proxy records from
 the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
 (NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
 Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
-located off the Californian shore. Palaeo-temperatures from the GRIP and NGRIP
-records were calculated using a quadratic equation \aref:
+located off the Californian shore \aref. Palaeo-temperatures from the GRIP and
+NGRIP records were calculated using a quadratic equation \aref:
 \begin{equation}
     {\Delta}T_{TS}(t) = -11.88[\chem{\delta^{18}O(t)}-\chem{\delta^{18}O}(0)]
                         -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2]
@@ -292,10 +292,10 @@ a~lapse-rate correction to surface air temperature,
 \end{align}
 
 This correction accounts for the evolution of ice thickness $h$ on the one
-hand, and for differences between the climate forcing reference topography and
-the ice flow model basal topography $z_{b}-z_{ref}$ on the other hand. An
-annual lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$ is used in all
-simulations.
+hand, and for differences between the the ice flow model basal topography
+$z_{b}$ and the climate forcing reference topography $z_{ref}$ on the other
+hand. All simulations use an annual temperature lapse rate of
+$\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
 
 
 % ----------------------------------------------------------------------
