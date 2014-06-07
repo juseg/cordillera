@@ -18,7 +18,7 @@ dt = 5.8
 figw, figh = 120.0, 100.0
 fig = plt.figure(0, (figw*in2mm, figh*in2mm))
 rect1 = [2.5/figw, 2.5/figh, 47.5/figw, 95.0/figh]
-rect2 = [52.5/figw, 2.5/figh, 57.5/figw, 95.0/figh]
+rect2 = [52.5/figw, 2.5/figh, 56.25/figw, 95.0/figh]
 grid = [None]*5
 grid[0] = fig.add_axes(rect1)
 grid[1:] = ImageGrid(fig, rect2, (2, 2), axes_pad=2.5*in2mm,
