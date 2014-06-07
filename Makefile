@@ -1,6 +1,6 @@
 PAPER = cordillera-cycle
 FIGS = atm.png deglac.png deglacshots.png duration.png erosion.png \
-       locmap.png snapshots.png timeseries.png warmbase.png
+       lastflow.png locmap.png snapshots.png timeseries.png warmbase.png
 
 all: $(PAPER).tex figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
