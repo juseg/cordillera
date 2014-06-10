@@ -34,13 +34,16 @@ kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
 for ax, yp in zip(grid, [2.0e6, 1.5e6, 1.0e6]):
     j = np.argmin(np.abs(y[:]-yp))
     xpf = x[:]*1e-3
-    maskpf = mask[kmin:kmax, :, j]
+    maskpf = mask[kmin:kmax, :, j] != 2
     topgpf = topg[kmin:kmax, :, j]*1e-3
     surfpf = usurf[kmin:kmax, :, j]*1e-3
-    #surfpf = np.ma.masked_where(maskpf != 2, surfpf)
+    surfpf = np.where(maskpf, topgpf, surfpf)  # apply topg where ice-free
+    maskpf = np.roll(maskpf, -1) * np.roll(maskpf, 1)  # shrink mask by 1 cell
+    surfpf = np.ma.masked_where(maskpf, surfpf)  # apply mask
     ax.grid(axis='y', c='0.5', ls='-', lw=0.1)
     ax.plot(xpf, surfpf.T, c=darkblue, lw=0.1)
     ax.plot(xpf, topgpf.T, c='k', lw=0.1)
+    ax.text(0.04, 0.8, 'y = %i km' % (yp*1e-3), transform=ax.transAxes)
 
 # set axes properties
 grid[0].set_xlim(-2.4e3, -1.25e3)  # shared
