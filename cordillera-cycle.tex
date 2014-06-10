@@ -194,16 +194,12 @@ PISM is a~shallow model, which implies that the balance of stresses is
 approximated based on their predominant components.
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the
 Shallow Ice Approximation (SIA) \citep{bueler-brown-2009,winkelmann-etal-2011}.
-SIA and SSA velocities are computed by finite difference methods on a~10\,km
-resolution horizontal grid of 300 by 150 points (the modelling domain). Ice
-softness depends on temperature and water content through an enthalpy
-formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Enthalpy is
-computed in three dimensions in up to 51 layers within the
-ice, and temperature is additionally computed in 31 layers in bedrock to
-a~depth of 3\,km. Surface air temperature from the atmospheric forcing
-provides the upper boundary condition to the ice enthalpy model, and
-a~geothermal heat flux of 70\,\unit{mW\,m^{-2}} provides the lower boundary
-condition to the bedrock thermal model. Although this uniform value does not
+Ice softness depends on temperature and water content through an enthalpy
+formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Surface air
+temperature from the atmospheric forcing provides the upper boundary condition
+to the ice enthalpy model. Temperature is computed subglacially to a~depth of
+3\,km, where it is conditioned by a~geothermal heat flux of
+70\,\unit{mW\,m^{-2}}. Although this uniform value does not
 account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
 \citep{artemieva-mooney-2001,blackwell-richards-2004}.
@@ -296,6 +292,13 @@ hand, and for differences between the the ice flow model basal topography
 $z_{b}$ and the climate forcing reference topography $z_{ref}$ on the other
 hand. All simulations use an annual temperature lapse rate of
 $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
+
+For all records, we firstly run a low-resolution simulation, using
+a~10\,\unit{km}, 300 by 150~points horizontal grid for SSA and SIA velocities,
+up to 51~enthalpy layers in the ice, and 31~temperature layers in the bedrock.
+For the GRIP and EPICA records, we then run a second simulation using a higher
+horizontal resolution of 6\,\unit{km}, up to 101~ice layers, and 61~bedrock
+layers.
 
 
 % ----------------------------------------------------------------------
