@@ -44,14 +44,14 @@ for i, rec in enumerate(records):
              color=colors[i], marker=markers[i], label=labels[i])
 
     # look for a high-resolution run
-    #try:
-    #    nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
-    #    ts_time = nc.variables['time'][:]*s2ka
-    #    ts_ivol = nc.variables['slvol'][:]
-    #    nc.close()
-    #    ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
-    #except RuntimeError:
-    #    pass
+    try:
+        nc = Dataset(run_path % ('6km', rec, dt*100) + '-ts.nc')
+        ts_time = nc.variables['time'][:]*s2ka
+        ts_ivol = nc.variables['slvol'][:]
+        nc.close()
+        ax2.plot(ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+    except RuntimeError:
+        pass
 
 # mark true MIS stages
 # source: http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
