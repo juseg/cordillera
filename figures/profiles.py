@@ -10,10 +10,11 @@ from paperglobals import *
 
 # parameters
 tmin, tmax = -19.5, -8.0
+yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 
 # initialize figure
-figw, figh = 120.0, 85.0
-fig, grid = plt.subplots(3, figsize=(120.0*in2mm, 85.0*in2mm),
+figw, figh = 120.0, 100.0
+fig, grid = plt.subplots(len(yplist), figsize=(120.0*in2mm, 85.0*in2mm),
                          sharex=True, sharey=True)
 fig.subplots_adjust(left=10/figw, bottom=10/figh,
                     right=1-2.5/figw, top=1-2.5/figh,
@@ -31,7 +32,7 @@ usurf = nc.variables['usurf']
 
 # plot
 kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
-for ax, yp in zip(grid, [2.0e6, 1.5e6, 1.0e6]):
+for ax, yp in zip(grid, yplist):
     j = np.argmin(np.abs(y[:]-yp))
     xpf = x[:]*1e-3
     maskpf = mask[kmin:kmax, :, j] != 2
@@ -49,8 +50,8 @@ for ax, yp in zip(grid, [2.0e6, 1.5e6, 1.0e6]):
 grid[0].set_xlim(-2.4e3, -1.25e3)  # shared
 grid[0].set_ylim(-1, 4)  # shared
 grid[0].set_yticks(range(4))  # shared
-grid[1].set_ylabel('elevation (km)')
-grid[2].set_xlabel('projection x-coordinate (km)')
+grid[2].set_ylabel('elevation (km)')
+grid[-1].set_xlabel('projection x-coordinate (km)')
 
 # save
 print 'saving...'
