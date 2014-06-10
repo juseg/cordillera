@@ -249,14 +249,14 @@ Rocky Mountains in British Columbia \citep{shea-etal-2009}.
 \subsection{Atmospheric forcing}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology
-$\{T_{m0}, P_{m0}\}$, modified by temperature-offset time series
-${\Delta}T_{TS}$ and a lapse-rate correction ${\Delta}T_{LR}$.
+$\{T_{m0}, P_{m0}\}$, modified by a lapse-rate correction ${\Delta}T_{LR}$ and
+temperature-offset time series ${\Delta}T_{TS}$.
 \begin{align}
-    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t) + {\Delta}T_{LR}(t, x, y) \\
+    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{LR}(t) + {\Delta}T_{TS}(t, x, y) \\
     P_m(t, x, y) &= P_{m0}(x, y)
 \end{align}
 
-The present-day climatology $\{T_{m0}, P_{m0}\}$ was computed from the
+The present-day climatology $\{T_{m0}, P_{m0}\}$ was computed from
 near-surface air temperature and precipitation rate fields of the NARR over
 the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
@@ -265,35 +265,33 @@ Our choice of data from the NARR is motivated by the need for an accurate,
 high-resolution precipitation forcing, as outlined in a previous sensitivity
 study \aref.
 
+The lapse-rate correction ${\Delta}T_{LR}$ is computed using the NARR surface
+geopotential height a reference topography $z_{ref}$,
+\begin{align}
+    {\Delta}T_{LR}(t, x, y) &= -\gamma [z_{s}(t, x, y)-z_{ref}] \\
+                            &= -\gamma [h(t, x, y)+z_{b}(t, x, y)-z_{ref}],
+\end{align}
+
+thus accounting for the evolution of ice thickness $h$ on the one hand, and
+for differences between the the ice flow model basal topography $z_{b}$ and the
+NARR topography $z_{ref}$ on the other hand. All simulations use an annual temperature lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
+
 Temperature offset time-series ${\Delta}T_{TS}$ are derived from proxy records from
 the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
 (NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
 Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
 located off the Californian shore \aref. Palaeo-temperatures from the GRIP and
-NGRIP records were calculated using a quadratic equation \aref:
+NGRIP records were calculated using a quadratic equation \aref,
 \begin{equation}
     {\Delta}T_{TS}(t) = -11.88[\chem{\delta^{18}O(t)}-\chem{\delta^{18}O}(0)]
-                        -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2]
+                        -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2],
 \end{equation}
 while the temperature reconstructions from the Antarctic and oceanic cores were
 provided by their authors \aref. All records were scaled linearly in
 order to simulate realistic and comparable ice extents at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
-Prior to surface mass balance computation, the model dynamically applies
-a~lapse-rate correction to surface air temperature,
-\begin{align}
-    {\Delta}T_{LR}(t, x, y) &= -\gamma [z_{s}(t, x, y)-z_{ref}] \\
-                            &= -\gamma [h(t, x, y)+z_{b}(t, x, y)-z_{ref}]
-\end{align}
-
-This correction accounts for the evolution of ice thickness $h$ on the one
-hand, and for differences between the the ice flow model basal topography
-$z_{b}$ and the climate forcing reference topography $z_{ref}$ on the other
-hand. All simulations use an annual temperature lapse rate of
-$\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
-
-For all records, we firstly run a low-resolution simulation, using
+For all proxy records, we firstly run a low-resolution simulation, using
 a~10\,\unit{km}, 300 by 150~points horizontal grid for SSA and SIA velocities,
 up to 51~enthalpy layers in the ice, and 31~temperature layers in the bedrock.
 For the GRIP and EPICA records, we then run a second simulation using a higher
