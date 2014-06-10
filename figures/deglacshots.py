@@ -10,7 +10,7 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
-res = '10km'
+res = '6km'
 rec = 'grip'
 dt = 5.8
 

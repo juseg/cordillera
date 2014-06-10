@@ -9,7 +9,7 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # simulations used
-res = '10km'
+res = '6km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
 
@@ -36,7 +36,7 @@ for i, rec in enumerate(records):
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
     mask = nc.variables['mask']
     temp = nc.variables['temppabase']
-    
+
     # compute duration of warm-based coved
     warm = (temp[:] > -1e-9) * (mask[:] == 2)
     warm = np.ma.array((temp[:] > -1e-9), mask=(mask[:] != 2))

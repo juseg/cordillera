@@ -10,7 +10,7 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
-res = '10km'
+res = '6km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
 ages = range(8, 23, 1)

@@ -9,7 +9,7 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # simulations used
-res = '10km'
+res = '6km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
 cislevs = [28.0, 29.0]

@@ -22,7 +22,7 @@ fig.subplots_adjust(left=10/figw, bottom=10/figh,
 
 # read extra output
 print 'reading %s extra output...' % rec
-nc = Dataset(run_path % ('10km', 'grip', 580) + '-extra.nc')
+nc = Dataset(run_path % ('6km', 'grip', 580) + '-extra.nc')
 x = nc.variables['x']
 y = nc.variables['y']
 time = nc.variables['time']
