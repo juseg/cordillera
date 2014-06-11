@@ -12,7 +12,7 @@ from paperglobals import *
 res = '6km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
-cislevs = [28.0, 29.0]
+cislevs = [29.0, 29.0]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,

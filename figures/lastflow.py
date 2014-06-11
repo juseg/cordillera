@@ -62,7 +62,7 @@ for i, rec in enumerate(records):
     # plot parameters
     cmap='RdBu_r'
     norm=Normalize(8.0, 22.0)
-    plotres=10.0  # in km
+    plotres=12  # in km
 
     # plot last velocity stream lines
     print 'plotting...'

@@ -9,7 +9,7 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
-tmin, tmax = -19.5, -8.0
+tmin, tmax = -22.0, -8.0
 yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 
 # initialize figure
@@ -47,7 +47,7 @@ for ax, yp in zip(grid, yplist):
     ax.text(0.04, 0.8, 'y = %i km' % (yp*1e-3), transform=ax.transAxes)
 
 # set axes properties
-grid[0].set_xlim(-2.4e3, -1.25e3)  # shared
+grid[0].set_xlim(-2.35e3, -1.3e3)  # shared
 grid[0].set_ylim(-1, 4)  # shared
 grid[0].set_yticks(range(4))  # shared
 grid[2].set_ylabel('elevation (km)')
