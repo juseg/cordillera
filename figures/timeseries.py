@@ -8,10 +8,10 @@ from matplotlib.patches import Rectangle
 from paperglobals import *
 
 # initialize time-series figure
-figw, figh = 122.51, 80.01
+figw, figh = 120.0, 80.01
 fig = mplt.figure(2, (figw*in2mm, figh*in2mm))
-ax1 = fig.add_axes([10/figw, 45/figh, 110/figw, 32.5/figh])
-ax2 = fig.add_axes([10/figw, 10/figh, 110/figw, 32.5/figh])
+ax1 = fig.add_axes([10/figw, 45/figh, 107.5/figw, 32.5/figh])
+ax2 = fig.add_axes([10/figw, 10/figh, 107.5/figw, 32.5/figh])
 mis_idces = np.zeros((len(records), 3), dtype=int)
 mis_times = np.zeros((len(records), 3), dtype=float)
 mis_ivols = np.zeros((len(records), 3), dtype=float)

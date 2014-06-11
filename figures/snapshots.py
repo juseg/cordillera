@@ -52,7 +52,7 @@ for i, rec in enumerate(records):
         levs = range(0, 4001, 500)
         cs = iplt.surftopocontour(nc, t, levels=levs, cmap='Blues_r',
                                   norm=BoundaryNorm(levs, 256),
-                                  linewidths=0.1, alpha=0.75)
+                                  linewidths=0.25, alpha=0.75)
         iplt.surftopocontour(nc, t, levels=range(1000, 4001, 1000),
                              linewidths=0.25)
         annotate(ax, '%s kyr' % (mis_times[j]))

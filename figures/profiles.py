@@ -13,12 +13,12 @@ tmin, tmax = -22.0, -8.0
 yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 
 # initialize figure
-figw, figh = 120.0, 100.0
-fig, grid = plt.subplots(len(yplist), figsize=(120.0*in2mm, 85.0*in2mm),
+figw, figh = 85.0, 100.0
+fig, grid = plt.subplots(len(yplist), figsize=(figw*in2mm, figh*in2mm),
                          sharex=True, sharey=True)
-fig.subplots_adjust(left=10/figw, bottom=10/figh,
+fig.subplots_adjust(left=10.0/figw, bottom=10/figh,
                     right=1-2.5/figw, top=1-2.5/figh,
-                    wspace=2.5/figw, hspace=0.1)
+                    hspace=1/((1+figh/2.5)/4-1))
 
 # read extra output
 print 'reading %s extra output...' % rec
