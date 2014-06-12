@@ -38,12 +38,13 @@ for i, rec in enumerate(records):
     temp = nc.variables['temppabase']
 
     # compute duration of warm-based coved
-    warm = (temp[:] > -1e-9) * (mask[:] == 2)
     warm = np.ma.array((temp[:] > -1e-9), mask=(mask[:] != 2))
     warm = warm.sum(axis=0).T/10.0
+    #warm = warm.mean(axis=0).T  # for warm-base fraction
 
     # set levels, colors and hatches
     levs = [-1] + range(0, 121, 20)
+    #levs = [-1, 0.0, 0.5, 0.9, 0.99, 1.0]  # for warm-base fraction
     cmap = plt.get_cmap('Reds')
     colors = cmap(np.linspace(0.0, 1.0, len(levs)-1))
     hatches = ['//'] + ['']*(len(levs)-2)
