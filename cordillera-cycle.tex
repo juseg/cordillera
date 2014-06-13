@@ -24,8 +24,8 @@
 \newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 \newcommand{\todo}[1]{\textbf{[TODO: #1]}}
 \newcommand{\aref}[0]{\textbf{[ref.]}}
-\renewcommand{\citep}[1]{\aref}
-\renewcommand{\citet}[1]{\aref}
+%\renewcommand{\citep}[1]{\aref}
+%\renewcommand{\citet}[1]{\aref}
 
 % ----------------------------------------------------------------------
 \begin{document}
@@ -190,58 +190,58 @@ Center.
 PISM is a~shallow model, which implies that the balance of stresses is
 approximated based on their predominant components.
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the
-Shallow Ice Approximation (SIA) \citep{bueler-brown-2009,winkelmann-etal-2011}.
+Shallow Ice Approximation (SIA) \citep{Bueler.Brown.2009,Winkelmann.etal.2011}.
 Ice softness depends on temperature and water content through an enthalpy
-formulation \citep{aschwanden-blatter-2009,aschwanden-etal-2012}. Surface air
+formulation \citep{Aschwanden.Blatter.2009,Aschwanden.etal.2012}. Surface air
 temperature from the atmospheric forcing provides the upper boundary condition
 to the ice enthalpy model. Temperature is computed subglacially to a~depth of
 3\,km, where it is conditioned by a~geothermal heat flux of
 70\,\unit{mW\,m^{-2}}. Although this uniform value does not
 account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
-\citep{artemieva-mooney-2001,blackwell-richards-2004}.
+\citep{Artemieva.Mooney.2001,Blackwell.Richards.2004}.
 
-A~pseudo-plastic sliding law \citep{aschwanden-etal-2013} relates the
+A~pseudo-plastic sliding law \citep{Aschwanden.etal.2013} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
 varies from 15 to 45{\degree}. It is taken as a~function of modern bed
 elevation, with lowest values occurring at low elevation, thus accounting
 for a~weakening of till associated with the presence of marine sediments
-\citep{martin-etal-2011,aschwanden-etal-2013}. The till effective pressure is
+\citep{Martin.etal.2011,Aschwanden.etal.2013}. The till effective pressure is
 related to the modelled amount of water in the till, using a formula derived
 from laboratory experiments with till extracted from an Antarctic ice stream
 \aref. Basal topography is derived from the ETOPO1 combined topography
-and bathymetry dataset with a~resolution of 1\,arc-min \citep{data:etopo1}.
+and bathymetry dataset with a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}.
 Sea level is lowered as a function of time according to the SPECMAP
 reconstruction, and basal topography responds to ice load
 following a bedrock deformation model that includes point-wise isostasy,
 elastic lithosphere flexure and viscous mantle deformation in a~semi-infinite
-half-space \citep{lingle-clark-1985,bueler-etal-2007}.
+half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
 
 \subsection{Surface mass-balance}
 
 Ice surface accumulation and ablation are computed from monthly mean
 near-surface air temperature, monthly precipitation, and monthly standard
 deviation of near-surface temperature by a~temperature-index (positive
-degree-day) model \citep{hock-2003}. Ice accumulation is equal to precipitation
+degree-day) model \citep{Hock.2003}. Ice accumulation is equal to precipitation
 when temperature is below 0\,\unit{{\degree}C}, and decreases to zero linearly
 with temperature between 0 and 2\,\unit{{\degree}C}. Ice ablation is computed
 from the number of positive degree-days, defined as the integral of
 temperatures above 0\,\unit{{\degree}C} in one year.
 
-The positive degree-day integral \citep{calov-greve-2005} is numerically
+The positive degree-day integral \citep{Calov.Greve.2005} is numerically
 approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis (NARR) \citep{data:narr}, after excluding variability associated
+Reanalysis (NARR) \citep{Mesinger.etal.2006}, after excluding variability associated
 with the
-seasonal cycle itself \citet{seguinot-rogozhina-2014}. The
+seasonal cycle itself \citet{Seguinot.Rogozhina.2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
 mass-balance measurements on contemporary glaciers from the Coast Mountains and
-Rocky Mountains in British Columbia \citep{shea-etal-2009}.
+Rocky Mountains in British Columbia \citep{Shea.etal.2009}.
 
 \subsection{Atmospheric forcing}
 
@@ -552,8 +552,8 @@ investigation of this region.
 %\end{acknowledgements}
 
 % References
-%\bibliographystyle{copernicus}
-%\bibliography{references.bib}
+\bibliographystyle{copernicus}
+\bibliography{refs/references.bib}
 \newpage
 
 % ----------------------------------------------------------------------
@@ -590,14 +590,14 @@ investigation of this region.
            areas once covered by the Cordilleran (CIS), Laurentide (LIS),
            Innuitian (IIS) and Greenland (GIS) ice sheets during the last
            18\,\unit{\chem{^{14}C}\,kyr\,BP} (21.4\,cal\,kyr\,BP)
-           \citep{dyke-2004}. The rectangular box denotes the location of the
+           \citep{Dyke.2004}. The rectangular box denotes the location of the
            modelling domain used in this study. Major mountain ranges covered
            by the ice sheet include the Alaska Range (AR), the Wrangell and
            St.-Elias mountains (WSE), the Selwyn and MacKenzie mountains (SMK),
            the Skeena Mountains, the Coast Mountains (CM), the Rocky Mountains
            (RM) and the North Cascades (NC). The background
-           map consists of ETOPO1 \citep{data:etopo1} and Natural Earth Data
-           \citep{data:naturalearth}.
+           map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth Data
+           \citep{web:naturalearth}.
            \todo{Mark palaeo-ice sheets and mountain ranges on the map.}}
   \label{fig:locmap}
 \end{figure}
@@ -624,7 +624,7 @@ investigation of this region.
            through the last 120\,kyr, expressed in meters of sea-level
            equivalent \textbf{(bottom)}. Gray spans indicate Marine Isotope
            Stages (MIS) according to a global compilation of benthic
-           \chem{\delta^{18}O} records \citep{lisiecki-raymo-2005}. Hatched
+           \chem{\delta^{18}O} records \citep{Lisiecki.Raymo.2005}. Hatched
            rectangles highlight modelled ice volume extrema corresponding to
            MIS~4 (61.9--55.4\,kyr), MIS~3 (52.2--45.6\,kyr), and
            MIS~2 (last glacial maximum, 29.5--16.9\,kyr). Dotted lines
