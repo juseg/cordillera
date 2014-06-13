@@ -2,22 +2,19 @@
 % ----------------------------------------------------------------------
 
 % Copernicus manuscript
-\documentclass[tc, ms]{copernicus}
+\documentclass[tc, manuscript]{copernicus}
 
 % Copernicus final print
 %\documentclass[tc]{copernicus}
 
 % Copernicus discussion paper
-%\documentclass[tcd, hvmath]{copernicus_discussions}
+%\documentclass[tcd, hvmath, online]{copernicus}
 
 % Copernicus-like latex2rtf compatible
 %\input{copernicus_rtf}
 
 % Coloured hyperlinks
-\usepackage[colorlinks]{hyperref}
-
-% Encoding
-\usepackage[T1]{fontenc}
+\hypersetup{colorlinks}
 
 % Figure directory
 \graphicspath{{figures/}}
@@ -31,7 +28,8 @@
 \renewcommand{\citet}[1]{\aref}
 
 % ----------------------------------------------------------------------
-\begin{document}\hack{\sloppy}
+\begin{document}
+\linenumbers
 % ----------------------------------------------------------------------
 
 % Title
@@ -39,10 +37,10 @@
        through the last glacial cycle}
 
 % Authors
-\author[1,2]{J.~Seguinot}
-\author[3]{M.~Margold}
-\author[2]{I.~Rogozhina}
-\author[1]{A.~Stroeven}
+\Author[1,2]{J.}{Seguinot}
+\Author[3]{M.}{Margold}
+\Author[2]{I.}{Rogozhina}
+\Author[1]{A.~P.}{Stroeven}
 \runningauthor{J.~Seguinot et~al.}
 \correspondence{J.~Seguinot (julien.seguinot@natgeo.su.se)}
 
@@ -59,6 +57,8 @@
 
 % For Copernicus
 \received{}
+\pubdiscuss{}
+\revised{}
 \accepted{}
 \published{}
 
@@ -552,7 +552,8 @@ investigation of this region.
 %\end{acknowledgements}
 
 % References
-%\input{references.bbl}
+%\bibliographystyle{copernicus}
+%\bibliography{references.bib}
 \newpage
 
 % ----------------------------------------------------------------------
@@ -615,7 +616,7 @@ investigation of this region.
 \end{figure}
 
 % fig:timeseries
-\begin{figure}
+\begin{figure*}
   \includegraphics{timeseries}
   \caption{Temperature offset time-series from ice core and sediment core
            records (Table~\ref{tab:records}) used as palaeo-climate forcing for
@@ -630,20 +631,20 @@ investigation of this region.
            correspond to the GRIP and EPICA 6\,\unit{km}-resolution runs.
            \todo{add grid lines to improve readability}}
   \label{fig:timeseries}
-\end{figure}
+\end{figure*}
 
 % fig:snapshots
-\begin{figure}
+\begin{figure*}
   \includegraphics{snapshots}
   \caption{Snapshots of modelled surface topography (500\,\unit{m} contours)
            corresponding to the ice volume extrema indicated on
            Fig.~\ref{fig:timeseries}. Note the occurence of spatial similarities
            despite large differences in timing.}
   \label{fig:snapshots}
-\end{figure}
+\end{figure*}
 
 % fig:duration
-\begin{figure}
+\begin{figure*}
   \includegraphics{duration}
   \caption{Modelled duration of ice cover during the last 120\,\unit{kyr}.
            Note the irregular colour scale. A contiguous ice cover spanning
@@ -654,10 +655,10 @@ investigation of this region.
            simulation. On the other hand, the maximal extent of the ice sheet
            generally corresponds to relatively short durations of ice cover.}
   \label{fig:duration}
-\end{figure}
+\end{figure*}
 
 % fig:warmbase
-\begin{figure}
+\begin{figure*}
   \includegraphics{warmbase}
   \caption{Modelled duration of warm-based ice cover during the last
            120\,\unit{kyr}. Long ice cover durations combined with basal
@@ -666,17 +667,17 @@ investigation of this region.
            Hatches indicate areas that were covered by cold ice only.
            \note{indicate location of Skeena Mountains.}}
   \label{fig:warmbase}
-\end{figure}
+\end{figure*}
 
 % fig:erosion
-\begin{figure}
+\begin{figure*}
   \includegraphics{erosion}
   \caption{Modelled cumulative basal displacement (integrand of basal velocity)
            over the last 120\,\unit{kyr}.
            \note{I am still unsure about the use of this figure. I may
                  remove it from this paper and keep the idea for later use.}}
   \label{fig:erosion}
-\end{figure}
+\end{figure*}
 
 % fig:deglacseries
 \begin{figure}
@@ -690,17 +691,17 @@ investigation of this region.
 \end{figure}
 
 % fig:deglac
-\begin{figure}
+\begin{figure*}
   \includegraphics{deglac}
   \caption{Modelled age of the last deglaciation. Areas where the MIS~4 glacial
            advance exceeded the last glacial maximum advanced are marked in
            green. Hatches denote the Younger Dryas re-advance, which is more
            pronounced in the GRIP-driven simulation.}
   \label{fig:deglac}
-\end{figure}
+\end{figure*}
 
 % fig:deglacshots
-\begin{figure}
+\begin{figure*}
   \includegraphics{deglacshots}
   \caption{Snapshots of modelled surface topography (200\,\unit{m} contours)
            and surface velocity (colour mapping) from the GRIP simulation,
@@ -708,7 +709,7 @@ investigation of this region.
            deglaciation.
            \note{should we have a similar figure using EPICA?}}
   \label{fig:deglacshots}
-\end{figure}
+\end{figure*}
 
 % fig:profiles
 \begin{figure}
@@ -722,14 +723,14 @@ investigation of this region.
 \end{figure}
 
 % fig:lastflow
-\begin{figure}
+\begin{figure*}
   \includegraphics{lastflow}
   \caption{Modelled directions of the last basal ice velocities. Hatches
            indicate areas that remain non-sliding throughout the simulation.
            Sliding grid cells were distinguished from non-sliding grid cells
            using a velocity threshold of 1\,\unit{m\,yr^{-1}}.}
   \label{fig:lastflow}
-\end{figure}
+\end{figure*}
 
 % ----------------------------------------------------------------------
 \end{document}
