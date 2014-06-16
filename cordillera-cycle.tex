@@ -14,7 +14,7 @@
 %\input{copernicus_rtf}
 
 % Coloured hyperlinks
-\hypersetup{colorlinks}
+\hypersetup{colorlinks, citecolor=blue}
 
 % Figure directory
 \graphicspath{{figures/}}
@@ -24,8 +24,6 @@
 \newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 \newcommand{\todo}[1]{\textbf{[TODO: #1]}}
 \newcommand{\aref}[0]{\textbf{[ref.]}}
-%\renewcommand{\citep}[1]{\aref}
-%\renewcommand{\citet}[1]{\aref}
 
 % ----------------------------------------------------------------------
 \begin{document}
@@ -113,47 +111,54 @@
 During the last glacial cycle, glaciers and ice caps of the North American
 Cordillera were more extensive than today. At the last glacial maximum, a
 contiguous blanket of ice extended from the Alaska Range in the north to the
-North Cascades in the south \aref. This ice mass is known as the former
-Cordilleran ice sheet (Fig.~\ref{fig:locmap}).
+North Cascades in the south (Fig.~\ref{fig:locmap}). This ice mass is known as
+the former Cordilleran ice sheet \citep{Dawson.1888}.
 
 For more than a century, exploration and geological investigation of the
 Cordillera have led to a large collection of evidence of the former ice cover
-\aref. This evidence consists of mapped boundaries of the former ice extent
-\aref, directions of past sliding velocities {\aref} and locations of former
-melt-water streams \aref, as well as the timing of glaciation identified from
-radiocarbon dating \aref, cosmogenic dating \aref, and the offshore sedimental
-record \aref.
+\citep{Jackson.Clague.1991}. This evidence consists of mapped boundaries of the
+former ice extent \citep{Clague.1989, Dyke.2004}, directions of past sliding
+velocities \citep{Prest.etal.1968, Kleman.etal.2010}, and locations of former
+melt-water streams \citep{Margold.etal.2011, Margold.etal.2013}, as well as the
+timing of glaciation identified from radiocarbon dating \citep[e.g.,][]
+{Clague.etal.1980, Clague.1981, Porter.Swanson.1998}, cosmogenic dating
+\citep[e.g.,][]{Ward.etal.2007, Stroeven.etal.2010, Stroeven.etal.2013}, and
+the offshore sedimental record \citep{Cosma.etal.2008, Davies.etal.2011}.
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
-the maximal extent attained by the Cordilleran ice sheet during the last glacial
-cycle \aref. However, former ice thickness and the ice sheet's contribution to the
-last glacial maximum sea-level low-stand remain poorly constrained. Moreover,
-our understanding of the glaciation history is mainly restricted to the
-deglaciation phase and a regional scale, while little is known about the ice
-sheet evolution prior to the last glacial maximum extent \aref. Although
-time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
-patterns are available for the Laurentide and Eurasian ice sheets \aref, such is not
-the case for the Cordilleran ice sheet, where complex arrangements of ice flow
-directions emanating from multiple glaciation centres have been identified, but
-remain poorly understood \aref.
+the maximal extent attained by the Cordilleran ice sheet during the last
+glacial cycle \citep{Clague.1989}. However, former ice thickness and the ice
+sheet's contribution to the last glacial maximum sea-level low-stand remain
+poorly constrained. Moreover, our understanding of the glaciation history is
+mainly restricted to the deglaciation phase and a regional scale, while little
+is known about the ice sheet evolution prior to the last glacial maximum extent
+\citep{Kleman.etal.2010}. Although time-evolving, whole ice-sheet
+reconstructions of glacial advance and retreat patterns are available for the
+Eurasian and Laurentide and ice sheets \citep{Kleman.etal.1997,
+Kleman.etal.2010}, such is not the case for the Cordilleran ice sheet, where
+complex arrangements of ice flow directions emanating from multiple glaciation
+centres have been identified \citep{Prest.etal.1968, Clague.1989}, but remain
+poorly understood \citep{Kleman.etal.2010}.
 
-The present study uses a numerical ice sheet model (PISM, \aref) calibrated against
+The present study uses a numerical ice sheet model \citep{PISM-authors.2014},
+calibrated against
 field-based evidence to perform a quantitative reconstruction of the
 Cordilleran ice sheet history through the last glacial cycle. Although
 numerical modelling has been established as a useful tool to improve our
-understanding
-of the Cordilleran ice sheet more than twenty years ago \aref, the ubiquitously
+understanding of the Cordilleran ice sheet more than twenty years ago
+\citep{Jackson.Clague.1991,Robert.1991}, the ubiquitously
 mountainous topography of the region has presented a major challenge to its
-application, which has only been overcome by recent development of numerical ice
-sheet models and underlying scientific computing tools \aref. In addition to the topographic
+application, which can only be overcome by recent development of numerical ice
+sheet models and underlying scientific computing tools \aref.
+In addition to the topographic
 complexity, strong climatic contrasts characteristic of the North American
 Cordillera require the use of a high-resolution temperature and precipitation
-forcing as input data to the ice sheet model \aref.
+forcing as input data to the ice sheet model \citep{Seguinot.etal.2013}.
 
 Because past climate conditions are subject to considerable uncertainty, our
 palaeoclimate forcing is a simplistic approximation of time-evolved temperature
 and precipitation fields derived from a combination of a present-day
-atmospheric reanalysis (NARR, \aref), lapse-rate corrections,
+atmospheric reanalysis \citep{Mesinger.etal.2006}, lapse-rate corrections,
 and temperature offset time series. The latter are
 obtained by scaling six different palaeo-temperature reconstructions from
 proxy records around the globe, including two \chem{\delta^{18}O} records from
