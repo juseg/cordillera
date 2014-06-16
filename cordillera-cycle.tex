@@ -180,7 +180,8 @@ patterns of deglaciation.
 
 The simulations presented here were run using Parallel Ice Sheet Model (PISM,
 development version~11b0a7f), an open-source, finite-difference, shallow ice
-sheet model \aref. The model inputs basal topography, sea level, geothermal
+sheet model \citep{PISM-authors.2014}. The model inputs basal topography,
+sea level, geothermal
 heat flux and climate forcing, and computes the evolution of ice extent
 and thickness in time, the thermal and dynamic state of the ice sheet, and
 the associated lithospheric response. Our modelling domain encompasses the
@@ -209,19 +210,19 @@ to the ice enthalpy model. Temperature is computed subglacially to a~depth of
 70\,\unit{mW\,m^{-2}}. Although this uniform value does not
 account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
-\citep{Artemieva.Mooney.2001,Blackwell.Richards.2004}.
+\citep{Blackwell.Richards.2004}.
 
 A~pseudo-plastic sliding law \citep{Aschwanden.etal.2013} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
 varies from 15 to 45{\degree}. It is taken as a~function of modern bed
 elevation, with lowest values occurring at low elevation, thus accounting
-for a~weakening of till associated with the presence of marine sediments
-\citep{Martin.etal.2011,Aschwanden.etal.2013}. The till effective pressure is
-related to the modelled amount of water in the till, using a formula derived
-from laboratory experiments with till extracted from an Antarctic ice stream
-\aref. Basal topography is derived from the ETOPO1 combined topography
-and bathymetry dataset with a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}.
+for a~weakening of till associated with the presence of marine sediments.
+The till effective pressure is related to the modelled amount of water in the
+till, using a formula derived from laboratory experiments with till extracted
+from an Antarctic ice stream \citep{Tulaczyk.etal.2000}. Basal topography is
+derived from the ETOPO1 combined topography and bathymetry dataset with
+a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}.
 Sea level is lowered as a function of time according to the SPECMAP
 reconstruction, and basal topography responds to ice load
 following a bedrock deformation model that includes point-wise isostasy,
@@ -244,9 +245,8 @@ approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis (NARR) \citep{Mesinger.etal.2006}, after excluding variability associated
-with the
-seasonal cycle itself \citet{Seguinot.Rogozhina.2014}. The
+Reanalysis (NARR) \citep{Mesinger.etal.2006}, after excluding variability
+associated with the seasonal cycle itself \citep{Seguinot.Rogozhina.2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
@@ -270,7 +270,7 @@ American Cordillera is characterised by strong geographic variations of
 seasonality, timing of the precipitation peak and daily temperature variability.
 Our choice of data from the NARR is motivated by the need for an accurate,
 high-resolution precipitation forcing, as outlined in a previous sensitivity
-study \aref.
+study \citep{Seguinot.etal.2013}.
 
 The lapse-rate correction ${\Delta}T_{LR}$ is computed using the NARR surface
 geopotential height a reference topography $z_{ref}$,
@@ -284,17 +284,19 @@ for differences between the the ice flow model basal topography $z_{b}$ and the
 NARR topography $z_{ref}$ on the other hand. All simulations use an annual temperature lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
 
 Temperature offset time-series ${\Delta}T_{TS}$ are derived from proxy records from
-the Greenland Ice Core Project (GRIP), the North Greenland Ice Core Project
-(NGRIP), the European Project for Ice Coring in Antarctica (EPICA), the Lake
-Vostok ice core, and Ocean Drilling Program (ODP) sites 1012 and 1020, both
-located off the Californian shore \aref. Palaeo-temperatures from the GRIP and
-NGRIP records were calculated using a quadratic equation \aref,
+the Greenland Ice Core Project \citep[GRIP,][]{Dansgaard.etal.1993}, the
+North Greenland Ice Core Project \citep[NGRIP,][]{Andersen.etal.2004},
+the European Project for Ice Coring in Antarctica \citep[EPICA,][]
+{Jouzel.etal.2007}, the Lake Vostok ice core \citep{Petit.etal.1999}, and Ocean
+Drilling Program (ODP) sites 1012 and 1020, both located off the Californian
+shore \citep{Herbert.2001}. Palaeo-temperatures from the GRIP and NGRIP records
+were calculated using a quadratic equation \citep{Johnsen.etal.1995},
 \begin{equation}
     {\Delta}T_{TS}(t) = -11.88[\chem{\delta^{18}O(t)}-\chem{\delta^{18}O}(0)]
                         -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2],
 \end{equation}
 while the temperature reconstructions from the Antarctic and oceanic cores were
-provided by their authors \aref. All records were scaled linearly in
+provided as such. All records were scaled linearly in
 order to simulate realistic and comparable ice extents at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
 
@@ -580,14 +582,20 @@ investigation of this region.
   \label{tab:records}
   {\begin{tabular}{lcccc}
     \tophline
-    Record & Proxy & Scaling factor & $T_{[32;22]}$ & Source\\
+    Record & Proxy & Scaling factor & $T_{[32;22]}$ & Original reference\\
     \middlehline
-    GRIP     & \chem{\delta^{18}O} & ?\% & -5.8{\degree}C & \aref \\
-    NGRIP    & \chem{\delta^{18}O} & ?\% & -6.1{\degree}C & \aref \\
-    EPICA    & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C & \aref \\
-    Vostok   & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C & \aref \\
-    ODP~1012 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C & \aref \\
-    ODP~1020 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C & \aref \\
+    GRIP     & \chem{\delta^{18}O} & ?\% & -5.8{\degree}C
+        & \citet{Dansgaard.etal.1993} \\
+    NGRIP    & \chem{\delta^{18}O} & ?\% & -6.1{\degree}C
+        & \citet{Andersen.etal.2004} \\
+    EPICA    & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C
+        & \citet{Jouzel.etal.2007} \\
+    Vostok   & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C
+        & \citet{Petit.etal.1999} \\
+    ODP~1012 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C
+        & \citet{Herbert.2001} \\
+    ODP~1020 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C
+        & \citet{Herbert.2001} \\
     \bottomhline
   \end{tabular}}
   \belowtable{}
