@@ -81,7 +81,7 @@
   marine isotope stages~4 (61.9--55.4\,kyr) and~2
   (29.5--16.9\,kyr). The timing of glaciation is
   better reproduced using temperature reconstructions from Greenland and
-  Antarctic ice cores than from regional ocean sediment cores. During most of
+  Antarctic ice cores than from regional oceanic sediment cores. During most of
   the last glacial cycle, the modelled ice cover is discontinuous and
   restricted to high mountain areas. However, widespread precipitation over the
   Skeena mountains favours the persistence of a central ice dome throughout the
@@ -111,9 +111,8 @@
 During the last glacial cycle, glaciers and ice caps of the North American
 Cordillera were more extensive than today. At the last glacial maximum, a
 contiguous blanket of ice extended from the Alaska Range in the north to the
-North Cascades in the south \citep[Fig.~\ref{fig:locmap};][Plate XIV]
-{Chamberlin.1894}. This ice mass is known as the former Cordilleran ice sheet
-\citep{Dawson.1888}.
+North Cascades in the south (Fig.~\ref{fig:locmap}). This ice mass is known as
+the former Cordilleran ice sheet \citep{Dawson.1888}.
 
 For more than a century, exploration and geological investigation of the
 Cordillera have led to a large collection of evidence of the former ice cover
@@ -126,7 +125,10 @@ melt-water streams \citep{Margold.etal.2011, Margold.etal.2013}, as well as the
 timing of glaciation identified from radiocarbon dating \citep[e.g.,][]
 {Clague.1981, Porter.Swanson.1998}, cosmogenic dating \citep[e.g.,][]
 {Ward.etal.2007, Menounos.etal.2009, Stroeven.etal.2010, Stroeven.etal.2013},
-and the offshore sedimental record \citep{Cosma.etal.2008, Davies.etal.2011}.
+and the offshore sedimentary record \citep{Cosma.etal.2008, Davies.etal.2011}.
+
+\note{Is the set of references in the above paragraph representative of the
+      current state of the field? Am I missing something important here?}
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
 the maximal extent attained by the Cordilleran ice sheet during the last
@@ -154,11 +156,10 @@ ago (\citealp[p.~227]{Jackson.Clague.1991}; \citealp{Robert.1991}), the
 ubiquitously mountainous
 topography of the region has presented a major challenge to its application.
 In fact, only recent development of numerical ice sheet models and underlying
-scientific computing tools \citep[e.g.,][]{Bueler.Brown.2009} allows
-high-resolution numerical modelling of palaeo-glacier flow on mountainous
-terrain over millenial time scales \citep[e.g.,][]{Golledge.etal.2012}. In the
-North
-American Cordillera, the topographic complexity induces strong gradients in
+scientific computing tools \citep{Bueler.Brown.2009, Balay.etal.2014} allows
+high-resolution numerical modelling of palaeo-glaciers on mountainous terrain
+over millenial time scales \citep{Golledge.etal.2012}. In the North
+American Cordillera, this complex topography induces strong gradients in
 seasonality and distinct patterns of precipition, thus requiring the use of
 high-resolution atmospheric forcing fields as input to the ice sheet model
 \citep{Seguinot.etal.2013}.
@@ -184,9 +185,9 @@ patterns of deglaciation.
 % ----------------------------------------------------------------------
 
 The simulations presented here were run using Parallel Ice Sheet Model (PISM,
-development version~11b0a7f), an open-source, finite-difference, shallow ice
-sheet model \citep{PISM-authors.2014}. The model inputs basal topography,
-sea level, geothermal
+development version~11b0a7f and stable version~0.6.1), an open-source,
+finite-difference, shallow ice sheet model \citep{PISM-authors.2014}.
+The model inputs basal topography, sea level, geothermal
 heat flux and climate forcing, and computes the evolution of ice extent
 and thickness in time, the thermal and dynamic state of the ice sheet, and
 the associated lithospheric response. Our modelling domain encompasses the
@@ -198,15 +199,15 @@ ice sheet, palaeo-climatic conditions of the last glacial cycle are mimicked
 by applying time-dependent temperature offsets derived from multiple
 palaeo-temperature proxy records. Each simulation starts from assumed ice-free
 conditions at -120\,kyr, and runs to present. These computations were
-performed on 16 to 128 cores at the Swedish National Supercomputing
-Center.
+performed on 16 to 128 cores at the Swedish National Supercomputing Centre.
 
 \subsection{Ice thermodynamics}
 
 PISM is a~shallow model, which implies that the balance of stresses is
 approximated based on their predominant components.
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the
-Shallow Ice Approximation (SIA) \citep[Eqn.~15]{Winkelmann.etal.2011}.
+Shallow Ice Approximation (SIA) by adding both velocity solutions
+\citep[Eqn.~15]{Winkelmann.etal.2011}.
 Ice softness depends on temperature and water content through an enthalpy
 formulation \citep{Aschwanden.etal.2012}. Surface air
 temperature from the atmospheric forcing provides the upper boundary condition
@@ -217,7 +218,8 @@ account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
 \citep{Blackwell.Richards.2004}.
 
-A~pseudo-plastic sliding law \citep{PISM-authors.2014} relates the
+A~pseudo-plastic sliding law \citep{PISM-authors.2014} \note{ask Ed Bueler if
+this will be published somewhere soon} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
 varies from 15 to 45{\degree}. It is taken as a~function of modern bed
@@ -228,9 +230,10 @@ till, using a formula derived from laboratory experiments with till extracted
 from an Antarctic ice stream \citep[Eqn.~2]{Tulaczyk.etal.2000}. Basal
 topography is
 derived from the ETOPO1 combined topography and bathymetry dataset with
-a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}.
-Sea level is lowered as a function of time according to the SPECMAP
-reconstruction, and basal topography responds to ice load
+a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}. Sea level is lowered as
+a function of time based on the Spectral Mapping Project (SPECMAP)
+\citep[SPECMAP,][]{Imbrie.etal.1989} time scale.
+Basal topography responds to ice load
 following a bedrock deformation model that includes point-wise isostasy,
 elastic lithosphere flexure and viscous mantle deformation in a~semi-infinite
 half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
@@ -239,9 +242,8 @@ half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
 
 Ice surface accumulation and ablation are computed from monthly mean
 near-surface air temperature, monthly precipitation, and monthly standard
-deviation of near-surface temperature by a~temperature-index (positive
-degree-day) model \citep[e.g.,]{Hock.2003}. Ice accumulation is equal to
-precipitation
+deviation of near-surface temperature by a~temperature-index model
+\citep[e.g.,][]{Hock.2003}. Ice accumulation is equal to precipitation
 when temperature is below 0\,\unit{{\degree}C}, and decreases to zero linearly
 with temperature between 0 and 2\,\unit{{\degree}C}. Ice ablation is computed
 from the number of positive degree-days, defined as the integral of
@@ -253,11 +255,12 @@ approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, after excluding variability
+Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, in order to account for the
+effects of spatial and seasonal variations of temperature variability
+\citep[Fig.~\ref{fig:atm};][]{Seguinot.2013}, after excluding variability
 associated with the seasonal cycle itself \citep[cf.][]
-{Seguinot.Rogozhina.2014}. The
-ablation model incorporates degree-day factors of
-3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
+{Seguinot.Rogozhina.2014}. The ablation model incorporates degree-day factors
+of 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
 mass-balance measurements on contemporary glaciers from the Coast Mountains and
 Rocky Mountains in British Columbia \citep{Shea.etal.2009}.
@@ -274,16 +277,16 @@ temperature-offset time series ${\Delta}T_{TS}$.
 
 The present-day climatology $\{T_{m0}, P_{m0}\}$ was computed from
 near-surface air temperature and precipitation rate fields of the NARR
-\citep{Mesinger.etal.2006} over
-the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
-American Cordillera is characterised by strong geographic variations of
-seasonality, timing of the precipitation peak and daily temperature variability.
+\citep{Mesinger.etal.2006} over the period 1979--2000. Modern climate of the
+North American Cordillera is characterised by strong geographic variations of
+seasonality, timing of the precipitation peak and daily temperature variability
+(Fig.~\ref{fig:atm}).
 Our choice of data from the NARR is motivated by the need for an accurate,
-high-resolution precipitation forcing, as outlined in a previous sensitivity
+high-resolution precipitation forcing, as identified in a previous sensitivity
 study \citep{Seguinot.etal.2013}.
 
 The lapse-rate correction ${\Delta}T_{LR}$ is computed using the NARR surface
-geopotential height a reference topography $z_{ref}$,
+geopotential height invariant field as a reference topography $z_{ref}$,
 \begin{align}
     {\Delta}T_{LR}(t, x, y) &= -\gamma [z_{s}(t, x, y)-z_{ref}] \\
                             &= -\gamma [h(t, x, y)+z_{b}(t, x, y)-z_{ref}],
@@ -315,8 +318,8 @@ a~10\,km, 300 by 150~points horizontal grid for SSA and SIA velocities,
 up to 51~enthalpy layers in the ice, and 31~temperature layers in the bedrock.
 For the GRIP and EPICA records, we then run a second simulation using a higher
 horizontal resolution of 6\,km, up to 101~ice layers, and 61~bedrock
-layers. In the rest of this paper, we refer to different model runs by the
-proxy record used for palaeo-temperature forcing.
+layers. In the rest of this paper, we occasionally refer to different model
+through by the proxy record used for palaeo-temperature forcing.
 
 
 % ----------------------------------------------------------------------
@@ -331,20 +334,21 @@ during most of the glacial cycle, while two major glaciation events occur
 during Marine Isotope Stage (MIS)~4 (61.9--55.4\,kyr) and MIS~2
 (29.5--16.9\,kyr, Fig.~\ref{fig:timeseries}). A local ice minimum is
 consistently attained during MIS~3 (52.2--45.6\,kyr). However, the
-magnitude and timing of these events depend significantly on the choice of
-proxy record used for palaeo-temperature forcing.
+magnitude and timing of these three events depend significantly on the choice
+of proxy record used for palaeo-temperature forcing.
 
 Simulations forced by the Greenland ice core records (GRIP, NGRIP) produce
 highest variability in modelled ice volume throughout the glaciation history.
-Model runs using oceanic and Antarctic records generally result in lower
+Model runs using oceanic (ODP~1012, ODP~1020) and Antarctic (EPICA, Vostok)
+records generally result in lower
 modelled ice volume during MIS~4 and larger ice volume during MIS~3, thus
 suggesting lower ice volume variability throughout the simulation length. The
 NGRIP palaeo-temperature forcing is the only one that results in larger
-glaciation during MIS~4 than during the last glacial maximum.
+glaciation during MIS~4 than during the last glacial maximum (MIS~2).
 
-While simulations driven by the Antarctic (EPICA, Vostok) and GRIP records
+While simulations driven by the Antarctic and GRIP records
 reach a last glacial maximum in ice volume between 19.5 and 16.9\,kyr,
-those steered by oceanic (ODP~1012, ODP~1020) and the NGRIP record attain it
+those steered by oceanic and the NGRIP records attain it
 several thousands of years earlier. Moreover, the ODP~1012 run yields rapid
 deglaciation prior to 20\,kyr due to a local temperature maximum that is
 inconsistent with all other records used. The ODP~1020 simulation predicts an
@@ -357,14 +361,15 @@ readvances of the ice margin.
 
 Despite the different timing, snapshots of model output show relatively
 consistent patterns of glaciation (Fig.~\ref{fig:snapshots}). As a result of
-different scaling factors applied to palaeo-temperature proxy records, the
-ice sheet geometry at the last glacial maximum appears very similar from one
-simulation to the next. It includes a central divide located at about
+different scaling factors applied to palaeo-temperature proxy records,
+modelled ice sheet geometries at the last glacial maximum appear very similar
+from one simulation to the next. They include a central divide located at about
 3\,500\,m elevation along the spine of the Rocky Mountains. In all
 simulations, a central ice cap persists over the Skeena mountains during MIS~3
 between the two glaciation events. However, the size of this ice cap, as well
-as the magnitude of the MIS~4 glaciation, depends sensitively on the choice of
+as the magnitude of the MIS~4 glaciation, depend sensitively on the choice of
 palaeo-temperature proxy record used to drive the model.
+
 
 % ----------------------------------------------------------------------
 \section{Discussion}
@@ -380,6 +385,8 @@ glaciation maxima during MIS~4 (61.9--55.4\,kyr) and MIS~2
 Gladstone (MIS~4) and McConell (MIS~2) glaciations documented by geological
 evidence in the northern part of the model domain \aref, and to the Fraser
 (MIS~2) glaciation in the southern part \aref.
+
+\note{Could you help me to fill the missing refs in this last sentence?}
 
 However, the timing of the modelled glacial maxima strongly depends on the
 choice of palaeo-temperature record used, and a more precise agreement with
@@ -397,8 +404,8 @@ Vostok records place the last glacial maximum within this range
 (Fig.~\ref{fig:timeseries}, lower panel). Simulations driven by the NGRIP,
 ODP~1012 and ODP~1020 records, on the contrary, produce a last glacial maximum
 that pre-dates reconstructed ages by several thousand years. Concerning the
-simulations driven by oceanic (ODP~1012, ODP~1020) records, this early
-deglaciation is caused by an early warming sealed in the palaeo-temperature records
+simulations driven by oceanic records, this early deglaciation is caused by an
+early warming sealed in the palaeo-temperature reconstructions
 (Fig.~\ref{fig:timeseries}, upper panel). However, it has been shown that this
 early warming is a local effect, corresponding to a weakening of the California
 current \citep[Fig.~3]{Herbert.etal.2001}. The California current, driving cold
@@ -419,9 +426,11 @@ through the last glacial cycle.
 
 These results make us believe that a palaeo-temperature proxy record located
 in the direct vicinity of the former Cordilleran ice sheet would be of great
-help to understand its glacial history. Because, to our knowledge, no such
-record yet exists, we focus the rest of our analysis on simulations forced by
-temperature records from Greenland (GRIP) and Antarctic (EPICA) ice cores.
+help to further understand its glacial history. Because, to our knowledge, no
+such record yet exists, we focus the rest of our analysis on simulations forced
+by temperature records from Greenland (GRIP) and Antarctic (EPICA) ice cores
+(Fig.~\ref{fig:timeseries}, lower panel, dotted lines).
+
 
 \subsection{Spatial imprint of ice cover}
 
@@ -438,22 +447,21 @@ ice caps centred on major mountain ranges of the North American Cordillera
 (Fig.~\ref{fig:duration}). In both simulations driven by the GRIP and EPICA
 records, a~contiguous ice cover spanning from the Alaska Range to the Rocky
 Mountains exists for about 29\,kyr in total over MIS~2 and~4.
-
 With the exception of the oceanic front and the northern foothills of the Alaska
 Range, most of the maximal extent of the ice sheet is associated with short
 durations of ice cover, generally a few thousand years, distributed over one
-(GRIP) or two (EPICA) glaciations. This shows that, in our simulations, the
-most extensive stages of the Cordilleran ice sheet are both short-lived and
-out of balance with contemporary climate states, which confirms
-previous interpretations of the geological record \citep{Clague.etal.1980,
-Stroeven.etal.2010}.
+(GRIP) or two (EPICA) glaciations (Fig.~\ref{fig:duration}). This illustrates
+that the most extensive stages of the modelled ice sheet are both short-lived
+and out of balance with contemporary climate states, which confirms previous
+inferences of a short-lived Cordilleran ice sheet based on the geological
+record \citep{Clague.etal.1980, Stroeven.etal.2010}.
 
 However, our simulations depict, independently of the choice of record used for
 palaeo-temperature forcing, a central Skeena mountain ice cap persisting
 throughout the entire last glacial cycle (Fig.~\ref{fig:snapshots} and
-\ref{fig:duration}). In particular, this ice cap persists between the MIS~4
-and MIS~2 glaciations, providing a nucleation centre for the onset of glacial
-readvance towards the last glacial maximum.
+\ref{fig:duration}). In particular, this ice cap persists during MIS~3,
+providing a nucleation centre for the onset of glacial
+readvance towards the last glacial maximum (MIS~2).
 
 During time periods when a fully-grown Cordilleran ice sheet is absent from our
 simulation, the presence of the Skeena ice cap can be explained by a more
@@ -471,7 +479,11 @@ In addition, the erosional landscape of the Skeena mountain bears one of the
 strongest glacial imprint (?) found within the area formerly covered by the
 Cordilleran ice sheet \aref. Here we suggest that persistent ice cover
 associated with basal ice temperatures at the pressure-melting point
-(Fig.~\ref{fig:warmbase}) may partly explain this spectacular landscape.
+(Fig.~\ref{fig:warmbase} and ~\ref{fig:warmbase}) may partly explain this
+spectacular landscape.
+
+\note{Can we use a reference here to support the point of strong glacial
+      imprint in the Skeena Mountains?}
 
 \subsection{Deglaciation history}
 
