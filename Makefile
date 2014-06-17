@@ -3,7 +3,7 @@ FIGS = atm.png deglac.png deglacseries.png \
        deglacshots-grip.png deglacshots-epica.png \
        duration.png erosion.png lastflow.png locmap.png \
        profiles-epica.png profiles-grip.png \
-       snapshots.png timeseries.png warmbase.png
+       snapshots.png timeseries.png warmbase.png warmfrac.png
 
 all: $(PAPER).tex figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
