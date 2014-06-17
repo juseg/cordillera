@@ -13,8 +13,7 @@ from paperglobals import *
 res = '6km'
 records = ['grip', 'epica']
 offsets = [5.8, 5.6]
-ages = range(8, 23, 1)
-levs = [0] + ages
+tmin, tmax = -22.0, -8.0
 cmap = plt.get_cmap('RdBu_r')
 cmap.set_over(darkgreen)
 
@@ -43,39 +42,44 @@ for i, rec in enumerate(records):
 
     # compute last flow velocities
     print 'computing last flow velocities...'
-    deglacage = np.ones_like(mask[0].T)*-1.0
-    lastu = np.zeros_like(u[0].T)
-    lastv = np.zeros_like(v[0].T)
-    for i, t in enumerate(time[:]*s2ka):
-        print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (mask[i].T == 2)
-        sliding = icy * c[i].data.T > 1.0
-        lastu = np.where(sliding, u[i].T, lastu)
-        lastv = np.where(sliding, v[i].T, lastv)
-        deglacage = np.where(icy, -t, deglacage)
+    slidage = np.ones_like(mask[0])*-1.0
+    glaciated = np.zeros_like(mask[0])
+    lastu = np.zeros_like(u[0])
+    lastv = np.zeros_like(v[0])
+    imin, imax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    for i in range(imin, imax+1):
+        print '[ %02.1f %% ]\r' % (100.0*(i-imin)/(imax-imin)),
+        icy = (mask[i] == 2)
+        sliding = icy * (c[i].data > 1.0)
+        lastu = np.where(sliding, u[i], lastu)
+        lastv = np.where(sliding, v[i], lastv)
+        slidage = np.where(sliding, -time[i]*s2ka, slidage)
+        glaciated = np.where(icy, 1, glaciated)
 
-    # scale last flow velocity
-    lastu = np.ma.masked_where(deglacage < 0, lastu)
-    lastv = np.ma.masked_where(deglacage < 0, lastv)
+    # transpose and scale last flow velocity
+    lastu = np.ma.masked_where(slidage < 0, lastu).T
+    lastv = np.ma.masked_where(slidage < 0, lastv).T
     lastc = (lastu**2 + lastv**2)**0.5
+    slidage = slidage.T
+    glaciated = glaciated.T
 
     # plot parameters
     cmap='RdBu_r'
-    norm=Normalize(8.0, 22.0)
+    norm=Normalize(-tmax, -tmin)
     plotres=12  # in km
 
     # plot last velocity stream lines
     print 'plotting...'
-    ax.streamplot(x[:], y[:], lastu, lastv, color=deglacage,
+    ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
                   density=(60.0/plotres, 120.0/plotres),
                   cmap=cmap, norm=norm, linewidth=0.5)
 
     # plot glaciated and non-sliding areas
-    ax.contourf(x[:], y[:], (deglacage > 0) * (lastc == 0), levels=[0.5, 1.5],
+    ax.contourf(x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
                 colors='none', hatches=['//'])
-    ax.contour(x[:], y[:], (deglacage > 0) * (lastc == 0), levels=[0.5],
+    ax.contour(x[:], y[:], slidage, levels=[0.0],
                colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage > 0, levels=[0.5],
+    ax.contour(x[:], y[:], glaciated, levels=[0.5],
                colors='k', linewidths=0.5)
 
     # annotate
@@ -84,6 +88,6 @@ for i, rec in enumerate(records):
 # add colorbar and save
 print 'saving...'
 cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
-cb.set_label('Deglaciation age (kyr)')
+cb.set_label('Age of last basal sliding (kyr)')
 fig.savefig('lastflow')
 nc.close()
