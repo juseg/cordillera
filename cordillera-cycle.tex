@@ -118,41 +118,46 @@ North Cascades in the south \citep[Fig.~\ref{fig:locmap};][Plate XIV]
 For more than a century, exploration and geological investigation of the
 Cordillera have led to a large collection of evidence of the former ice cover
 \citep{Jackson.Clague.1991}. This evidence consists of mapped boundaries of the
-former ice extent \citep{Clague.1989, Dyke.2004}, directions of past sliding
-velocities \citep{Prest.etal.1968, Kleman.etal.2010}, and locations of former
+former ice extent (\citealp[Fig.~1.12]{Clague.1989}; \citealp{Duk-Rodkin.1999};
+\citealp{Dyke.2004}), directions of past sliding velocities
+(\citealp{Prest.etal.1968}; \citealp[Fig.~2]{Kleman.etal.2010}), and locations
+of former
 melt-water streams \citep{Margold.etal.2011, Margold.etal.2013}, as well as the
 timing of glaciation identified from radiocarbon dating \citep[e.g.,][]
-{Clague.etal.1980, Clague.1981, Porter.Swanson.1998}, cosmogenic dating
-\citep[e.g.,][]{Ward.etal.2007, Stroeven.etal.2010, Stroeven.etal.2013}, and
-the offshore sedimental record \citep{Cosma.etal.2008, Davies.etal.2011}.
+{Clague.1981, Porter.Swanson.1998}, cosmogenic dating \citep[e.g.,][]
+{Ward.etal.2007, Menounos.etal.2009, Stroeven.etal.2010, Stroeven.etal.2013},
+and the offshore sedimental record \citep{Cosma.etal.2008, Davies.etal.2011}.
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
 the maximal extent attained by the Cordilleran ice sheet during the last
-glacial cycle \citep{Clague.1989, Dyke.2004}. However, former ice thickness
+glacial cycle (\citealp[Fig. 1.12]{Clague.1989}; \citealp{Dyke.2004}). However,
+former ice thickness
 and the ice sheet's contribution to the last glacial maximum sea-level
 low-stand remain poorly constrained. Moreover, our understanding of the
 glaciation history is mainly restricted to the deglaciation phase and a
 regional scale, while little is known about the ice sheet evolution prior to
-the last glacial maximum extent \citep{Kleman.etal.2010}. Although
+the last glacial maximum extent \citep[Fig.~6]{Kleman.etal.2010}. Although
 time-evolving, whole ice-sheet reconstructions of glacial advance and retreat
 patterns are available for the Eurasian and Laurentide and ice sheets
 \citep{Kleman.etal.1997, Kleman.etal.2010}, such is not the case for the
 Cordilleran ice sheet, where complex arrangements of ice flow directions
 emanating from multiple glaciation centres have been identified
-\citep{Prest.etal.1968, Clague.1989}, but remain poorly understood
-\citep{Kleman.etal.2010}.
+\citep[Fig.~1.12]{Prest.etal.1968, Clague.1989}, but remain poorly understood
+\citep[p.~2049]{Kleman.etal.2010}.
 
 The present study uses a numerical ice sheet model \citep{PISM-authors.2014},
 calibrated against field-based evidence to perform a quantitative
 reconstruction of the Cordilleran ice sheet history through the last glacial
 cycle. Although numerical modelling has been established as a useful tool to
 improve our understanding of the Cordilleran ice sheet more than twenty years
-ago \citep{Jackson.Clague.1991,Robert.1991}, the ubiquitously mountainous
+ago (\citealp[p.~227]{Jackson.Clague.1991}; \citealp{Robert.1991}), the
+ubiquitously mountainous
 topography of the region has presented a major challenge to its application.
 In fact, only recent development of numerical ice sheet models and underlying
 scientific computing tools \citep[e.g.,][]{Bueler.Brown.2009} allows
 high-resolution numerical modelling of palaeo-glacier flow on mountainous
-terrain over millenial time scales \citep{Golledge.etal.2012}. In the North
+terrain over millenial time scales \citep[e.g.,][]{Golledge.etal.2012}. In the
+North
 American Cordillera, the topographic complexity induces strong gradients in
 seasonality and distinct patterns of precipition, thus requiring the use of
 high-resolution atmospheric forcing fields as input to the ice sheet model
@@ -168,7 +173,7 @@ globe, including two \chem{\delta^{18}O} records from Greenland ice cores
 \citep{Dansgaard.etal.1993, Andersen.etal.2004}, two \chem{\delta^{18}O}
 records from Antarctic ice cores \citep{Petit.etal.1999,Jouzel.etal.2007},
 and two alkenone unsaturation index records from Northwest Pacific oceanic
-sediment cores \citep{Herbert.2001}. Model output is compared to
+sediment cores \citep{Herbert.etal.2001}. Model output is compared to
 geomorphological evidence in terms of timing and extent of glaciation and
 patterns of deglaciation.
 
@@ -201,9 +206,9 @@ Center.
 PISM is a~shallow model, which implies that the balance of stresses is
 approximated based on their predominant components.
 The Shallow Shelf Approximation (SSA) is used as a ``sliding law'' for the
-Shallow Ice Approximation (SIA) \citep{Bueler.Brown.2009,Winkelmann.etal.2011}.
+Shallow Ice Approximation (SIA) \citep[Eqn.~15]{Winkelmann.etal.2011}.
 Ice softness depends on temperature and water content through an enthalpy
-formulation \citep{Aschwanden.Blatter.2009,Aschwanden.etal.2012}. Surface air
+formulation \citep{Aschwanden.etal.2012}. Surface air
 temperature from the atmospheric forcing provides the upper boundary condition
 to the ice enthalpy model. Temperature is computed subglacially to a~depth of
 3\,km, where it is conditioned by a~geothermal heat flux of
@@ -212,7 +217,7 @@ account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
 \citep{Blackwell.Richards.2004}.
 
-A~pseudo-plastic sliding law \citep{Aschwanden.etal.2013} relates the
+A~pseudo-plastic sliding law \citep{PISM-authors.2014} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
 varies from 15 to 45{\degree}. It is taken as a~function of modern bed
@@ -220,7 +225,8 @@ elevation, with lowest values occurring at low elevation, thus accounting
 for a~weakening of till associated with the presence of marine sediments.
 The till effective pressure is related to the modelled amount of water in the
 till, using a formula derived from laboratory experiments with till extracted
-from an Antarctic ice stream \citep{Tulaczyk.etal.2000}. Basal topography is
+from an Antarctic ice stream \citep[Eqn.~2]{Tulaczyk.etal.2000}. Basal
+topography is
 derived from the ETOPO1 combined topography and bathymetry dataset with
 a~resolution of 1\,arc-min \citep{Amante.Eakins.2009}.
 Sea level is lowered as a function of time according to the SPECMAP
@@ -234,19 +240,22 @@ half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
 Ice surface accumulation and ablation are computed from monthly mean
 near-surface air temperature, monthly precipitation, and monthly standard
 deviation of near-surface temperature by a~temperature-index (positive
-degree-day) model \citep{Hock.2003}. Ice accumulation is equal to precipitation
+degree-day) model \citep[e.g.,]{Hock.2003}. Ice accumulation is equal to
+precipitation
 when temperature is below 0\,\unit{{\degree}C}, and decreases to zero linearly
 with temperature between 0 and 2\,\unit{{\degree}C}. Ice ablation is computed
 from the number of positive degree-days, defined as the integral of
 temperatures above 0\,\unit{{\degree}C} in one year.
 
-The positive degree-day integral \citep{Calov.Greve.2005} is numerically
+The positive degree-day integral \citep[Eqn.~6]{Calov.Greve.2005} is
+numerically
 approximated using week-long sub-intervals. It accounts for temperature
 variability assuming a~normal distribution along a~central (input) value. The
 temperature standard deviation is part of the forcing climatology. It was
 computed from daily temperature values from the North American Regional
-Reanalysis (NARR) \citep{Mesinger.etal.2006}, after excluding variability
-associated with the seasonal cycle itself \citep{Seguinot.Rogozhina.2014}. The
+Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, after excluding variability
+associated with the seasonal cycle itself \citep[cf.][]
+{Seguinot.Rogozhina.2014}. The
 ablation model incorporates degree-day factors of
 3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
@@ -264,7 +273,8 @@ temperature-offset time series ${\Delta}T_{TS}$.
 \end{align}
 
 The present-day climatology $\{T_{m0}, P_{m0}\}$ was computed from
-near-surface air temperature and precipitation rate fields of the NARR over
+near-surface air temperature and precipitation rate fields of the NARR
+\citep{Mesinger.etal.2006} over
 the period 1979--2000 (Fig.~\ref{fig:atm}). Modern climate of the North
 American Cordillera is characterised by strong geographic variations of
 seasonality, timing of the precipitation peak and daily temperature variability.
@@ -289,8 +299,8 @@ North Greenland Ice Core Project \citep[NGRIP,][]{Andersen.etal.2004},
 the European Project for Ice Coring in Antarctica \citep[EPICA,][]
 {Jouzel.etal.2007}, the Lake Vostok ice core \citep{Petit.etal.1999}, and Ocean
 Drilling Program (ODP) sites 1012 and 1020, both located off the Californian
-shore \citep{Herbert.2001}. Palaeo-temperatures from the GRIP and NGRIP records
-were calculated using a quadratic equation \citep{Johnsen.etal.1995},
+shore \citep{Herbert.etal.2001}. Palaeo-temperatures from the GRIP and NGRIP
+records were calculated using a quadratic equation \citep{Johnsen.etal.1995},
 \begin{equation}
     {\Delta}T_{TS}(t) = -11.88[\chem{\delta^{18}O(t)}-\chem{\delta^{18}O}(0)]
                         -0.1925[\chem{\delta^{18}O(t)}^2-\chem{\delta^{18}O}(0)^2],
@@ -377,7 +387,7 @@ timing reconstructed from geological evidence is only attained in some of our
 simulations. In the Puget lowland, the last glacial maximum advance of the
 southern Cordilleran ice sheet margin has been constrained by radiocarbon
 dating between 17.4 and 16.4\,\unit{\chem{^{14}C}\,cal\,kyr\,BP}
-\citep{Porter.Swanson.1998}.
+\citep[Fig.~4]{Porter.Swanson.1998}.
 These dates have been confirmed by the offshore sediment record, which shows an
 increase of glaciomarine sedimentation between 19.5 and
 16.2\,\unit{\chem{^{14}C}\,cal\,kyr\,BP} \citep{Cosma.etal.2008}.
@@ -391,11 +401,12 @@ simulations driven by oceanic (ODP~1012, ODP~1020) records, this early
 deglaciation is caused by an early warming sealed in the palaeo-temperature records
 (Fig.~\ref{fig:timeseries}, upper panel). However, it has been shown that this
 early warming is a local effect, corresponding to a weakening of the California
-current \citep{Herbert.2001}. The California current, driving cold waters southwards
+current \citep[Fig.~3]{Herbert.etal.2001}. The California current, driving cold
+waters southwards
 along the western coast of North America, is thought to have weakened in the
 presence of the Cordilleran ice sheet, resulting in paradoxically warmer
 sea-surface temperatures at the locations of the ODP~1012 and ODP~1020 sites
-during the last glacial maximum \citep{Herbert.2001}.
+during the last glacial maximum \citep{Herbert.etal.2001}.
 
 Because most of the Cordilleran ice sheet marine front lies in a different
 oceanic circulation gyre than that holding the California current, it is
@@ -595,9 +606,9 @@ investigation of this region.
     Vostok   & \chem{\delta^{18}O} & ?\% & -5.6{\degree}C
         & \citet{Petit.etal.1999} \\
     ODP~1012 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C
-        & \citet{Herbert.2001} \\
+        & \citet{Herbert.etal.2001} \\
     ODP~1020 & \chem{U^{K'}_{37}}  & ?\% & -5.8{\degree}C
-        & \citet{Herbert.2001} \\
+        & \citet{Herbert.etal.2001} \\
     \bottomhline
   \end{tabular}}
   \belowtable{}
