@@ -20,9 +20,8 @@
 \graphicspath{{figures/}}
 
 % My commands
-\newcommand{\idea}[1]{\textbf{[IDEA: #1]}}
 \newcommand{\note}[1]{\textbf{[NOTE: #1]}}
-\newcommand{\todo}[1]{\textbf{[TODO: #1]}}
+\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 \newcommand{\aref}[0]{\textbf{[ref.]}}
 
 % ----------------------------------------------------------------------
@@ -91,18 +90,6 @@
 
 \end{abstract}
 
-\begin{center}
-\begin{tabular}{>{\bfseries}ll}
-    \tophline
-    Introduction & Happy with it except for missing refs.\\
-    Model setup  & Happy with it except for missing refs.\\
-    Results      & Happy with it except for missing refs.\\
-    Discussion   & Deglaciation part needs improvement.\\
-    Conclusions  & Can be compacted and the style improved.\\
-    \bottomhline
-\end{tabular}
-\end{center}
-
 % ----------------------------------------------------------------------
 \introduction
 \label{sec:intro}
@@ -125,10 +112,10 @@ melt-water streams \citep{Margold.etal.2011, Margold.etal.2013}, as well as the
 timing of glaciation identified from radiocarbon dating \citep[e.g.,][]
 {Clague.1981, Porter.Swanson.1998}, cosmogenic dating \citep[e.g.,][]
 {Ward.etal.2007, Menounos.etal.2009, Stroeven.etal.2010, Stroeven.etal.2013},
-and the offshore sedimentary record \citep{Cosma.etal.2008, Davies.etal.2011}.
-
-\note{Is the set of references in the above paragraph representative of the
-      current state of the field? Am I missing something important here?}
+and the offshore sedimentary record \citep{Cosma.etal.2008, Davies.etal.2011}%
+\footnote{\textbf{Arjen, Martin,}, please comment on my choice of references
+    in this paragraph. Is it a fair sample of the current state of the field?
+    Am I missing some other important works?}.
 
 Field-based evidence allowed to reconstruct, with a high degree of confidence,
 the maximal extent attained by the Cordilleran ice sheet during the last
@@ -218,8 +205,8 @@ account for the high spatial geothermal variability in the region, it is on
 average representative of available heat flow measurements
 \citep{Blackwell.Richards.2004}.
 
-A~pseudo-plastic sliding law \citep{PISM-authors.2014} \note{ask Ed Bueler if
-this will be published somewhere soon} relates the
+A~pseudo-plastic sliding law \citep{PISM-authors.2014}\footnote{I need to ask
+    Ed Bueler if the sliding will be published somewhere soon.} relates the
 bed-parallel shear stress and the sliding velocity. The yield stress is
 modelled using the Mohr--Coulomb criterion. The till friction angle $\phi$
 varies from 15 to 45{\degree}. It is taken as a~function of modern bed
@@ -384,9 +371,10 @@ glaciation maxima during MIS~4 (61.9--55.4\,kyr) and MIS~2
 (29.5--16.9\,kyr). These events broadly correspond in timing to the
 Gladstone (MIS~4) and McConell (MIS~2) glaciations documented by geological
 evidence in the northern part of the model domain \aref, and to the Fraser
-(MIS~2) glaciation in the southern part \aref.
-
-\note{Could you help me to fill the missing refs in this last sentence?}
+(MIS~2) glaciation in the southern part \aref
+\footnote{\textbf{Arjen, Martin, Johan,} can you check that I use these names
+    correctly, and help me to fill the missing refs in this sentence? Is is
+    possible to trace back when these names where first applied?}.
 
 However, the timing of the modelled glacial maxima strongly depends on the
 choice of palaeo-temperature record used, and a more precise agreement with
@@ -431,7 +419,6 @@ such record yet exists, we focus the rest of our analysis on simulations forced
 by temperature records from Greenland (GRIP) and Antarctic (EPICA) ice cores
 (Fig.~\ref{fig:timeseries}, lower panel, dotted lines).
 
-
 \subsection{Spatial imprint of ice cover}
 
 Although snapshots from the model output (Fig.~\ref{fig:snapshots}) give a
@@ -458,8 +445,8 @@ record \citep{Clague.etal.1980, Stroeven.etal.2010}.
 
 However, our simulations depict, independently of the choice of record used for
 palaeo-temperature forcing, a central Skeena mountain ice cap persisting
-throughout the entire last glacial cycle (Fig.~\ref{fig:snapshots} and
-\ref{fig:duration}). In particular, this ice cap persists during MIS~3,
+throughout the entire last glacial cycle (Figs.~\ref{fig:snapshots}
+and~\ref{fig:duration}). In particular, this ice cap persists during MIS~3,
 providing a nucleation centre for the onset of glacial
 readvance towards the last glacial maximum (MIS~2).
 
@@ -476,14 +463,25 @@ is progressively captured by the broad and mildly elevated group of the Skeena
 Mountains.
 
 In addition, the erosional landscape of the Skeena mountain bears one of the
-strongest glacial imprint (?) found within the area formerly covered by the
-Cordilleran ice sheet \aref. Here we suggest that persistent ice cover
+strongest glacial imprint found within the area formerly covered by the
+Cordilleran ice sheet \aref%
+\footnote{\textbf{Arjen, Martin, Johan,} can we use a reference here to support
+    this point (observations, mapping, shaded relief)? Alternatively, we could
+    maybe use a photograph, if any of you has one. It would add a bit of
+    variation into the figure list. \textbf{Johan}, you seemed to support this
+    this point during our discussion, any idea?}.
+Here we suggest that persistent ice cover (Fig.~\ref{fig:duration})
 associated with basal ice temperatures at the pressure-melting point
-(Fig.~\ref{fig:warmbase} and ~\ref{fig:warmbase}) may partly explain this
-spectacular landscape.
-
-\note{Can we use a reference here to support the point of strong glacial
-      imprint in the Skeena Mountains?}
+(Fig.~\ref{fig:warmfrac} and ~\ref{fig:warmbase}%
+\footnote{Fig.~\ref{fig:erosion} is tricky because it may be significantly
+    affected by the constant-geothermal heat flux assumption, which is not
+    valid for this region. Arjen, Johan and I decided to leave it for my kappa
+    for now. Regarding Figs.~\ref{fig:warmfrac} and ~\ref{fig:warmbase}, I
+    still wonder if it is useful to show both. Basically we have
+    Fig.~\ref{fig:warmbase}\,=\,Fig.~\ref{fig:duration}\,*\,Fig.~\ref{fig:warmfrac}.
+    Maybe the reader can perform this multiplication visually without need of
+    Fig.~\ref{fig:warmbase}? Tell me what you think of it.})
+may partly explain this spectacular landscape.
 
 \subsection{Deglaciation history}
 
@@ -701,26 +699,27 @@ investigation of this region.
   \label{fig:duration}
 \end{figure*}
 
-% fig:warmbase
-\begin{figure*}
-  \includegraphics{warmbase}
-  \caption{Modelled fraction of warm-based ice cover during the ice-covered
-           period. Note the dominance of warm-based conditions on the
-           continental shelf and major glacial troughs of the coastal ranges.
-           Hatches indicate areas that were covered by cold ice only.}
-  \label{fig:warmbase}
-\end{figure*}
-
 % fig:warmfrac
 \begin{figure*}
   \includegraphics{warmfrac}
+  \caption{Modelled fraction of warm-based ice cover during the ice-covered
+           period. Note the dominance of warm-based conditions on the
+           continental shelf and major glacial troughs of the coastal ranges.
+           Hatches indicate areas that were covered by cold ice only.
+           \todo{indicate location of the Skeena Mountains.}}
+  \label{fig:warmfrac}
+\end{figure*}
+
+% fig:warmbase
+\begin{figure*}
+  \includegraphics{warmbase}
   \caption{Modelled duration of warm-based ice cover during the last
            120\,kyr. Long ice cover durations combined with basal
            temperatures at the pressure-melting point may explain the strong
            glacial erosional imprint of the Skeena Mountains (SM) landscape.
            Hatches indicate areas that were covered by cold ice only.
-           \note{indicate location of Skeena Mountains.}}
-  \label{fig:warmfrac}
+           \todo{indicate location of the Skeena Mountains.}}
+  \label{fig:warmbase}
 \end{figure*}
 
 % fig:erosion
@@ -728,8 +727,7 @@ investigation of this region.
   \includegraphics{erosion}
   \caption{Modelled cumulative basal displacement (integrand of basal velocity)
            over the last 120\,kyr.
-           \note{I am still unsure about the use of this figure. I may
-                 remove it from this paper and keep the idea for later use.}}
+           \todo{remove this figure (see footnote in text).}}
   \label{fig:erosion}
 \end{figure*}
 
