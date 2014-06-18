@@ -4,7 +4,8 @@
 import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
-from matplotlib.colors import LogNorm, Normalize
+from matplotlib.cm import get_cmap
+from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
 from iceplot.cm import velocity
 
@@ -35,8 +36,12 @@ lightgreen, darkgreen = palette[2:4]
 lightred, darkred = palette[4:6]
 topo_cmap = 'Greys'
 topo_norm = Normalize(-3000, 6000)
-vel_cmap = velocity
+vel_cmap = 'RdBu_r'
 vel_norm = LogNorm(1e1, 1e3)
+
+# alternative velocity colormap
+#vel_cols = ['w', darkblue, darkgreen, '#ffff99', darkred, 'k']
+#vel_cmap = LinearSegmentedColormap.from_list('vel', vel_cols)
 
 # alternative for controlled brightness
 #rbmap = brewer2mpl.get_map('Reds', 'sequential', 9)
