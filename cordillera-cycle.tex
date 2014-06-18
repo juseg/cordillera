@@ -661,26 +661,56 @@ at the National Supercomputing Center (NSC).
 \begin{table*}[t]
   \caption{Palaeo-temperature proxy records and scaling parameters used to
            prepare temperature offset time-series used to force the ice sheet
-           model through the last 120\,kyr. $T_{[32;22]}$ refers to the
-           mean temperature anomaly during the period -32 to~-22~kyr after
-           scaling.}
+           model through the last 120\,kyr. $f$ corresponds to the scaling
+           factor used and $T_{[32;22]}$ refers to the mean temperature anomaly
+           during the period -32 to~-22~kyr after scaling.}
   \label{tab:records}
-  {\begin{tabular}{lcccc}
+  {\begin{tabular}{lccccccl}
     \tophline
-    Record & Proxy & Scaling factor & $T_{[32;22]}$ & Original reference\\
+    Record & Lat. & Lon. & Elev. & Proxy & $f$ & $T_{[32;22]}$
+           & Original reference\\
     \middlehline
-    GRIP     & \chem{\delta^{18}O} & 0.35 & -5.8{\degree}C  % -16.4126
-        & \citet{Dansgaard.etal.1993} \\
-    NGRIP    & \chem{\delta^{18}O} & 0.22 & -6.1{\degree}C  % -26.7098
-        & \citet{Andersen.etal.2004} \\
-    EPICA    & \chem{\delta^{18}O} & 0.60 & -5.6{\degree}C  % -9.2055
-        & \citet{Jouzel.etal.2007} \\
-    Vostok   & \chem{\delta^{18}O} & 0.70 & -5.6{\degree}C  % -7.9550
-        & \citet{Petit.etal.1999} \\
-    ODP~1012 & \chem{U^{K'}_{37}}  & 1.53 & -5.8{\degree}C  % -3.7889
-        & \citet{Herbert.etal.2001} \\
-    ODP~1020 & \chem{U^{K'}_{37}}  & 1.16 & -5.8{\degree}C  % -5.0000
-        & \citet{Herbert.etal.2001} \\
+    GRIP     &  72{\degree} 35' N  % 72.58 (decimal)
+             &  37{\degree} 38' W  % 37.64 (decimal)
+             & 3238\,m
+             & \chem{\delta^{18}O}
+             & 0.35 & -5.8{\degree}C  % -16.4126 (before scaling)
+             & \citet{Dansgaard.etal.1993} \\
+
+    NGRIP    &  75{\degree} 06' N  % 75.10
+             &  42{\degree} 19' W  % 42.32
+             & 2917\,m
+             & \chem{\delta^{18}O}
+             & 0.22 & -6.1{\degree}C  % -26.7098
+             & \citet{Andersen.etal.2004} \\
+
+    EPICA    &  75{\degree} 06' S  % 75.1
+             & 123{\degree} 21' E  % 123.35
+             & 3233\,m
+             & \chem{\delta^{18}O}
+             & 0.60 & -5.6{\degree}C  % -9.2055
+             & \citet{Jouzel.etal.2007} \\
+
+    Vostok   &  78{\degree} 28' S  % 78.8
+             & 106{\degree} 50' E  % 106.8
+             & 3488\,m
+             & \chem{\delta^{18}O}
+             & 0.70 & -5.6{\degree}C  % -7.9550
+             & \citet{Petit.etal.1999} \\
+
+    ODP~1012 &  32{\degree} 17' N
+             & 118{\degree} 23' W
+             & -1772\,m
+             & \chem{U^{K'}_{37}}
+             & 1.53 & -5.8{\degree}C  % -3.7889
+             & \citet{Herbert.etal.2001} \\
+
+    ODP~1020 &  41{\degree} 00' N
+             & 126{\degree} 26' W
+             & -3038\,m
+             & \chem{U^{K'}_{37}}
+             & 1.16 & -5.8{\degree}C  % -5.0000
+             & \citet{Herbert.etal.2001} \\
     \bottomhline
   \end{tabular}}
   \belowtable{}
