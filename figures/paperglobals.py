@@ -1,6 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
+import sys
+
+sys.path.append('iceplot')
+
 import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
