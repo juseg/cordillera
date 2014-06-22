@@ -12,6 +12,7 @@ from matplotlib.cm import get_cmap
 from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
 from iceplot.cm import velocity
+from iceplot import plot as iplt
 
 
 # unit conversion
@@ -105,30 +106,20 @@ def annotate(ax, s):
 
 
 def draw_boot_topo(grid, res):
-    nc = Dataset(boot_file % res)
-    x = nc.variables['x']
-    y = nc.variables['y']
-    topg = nc.variables['topg']
-    w = (3*x[0]-x[1])/2
-    e = (3*x[-1]-x[-2])/2
-    n = (3*y[0]-y[1])/2
-    s = (3*y[-1]-y[-2])/2
+    from matplotlib.pyplot import sca
     for ax in grid:
-        im = ax.imshow(topg[:].T, cmap=topo_cmap, norm=topo_norm,
-                       extent=(w, e, n, s))
-    nc.close()
+        sca(ax)
+        im = iplt.imshow(boot_file % res, 'topg',
+                         cmap=topo_cmap, norm=topo_norm)
     return im
 
 
 def draw_coastline(grid, res):
-    nc = Dataset(boot_file % res)
-    x = nc.variables['x']
-    y = nc.variables['y']
-    topg = nc.variables['topg']
+    from matplotlib.pyplot import sca
     for ax in grid:
-        cs = ax.contour(x[:], y[:], topg[:].T, levels=[0.0],
-                         colors='k', linewidths=0.5)
-    nc.close()
+        sca(ax)
+        cs = iplt.contour(boot_file % res, 'topg', levels=[0.0],
+                          cmap=None, colors='k', linewidths=0.5)
     return cs
 
 

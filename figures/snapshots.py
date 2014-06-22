@@ -7,7 +7,6 @@ from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import FuncFormatter
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
-from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
@@ -33,10 +32,6 @@ for i, rec in enumerate(records):
     # load extra output
     nc = Dataset(this_run_path + '-extra.nc')
     time = nc.variables['time'][:]*s2ka
-    topg = nc.variables['topg']
-    usurf = nc.variables['uvelsurf']
-    vsurf = nc.variables['vvelsurf']
-    thk = nc.variables['thk']
 
     # round snapshot times to nearest slice
     mis_idces = [(np.abs(time[:]-t)).argmin() for t in mis_times]
@@ -46,15 +41,20 @@ for i, rec in enumerate(records):
     for j, t in enumerate(mis_idces):
         print 'plotting %s at %s...' % (rec, mis_times[j])
         ax = grid[i+j*len(records)]
-        plt.sca(ax)
-        iplt.bedtopoimage(nc, t, cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargincontour(nc, t, linewidths=0.5)
+        iplt.imshow(nc, 'topg', t, ax=ax,
+                    cmap=topo_cmap, norm=topo_norm)
+        iplt.icemargin(nc, t, ax=ax,
+                       linewidths=0.5)
         levs = range(0, 4001, 500)
-        cs = iplt.surftopocontour(nc, t, levels=levs, cmap='Blues_r',
-                                  norm=BoundaryNorm(levs, 256),
-                                  linewidths=0.25, alpha=0.75)
-        iplt.surftopocontour(nc, t, levels=range(1000, 4001, 1000),
-                             linewidths=0.25)
+        cs = iplt.contourf(nc, 'usurf', t, ax=ax,
+                     levels=levs, cmap='Blues_r',
+                     norm=BoundaryNorm(levs, 256), alpha=0.75)
+        iplt.contour(nc, 'usurf', t, ax=ax,
+                     levels=range(0, 4001, 500),
+                     cmap=None, colors='k', linewidths=0.1)
+        iplt.contour(nc, 'usurf', t, ax=ax,
+                     levels=range(1000, 5000, 1000),
+                     cmap=None, colors='k', linewidths=0.25)
         annotate(ax, '%s kyr' % (mis_times[j]))
 
     # close extra file
