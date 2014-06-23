@@ -1,0 +1,3 @@
+[submodule "figures/iceplot"]
+	path = figures/iceplot
+	url = git@github.com:jsegu/iceplot.git
