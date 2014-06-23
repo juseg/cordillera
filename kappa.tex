@@ -3,6 +3,8 @@
 
 % Base class and packages
 \documentclass{article}
+\usepackage{amsmath}
+\usepackage{bm}
 \usepackage{lineno}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{physics}
@@ -14,6 +16,9 @@
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 %\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 %\newcommand{\aref}[0]{\textbf{[ref.]}}
+\renewcommand{\grad}[1]{\vec{\textup{grad}}\,#1}
+\renewcommand{\div}[1]{\textup{div}\,#1}
+\newcommand{\tensdiv}[1]{\vec{\textup{div}}\,#1}
 
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
@@ -56,12 +61,137 @@
 % ----------------------------------------------------------------------
 \section{Numerical ice flow model}
 % ----------------------------------------------------------------------
-% Overview
-% Field equations
-% Bedrock response
-% Surface mass balance
-% Atmospheric forcing
-% Numerical implementation
+\subsection{Overview}
+\subsection{Field equations}
+
+Incompressibility of flow (conservation of volume)
+
+\begin{equation}
+    \div{\vec{v}} = 0
+\end{equation}
+
+Balance of stresses (Stokes equation)
+
+\begin{equation}
+    \label{eq:stresses}
+    \tensdiv{\bm\sigma} + \rho\,\vec{g} = \vec{0}
+\end{equation}
+
+Constitutive law for ice (Glen's law)
+
+\begin{equation}
+    \bm{\dot\epsilon} = A_0\,e^\frac{-Q}{RT*}\,\tau_e^{n-1}\,\bm{\tau}
+\end{equation}
+
+Thermal equation (conservation of energy)
+
+\begin{equation}
+    \frac{\partial T}{\partial t}
+        + \vec{v} \cdot \vec{\mathrm{grad}}\,T
+        = \frac{k}{\rho c} \Delta T
+        + \frac{4\mu \dot{\epsilon_e}^2}{\rho c}
+\end{equation}
+
+\subsection{Shallow approximations}
+
+Complete stress balance
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
+            &= \pdv{p}{x} \\
+        \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
+            &= \pdv{p}{y} \\
+        \pdv{\tau_{zx}}{x} + \pdv{\tau_{zy}}{y} + \pdv{\tau_{zz}}{z}
+            &= \pdv{p}{z} - \rho g
+    \end{aligned}\right.
+\end{equation}
+
+Shallow ice approximation
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
+        \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
+        0 &= \pdv{p}{z} - \rho g
+    \end{aligned}\right.
+\end{equation}
+
+
+\begin{equation}
+    \pdv{\vec{v}}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s}
+\end{equation}
+
+Shallow shelf approximation
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
+            &= \pdv{p}{x} \\
+        \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
+            &= \pdv{p}{y} \\
+        \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g
+    \end{aligned}\right.
+\end{equation}
+
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{x} \left[2\bar{\nu}H
+                      \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
+            + \pdv{y} \left[\bar{\nu}H
+                            \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+            + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
+        \pdv{x} \left[\bar{\nu}H
+                      \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+            + \pdv{y} \left[2\bar{\nu}H
+                            \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
+            + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
+    \end{aligned}\right.
+\end{equation}
+
+\begin{equation}
+    \bar{\nu} = \frac{\bar{B}}{2}\,\dot{\epsilon}^{\frac{1-n}{n}}
+              = \frac{1}{2 \bar{A}^{\frac{1}{n}}}\,
+                \dot{\epsilon}^{\frac{1-n}{n}}
+\end{equation}
+
+Basal sliding
+
+\begin{equation}
+    \bm{\tau}_b = -\tau_c \frac{\vec{v}_b}
+                               {{u_{th}}^q\,|\vec{v}_b|^{1-q}}
+\end{equation}
+
+\begin{equation}
+   \tau_c = c_{0} + \tan{\phi}\cdot N_{til}
+\end{equation}
+
+\newcommand{\phimin}{\phi_{\mathrm{min}}}
+\newcommand{\phimax}{\phi_{\mathrm{max}}}
+\newcommand{\bmin}{b_{\mathrm{min}}}
+\newcommand{\bmax}{b_{\mathrm{max}}}
+
+\begin{equation}
+  \phi(x,y) =
+  \begin{cases}
+    \phimin, & b(x,y) \le \bmin, \\
+    \phimin + (b(x,y) - \bmin) \,M, & \bmin < b(x,y) < \bmax, \\
+    \phimax, & \bmax \le b(x,y).
+  \end{cases}
+  \label{eq:phipiecewise}
+\end{equation}
+
+\begin{equation}
+N_{til} = \delta P_o \, 10^{(e_0/C_c)
+          \left(1 - (W_{til}/W_{til}^{max})\right)}
+\end{equation}
+
+\subsection{Bedrock response}
+\subsection{Surface mass balance}
+\subsection{Atmospheric forcing}
+\subsection{Numerical implementation}
+
 
 % Fig. PISM = ice + bedrock
 
