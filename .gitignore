@@ -1,10 +1,27 @@
-# temporary files
-*~
+# Files produced by latex
+/*.aux
+/*.bbl
+/*.blg
+/*.fdb_latexmk
+/*.fls
+/*.log
+/*.out
+/*.pdf
+/*.rtf
 
-# figures
-*.pyc
-*.pdf
-*.png
+# Data
+data/*.dbf
+data/*.nc
+data/*.shp
+data/*.shx
+data/*.tif
+data/*.zip
 
-# animation
-*.mp4
+# Figures
+figures/*.pyc
+figures/*.pdf
+figures/*.png
+
+# Statistics
+stats/count.csv
+stats/progress.pdf
