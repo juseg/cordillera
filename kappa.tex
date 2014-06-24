@@ -16,10 +16,27 @@
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 \newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 %\newcommand{\aref}[0]{\textbf{[ref.]}}
-\renewcommand{\div}[1]{\mathrm{div}\,#1}
-\renewcommand{\grad}[1]{\vec{\mathrm{grad}}\,#1}
-\newcommand{\tensdiv}[1]{\vec{\mathrm{div}}\,#1}
-\newcommand{\tensgrad}[1]{\bm{\mathrm{grad}}\,#1}
+
+% Vectors and tensors
+\newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
+\newcommand{\tens}[1]{\vb*{#1}} % bold tensors
+
+% Differential operators
+\renewcommand{\div}[1]{\mathrm{div}\,#1}            % divergence
+\renewcommand{\grad}[1]{\vect{\mathrm{grad}}\,#1}   % gradient
+\newcommand{\tdiv}[1]{\vect{\mathrm{div}}\,#1}      % tensor divergence
+\newcommand{\tgrad}[1]{\tens{\mathrm{grad}}\,#1}    % tensor gradient
+\newcommand{\matdv}[1]{\pdv{#1}{t}+\vect{v}\cdot\grad{}\,#1}  % material dv.
+
+% Common notations
+\newcommand{\doteps}[0]{\dot{\epsilon}} % epsilon dot
+\newcommand{\IDT}[0]{\tens{\delta}}     % Identity tensor
+\newcommand{\CST}[0]{\tens{\sigma}}     % Cauchy stress tensor
+\newcommand{\DST}[0]{\tens{\tau}}       % deviatoric stress tensor
+\newcommand{\SRT}[0]{\tens{\doteps}}    % strain-rate tensor
+\newcommand{\vv}[0]{\vect{v}}           % velocity vector
+\newcommand{\vsia}[0]{\vv_{\mathrm{SIA}}}   % SIA velocity
+\newcommand{\vssa}[0]{\vv_{\mathrm{SSA}}}   % SSA velocity
 
 % Internal references
 \newcommand{\eqn}[1]{Eqn.~\ref{eqn:#1}}
@@ -96,40 +113,39 @@ Notations used and corresponding parameter choices are summarized in Table~??.
 The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the
 conservation of mass implies a conservation of volume, which can be expressed
-in terms of the ice velocity vector, $\vec{v}$, by
+in terms of the ice velocity vector, $\vv$, by
 
 \begin{equation}
     \label{eqn:incompressibility}
-    \div{\vec{v}} = 0.
+    \div{\vv} = 0.
 \end{equation}
 
 Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
 thus assuming creeping flow. In other words, ice is considered as a slow-moving
 fluid whose deformation is entirely controlled by internal friction, here
-expressed by the Cauchy stress tensor, $\bm\sigma$, and gravity, $\vec{g}$,
+expressed by the Cauchy stress tensor, $\CST$, and gravity, $\vect{g}$,
 
 \begin{equation}
     \label{eqn:stressbalance}
-    \tensdiv{\bm\sigma} + \rho\,\vec{g} = \vec{0},
+    \tdiv{\CST} + \rho\,\vect{g} = \vect{0},
 \end{equation}
 
 where $\rho$ corresponds to ice density. Thirdly, after defining the
 strain-rate tensor
-${\bm{\dot\epsilon}~=~\frac{1}{2}(\tensgrad{\vec{v}} +
-                                  \tensgrad{\vec{v}}^{\mathrm{T}})}$,
-and the deviatoric stress tensor, ${\bm{\tau} = \bm{\sigma} - p\,\bm{\delta}}$,
-where $p=\frac{1}{3}\tr(\bm{\sigma})$ is the hydrostatic pressure and
-$\bm{\delta}$ is the identity tensor, a \emph{constitutive law} for ice based
+${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
+and the deviatoric stress tensor, ${\DST = \CST - p\,\IDT}$,
+where $p=\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
+$\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice based
 on laboratory experiments is used to relate these two quantities,
 
 \begin{equation}
     \label{eqn:glenslaw}
-    \bm{\dot\epsilon} = A\,\tau_e^{n-1}\,\bm{\tau}.
+    \SRT = A\,\tau_e^{n-1}\,\DST.
 \end{equation}
 
 The equivalent stress, $\tau_e$, is defined by
-${\tau_e}^2 = -\mathrm{II}_{\bm{\tau}} = \frac{1}{2} \tr(\bm{\tau}^2)$,
-where $\mathrm{II}_{\bm{\tau}}$ is the second invariant of the stress tensor.
+${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
+where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
 The ice softness coefficient, $A$, depends on the deviation of temperature $T$
 from the pressure-melting point $T_m$ through
 
@@ -137,20 +153,20 @@ from the pressure-melting point $T_m$ through
     A = A_0\,e^\frac{-Q}{R(T-T_m)}.
 \end{equation}
 
-Letting ${\dot\epsilon_e}^2 = \frac{1}{2} \tr(\bm{\dot\epsilon}^2)$ and
+Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and
 $B=A^{-1/n}$, the constitutive law (\eqn{glenslaw}) can be rewritten using a
 sometimes more convenient, inverted formulation,
 
 \begin{equation}
-    \bm{\tau} = B\,\dot{\epsilon}_e^{1/n-1}\,\bm{\dot\epsilon}.
+    \DST = B\,\doteps_e^{1/n-1}\,\SRT.
 \end{equation}
 
 By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
-by $\bm{\tau} = \nu\,\bm{\dot\epsilon}$, thus yielding
+by $\DST = \nu\,\SRT$, thus yielding
 
 \begin{equation}
     \label{eqn:viscosity}
-    \nu = \frac{B}{2}\,\dot{\epsilon_e}^{1/n-1}.
+    \nu = \frac{B}{2}\,\doteps_e^{1/n-1}.
 \end{equation}
 
 Finally, the evolution of temperature within the ice is governed by the
@@ -161,25 +177,23 @@ reads
 
 \begin{equation}
     \label{eqn:enthalpy}
-    \rho \left(\pdv{H}{t} + \vec{v} \cdot \grad{H} \right)
-        = -\div{\vec{q}} + \frac{\nu\dot{\epsilon_e}^2}{4},
+    \rho \left(\matdv{H}\right)
+        = -\div{\vect{q}} + \frac{\nu\doteps_e^2}{4},
 \end{equation}
 
 
-where $\vec{q}$ represents the heat flow and
-${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\bm{\tau}\bm{\dot\epsilon})}$ is a
+where $\vect{q}$ represents the heat flow and
+${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\DST\SRT)}$ is a
 source term corresponding to strain heat release. In the case where ice
 temperature, $T$, is below the pressure-melting point, the enthalpy can be
 expressed as $H=c\,T$, while the heat flow is given by Fourier's law,
-$\vec{q} = k\,\grad{T}$. Consequently, the enthalpy equation (\eqn{enthalpy})
+$\vect{q} = k\,\grad{T}$. Consequently, the enthalpy equation (\eqn{enthalpy})
 can be rewritten using a more familiar, cold-ice, temperature formulation,
 
 \begin{equation}
     \label{eqn:temperature}
-    \frac{\partial T}{\partial t}
-        + \vec{v} \cdot \vec{\mathrm{grad}}\,T
-        = \frac{k}{\rho c} \Delta T
-        + \frac{\nu\dot{\epsilon_e}^2}{4\rho c}.
+    \matdv{T} = \frac{k}{\rho c} \Delta T
+                + \frac{\nu\doteps_e^2}{4\rho c}.
 \end{equation}
 
 where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
@@ -207,7 +221,7 @@ the balance of stresses (\eqn{stressbalance}) can be expanded into
 
 \begin{equation}
     \label{eqn:stressbalance}
-    \tensdiv{\bm\tau} - \grad{p} + \rho\,\vec{g} = \vec{0}.
+    \tdiv{\DST} - \grad{p} + \rho\,\vect{g} = \vect{0}.
 \end{equation}
 
 Projecting along the three Cartesian coordinate axis, this reads
@@ -242,8 +256,7 @@ This yields
 \todo{develop intermediary steps}
 
 \begin{equation}
-    \pdv{\vec{v}_{SIA}}{z} = 2A\,(\rho g)^n\,(s-z)^n\,
-                             |\grad{s}|^{n-1}\,\grad{s}.
+    \pdv{\vsia}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s}.
 \end{equation}
 
 The shallow shelf approximation (SSA), on the opposite of the SIA, assumes that
@@ -299,10 +312,10 @@ In PISM, the SIA and SSA velocities are added,
 
 \begin{equation}
     \label{eqn:siassa}
-    \vec{v} = \vec{v}_{SIA} + \vec{v}_{SSA}.
+    \vv = \vsia + \vssa.
 \end{equation}
 
-Because $\vec{v}_{SSA}$ is small where $\vec{v}_{SIA}$ are large and
+Because $\vsia$ is small where $\vssa$ is large and
 reciprocally, we can expect the model to perform well in regions where
 conditions for applicability of either the SIA or the SSA are met. However,
 equation~\ref{eqn:siassa} is a heuristic, and its validity in the zone of
@@ -321,16 +334,16 @@ The simulations presented in this thesis use a pseudo-plastic sliding law,
 
 \begin{equation}
     \label{eqn:pseudoplastic}
-    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{{v_{th}}^q\,|\vec{v}_b|^{1-q}},
+    \vect{\tau}_b = -\tau_c \frac{\vv_b}{{v_{th}}^q\,|\vv_b|^{1-q}},
 \end{equation}
 
-where $\vec{\tau}_b$ is the basal traction force, $\vec{v}_b$ is the basal
+where $\vect{\tau}_b$ is the basal traction force, $\vv_b$ is the basal
 velocity, and $v_{th}$ is an arbitrary velocity threshold. In the case of
 $q=0$, equation~\ref{eqn:pseudoplastic} corresponds to a purely plastic law,
 
 \begin{equation}
     \label{eqn:plastic}
-    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{|\vec{v}_b|}.
+    \vect{\tau}_b = -\tau_c \frac{\vv_b}{|\vv_b|}.
 \end{equation}
 
 However a non-zero exponent is chosen here in order to improve convergence. The
@@ -419,7 +432,8 @@ equation of the bed elevation $b$,
 
 where $\nu_m$ is mantle viscosity, $\rho_l$ is lithosphere density, $D$ is the
 lithosphere's flexural rigidity, and $\sigma_{zzb}$ corresponds to the ice load
-\citep{Bueler.etal.2007}. Here, $\Delta^2$ designs the biharmonic operator of
+\citep{Bueler.etal.2007}. Here, $\Delta^2$ designs the biharmonic (Laplacian
+square) operator of
 linear elastic theory, while $|\grad|$ is a pseudo-differential operator
 defined through the Fourier transform by \citet[Eqn.~6]{Bueler.etal.2007}. In
 the left-hand part of this equation, the first term accounts for mantle
