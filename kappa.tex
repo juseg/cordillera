@@ -1,5 +1,5 @@
 % kappa.tex
-% ----------------------------------------------------------------------
+% ======================================================================
 
 % Base class and packages
 \documentclass{article}
@@ -31,17 +31,16 @@
        through the last glacial cycle}
 \author{Julien Seguinot}
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \begin{document}
-% ----------------------------------------------------------------------
+% ======================================================================
 
 \maketitle
 \linenumbers
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \section{Introduction}
-\label{sec:intro}
-% ----------------------------------------------------------------------
+% ======================================================================
 % Ice as viscous matter
 % Glaciers and ice sheets
 % The last glacial cycle
@@ -51,9 +50,9 @@
 % Fig. recent climate evolution
 % Fig. present and palaeo-ice sheets
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \section{Field area description}
-% ----------------------------------------------------------------------
+% ======================================================================
 % Geographic setting
 % Climatic setting
 % Palaeo-glaciology
@@ -64,11 +63,13 @@
 % Fig. photos of fieldwork
 % Fig. Johan lineation map?
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \section{Numerical ice sheet model}
-% ----------------------------------------------------------------------
+% ======================================================================
 
+% ----------------------------------------------------------------------
 \subsection{Overview}
+% ----------------------------------------------------------------------
 
 The simulations presented in this thesis use Parallel Ice Sheet Model (PISM),
 an open-source, finite-difference, shallow ice-sheet model
@@ -88,7 +89,9 @@ Instead, it aims to highlight modelling choices made in the context of this
 thesis, and give an overview of the physics involved in these choices.
 Notations used and corresponding parameter choices are summarized in Table~??.
 
+% ----------------------------------------------------------------------
 \subsection{Field equations}
+% ----------------------------------------------------------------------
 
 The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the
@@ -187,7 +190,9 @@ demand too high for multi-millennial, continental-scale applications, such as
 the numerical modelling of the Cordilleran ice sheet through the last glacial
 cycle, thus requiring shallow approximations.
 
+% ----------------------------------------------------------------------
 \subsection{Shallow approximations}
+% ----------------------------------------------------------------------
 
 PISM, the ice sheet model that we use, employ two well-documented
 approximations of ice flow equations: the shallow ice approximation and the
@@ -304,7 +309,9 @@ equation~\ref{eqn:siassa} is a heuristic, and its validity in the zone of
 transition between shear flow and longitudinal flow has not yet been
 mathematically proven.
 
+% ----------------------------------------------------------------------
 \subsection{Basal sliding}
+% ----------------------------------------------------------------------
 
 Although the SIA is valid only under non-sliding conditions, the SSA requires
 a sliding law as basal boundary condition, which in fact constitutes the main
@@ -378,7 +385,9 @@ $\phi_2$ are chosen differently in Paper~I (10 and 30$^\circ$) and Paper~IV
 (15 and 45$^\circ$), but these choices are roughly equivalent in the case of a
 saturated till ($W=W_{max}$).
 
+% ----------------------------------------------------------------------
 \subsection{Bedrock response}
+% ----------------------------------------------------------------------
 
 The modelled ice sheet interacts with the underlying bedrock in two ways.
 Firstly, bedrock temperatures are computed to a given depth by appending the
@@ -421,16 +430,24 @@ the ice sheet growth and the isostatic bedrock response.
 %$D=5\times10^{24}$\,N\,m
 %$\rho_r = 3300$\,kg\,m$^{-3}$
 
+% ----------------------------------------------------------------------
 \subsection{Surface mass balance}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
 \subsection{Atmospheric forcing}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
 \subsection{Numerical implementation}
-
-
-
-
 % ----------------------------------------------------------------------
+
+
+
+
+% ======================================================================
 \section{Software tools and contributions}
-% ----------------------------------------------------------------------
+% ======================================================================
 % Computational workflow
 % Contributions to PISM
 % PyPDD
@@ -442,9 +459,9 @@ the ice sheet growth and the isostatic bedrock response.
 % Fig. pypdd example
 % Fig. pismplotlib example?
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \section{Results summary}
-% ----------------------------------------------------------------------
+% ======================================================================
 % Constant-climate runs
 % Effect of daily temperature variability
 % Transient-climate runs
@@ -455,9 +472,9 @@ the ice sheet growth and the isostatic bedrock response.
 % Fig. deglaciation streamplot
 % Fig. cumulative ice displacement map
 
-% ----------------------------------------------------------------------
+% ======================================================================
 \section{Future perpectives}
-% ----------------------------------------------------------------------
+% ======================================================================
 % Model improvements
 % Fieldwork
 % Geomorphological-oriented plots
