@@ -14,7 +14,7 @@
 
 % My commands
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
-%\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
+\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 %\newcommand{\aref}[0]{\textbf{[ref.]}}
 \renewcommand{\div}[1]{\mathrm{div}\,#1}
 \renewcommand{\grad}[1]{\vec{\mathrm{grad}}\,#1}
@@ -189,9 +189,26 @@ cycle, thus requiring shallow approximations.
 
 \subsection{Shallow approximations}
 
-Complete stress balance
+PISM, the ice sheet model that we use, employ two well-documented
+approximations of ice flow equations: the shallow ice approximation and the
+the shallow shelf approximation. Although both approximations can be derived
+from a rigorous scaling approach, we don't expand these lengthy derivations
+here, assuming instead the simplifications and focusing on their effect.
+
+% Fig. SIA + SSA
+
+Distinguishing the hydrostatic and deviatoric components of the stress tensor,
+the balance of stresses (\eqn{stressbalance}) can be expanded into
 
 \begin{equation}
+    \label{eqn:stressbalance}
+    \tensdiv{\bm\tau} - \grad{p} + \rho\,\vec{g} = \vec{0}.
+\end{equation}
+
+Projecting along the three Cartesian coordinate axis, this reads
+
+\begin{equation}
+    \label{eqn:fullstokes}
     \left\{\begin{aligned}
         \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
             &= \pdv{p}{x} \\
@@ -202,22 +219,32 @@ Complete stress balance
     \end{aligned}\right.
 \end{equation}
 
-Shallow ice approximation
+The shallow ice approximation (SIA) assumes that basal friction is high enough
+for the vertical shear stresses $\{\tau_{xz}, \tau_{yz}\}$ to predominate over
+all other components of the deviatoric stress tensor. In this framework, the
+projected stress-balance can be simplified to
 
 \begin{equation}
     \left\{\begin{aligned}
         \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
         \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
         0 &= \pdv{p}{z} - \rho g
-    \end{aligned}\right.
+    \end{aligned}\right..
 \end{equation}
 
+This yields
+
+\todo{develop intermediary steps}
 
 \begin{equation}
-    \pdv{\vec{v}}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s}
+    \pdv{\vec{v}_{SIA}}{z} = 2A\,(\rho g)^n\,(s-z)^n\,
+                             |\grad{s}|^{n-1}\,\grad{s}.
 \end{equation}
 
-Shallow shelf approximation
+The shallow shelf approximation (SSA), on the opposite of the SIA, assumes that
+basal friction is low enough for ice to deform predominantly by horizontal
+expansion within the entire ice column. In this context, the stress-balance can
+be simplified to
 
 \begin{equation}
     \left\{\begin{aligned}
@@ -226,9 +253,21 @@ Shallow shelf approximation
         \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
             &= \pdv{p}{y} \\
         \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g
-    \end{aligned}\right.
+    \end{aligned}\right.,
 \end{equation}
 
+and horizontal velocities can be assumed independent of depth, so that
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{v_x}{z} &= 0 \\
+        \pdv{v_y}{z} &= 0 \\
+    \end{aligned}\right..
+\end{equation}
+
+This yields
+
+\todo{develop intermediary steps}
 
 \begin{equation}
     \left\{\begin{aligned}
@@ -242,16 +281,30 @@ Shallow shelf approximation
             + \pdv{y} \left[2\bar{\nu}H
                             \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
             + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
-    \end{aligned}\right.
+    \end{aligned}\right.,
 \end{equation}
+
+where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 
 \begin{equation}
-    \bar{\nu} = \frac{\bar{B}}{2}\,\dot{\epsilon}^{\frac{1-n}{n}}
-              = \frac{1}{2 \bar{A}^{\frac{1}{n}}}\,
-                \dot{\epsilon}^{\frac{1-n}{n}}
+    \bar{\nu} = \frac{1}{H}\int_b^s\nu.
 \end{equation}
 
-Basal sliding
+In PISM, the SIA and SSA velocities are added,
+
+\begin{equation}
+    \label{eqn:siassa}
+    \vec{v} = \vec{v}_{SIA} + \vec{v}_{SSA}.
+\end{equation}
+
+Because $\vec{v}_{SSA}$ is small where $\vec{v}_{SIA}$ are large and
+reciprocally, we can expect the model to perform well in regions where
+conditions for applicability of either the SIA or the SSA are met. However,
+equation~\ref{eqn:siassa} is a heuristic, and its validity in the zone of
+transition between shear flow and longitudinal flow has not yet been
+mathematically proven.
+
+\subsection{Basal sliding}
 
 \begin{equation}
     \bm{\tau}_b = -\tau_c \frac{\vec{v}_b}
