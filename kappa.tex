@@ -6,19 +6,25 @@
 \usepackage{amsmath}
 \usepackage{bm}
 \usepackage{lineno}
+\usepackage{natbib}
 \usepackage[onehalfspacing]{setspace}
 \usepackage{physics}
-%\usepackage[colorlinks]{hyperref}
-%\usepackage{natbib}
+\usepackage[colorlinks, citecolor=blue]{hyperref}
 %\usepackage{graphicx}
 
 % My commands
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 %\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 %\newcommand{\aref}[0]{\textbf{[ref.]}}
-\renewcommand{\grad}[1]{\vec{\textup{grad}}\,#1}
-\renewcommand{\div}[1]{\textup{div}\,#1}
-\newcommand{\tensdiv}[1]{\vec{\textup{div}}\,#1}
+\renewcommand{\div}[1]{\mathrm{div}\,#1}
+\renewcommand{\grad}[1]{\vec{\mathrm{grad}}\,#1}
+\newcommand{\tensdiv}[1]{\vec{\mathrm{div}}\,#1}
+\newcommand{\tensgrad}[1]{\bm{\mathrm{grad}}\,#1}
+
+% Internal references
+\newcommand{\eqn}[1]{Eqn.~\ref{eqn:#1}}
+\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
+\newcommand{\tab}[1]{Table~\ref{tab:#1}}
 
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
@@ -59,38 +65,127 @@
 % Fig. Johan lineation map?
 
 % ----------------------------------------------------------------------
-\section{Numerical ice flow model}
+\section{Numerical ice sheet model}
 % ----------------------------------------------------------------------
+
 \subsection{Overview}
+
+The simulations presented in this thesis use Parallel Ice Sheet Model (PISM),
+an open-source, finite-difference, shallow ice-sheet model
+\citep{PISM-authors.2014}. The model reads bedrock topography, sea level,
+geothermal heat flux and climate forcing as inputs, and computes the thermal
+and dynamic state of the ice sheet, and the associated thermal and
+deformational response of an idealised lithosphere. The atmospheric and oceanic
+envelopes are not part of the model. However, PISM includes boundary models
+that provide simple parametrisations of their effect on the ice model at
+supposedly well-defined interfaces (Fig.~??).
+
+% Fig. PISM = ice + bedrock
+
+This section does not attempt to provide an extensive description of PISM,
+which can be found in the on-line documentation \citep{PISM-authors.2014}.
+Instead, it aims to highlight modelling choices made in the context of this
+thesis, and give an overview of the physics involved in these choices.
+Notations used and corresponding parameter choices are summarized in Table~??.
+
 \subsection{Field equations}
 
-Incompressibility of flow (conservation of volume)
+The thermodynamic core of the ice sheet model relies on four elementary field
+equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the
+conservation of mass implies a conservation of volume, which can be expressed
+in terms of the ice velocity vector, $\vec{v}$, by
 
 \begin{equation}
-    \div{\vec{v}} = 0
+    \label{eqn:incompressibility}
+    \div{\vec{v}} = 0.
 \end{equation}
 
-Balance of stresses (Stokes equation)
+Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
+thus assuming creeping flow. In other words, ice is considered as a slow-moving
+fluid whose deformation is entirely controlled by internal friction, here
+expressed by the Cauchy stress tensor, $\bm\sigma$, and gravity, $\vec{g}$,
 
 \begin{equation}
-    \label{eq:stresses}
-    \tensdiv{\bm\sigma} + \rho\,\vec{g} = \vec{0}
+    \label{eqn:stressbalance}
+    \tensdiv{\bm\sigma} + \rho\,\vec{g} = \vec{0},
 \end{equation}
 
-Constitutive law for ice (Glen's law)
+where $\rho$ corresponds to ice density. Thirdly, after defining the
+strain-rate tensor
+${\bm{\dot\epsilon}~=~\frac{1}{2}(\tensgrad{\vec{v}} +
+                                  \tensgrad{\vec{v}}^{\mathrm{T}})}$,
+and the deviatoric stress tensor, ${\bm{\tau} = \bm{\sigma} - p\,\bm{\delta}}$,
+where $p=\frac{1}{3}\tr(\bm{\sigma})$ is the hydrostatic pressure and
+$\bm{\delta}$ is the identity tensor, a \emph{constitutive law} for ice based
+on laboratory experiments is used to relate these two quantities,
 
 \begin{equation}
-    \bm{\dot\epsilon} = A_0\,e^\frac{-Q}{RT*}\,\tau_e^{n-1}\,\bm{\tau}
+    \label{eqn:glenslaw}
+    \bm{\dot\epsilon} = A\,\tau_e^{n-1}\,\bm{\tau}.
 \end{equation}
 
-Thermal equation (conservation of energy)
+The equivalent stress, $\tau_e$, is defined by
+${\tau_e}^2 = -\mathrm{II}_{\bm{\tau}} = \frac{1}{2} \tr(\bm{\tau}^2)$,
+where $\mathrm{II}_{\bm{\tau}}$ is the second invariant of the stress tensor.
+The ice softness coefficient, $A$, depends on the deviation of temperature $T$
+from the pressure-melting point $T_m$ through
 
 \begin{equation}
+    A = A_0\,e^\frac{-Q}{R(T-T_m)}.
+\end{equation}
+
+Letting ${\dot\epsilon_e}^2 = \frac{1}{2} \tr(\bm{\dot\epsilon}^2)$ and
+$B=A^{-1/n}$, the constitutive law (\eqn{glenslaw}) can be rewritten using a
+sometimes more convenient, inverted formulation,
+
+\begin{equation}
+    \bm{\tau} = B\,\dot{\epsilon}_e^{1/n-1}\,\bm{\dot\epsilon}.
+\end{equation}
+
+By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
+by $\bm{\tau} = \nu\,\bm{\dot\epsilon}$, thus yielding
+
+\begin{equation}
+    \label{eqn:viscosity}
+    \nu = \frac{B}{2}\,\dot{\epsilon_e}^{1/n-1}.
+\end{equation}
+
+Finally, the evolution of temperature within the ice is governed by the
+\emph{conservation of energy}. In PISM, the conservation of energy uses an
+enthalpy formulation in order to account for thermodynamic effects associated
+with internal phase changes in the glacier. This enthalpy ($H$) formulation
+reads
+
+\begin{equation}
+    \label{eqn:enthalpy}
+    \rho \left(\pdv{H}{t} + \vec{v} \cdot \grad{H} \right)
+        = -\div{\vec{q}} + \frac{\nu\dot{\epsilon_e}^2}{4},
+\end{equation}
+
+
+where $\vec{q}$ represents the heat flow and
+${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\bm{\tau}\bm{\dot\epsilon})}$ is a
+source term corresponding to strain heat release. In the case where ice
+temperature, $T$, is below the pressure-melting point, the enthalpy can be
+expressed as $H=c\,T$, while the heat flow is given by Fourier's law,
+$\vec{q} = k\,\grad{T}$. Consequently, the enthalpy equation (\eqn{enthalpy})
+can be rewritten using a more familiar, cold-ice, temperature formulation,
+
+\begin{equation}
+    \label{eqn:temperature}
     \frac{\partial T}{\partial t}
         + \vec{v} \cdot \vec{\mathrm{grad}}\,T
         = \frac{k}{\rho c} \Delta T
-        + \frac{4\mu \dot{\epsilon_e}^2}{\rho c}
+        + \frac{\nu\dot{\epsilon_e}^2}{4\rho c}.
 \end{equation}
+
+where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
+conductivity. Equations~\ref{eqn:incompressibility}, \ref{eqn:stressbalance},
+\ref{eqn:glenslaw}, and \ref{eqn:enthalpy} constitute the thermodynamic basis
+of our model. However, their resolution in full form implies a computational
+demand too high for multi-millennial, continental-scale applications, such as
+the numerical modelling of the Cordilleran ice sheet through the last glacial
+cycle, thus requiring shallow approximations.
 
 \subsection{Shallow approximations}
 
@@ -193,7 +288,7 @@ N_{til} = \delta P_o \, 10^{(e_0/C_c)
 \subsection{Numerical implementation}
 
 
-% Fig. PISM = ice + bedrock
+
 
 % ----------------------------------------------------------------------
 \section{Software tools and contributions}
@@ -228,6 +323,11 @@ N_{til} = \delta P_o \, 10^{(e_0/C_c)
 % Model improvements
 % Fieldwork
 % Geomorphological-oriented plots
+
+% References
+\newcommand{\urlprefix}[0]{}  % remove default "URL" prefix
+\bibliographystyle{copernicus}
+\bibliography{refs/references.bib}
 
 % ----------------------------------------------------------------------
 \end{document}
