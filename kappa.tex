@@ -306,34 +306,77 @@ mathematically proven.
 
 \subsection{Basal sliding}
 
-\begin{equation}
-    \bm{\tau}_b = -\tau_c \frac{\vec{v}_b}
-                               {{u_{th}}^q\,|\vec{v}_b|^{1-q}}
-\end{equation}
+Although the SIA is valid only under non-sliding conditions, the SSA requires
+a sliding law as basal boundary condition, which in fact constitutes the main
+control on SSA velocities and in turn locations of ice streams.
+
+The simulations presented in this thesis use a pseudo-plastic sliding law,
 
 \begin{equation}
-   \tau_c = c_{0} + \tan{\phi}\cdot N_{til}
+    \label{eqn:pseudoplastic}
+    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{{v_{th}}^q\,|\vec{v}_b|^{1-q}},
 \end{equation}
 
-\newcommand{\phimin}{\phi_{\mathrm{min}}}
-\newcommand{\phimax}{\phi_{\mathrm{max}}}
-\newcommand{\bmin}{b_{\mathrm{min}}}
-\newcommand{\bmax}{b_{\mathrm{max}}}
+where $\vec{\tau}_b$ is the basal traction force, $\vec{v}_b$ is the basal
+velocity, and $v_{th}$ is an arbitrary velocity threshold. In the case of
+$q=0$, equation~\ref{eqn:pseudoplastic} corresponds to a purely plastic law,
+
+\begin{equation}
+    \label{eqn:plastic}
+    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{|\vec{v}_b|}.
+\end{equation}
+
+However a non-zero exponent is chosen here in order to improve convergence. The
+yield stress $\tau_c$ is related to till properties by the Mohr-Coulomb
+criterion,
+
+\begin{equation}
+   \tau_c = c_0 + N\,\tan{\phi}.
+\end{equation}
+
+The till cohesion $c_0$ is assumed to be zero. The effective pressure on the
+till, $N$, is determined by the modelled amount of water at the bed. However,
+two different parametrisations are used within this thesis. In Paper~I, using
+PISM~0.5, the effective pressure is linearly related to water content by a
+simple parametrisation,
+
+\begin{equation}
+    N = \rho gH (1 - \alpha \frac{W}{W_{max}}).
+\end{equation}
+
+In Paper~IV, using PISM~0.6, the effective pressure is determined by an
+empirical parametrisation based on laboratory experiments on Antarctic till,
+
+\begin{equation}
+    N = \delta \rho gH \, 10^{(e_0/C_c) (1 - (W/W_{max}))}
+\end{equation}
+
+Drainage of water at the base of the ice sheet, although implemented in PISM,
+is not included in simulations presented here for the sake of simplicity.
+In turn, the amount of water at the bed, $W$, corresponds to the local
+accumulation of basal melt-water. In varies from zero to $W_{max}$, a threshold
+above which further melt exits the system.
+
+Finally, the till friction angle $\phi$ is taken a~function of modern bed
+elevation, with lowest values occurring at low elevations, thus accounting for
+a weakening of till associated with the presence of marine sediments,
 
 \begin{equation}
   \phi(x,y) =
   \begin{cases}
-    \phimin, & b(x,y) \le \bmin, \\
-    \phimin + (b(x,y) - \bmin) \,M, & \bmin < b(x,y) < \bmax, \\
-    \phimax, & \bmax \le b(x,y).
+    \phi_0, & \mathrm{for}\ b \le b_0, \\
+    \phi_0 + (\phi_1-\phi_0) \frac{b - b_0}{b_1-b_0},
+        & \mathrm{for}\ b_0 < b < b_1, \\
+    \phi_1, & \mathrm{for}\ b_1 \le b.
   \end{cases}
   \label{eq:phipiecewise}
 \end{equation}
 
-\begin{equation}
-N_{til} = \delta P_o \, 10^{(e_0/C_c)
-          \left(1 - (W_{til}/W_{til}^{max})\right)}
-\end{equation}
+where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
+highest shoreline elevations in the model domain. The values of $\phi_1$ and
+$\phi_2$ are chosen differently in Paper~I (10 and 30$^\circ$) and Paper~IV
+(15 and 45$^\circ$), but these choices are roughly equivalent in the case of a
+saturated till ($W=W_{max}$).
 
 \subsection{Bedrock response}
 \subsection{Surface mass balance}
