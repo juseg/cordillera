@@ -531,6 +531,35 @@ a method initially developed in Paper~II, and further improved in Paper~III.
 \subsection{Atmospheric forcing}
 % ----------------------------------------------------------------------
 
+Atmospheric forcing of the model consists of a present-day monthly climatology,
+$\{T_{m0}, P_{m0}\}$, modified by a lapse-rate correction, ${\Delta}T_{LR}$,
+and a temperature-offset correction, ${\Delta}T_{TS}$,
+\begin{align}
+    T_m(t, x, y) &= T_{m0}(x, y) +{\Delta}T_{LR}(t) +{\Delta}T_{TS}(t, x, y),\\
+    P_m(t, x, y) &= P_{m0}(x, y).
+\end{align}
+
+The present-day climatology, $\{T_{m0}, P_{m0}\}$, is computed from
+near-surface air temperature and precipitation rate fields extracted from
+observational data and atmospheric reanalyses.
+The lapse-rate correction, ${\Delta}T_{LR}$, is computed in relation to the
+climate input reference bedrock topography, $b_{ref}$,
+\begin{align}
+    {\Delta}T_{LR}(t, x, y) &= -\gamma [s(t, x, y)-b_{ref}(x, y)] \\
+                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{ref}(x, y)],
+\end{align}
+
+thus accounting for the evolution of ice thickness, $h$, on the one hand, and
+for differences between the the ice flow model basal topography, $b$, and the
+climate input topography, $b_{ref}$, on the other hand. All simulations use an
+annual temperature lapse rate of $\gamma = 6\,\unit{\degC\,km^{-1}}$.
+
+Paper~I tests the sensitivity of the model to different input present-day
+climatologies, $\{T_{m0}, P_{m0}\}$, while the temperature-offset corrections,
+${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. Paper~IV,
+on the opposite, tests model sensitivity to time-dependent temperature-offset
+corrections derived from different palaeo-temperature proxy records.
+
 % ----------------------------------------------------------------------
 \subsection{Numerical implementation}
 % ----------------------------------------------------------------------
