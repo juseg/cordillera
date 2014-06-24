@@ -379,6 +379,48 @@ $\phi_2$ are chosen differently in Paper~I (10 and 30$^\circ$) and Paper~IV
 saturated till ($W=W_{max}$).
 
 \subsection{Bedrock response}
+
+The modelled ice sheet interacts with the underlying bedrock in two ways.
+Firstly, bedrock temperatures are computed to a given depth by appending the
+ice enthalpy model \eqn{enthalpy} with an underlying bedrock thermal model.
+The only process accounted for is heat conduction, hence this model consists of
+a simple diffusion equation.
+
+\begin{equation}
+    \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T,
+\end{equation}
+
+where $k_b$, $\rho_b$ and $c_b$ are the thermal conductivity, density and
+specific heat capacity of the bedrock. Bedrock temperature is conditioned at
+depth by a fixed upwards geothermal heat flux $q_G$. The bedrock thermal model
+is necessary for modelling the Cordilleran ice sheet on multi-millennial
+time-scales, because temperature fluctuations caused by climate change and
+isolating effects of the ice sheet penetrate several hundred meters into the
+rock, and eventually affect basal ice temperatures.
+
+Secondly, bedrock elevation evolve in response to the ice load. The bedrock
+deformation model used in this thesis describes the flexure of an elastic
+lithosphere on top of an infinite half-space viscous mantle
+\citep{Lingle.Clark.1985}. It can be described by a single differential
+equation of the bed elevation $b$,
+
+\begin{equation}
+    2\nu_m\,|\grad|\,\pdv{b}{t} + \rho_l g b + D\,\Delta^2 b = \sigma_{zzb},
+\end{equation}
+
+where $\nu_m$ is mantle viscosity, $\rho_l$ is lithosphere density, $D$ is the
+lithosphere's flexural rigidity, and $\sigma_{zzb}$ corresponds to the ice load
+\citep{Bueler.etal.2007}. Here, $\Delta^2$ designs the biharmonic operator of
+linear elastic theory, while $|\grad|$ is a pseudo-differential operator
+defined through the Fourier transform by \citet[Eqn.~6]{Bueler.etal.2007}. In
+the left-hand part of this equation, the first term accounts for mantle
+relaxation, the second for point-wise isostasy, and the third for elastic
+flexure. Due to high mantle viscosity $\nu_m$, there exists a time lag between
+the ice sheet growth and the isostatic bedrock response.
+%$\nu=1\times10^{21}$\,Pa\,s
+%$D=5\times10^{24}$\,N\,m
+%$\rho_r = 3300$\,kg\,m$^{-3}$
+
 \subsection{Surface mass balance}
 \subsection{Atmospheric forcing}
 \subsection{Numerical implementation}
