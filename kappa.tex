@@ -10,7 +10,15 @@
 \usepackage[onehalfspacing]{setspace}
 \usepackage{physics}
 \usepackage[colorlinks, citecolor=blue]{hyperref}
+\usepackage[sort]{cleveref}  % needs to be loaded after hyperref
 %\usepackage{graphicx}
+
+% Copernicus-style internal references
+\crefname{chapter}{Chap.}{Chaps.}
+\crefname{equation}{Eq.}{Eqs.}
+\crefname{figure}{Fig.}{Figs.}
+\crefname{section}{Sect.}{Sects.}
+\crefname{table}{Table}{Tables}
 
 % My commands
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
@@ -37,11 +45,6 @@
 \newcommand{\vv}[0]{\vect{v}}           % velocity vector
 \newcommand{\vsia}[0]{\vv_{\mathrm{SIA}}}   % SIA velocity
 \newcommand{\vssa}[0]{\vv_{\mathrm{SSA}}}   % SSA velocity
-
-% Internal references
-\newcommand{\eqn}[1]{Eqn.~\ref{eqn:#1}}
-\newcommand{\fig}[1]{Fig.~\ref{fig:#1}}
-\newcommand{\tab}[1]{Table~\ref{tab:#1}}
 
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
@@ -153,9 +156,9 @@ from the pressure-melting point $T_m$ through
     A = A_0\,e^\frac{-Q}{R(T-T_m)}.
 \end{equation}
 
-Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and
-$B=A^{-1/n}$, the constitutive law (\eqn{glenslaw}) can be rewritten using a
-sometimes more convenient, inverted formulation,
+Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
+constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
+convenient, inverted formulation,
 
 \begin{equation}
     \DST = B\,\doteps_e^{1/n-1}\,\SRT.
@@ -187,8 +190,9 @@ ${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\DST\SRT)}$ is a
 source term corresponding to strain heat release. In the case where ice
 temperature, $T$, is below the pressure-melting point, the enthalpy can be
 expressed as $H=c\,T$, while the heat flow is given by Fourier's law,
-$\vect{q} = k\,\grad{T}$. Consequently, the enthalpy equation (\eqn{enthalpy})
-can be rewritten using a more familiar, cold-ice, temperature formulation,
+$\vect{q} = k\,\grad{T}$. Consequently, the enthalpy equation
+(\ref{eqn:enthalpy}) can be rewritten using a more familiar, cold-ice,
+temperature formulation,
 
 \begin{equation}
     \label{eqn:temperature}
@@ -197,8 +201,8 @@ can be rewritten using a more familiar, cold-ice, temperature formulation,
 \end{equation}
 
 where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
-conductivity. Equations~\ref{eqn:incompressibility}, \ref{eqn:stressbalance},
-\ref{eqn:glenslaw}, and \ref{eqn:enthalpy} constitute the thermodynamic basis
+conductivity. \Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,%
+eqn:enthalpy} constitute the thermodynamic basis
 of our model. However, their resolution in full form implies a computational
 demand too high for multi-millennial, continental-scale applications, such as
 the numerical modelling of the Cordilleran ice sheet through the last glacial
@@ -217,10 +221,9 @@ here, assuming instead the simplifications and focusing on their effect.
 % Fig. SIA + SSA
 
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
-the balance of stresses (\eqn{stressbalance}) can be expanded into
+the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
 
 \begin{equation}
-    \label{eqn:stressbalance}
     \tdiv{\DST} - \grad{p} + \rho\,\vect{g} = \vect{0}.
 \end{equation}
 
@@ -318,7 +321,7 @@ In PISM, the SIA and SSA velocities are added,
 Because $\vsia$ is small where $\vssa$ is large and
 reciprocally, we can expect the model to perform well in regions where
 conditions for applicability of either the SIA or the SSA are met. However,
-equation~\ref{eqn:siassa} is a heuristic, and its validity in the zone of
+\cref{eqn:siassa} is a heuristic, and its validity in the zone of
 transition between shear flow and longitudinal flow has not yet been
 mathematically proven.
 
@@ -339,7 +342,7 @@ The simulations presented in this thesis use a pseudo-plastic sliding law,
 
 where $\vect{\tau}_b$ is the basal traction force, $\vv_b$ is the basal
 velocity, and $v_{th}$ is an arbitrary velocity threshold. In the case of
-$q=0$, equation~\ref{eqn:pseudoplastic} corresponds to a purely plastic law,
+$q=0$, \cref{eqn:pseudoplastic} corresponds to a purely plastic law,
 
 \begin{equation}
     \label{eqn:plastic}
@@ -404,9 +407,9 @@ saturated till ($W=W_{max}$).
 
 The modelled ice sheet interacts with the underlying bedrock in two ways.
 Firstly, bedrock temperatures are computed to a given depth by appending the
-ice enthalpy model \eqn{enthalpy} with an underlying bedrock thermal model.
-The only process accounted for is heat conduction, hence this model consists of
-a simple diffusion equation.
+ice enthalpy model (\ref{eqn:enthalpy}) with an underlying bedrock thermal
+model. The only process accounted for is heat conduction, hence this model
+consists of a simple diffusion equation.
 
 \begin{equation}
     \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T,
@@ -435,7 +438,7 @@ lithosphere's flexural rigidity, and $\sigma_{zzb}$ corresponds to the ice load
 \citep{Bueler.etal.2007}. Here, $\Delta^2$ designs the biharmonic (Laplacian
 square) operator of
 linear elastic theory, while $|\grad|$ is a pseudo-differential operator
-defined through the Fourier transform by \citet[Eqn.~6]{Bueler.etal.2007}. In
+defined through the Fourier transform by \citet[Eq.~6]{Bueler.etal.2007}. In
 the left-hand part of this equation, the first term accounts for mantle
 relaxation, the second for point-wise isostasy, and the third for elastic
 flexure. Due to high mantle viscosity $\nu_m$, there exists a time lag between
