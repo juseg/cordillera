@@ -68,31 +68,46 @@
 
 \maketitle
 \linenumbers
+\tableofcontents
 
 % ======================================================================
 \section{Introduction}
 % ======================================================================
-% Ice as viscous matter
-% Glaciers and ice sheets
-% The last glacial cycle
 
-% Fig. crevasses
-% Fig. glacier flowing
-% Fig. recent climate evolution
-% Fig. present and palaeo-ice sheets
+\todo{Figure. Glacier crevasse photo}\\
+\todo{Figure. Glacier flowing photo}\\
+\todo{Figure. Glacier moraine photo}\\
+\todo{Figure. Benthic oxygen isotopes stack}\\
+\todo{Figure. Modern and former ice sheets}
 
 % ======================================================================
 \section{Field area description}
 % ======================================================================
-% Geographic setting
-% Climatic setting
-% Palaeo-glaciology
 
-% Fig. map of North America
-% Fig. map of the Cordillera?
-% Fig. photos of the Cordillera
-% Fig. photos of fieldwork
-% Fig. Johan lineation map?
+% ----------------------------------------------------------------------
+\subsection{Geographic setting}
+% ----------------------------------------------------------------------
+
+\todo{Figure. Location map of North America}\\
+\todo{Figure. Topographic map of the Cordillera}\\
+\todo{Table. LCC projection parameters?}
+
+% ----------------------------------------------------------------------
+\subsection{Climatic setting}
+% ----------------------------------------------------------------------
+
+\todo{Figure. Cordillera wet climate photo}\\
+\todo{Figure. Cordillera dry climate photo}\\
+\todo{Figure. Climatic patters}
+
+% ----------------------------------------------------------------------
+\subsection{Palaeo-glaciology}
+% ----------------------------------------------------------------------
+
+\todo{Figure. Glacierized region photo}\\
+\todo{Figure. Tuya Lake moraine photo}\\
+\todo{Figure. Meltwater channels photo}\\
+\todo{Figure. Lineation map}
 
 % ======================================================================
 \section{Numerical ice sheet model}
@@ -112,7 +127,7 @@ envelopes are not part of the model. However, PISM includes boundary models
 that provide simple parametrisations of their effect on the ice model at
 supposedly well-defined interfaces (Fig.~??).
 
-% Fig. PISM = ice + bedrock
+\todo{Figure. PISM interfaces}
 
 This section does not attempt to provide an extensive description of PISM,
 which can be found in the on-line documentation \citep{PISM-authors.2014}.
@@ -120,9 +135,13 @@ Instead, it aims to highlight modelling choices made in the context of this
 thesis, and give an overview of the physics involved in these choices.
 Notations used and corresponding parameter choices are summarized in Table~??.
 
+\todo{Table. model variables and parameters}
+
 % ----------------------------------------------------------------------
 \subsection{Field equations}
 % ----------------------------------------------------------------------
+
+\todo{Figure. Ice flow problem sketch}
 
 The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the ice
@@ -220,7 +239,7 @@ the shallow shelf approximation. Although both approximations can be derived
 from a rigorous scaling approach, we don't expand these lengthy derivations
 here, assuming instead the simplifications and focusing on their effect.
 
-% Fig. SIA + SSA
+\todo{Figure. SIA and SSA}
 
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
 the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
@@ -568,6 +587,8 @@ a method initially developed in {\PSDV}, and further improved in {\PSDP}.
 %3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 %4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice
 
+\todo{Figure. SMB model algorithm}
+
 % ----------------------------------------------------------------------
 \subsection{Atmospheric forcing}
 % ----------------------------------------------------------------------
@@ -582,6 +603,8 @@ and a temperature-offset correction, ${\Delta}T_{TS}$,
     P_m(t, x, y) &= P_{m0}(x, y) \,.
 \end{align}
 \end{subequations}
+
+\todo{Figure. Boundary models data flow chart}
 
 The present-day climatology, $\{T_{m0}, P_{m0}\}$, is computed from
 near-surface air temperature and precipitation rate fields extracted from
@@ -603,39 +626,60 @@ ${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. \CCYC,
 on the opposite, tests model sensitivity to time-dependent temperature-offset
 corrections derived from different palaeo-temperature proxy records.
 
+\todo{Table. Data sources?}
+
 % ----------------------------------------------------------------------
 \subsection{Numerical implementation}
 % ----------------------------------------------------------------------
 
-
-
-
 % ======================================================================
 \section{Software tools and contributions}
 % ======================================================================
-% Computational workflow
-% Contributions to PISM
-% PyPDD
-% pismplotlib
-% r.in.worldclim
-% r.out.pism
 
-% Fig. flow chart
-% Fig. pypdd example
-% Fig. pismplotlib example?
+% ----------------------------------------------------------------------
+\subsection{Computational workflow}
+% ----------------------------------------------------------------------
+\todo{Figure. computational workflow}
+
+% ----------------------------------------------------------------------
+\subsection{A Python PDD model}
+% ----------------------------------------------------------------------
+\todo{Figure. PyPDD demo example}
+
+% ----------------------------------------------------------------------
+\subsection{Pre-processing scripts for GRASS GIS}
+% ----------------------------------------------------------------------
+
+% ----------------------------------------------------------------------
+\subsection{Plotting tools for PISM}
+% ----------------------------------------------------------------------
+\todo{Figure. Plotting tools example}
+
+% ----------------------------------------------------------------------
+\subsection{Contributions to PISM}
+% ----------------------------------------------------------------------
+\todo{Table. PISM ``issues'' identified}
 
 % ======================================================================
 \section{Results summary}
 % ======================================================================
-% Constant-climate runs
-% Effect of daily temperature variability
-% Transient-climate runs
 
-% Fig. 3km LGM quiver
-% Fig. sigma distribution map
-% Fig. sigma effect on Cordillera runs
-% Fig. deglaciation streamplot
-% Fig. cumulative ice displacement map
+% ----------------------------------------------------------------------
+\subsection{Constant-climate runs}
+% ----------------------------------------------------------------------
+\todo{Figure. 3km last glacial maximum poster run?}
+
+% ----------------------------------------------------------------------
+\subsection{Daily temperature variability}
+% ----------------------------------------------------------------------
+\todo{Figure. Sigma distribution map}\\
+\todo{Figure. Sigma effect on Cordillera runs}
+
+% ----------------------------------------------------------------------
+\subsection{Transient-climate runs}
+% ----------------------------------------------------------------------
+\todo{Figure. Deglaciation streamplot}\\
+\todo{Figure. Cumulative ice displacement map}
 
 % ======================================================================
 \section{Future perpectives}
