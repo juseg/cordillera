@@ -51,6 +51,12 @@
 \newcommand{\degree}[0]{\ensuremath{^{\circ}}}
 \newcommand{\degC}[0]{\unit{{\degree}C}}
 
+% Papers of the thesis
+\newcommand{\CCLI}[0]{Paper~I}      % Cordillera climate
+\newcommand{\PSDV}[0]{Paper~II}     % PDD SD variability
+\newcommand{\PSDP}[0]{Paper~III}    % PDD SD parametrisation
+\newcommand{\CCYC}[0]{Paper~IV}     % Cordillera cycle
+
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
        through the last glacial cycle}
@@ -412,14 +418,14 @@ criterion,
 
 The till cohesion $c_0$ is assumed to be zero. The effective pressure on the
 till, $N$, is determined by the modelled amount of water at the bed. However,
-two different parametrisations are used within this thesis. In Paper~I, using
+two different parametrisations are used within this thesis. In {\CCLI}, using
 PISM~0.5, the effective pressure is linearly related to water content by a
 simple parametrisation,
 \begin{equation}
     N = \rho gH (1 - \alpha \frac{W}{W_{max}}) \,.
 \end{equation}
 
-In Paper~IV, using PISM~0.6, the effective pressure is determined by an
+In {\CCYC}, using PISM~0.6, the effective pressure is determined by an
 empirical parametrisation based on laboratory experiments on Antarctic till,
 \begin{equation}
     N = \delta \rho gH \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
@@ -445,7 +451,7 @@ a weakening of till associated with the presence of marine sediments:
 \end{equation}
 where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
 highest shoreline elevations in the model domain. The values of $\phi_1$ and
-$\phi_2$ are chosen differently in Paper~I (10 and 30$^\circ$) and Paper~IV
+$\phi_2$ are chosen differently in \CCLI (10 and 30$^\circ$) and \CCYC
 (15 and 45$^\circ$), but these choices are roughly equivalent in the case of a
 saturated till ($W=W_{max}$).
 
@@ -555,10 +561,10 @@ documented in the on-line documentation of PISM \citep{PISM-authors.2014}. This
 algorythms employ different melt factors for snow ($F_s$) and for ice ($F_i$),
 as derived from mass-balance measurements on contemporary glaciers in the
 Coast and Rocky Mountains of British Columbia \citep{Shea.etal.2009}. In
-Paper~I, the temperature standard deviation $\sPDD$ is a constant model
-parameter. In Paper~IV, it is computed from daily temperature values from the
+{\CCLI}, the temperature standard deviation $\sPDD$ is a constant model
+parameter. In {\CCYC}, it is computed from daily temperature values from the
 North American Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, using
-a method initially developed in Paper~II, and further improved in Paper~III.
+a method initially developed in {\PSDV}, and further improved in {\PSDP}.
 %3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 %4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice
 
@@ -591,9 +597,9 @@ for differences between the the ice flow model basal topography, $b$, and the
 climate input topography, $b_{ref}$, on the other hand. All simulations use an
 annual temperature lapse rate of $\gamma = 6\,\unit{\degC\,km^{-1}}$.
 
-Paper~I tests the sensitivity of the model to different input present-day
+\CCLI tests the sensitivity of the model to different input present-day
 climatologies, $\{T_{m0}, P_{m0}\}$, while the temperature-offset corrections,
-${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. Paper~IV,
+${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. \CCYC,
 on the opposite, tests model sensitivity to time-dependent temperature-offset
 corrections derived from different palaeo-temperature proxy records.
 
