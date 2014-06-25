@@ -119,62 +119,55 @@ Notations used and corresponding parameter choices are summarized in Table~??.
 % ----------------------------------------------------------------------
 
 The thermodynamic core of the ice sheet model relies on four elementary field
-equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the
+equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the ice
+density, $\rho$, is constant, and the
 conservation of mass implies a conservation of volume, which can be expressed
 in terms of the ice velocity vector, $\vv$, by
-
 \begin{equation}
     \label{eqn:incompressibility}
-    \div{\vv} = 0.
+    \div{\vv} = 0 \,.
 \end{equation}
 
 Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
 thus assuming creeping flow. In other words, ice is considered as a slow-moving
 fluid whose deformation is entirely controlled by internal friction, here
-expressed by the Cauchy stress tensor, $\CST$, and gravity, $\vect{g}$,
-
+expressed by the Cauchy stress tensor, $\CST$, and gravity, $\vect{g}$:
 \begin{equation}
     \label{eqn:stressbalance}
-    \tdiv{\CST} + \rho\,\vect{g} = \vect{0},
+    \tdiv{\CST} + \rho\,\vect{g} = \vect{0} \,.
 \end{equation}
 
-where $\rho$ corresponds to ice density. Thirdly, after defining the
-strain-rate tensor
+Thirdly, after defining the strain-rate tensor
 ${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
 and the deviatoric stress tensor, ${\DST = \CST - p\,\IDT}$,
 where $p=\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
 $\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice based
-on laboratory experiments is used to relate these two quantities,
-
+on laboratory experiments is used to relate these two quantities. It reads:
 \begin{equation}
     \label{eqn:glenslaw}
-    \SRT = A\,\tau_e^{n-1}\,\DST.
+    \SRT = A\,\tau_e^{n-1}\,\DST \,.
 \end{equation}
-
 The equivalent stress, $\tau_e$, is defined by
 ${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
 where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
 The ice softness coefficient, $A$, depends on the deviation of temperature $T$
 from the pressure-melting point $T_m$ through
-
 \begin{equation}
-    A = A_0\,e^\frac{-Q}{R(T-T_m)}.
+    A = A_0\,e^\frac{-Q}{R(T-T_m)} \,.
 \end{equation}
 
 Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
 convenient, inverted formulation,
-
 \begin{equation}
-    \DST = B\,\doteps_e^{1/n-1}\,\SRT.
+    \DST = B\,\doteps_e^{1/n-1}\,\SRT \,.
 \end{equation}
-
 By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
 by $\DST = \nu\,\SRT$, thus yielding
 
 \begin{equation}
     \label{eqn:viscosity}
-    \nu = \frac{B}{2}\,\doteps_e^{1/n-1}.
+    \nu = \frac{B}{2}\,\doteps_e^{1/n-1} \,.
 \end{equation}
 
 Finally, the evolution of temperature within the ice is governed by the
@@ -182,14 +175,11 @@ Finally, the evolution of temperature within the ice is governed by the
 enthalpy formulation in order to account for thermodynamic effects associated
 with internal phase changes in the glacier. This enthalpy ($H$) formulation
 reads
-
 \begin{equation}
     \label{eqn:enthalpy}
     \rho \left(\matdv{H}\right)
-        = -\div{\vect{q}} + \frac{\nu\doteps_e^2}{4},
+        = -\div{\vect{q}} + \frac{\nu\doteps_e^2}{4} \,,
 \end{equation}
-
-
 where $\vect{q}$ represents the heat flow and
 ${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\DST\SRT)}$ is a
 source term corresponding to strain heat release. In the case where ice
@@ -198,16 +188,16 @@ expressed as $H=c\,T$, while the heat flow is given by Fourier's law,
 $\vect{q} = k\,\grad{T}$. Consequently, the enthalpy equation
 (\ref{eqn:enthalpy}) can be rewritten using a more familiar, cold-ice,
 temperature formulation,
-
 \begin{equation}
     \label{eqn:temperature}
     \matdv{T} = \frac{k}{\rho c} \Delta T
-                + \frac{\nu\doteps_e^2}{4\rho c}.
+                + \frac{\nu\doteps_e^2}{4\rho c} \,,
 \end{equation}
-
 where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
-conductivity. \Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,%
-eqn:enthalpy} constitute the thermodynamic basis
+conductivity.
+
+\Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,eqn:enthalpy}
+constitute the thermodynamic basis
 of our model. However, their resolution in full form implies a computational
 demand too high for multi-millennial, continental-scale applications, such as
 the numerical modelling of the Cordilleran ice sheet through the last glacial
@@ -227,22 +217,20 @@ here, assuming instead the simplifications and focusing on their effect.
 
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
 the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
-
 \begin{equation}
-    \tdiv{\DST} - \grad{p} + \rho\,\vect{g} = \vect{0}.
+    \tdiv{\DST} - \grad{p} + \rho\,\vect{g} = \vect{0} \,.
 \end{equation}
 
 Projecting along the three Cartesian coordinate axis, this reads
-
 \begin{subequations}
 \label{eqn:fullstokes}
 \begin{align}
     \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
-        &= \pdv{p}{x} \\
+        &= \pdv{p}{x} \,, \\
     \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
-        &= \pdv{p}{y} \\
+        &= \pdv{p}{y} \,, \\
     \pdv{\tau_{zx}}{x} + \pdv{\tau_{zy}}{y} + \pdv{\tau_{zz}}{z}
-        &= \pdv{p}{z} - \rho g.
+        &= \pdv{p}{z} - \rho g \,.
 \end{align}
 \end{subequations}
 
@@ -250,119 +238,102 @@ The shallow ice approximation (SIA) assumes that basal friction is high enough
 for the vertical shear stresses $\{\tau_{xz}, \tau_{yz}\}$ to predominate over
 all other components of the deviatoric stress tensor. In this framework, the
 projected stress-balance can be simplified to
-
 \begin{subequations}
 \label{eqn:sia}
 \begin{align}
-    \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
-    \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
-    0 &= \pdv{p}{z} - \rho g
+    \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \,, \\
+    \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \,, \\
+    0 &= \pdv{p}{z} - \rho g \,.
 \end{align}
 \end{subequations}
 
 The $z$-component of \cref{eqn:sia} gives the pressure (neglecting atmospheric
 pressure),
-
 \begin{equation}
-    p = \rho g (s-z),
+    p = \rho g (s-z) \,,
 \end{equation}
-
 which can be re-introduced into the $x$ and $y$-components, thus yielding the
-expression of the horizontal shear stresses,
-
+expression of the horizontal shear stresses, sometimes referred to as driving
+stresses,
 \begin{subequations}
 \begin{align}
-    \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \\
-    \tau_{yz} &= \rho g (s-z) \pdv{s}{x}
+    \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \,, \\
+    \tau_{yz} &= \rho g (s-z) \pdv{s}{x} \,.
 \end{align}
 \end{subequations}
 
-which are sometimes referred to as driving stresses. Using the constitutive
-law (\ref{eqn:glenslaw}), vertical derivatives of horizontal velocities can
-be related to the horizontal shear stresses,
-
+Using the constitutive law (\ref{eqn:glenslaw}), vertical derivatives of
+horizontal velocities can be related to the horizontal shear stresses:
 \begin{subequations}
 \begin{align}
-    \pdv{v_x}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{xz}\\
-    \pdv{v_y}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{yz}
+    \pdv{v_x}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{xz} \,, \\
+    \pdv{v_y}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{yz} \,.
 \end{align}
 \end{subequations}
 
 Thus, within the framework of the SIA, horizontal velocities $\vv_{SIA}$ can be
 directly expressed as a function of the slope gradient,
-
 \begin{subequations}
 \begin{align}
     \pdv{v_x}{z} &= 2A (\rho g)^n (s-z)^n
-                    (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{x} \\
+                    \left(\pdv{s}{x}+\pdv{s}{y}\right)^{n-1} \pdv{s}{x} \,, \\
     \pdv{v_y}{z} &= 2A (\rho g)^n (s-z)^n
-                    (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{y}
+                    \left(\pdv{s}{x}+\pdv{s}{y}\right)^{n-1} \pdv{s}{y} \,,
 \end{align}
 \end{subequations}
-
-or, in vectorial notation,
-
+which yields, in vectorial notation,
 \begin{equation}
-    \pdv{\vsia}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s}.
+    \pdv{\vsia}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s} \,.
 \end{equation}
 
 The shallow shelf approximation (SSA), on the opposite of the SIA, assumes that
 basal friction is low enough for ice to deform predominantly by horizontal
 expansion within the entire ice column. In this context, the stress-balance can
 be simplified to
-
 \begin{subequations}
 \label{eqn:ssa}
 \begin{align}
     \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
-        &= \pdv{p}{x} \\
+        &= \pdv{p}{x} \,, \\
     \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
-        &= \pdv{p}{y} \\
-    \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g
+        &= \pdv{p}{y} \,, \\
+    \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g \,,
 \end{align}
 \end{subequations}
-
 and horizontal velocities can be assumed independent of depth, so that
-
 \begin{subequations}
 \begin{align}
-    \pdv{v_x}{z} &= 0 \\
-    \pdv{v_y}{z} &= 0
+    \pdv{v_x}{z} &= 0 \,, \\
+    \pdv{v_y}{z} &= 0 \,.
 \end{align}
 \end{subequations}
 
 This yields
-
 \todo{develop intermediary steps}
-
 \begin{subequations}
 \begin{align}
     \pdv{x} \left[2\bar{\nu}H
                   \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
         + \pdv{y} \left[\bar{\nu}H
                         \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
+        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \,, \\
     \pdv{x} \left[\bar{\nu}H
                   \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
         + \pdv{y} \left[2\bar{\nu}H
                         \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
-        + \tau_{bx} &= \rho_i gH \pdv{h}{x}
+        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \,,
 \end{align}
 \end{subequations}
-
 where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
-
 \begin{equation}
-    \bar{\nu} = \frac{1}{H}\int_b^s\nu.
+    \bar{\nu} = \frac{1}{H}\int_b^s\nu \,.
 \end{equation}
 
-In PISM, the SIA and SSA velocities are added,
-
+In PISM, the SIA and SSA velocities are eventually added,
 \begin{equation}
     \label{eqn:siassa}
-    \vv = \vsia + \vssa.
+    \vv = \vsia + \vssa \,.
 \end{equation}
-
 Because $\vsia$ is small where $\vssa$ is large and
 reciprocally, we can expect the model to perform well in regions where
 conditions for applicability of either the SIA or the SSA are met. However,
@@ -379,27 +350,23 @@ a sliding law as basal boundary condition, which in fact constitutes the main
 control on SSA velocities and in turn locations of ice streams.
 
 The simulations presented in this thesis use a pseudo-plastic sliding law,
-
 \begin{equation}
     \label{eqn:pseudoplastic}
-    \vect{\tau}_b = -\tau_c \frac{\vv_b}{{v_{th}}^q\,|\vv_b|^{1-q}},
+    \vect{\tau}_b = -\tau_c \frac{\vv_b}{{v_{th}}^q\,|\vv_b|^{1-q}} \,,
 \end{equation}
-
 where $\vect{\tau}_b$ is the basal traction force, $\vv_b$ is the basal
 velocity, and $v_{th}$ is an arbitrary velocity threshold. In the case of
 $q=0$, \cref{eqn:pseudoplastic} corresponds to a purely plastic law,
-
 \begin{equation}
     \label{eqn:plastic}
-    \vect{\tau}_b = -\tau_c \frac{\vv_b}{|\vv_b|}.
+    \vect{\tau}_b = -\tau_c \frac{\vv_b}{|\vv_b|} \,.
 \end{equation}
 
 However a non-zero exponent is chosen here in order to improve convergence. The
 yield stress $\tau_c$ is related to till properties by the Mohr-Coulomb
 criterion,
-
 \begin{equation}
-   \tau_c = c_0 + N\,\tan{\phi}.
+   \tau_c = c_0 + N\,\tan{\phi} \,.
 \end{equation}
 
 The till cohesion $c_0$ is assumed to be zero. The effective pressure on the
@@ -407,16 +374,14 @@ till, $N$, is determined by the modelled amount of water at the bed. However,
 two different parametrisations are used within this thesis. In Paper~I, using
 PISM~0.5, the effective pressure is linearly related to water content by a
 simple parametrisation,
-
 \begin{equation}
-    N = \rho gH (1 - \alpha \frac{W}{W_{max}}).
+    N = \rho gH (1 - \alpha \frac{W}{W_{max}}) \,.
 \end{equation}
 
 In Paper~IV, using PISM~0.6, the effective pressure is determined by an
 empirical parametrisation based on laboratory experiments on Antarctic till,
-
 \begin{equation}
-    N = \delta \rho gH \, 10^{(e_0/C_c) (1 - (W/W_{max}))}
+    N = \delta \rho gH \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
 \end{equation}
 
 Drainage of water at the base of the ice sheet, although implemented in PISM,
@@ -427,18 +392,16 @@ above which further melt exits the system.
 
 Finally, the till friction angle $\phi$ is taken a~function of modern bed
 elevation, with lowest values occurring at low elevations, thus accounting for
-a weakening of till associated with the presence of marine sediments,
-
+a weakening of till associated with the presence of marine sediments:
 \begin{equation}
     \phi(x,y) =
     \begin{cases}
-        \phi_0, & \mathrm{for}\ b \le b_0, \\
-        \phi_0 + (\phi_1-\phi_0) \frac{b - b_0}{b_1-b_0},
-            & \mathrm{for}\ b_0 < b < b_1, \\
-        \phi_1, & \mathrm{for}\ b_1 \le b.
+        \phi_0 & \text{if}\ b \le b_0 \,, \\
+        \phi_0 + (\phi_1-\phi_0) \frac{b - b_0}{b_1-b_0}
+                & \text{if}\ b_0 < b < b_1 \,, \\
+        \phi_1 & \text{if}\ b_1 \le b. \,,
     \end{cases}
 \end{equation}
-
 where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
 highest shoreline elevations in the model domain. The values of $\phi_1$ and
 $\phi_2$ are chosen differently in Paper~I (10 and 30$^\circ$) and Paper~IV
@@ -453,12 +416,10 @@ The modelled ice sheet interacts with the underlying bedrock in two ways.
 Firstly, bedrock temperatures are computed to a given depth by appending the
 ice enthalpy model (\ref{eqn:enthalpy}) with an underlying bedrock thermal
 model. The only process accounted for is heat conduction, hence this model
-consists of a simple diffusion equation.
-
+consists of a simple diffusion equation,
 \begin{equation}
-    \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T,
+    \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T \,,
 \end{equation}
-
 where $k_b$, $\rho_b$ and $c_b$ are the thermal conductivity, density and
 specific heat capacity of the bedrock. Bedrock temperature is conditioned at
 depth by a fixed upwards geothermal heat flux $q_G$. The bedrock thermal model
@@ -471,12 +432,10 @@ Secondly, bedrock elevation evolve in response to the ice load. The bedrock
 deformation model used in this thesis describes the flexure of an elastic
 lithosphere on top of an infinite half-space viscous mantle
 \citep{Lingle.Clark.1985}. It can be described by a single differential
-equation of the bed elevation $b$,
-
+equation of the bed elevation, $b$,
 \begin{equation}
-    2\nu_m\,|\grad|\,\pdv{b}{t} + \rho_l g b + D\,\Delta^2 b = \sigma_{zzb},
+    2\nu_m\,|\grad|\,\pdv{b}{t} + \rho_l g b + D\,\Delta^2 b = \sigma_{zzb} \,,
 \end{equation}
-
 where $\nu_m$ is mantle viscosity, $\rho_l$ is lithosphere density, $D$ is the
 lithosphere's flexural rigidity, and $\sigma_{zzb}$ corresponds to the ice load
 \citep{Bueler.etal.2007}. Here, $\Delta^2$ designs the biharmonic (Laplacian
@@ -504,23 +463,21 @@ $T_m$, and monthly precipitation, $P_m$, by a temperature-index model
 \citep[e.g.,][]{Hock.2003}. Surface accumulation, $a_s$, equals precipitation
 when temperature is below ${T_0=0\,\degC}$, and decreases to zero linearly
 with temperature between $T_0$ and ${T_1=2\,\degC}$,
-
 \begin{equation}
     a_s =
     \begin{cases}
-        0,      & \mathrm{for}\ T_m \le T_0, \\
-        P_m \frac{T_m-T_0}{T_1-T_0},
-                & \mathrm{for}\ T_0 < b < T_1, \\
-        P_m,    & \mathrm{for}\ T_1 \le T_m,
+        0       & \text{if}\ T_m \le T_0 \,, \\
+        P_m \frac{T_m-T_0}{T_1-T_0}
+                & \text{if}\ T_0 < b < T_1 \,, \\
+        P_m     & \text{if}\ T_1 \le T_m \,,
     \end{cases}
 \end{equation}
 
 Surface melt, $m_s$, is assumed proportional to the number of positive degree
 days (PDD), defined over an arbitrary time interval, $[t_1, t_2]$, as the
 integral of positive Celcius temperature $T-T_0$,
-
 \begin{equation}
-    \mathrm{PDD} = \int_{0}^{A}\max(T(t)-T_0,0)\,dt.
+    \mathrm{PDD} = \int_{0}^{A}\max(T(t)-T_0,0)\,dt \,.
 \end{equation}
 
 For multimillenial simulations of palaeo-ice sheet evolution such as the ones
@@ -533,24 +490,21 @@ under an assumption of normal temperature distribution, using a standard
 deviation parameter $\sPDD$ in the PDD computation \citep{Braithwaite.1984},
 PDDs can then be computed using a double-integral formulation
 \citep{Reeh.1991},
-
 \begin{equation}
     \PDD = \frac{1}{\sPDD\sqrt{2\pi}}
         \int_{t_1}^{t_2} \mathrm{d}t
         \int_{0}^{\infty} \mathrm{d}T \,
-        T \exp\left({-\frac{(T-T_{ac})^2}{2\sPDD^2}}\right)
+        T \exp\left({-\frac{(T-T_{ac})^2}{2\sPDD^2}}\right) \,,
 \end{equation}
-
 or more efficiently using an error function formulation
 \citep{Calov.Greve.2005},
-
 \begin{equation}
     \label{eqn:calovgreve}
     \PDD = \int_{t_1}^{t_2} \mathrm{d}t
         \left[\frac{\sPDD}{\sqrt{2\pi}}
                 \exp\left({-\frac{T_{ac}^2}{2\sPDD^2}}\right)
               + \frac{T_{ac}}{2} \, \mathrm{erfc}
-                \left(-\frac{T_{ac}}{\sqrt{2}\sPDD}\right)\right],
+                \left(-\frac{T_{ac}}{\sqrt{2}\sPDD}\right)\right] \,.
 \end{equation}
 
 In the simulations presented here, \cref{eqn:calovgreve} is numerically
@@ -574,10 +528,13 @@ a method initially developed in Paper~II, and further improved in Paper~III.
 Atmospheric forcing of the model consists of a present-day monthly climatology,
 $\{T_{m0}, P_{m0}\}$, modified by a lapse-rate correction, ${\Delta}T_{LR}$,
 and a temperature-offset correction, ${\Delta}T_{TS}$,
+\begin{subequations}
 \begin{align}
-    T_m(t, x, y) &= T_{m0}(x, y) +{\Delta}T_{LR}(t) +{\Delta}T_{TS}(t, x, y),\\
-    P_m(t, x, y) &= P_{m0}(x, y).
+    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{LR}(t)
+                                 + {\Delta}T_{TS}(t, x, y) \,, \\
+    P_m(t, x, y) &= P_{m0}(x, y) \,.
 \end{align}
+\end{subequations}
 
 The present-day climatology, $\{T_{m0}, P_{m0}\}$, is computed from
 near-surface air temperature and precipitation rate fields extracted from
@@ -586,9 +543,8 @@ The lapse-rate correction, ${\Delta}T_{LR}$, is computed in relation to the
 climate input reference bedrock topography, $b_{ref}$,
 \begin{align}
     {\Delta}T_{LR}(t, x, y) &= -\gamma [s(t, x, y)-b_{ref}(x, y)] \\
-                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{ref}(x, y)],
+                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{ref}(x, y)]\,,
 \end{align}
-
 thus accounting for the evolution of ice thickness, $h$, on the one hand, and
 for differences between the the ice flow model basal topography, $b$, and the
 climate input topography, $b_{ref}$, on the other hand. All simulations use an
