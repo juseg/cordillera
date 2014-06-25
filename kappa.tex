@@ -252,6 +252,7 @@ all other components of the deviatoric stress tensor. In this framework, the
 projected stress-balance can be simplified to
 
 \begin{equation}
+    \label{eqn:sia}
     \left\{\begin{aligned}
         \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
         \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
@@ -259,9 +260,47 @@ projected stress-balance can be simplified to
     \end{aligned}\right..
 \end{equation}
 
-This yields
+The $z$-component of \cref{eqn:sia} gives the pressure (neglecting atmospheric
+pressure),
 
-\todo{develop intermediary steps}
+\begin{equation}
+    p = \rho g (s-z),
+\end{equation}
+
+which can be re-introduced into the $x$ and $y$-components, thus yielding the
+expression of the horizontal shear stresses,
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \\
+        \tau_{yz} &= \rho g (s-z) \pdv{s}{x} \\
+    \end{aligned}\right.,
+\end{equation}
+
+which are sometimes referred to as driving stresses. Using the constitutive
+law (\ref{eqn:glenslaw}), vertical derivatives of horizontal velocities can
+be related to the horizontal shear stresses,
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{v_x}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{xz}\\
+        \pdv{v_y}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{yz}\\
+    \end{aligned}\right..
+\end{equation}
+
+Thus, within the framework of the SIA, horizontal velocities $\vv_{SIA}$ can be
+directly expressed as a function of the slope gradient,
+
+\begin{equation}
+    \left\{\begin{aligned}
+        \pdv{v_x}{z} &= 2A (\rho g)^n (s-z)^n
+                           (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{x} \\
+        \pdv{v_y}{z} &= 2A (\rho g)^n (s-z)^n
+                           (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{y} \\
+    \end{aligned}\right.,
+\end{equation}
+
+or, in vectorial notation,
 
 \begin{equation}
     \pdv{\vsia}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s}.
@@ -273,6 +312,7 @@ expansion within the entire ice column. In this context, the stress-balance can
 be simplified to
 
 \begin{equation}
+    \label{eqn:ssa}
     \left\{\begin{aligned}
         \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
             &= \pdv{p}{x} \\
