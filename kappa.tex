@@ -234,31 +234,31 @@ the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
 
 Projecting along the three Cartesian coordinate axis, this reads
 
-\begin{equation}
-    \label{eqn:fullstokes}
-    \left\{\begin{aligned}
-        \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
-            &= \pdv{p}{x} \\
-        \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
-            &= \pdv{p}{y} \\
-        \pdv{\tau_{zx}}{x} + \pdv{\tau_{zy}}{y} + \pdv{\tau_{zz}}{z}
-            &= \pdv{p}{z} - \rho g
-    \end{aligned}\right.
-\end{equation}
+\begin{subequations}
+\label{eqn:fullstokes}
+\begin{align}
+    \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
+        &= \pdv{p}{x} \\
+    \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
+        &= \pdv{p}{y} \\
+    \pdv{\tau_{zx}}{x} + \pdv{\tau_{zy}}{y} + \pdv{\tau_{zz}}{z}
+        &= \pdv{p}{z} - \rho g.
+\end{align}
+\end{subequations}
 
 The shallow ice approximation (SIA) assumes that basal friction is high enough
 for the vertical shear stresses $\{\tau_{xz}, \tau_{yz}\}$ to predominate over
 all other components of the deviatoric stress tensor. In this framework, the
 projected stress-balance can be simplified to
 
-\begin{equation}
-    \label{eqn:sia}
-    \left\{\begin{aligned}
-        \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
-        \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
-        0 &= \pdv{p}{z} - \rho g
-    \end{aligned}\right..
-\end{equation}
+\begin{subequations}
+\label{eqn:sia}
+\begin{align}
+    \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \\
+    \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \\
+    0 &= \pdv{p}{z} - \rho g
+\end{align}
+\end{subequations}
 
 The $z$-component of \cref{eqn:sia} gives the pressure (neglecting atmospheric
 pressure),
@@ -270,35 +270,35 @@ pressure),
 which can be re-introduced into the $x$ and $y$-components, thus yielding the
 expression of the horizontal shear stresses,
 
-\begin{equation}
-    \left\{\begin{aligned}
-        \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \\
-        \tau_{yz} &= \rho g (s-z) \pdv{s}{x} \\
-    \end{aligned}\right.,
-\end{equation}
+\begin{subequations}
+\begin{align}
+    \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \\
+    \tau_{yz} &= \rho g (s-z) \pdv{s}{x}
+\end{align}
+\end{subequations}
 
 which are sometimes referred to as driving stresses. Using the constitutive
 law (\ref{eqn:glenslaw}), vertical derivatives of horizontal velocities can
 be related to the horizontal shear stresses,
 
-\begin{equation}
-    \left\{\begin{aligned}
-        \pdv{v_x}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{xz}\\
-        \pdv{v_y}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{yz}\\
-    \end{aligned}\right..
-\end{equation}
+\begin{subequations}
+\begin{align}
+    \pdv{v_x}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{xz}\\
+    \pdv{v_y}{z} &= 2A (\tau_{xz}^2 + \tau_{yz}^2)^{n-1} \tau_{yz}
+\end{align}
+\end{subequations}
 
 Thus, within the framework of the SIA, horizontal velocities $\vv_{SIA}$ can be
 directly expressed as a function of the slope gradient,
 
-\begin{equation}
-    \left\{\begin{aligned}
-        \pdv{v_x}{z} &= 2A (\rho g)^n (s-z)^n
-                           (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{x} \\
-        \pdv{v_y}{z} &= 2A (\rho g)^n (s-z)^n
-                           (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{y} \\
-    \end{aligned}\right.,
-\end{equation}
+\begin{subequations}
+\begin{align}
+    \pdv{v_x}{z} &= 2A (\rho g)^n (s-z)^n
+                    (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{x} \\
+    \pdv{v_y}{z} &= 2A (\rho g)^n (s-z)^n
+                    (\pdv{s}{x}+\pdv{s}{y})^{n-1} \pdv{s}{y}
+\end{align}
+\end{subequations}
 
 or, in vectorial notation,
 
@@ -311,44 +311,44 @@ basal friction is low enough for ice to deform predominantly by horizontal
 expansion within the entire ice column. In this context, the stress-balance can
 be simplified to
 
-\begin{equation}
-    \label{eqn:ssa}
-    \left\{\begin{aligned}
-        \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
-            &= \pdv{p}{x} \\
-        \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
-            &= \pdv{p}{y} \\
-        \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g
-    \end{aligned}\right.,
-\end{equation}
+\begin{subequations}
+\label{eqn:ssa}
+\begin{align}
+    \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
+        &= \pdv{p}{x} \\
+    \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
+        &= \pdv{p}{y} \\
+    \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g
+\end{align}
+\end{subequations}
 
 and horizontal velocities can be assumed independent of depth, so that
 
-\begin{equation}
-    \left\{\begin{aligned}
-        \pdv{v_x}{z} &= 0 \\
-        \pdv{v_y}{z} &= 0 \\
-    \end{aligned}\right..
-\end{equation}
+\begin{subequations}
+\begin{align}
+    \pdv{v_x}{z} &= 0 \\
+    \pdv{v_y}{z} &= 0
+\end{align}
+\end{subequations}
 
 This yields
 
 \todo{develop intermediary steps}
 
-\begin{equation}
-    \left\{\begin{aligned}
-        \pdv{x} \left[2\bar{\nu}H
-                      \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
-            + \pdv{y} \left[\bar{\nu}H
-                            \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-            + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
-        \pdv{x} \left[\bar{\nu}H
-                      \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-            + \pdv{y} \left[2\bar{\nu}H
-                            \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
-            + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
-    \end{aligned}\right.,
-\end{equation}
+\begin{subequations}
+\begin{align}
+    \pdv{x} \left[2\bar{\nu}H
+                  \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
+        + \pdv{y} \left[\bar{\nu}H
+                        \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \\
+    \pdv{x} \left[\bar{\nu}H
+                  \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+        + \pdv{y} \left[2\bar{\nu}H
+                        \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
+        + \tau_{bx} &= \rho_i gH \pdv{h}{x}
+\end{align}
+\end{subequations}
 
 where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 
