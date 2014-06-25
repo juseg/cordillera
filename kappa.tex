@@ -160,6 +160,7 @@ Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
 convenient, inverted formulation,
 \begin{equation}
+    \label{eqn:invglenslaw}
     \DST = B\,\doteps_e^{1/n-1}\,\SRT \,.
 \end{equation}
 By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
@@ -241,24 +242,26 @@ projected stress-balance can be simplified to
 \begin{subequations}
 \label{eqn:sia}
 \begin{align}
+    \label{eqn:siax}
     \pdv{\tau_{xz}}{z} &= \pdv{p}{x} \,, \\
+    \label{eqn:siay}
     \pdv{\tau_{yz}}{z} &= \pdv{p}{y} \,, \\
+    \label{eqn:siaz}
     0 &= \pdv{p}{z} - \rho g \,.
 \end{align}
 \end{subequations}
 
-The $z$-component of \cref{eqn:sia} gives the pressure (neglecting atmospheric
-pressure),
+Neglecting atmospheric pressure, \Cref{eqn:siaz} yield
 \begin{equation}
     p = \rho g (s-z) \,,
 \end{equation}
-which can be re-introduced into the $x$ and $y$-components, thus yielding the
+which can be re-introduced into \cref{eqn:siax,eqn:siay}, thus yielding the
 expression of the horizontal shear stresses, sometimes referred to as driving
 stresses,
 \begin{subequations}
 \begin{align}
-    \tau_{xz} &= \rho g (s-z) \pdv{s}{x} \,, \\
-    \tau_{yz} &= \rho g (s-z) \pdv{s}{x} \,.
+    \tau_{xz} &= -\rho g (s-z) \pdv{s}{x} \,, \\
+    \tau_{yz} &= -\rho g (s-z) \pdv{s}{x} \,.
 \end{align}
 \end{subequations}
 
@@ -275,15 +278,16 @@ Thus, within the framework of the SIA, horizontal velocities $\vv_{SIA}$ can be
 directly expressed as a function of the slope gradient,
 \begin{subequations}
 \begin{align}
-    \pdv{v_x}{z} &= 2A (\rho g)^n (s-z)^n
+    \pdv{v_x}{z} &= -2A (\rho g)^n (s-z)^n
                     \left(\pdv{s}{x}+\pdv{s}{y}\right)^{n-1} \pdv{s}{x} \,, \\
-    \pdv{v_y}{z} &= 2A (\rho g)^n (s-z)^n
+    \pdv{v_y}{z} &= -2A (\rho g)^n (s-z)^n
                     \left(\pdv{s}{x}+\pdv{s}{y}\right)^{n-1} \pdv{s}{y} \,,
 \end{align}
 \end{subequations}
 which yields, in vectorial notation,
 \begin{equation}
-    \pdv{\vsia}{z} = 2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s} \,.
+    \label{eqn:vsia}
+    \pdv{\vsia}{z} = -2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s} \,.
 \end{equation}
 
 The shallow shelf approximation (SSA), on the opposite of the SIA, assumes that
@@ -293,41 +297,78 @@ be simplified to
 \begin{subequations}
 \label{eqn:ssa}
 \begin{align}
+    \label{eqn:ssax}
     \pdv{\tau_{xx}}{x} + \pdv{\tau_{xy}}{y} + \pdv{\tau_{xz}}{z}
         &= \pdv{p}{x} \,, \\
+    \label{eqn:ssay}
     \pdv{\tau_{yx}}{x} + \pdv{\tau_{yy}}{y} + \pdv{\tau_{yz}}{z}
         &= \pdv{p}{y} \,, \\
+    \label{eqn:ssaz}
     \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g \,,
 \end{align}
 \end{subequations}
 and horizontal velocities can be assumed independent of depth, so that
-\begin{subequations}
 \begin{align}
     \pdv{v_x}{z} &= 0 \,, \\
     \pdv{v_y}{z} &= 0 \,.
 \end{align}
-\end{subequations}
 
-This yields
-\todo{develop intermediary steps}
+Once again neglecting atmospheric pressure, and remembering that $\tr(\DST)=0$,
+\Cref{eqn:ssaz} yields
+\begin{align}
+    p &= \rho g (s-z) - \tau_{zz} \,, \\
+      &= \rho g (s-z) + \tau_{xx} + \tau_{yy} \,,
+\end{align}
+which can be re-introduced into \cref{eqn:ssax,eqn:ssay}:
 \begin{subequations}
 \begin{align}
-    \pdv{x} \left[2\bar{\nu}H
+    2\pdv{\tau_{xx}}{x} - \pdv{\tau_{yy}}{x} + \pdv{\tau_{xy}}{y}
+        + \pdv{\tau_{xz}}{z} &= \rho g \pdv{s}{x} \,, \\
+    \pdv{\tau_{yx}}{x} + 2\pdv{\tau_{yy}}{y} - \pdv{\tau_{xx}}{y}
+        + \pdv{\tau_{yz}}{z} &= \rho g \pdv{s}{y} \,.
+\end{align}
+\end{subequations}
+
+Using the inverse formulation of the constitutive law \eqref{eqn:invglenslaw},
+components of the deviatoric stress tensor can be replaced by corresponding
+velocity components, yielding
+\begin{subequations}
+\begin{align}
+    \pdv{x} \left[2\bar{\nu}
                   \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
-        + \pdv{y} \left[\bar{\nu}H
+        + \pdv{y} \left[\bar{\nu}
                         \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \,, \\
-    \pdv{x} \left[\bar{\nu}H
+        + \pdv{\tau_{xz}}{z} &= \rho g \pdv{s}{x} \,, \\
+    \pdv{x} \left[\bar{\nu}
                   \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \pdv{y} \left[2\bar{\nu}H
+        + \pdv{y} \left[2\bar{\nu}
                         \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
-        + \tau_{bx} &= \rho_i gH \pdv{h}{x} \,,
+         + \pdv{\tau_{yz}}{z} &= \rho g \pdv{s}{y} \,,
 \end{align}
 \end{subequations}
 where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 \begin{equation}
     \bar{\nu} = \frac{1}{H}\int_b^s\nu \,.
 \end{equation}
+
+A final integration over the entire ice column yields
+\begin{subequations}
+\begin{align}
+    \label{eqn:vssa}
+    \pdv{x} \left[2\bar{\nu}h
+                  \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
+        + \pdv{y} \left[\bar{\nu}h
+                        \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+        + \tau_{bx} &= \rho gh \pdv{s}{x} \,, \\
+    \pdv{x} \left[\bar{\nu}H
+                  \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
+        + \pdv{y} \left[2\bar{\nu}h
+                        \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
+        + \tau_{by} &= \rho gh \pdv{s}{y} \,,
+\end{align}
+\end{subequations}
+where $\tau_{bx}$ and $\tau_{by}$ correspond to $x$ and $y$-components of the
+basal traction, and will be determined by a sliding law.
 
 In PISM, the SIA and SSA velocities are eventually added,
 \begin{equation}
@@ -399,7 +440,7 @@ a weakening of till associated with the presence of marine sediments:
         \phi_0 & \text{if}\ b \le b_0 \,, \\
         \phi_0 + (\phi_1-\phi_0) \frac{b - b_0}{b_1-b_0}
                 & \text{if}\ b_0 < b < b_1 \,, \\
-        \phi_1 & \text{if}\ b_1 \le b. \,,
+        \phi_1 & \text{if}\ b_1 \le b \,,
     \end{cases}
 \end{equation}
 where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
