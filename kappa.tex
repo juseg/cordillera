@@ -23,7 +23,7 @@
 % My commands
 %\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
 \newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
-%\newcommand{\aref}[0]{\textbf{[ref.]}}
+\newcommand{\mref}[0]{\textbf{[ref.]}}
 
 % Vectors and tensors
 \newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
@@ -45,8 +45,11 @@
 \newcommand{\vv}[0]{\vect{v}}           % velocity vector
 \newcommand{\vsia}[0]{\vv_{\mathrm{SIA}}}   % SIA velocity
 \newcommand{\vssa}[0]{\vv_{\mathrm{SSA}}}   % SSA velocity
+\newcommand{\PDD}[0]{\mathrm{PDD}}
+\newcommand{\sPDD}[0]{\sigma_{\mathrm{PDD}}}
 
 % Common units
+\newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 \newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
 \newcommand{\degree}[0]{\ensuremath{^{\circ}}}
 \newcommand{\degC}[0]{\unit{{\degree}C}}
@@ -135,7 +138,6 @@ Instead, it aims to highlight modelling choices made in the context of this
 thesis, and give an overview of the physics involved in these choices.
 Notations used and corresponding parameter choices are summarized in Table~??.
 
-\todo{Table. model variables and parameters}
 
 % ----------------------------------------------------------------------
 \subsection{Field equations}
@@ -176,18 +178,19 @@ The equivalent stress, $\tau_e$, is defined by
 ${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
 where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
 The ice softness coefficient, $A$, depends on ice temperature, pressure, and
-water, $\omega$ through an Arrhenius-type law,
+water content through an Arrhenius-type law,
 \begin{equation}
     A =
     \begin{cases}
         A_c (1+f\omega)\,e^\frac{-Q_c}{RT_{pa}}
-            & \text{if}\ T < T_{crit} \,, \\
+            & \text{if}\ T < T_c \,, \\
         A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
-            & \text{if}\ T \ge T_{crit} \,,
+            & \text{if}\ T \ge T_c \,,
     \end{cases}
 \end{equation}
 where $T_{pa}$ is the pressure-adjusted temperature calculated using the
-Clapeyron relation, ${T_{pa} = T - \beta p}$.
+Clapeyron relation, ${T_{pa} = T - \beta p}$. The water fraction, $\omega$, is
+capped at a threshold of 0.01, above which no measurements are available.
 
 Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
@@ -236,6 +239,98 @@ of our model. However, their resolution in full form implies a computational
 demand too high for multi-millennial, continental-scale applications, such as
 the numerical modelling of the Cordilleran ice sheet through the last glacial
 cycle, thus requiring shallow approximations.
+
+\begin{table}
+  \centering
+  \caption{Constant parameters of the ice flow model.
+           \todo{find a better reference than \citet{Aschwanden.etal.2012}
+                 for all the physical constants. Double-check
+                 \citet{Paterson.Budd.1982} and add missing references.}}
+  \label{tab:iceflowparams}
+  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
+    \hline
+    Not.    & Name & Value & Unit & Source \\
+    \hline
+
+    $\rho$  & Ice density
+            & 910
+            & \unit{kg\,m^{-3}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $g$     & Standard gravity
+            & 9.81
+            & \unit{m\,s^{-2}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $n$     & Glen exponent
+            & 3
+            & -
+            & \mref \\
+
+    $A_c$   & Ice hardness coefficient cold
+            & 3.61\e{-13}
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $A_w$   & Ice hardness coefficient warm
+            & 1.73\e3
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_c$   & Flow law activation energy cold
+            & 6.0\e4
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_w$   & Flow law activation energy warm
+            & 13.9\e4
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $R$     & Ideal gas constant
+            & 8.31441
+            & \unit{J\,mol^{-1}\,K^{-1}}
+            & \mref \\
+
+    $T_c$   & Flow law critical temperature
+            & 263.15
+            & \unit{K}
+            & \citet{Paterson.Budd.1982} \\
+
+    $f$     & Flow law water fraction coeff.
+            & 181.25
+            & -
+            & \citet{Lliboutry.Duval.1985} \\
+
+    $\beta$ & Clapeyron constant
+            & 7.9\e{-8}
+            & \unit{K\,Pa^{-1}}
+            & \citet{Luthi.etal.2002} \\
+
+    $c_i$   & Ice specific heat capacity
+            & 2009
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $c_w$   & Water specific heat capacity
+            & 4170
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $k$     & Ice thermal conductivity
+            & 2.10
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $L$     & Water latent heat of fusion
+            & 3.34\e5
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    \hline
+  \end{tabular*}}
+\end{table}
+
 
 % ----------------------------------------------------------------------
 \subsection{Shallow approximations}
@@ -415,6 +510,7 @@ conditions for applicability of either the SIA or the SSA are met. However,
 transition between shear flow and longitudinal flow has not yet been
 mathematically proven.
 
+
 % ----------------------------------------------------------------------
 \subsection{Basal sliding}
 % ----------------------------------------------------------------------
@@ -482,6 +578,81 @@ $\phi_2$ are chosen differently in \CCLI (10 and 30$^\circ$) and \CCYC
 (15 and 45$^\circ$), but these choices are roughly equivalent in the case of a
 saturated till ($W=W_{max}$).
 
+\begin{table}
+  \centering
+  \caption{Constant parameters of the sliding model. Missing sources
+           correspond to uncalibrated values.}
+  \label{tab:slidingparams}
+  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
+    \hline
+    Not.    & Name & Value & Unit & Source \\
+    \hline
+
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & -
+            & - \\
+
+    $v_{th}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}}
+            & - \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa
+            & - \\
+
+    $\alpha$& \todo{check value}
+            & 0.95
+            & -
+            & - \\
+
+    $\delta$& \todo{find a good name}
+            & 0.02
+            & -
+            & - \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $C_c$   & Till compressibility coefficient
+            & 0.12
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $W_{max}$ & Maximal till water thickness
+            & 2.0
+            & m
+            & - \\
+
+    $b_0$   & Altitude of max. friction angle
+            & 0
+            & m
+            & - \\
+
+    $b_1$   & Altitude of min. friction angle
+            & 200
+            & m
+            & - \\
+
+    $\phi_0$& Minimum friction angle
+            & 10/15
+            & \degree
+            & - \\
+
+    $\phi_1$& Maximum friction angle
+            & 30/45
+            & \degree
+            & - \\
+
+    \hline
+  \end{tabular*}}
+\end{table}
+
+
 % ----------------------------------------------------------------------
 \subsection{Bedrock response}
 % ----------------------------------------------------------------------
@@ -524,12 +695,56 @@ the ice sheet growth and the isostatic bedrock response.
 %$D=5\times10^{24}$\,N\,m
 %$\rho_r = 3300$\,kg\,m$^{-3}$
 
+\begin{table}
+  \centering
+  \caption{Constant parameters of the bedrock model.
+           \todo{Find out what the bedrock density corresponds to. Track down
+                 original sources in \citet{Ritz.1997}}}
+  \label{tab:bedrockparams}
+  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
+    \hline
+    Not.    & Name & Value & Unit & Source \\
+    \hline
+
+    $\rho_b$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \mref \\
+
+    $c_b$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Ritz.1997} \\
+
+    $k_b$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Ritz.1997} \\
+
+    $\nu_m$ & Mantle viscosity
+            & 1\e21
+            & \unit{Pa\,s}
+            & \citet{Lingle.Clark.1985} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \citet{Lingle.Clark.1985} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & 5.0\e24
+            & \unit{N}
+            & \citet{Lingle.Clark.1985} \\
+
+    \hline
+%	pism overrides:bootstrapping geothermal flux value no var = 0.070 ;
+  \end{tabular*}}
+\end{table}
+
+
 % ----------------------------------------------------------------------
 \subsection{Surface mass balance}
 % ----------------------------------------------------------------------
-
-\newcommand{\PDD}[0]{\mathrm{PDD}}
-\newcommand{\sPDD}[0]{\sigma_{\mathrm{PDD}}}
 
 At the interface between the ice sheet and the atmosphere (Fig.~??),
 surfice mass fluxes are computed from monthly mean surface air temperature,
@@ -540,10 +755,10 @@ with temperature between $T_0$ and ${T_1=2\,\degC}$,
 \begin{equation}
     a_s =
     \begin{cases}
-        0       & \text{if}\ T_m \le T_0 \,, \\
-        P_m \frac{T_m-T_0}{T_1-T_0}
-                & \text{if}\ T_0 < b < T_1 \,, \\
-        P_m     & \text{if}\ T_1 \le T_m \,,
+        0       & \text{if}\ T_m \le T_s \,, \\
+        P_m \frac{T_m-T_s}{T_r-T_s}
+                & \text{if}\ T_s < T_m < T_r \,, \\
+        P_m     & \text{if}\ T_r \le T_m \,,
     \end{cases}
 \end{equation}
 
@@ -597,6 +812,47 @@ a method initially developed in {\PSDV}, and further improved in {\PSDP}.
 
 \todo{Figure. SMB model algorithm}
 
+\begin{table}
+  \centering
+  \caption{Constant parameters of the surface and atmosphere models.
+           \todo{Find a reference for the snow and rain temperature thresholds,
+                 maybe \citet{Hock.2003}.}}
+  \label{tab:surfaceparams}
+  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
+    \hline
+    Not.    & Name & Value & Unit & Source \\
+    \hline
+
+    $T_s$   & Temperature of snow precipitation
+            & 273.15
+            & \unit{K}
+            & \mref \\
+
+    $T_r$   & Temperature of rain precipitation
+            & 275.15
+            & \unit{K}
+            & \mref \\
+
+    $F_s$   & Degree-day factor for ice
+            & 3.04\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $F_i$   & Degree-day factor for ice
+            & 4.59\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $\gamma$& Air temperature lapse-rate
+            & 6\e{-3}
+            & \unit{K\,m{-1}}
+            & - \\
+
+    \hline
+  \end{tabular*}}
+\end{table}
+
+
 % ----------------------------------------------------------------------
 \subsection{Atmospheric forcing}
 % ----------------------------------------------------------------------
@@ -635,6 +891,7 @@ on the opposite, tests model sensitivity to time-dependent temperature-offset
 corrections derived from different palaeo-temperature proxy records.
 
 \todo{Table. Data sources?}
+
 
 % ----------------------------------------------------------------------
 \subsection{Numerical implementation}
