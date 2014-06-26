@@ -175,11 +175,19 @@ on laboratory experiments is used to relate these two quantities. It reads:
 The equivalent stress, $\tau_e$, is defined by
 ${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
 where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
-The ice softness coefficient, $A$, depends on the deviation of temperature $T$
-from the pressure-melting point $T_m$ through
+The ice softness coefficient, $A$, depends on ice temperature, pressure, and
+water, $\omega$ through an Arrhenius-type law,
 \begin{equation}
-    A = A_0\,e^\frac{-Q}{R(T-T_m)} \,.
+    A =
+    \begin{cases}
+        A_c (1+f\omega)\,e^\frac{-Q_c}{RT_{pa}}
+            & \text{if}\ T < T_{crit} \,, \\
+        A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
+            & \text{if}\ T \ge T_{crit} \,,
+    \end{cases}
 \end{equation}
+where $T_{pa}$ is the pressure-adjusted temperature calculated using the
+Clapeyron relation, ${T_{pa} = T - \beta p}$.
 
 Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
@@ -441,13 +449,13 @@ two different parametrisations are used within this thesis. In {\CCLI}, using
 PISM~0.5, the effective pressure is linearly related to water content by a
 simple parametrisation,
 \begin{equation}
-    N = \rho gH (1 - \alpha \frac{W}{W_{max}}) \,.
+    N = \rho gh (1 - \alpha \frac{W}{W_{max}}) \,.
 \end{equation}
 
 In {\CCYC}, using PISM~0.6, the effective pressure is determined by an
 empirical parametrisation based on laboratory experiments on Antarctic till,
 \begin{equation}
-    N = \delta \rho gH \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
+    N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
 \end{equation}
 
 Drainage of water at the base of the ice sheet, although implemented in PISM,
