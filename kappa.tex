@@ -50,6 +50,7 @@
 
 % Common units
 \newcommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\newcommand{\chem}[1]{\ensuremath{\mathrm{#1}}}
 \newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
 \newcommand{\degree}[0]{\ensuremath{^{\circ}}}
 \newcommand{\degC}[0]{\unit{{\degree}C}}
@@ -890,7 +891,70 @@ ${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. \CCYC,
 on the opposite, tests model sensitivity to time-dependent temperature-offset
 corrections derived from different palaeo-temperature proxy records.
 
-\todo{Table. Data sources?}
+\begin{table}
+  \centering
+  \caption{Sources of forcing data used to inform the ice sheet model.}
+  \label{tab:datasources}
+  \makebox[0pt]{\begin{tabular*}{160mm}{@{\extracolsep{\fill}}llll}
+    \hline
+    Name        & Type & Original reference & Employed in \\
+    \hline
+
+    ETOPO1      & Bedrock topography
+                & \citet{Amante.Eakins.2009}
+                & \CCLI, \CCYC \\
+
+    WorldClim   & Gridded observations
+                & \citet{Hijmans.etal.2005}
+                & \CCLI \\
+
+    NCEP/NCAR   & Atmospheric reanalysis
+                & \citet{Kalnay.etal.1996}
+                & \CCLI \\
+
+    ERA-40      & \qquad '' \qquad
+                & \citet{Uppala.etal.2005}
+                & \PSDP \\
+
+    ERA-Interim & \qquad '' \qquad
+                & \citet{Dee.etal.2011}
+                & \CCLI, \PSDV \\
+
+    CFSR        & \qquad '' \qquad
+                & \citet{Saha.etal.2010}
+                & \CCLI \\
+
+    NARR        & \qquad '' \qquad
+                & \citet{Mesinger.etal.2006}
+                & \CCLI, \CCYC \\
+
+    GRIP        & Ice-core \chem{\delta^{18}O} record
+                & \citet{Dansgaard.etal.1993}
+                & \CCYC \\
+
+    NGRIP       & \qquad '' \qquad
+                & \citet{Andersen.etal.2004}
+                & \CCYC \\
+
+    EPICA       & \qquad '' \qquad
+                & \citet{Jouzel.etal.2007}
+                & \CCYC \\
+
+    Vostok      & \qquad '' \qquad
+                & \citet{Petit.etal.1999}
+                & \CCYC \\
+
+    ODP~1012    & Sea-floor \chem{U^{K'}_{37}} record
+                & \citet{Herbert.etal.2001}
+                & \CCYC \\
+
+    ODP~1020    & \qquad '' \qquad
+                & \citet{Herbert.etal.2001}
+                & \CCYC \\
+
+    \hline
+  \end{tabular*}}
+\end{table}
 
 
 % ----------------------------------------------------------------------
