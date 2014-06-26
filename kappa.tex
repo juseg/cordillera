@@ -94,7 +94,29 @@
 
 \todo{Figure. Location map of North America}\\
 \todo{Figure. Topographic map of the Cordillera}\\
-\todo{Table. LCC projection parameters?}
+
+\begin{table}
+  \centering
+  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
+           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
+           PROJ.4 parameter names, as used in all model runs, ice volume and
+           area calculations, and most figures.}
+  \label{tab:projparams}
+  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
+    \hline
+    Parameter               & Name              & Value \\
+    \hline
+    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
+    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
+    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
+    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
+    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
+    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
+    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
+    \hline
+  \end{tabular*}}
+\end{table}
+
 
 % ----------------------------------------------------------------------
 \subsection{Climatic setting}
