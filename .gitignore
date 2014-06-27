@@ -10,20 +10,24 @@
 /*.rtf
 /*.toc
 
-# Data
-data/*.dbf
-data/*.nc
-data/*.shp
-data/*.shx
-data/*.tif
-data/*.zip
-
 # Figures
 figures/*.aux
+figures/*.fdb_latexmk
+figures/*.fls
 figures/*.log
 figures/*.pdf
 figures/*.png
 figures/*.pyc
+
+# Data
+figures/data/*.dbf
+figures/data/*.prj
+figures/data/*.sbn
+figures/data/*.sbx
+figures/data/*.shp
+figures/data/*.shx
+figures/data/*.tif
+figures/data/*.zip
 
 # Figures to redraw
 !model-siassa.pdf
