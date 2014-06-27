@@ -25,6 +25,11 @@ figures/*.pdf
 figures/*.png
 figures/*.pyc
 
+# Figures to redraw
+!model-siassa.pdf
+!model-variables.pdf
+!paleo-timeseries.pdf
+
 # Statistics
 stats/count.csv
 stats/progress.pdf
