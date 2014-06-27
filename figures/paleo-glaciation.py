@@ -52,4 +52,4 @@ for i, geom in enumerate(shp.geometries()):
                   edgecolor='none', facecolor='#0978ab', alpha=0.5)
 
 # save
-fig.savefig('paleo-glaciation', dpi=254)
+fig.savefig('paleo-glaciation')
