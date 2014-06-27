@@ -19,9 +19,11 @@ data/*.tif
 data/*.zip
 
 # Figures
-figures/*.pyc
+figures/*.aux
+figures/*.log
 figures/*.pdf
 figures/*.png
+figures/*.pyc
 
 # Statistics
 stats/count.csv
