@@ -2,7 +2,7 @@
 
 INK_FIGS = model-interfaces.pdf
 TEX_FIGS = model-pdd.pdf soft-workflow.pdf
-PY_FIGS = paleo-glaciation.png
+PY_FIGS = paleo-glaciation.png paleo-timeseries.png
 ALL_FIGS = $(INK_FIGS) $(TEX_FIGS) $(PY_FIGS)
 
 all: data $(ALL_FIGS)

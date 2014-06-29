@@ -27,12 +27,12 @@ figures/data/*.sbx
 figures/data/*.shp
 figures/data/*.shx
 figures/data/*.tif
+figures/data/*.txt
 figures/data/*.zip
 
 # Figures to redraw
 !model-siassa.pdf
 !model-variables.pdf
-!paleo-timeseries.pdf
 
 # Statistics
 stats/count.csv

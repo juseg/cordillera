@@ -71,7 +71,6 @@
   \rlap{\hspace*{0.25em}
         \raisebox{\dimexpr\ht1-3ex}{\textbf{(#2)}}}% Print label
   \phantom{\usebox1}% Insert appropriate spacing
-  \hspace{1cm}% Add horizontal separator
 }
 
 % Finally to not include graphics
@@ -101,6 +100,7 @@
   \centering
   \makebox[0pt]{
     \subgraphics{a}{photo-glacier-crevasses}
+    \hspace{1cm}
     \subgraphics{b}{photo-glacier-fold}
   }
   \caption{Different mechanical behaviours of glacier ice.
@@ -138,7 +138,9 @@
   \centering
   \makebox[0pt]{
     \subgraphics[width=50mm]{a}{photo-glacial-valley}
+    \hspace{1cm}
     \subgraphics[width=50mm]{b}{photo-erratic-boulder}
+    \hspace{1cm}
     \subgraphics[width=50mm]{c}{photo-melt-channels}
   }
   \caption{Different indicators of past glaciation.
@@ -157,12 +159,19 @@
 \begin{figure}
   \centering
   \includegraphics[width=80mm]{paleo-timeseries}
-  \caption{The oxygen isotope record from oceanic sediments is a proxy for ice
-           volume on land during Earth's hitory. Over the last million years,
-           it shows predominance of a 100\,ka cycle of glacial and
-           interglacial periods. This thesis focuses on the last glacial cycle.
-           \todo{This figure is directly from \citet{Lisiecki.Raymo.2005}.
-           Redraw it using the data they provide.}}
+  \caption{Indicators of climatic fluctuations during the last 800\,ka of
+           Earth history.
+           \textbf{(a)} Benthic oxygen isotope \chem{\delta^{18}O} record from
+           a compilation of globally-distributed oceanic sediment cores
+           \citep{Lisiecki.Raymo.2005}. Higher \chem{\delta^{18}O} values
+           correspond to periods of lower temperatures of the deep ocean, or
+           of lower global sea level, and thus higher ice volume stored in
+           glaciers and ice sheets on land.
+           \textbf{(b)} Temperature anomalies reconstructed from a central
+           Antarctic ice core \citep[EPICA,][]{Jouzel.etal.2007}.
+           The grey boxes indicate the approximate time span of the last
+           glacial period of 110 to 10\,ka, which corresponds to our period of
+           interest in the present thesis.}
   \label{fig:palaeo-timeseries}
 \end{figure}
 
