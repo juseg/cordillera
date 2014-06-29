@@ -11,7 +11,8 @@
 \usepackage{physics}
 \usepackage[colorlinks, citecolor=blue]{hyperref}
 \usepackage[sort]{cleveref}  % needs to be loaded after hyperref
-%\usepackage{graphicx}
+\usepackage{graphicx}
+\graphicspath{{figures/}}
 
 % Copernicus-style internal references
 \crefname{chapter}{Chap.}{Chaps.}
@@ -61,6 +62,24 @@
 \newcommand{\PSDP}[0]{Paper~III}    % PDD SD parametrisation
 \newcommand{\CCYC}[0]{Paper~IV}     % Cordillera cycle
 
+% Text label over graphics
+% from http://tex.stackexchange.com/questions/128844/put-subfigure-labels-
+% inside-figures-using-subfig-package
+\newcommand{\subgraphics}[3][,]{%
+  \setbox1=\hbox{\includegraphics[#1]{#3}}% Store image in box
+  \leavevmode\rlap{\usebox1}% Print image
+  \rlap{\hspace*{0.25em}
+        \raisebox{\dimexpr\ht1-3ex}{\textbf{(#2)}}}% Print label
+  \phantom{\usebox1}% Insert appropriate spacing
+  \hspace{1cm}% Add horizontal separator
+}
+
+% Finally to not include graphics
+%\renewcommand{\includegraphics}[2][,]{}
+%\renewcommand{\subgraphics}[3][,]{}
+%\usepackage{endfloat}
+%\renewcommand{\efloatseparator}{\mbox{}}
+
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
        through the last glacial cycle}
@@ -78,11 +97,84 @@
 \section{Introduction}
 % ======================================================================
 
-\todo{Figure. Glacier crevasse photo}\\
-\todo{Figure. Glacier flowing photo}\\
-\todo{Figure. Glacier moraine photo}\\
-\todo{Figure. Benthic oxygen isotopes stack}\\
-\todo{Figure. Modern and former ice sheets}
+\begin{figure}
+  \centering
+  \makebox[0pt]{
+    \subgraphics{a}{photo-glacier-crevasses}
+    \subgraphics{b}{photo-glacier-fold}
+  }
+  \caption{Different mechanical behaviours of glacier ice.
+           \textbf{(a)} Brittle behaviour. Ice flowing over a hidden bedrock
+           knob, resulting in fracturing at the glacier surface.
+           Glacier Blanc, French Alps.
+           \textbf{(b)} Ductile behaviour. Mountain glacier calving into a
+           small lake, revealing a folded structure formed by deformed rock
+           layers in the ice.}
+  \label{fig:glacier-mechanics}
+\end{figure}
+
+% Alternative code using subcaption package
+%\usepackage{subcaption}
+%\begin{figure}
+%  \centering
+%  \makebox[0pt]{
+%    \begin{subfigure}[t]{80mm}
+%        \includegraphics{photo-glacier-crevasses}
+%        \caption{Subcaption a.}
+%        \label{fig:1a}
+%    \end{subfigure}
+%    \hspace{10mm}
+%    \begin{subfigure}[t]{80mm}
+%        \includegraphics{photo-glacier-fold}
+%        \caption{Subcaption b.}
+%        \label{fig:1b}
+%    \end{subfigure}
+%  }
+%  \caption{Global caption.}
+%  \label{fig:1}
+%\end{figure}
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{
+    \subgraphics[width=50mm]{a}{photo-glacial-valley}
+    \subgraphics[width=50mm]{b}{photo-erratic-boulder}
+    \subgraphics[width=50mm]{c}{photo-melt-channels}
+  }
+  \caption{Different indicators of past glaciation.
+           \textbf{(a)} Glacial valley, exhibiting a broad, U-shaped profile
+           characteristic of erosion by glaciers.
+           Cirque du Fer-\`{a}-Cheval, French Alps.
+           \textbf{(b)} Erratic boulders, deposited in an improbable
+           arrangement as the glacier melted underneath.
+           Finse area, Norwegian Scandes.
+           \textbf{(c)} Lateral meltwater channels, formed on a gentle slope
+           as the ice margin retreated towards the valley bottom. Tuya Lake
+           area, Canadian Cordillera.}
+  \label{fig:glaciation-indicators}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{paleo-timeseries}
+  \caption{The oxygen isotope record from oceanic sediments is a proxy for ice
+           volume on land during Earth's hitory. Over the last million years,
+           it shows predominance of a 100\,ka cycle of glacial and
+           interglacial periods. This thesis focuses on the last glacial cycle.
+           \todo{This figure is directly from \citet{Lisiecki.Raymo.2005}.
+           Redraw it using the data they provide.}}
+  \label{fig:palaeo-timeseries}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{paleo-glaciation}
+  \caption{Spatial extent of the last glacial maximum northern hemisphere ice
+           sheets, after \citep{Ehlers.Gibbard.2007}.
+           \todo{Rotate by 90\degree, re-centre, and compare with present-day
+           ice cover. Maybe label the major ice sheets: CIS, LIS, GIS, FIS...}}
+  \label{fig:palaeo-glaciation}
+\end{figure}
 
 % ======================================================================
 \section{Field area description}
