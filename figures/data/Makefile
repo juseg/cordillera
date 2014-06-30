@@ -1,6 +1,6 @@
 # Data Makefile
 
-all: lgm_global_simple.shp
+all: lgm_simple.shp
 
-lgm_global_simple.shp: get_quatglac.sh
+lgm_simple.shp: get_quatglac.sh
 	bash $<
