@@ -14,6 +14,10 @@
 \usepackage{graphicx}
 \graphicspath{{figures/}}
 
+% Move floats to the end
+\usepackage[nolists]{endfloat}
+\renewcommand{\efloatseparator}{\mbox{}}
+
 % Copernicus-style internal references
 \crefname{chapter}{Chap.}{Chaps.}
 \crefname{equation}{Eq.}{Eqs.}
@@ -76,8 +80,6 @@
 % Finally to not include graphics
 %\renewcommand{\includegraphics}[2][,]{}
 %\renewcommand{\subgraphics}[3][,]{}
-%\usepackage{endfloat}
-%\renewcommand{\efloatseparator}{\mbox{}}
 
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\

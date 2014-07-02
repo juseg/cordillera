@@ -3,12 +3,14 @@
 /*.bbl
 /*.blg
 /*.fdb_latexmk
+/*.fff
 /*.fls
 /*.log
 /*.out
 /*.pdf
 /*.rtf
 /*.toc
+/*.ttt
 
 # Figures
 figures/*.aux
