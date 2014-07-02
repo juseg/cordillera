@@ -21,6 +21,7 @@ figures/*.pyc
 
 # Data
 figures/data/*.dbf
+figures/data/*.nc
 figures/data/*.prj
 figures/data/*.sbn
 figures/data/*.sbx
