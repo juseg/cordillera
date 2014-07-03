@@ -371,22 +371,31 @@ and dynamic state of the ice sheet, and the associated thermal and
 deformational response of an idealised lithosphere. The atmospheric and oceanic
 envelopes are not part of the model. However, PISM includes boundary models
 that provide simple parametrisations of their effect on the ice model at
-supposedly well-defined interfaces (Fig.~??).
-
-\todo{Figure. PISM interfaces}
+supposedly well-defined interfaces (\cref{fig:model-interfaces}).
 
 This section does not attempt to provide an extensive description of PISM,
 which can be found in the on-line documentation \citep{PISM-authors.2014}.
 Instead, it aims to highlight modelling choices made in the context of this
 thesis, and give an overview of the physics involved in these choices.
-Notations used and corresponding parameter choices are summarized in Table~??.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{model-interfaces}
+  \caption{Model interfaces in PISM. From \citet{PISM-authors.2014}.}
+  \label{fig:model-interfaces}
+\end{figure}
 
 % ----------------------------------------------------------------------
 \subsection{Field equations}
 % ----------------------------------------------------------------------
 
-\todo{Figure. Ice flow problem sketch}
+\begin{figure}
+  \centering
+  \includegraphics{model-variables}
+  \caption{Model variables. \todo{This is an old figure which does not match
+           with notations in use, just to give an idea. Redraw.}}
+  \label{fig:model-variables}
+\end{figure}
 
 The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the ice
@@ -585,7 +594,13 @@ the shallow shelf approximation. Although both approximations can be derived
 from a rigorous scaling approach, we don't expand these lengthy derivations
 here, assuming instead the simplifications and focusing on their effect.
 
-\todo{Figure. SIA and SSA}
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{model-siassa}
+  \caption{The SIA and SSA. From \citet{Winkelmann.etal.2011}. \todo{Redraw.}}
+  \label{fig:model-siassa}
+\end{figure}
+
 
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
 the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
@@ -1053,7 +1068,12 @@ a method initially developed in {\PSDV}, and further improved in {\PSDP}.
 %3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
 %4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice
 
-\todo{Figure. SMB model algorithm}
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{model-pdd}
+  \caption{PDD model. From \citet{PISM-authors.2014} \todo{Redraw.}}
+  \label{fig:model-pdd}
+\end{figure}
 
 \begin{table}
   \centering
