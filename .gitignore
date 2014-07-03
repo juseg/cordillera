@@ -35,7 +35,6 @@ figures/data/*.zip
 
 # Figures to redraw
 !model-siassa.pdf
-!model-variables.pdf
 
 # Statistics
 stats/count.csv
