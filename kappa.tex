@@ -260,11 +260,17 @@ allowing a physics-based, quantitative reconstruction where they do not.
 \section{Field area description}
 % ======================================================================
 
-% ----------------------------------------------------------------------
-\subsection{Geographic setting}
-% ----------------------------------------------------------------------
+During the last glacial cycle, much of North America has been covered by ice.
+At the last glacial maximum, apex of glaciation, three major ice sheets had
+collided to form a continuous blanket of ice that spanned from Alaska to
+Newfoundland, connecting with the Greenland ice sheet in the Canadian Arctic,
+and extending as far south as Chicago and the Great Lakes. The Laurentide ice
+sheet, largest of the three ice sheets, was centred on the modern Hudson Bay,
+and fully covered the Canadian Prairies, Eastern Canada, and the Great Lakes
+Basin. The Innuitian ice sheet, much smaller, covered the northernmost Canadian
+archipelago. Finally, the Cordilleran ice sheet capped the mountain ranges of
+the Western Cordillera, our region of focus in the present thesis.
 
-% fig:locmap
 \begin{figure}
   \centering
   \makebox[0pt]{\includegraphics{map-northamerica}}
@@ -280,6 +286,43 @@ allowing a physics-based, quantitative reconstruction where they do not.
   \label{fig:locmap}
 \end{figure}
 
+% ----------------------------------------------------------------------
+\subsection{Topographic setting}
+% ----------------------------------------------------------------------
+
+In North American, the Western Cordillera forms a broad mountain system with an
+average east-west width of a about 1000\,km. Its topography is a complex
+arrangement of mountain ranges and intramontane basins. It was formed during
+multiple accretion phases associated with the closure of several back-arc
+oceanic trenches over a 200\,Ma-long geologic history.
+
+Most of the major reliefs are found along two major bands that run parallel to
+each other along the general orientation of the Cordillera. The western band
+consists of the Pacific Coast orogenic belt. Major ice-covered reliefs include,
+from North to South, the Alaska Range, the Wranglell and Saint-Elias Mountains,
+the Coast Mountains and the North Cascades. The eastern band consists of the
+Nevadan and Laramide belts, which are separated by the deep and strikingly
+rectilinear Rocky Mountain / Tintina Trench. It includes the Selwyn and Mac
+Kenzie Mountains to the north, and the Rocky Mountains to the South. The brooks
+range, in northern Alaska, has been glaciated but its glaciers were not
+connected to the main body of the Cordilleran ice sheet.
+
+The Cordillera comports several intermontane bansins, which, as we will see
+further, host particular climate properties and significantly impacted patterns
+of ice sheet flow. The two major depressions are the Interior Plateau of
+central British Columbia, and the Liard Lowland. Between these two basins is
+found a mildly elevated, but extensive and deeply incised mountain group known
+as the Skeena Mountains.
+
+The ubiquitously mountainous topography of the region presents a serious
+obstacle to reconstructing past glacier dynamics in the Cordillera. Because of
+the irregular arrangement of valleys and ridges that forms the ice sheet’s
+floor, ice moved along tortuous and intertwined pathways, sometimes following
+the major topographical troughs, and sometimes flowing across them. In terms of
+numerical glacier modelling, it implies complex patterns of flow and stress
+within the ice, and requires high-resolution, and thus, large, computational
+grids.
+
 \begin{figure}
   \centering
   \makebox[0pt]{\includegraphics{map-cordillera}}
@@ -291,32 +334,47 @@ allowing a physics-based, quantitative reconstruction where they do not.
   \label{fig:locmap}
 \end{figure}
 
-\begin{table}
+\begin{figure}
   \centering
-  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
-           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
-           PROJ.4 parameter names, as used in all model runs, ice volume and
-           area calculations, and most figures.}
-  \label{tab:projparams}
-  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
-    \hline
-    Parameter               & Name              & Value \\
-    \hline
-    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
-    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
-    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
-    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
-    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
-    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
-    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
-    \hline
-  \end{tabular*}}
-\end{table}
-
+  \makebox[0pt]{\includegraphics{photo-alaska-range}}
+  \caption{The Alaska Range hosts several of the highest peaks in the North
+           American Cordillera. Despite this fact and its northerly location,
+           its North slopes hosts relatively small glaciers only, which had not
+           been much more extensive during the Last Glacial Maximum
+           \citep{Kaufman.Manley.2004}, indicating dry climate conditions.
+           The Alaska Range is rapidly eroding, as shown by landslide-covered
+           valley sides on this photograph.}
+  \label{fig:photo-alaska-range}
+\end{figure}
 
 % ----------------------------------------------------------------------
 \subsection{Climatic setting}
 % ----------------------------------------------------------------------
+
+The topographic complexity of the North American Cordillera is associated with
+distinctive patterns of temperature and precipitation over the model domain.
+Due to the large latitudinal extent of the region, mean annual temperatures
+vary between -12 and 12\,\degC. About half the model domain has a mean annual
+temperature below freezing. However, seasonality, here computed as the
+temperature difference between the warmest and the coldest months, varies
+between around 10\,\degC along most of the Pacific Coast to above 40\,\degC in
+the polar interior. This concerns most of the area above 60\degree~N, and
+high-elevated mountain ranges below this latitude. There exist a partial
+correlation between cold regions and those that have a large seasonality, so
+that many regions where mean annual temperatures are well below freezing point
+do experience warm summers.
+
+Annual precipitation varies between less than half-a-meter in some of the
+interior areas to several meters in some parts of maritime Alaska.
+Precipitation rates are highest on the western slopes of the Pacific Coast
+ranges and decline quickly on the other side of the mountains. In terms of ice
+sheet mass balance, this contrast is even reinforced by the difference in
+timing of the precipitation peak through the year. Coastal regions experience
+most precipitation during winter and fall, thus as snow. On the contrary, many
+inland regions experience dry winters and most of the annual precipitation
+consequently falls as rain during the ablation season. The climatic setting of
+the North American Cordillera is described further in \CCLI, where its effects
+on the ice sheet model have been studied in detail.
 
 \begin{figure}
   \centering
@@ -339,25 +397,50 @@ allowing a physics-based, quantitative reconstruction where they do not.
 \subsection{Palaeo-glaciology}
 % ----------------------------------------------------------------------
 
-\begin{figure}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-alaska-range}}
-  \caption{The Alaska Range hosts several of the highest peaks in the North
-           American Cordillera. Despite this fact and its northerly location,
-           its North slopes hosts relatively small glaciers only, which had not
-           been much more extensive during the Last Glacial Maximum
-           \citep{Kaufman.Manley.2004}, indicating dry climate conditions.
-           The Alaska Range is rapidly eroding, as shown by landslide-covered
-           valley sides on this photograph.}
-  \label{fig:photo-alaska-range}
-\end{figure}
+The Cordilleran ice sheet covered most of the Canadian Cordillera, as well
+ajacent some of the adjacent land in north-western contiguous USA and Alaska.
+The southern margin is the one that has been most studied. It consisted of
+different ice lobes, that have formed at the exutory of the main valleys. The
+Puget lobe was the westernmost and largest of these lobes. It covered the Puget
+Lowland, a region that includes the current location of the cities of Vancouver
+and Seattle. To the East of the Cascade Range were found the Okanagan and
+Purcell lobes. The latter once dammed the Clark Fork River to form Glacial Lake
+Missoula. As the ice sheet retreeted, the lake repeatedly and catastrophically
+drained to the Pacific Ocean, forming on curse of the flood a lanscape now
+known as the Channeled Scablands.
 
-\begin{figure}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
-  \caption{The Tuya Lake Moraine in northern British Columbia.}
-  \label{fig:photo-tuya-moraine}
-\end{figure}
+The western margin of the ice sheet covered part of the continental shelf. An
+ice cap covering Vancouver Island was well-connected to main body of ice on the
+continent. A large portion of the ice flow thus has engulfed between Vancouver
+Island and the Olympic Peninsula, where it could find an exutory to the Pacific
+Ocean, at the Juan the Fuca Lobe. Further to the North, the ice margin reached
+Queen Charlotte Islands, yet the archipelago may not have been covered by ice
+flowing from the land. Submarine troughs likely idicate the erosional action of
+former ice streams, yet it is not clear wether they have formed during the last
+glacial cycle or earlier.
+
+The northern margin of the ice sheet is in several ways more complex than the
+southern margin. Firstly geomorphological evidence indicate multiple glacier
+advances. During the last glacial cycle, at least two glaciations occured, and
+in some places, the first glaciation was more extensive than the second.
+Secondly, geomorphological evidence indicate that the extent of glaciers in the
+North was relatively restricted, despite very cold temperatures at present.
+
+Finally, the eastern margin of the ice sheet is the most unclear. Although it
+is known that the Cordilleran ice sheet collided with its Laurentide neighbour,
+the precise location of this junction is unknown, and little information exists
+on its timing. More importantly, the nature of the interaction between the two
+ice sheets is uncertain. It is not known for instance, if the junction lasted
+long enough for the ice sheets to significantly alter their respective flow
+dynamics. Because the present thesis focuses specifically on the Cordilleran
+ice sheet, certainly our largest assumption consists in neglecting butressing
+effects from the Laurentide ice sheet.
+
+Although the last glacial maximum extent of the Cordilleran ice sheet, apart of
+its eastern margin, is relatively well known, the history of deglaciation is
+heavily debated, while little information exists on earlier dynamics of ice
+sheet.
+
 
 % ======================================================================
 \section{Numerical ice sheet model}
@@ -1227,6 +1310,28 @@ corrections derived from different palaeo-temperature proxy records.
 \subsection{Numerical implementation}
 % ----------------------------------------------------------------------
 
+\begin{table}
+  \centering
+  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
+           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
+           PROJ.4 parameter names, as used in all model runs, ice volume and
+           area calculations, and most figures.}
+  \label{tab:projparams}
+  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
+    \hline
+    Parameter               & Name              & Value \\
+    \hline
+    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
+    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
+    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
+    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
+    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
+    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
+    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
+    \hline
+  \end{tabular*}}
+\end{table}
+
 % ======================================================================
 \section{Software tools and contributions}
 % ======================================================================
@@ -1282,6 +1387,13 @@ corrections derived from different palaeo-temperature proxy records.
 % Model improvements
 % Fieldwork
 % Geomorphological-oriented plots
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
+  \caption{The Tuya Lake Moraine in northern British Columbia.}
+  \label{fig:photo-tuya-moraine}
+\end{figure}
 
 % References
 \newcommand{\urlprefix}[0]{}  % remove default "URL" prefix
