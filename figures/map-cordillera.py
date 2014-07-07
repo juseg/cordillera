@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('iceplot')
 
+import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
@@ -128,6 +129,16 @@ def add_names():
     ax.text(-145, 50, 'PACIFIC\n\nOCEAN', color='#0978AB', **txtkwa)
     ax.text(-110, 60, 'CANADIAN\n\nPRAIRIES', **txtkwa)
 
+# modelling domain
+def draw_modeldomain():
+    xmin = -2.5e6
+    xmax = -1e6
+    ymin = 0
+    ymax = 3e6
+    x = [xmin, xmin, xmax, xmax, xmin]
+    y = [ymin, ymax, ymax, ymin, ymin]
+    ax.plot(x, y, 'k', lw=bwu, transform=cal)
+
 # initialize figure
 fig = plt.figure(0, (170/25.4, 120/25.4))
 ax = fig.add_axes([0.0, 0.0, 1.0, 1.0], projection=proj)
@@ -136,10 +147,11 @@ ax.set_ylim((-0e3, 3000e3))
 
 # draw stuff
 draw_etopo1()
-draw_lakes()
 draw_rivers()
+draw_lakes()
 draw_glaciers()
 draw_lgm()
+draw_modeldomain()
 draw_graticules()
 add_names()
 
