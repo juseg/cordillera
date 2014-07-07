@@ -13,12 +13,11 @@ import cartopy.io.shapereader as shpreader
 import cartopy.feature as cfeature
 from iceplot import cm as icm
 
-in2mm = 1/25.4
-pt2mm = 72*in2mm
 bwu = 0.5  # base width unit
 scale = '50m'
 
 # Geographic projection
+ll = ccrs.PlateCarree()
 cal = ccrs.LambertConformal(
     central_longitude=-95.0, central_latitude=49.0,
     false_easting=0.0, false_northing=0.0,
@@ -33,7 +32,6 @@ fig = plt.figure(0, (170/25.4, 120/25.4))
 ax = fig.add_axes([0.0, 0.0, 1.0, 1.0], projection=proj)
 ax.set_xlim((-2125e3, 2125e3))
 ax.set_ylim((-0e3, 3000e3))
-#-2400000 -200000 2400000 3400000 \
 
 # Draw ETOPO1 background and coastline
 nc = Dataset('data/etopo1-cordillera.nc')
@@ -51,22 +49,17 @@ cs = ax.contour(x[:], y[:], z[:], levels=[0],
 nc.close()
 
 # add lakes and rivers
-#ax.add_feature(cfeature.NaturalEarthFeature(
-#    category='physical', name='rivers_lake_centerlines', scale=scale,
-#    edgecolor='#0978ab', facecolor='none', lw=1.0*bwu))
-#ax.add_feature(cfeature.NaturalEarthFeature(
-#    category='physical', name='lakes', scale=scale,
-#    edgecolor='#0978ab', facecolor='#c6ecff', lw=0.5*bwu))
+ax.add_feature(cfeature.NaturalEarthFeature(
+    category='physical', name='rivers_lake_centerlines', scale=scale,
+    edgecolor='#0978ab', facecolor='none', lw=1.0*bwu))
+ax.add_feature(cfeature.NaturalEarthFeature(
+    category='physical', name='lakes', scale=scale,
+    edgecolor='#0978ab', facecolor='#c6ecff', lw=0.5*bwu))
 
 # add glaciers
-#ax.add_feature(cfeature.NaturalEarthFeature(
-#    category='physical', name='glaciated_areas', scale=scale,
-#    edgecolor='#0978ab', facecolor='#f5f4f2', lw=1.0*bwu))
-
-# add NaturalEarth coastlines
-#ax.add_feature(cfeature.NaturalEarthFeature(
-#    category='physical', name='coastline', scale=scale,
-#    edgecolor='#0978ab', facecolor='none', lw=0.5*bwu))
+ax.add_feature(cfeature.NaturalEarthFeature(
+    category='physical', name='glaciated_areas', scale=scale,
+    edgecolor='#0978ab', facecolor='#f5f4f2', lw=1.0*bwu, alpha=0.75))
 
 # add country boundaries
 #ax.add_feature(cfeature.NaturalEarthFeature(
@@ -93,8 +86,37 @@ for age in raw_ages:
                 union = rec.geometry
             else:
                 union = union.union(rec.geometry)
-ax.add_geometries(union, cal, edgecolor='none', facecolor='#f5f4f2', alpha=0.75)
-ax.add_geometries(union, cal, edgecolor='#0978ab', facecolor='none', lw=0.5*bwu)
+ax.add_geometries(union, cal, edgecolor='#b00000', facecolor='none', lw=1.0*bwu)
+
+# add names of mountain ranges
+txtkwa = dict(ha='center', va='center', transform=ll, style='italic')
+ax.text(-149, 68.25, 'Brooks Range', rotation=0, **txtkwa)
+ax.text(-148, 63.25, 'Alaska Range', rotation=0, **txtkwa)
+ax.text(-143, 62, 'Wrangell\nMts', rotation=0, **txtkwa)
+ax.text(-140, 60.25, 'St Elias Mts', rotation=-15, **txtkwa)
+ax.text(-130, 63.75, 'McKenzie Mts', rotation=-30, **txtkwa)
+ax.text(-130, 62, 'Selwyn Mts', rotation=-30, **txtkwa)
+ax.text(-131, 60, 'Cassiar Mountains', rotation=-45, **txtkwa)
+ax.text(-119, 51.5, 'Columbia Mts', rotation=-30, **txtkwa)
+ax.text(-120, 54, 'Rocky Mountains', rotation=-30, **txtkwa)
+ax.text(-128, 54, 'Coast Mountains', rotation=-45, **txtkwa)
+ax.text(-128, 56, 'Skeena Mts', rotation=-45, **txtkwa)
+ax.text(-121, 48, 'N. Cascades', rotation=90, **txtkwa)
+
+# add names of intermontane plateaus
+ax.text(-127, 60, 'Liard\nLowland', **txtkwa)
+ax.text(-124, 54, 'Fraser\nPlateau', **txtkwa)
+
+# add names of islands
+ax.text(-132, 53, 'Q. Charlotte I.', rotation=-45, **txtkwa)
+ax.text(-126, 49.5, 'Vancouver Island', rotation=-30, **txtkwa)
+
+# add other names
+txtkwa = dict(ha='center', va='center', transform=ll,
+              fontsize=10, style='italic')
+ax.text(-135, 71, 'ARCTIC OCEAN', color='#0978AB', **txtkwa)
+ax.text(-145, 50, 'PACIFIC\n\nOCEAN', color='#0978AB', **txtkwa)
+ax.text(-110, 60, 'CANADIAN\n\nPRAIRIES', **txtkwa)
 
 # add graticules
 ax.add_feature(cfeature.NaturalEarthFeature(
