@@ -230,19 +230,17 @@ allowing a physics-based, quantitative reconstruction where they do not.
 \begin{figure}
   \centering
   \includegraphics[width=80mm]{paleo-timeseries}
-  \caption{Indicators of climatic fluctuations during the last 800\,ka of
-           Earth history.
-           \textbf{(a)} Benthic oxygen isotope \chem{\delta^{18}O} record from
-           a compilation of globally-distributed deep sea sediment cores
+  \caption{Palaeo-climate records of the last 800\,ka.
+           \textbf{(a)} Benthic oxygen isotope (\chem{\delta^{18}O}) record
+           from a compilation of globally-distributed deep sea sediment cores
            \citep{Lisiecki.Raymo.2005}. Higher \chem{\delta^{18}O} values
            correspond to periods of lower temperatures \citep{Emiliani.1955}
            or lower global sea level, and thus higher ice volume stored in
            glaciers and ice sheets on land \citep{Shackleton.1967}.
-           \textbf{(b)} Temperature anomalies reconstructed from a central
-           Antarctic ice core \citep[EPICA,][]{Jouzel.etal.2007}.
-           The grey boxes indicate the approximate time span of the last
-           glacial period of 110 to 10\,ka, which corresponds to our period of
-           interest in the present thesis.}
+           \textbf{(b)} Temperature anomalies ($\Delta T$) reconstructed from a
+           central Antarctic ice core \citep[EPICA Dome~C,][]{Jouzel.etal.2007}.
+           The grey bands indicate the approximate time span of the last
+           glacial period of 110 to 10\,ka.}
   \label{fig:paleo-timeseries}
 \end{figure}
 
@@ -250,9 +248,9 @@ allowing a physics-based, quantitative reconstruction where they do not.
   \centering
   \includegraphics[width=80mm]{paleo-glaciation}
   \caption{Spatial extent of ice sheet and glacier cover in the northern
-           hemisphere \textbf{(a)} at present, and \textbf{(b)} during the last
-           glacial maximum \citep{Ehlers.Gibbard.2007}. Coastlines and present
-           glaciers are made with Natural Earth \citep{Patterson.Kelso.2014}.}
+           hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
+           \textbf{(b)} during the last glacial maximum
+           \citep{Ehlers.Gibbard.2007}.}
   \label{fig:paleo-glaciation}
 \end{figure}
 
@@ -278,12 +276,11 @@ the Western Cordillera, which forms our region of focus in the present thesis.
   \caption{Relief map of northern North America showing a reconstruction of the
            areas covered by the Cordilleran (CIS), Laurentide (LIS), Innuitian
            (IIS) and Greenland (GIS) ice sheets during the last glacial maximum
-           \citep[21.4 to 16.8\,cal\,\chem{^{14}C}\,kyr\,BP][]{Dyke.2004}.
-           The rectangular box delimits the model domain used throughout this
-           thesis and on which most figures were drawn. The background
+           \citep[21.4 to 16.8\,cal\,\chem{^{14}C}\,kyr\,BP,][]{Dyke.2004}.
+           The rectangular box delimits the model domain used in all simulation
+           and most figures of this thesis. The background
            map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
-           Data \citep{Patterson.Kelso.2014}.
-           \todo{Mark palaeo-ice sheets on the map.}}
+           Data \citep{Patterson.Kelso.2014}.}
   \label{fig:map-northamerica}
 \end{figure}
 
@@ -328,11 +325,11 @@ grids.
 \begin{figure}
   \centering
   \makebox[0pt]{\includegraphics{map-cordillera}}
-  \caption{North-oriented topographic map of the northern American Cordillera.
-           Cumulative last glacial maximum ice cover from \citet{Dyke.2004}.
+  \caption{Topographic map of the northern American Cordillera, oriented north.
+           Cumulative last glacial maximum ice cover \citep{Dyke.2004} is
+           marked in red, and the model domain in black.
            The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
-           and Natural Earth Data \citep{Patterson.Kelso.2014}.
-           \todo{Mark the main reliefs. Add model domain?}}
+           and Natural Earth Data \citep{Patterson.Kelso.2014}.}
   \label{fig:map-cordillera}
 \end{figure}
 
@@ -341,9 +338,9 @@ grids.
   \makebox[0pt]{\includegraphics{photo-alaska-range}}
   \caption{The Alaska Range hosts several of the highest peaks in the North
            American Cordillera. Despite this fact and its northerly location,
-           its North slopes hosts relatively small glaciers only, which had not
+           its north slope hosts relatively small glaciers only, which had not
            been much more extensive during the Last Glacial Maximum
-           \citep{Kaufman.Manley.2004}, indicating dry climate conditions.
+           \citep{Kaufman.Manley.2004}, indicating dry climatic conditions.
            The Alaska Range is rapidly eroding, as shown by landslide-covered
            valley sides on this photograph.}
   \label{fig:photo-alaska-range}
@@ -471,7 +468,8 @@ thesis, and give an overview of the physics involved in these choices.
 \begin{figure}
   \centering
   \includegraphics[width=80mm]{model-interfaces}
-  \caption{Model interfaces in PISM. From \citet{PISM-authors.2014}.}
+  \caption{Model interfaces in PISM. From \citet{PISM-authors.2014}.
+           \todo{Redraw.}}
   \label{fig:model-interfaces}
 \end{figure}
 
@@ -482,8 +480,8 @@ thesis, and give an overview of the physics involved in these choices.
 \begin{figure}
   \centering
   \includegraphics{model-variables}
-  \caption{Model variables. \todo{This is an old figure which does not match
-           with notations in use, just to give an idea. Redraw.}}
+  \caption{Sketch of notations used for the main variables of the ice sheet
+           model.}
   \label{fig:model-variables}
 \end{figure}
 
@@ -687,7 +685,9 @@ here, assuming instead the simplifications and focusing on their effect.
 \begin{figure}
   \centering
   \includegraphics[width=80mm]{model-siassa}
-  \caption{The SIA and SSA. From \citet{Winkelmann.etal.2011}. \todo{Redraw.}}
+  \caption{Shallow Ice Approximation (SIA) and Shallow Shelf Approximation
+           (SSA) velocities in PISM. From \citet{Winkelmann.etal.2011}.
+           \todo{Redraw.}}
   \label{fig:model-siassa}
 \end{figure}
 
