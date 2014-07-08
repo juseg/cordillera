@@ -184,27 +184,6 @@ allowing a physics-based, quantitative reconstruction where they do not.
   \label{fig:glacier-mechanics}
 \end{figure}
 
-% Alternative code using subcaption package
-%\usepackage{subcaption}
-%\begin{figure}
-%  \centering
-%  \makebox[0pt]{
-%    \begin{subfigure}[t]{80mm}
-%        \includegraphics{photo-glacier-crevasses}
-%        \caption{Subcaption a.}
-%        \label{fig:1a}
-%    \end{subfigure}
-%    \hspace{10mm}
-%    \begin{subfigure}[t]{80mm}
-%        \includegraphics{photo-glacier-fold}
-%        \caption{Subcaption b.}
-%        \label{fig:1b}
-%    \end{subfigure}
-%  }
-%  \caption{Global caption.}
-%  \label{fig:1}
-%\end{figure}
-
 \begin{figure}
   \centering
   \makebox[0pt]{
@@ -382,9 +361,14 @@ model response have been studied in detail.
 
 \begin{figure}
   \centering
-  \includegraphics{photo-fraser-valley}
-  \caption{This dry landscape of the Fraser Valley, central British Columbia,
-           exhibits climatic contrasts at play in the Cordillera.}
+  \makebox[0pt]{
+    \subgraphics{a}{photo-vancouver-island}
+    \hspace{1cm}
+    \subgraphics{b}{photo-fraser-valley}
+  }
+  \caption{Contrasted climates of the North American Cordillera.
+           \textbf{(a)} Pacific Coast at Vancouver Island.
+           \textbf{(b)} Fraser Valley, south-central British Columbia.}
   \label{fig:photo-fraser-valley}
 \end{figure}
 
