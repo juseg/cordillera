@@ -5,6 +5,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{bm}
+\usepackage[T1]{fontenc}
 \usepackage{lineno}
 \usepackage{natbib}
 \usepackage[onehalfspacing]{setspace}
@@ -523,7 +524,7 @@ The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the ice
 density, $\rho$, is constant, and the
 conservation of mass implies a conservation of volume, which can be expressed
-in terms of the ice velocity vector, $\vv$, by
+in terms of the ice velocity vector, $\vv$ \cref{fig:model-variables}, by
 \begin{equation}
     \label{eqn:incompressibility}
     \div{\vv} = 0 \,.
@@ -542,8 +543,9 @@ Thirdly, after defining the strain-rate tensor
 ${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
 and the deviatoric stress tensor, ${\DST = \CST - p\,\IDT}$,
 where $p=\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
-$\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice based
-on laboratory experiments is used to relate these two quantities. It reads:
+$\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice
+\citep{Nye.1953} based on laboratory experiments \citep{Glen.1952} is used to
+relate these two quantities. It reads:
 \begin{equation}
     \label{eqn:glenslaw}
     \SRT = A\,\tau_e^{n-1}\,\DST \,.
@@ -552,7 +554,8 @@ The equivalent stress, $\tau_e$, is defined by
 ${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
 where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
 The ice softness coefficient, $A$, depends on ice temperature, pressure, and
-water content through an Arrhenius-type law,
+water content through an Arrhenius-type law
+\citep[Eqs.~63--65]{Aschwanden.etal.2012},
 \begin{equation}
     A =
     \begin{cases}
@@ -564,7 +567,11 @@ water content through an Arrhenius-type law,
 \end{equation}
 where $T_{pa}$ is the pressure-adjusted temperature calculated using the
 Clapeyron relation, ${T_{pa} = T - \beta p}$. The water fraction, $\omega$, is
-capped at a threshold of 0.01, above which no measurements are available.
+capped at a threshold of 0.01, above which no measurements are available
+\citep{Lliboutry.Duval.1985}.
+
+\todo{I am trusting PISM's manual on that. Check other papers by Duval, or
+      the book by Greve (library).}
 
 Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
@@ -574,7 +581,7 @@ convenient, inverted formulation,
     \DST = B\,\doteps_e^{1/n-1}\,\SRT \,.
 \end{equation}
 By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
-by $\DST = \nu\,\SRT$, thus yielding
+by $\DST = 2 \nu\,\SRT$, thus yielding
 
 \begin{equation}
     \label{eqn:viscosity}
@@ -583,9 +590,9 @@ by $\DST = \nu\,\SRT$, thus yielding
 
 Finally, the evolution of temperature within the ice is governed by the
 \emph{conservation of energy}. In PISM, the conservation of energy uses an
-enthalpy formulation in order to account for thermodynamic effects associated
-with internal phase changes in the glacier. This enthalpy ($H$) formulation
-reads
+enthalpy formulation \citep[Eqs.~20--21]{Aschwanden.etal.2012} in order to
+account for thermodynamic effects associated with internal phase changes in the
+glacier. This enthalpy ($H$) formulation reads
 \begin{equation}
     \label{eqn:enthalpy}
     \rho \left(\matdv{H}\right)
@@ -605,7 +612,8 @@ temperature formulation,
                 + \frac{\nu\doteps_e^2}{4\rho c} \,,
 \end{equation}
 where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
-conductivity.
+conductivity. Constant parameters of the ice flow model use in this thesis are
+given in \cref{tab:iceflowparams}.
 
 \Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,eqn:enthalpy}
 constitute the thermodynamic basis
@@ -618,7 +626,7 @@ cycle, thus requiring shallow approximations.
   \centering
   \caption{Constant parameters of the ice flow model.
            \todo{find a better reference than \citet{Aschwanden.etal.2012}
-                 for all the physical constants. Double-check
+                 (library) for all the physical constants. Double-check
                  \citet{Paterson.Budd.1982} and add missing references.}}
   \label{tab:iceflowparams}
   \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
@@ -710,9 +718,12 @@ cycle, thus requiring shallow approximations.
 \subsection{Shallow approximations}
 % ----------------------------------------------------------------------
 
-PISM, the ice sheet model that we use, employ two well-documented
-approximations of ice flow equations: the shallow ice approximation and the
-the shallow shelf approximation. Although both approximations can be derived
+PISM, the ice sheet model that we use, employs two well-documented
+approximations of ice flow equations: the shallow ice approximation
+    \citep[SIA,][]{Morland.Johnson.1980, Hutter.1983}
+and the the shallow shelf approximation
+    \citep[SSA,][]{Morland.1987, Weis.etal.1999}.
+Although both approximations can be derived
 from a rigorous scaling approach, we don't expand these lengthy derivations
 here, assuming instead the simplifications and focusing on their effect.
 
@@ -725,14 +736,13 @@ here, assuming instead the simplifications and focusing on their effect.
   \label{fig:model-siassa}
 \end{figure}
 
-
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
 the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
 \begin{equation}
     \tdiv{\DST} - \grad{p} + \rho\,\vect{g} = \vect{0} \,.
 \end{equation}
 
-Projecting along the three Cartesian coordinate axis, this reads
+Projecting along the three Cartesian axes, this reads
 \begin{subequations}
 \label{eqn:fullstokes}
 \begin{align}
@@ -745,7 +755,8 @@ Projecting along the three Cartesian coordinate axis, this reads
 \end{align}
 \end{subequations}
 
-The shallow ice approximation (SIA) assumes that basal friction is high enough
+The \emph{shallow ice approximation} (SIA) assumes that basal friction is high
+enough
 for the vertical shear stresses $\{\tau_{xz}, \tau_{yz}\}$ to predominate over
 all other components of the deviatoric stress tensor. In this framework, the
 projected stress-balance can be simplified to
@@ -760,6 +771,10 @@ projected stress-balance can be simplified to
     0 &= \pdv{p}{z} - \rho g \,.
 \end{align}
 \end{subequations}
+
+\todo{\citet{Morland.Johnson.1980} derived the SIA in 2D, using a stream
+      function. Their equations look very different from here. Go to
+      geolibrary and check the book by \citet{Hutter.1983}, if it is there.}
 
 Neglecting atmospheric pressure, \Cref{eqn:siaz} yield
 \begin{equation}
@@ -800,10 +815,15 @@ which yields, in vectorial notation,
     \pdv{\vsia}{z} = -2A\,(\rho g)^n\,(s-z)^n\,|\grad{s}|^{n-1}\,\grad{s} \,.
 \end{equation}
 
-The shallow shelf approximation (SSA), on the opposite of the SIA, assumes that
+\todo{Add a few words about the fact that $\vsia$ can be directly obtained
+      after one vertical integration. Show that vertical velocities can be
+      obtained from the compressibility equation.}
+
+The \emph{shallow shelf approximation} (SSA), on the opposite of the SIA,
+assumes that
 basal friction is low enough for ice to deform predominantly by horizontal
 expansion within the entire ice column. In this context, the stress-balance can
-be simplified to
+be simplified to \citep[Eqs.~4.10--4.12]{Weis.etal.1999}
 \begin{subequations}
 \label{eqn:ssa}
 \begin{align}
@@ -817,7 +837,8 @@ be simplified to
     \pdv{\tau_{zz}}{z} &= \pdv{p}{z} - \rho g \,,
 \end{align}
 \end{subequations}
-and horizontal velocities can be assumed independent of depth, so that
+and horizontal velocities can be assumed independent of depth
+\citep[Eq.~4.22]{Weis.etal.1999}, so that
 \begin{align}
     \pdv{v_x}{z} &= 0 \,, \\
     \pdv{v_y}{z} &= 0 \,.
@@ -862,6 +883,7 @@ where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 \end{equation}
 
 A final integration over the entire ice column yields
+\citep[Eqs.~7.7--7.8]{Weis.etal.1999}
 \begin{subequations}
 \begin{align}
     \label{eqn:vssa}
@@ -880,17 +902,19 @@ A final integration over the entire ice column yields
 where $\tau_{bx}$ and $\tau_{by}$ correspond to $x$ and $y$-components of the
 basal traction, and will be determined by a sliding law.
 
-In PISM, the SIA and SSA velocities are eventually added,
+In PISM, the SIA and SSA velocities are eventually added
+\citep[Eq.~15]{Winkelmann.etal.2011},
 \begin{equation}
     \label{eqn:siassa}
     \vv = \vsia + \vssa \,.
 \end{equation}
 Because $\vsia$ is small where $\vssa$ is large and
 reciprocally, we can expect the model to perform well in regions where
-conditions for applicability of either the SIA or the SSA are met. However,
+conditions for applicability of either the SIA or the SSA are met
+\cref{fig:model-siassa}. However,
 \cref{eqn:siassa} is a heuristic, and its validity in the zone of
 transition between shear flow and longitudinal flow has not yet been
-mathematically proven.
+mathematically proven
 
 
 % ----------------------------------------------------------------------
@@ -899,7 +923,7 @@ mathematically proven.
 
 Although the SIA is valid only under non-sliding conditions, the SSA requires
 a sliding law as basal boundary condition, which in fact constitutes the main
-control on SSA velocities and in turn locations of ice streams.
+control on SSA velocities and, in turn, the locations of ice streams.
 
 The simulations presented in this thesis use a pseudo-plastic sliding law,
 \begin{equation}
@@ -908,14 +932,18 @@ The simulations presented in this thesis use a pseudo-plastic sliding law,
 \end{equation}
 where $\vect{\tau}_b$ is the basal traction force, $\vv_b$ is the basal
 velocity, and $v_{th}$ is an arbitrary velocity threshold. In the case of
-$q=0$, \cref{eqn:pseudoplastic} corresponds to a purely plastic law,
+$q=0$, \cref{eqn:pseudoplastic} corresponds to a purely plastic law
+\citep[Eq.~11]{Winkelmann.etal.2011},
 \begin{equation}
     \label{eqn:plastic}
     \vect{\tau}_b = -\tau_c \frac{\vv_b}{|\vv_b|} \,.
 \end{equation}
 
-However a non-zero exponent is chosen here in order to improve convergence. The
-yield stress $\tau_c$ is related to till properties by the Mohr-Coulomb
+\todo{\citep[supplement]{Aschwanden.etal.2013} refer to a paper by Schoof and
+      Hindmarsh (2010, doi:10.1093/qjmam/hbp025). Check that.}
+
+However a non-zero exponent $q$ is chosen here in order to improve convergence.
+The yield stress $\tau_c$ is related to till properties by the Mohr-Coulomb
 criterion,
 \begin{equation}
    \tau_c = c_0 + N\,\tan{\phi} \,.
@@ -925,13 +953,14 @@ The till cohesion $c_0$ is assumed to be zero. The effective pressure on the
 till, $N$, is determined by the modelled amount of water at the bed. However,
 two different parametrisations are used within this thesis. In {\CCLI}, using
 PISM~0.5, the effective pressure is linearly related to water content by a
-simple parametrisation,
+simple parametrisation \citep[Eq.~13]{Winkelmann.etal.2011},
 \begin{equation}
     N = \rho gh (1 - \alpha \frac{W}{W_{max}}) \,.
 \end{equation}
 
 In {\CCYC}, using PISM~0.6, the effective pressure is determined by an
-empirical parametrisation based on laboratory experiments on Antarctic till,
+empirical parametrisation based on laboratory experiments on Antarctic till
+\citep{Tulaczyk.etal.2000, Bueler.Pelt.2014},
 \begin{equation}
     N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
 \end{equation}
@@ -940,11 +969,12 @@ Drainage of water at the base of the ice sheet, although implemented in PISM,
 is not included in simulations presented here for the sake of simplicity.
 In turn, the amount of water at the bed, $W$, corresponds to the local
 accumulation of basal melt-water. In varies from zero to $W_{max}$, a threshold
-above which further melt exits the system.
+above which further melt simply exits the system.
 
 Finally, the till friction angle $\phi$ is taken a~function of modern bed
 elevation, with lowest values occurring at low elevations, thus accounting for
-a weakening of till associated with the presence of marine sediments:
+a weakening of till associated with the presence of marine sediments
+\citep[cf.][Eq.~10]{Martin.etal.2011},
 \begin{equation}
     \phi(x,y) =
     \begin{cases}
@@ -955,10 +985,8 @@ a weakening of till associated with the presence of marine sediments:
     \end{cases}
 \end{equation}
 where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
-highest shoreline elevations in the model domain. The values of $\phi_1$ and
-$\phi_2$ are chosen differently in \CCLI (10 and 30$^\circ$) and \CCYC
-(15 and 45$^\circ$), but these choices are roughly equivalent in the case of a
-saturated till ($W=W_{max}$).
+highest shoreline elevations in the model domain. Parameter values for the
+sliding model are given in \cref{tab:slidingparams}.
 
 \begin{table}
   \centering
@@ -1072,14 +1100,12 @@ defined through the Fourier transform by \citet[Eq.~6]{Bueler.etal.2007}. In
 the left-hand part of this equation, the first term accounts for mantle
 relaxation, the second for point-wise isostasy, and the third for elastic
 flexure. Due to high mantle viscosity, $\nu_m$, there exists a time lag between
-the ice sheet growth and the isostatic bedrock response.
-%$\nu=1\times10^{21}$\,Pa\,s
-%$D=5\times10^{24}$\,N\,m
-%$\rho_r = 3300$\,kg\,m$^{-3}$
+the ice sheet growth and the isostatic bedrock response. Parameter values for
+bedrock response model are given in \cref{tab:bedrockparams}.
 
 \begin{table}
   \centering
-  \caption{Constant parameters of the bedrock model.
+  \caption{Constant parameters of the bedrock thermal and deformation models.
            \todo{Find out what the bedrock density corresponds to. Track down
                  original sources in \citet{Ritz.1997}}}
   \label{tab:bedrockparams}
@@ -1128,7 +1154,8 @@ the ice sheet growth and the isostatic bedrock response.
 \subsection{Surface mass balance}
 % ----------------------------------------------------------------------
 
-At the interface between the ice sheet and the atmosphere (Fig.~??),
+At the interface between the ice sheet and the atmosphere
+(\cref{fig:model-interfaces}),
 surfice mass fluxes are computed from monthly mean surface air temperature,
 $T_m$, and monthly precipitation, $P_m$, by a temperature-index model
 \citep[e.g.,][]{Hock.2003}. Surface accumulation, $a_s$, equals precipitation
@@ -1179,18 +1206,18 @@ or more efficiently using an error function formulation
 \end{equation}
 
 In the simulations presented here, \cref{eqn:calovgreve} is numerically
-approximated using week-long sub-intervals. For each sub-interval, surface melt
-is computed from PDDs and the available snow and ice depths using an algorithm
-documented in the on-line documentation of PISM \citep{PISM-authors.2014}. This
-algorythms employ different melt factors for snow ($F_s$) and for ice ($F_i$),
+approximated using week-long sub-intervals. For each sub-interval, PDDs, which
+serve as a proxy for the available energy for melt, define the amount of snow
+melt through a proportionality factor $F_s$. If all snow is melted, remaining
+PDDs are use to melt ice, using a proportionality factor $F_i$
+(\cref{fig:model-pdd}). The melt factors $F_s$ and $F_i$
+(\cref{tab:surfaceparams})
 as derived from mass-balance measurements on contemporary glaciers in the
 Coast and Rocky Mountains of British Columbia \citep{Shea.etal.2009}. In
 {\CCLI}, the temperature standard deviation $\sPDD$ is a constant model
 parameter. In {\CCYC}, it is computed from daily temperature values from the
 North American Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, using
 a method initially developed in {\PSDV}, and further improved in {\PSDP}.
-%3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
-%4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice
 
 \begin{figure}
   \centering
@@ -1271,11 +1298,13 @@ for differences between the the ice flow model basal topography, $b$, and the
 climate input topography, $b_{ref}$, on the other hand. All simulations use an
 annual temperature lapse rate of $\gamma = 6\,\unit{\degC\,km^{-1}}$.
 
-\CCLI tests the sensitivity of the model to different input present-day
+\CCLI\ tests the sensitivity of the model to different input present-day
 climatologies, $\{T_{m0}, P_{m0}\}$, while the temperature-offset corrections,
 ${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. \CCYC,
 on the opposite, tests model sensitivity to time-dependent temperature-offset
-corrections derived from different palaeo-temperature proxy records.
+corrections derived from different palaeo-temperature proxy records. All data
+climatic and topographic data sources used are summarised in
+\cref{tab:datasources}.
 
 \begin{table}
   \centering
@@ -1346,6 +1375,14 @@ corrections derived from different palaeo-temperature proxy records.
 % ----------------------------------------------------------------------
 \subsection{Numerical implementation}
 % ----------------------------------------------------------------------
+
+\todo{Add here a short section about discretization of the SIA and SSA, and
+      their numerical implementation. The main subtlety, I think, lies in the
+      fact that some computation need to use a ``staggered'' grid in order to
+      ensure that we add SIA and SSA values corresponding to the same point in
+      space. I need to check that. This section is also the place where to
+      introduce geographic transformation parameters that I used throughout
+      the thesis -- except in \cref{fig:map-cordillera}!}
 
 \begin{table}
   \centering
