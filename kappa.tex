@@ -173,14 +173,14 @@ allowing a physics-based, quantitative reconstruction where they do not.
     \hspace{1cm}
     \subgraphics{c}{photo-glacier-fold}
   }
-  \caption{Illustration of various glacier ice behaviours.
-           \textbf{(a)} Surface crevasses formed by ice flow over a hidden
-           bedrock knob. Glacier Blanc, French Alps, 2004.
-           \textbf{(b)} Medial moraines illustrating downhill ice flow on
+  \caption{Illustration of various glacier ice behaviours:
+           \textbf{(a)} surface crevasses formed by ice flow over a hidden
+           bedrock knob, Glacier Blanc, French Alps, 2004;
+           \textbf{(b)} medial moraines illustrating downhill ice flow on
            Susitna Glacier, Alaska Range, by Austin Post, 1970
-           \citep{NSIDC.2009}.
-           \textbf{(c)} Mountain glacier calving into a small lake, revealing a
-           folded structure formed by deformed debris layers in the ice.
+           \citep{NSIDC.2009};
+           \textbf{(c)} mountain glacier calving into a small lake, revealing a
+           folded structure formed by deformed debris layers in the ice,
            Glacier d'Arsine, French Alps, 2004.}
   \label{fig:glacier-mechanics}
 \end{figure}
@@ -194,15 +194,15 @@ allowing a physics-based, quantitative reconstruction where they do not.
     \hspace{1cm}
     \subgraphics{c}{photo-melt-channels}
   }
-  \caption{Different indicators of past glaciation.
-           \textbf{(a)} Glacial valley, exhibiting a broad, U-shaped profile
-           characteristic of erosion by glaciers.
-           Cirque du Fer-\`{a}-Cheval, French Alps, 2013.
-           \textbf{(b)} Erratic boulders, deposited in an improbable
-           arrangement as the glacier melted underneath.
-           Finse area, Norwegian Scandes, 2011.
-           \textbf{(c)} Lateral meltwater channels, formed on a gentle slope
-           as the ice margin retreated towards the valley bottom. Tuya Lake
+  \caption{Different indicators of past glaciation:
+           \textbf{(a)} glacial valley, exhibiting a broad, U-shaped profile
+           characteristic of erosion by glaciers,
+           Cirque du Fer-\`{a}-Cheval, French Alps, 2013;
+           \textbf{(b)} erratic boulders, deposited in an improbable
+           configuration as the glacier melted underneath,
+           Finse area, Norwegian Scandes, 2011;
+           \textbf{(c)} lateral meltwater channels, formed on a gentle slope
+           as the ice margin retreated towards the valley bottom, Tuya Lake
            area, Canadian Cordillera, 2012.}
   \label{fig:glaciation-indicators}
 \end{figure}
@@ -230,7 +230,8 @@ allowing a physics-based, quantitative reconstruction where they do not.
   \caption{Spatial extent of ice sheet and glacier cover in the northern
            hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
            \textbf{(b)} during the last glacial maximum
-           \citep{Ehlers.Gibbard.2007}.}
+           \citep{Ehlers.Gibbard.2007}.
+           \todo{Make these globes look a little bigger. Add (a) and (b).}}
   \label{fig:paleo-glaciation}
 \end{figure}
 
@@ -326,8 +327,8 @@ grids.
            its north slope hosts relatively small glaciers only, which had not
            been much more extensive during the Last Glacial Maximum
            \citep{Kaufman.Manley.2004}, indicating dry climatic conditions.
-           The Alaska Range is rapidly eroding, as shown by landslide-covered
-           valley sides on this photograph.}
+           The Alaska Range is tectonically active and rapidly eroding, as
+           shown by landslide-covered valley sides on this photograph.}
   \label{fig:photo-alaska-range}
 \end{figure}
 
@@ -367,9 +368,10 @@ model response have been studied in detail.
     \hspace{1cm}
     \subgraphics{b}{photo-fraser-valley}
   }
-  \caption{Contrasted climates of the North American Cordillera.
-           \textbf{(a)} Pacific Coast at Vancouver Island.
-           \textbf{(b)} Fraser Valley, south-central British Columbia.}
+  \caption{Contrasted climates of the North American Cordillera:
+           \textbf{(a)} Pacific Coast at Vancouver Island, western British
+           Columbia, by Martin Margold, 2010.
+           \textbf{(b)} Fraser Valley, south-central British Columbia, 2010.}
   \label{fig:photo-fraser-valley}
 \end{figure}
 
@@ -378,7 +380,7 @@ model response have been studied in detail.
   \makebox[0pt]{\includegraphics{plot-atm}}
   \caption{Some characteristics of the Cordilleran climate according to the
            North American Regional Reanalysis
-           \citep[NARR,][]{Mesinger.etal.2006}}
+           \citep[NARR,][]{Mesinger.etal.2006}.}
   \label{fig:plot-atm}
 \end{figure}
 
@@ -504,7 +506,8 @@ thesis, and give an overview of the physics involved in these choices.
   \centering
   \includegraphics[width=80mm]{model-interfaces}
   \caption{Model interfaces in PISM. From \citet{PISM-authors.2014}.
-           \todo{Redraw.}}
+           \todo{This is directly from the PISM manual. I may redraw it here
+                 if I have the time.}}
   \label{fig:model-interfaces}
 \end{figure}
 
@@ -516,7 +519,8 @@ thesis, and give an overview of the physics involved in these choices.
   \centering
   \includegraphics{model-variables}
   \caption{Sketch of notations used for the main variables of the ice sheet
-           model.}
+           model. A particle of ice is moving at velocity $\vv$, under the
+           balance of stresses $\CST$ and gravity $\vect{g}$.}
   \label{fig:model-variables}
 \end{figure}
 
@@ -732,7 +736,8 @@ here, assuming instead the simplifications and focusing on their effect.
   \includegraphics[width=80mm]{model-siassa}
   \caption{Shallow Ice Approximation (SIA) and Shallow Shelf Approximation
            (SSA) velocities in PISM. From \citet{Winkelmann.etal.2011}.
-           \todo{Redraw.}}
+           \todo{Redraw in LaTeX in the same style as
+                 \cref{fig:model-variables}.}}
   \label{fig:model-siassa}
 \end{figure}
 
@@ -1221,8 +1226,11 @@ a method initially developed in {\PSDV}, and further improved in {\PSDP}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=80mm]{model-pdd}
-  \caption{PDD model. From \citet{PISM-authors.2014} \todo{Redraw.}}
+  \includegraphics[width=\linewidth]{model-pdd}
+  \caption{PDD model. From \citet{PISM-authors.2014}
+           \todo{This is again directly from the PISM manual. I can simplify
+                 it by removing the unused refreezing branch, I will match
+                 notations with the text and refer to equations in use.}}
   \label{fig:model-pdd}
 \end{figure}
 
@@ -1462,12 +1470,12 @@ climatic and topographic data sources used are summarised in
 % Fieldwork
 % Geomorphological-oriented plots
 
-\begin{figure}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
-  \caption{The Tuya Lake Moraine in northern British Columbia.}
-  \label{fig:photo-tuya-moraine}
-\end{figure}
+%\begin{figure}
+%  \centering
+%  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
+%  \caption{The Tuya Lake Moraine in northern British Columbia.}
+%  \label{fig:photo-tuya-moraine}
+%\end{figure}
 
 % References
 \newcommand{\urlprefix}[0]{}  % remove default "URL" prefix
