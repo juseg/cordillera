@@ -4,7 +4,8 @@ INK_FIGS = model-interfaces.pdf
 TEX_FIGS = model-pdd.pdf model-variables.pdf soft-workflow.pdf
 PY_FIGS = map-cordillera.png map-northamerica.png \
           paleo-glaciation.png paleo-timeseries.png \
-          plot-atm.png
+          plot-atm.png plot-lgm.png plot-sdmap.png plot-sdeffect.png \
+          plot-snapshots.png
 ALL_FIGS = $(INK_FIGS) $(TEX_FIGS) $(PY_FIGS)
 
 all: data $(ALL_FIGS)

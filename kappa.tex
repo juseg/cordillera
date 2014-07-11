@@ -1461,19 +1461,100 @@ climatic and topographic data sources used are summarised in
 % ----------------------------------------------------------------------
 \subsection{Constant-climate runs}
 % ----------------------------------------------------------------------
-\todo{Figure. 3km last glacial maximum poster run?}
+
+\begin{figure*}
+  \centering
+  \vspace{-16mm}
+  \makebox[0pt]{
+  \begin{minipage}[t]{112.5mm}\vspace{0pt}
+    \includegraphics{plot-lgm}
+  \end{minipage}
+  \hspace{1cm}
+  \begin{minipage}[t]{47.5mm}\vspace{0pt}
+    \caption{Constant-climate simulation of the LGM Cordilleran ice sheet using
+             an horizontal resolution of 3\,km. Modelled basal topography,
+             cold-based areas (hatches), surface topography (100\,m contours)
+             and surface velocities. The simulation is forced by atmospheric
+             fields from the NARR \citep{Mesinger.etal.2006} and a temperature
+             depression of 7\,\degC, using the set-up described in \CCLI. There
+             are several issues with this run. First, all east-facing margins
+             are too extensive as compared to available reconstructions.
+             Second, marine advance on the Pacific Shelf is too restrictive,
+             most notably in the south-western corner where the Puget and Juan
+             de Fuca lobes are missing. Third, en-glacial temperatures are
+             anomalously low due to brutal application of cold climate
+             condition to ice-free bedrock at the inception of the run.
+             \todo{Add black frame, and maybe the LGM outline from Dyke?}}
+  \end{minipage}
+  }
+  \vspace{-16mm}
+  \label{fig:plot-lgm}
+\end{figure*}
+
 
 % ----------------------------------------------------------------------
 \subsection{Daily temperature variability}
 % ----------------------------------------------------------------------
-\todo{Figure. Sigma distribution map}\\
-\todo{Figure. Sigma effect on Cordillera runs}
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{\includegraphics{plot-sdmap}}
+  \caption{July, daily temperature variability in the Arctic, as shown by
+           monthly standard deviation of near-surface daily mean air
+           temperature computed from ERA-40 reanalysis
+           \citep{Uppala.etal.2005}. Note the strong differences between
+           continental and maritime regions, notably within the model domain
+           (black rectangle). Although daily variability is lowest in summer,
+           this is when it most importantly contributes to surface melt.}
+  \label{fig:plot-sdmap}
+\end{figure}
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{\includegraphics{plot-sdeffect}}
+  \caption{Effect of temperature variability on Cordilleran ice sheet
+           simulations. Modelled basal topography and surface topography
+           (250\,m contours). The simulations use atmospheric forcing from the
+           NARR \citep{Mesinger.etal.2006}, a temperature depression of
+           7\,\degC, and different treatments of temperature variability
+           including
+           \textbf{(a)} no daily variability, $\sigma=0$;
+           \textbf{(b)} a constant, mean summer (JJA), model domain-averaged 
+           standard deviation value, $\sigma=3.09$\,K;
+           \textbf{(c)} monthly standard deviation grids derived from the NARR
+           and
+           \textbf{(d)} monthly grids for ice-free terrain and the
+           Greenland ice sheet, ERA-40-based \citep{Uppala.etal.2005}
+           parametrisation in \PSDP, ${\sigma=-0.15\cdot{T_m}+1.66}$.
+           Differences in surface elevation are displayed relative to case (c).
+           Note the different colour scales.}
+  \label{fig:plot-sdeffect}
+\end{figure}
+
 
 % ----------------------------------------------------------------------
 \subsection{Transient-climate runs}
 % ----------------------------------------------------------------------
-\todo{Figure. Deglaciation streamplot}\\
-\todo{Figure. Cumulative ice displacement map}
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{\includegraphics{plot-snapshots}}
+  \caption{\textbf{(a)} Modelled growth and decay of the last Cordilleran ice
+           sheet. Basal topography surface topography (1\,km contours) and
+           surface velocity (m/a).
+           \textbf{(b)} Evolution of total ice volume during the entire last
+           glacial cycle, expressed as meters of sea-level equivalent. The
+           simulation uses a horizontal resolution of 6\,km and is forced by
+           atmospheric fields from the NARR \citep{Mesinger.etal.2006} and
+           temperature offset time-series derived from the GRIP
+           \citep{Dansgaard.etal.1993} ice-core record as described in \CCYC.
+           \todo{X-tick snapshot times on time series plot and thicken the
+                 vertical lines. Add (a) and (b) subfigure labels. Link lower
+                 and upper panels; see recipe at
+                 \url{http://stackoverflow.com/questions/17543359/}.}}
+  \label{fig:plot-snapshots}
+\end{figure}
+
 
 % ======================================================================
 \section{Future perpectives}
