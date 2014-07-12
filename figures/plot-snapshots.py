@@ -53,15 +53,16 @@ ivolist = ivol[idxlist]
 ntka = len(tkalist)
 
 # initialize figure
+# wspace = 1/((1+gridw/pad)/npanels-1)
 figw, figh = 170.0, 80.0
 fig = plt.figure(0, (figw/25.4, figh/25.4))
-gs = GridSpec(2, ntka)
+gs = GridSpec(2, ntka+1, left=2.5/figw, right=1-7.5/figw,
+                       bottom=5.0/figh, top=1-2.5/figh,
+                       wspace=1/((1+160.0/2.5)/ntka-1),
+                       hspace=1/((1+72.5/12.5)/2-1),
+                       width_ratios=[6]*ntka+[1])
 ax = plt.subplot(gs[0, :])
 ax = tsax = plt.subplot(gs[1, :])
-fig.subplots_adjust(left=2.5/figw, right=1-12.5/figw,
-                    bottom=5.0/figh, top=1-2.5/figh,
-                    wspace=1/((1+figw/2.5)/ntka-1),
-                    hspace=1/((1+figh/12.5)/2-1))
 
 # coordinate transformations
 blendtrans = blended_transform_factory(tsax.transData, tsax.transAxes)
@@ -125,9 +126,14 @@ for i, tka in enumerate(tkalist):
 # close extra file
 nc.close()
 
+# add colorbar
+cax = ax = plt.subplot(gs[0, -1])
+cb = fig.colorbar(im, cax, ticks=[1e1, 1e4])
+cb.set_label('surf. velocity (m/a)', labelpad=-5)
+
 # add subfigure labels
 fig.text(5/figw, 43.75/figh, '(a)', fontweight='bold')
-fig.text(5/figw, 32.5/figh, '(b)', fontweight='bold')
+fig.text(5/figw, 31.75/figh, '(b)', fontweight='bold')
 
 # save
 print 'saving...'
