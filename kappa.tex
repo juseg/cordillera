@@ -102,7 +102,7 @@
 \section*{List of papers}
 
 This doctoral dissertation consists of a cover summary and the following
-papers, which are referred to by their Roman numerals in the text.
+journal articles, which are referred to by their Roman numerals in the text.
 
 \begin{description}
   \item[\CCLI] \bibentry{Seguinot.etal.2014}
@@ -1518,7 +1518,7 @@ the simplistic set-up used in \CCLI\ allowed to test model sensitivity to the
 choice of present-day climate forcing data, without involving too many
 additional parameters.
 
-Discrepancies between datasets used (\cref{tab:datasources}) cause much
+Discrepancies between input data used (\cref{tab:datasources}) caused much
 variability in modelled ice sheet geometries (\CCLI, Figs.~5--7). In
 particular, continental parts of the ice-sheet are strongly dependent on input
 precipitation patterns, which are often poorly resolved by atmospheric
@@ -1526,10 +1526,11 @@ reanalysis fields used to force the model (\CCLI, Figs.~10--14). The closest
 match between model output and the reconstructed ice margin \citep{Dyke.2004}
 was obtained using atmospheric forcing from the North American Regional
 Reanalysis \citep[NARR,][]{Mesinger.etal.2006} and a temperature depression of
-7\,\degC\ (\CCLI, Fig.~15). The relevant simulation is reproduced here, using a
-higher horizontal resolution of 3\,km (\cref{fig:plot-lgm}). The NARR is the
-dataset that I have retained to force simulations of the Cordilleran ice sheet
-presented here (e.g., \cref{fig:plot-lgm}) and in \CCYC.
+7\,\degC\ (\CCLI, Fig.~15). The relevant simulation is reproduced here
+(\cref{fig:plot-lgm}), using a higher horizontal resolution of 3\,km, instead
+of 10\,km as in the paper. Following this sensitivity study, I have retained
+the NARR to force subsequent simulations of the Cordilleran ice sheet
+presented here and in \CCYC.
 
 \begin{figure*}
   \centering
@@ -1572,32 +1573,32 @@ presented here (e.g., \cref{fig:plot-lgm}) and in \CCYC.
 \bigskip
 
 Next to the atmospheric forcing, another critical source of uncertainty in
-palaeo-ice sheet modelling is the choice of parameters for the surface mass
+palaeo-ice sheet modelling is the choice of parameters used by the surface mass
 balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
 are the degree-day factors for snow, $F_s$, and ice, $F_i$, and the standard
 deviation of near-surface air temperature, $\sPDD$. Although the first two can
 only be deduced from laborious surface mass-balance measurements on present-day
 glaciers \citep[e.g.,][]{Shea.etal.2009}, $\sPDD$ can be estimated from
-observed, modelled, or reanalysed temperature time-series
-\citep[e.g.,][]{Fausto.etal.2011}.
+temperature time-series \citep[e.g.,][]{Fausto.etal.2011}.
 
-Using temperature time-series from the ERA-Interim reanalysis
-\citep{Dee.etal.2011}, this is what is done of \PSDV, where I show, that,
-although often assumed constant, $\sPDD$ greatly varies through the year and
-around the globe, most particularly in the polar regions
+In \PSDV, I used near-surface air temperatures from the ERA-Interim reanalysis
+\citep{Dee.etal.2011} to compute a global, monthly distribution of $\sPDD$.
+The resulting grids show
+that, although often assumed constant, $\sPDD$ varies greatly by location and
+through the year, most particularly in the polar regions
 (\cref{fig:plot-sdmap}; \PSDV, Fig.~1). Using a simple surface mass balance
-model, I then demonstrate the effect of these variations on the computation of
+model, I then demonstrated the effect of these variations on the computation of
 positive degree-days (\PSDV, Fig.~2), and surface mass-balance (\PSDV, Fig.~3).
 
-The analysis is taken further in \PSDP, using re-analysed air temperature from
+The analysis is taken further in \PSDP, using re-analysed air temperatures from
 ERA-40 \citep{Uppala.etal.2005}. Although of coarser spatial resolution, the
-ERA-40 time series have a longer time span than that of the ERA-Interim, which
+ERA-40 time series have a longer time span than the ERA-Interim ones, which
 is necessary to compute standard deviation values that are representative of
-thelong-term daily variability \citep{Rogozhina.Rau.2014}. In \PSDP, we
+the long-term daily variability \citep{Rogozhina.Rau.2014}. In \PSDP, we
 demonstrated that, over the Greenland ice sheet, there exist an inverse
-correlation between $\sPDD$ values and the monthly temperature means, $T_m$
+correlation between $\sPDD$ and monthly mean temperatures, $T_m$
 (\PSDP, Fig.~1). This correlation could potentially be used as a
-parametrisation, which can be expressed as (\PSDP, Eq.~5)
+parametrisation, and can be expressed as (\PSDP, Eq.~5)
 
 \begin{equation}
     \label{eqn:sigma}
@@ -1605,13 +1606,13 @@ parametrisation, which can be expressed as (\PSDP, Eq.~5)
 \end{equation}
 
 The effect of the PDD standard deviation, $\sPDD$, on simulations of the
-Cordilleran ice sheet is not shown in \PSDV\ and \PSDP. However, following
-these two studies, a natural step further was to implement spatially and
-seasonally variable $\sPDD$ (PISM issue \issue{179}), and the parametrisation
-expressed by \cref{eqn:sigma} over ice-filled grid cells (\issue{265}), in
-PISM. The effect of various temperature variability modelling approaches, and
-associated errors, is demonstrated here using a constant-climate set-up similar
-to that of \CCLI\ (\cref{fig:plot-sdeffect}).
+Cordilleran ice sheet is not shown in any of the papers. However, following
+these two studies, a natural step forward was to implement, in PISM, spatially
+and seasonally variable $\sPDD$ input (PISM issue \issue{179}), and the
+parametrisation expressed by \cref{eqn:sigma} over ice-filled grid cells
+(\issue{265}). Their effect on the modelled Cordilleran ice sheet surface is
+demonstrated here (\cref{fig:plot-sdeffect}) using a constant-climate set-up
+similar to the one used in \CCLI.
 
 \begin{figure}
   \centering
@@ -1656,10 +1657,24 @@ to that of \CCLI\ (\cref{fig:plot-sdeffect}).
 \noindent\textbf{\CCYC} --- \bibentry{Seguinot.etal.inpreparation}
 \bigskip
 
-From the start, the primary goal of this thesis has been to perform simulations of the Cordilleran ice sheet through the last glacial cycle. This is the topic of \CCYC, where monthly air temperature, precipitation, and PDD standard deviation computed from the NARR are amended by palaeo-temperature time-series from six proxy records to produce a time-dependent climate forcing (\CCYC, Fig.~2). The resulting simulations all produce two major glaciations between MISs~4 and 2. However the differences in timing and magnitude of these events is considerable (\CCYC, Fig.~3--4).
+From the beginning, the primary goal of this thesis has been to perform
+simulations of the Cordilleran ice sheet through the last glacial cycle. This
+is the topic of \CCYC, where monthly air temperature, precipitation, and PDD
+standard deviation climatologies from the NARR are amended by
+palaeo-temperature time-series from six proxy records to produce a
+time-dependent climate forcing (\CCYC, Fig.~2). The resulting simulations all
+produce two major glaciations between MISs~4 and 2. However the differences in
+timing and magnitude of these events is considerable (\CCYC, Fig.~3--4).
 
 Geological evidence regarding the timing of glaciation allowed us to select two
-simulations, driven by the GRIP \citep{Dansgaard.etal.1993} and EPICA \citep{Jouzel.etal.2007} ice-core records, as producing a more realistic reconstruction of the last glacial cycle. I have re-run these two simulations at a higher resolution of 6\,km, to allow for a more detailed study of the primary locations of transient ice cap cover, stability of major ice-dispersal centres, and patterns of deglaciation (\CCYC, Fig.~5--15). Modelled ice volume evolution and snapshots of ice flow patterns from one of these two simulations are reproduced here (\cref{fig:plot-snapshots}).
+simulations, driven by the GRIP \citep{Dansgaard.etal.1993} and EPICA
+\citep{Jouzel.etal.2007} ice-core records, as producing more realistic
+reconstructions of the last glacial cycle. I have re-run these two simulations
+at a higher resolution of 6\,km, to allow for a more detailed study of
+transient ice cap cover before and after the LGM, stability of major
+ice-dispersal centres, and patterns of deglaciation (\CCYC, Fig.~5--15).
+Modelled ice volume evolution and snapshots of ice flow patterns from one of
+these two simulations are reproduced here (\cref{fig:plot-snapshots}).
 
 \todo{Verify that figure numbers remain correct as \CCYC\ evolves.}
 
@@ -1686,40 +1701,41 @@ simulations, driven by the GRIP \citep{Dansgaard.etal.1993} and EPICA \citep{Jou
 In this thesis, I present numerical reconstructions of the former Cordilleran
 ice sheet to a level of detail that has, to my knowledge, never been attained
 before. The coupled SIA-SSA approximation is crude, yet it is today the only
-approach that allows, combined with massively parallel computing, this level of
-detail over such time-scales as involved in the growth and decay of ice sheets.
+approach that allows, combined with massively parallel computing, high-spatial
+resolution over the multi-millenial time-scales of ice sheet growth and decay.
 
 Through sensitivity studies, I have identified the predominant sources of
 uncertainty, which I have assessed using a combination of detailed
 meteorological datasets and available geological evidence. The simulations
 supporting this thesis allowed estimates of the LGM Cordilleran ice sheet
 extent and volume, identification of the main ice-dispersal centres, and
-partial understanding of the deglaciation patterns. However, there remain much
-room for improvement of the model set-up and further analysis of the simulation
-output.
+partial understanding of the deglaciation patterns. However, there remains much
+room for model improvements and further analysis of the simulation output.
 
 
 % ----------------------------------------------------------------------
 \subsection{Precipitation change}
 % ----------------------------------------------------------------------
 
-Throughout the thesis, precipitation is prescribed as monthly, spatial grids,
-but it is assumed equal to the present values. Although there is no doubt that
-the distribution of precipitation has been affected by the evolution of global
-climate and the intermittent presence of ice sheets and ice caps, such changes
-are difficult to assess. In the North American Cordillera, much of the interior
-was likely dryer than today due to the presence of ice caps reinforcing the
-topographic barrier formed by the Pacific Coast ranges. However, some regions
-may have become wetter as a side effect of redirected winds.
+Throughout the thesis, precipitation rates are prescribed as monthly, spatial
+grids, but assumed equal to their present values. Although the distribution of
+precipitation has been undoubtedly affected by past changes in global climate
+and the intermittent presence of ice sheets and ice caps in the Northern
+Hemisphere, its changes are difficult to assess. In the North American
+Cordillera, much of the continental interior was likely dryer than today due to
+the presence of ice caps reinforcing the topographic barrier formed by the
+Pacific Coast ranges. However, some regions might have become rainier as a side
+effect of redirected winds.
 
-In meteorology, these effects are typically modelled using atmospheric
-circulation models. However, I have shown in \CCLI that atmospheric reanalyses,
-circulation models using data assimilation techniques, fail to agree on the
-present-day pattern of precipitation in the Cordillera due to the highly
-mountainous topography, with dramatic effects on the ice sheet model response.
-Considering additional difficulties inherent to palaeo-climate modelling, it
-can only be expected, that palaeo-climate models without data assimilation will
-produce even much higher discrepancies in the ice sheet model response.
+In meteorology, these effects are typically analysed using atmospheric
+circulation models. However, I have shown in \CCLI\ that atmospheric reanalyses
+which are circulation models that use data assimilation techniques, fail to
+agree on the present-day pattern of precipitation in the Cordillera. The
+discrepancies, due to highly mountainous terrain, have dramatic effects on the
+ice-sheet-model response. Considering additional difficulties inherent to
+modelling past climates, and the lack of data for assimilation, we can only
+expect that palaeo-climate reconstructions will produce even higher
+discrepancies in the ice-sheet-model response.
 
 
 % ----------------------------------------------------------------------
@@ -1727,39 +1743,40 @@ produce even much higher discrepancies in the ice sheet model response.
 % ----------------------------------------------------------------------
 
 Geothermal heat flux, controlling en-glacial temperature distribution and the
-location of basal melt, was assumed constant. However the North America is an
-active subduction zone with complex geothermal patterns. Including this
-variability in the ice sheet model will offer new opportunities to study its
-output.
+location of basal melt areas, was assumed constant. However, the North America
+is an active subduction zone with complex geothermal patterns
+\citep{Blackwell.Richards.2004}. Including this variability in the ice-sheet
+model will offer new opportunities to study its output.
 
 Most notably, modelled basal flow could be compared with glacial lineations,
-one of the main sources of evidence used by geomorphologists to reconstruct
-former ice sheets. For instance, in our simulations, large portions of the
-Cordilleran ice sheet have remain cold-based throughout the simulation. As
-cold-based glaciers typically do not form lineations, this could indicate that
-some of the lineation patterns we observe in the North American Cordillera
-could predate deglaciation, and instead have been formed during an earlier
-phase of advance or retreat of the ice sheet.
+one of the main sources of geomorphological evidence used to reconstruct former
+ice sheets. For instance, in our simulations, large portions of the Cordilleran
+ice sheet remain cold-based throughout deglaciation (\CCYC, Fig.~15). As
+cold-based glaciers typically do not deform their beds, this could indicate
+that some of the lineation patterns we observe in the North American Cordillera
+could pre-date deglaciation. Instead, they may have been formed during an
+earlier phase of advance or retreat of the ice sheet.
 
 
 % ----------------------------------------------------------------------
 \subsection{The Cassiar ice cap}
 % ----------------------------------------------------------------------
 
-In the summer of 2012, I have co-organised and participated in fieldwork with
+In the summer of 2012, I have co-organised and participated in a fieldwork with
 Martin Margold and Ping Fu to collect samples of glacial deposits in the
-southern Cassiar Mountains, northern British Columbia. The primary target of
-the fieldwork was a triple-crested, sharp, ca. 50\,m-high moraine located in
-the vicinity of Tuya Lake the western slope of the Cassiar Mountains
+southern Cassiar Mountains of northern British Columbia
+(\cref{fig:map-cordillera}). The primary target of the fieldwork was a
+triple-crested, sharp, ca. 50\,m-high moraine located in the vicinity of Tuya
+Lake on the western slope of the Cassiar Mountains
 (\cref{fig:photo-tuya-moraine}). Although this is a unique feature in the area,
-the size of the moraine, and its location at the foothills of the mountain
-range indicate that it was likely formed by the tributary from an ice cap,
-rather than a stand-alone valley glacier. Because the relatively low-elevated
-Cassiar Mountains do not appear as a major nucleation centre in our simulations
-(\CCYC, Fig.~5), it is tempting to think that such a large feature may result
-from late-glacial re-advance of a remnant of the decaying ice sheet.
+the size of the moraine and its location at the foothill of the mountain range
+indicate that it was likely formed by a tributary glacier from an ice cap,
+rather than a stand-alone valley glacier. The relatively low-elevated Cassiar
+Mountains do not appear as a major nucleation centre in our simulations (\CCYC,
+Fig.~5). Therefore, it is tempting to think that such a large feature may
+result from the late-glacial re-advance of a remnant of the decaying ice sheet.
 High-resolution modelling of the deglaciation phase, perhaps at a regional
-scale, may help to assess this hypothesis.
+scale, may help to study this hypothesis.
 
 \begin{figure}
   \centering
