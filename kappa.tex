@@ -71,6 +71,9 @@
 \newcommand{\PSDP}[0]{Paper~III}    % PDD SD parametrisation
 \newcommand{\CCYC}[0]{Paper~IV}     % Cordillera cycle
 
+% Github links
+\newcommand{\issue}[1]{\href{https://github.com/pism/pism/issues/#1}{\##1}}
+
 % Text label over graphics
 % from http://tex.stackexchange.com/questions/128844/put-subfigure-labels-
 % inside-figures-using-subfig-package
@@ -120,7 +123,8 @@ some of the forcing data. All authors contributed to improve the text.
   \item[II] I analysed the weather data, wrote the positive degree day model,
 ran computations and wrote the manuscript. I.~Rogozhina helped to assess the
 reviews.
-  \item[III] I analysed the weather data; I.~Rogozhina and I wrote the manuscript.
+  \item[III] I.~Rogozhina provided the original idea; I analysed the weather
+data; and we wrote the manuscript together.
   \item[IV] I implemented necessary code changes in PISM, ran the simulations
 and wrote the manuscript; I.~Rogozhina guided experiment design; M.~Margold,
 J.~Kleman and A.~P.~Stroeven took part in the interpretation. All authors
@@ -1497,8 +1501,35 @@ climatic and topographic data sources used are summarised in
 % ======================================================================
 
 % ----------------------------------------------------------------------
-\subsection{Constant-climate runs}
+\subsection{Constant-climate simulations}
 % ----------------------------------------------------------------------
+
+\noindent\textbf{\CCLI} --- \bibentry{Seguinot.etal.2014}
+\bigskip
+
+As a first step towards simulations of the Cordilleran ice sheet through the
+last glacial cycle, I have chosen to run the ice sheet model under a constant
+climate, targeting the LGM as the period for which ice sheet limits are best
+known. These simulations, presented in \CCLI, use constant temperature offsets
+from the present climate state. They start from ice-free conditions and run for
+10\,ka, a period chosen as representative of the ice-sheet build-up from
+assumed, negligible ice cover. Although this assumption is disproved in \CCYC,
+the simplistic set-up used in \CCLI\ allowed to test model sensitivity to the
+choice of present-day climate forcing data, without involving too many
+additional parameters.
+
+Discrepancies between datasets used (\cref{tab:datasources}) cause much
+variability in modelled ice sheet geometries (\CCLI, Figs.~5--7). In
+particular, continental parts of the ice-sheet are strongly dependent on input
+precipitation patterns, which are often poorly resolved by atmospheric
+reanalysis fields used to force the model (\CCLI, Figs.~10--14). The closest
+match between model output and the reconstructed ice margin \citep{Dyke.2004}
+was obtained using atmospheric forcing from the North American Regional
+Reanalysis \citep[NARR,][]{Mesinger.etal.2006} and a temperature depression of
+7\,\degC\ (\CCLI, Fig.~15). The relevant simulation is reproduced here, using a
+higher horizontal resolution of 3\,km (\cref{fig:plot-lgm}). The NARR is the
+dataset that I have retained to force simulations of the Cordilleran ice sheet
+presented here (e.g., \cref{fig:plot-lgm}) and in \CCYC.
 
 \begin{figure*}
   \centering
@@ -1523,16 +1554,64 @@ climatic and topographic data sources used are summarised in
              anomalously low due to brutal application of cold climate
              condition to ice-free bedrock at the inception of the run.
              \todo{Add black frame, and maybe the LGM outline from Dyke?}}
+    \label{fig:plot-lgm}
   \end{minipage}
   }
   \vspace{-16mm}
-  \label{fig:plot-lgm}
 \end{figure*}
 
 
 % ----------------------------------------------------------------------
 \subsection{Daily temperature variability}
 % ----------------------------------------------------------------------
+
+\noindent\textbf{\PSDV} --- \bibentry{Seguinot.2013}
+\bigskip
+
+\noindent\textbf{\PSDP} --- \bibentry{Seguinot.Rogozhina.2014}
+\bigskip
+
+Next to the atmospheric forcing, another critical source of uncertainty in
+palaeo-ice sheet modelling is the choice of parameters for the surface mass
+balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
+are the degree-day factors for snow, $F_s$, and ice, $F_i$, and the standard
+deviation of near-surface air temperature, $\sPDD$. Although the first two can
+only be deduced from laborious surface mass-balance measurements on present-day
+glaciers \citep[e.g.,][]{Shea.etal.2009}, $\sPDD$ can be estimated from
+observed, modelled, or reanalysed temperature time-series
+\citep[e.g.,][]{Fausto.etal.2011}.
+
+Using temperature time-series from the ERA-Interim reanalysis
+\citep{Dee.etal.2011}, this is what is done of \PSDV, where I show, that,
+although often assumed constant, $\sPDD$ greatly varies through the year and
+around the globe, most particularly in the polar regions
+(\cref{fig:plot-sdmap}; \PSDV, Fig.~1). Using a simple surface mass balance
+model, I then demonstrate the effect of these variations on the computation of
+positive degree-days (\PSDV, Fig.~2), and surface mass-balance (\PSDV, Fig.~3).
+
+The analysis is taken further in \PSDP, using re-analysed air temperature from
+ERA-40 \citep{Uppala.etal.2005}. Although of coarser spatial resolution, the
+ERA-40 time series have a longer time span than that of the ERA-Interim, which
+is necessary to compute standard deviation values that are representative of
+thelong-term daily variability \citep{Rogozhina.Rau.2014}. In \PSDP, we
+demonstrated that, over the Greenland ice sheet, there exist an inverse
+correlation between $\sPDD$ values and the monthly temperature means, $T_m$
+(\PSDP, Fig.~1). This correlation could potentially be used as a
+parametrisation, which can be expressed as (\PSDP, Eq.~5)
+
+\begin{equation}
+    \label{eqn:sigma}
+    \sPDD = -0.15 \cdot T_{m} + 1.66\,.
+\end{equation}
+
+The effect of the PDD standard deviation, $\sPDD$, on simulations of the
+Cordilleran ice sheet is not shown in \PSDV\ and \PSDP. However, following
+these two studies, a natural step further was to implement spatially and
+seasonally variable $\sPDD$ (PISM issue \issue{179}), and the parametrisation
+expressed by \cref{eqn:sigma} over ice-filled grid cells (\issue{265}), in
+PISM. The effect of various temperature variability modelling approaches, and
+associated errors, is demonstrated here using a constant-climate set-up similar
+to that of \CCLI\ (\cref{fig:plot-sdeffect}).
 
 \begin{figure}
   \centering
@@ -1556,14 +1635,14 @@ climatic and topographic data sources used are summarised in
            NARR \citep{Mesinger.etal.2006}, a temperature depression of
            7\,\degC, and different treatments of temperature variability
            including
-           \textbf{(a)} no daily variability, $\sigma=0$;
-           \textbf{(b)} a constant, mean summer (JJA), model domain-averaged 
-           standard deviation value, $\sigma=3.09$\,K;
+           \textbf{(a)} no daily variability, $\sPDD=0$;
+           \textbf{(b)} a constant, mean summer (JJA), model domain-averaged
+           standard deviation value, $\sPDD=3.09$\,K;
            \textbf{(c)} monthly standard deviation grids derived from the NARR
            and
            \textbf{(d)} monthly grids for ice-free terrain and the
            Greenland ice sheet, ERA-40-based \citep{Uppala.etal.2005}
-           parametrisation in \PSDP, ${\sigma=-0.15\cdot{T_m}+1.66}$.
+           parametrisation in \PSDP, ${\sPDD=-0.15\cdot{T_m}+1.66}$.
            Differences in surface elevation are displayed relative to case (c).
            Note the different colour scales.}
   \label{fig:plot-sdeffect}
@@ -1571,8 +1650,18 @@ climatic and topographic data sources used are summarised in
 
 
 % ----------------------------------------------------------------------
-\subsection{Transient-climate runs}
+\subsection{Glacial cycle simulations}
 % ----------------------------------------------------------------------
+
+\noindent\textbf{\CCYC} --- \bibentry{Seguinot.etal.inpreparation}
+\bigskip
+
+From the start, the primary goal of this thesis has been to perform simulations of the Cordilleran ice sheet through the last glacial cycle. This is the topic of \CCYC, where monthly air temperature, precipitation, and PDD standard deviation computed from the NARR are amended by palaeo-temperature time-series from six proxy records to produce a time-dependent climate forcing (\CCYC, Fig.~2). The resulting simulations all produce two major glaciations between MISs~4 and 2. However the differences in timing and magnitude of these events is considerable (\CCYC, Fig.~3--4).
+
+Geological evidence regarding the timing of glaciation allowed us to select two
+simulations, driven by the GRIP \citep{Dansgaard.etal.1993} and EPICA \citep{Jouzel.etal.2007} ice-core records, as producing a more realistic reconstruction of the last glacial cycle. I have re-run these two simulations at a higher resolution of 6\,km, to allow for a more detailed study of the primary locations of transient ice cap cover, stability of major ice-dispersal centres, and patterns of deglaciation (\CCYC, Fig.~5--15). Modelled ice volume evolution and snapshots of ice flow patterns from one of these two simulations are reproduced here (\cref{fig:plot-snapshots}).
+
+\todo{Verify that figure numbers remain correct as \CCYC\ evolves.}
 
 \begin{figure}
   \centering
@@ -1605,7 +1694,7 @@ climatic and topographic data sources used are summarised in
 %\end{figure}
 
 % References
-\newcommand{\urlprefix}[0]{}  % remove default "URL" prefix
+\renewcommand{\urlprefix}[0]{}  % remove default "URL" prefix
 \bibliographystyle{copernicus}
 \bibliography{refs/references.bib}
 
