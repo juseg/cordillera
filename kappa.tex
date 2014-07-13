@@ -1680,18 +1680,93 @@ simulations, driven by the GRIP \citep{Dansgaard.etal.1993} and EPICA \citep{Jou
 
 
 % ======================================================================
-\section{Future perpectives}
+\section{Conclusion and perpectives}
 % ======================================================================
-% Model improvements
-% Fieldwork
-% Geomorphological-oriented plots
 
-%\begin{figure}
-%  \centering
-%  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
-%  \caption{The Tuya Lake Moraine in northern British Columbia.}
-%  \label{fig:photo-tuya-moraine}
-%\end{figure}
+In this thesis, I present numerical reconstructions of the former Cordilleran
+ice sheet to a level of detail that has, to my knowledge, never been attained
+before. The coupled SIA-SSA approximation is crude, yet it is today the only
+approach that allows, combined with massively parallel computing, this level of
+detail over such time-scales as involved in the growth and decay of ice sheets.
+
+Through sensitivity studies, I have identified the predominant sources of
+uncertainty, which I have assessed using a combination of detailed
+meteorological datasets and available geological evidence. The simulations
+supporting this thesis allowed estimates of the LGM Cordilleran ice sheet
+extent and volume, identification of the main ice-dispersal centres, and
+partial understanding of the deglaciation patterns. However, there remain much
+room for improvement of the model set-up and further analysis of the simulation
+output.
+
+
+% ----------------------------------------------------------------------
+\subsection{Precipitation change}
+% ----------------------------------------------------------------------
+
+Throughout the thesis, precipitation is prescribed as monthly, spatial grids,
+but it is assumed equal to the present values. Although there is no doubt that
+the distribution of precipitation has been affected by the evolution of global
+climate and the intermittent presence of ice sheets and ice caps, such changes
+are difficult to assess. In the North American Cordillera, much of the interior
+was likely dryer than today due to the presence of ice caps reinforcing the
+topographic barrier formed by the Pacific Coast ranges. However, some regions
+may have become wetter as a side effect of redirected winds.
+
+In meteorology, these effects are typically modelled using atmospheric
+circulation models. However, I have shown in \CCLI that atmospheric reanalyses,
+circulation models using data assimilation techniques, fail to agree on the
+present-day pattern of precipitation in the Cordillera due to the highly
+mountainous topography, with dramatic effects on the ice sheet model response.
+Considering additional difficulties inherent to palaeo-climate modelling, it
+can only be expected, that palaeo-climate models without data assimilation will
+produce even much higher discrepancies in the ice sheet model response.
+
+
+% ----------------------------------------------------------------------
+\subsection{Geothermal heat flux}
+% ----------------------------------------------------------------------
+
+Geothermal heat flux, controlling en-glacial temperature distribution and the
+location of basal melt, was assumed constant. However the North America is an
+active subduction zone with complex geothermal patterns. Including this
+variability in the ice sheet model will offer new opportunities to study its
+output.
+
+Most notably, modelled basal flow could be compared with glacial lineations,
+one of the main sources of evidence used by geomorphologists to reconstruct
+former ice sheets. For instance, in our simulations, large portions of the
+Cordilleran ice sheet have remain cold-based throughout the simulation. As
+cold-based glaciers typically do not form lineations, this could indicate that
+some of the lineation patterns we observe in the North American Cordillera
+could predate deglaciation, and instead have been formed during an earlier
+phase of advance or retreat of the ice sheet.
+
+
+% ----------------------------------------------------------------------
+\subsection{The Cassiar ice cap}
+% ----------------------------------------------------------------------
+
+In the summer of 2012, I have co-organised and participated in fieldwork with
+Martin Margold and Ping Fu to collect samples of glacial deposits in the
+southern Cassiar Mountains, northern British Columbia. The primary target of
+the fieldwork was a triple-crested, sharp, ca. 50\,m-high moraine located in
+the vicinity of Tuya Lake the western slope of the Cassiar Mountains
+(\cref{fig:photo-tuya-moraine}). Although this is a unique feature in the area,
+the size of the moraine, and its location at the foothills of the mountain
+range indicate that it was likely formed by the tributary from an ice cap,
+rather than a stand-alone valley glacier. Because the relatively low-elevated
+Cassiar Mountains do not appear as a major nucleation centre in our simulations
+(\CCYC, Fig.~5), it is tempting to think that such a large feature may result
+from late-glacial re-advance of a remnant of the decaying ice sheet.
+High-resolution modelling of the deglaciation phase, perhaps at a regional
+scale, may help to assess this hypothesis.
+
+\begin{figure}
+  \centering
+  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
+  \caption{The Tuya Lake Moraine in northern British Columbia.}
+  \label{fig:photo-tuya-moraine}
+\end{figure}
 
 % References
 \renewcommand{\urlprefix}[0]{}  % remove default "URL" prefix
