@@ -3,17 +3,21 @@
 
 % Base class and packages
 \documentclass{article}
+%\makeatletter\newcommand{\@ptsize}{0}\makeatother  % needed by setspace
 \usepackage{amsmath}
+\usepackage{bibentry}
 \usepackage{bm}
 \usepackage[T1]{fontenc}
 \usepackage{natbib}
-\usepackage[onehalfspacing]{setspace}
+\usepackage{setspace}
 \usepackage{physics}
 \usepackage[colorlinks, citecolor=blue]{hyperref}
 \usepackage[sort]{cleveref}  % needs to be loaded after hyperref
 \usepackage{doi}  % needs to be loaded after hyperref
 \usepackage{graphicx}
+\onehalfspacing
 \graphicspath{{figures/}}
+\nobibliography*
 
 % Move floats to the end
 \usepackage[nolists]{endfloat}
@@ -85,14 +89,48 @@
 % Document properties
 \title{Numerical simulation of the Cordilleran ice sheet \\
        through the last glacial cycle}
+%\runningtitle{Numerical modelling of the Cordilleran ice sheet}
 \author{Julien Seguinot}
 
 % ======================================================================
 \begin{document}
 % ======================================================================
 
+\section*{List of papers}
+
+This doctoral dissertation consists of a cover summary and the following
+papers, which are referred to by their Roman numerals in the text.
+
+\begin{description}
+  \item[\CCLI] \bibentry{Seguinot.etal.2014}
+  \item[\PSDV] \bibentry{Seguinot.2013}
+  \item[\PSDP] \bibentry{Seguinot.Rogozhina.2014}
+  \item[\CCYC] \bibentry{Seguinot.etal.inpreparation}
+\end{description}
+
+\vfill
+\noindent\textbf{Author contributions}
+
+\small{\begin{enumerate}
+  \item[I] I set-up the ice sheet model and supercomputing workflow, ran the
+simulations and wrote the manuscript; C.~Khroulev implemented necessary code
+changes in PISM; I.~Rogozhina guided experiment design; A.~P.~Stroeven
+initiated the Cordilleran ice sheet modelling project; and Q.~Zhang prepared
+some of the forcing data. All authors contributed to improve the text.
+  \item[II] I analysed the weather data, wrote the positive degree day model,
+ran computations and wrote the manuscript. I.~Rogozhina helped to assess the
+reviews.
+  \item[III] I analysed the weather data; I.~Rogozhina and I wrote the manuscript.
+  \item[IV] I implemented necessary code changes in PISM, ran the simulations
+and wrote the manuscript; I.~Rogozhina guided experiment design; M.~Margold,
+J.~Kleman and A.~P.~Stroeven took part in the interpretation. All authors
+contributed to improve the text.
+\end{enumerate}}
+
+\newpage
 \maketitle
 \tableofcontents
+\newpage
 
 % ======================================================================
 \section{Introduction}
