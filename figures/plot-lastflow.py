@@ -15,7 +15,7 @@ s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 # file path
 filename = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-           'epica3222cool560+ccyc+till1545/y0120000-extra.nc'
+           'grip3222cool580+ccyc+till1545/y0120000-extra.nc'
 tmin, tmax = -22.0, -8.0
 
 # initialize figure
@@ -64,9 +64,17 @@ plotres=12  # in km
 
 # plot last velocity stream lines
 print 'plotting...'
-ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
+ax.streamplot(x[:], y[:], lastu, lastv, color='k',
               density=(60.0/plotres, 120.0/plotres),
               cmap=cmap, norm=norm, linewidth=0.5)
+
+# plot sliding age contours
+cs = ax.contour(x[:], y[:], slidage, levels=range(10, 20, 1),
+                colors='0.5', linewidths=0.25, dashes=(1, 3))
+lx = np.arange(-1700, -1350, 75)*1e3
+ly = np.ones_like(lx)*1100e3
+cs.clabel(fontsize=6, fmt='%g',
+          manual=np.vstack((lx,ly)).T)
 
 # plot glaciated and non-sliding areas
 ax.contourf(x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
@@ -82,4 +90,3 @@ print 'saving...'
 #cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
 #cb.set_label('Age of last basal sliding (kyr)')
 fig.savefig('plot-lastflow')
-
