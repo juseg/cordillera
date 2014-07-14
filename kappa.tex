@@ -31,7 +31,7 @@
 \crefname{table}{Table}{Tables}
 
 % My commands
-%\newcommand{\note}[1]{\textbf{[NOTE: #1]}}
+\newcommand{\renote}[1]{\footnote{\textbf{Comment reply}: #1}}
 \newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 \newcommand{\mref}[0]{\textbf{[ref.]}}
 
@@ -90,8 +90,7 @@
 %\renewcommand{\subgraphics}[3][,]{}
 
 % Document properties
-\title{Numerical simulation of the Cordilleran ice sheet \\
-       through the last glacial cycle}
+\title{Numerical modelling of the Cordilleran ice sheet}
 %\runningtitle{Numerical modelling of the Cordilleran ice sheet}
 \author{Julien Seguinot}
 
@@ -140,27 +139,50 @@ contributed to improve the text.
 \section{Introduction}
 % ======================================================================
 
-In our daily lives, we most commonly experience ice as the small, solid cubes
-that crackle on contact with refreshing liquids. Yet, at geological
-time-scales, and under high stresses, ice behaves in a much different fashion.
-In the cold and mountainous regions of the globe, ice accumulates under the
-action of cumulative snowfall, until it reaches a critical thickness, and
+In our daily life, we most commonly experience ice as small, solid cubes
+that crackle on contact with refreshing liquids. Yet, on geological
+time scales, and under high pressure, ice behaves quite differently.
+In the cold and mountainous regions of the globe, ice accumulates through
+cumulative snowfall until it reaches a critical thickness. Beyond this
+threshold, usually in excess of 50\,m, but dependent on temperature, ice
 deforms under its own weight to flow downhill (\cref{fig:glacier-mechanics}).
-Glaciers, these bodies of moving ice, flow by a combination of water-induced
-sliding at the base \citep{Saussure.1796}, and visco-plastic deformation within
-the ice body \citep{Forbes.1846b}.
+Glaciers, these bodies of moving ice, move by a combination of
+meltwater-induced sliding at the base \citep[\S~532]{Saussure.1786}\renote{
+    I mean volume 1, which as a couple of beautiful paragraphs (would be worth
+    translating if I had time) about how the "heat from the Earth's interior"
+    melts basal ice to lubricate glacier flow. This is precisely those
+    paragraphs that \citet{Forbes.1846} refers to sixty years later when
+    advancing his ``viscous theory of glacier notion''. According to the cover
+    page, volume 1 was published in ``MDCCLXXXVI'', which I just translated to
+    1786 (so 1796 was wrong).},
+and viscous deformation within the
+ice body \citep{Forbes.1846b}.
 
-As ice flows and glides on its bed, it transports rock debris and erodes the
-landscape, thence leaving geomorphological traces of its former presence
-(\cref{fig:glaciation-indicators}). In many parts of the world, montane people
-and early explorers have since long learned to read these traces, and to
-understand that glaciers had once been more extensive than today. With the
-advent of the glacial theory, birthed the idea that, under colder temperatures
+As glaciers flow and slide across their bed, they transport\renote{
+    I would like to keep this statement general, surface transport is also
+    important. Erosion is not only by basal rock debris but also, indirectly,
+    by glacial meltwater.}
+rock debris and erode the landscape, thereby leaving geomorphological traces of
+their former presence (\cref{fig:glaciation-indicators}). In several parts of
+the world, montane people\renote{
+    I insist on keeping this: people of the Alps, for istance, had understood
+    that glacial erratics originated from glaciers before it has ever been
+    documented by explorers and scientists. It is stated in the old literature.
+    Check the new reference, reprinted in \citet{Mathews.1898} (not quite sure
+    how to cite this material).}
+and early explorers learned since long to read these traces, and to
+understand that glaciers had once been more extensive than today
+\citep[e.g.,][p.~21]{Windham.Martel.1744}. Wtih the emergence of the glacial
+theory came the idea that, under colder temperatures
 than today, expansive \emph{ice sheets} had once covered much of Europe and
-North America \citep{Agassiz.1840}.
+North America \citep{Agassiz.1840}\renote{
+    I am a bit reluctant to write ``\citep{Agassiz.1840} eventually posed the
+    glacial theory''. Although he published these ideas, do they really
+    originate from him?}.
 
-However, the glacial theory did not gain much belief until the exploration and
-discovery of the two present-day ice sheets on Earth: the Greenland and
+However, the glacial theory did not gain general acceptance until the
+discovery and exploration
+of the two present-day ice sheets on Earth: the Greenland and
 Antarctic ice sheets, provided a modern analogue for the proposed European and
 North American ice sheets. The first traverse of Greenland was performed by
 Nansen in 1888, while Amundsen reached the south pole in 1911. Meanwhile, in
@@ -168,44 +190,64 @@ the European Alps, it was then discovered from observations of the glacial
 landscape, that there had not been only one, but at least four, glacial periods
 \citep{Penck.Bruckner.1909}.
 
-More recently, palaeo-climate records extracted from deep-sea sediments have
-provided a much more detailed picture of the Earth environmental history
-\citep[e.g.,][]{Emiliani.1955, Shackleton.Opdyke.1973}, thus indicating neither
-one, nor four, but rather tens of glacial cycles. During the last million
-years, glacial and interglacial cycles have succeeded each other with a
-100\,kyr periodicity \citep{Hays.etal.1976}. In the present thesis, we focus on
-the most recent of these periods: \emph{the last glacial cycle}
-(\cref{fig:paleo-timeseries})
+More recently, palaeoclimate records extracted from deep sea sediments and ice
+cores have provided a much more detailed picture of the Earth environmental
+history \citep[e.g.,][]{Emiliani.1955, Shackleton.Opdyke.1973,
+Dansgaard.etal.1993}, indicating neither one, nor four, but rather tens of
+glacial cycles. During the last 800\,ka years, glacial and interglacial cycles
+have succeeded each other with a 100\,ka periodicity \citep{Hays.etal.1976,
+Augustin.etal.2004}. In this thesis, I focus on the most recent of these
+periods: \emph{the last glacial cycle} (\cref{fig:paleo-timeseries})
 
 % ice volume 26.07 + 2.93 = 29.00
-% meters sea-level 58.3 + 0.70 = 59.0
-Together, the Greenland and Antarctic ice sheets currently host most glacial
-ice on the planet, corresponding to 59~meters of potential sea-level rise
-\citep{Bamber.etal.2001, Fretwell.etal.2013}. At the apogee of the last glacial
-cycle, the \emph{Last Glacial Maximum} (LGM), sea-level was 120 to 135\,m lower
-than today
+% meters sea-level 58.3 + 7.36 = 65.6
+Together, the Greenland and Antarctic ice sheets currently host almost all
+glacial ice on the planet, corresponding to 65.6\,m of potential sea level
+rise, were these ice sheets to melt away entirely \citep{Bamber.etal.2013,
+Fretwell.etal.2013}. At the apogee of the last glacial period, global sea level
+was 120 to 135\,m lower than today
 \citep{Clark.Mix.2002}, implying an additional, double amount of ice stored in
 ice sheets and glaciers on land. Systematic mapping and compilation of glacial
-landforms from all continents permitted reconstructions of this former ice
-cover \citep{Ehlers.Gibbard.2007}, indicating that ice volume
+landforms from all continents \citep[e.g.,][]{Prest.etal.1968,
+Boulton.Clark.1990, Kleman.etal.1997, Hattestrand.1998} permitted
+reconstructions of these former ice covers \citep{Ehlers.Gibbard.2007},
+indicating that the excess ice volume
 was repartitioned between more extensive Greenland and Antarctic ice sheets,
-the Scandinavian and Barents-Kara ice sheets in the Eurasian arctic, and the
-Innuitian and Laurentide ice sheets and, finally, the \emph{Cordilleran ice
-sheet}, over North America (\cref{fig:paleo-glaciation}).
+the Fennoscandian and Barents-Kara ice sheets in the Eurasian Arctic, and the
+Innuitian, Laurentide, and \emph{Cordilleran} ice
+sheets over North America (\cref{fig:paleo-glaciation}).
 
-Nevertheless, the landscape record is sparse in time and most often spatially
-incomplete. Palaeo-ice sheets did not leave a systematic record of their
-passage, and much of the evidence has been overridden by subsequent glacier
-re-advances and other geomorphological processes \citep{Kleman.1994}.
+Nevertheless, the landform record is sparse in time and, most often, spatially
+incomplete. Palaeo-ice sheets did not leave a continuous imprint on the
+lanscape, and much of this evidence has been overridden by subsequent glacier
+re-advances and other geomorphological processes \citep{Kleman.1994,
+Kleman.etal.2006, Kleman.etal.2010}.
 Therefore, geomorphological reconstructions of former glacier extent require a
-substantial amount of interpretation. This is where numerical models,
+substantial amount of interpretation. This is where numerical ice sheet models,
 incorporating the processes of glacier sliding \citep[e.g.,][]{Weertman.1957}
-and deformation \citep[e.g.,][]{Nye.1953} observed on modern glaciers, can help.
-Although these models alone contain too many uncertainties to reproduce
-accurate picture of past glacial cycles \citep[e.g.,][]{Hebeler.etal.2008},
-they can be calibrated against geological data where they exist, while
-allowing a physics-based, quantitative reconstruction where they do not
+and deformation \citep[e.g.,][]{Nye.1953} observed on modern glaciers, can
+help. Although these models alone contain too many uncertainties to reproduce
+accurate ice sheet reconstructions during former glacial cycles
+\citep[e.g.,][]{Hebeler.etal.2008}, they can be calibrated against geological
+data where they exist \citep{Napieralski.etal.2007}, while allowing
+physics-based, quantitative reconstructions of ice sheet sectors where they do
+not
 \citep[e.g.,][]{Marshall.etal.2002, Tarasov.Peltier.2004}.
+In addition, numerical ice sheet models provide quantitative insights on the
+four-dimensional distribution of stress and deformation in palaeo-ice sheets
+and allow for reconstructions their past thickness and volume evolution, which
+are difficult to infer from geological evidence
+\renote{
+    Is this the place where to cite \citep{Denton.Hughes.1981}? \todo{I need to
+    check the contents of this book (library).}
+}.
+
+In this thesis, I focus on numerical modelling of the last Cordilleran ice
+sheet, which once covered much of the mountainous terrain of western North
+America \citep{Dawson.1888}, a region where topographic complexity has
+presented a particular challenge to reconstructing glacial history based on the
+geomorphological record \citep[e.g.,][]{Kleman.etal.2010} or numerical ice
+sheet modelling \citep{Robert.1991}.
 
 \begin{figure}
   \centering
@@ -279,11 +321,12 @@ allowing a physics-based, quantitative reconstruction where they do not
 \end{figure}
 
 % ======================================================================
-\section{Field area description}
+\section{Physical setting}
 % ======================================================================
 
-During the last glacial cycle, much of North America has been covered by ice.
-At the last glacial maximum, apex of glaciation, three major ice sheets had
+During the last glacial cycle, much of North America has been covered by ice
+(\cref{fig:map-northamerica}).
+During the last glacial maximum, apex of glaciation, three major ice sheets had
 collided to form a continuous blanket of ice that spanned from Alaska to
 Newfoundland, connecting with the Greenland ice sheet in the Canadian Arctic,
 and extending as far south as Chicago and the Great Lakes
@@ -310,7 +353,7 @@ present thesis.
 \end{figure}
 
 % ----------------------------------------------------------------------
-\subsection{Topographic setting}
+\subsection{Topography}
 % ----------------------------------------------------------------------
 
 The North American Cordillera forms a broad mountain system with an
@@ -377,7 +420,7 @@ grids.
 \end{figure}
 
 % ----------------------------------------------------------------------
-\subsection{Climatic setting}
+\subsection{Climate}
 % ----------------------------------------------------------------------
 
 The topographic complexity of the North American Cordillera is associated with
