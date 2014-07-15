@@ -107,19 +107,23 @@ def annotate(ax, s):
 
 def draw_boot_topo(grid, res):
     from matplotlib.pyplot import sca
+    nc = Dataset(boot_file % res)
     for ax in grid:
         sca(ax)
-        im = iplt.imshow(boot_file % res, 'topg',
+        im = iplt.imshow(nc, 'topg',
                          cmap=topo_cmap, norm=topo_norm)
+    nc.close()
     return im
 
 
 def draw_coastline(grid, res):
     from matplotlib.pyplot import sca
+    nc = Dataset(boot_file % res)
     for ax in grid:
         sca(ax)
-        cs = iplt.contour(boot_file % res, 'topg', levels=[0.0],
+        cs = iplt.contour(nc, 'topg', levels=[0.0],
                           cmap=None, colors='k', linewidths=0.5)
+    nc.close()
     return cs
 
 

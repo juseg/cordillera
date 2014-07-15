@@ -6,7 +6,6 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
 from matplotlib.colorbar import ColorbarBase
-from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters

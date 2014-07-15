@@ -1,6 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import sys
+
+sys.path.append('iceplot')
+
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
 import cartopy.crs as ccrs

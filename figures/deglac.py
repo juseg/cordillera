@@ -5,7 +5,6 @@ import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
-from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
