@@ -13,12 +13,12 @@
 /*.rtf
 
 # Data
-data/*.dbf
-data/*.nc
-data/*.shp
-data/*.shx
-data/*.tif
-data/*.zip
+figures/data/*.dbf
+figures/data/*.nc
+figures/data/*.shp
+figures/data/*.shx
+figures/data/*.tif
+figures/data/*.zip
 
 # Figures
 figures/*.pyc

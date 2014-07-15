@@ -31,7 +31,7 @@ ax.set_xlim((-3187.5e3, 3187.5e3))
 ax.set_ylim((-0900e3, 3600e3))
 
 # Draw ETOPO1 background and coastline
-nc = Dataset('../data/etopo1.nc')
+nc = Dataset('data/etopo1.nc')
 x = nc.variables['x']
 y = nc.variables['y']
 z = nc.variables['Band1']
@@ -80,7 +80,7 @@ raw_ages = [18.0, 17.0, 16.0, 15.0, 14.0]  #, 13.0, 12.0, 11.0, 10.0]
 cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  #, 15.6, 14.1, 13.0, 11.45]
 union = None
 for age in raw_ages:
-    filename = '../data/ice%ik.shp' % age
+    filename = 'data/ice%ik.shp' % age
     print 'reading %s ...' % filename
     for rec in shpreader.Reader(filename).records():
         if rec.attributes['SYMB'] == 'ICE':

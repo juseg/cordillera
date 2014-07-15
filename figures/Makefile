@@ -7,13 +7,15 @@ PY_FIGS = atm.png deglac.png deglacseries.png \
           snapshots.png timeseries.png warmbase.png warmfrac.png
 ALL_FIGS = $(PY_FIGS)
 
-all: $(ALL_FIGS)
+all: data $(ALL_FIGS)
 
 $(PY_FIGS): %.png : %.py
 	python2 $<
 
-.PHONY : clean
+.PHONY : data clean
+
+data:
+	cd data && $(MAKE)
 
 clean:
 	rm $(ALL_FIGS)
-	rm -f *.{aux,log,fdb_latexmk,fls}
