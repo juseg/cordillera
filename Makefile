@@ -1,17 +1,9 @@
 PAPER = cordillera-cycle
-FIGS = atm.png deglac.png deglacseries.png \
-       deglacshots-grip.png deglacshots-epica.png \
-       duration.png erosion.png lastflow.png locmap.png \
-       profiles-epica.png profiles-grip.png \
-       snapshots.png timeseries.png warmbase.png warmfrac.png
 
 all: $(PAPER).tex figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
 
-figures: $(addprefix figures/,$(FIGS))
-
-figures/%.png: figures/%.py data
-	cd $(<D) && python2 $(<F)
+.PHONY : data figures clean
 
 data: data/etopo1.nc data/ice18k.shp
 
@@ -21,7 +13,10 @@ data/etopo1.nc:
 data/ice18k.shp:
 	cd data && bash get-dykeshp.sh
 
+figures:
+	cd figures && $(MAKE)
+
 clean:
 	rm -f data/ice*k.{dbf,shp,shx}
-	rm -f $(addprefix figures/,$(FIGS))
+	cd figures && $(MAKE) clean
 	latexmk -CA
