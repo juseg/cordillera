@@ -15,10 +15,11 @@ ax2 = fig.add_axes([10/figw, 10/figh, 107.5/figw, 32.5/figh])
 mis_idces = np.zeros((len(records), 3), dtype=int)
 mis_times = np.zeros((len(records), 3), dtype=float)
 mis_ivols = np.zeros((len(records), 3), dtype=float)
+mis_iareas = np.zeros((len(records), 3), dtype=float)
 
 # loop on records[i]
+tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
 for i, rec in enumerate(records):
-    print 'plotting %s time series...' % rec
     dt = offsets[i]
 
     # get MIS times
@@ -33,9 +34,17 @@ for i, rec in enumerate(records):
     # load output time series
     nc = Dataset(run_path % ('10km', rec, dt*100) + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
+    ts_iarea = nc.variables['iarea'][:]/1e12
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
+    mis_iareas[i] = ts_iarea[mis_idces[i]]
     mis_ivols[i] = ts_ivol[mis_idces[i]]
+
+    # print info in table style
+    tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
+    print tabline % ( (labels[i],) + tuple(mis_times[i]) )
+    print tabline % ( ('',) + tuple(mis_iareas[i]) )
+    print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
     # plot time series
     ax1.plot(dt_time, dt_temp, color=colors[i])
@@ -53,6 +62,7 @@ for i, rec in enumerate(records):
     except RuntimeError:
         pass
 
+
 # mark true MIS stages
 # source: http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
 ax2.axvspan(-71, -57, fc='0.95', lw=0.25)
@@ -68,13 +78,21 @@ mistmin = mis_times.min(axis=0)
 mistmax = mis_times.max(axis=0)
 misvmin = mis_ivols.min(axis=0)
 misvmax = mis_ivols.max(axis=0)
-print misvmin, misvmax
+misamin = mis_iareas.min(axis=0)
+misamax = mis_iareas.max(axis=0)
 for i in range(3):
-    print 'MIS %i between %.1f and %.1f kyr' % (4-i, -mistmin[i], -mistmax[i])
     ax2.add_patch(Rectangle((mistmin[i], misvmin[i]),
                              mistmax[i] - mistmin[i],
                              misvmax[i] - misvmin[i],
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
+
+# print info in table style
+print tabline % ( ('Minimum',) + tuple(mistmin) )
+print tabline % ( ('',) + tuple(misamin) )
+print tabline % ( ('',) + tuple(misvmin) ) + '\\\\'
+print tabline % ( ('Maximum',) + tuple(mistmax) )
+print tabline % ( ('',) + tuple(misamax) )
+print tabline % ( ('',) + tuple(misvmax) ) + '\\\\'
 
 # set axes properties and save time series
 print 'saving time series...'

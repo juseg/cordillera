@@ -459,8 +459,6 @@ annual temperature lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
 \label{sec:results}
 % ----------------------------------------------------------------------
 
-\todo{Add table with MIS~2, 3, and 4 volume and area table.}
-
 Despite large differences in the input atmospheric forcing (temperature offset
 time-series; Fig.~\ref{fig:timeseries}), model output presents consistent
 features that can be observed across the range of forcing data used. In all
@@ -470,7 +468,9 @@ and 55.4\,ka during Marine Oxygen Isotope Stage (MIS)~4, and between 29.5 and
 16.9\,ka during MIS~2 (Fig.~\ref{fig:timeseries}). An ice volume minimum is
 consistently attained between 52.2 and 45.6\,ka during MIS~3. However, the
 magnitude and precise timing of these three events depend significantly on the
-choice of proxy record used for time-dependent atmospheric forcing.
+choice of proxy record used for time-dependent atmospheric forcing
+(Table~\ref{tab:records})\renote{
+    Hopefully this new table will assess several of your comments at once.}.
 
 Simulations forced by the Greenland ice core palaeo-temperature\renote{
     Throughout this section, I prepended ``palaeo-temperature'' to
@@ -482,8 +482,8 @@ throughout the last glacial cycle. In contrast, simulations driven by oceanic
 generally result in smaller\renote{
     Until we run out of other ajectives, I don't think that ``modest'' and
     ``generous'' are adequate terms for describing ice volumes.}
-modelled ice volumes during MIS~4 and larger ice volumes during MIS~3, thus
-indicating. More broadly speaking, they produce lower ice volume variability
+modelled ice volumes during MIS~4 and larger ice volumes during MIS~3.
+More broadly speaking, they produce lower ice volume variability
 throughout the simulation length. The NGRIP atmospheric forcing is the only one
 that results in a larger ice volume during MIS~4 than during the last glacial
 maximum (MIS~2).
@@ -509,7 +509,10 @@ ice sheet geometries during the last glacial maximum (MIS~2;
 Fig.~\ref{fig:snapshots}, lower panels) appear highly similar from one
 simulation to the next. They include a ca. 1\,500\,km-long central divide
 located about 3\,500\,m\ above sea level (a.s.l.) along the spine of the Rocky
-Mountains. A central ice cap persists in all simulations over the Skeena
+Mountains. The volumes of these modelled last glacial maximum ice sheets are
+contained within a close range from 8.24 to 8.66\,m of sea-level equivalent
+(s.l.e; Table~\ref{tab:records}).
+A central ice cap persists in all simulations over the Skeena
 Mountains during the MIS~3 ice volume minima (Fig.~\ref{fig:snapshots}, middle
 panels). However, the size of the Skeena Mountains ice cap, and the dimensions
 of the Cordilleran ice sheet during the MIS~4 glaciation, depend sensitively on
@@ -827,11 +830,11 @@ at the National Supercomputing Center (NSC).
            $T_{[32, 22]}$ refers to the resulting mean temperature anomaly
            during the period -32 to~-22~ka after scaling.}
   \label{tab:records}
-  {\begin{tabular}{lccccccl}
+  {\begin{tabular}{l|ccc|ccc|l}
     \tophline
     Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
            & Reference\\
-    & & & (m\,a.s.l) & & & (K) & \\
+    & & & (m~a.s.l) & & & (K) & \\
     \middlehline
     GRIP     &  72{\degree} 35' N  % 72.58 (decimal)
              &  37{\degree} 38' W  % 37.64 (decimal)
@@ -874,6 +877,50 @@ at the National Supercomputing Center (NSC).
              & \chem{U^{K'}_{37}}
              & 1.16 & -5.8{\degree}C  % -5.0000
              & \citet{Herbert.etal.2001} \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
+
+% tab:records
+\begin{table*}[t]
+  \caption{Extrema of ice volume and extent corresponding to MIS~4, 3 and 2 for
+           each of the low-resolution simulations (Fig.~\ref{fig:timeseries}).}
+  \label{tab:records}
+  {\begin{tabular}{l*{3}{|ccc}}
+    \tophline
+             & \multicolumn{3}{c}{Age (ka)}
+             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
+    Record   & MIS.~4 & MIS.~3 & MIS.~2
+             & MIS.~4 & MIS.~3 & MIS.~2
+             & MIS.~4 & MIS.~3 & MIS.~2 \\
+    \middlehline
+    GRIP     & -57.58 & -49.24 & -19.52
+             &   1.98 &   0.46 &   2.13
+             &   7.52 &   0.89 &   8.52 \\
+    NGRIP    & -60.26 & -50.16 & -22.85
+             &   2.16 &   0.50 &   2.09
+             &   8.69 &   0.93 &   8.24 \\
+    EPICA    & -61.87 & -45.57 & -17.10
+             &   1.57 &   0.95 &   2.08
+             &   5.20 &   2.44 &   8.35 \\
+    Vostok   & -60.87 & -49.68 & -16.87
+             &   1.55 &   0.86 &   2.14
+             &   5.10 &   2.01 &   8.66 \\
+    ODP 1012 & -55.41 & -47.08 & -23.21
+             &   1.44 &   0.85 &   2.13
+             &   4.50 &   2.06 &   8.46 \\
+    ODP 1020 & -60.16 & -52.24 & -29.46
+             &   1.32 &   0.70 &   2.08
+             &   3.88 &   1.52 &   8.32 \\
+    \middlehline
+    Minimum  & -61.87 & -52.24 & -29.46
+             &   1.32 &   0.46 &   2.08
+             &   3.88 &   0.89 &   8.24 \\
+    Maximum  & -55.41 & -45.57 & -16.87
+             &   2.16 &   0.95 &   2.14
+             &   8.69 &   2.44 &   8.66 \\
     \bottomhline
   \end{tabular}}
   \belowtable{}
