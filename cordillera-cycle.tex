@@ -235,7 +235,7 @@ patterns of deglaciation.
 
 \todo{Move parameter values into a separate table.}
 
-\todo{Do we need a new subsection title here?}
+\noindent\todo{Do we need a new 2.1 subsection title here?}
 
 The simulations presented here were run using the Parallel Ice Sheet Model
 (PISM, development version~11b0a7f and stable version~0.6.1), an open source,
@@ -455,7 +455,7 @@ NARR reference topography, $b_{ref}$, on the other hand. All simulations use an
 annual temperature lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
 
 % ----------------------------------------------------------------------
-\section{Model sensitivity to atmospheric forcing}
+\section{Sensitivity to atmospheric forcing time-series}
 \label{sec:results}
 % ----------------------------------------------------------------------
 
@@ -469,13 +469,13 @@ and 55.4\,ka during Marine Oxygen Isotope Stage (MIS)~4, and between 29.5 and
 consistently attained between 52.2 and 45.6\,ka during MIS~3. However, the
 magnitude and precise timing of these three events depend significantly on the
 choice of proxy record used for time-dependent atmospheric forcing
-(Table~\ref{tab:records})\renote{
+(Table~\ref{tab:extrema})\renote{
     Hopefully this new table will assess several of your comments at once.}.
 
 Simulations forced by the Greenland ice core palaeo-temperature\renote{
-    Throughout this section, I prepended ``palaeo-temperature'' to
-    ``record(s)'' in place of ``climate'' as you originally suggested. If we
-    are to precise what type ``records'' we use, let's be clear about it.}
+    From here on, I prepend ``palaeo-temperature'' to ``record(s)'' in place of
+    ``climate'' as you (Arjen) originally suggested. If we are to precise what
+    type of ``records'' we use, let's be clear about it.}
 records (GRIP, NGRIP) produce the highest variability in modelled ice volume
 throughout the last glacial cycle. In contrast, simulations driven by oceanic
 (ODP~1012, ODP~1020) and Antarctic (EPICA, Vostok) palaeo-temperature records
@@ -511,7 +511,7 @@ simulation to the next. They include a ca. 1\,500\,km-long central divide
 located about 3\,500\,m\ above sea level (a.s.l.) along the spine of the Rocky
 Mountains. The volumes of these modelled last glacial maximum ice sheets are
 contained within a close range from 8.24 to 8.66\,m of sea-level equivalent
-(s.l.e; Table~\ref{tab:records}).
+(s.l.e; Table~\ref{tab:extrema}).
 A central ice cap persists in all simulations over the Skeena
 Mountains during the MIS~3 ice volume minima (Fig.~\ref{fig:snapshots}, middle
 panels). However, the size of the Skeena Mountains ice cap, and the dimensions
@@ -520,64 +520,101 @@ the choice of palaeo-temperature record used to drive the model.
 
 
 % ----------------------------------------------------------------------
-\section{Comparison to the geologic record}
+\section[Comparison to the geologic record]
+        {Comparison to the geologic record\renote{
+    Arjen, you have proposed 2.1 Evaluation of model runs agains field
+    evidence, 2.2 Palaeoglaciology of the Cordilleran ice sheet, and 2.3 The
+    last deglaciation; but I don't think these headers work. In my vision of
+    the paper, this entire ``discussion'' part is all about evaluation of model
+    runs agains field evidence and palaeoglaciology. Because of this, and
+    because we also present new ``results'', or rather different views of the
+    same results, I propose to rename it to a more explicit ``Comparison to the
+    geologic record'' (or similar). I have also renamed the ``results'' to
+    ``Sensitivity to atmospheric forcing time-series'', which is actually what
+    that section is about: raw model output, no discussion against the geologic
+    record.}}
 \label{sec:discussion}
 % ----------------------------------------------------------------------
 
-\subsection{Scale and timing of glaciation}
+\subsection{Timing of glaciation}
 
-Independently of the choice of palaeo-temperature record used as forcing
-time-series for the ice sheet model, our simulations consistently produce two
-glaciation maxima during MIS~4 (61.9--55.4\,kyr) and MIS~2
-(29.5--16.9\,kyr). These events broadly correspond in timing to the
-Gladstone (MIS~4) and McConell (MIS~2) glaciations documented by geological
-evidence in the northern part of the model domain \aref, and to the Fraser
-(MIS~2) glaciation in the southern part \aref
-\footnote{\textbf{Arjen, Martin, Johan,} can you check that I use these names
-    correctly, and help me to fill the missing refs in this sentence? Is is
-    possible to trace back when these names where first applied?}.
+Independently of the choice of palaeo-temperature record\renote{
+    In my view, ``atmospheric/climate forcing'' would be far too broad here. We
+    could possibly apply a much wilder choice of atmospheric forcing
+    techniques, leading just as wild differences in model output
+    \citep[e.g.,][but possibly much more than that]{Seguinot.etal.2014}.}
+used to force the ice sheet model, our simulations consistently produce two
+glacial maxima during the last glacial cycle. The first maximum configuration
+is obtained during MIS~4 (61.9--55.4\,ka) and the second during MIS~2
+(29.5--16.9\,ka). These events broadly correspond in timing to the Gladstone
+(MIS~4) and McConnell (MIS~2) glaciations documented by geological evidence for
+the northern sector of the Cordilleran ice sheet
+    \citep{Duk-Rodkin.etal.1996, Ward.etal.2007,
+           Stroeven.etal.2010, Stroeven.etal.2014},
+and to the Fraser Glaciation (MIS~2) documented for its southern sector
+    \citep{Porter.Swanson.1998, Margold.etal.inpress}.
+There is patchy stratigraphical evidence for glaciations older than the Fraser
+Glaciation \citep{Clague.Ward.2011} in British Columbia, and their extent and
+timing are therefore still highly conjectural
+    \citep[perhaps MIS~4 or early MIS~3; e.g.,][]{Cosma.etal.2008}.
 
-However, the timing of the modelled glacial maxima strongly depends on the
-choice of palaeo-temperature record used, and a more precise agreement with
-timing reconstructed from geological evidence is only attained in some of our
-simulations. In the Puget lowland, the last glacial maximum advance of the
-southern Cordilleran ice sheet margin has been constrained by radiocarbon
-dating between 17.4 and 16.4\,\unit{\chem{^{14}C}\,cal\,kyr\,BP}
-\citep[Fig.~4]{Porter.Swanson.1998}.
+However, the exact timing of modelled MIS~2 maxima depend strongly on the
+choice of applied palaeo-temperature record, which allows for a more in-depth
+comparison with geological evidence for the timing of maximum Cordilleran ice
+sheet extent. In the Puget lowland (Fig.~\ref{fig:locmap}), the LGM advance of
+the southern Cordilleran ice sheet margin has been constrained by radiocarbon
+dating on wood between 17.4 and 16.4\,\unit{\chem{^{14}C}\,cal\,kyr\,BP}
+\citep{Porter.Swanson.1998}.
 These dates have been confirmed by the offshore sediment record, which shows an
 increase of glaciomarine sedimentation between 19.5 and
-16.2\,\unit{\chem{^{14}C}\,cal\,kyr\,BP} \citep{Cosma.etal.2008}.
+16.2\,\unit{\chem{^{14}C}\,cal\,kyr\,BP} \citep{Cosma.etal.2008}. Radiocarbon
+dating of the northern Cordilleran ice sheet margin is much less constrained
+but straddles presented constraints from the southern margin. However,
+cosmogenic exposure dating by \citep{Stroeven.etal.2010, Stroeven.etal.2014}
+places the timing of maximum CIS extent during the McConnell glaciation close
+to 17\,ka.
 
-Among simulations presented here, only those forced by the GRIP, EPICA and
-Vostok records place the last glacial maximum within this range
-(Fig.~\ref{fig:timeseries}, lower panel). Simulations driven by the NGRIP,
-ODP~1012 and ODP~1020 records, on the contrary, produce a last glacial maximum
-that pre-dates reconstructed ages by several thousand years. Concerning the
-simulations driven by oceanic records, this early deglaciation is caused by an
-early warming sealed in the palaeo-temperature reconstructions
-(Fig.~\ref{fig:timeseries}, upper panel). However, it has been shown that this
+Among the simulations presented here, only those forced with the GRIP, EPICA
+and Vostok palaeo-temperature records yield Cordilleran ice sheet maximum
+extent that may be compatible with these field constraints
+(Fig.~\ref{fig:timeseries}, lower panel; Fig.~\ref{fig:snapshots}, lowest
+panels). Simulations driven by the NGRIP, ODP~1012 and ODP~1020
+palaeo-temperature records, on the contrary, yield MIS~2 maximum Cordilleran
+ice sheet extents that pre-date field-based constraints by several thousands of
+years. Concerning the simulations driven by oceanic records, this early
+deglaciation is caused by an early warming present in the alkenone
+palaeo-temperature reconstructions (Fig.~\ref{fig:timeseries}, upper panel;
+\citealp[Fig.3]{Herbert.etal.2001}). However, this
 early warming is a local effect, corresponding to a weakening of the California
 current \citep[Fig.~3]{Herbert.etal.2001}. The California current, driving cold
-waters southwards
-along the western coast of North America, is thought to have weakened in the
-presence of the Cordilleran ice sheet, resulting in paradoxically warmer
-sea-surface temperatures at the locations of the ODP~1012 and ODP~1020 sites
-during the last glacial maximum \citep{Herbert.etal.2001}.
+waters southwards along the south-western coast of North America\renote{
+    Not only USA but also Baja California in Mexico.},
+has been shown to have weakened during each peak global glaciation (in SPECMAP)
+durint the past 550\,ka, resulting in paradoxically warmer sea-surface
+temperatures at the locations of the ODP~1012 and ODP~1020 sites also during
+the LGM \citep{Herbert.etal.2001}.
 
-Because most of the Cordilleran ice sheet marine front lies in a different
-oceanic circulation gyre than that holding the California current, it is
-unlikely that it was affected by this early warming. However, the above paradox
+Because most of the marine margine of the Cordilleran ice sheet terminated in a
+sector of the Pacific Ocean unaffected by variations in the California current,
+it probably remained unaffected by this early warming. However, the above paradox
 illustrates the complexity of ice-sheet feedbacks on regional climate, and
 demonstrates that, although located in the neighbourhood of the modelling
-domain, the ODP~1012 and ODP~1020 palaeo-temperature proxy records can not be
-used as a realistic forcing time-series to model the Cordilleran ice sheet
+domain, the ODP~1012 and ODP~1020 palaeo-temperature records cannot be
+used as a realistic forcing to model the Cordilleran ice sheet
 through the last glacial cycle.
 
-These results make us believe that a palaeo-temperature proxy record located
-in the direct vicinity of the former Cordilleran ice sheet would be of great
-help to further understand its glacial history. Because, to our knowledge, no
+\todo{say something about NGRIP.}
+
+... Hence, we focus the rest of our analysis on simulations forced by palaeo-temperature records from GRIP and EPICA ice cores (Fig.~\ref{fig:timeseries}, lower panel, dotted lines).
+
+\todo{avoid repetition with the next paragraph.}
+
+These results indicate that a palaeo-temperature proxy record located in the
+direct vicinity of the former Cordilleran ice sheet would potentially lead to
+improved understanding of the history of advance and retreat of the western ice
+sheet margin. Because, to our knowledge, no
 such record yet exists, we focus the rest of our analysis on simulations forced
-by temperature records from Greenland (GRIP) and Antarctic (EPICA) ice cores
+by palaeo-temperature records from GRIP and EPICA ice cores
 (Fig.~\ref{fig:timeseries}, lower panel, dotted lines).
 
 \subsection{Location and longevity of the major ice-despersal centres}
@@ -886,15 +923,15 @@ at the National Supercomputing Center (NSC).
 \begin{table*}[t]
   \caption{Extrema of ice volume and extent corresponding to MIS~4, 3 and 2 for
            each of the low-resolution simulations (Fig.~\ref{fig:timeseries}).}
-  \label{tab:records}
+  \label{tab:extrema}
   {\begin{tabular}{l*{3}{|ccc}}
     \tophline
              & \multicolumn{3}{c}{Age (ka)}
              & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
              & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
-    Record   & MIS.~4 & MIS.~3 & MIS.~2
-             & MIS.~4 & MIS.~3 & MIS.~2
-             & MIS.~4 & MIS.~3 & MIS.~2 \\
+    Record   &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2 \\
     \middlehline
     GRIP     & -57.58 & -49.24 & -19.52
              &   1.98 &   0.46 &   2.13
@@ -941,7 +978,8 @@ at the National Supercomputing Center (NSC).
            Mountains (RM) and the North Cascades (NC). The background
            map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
            Data \citep{Patterson.Kelso.2014}.
-           \todo{Mark palaeo-ice sheets and mountain ranges on the map.}}
+           \todo{Mark palaeo-ice sheets and mountain ranges on the map.
+                 Mark location of the Puget Lowland.}}
   \label{fig:locmap}
 \end{figure}
 
