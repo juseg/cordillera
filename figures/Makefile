@@ -1,7 +1,6 @@
 # Figures Makefile
 
-PY_FIGS = atm.png deglac.png deglacseries.png \
-          deglacshots-grip.png deglacshots-epica.png \
+PY_FIGS = atm.png deglac.png deglacseries.png deglacshots.png \
           duration.png icemaps-mis2.png icemaps-mis4.png \
           lastflow.png locmap.png \
           profiles-epica.png profiles-grip.png \

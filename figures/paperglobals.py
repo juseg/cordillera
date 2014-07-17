@@ -97,10 +97,13 @@ def get_mis_times(filename):
 
 
 # plotting functions
-def annotate(ax, s):
+def annotate(ax, s, bottom=False):
     fig = ax.get_figure()
-    offset = ScaledTranslation(-2.5*in2mm, -2.5*in2mm, fig.dpi_scale_trans)
-    return ax.text(1, 1, s, va='top', ha='right',
+    xoffset = -2.5*in2mm
+    yoffset = (2*bottom-1)*2.5*in2mm  # pos. if bottom else neg.
+    offset = ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
+    return ax.text(1, 1-bottom, s,
+                   ha='right', va=('bottom' if bottom else 'top'),
                    bbox=dict(ec='k', fc='w', alpha=1.0, pad=2.5*pt2mm),
                    transform=ax.transAxes + offset)
 
