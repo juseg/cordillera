@@ -976,6 +976,202 @@ at the National Supercomputing Center (NSC).
 % Floats
 % =============================================================================
 
+% tab:params
+\begin{table*}
+  \centering
+  \caption{Main parameters of the ice sheet model.
+           \todo{At the moment, this is pretty extensive (does not fit on one
+                 page using the standard font size). There are probably a
+                 couple of things that are not needed here, like for instance
+                 the very standard things (gravity, gas constant, etc). Many
+                 parameters are not defined in the text. Do we need to
+                 introduce them, or should we skip them? I wonder if the last
+                 column is needed, in which case it needs to be completed.}}
+  \label{tab:params}
+  \footnotesize
+  {\begin{tabular}{llrll}
+    \tophline
+    Not.    & Name & Value & Unit & Source \\
+    \middlehline
+
+    \multicolumn{2}{l}{\emph{Ice rheology}} \\
+
+    $\rho$  & Ice density
+            & 910
+            & \unit{kg\,m^{-3}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $g$     & Standard gravity
+            & 9.81
+            & \unit{m\,s^{-2}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $n$     & Glen exponent
+            & 3
+            & -
+            & \aref \\
+
+    $A_c$   & Ice hardness coefficient cold
+            & $3.61\times10^{-13}$
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $A_w$   & Ice hardness coefficient warm
+            & $1.73\times10^3$
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_c$   & Flow law activation energy cold
+            & $6.0\times10^4$
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_w$   & Flow law activation energy warm
+            & $13.9\times10^4$
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $R$     & Ideal gas constant
+            & 8.31441
+            & \unit{J\,mol^{-1}\,K^{-1}}
+            & \aref \\
+
+    $T_c$   & Flow law critical temperature
+            & 263.15
+            & \unit{K}
+            & \citet{Paterson.Budd.1982} \\
+
+    $f$     & Flow law water fraction coeff.
+            & 181.25
+            & -
+            & \citet{Lliboutry.Duval.1985} \\
+
+    $\beta$ & Clapeyron constant
+            & $7.9\times10^{-8}$
+            & \unit{K\,Pa^{-1}}
+            & \citet{Luthi.etal.2002} \\
+
+    $c_i$   & Ice specific heat capacity
+            & 2009
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $c_w$   & Water specific heat capacity
+            & 4170
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $k$     & Ice thermal conductivity
+            & 2.10
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $L$     & Water latent heat of fusion
+            & $3.34\times10^5$
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    \multicolumn{2}{l}{\emph{Basal sliding}} \\
+
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & -
+            & - \\
+
+    $v_{th}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}}
+            & - \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa
+            & - \\
+
+    $\delta$& Effective pressure coefficient
+            & 0.02
+            & -
+            & - \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $C_c$   & Till compressibility coefficient
+            & 0.12
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $W_{max}$ & Maximal till water thickness
+            & 2.0
+            & m
+            & - \\
+
+    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
+
+    $\rho_b$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \aref \\
+
+    $c_b$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Ritz.1997} \\
+
+    $k_b$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Ritz.1997} \\
+
+    $\nu_m$ & Mantle viscosity
+            & $1\times10^21$
+            & \unit{Pa\,s}
+            & \citet{Lingle.Clark.1985} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \citet{Lingle.Clark.1985} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & $5.0\times10^24$
+            & \unit{N}
+            & \citet{Lingle.Clark.1985} \\
+
+    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
+
+    $T_s$   & Temperature of snow precipitation
+            & 273.15
+            & \unit{K}
+            & \aref \\
+
+    $T_r$   & Temperature of rain precipitation
+            & 275.15
+            & \unit{K}
+            & \aref \\
+
+    $F_s$   & Degree-day factor for ice
+            & $3.04\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $F_i$   & Degree-day factor for ice
+            & $4.59\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $\gamma$& Air temperature lapse-rate
+            & $6\times10^{-3}$
+            & \unit{K\,m{-1}}
+            & - \\
+
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
+
 % tab:records
 \begin{table*}[t]
   \caption{Palaeo-temperature proxy records and scaling parameters yielding
@@ -1038,7 +1234,7 @@ at the National Supercomputing Center (NSC).
   \belowtable{}
 \end{table*}
 
-% tab:records
+% tab:extrema
 \begin{table*}[t]
   \caption{Extrema of ice volume and extent corresponding to MIS~4, 3 and 2 for
            each of the low-resolution simulations (Fig.~\ref{fig:timeseries}).}
