@@ -1335,6 +1335,9 @@ at the National Supercomputing Center (NSC).
   \belowtable{}
 \end{table*}
 
+% avoid "too many unprocessed floats" errors
+\clearpage
+
 % fig:locmap
 \begin{figure}
   \includegraphics{locmap}
@@ -1395,6 +1398,24 @@ at the National Supercomputing Center (NSC).
            despite large differences in timing.
            \todo{Perhaps indicate the location of the Skeena Mountains.}}
   \label{fig:snapshots}
+\end{figure*}
+
+% fig:mis2
+\begin{figure*}
+  \includegraphics{icemaps-mis2}
+  \caption{Modelled surface topography (200\,m contours) and surface velocity
+           (colour mapping) corresponding to the maximum ice volume during
+           MIS~2 in the GRIP and EPICA high-resolution simulations.}
+  \label{fig:mis2}
+\end{figure*}
+
+% fig:mis4
+\begin{figure*}
+  \includegraphics{icemaps-mis4}
+  \caption{Modelled surface topography (200\,m contours) and surface velocity
+           (colour mapping) corresponding to the maximum ice volume during
+           MIS~4 in the GRIP and EPICA high-resolution simulations.}
+  \label{fig:mis4}
 \end{figure*}
 
 % fig:duration
@@ -1475,7 +1496,6 @@ at the National Supercomputing Center (NSC).
            the last deglaciation.}
   \label{fig:deglacshots-epica}
 \end{figure*}
-
 
 % fig:profiles-grip
 \begin{figure}
