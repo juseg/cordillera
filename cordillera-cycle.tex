@@ -566,7 +566,7 @@ volumes are also contained within a close range of 8.24 to 8.66\,m~s.l.e.
     starts here, in order to ``kick out'' the records that perform badly (ODP*,
     NGRIP) and justify that the rest of the analysis is performed on two
     (high-resolution) simulations only. Such figures as
-    Figs.~\ref{fig:duration}--\ref{fig:erosion} and Fig.~\ref{fig:deglac},
+    Figs.~\ref{fig:duration}--\ref{fig:warmfrac} and Fig.~\ref{fig:deglac},
     which I consider as different views of the results rather than new results
     (apart the fact that they use higher resolution) are drawn for the purpose
     of comparing model results against geological evidence. I propose to rename
@@ -741,7 +741,9 @@ the initiation of ice sheet growth, this is not the case for the Selwyn and
 MacKenzie mountains (SMK), where ice cover on the highest peaks is limited to a
 fraction of the last glacial cycle. In other words, the Selwyn and MacKenzie
 mountains appear as a secondary ice-dispersal centre which ``activates'' only
-during the coldest periods of the last glacial cycle.
+during the coldest periods of the last glacial cycle. The Northern Rocky
+Mountains (Fig.~\ref{fig:duration}, NR), do not act as a nucleation centre,
+but rather as a pinning point for the ice margin coming from the west.
 
 Perhaps the most striking feature displayed by the distributions of modelled
 ice cover is the persistence of the Skeena Mountains ice cap throughout the
@@ -783,30 +785,6 @@ elevated group of the Skeena Mountains in north-central British Columbia.
 
 \subsubsection{Potential imprint on the landscape}
 
-\todo{Explain why it would not be good with general statements on thermal
-      evolution of ice cover.}
-
-[In addition, the erosional landscape of the Skeena mountain bears one of the
-strongest glacial imprint found within the area formerly covered by the
-Cordilleran ice sheet \aref%
-\footnote{\textbf{Arjen, Martin, Johan,} can we use a reference here to support
-    this point (observations, mapping, shaded relief)? Alternatively, we could
-    maybe use a photograph, if any of you has one. It would add a bit of
-    variation into the figure list. \textbf{Johan}, you seemed to support this
-    this point during our discussion, any idea?}.
-Here we suggest that persistent ice cover (Fig.~\ref{fig:duration})
-associated with basal ice temperatures at the pressure-melting point
-(Fig.~\ref{fig:warmfrac} and ~\ref{fig:warmbase}%
-\footnote{Fig.~\ref{fig:erosion} is tricky because it may be significantly
-    affected by the constant-geothermal heat flux assumption, which is not
-    valid for this region. Arjen, Johan and I decided to leave it for my kappa
-    for now. Regarding Figs.~\ref{fig:warmfrac} and ~\ref{fig:warmbase}, I
-    still wonder if it is useful to show both. Basically we have
-    Fig.~\ref{fig:warmbase}\,=\,Fig.~\ref{fig:duration}\,*\,Fig.~\ref{fig:warmfrac}.
-    Maybe the reader can perform this multiplication visually without need of
-    Fig.~\ref{fig:warmbase}? Tell me what you think of it.})
-may partly explain this spectacular landscape.]
-
 A correlation is observed between the modelled duration of warm based ice cover
 (Fig.~\ref{fig:warmbase}) and the degree of glacial modification of the
 landscape (mainly in terms of the development of deep glacial valleys and
@@ -814,28 +792,44 @@ troughs). We find evidence for this on both the southwestern and northeastern
 slopes of the southern Coast Mountains, on the western slopes of the Columbia
 Mountains, on the western and eastern slopes of the northern Coast Mountains
 and the Saint-Elias Mountains, and radiating off the Skeena Mountains
-(Figs.~\ref{fig:duration}, \ref{fig:warmbase} and~X\renote{
-    Yes it could be interesting to compare basal flow patterns with Fig.~2 of
-    \citet{Kleman.etal.2010}, but I don't think that I have the time for this
-    right now.}).
+(Figs.~\ref{fig:duration} and \ref{fig:warmbase};
+\citealp[Fig.~2]{Kleman.etal.2010})\renote{
+    Yes, I agree that it would be good to eventually reproduce here the basal
+    flow patterns from Johan's map \citep[Fig.~2]{Kleman.etal.2010}, but I
+    don't think that I will have the time for this before thesis submission}.
 The Skeena Mountains, for example, indeed bear a strong glacial imprint that
 indicates ice drainage in a system of distinct glacial troughs emanating in a
-radial pattern from the centre of the mountain range (Fig. X). We suggest that
+radial pattern from the centre of the mountain range
+\citep[Fig.~2]{Kleman.etal.2010}. We suggest that
 persistent ice cover (Fig.~\ref{fig:duration}) associated with basal ice
 temperatures at the pressure-melting point (Figs.~\ref{fig:warmfrac}
 and~\ref{fig:warmbase}) explains the large-scale glacial erosional imprint on
-the landscape. In contrast, a well-developed network of glacial valleys west of
-the MacKenzie Mountains \citep[Fig.~X;][]{Kleman.etal.2010,
-Stroeven.etal.2010}, which is modelled to have hosted warm-based ice
-(Fig.~\ref{fig:warmfrac}) has only been glaciated for a short duration
-(Fig.~\ref{fig:duration}) during the last glacial cycle according to our
-results (Figs.~\ref{fig:duration} and~\ref{fig:warmbase}). We therefore infer
-that either our model does not perform reliably in this part of the domain or
+the landscape. A well-developed network of glacial valleys west of
+the MacKenzie Mountains (\citealp[Fig.~2]{Kleman.etal.2010}; \citealp[Fig.~8]
+{Stroeven.etal.2010}) is modelled to have hosted warm-based ice
+(Fig.~\ref{fig:warmfrac}) but it has only been glaciated for a short fraction
+of the last glacial cycle (Fig.~\ref{fig:duration}) according to our
+results. This perhaps indicate that\renote{
+    I don't think that we have to infer that ``our model does not perform
+    reliably'' here. I am actually quite happy to discover that the model
+    puts warm-based ice where there is (another) region of strong glacial
+    erosion. I would rather say that computing the ``duration of
+    warm-based ice cover'' as I did for is a very simple approach and that we
+    can expect it to give a qualitative proxy for glacial erosion but not a
+    quantitative one.}
 the observed landscape pattern originates from older glacial cycles and
-indicates an increased relative importance of this ice dispersal centre prior
+witnesses an increased relative importance of this ice dispersal centre prior
 to the Late Pleistocene \citep[cf.][]{Ward.etal.2008, Demuro.etal.2012}.
 
-\todo{Paragraph on model uncertainties related to warm-based ice.}
+The modelled distribution of warm-based ice cover (Figs.~\ref{fig:warmbase}
+and~\ref{fig:warmfrac}) is inevitably affected by our assumption of a constant,
+70\,\unit{mW\,m^{-2}} geothermal heat flux at 3\,km depth
+(Sect.~\ref{sec:overview}). However, both the Skeena Mountain area and the area
+west of the MacKenzie Mountains are areas of higher-than-average geothermal
+heat flux \citep{Blackwell.Richards.2004}. We can therefore expect a higher
+frequency of warm-based ice cover in this areas if we were to include
+spatially-variable geothermal forcing in our simulations.
+
 
 % -----------------------------------------------------------------------------
 \subsection{The last deglaciation}
@@ -1406,26 +1400,16 @@ at the National Supercomputing Center (NSC).
 % fig:duration
 \begin{figure*}
   \includegraphics{duration}
-  \caption{Modelled duration of ice cover during the last 120\,kyr.
+  \caption{Modelled duration of ice cover during the last 120\,ka.
            Note the irregular colour scale. A contiguous ice cover spanning
            from the Alaska Range (AR) to the southern Coast Mountains (CM) and
-           Rocky Mountains (RM) exists for about 29\,kyr in both
+           Rocky Mountains (RM) exists for about 29\,ka in both
            simulations. A central
            ice cover persists over the Skeena Mountains (SM) during most of the
            simulation. On the other hand, the maximal extent of the ice sheet
-           generally corresponds to relatively short durations of ice cover.}
+           generally corresponds to relatively short durations of ice cover.
+           \todo{Add WSE, SMK, NR, NC mountain ranges, and changes kyr to ka}}
   \label{fig:duration}
-\end{figure*}
-
-% fig:warmfrac
-\begin{figure*}
-  \includegraphics{warmfrac}
-  \caption{Modelled fraction of warm-based ice cover during the ice-covered
-           period. Note the dominance of warm-based conditions on the
-           continental shelf and major glacial troughs of the coastal ranges.
-           Hatches indicate areas that were covered by cold ice only.
-           \todo{indicate location of the Skeena Mountains.}}
-  \label{fig:warmfrac}
 \end{figure*}
 
 % fig:warmbase
@@ -1440,13 +1424,15 @@ at the National Supercomputing Center (NSC).
   \label{fig:warmbase}
 \end{figure*}
 
-% fig:erosion
+% fig:warmfrac
 \begin{figure*}
-  \includegraphics{erosion}
-  \caption{Modelled cumulative basal displacement (integrand of basal velocity)
-           over the last 120\,kyr.
-           \todo{remove this figure (see footnote in text).}}
-  \label{fig:erosion}
+  \includegraphics{warmfrac}
+  \caption{Modelled fraction of warm-based ice cover during the ice-covered
+           period. Note the dominance of warm-based conditions on the
+           continental shelf and major glacial troughs of the coastal ranges.
+           Hatches indicate areas that were covered by cold ice only.
+           \todo{indicate location of the Skeena Mountains.}}
+  \label{fig:warmfrac}
 \end{figure*}
 
 % fig:deglacseries
