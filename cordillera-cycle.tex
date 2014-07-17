@@ -1,5 +1,5 @@
 % cordillera-climate.tex
-% ----------------------------------------------------------------------
+% =============================================================================
 
 % Copernicus manuscript
 \documentclass[tc, manuscript]{copernicus}
@@ -24,10 +24,10 @@
 \newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
 \newcommand{\aref}[0]{\textbf{[ref.]}}
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \begin{document}
 \linenumbers
-% ----------------------------------------------------------------------
+% =============================================================================
 
 % Title
 \title{Numerical simulations of the Cordilleran ice sheet
@@ -91,10 +91,10 @@
 
 \end{abstract}
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \introduction
 \label{sec:intro}
-% ----------------------------------------------------------------------
+% =============================================================================
 
 During the last glacial cycle, glaciers and ice caps of the North American
 Cordillera have been more extensive than today. At the Last Glacial
@@ -226,12 +226,14 @@ geomorphological evidence in terms of the timing and extent of glaciation and
 patterns of deglaciation.
 
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \section{Model setup}
 \label{sec:model}
-% ----------------------------------------------------------------------
+% =============================================================================
 
+% -----------------------------------------------------------------------------
 %\subsection{Forcings}
+% -----------------------------------------------------------------------------
 
 \todo{Move parameter values into a separate table.}
 
@@ -275,8 +277,10 @@ a lower horizontal resolution of 10\,km, and a higher horizontal resolution of
 6\,km. These computations were performed on 16 to 128 computing cores at the
 Swedish National Supercomputing Centre.
 
+% -----------------------------------------------------------------------------
 \subsection{Ice thermodynamics}
 \label{sec:icedyn}
+% -----------------------------------------------------------------------------
 
 Ice sheet dynamics are typically modelled using a combination of internal
 deformation and basal sliding. PISM is a~shallow ice sheet model, which implies
@@ -352,7 +356,9 @@ half-space\renote{
     But yes, I guess that ``lower half-space'' is fine, too...}
 \citep{Lingle.Clark.1985,Bueler.etal.2007}.
 
+% -----------------------------------------------------------------------------
 \subsection{Surface mass balance}
+% -----------------------------------------------------------------------------
 
 \renote{
     Surface mass balance is the balance of mass fluxes at the surface,
@@ -394,8 +400,10 @@ The ablation model incorporates degree-day factors of
 mass-balance measurements on contemporary glaciers from the Coast Mountains and
 Rocky Mountains in British Columbia \citep{Shea.etal.2009}.
 
+% -----------------------------------------------------------------------------
 \subsection{Atmospheric forcing}
 \label{sec:atm}
+% -----------------------------------------------------------------------------
 
 Atmospheric forcing of the model consists of a present-day monthly climatology,
 $\{T_{m0}, P_{m0}\}$, where temperatures are modified by offset time series,
@@ -519,7 +527,7 @@ of the Cordilleran ice sheet during the MIS~4 glaciation, depend sensitively on
 the choice of palaeo-temperature record used to drive the model.
 
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \section[Comparison to the geologic record]
         {Comparison to the geologic record\renote{
     Arjen, you have proposed 2.1 Evaluation of model runs agains field
@@ -534,9 +542,11 @@ the choice of palaeo-temperature record used to drive the model.
     that section is about: raw model output, no discussion against the geologic
     record.}}
 \label{sec:discussion}
-% ----------------------------------------------------------------------
+% =============================================================================
 
+% -----------------------------------------------------------------------------
 \subsection{Timing of glaciation}
+% -----------------------------------------------------------------------------
 
 Independently of the choice of palaeo-temperature record\renote{
     In my view, ``atmospheric/climate forcing'' would be far too broad here. We
@@ -617,7 +627,9 @@ such record yet exists, we focus the rest of our analysis on simulations forced
 by palaeo-temperature records from GRIP and EPICA ice cores
 (Fig.~\ref{fig:timeseries}, lower panel, dotted lines).
 
+% -----------------------------------------------------------------------------
 \subsection{Location and longevity of the major ice-despersal centres}
+% -----------------------------------------------------------------------------
 
 \todo{Add general statements on the scale of glaciation (but where?).}
 
@@ -743,7 +755,9 @@ to the Late Pleistocene \citep[cf.][]{Ward.etal.2008, Demuro.etal.2012}.
 
 \todo{Paragraph on model uncertainties related to warm-based ice.}
 
+% -----------------------------------------------------------------------------
 \subsection{Pace and patterns of deglaciation}
+% -----------------------------------------------------------------------------
 
 In the North American Cordillera alike other glaciated regions, the large
 majority of the glacial geologic record relates to the last few millennia of
@@ -858,10 +872,10 @@ glacial lineations on the Interior Plateau of British Columbia may be of older
 age than the LGM, and may have remained intact throughout the deglaciation.
 
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \conclusions
 \label{sec:concl}
-% ----------------------------------------------------------------------
+% =============================================================================
 
 Numerical simulations of the Cordilleran ice sheet through the last glacial
 cycle presented in this study consistently produce two glacial maxima during
@@ -933,9 +947,9 @@ at the National Supercomputing Center (NSC).
 \bibliography{refs/references.bib}
 \newpage
 
-% ----------------------------------------------------------------------
+% =============================================================================
 % Floats
-% ----------------------------------------------------------------------
+% =============================================================================
 
 % tab:records
 \begin{table*}[t]
@@ -1225,7 +1239,7 @@ at the National Supercomputing Center (NSC).
   \label{fig:lastflow}
 \end{figure*}
 
-% ----------------------------------------------------------------------
+% =============================================================================
 \end{document}
 \endinput
-% ----------------------------------------------------------------------
+% =============================================================================
