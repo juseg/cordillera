@@ -98,8 +98,12 @@
 
 During the last glacial cycle, glaciers and ice caps of the North American
 Cordillera have been more extensive than today. At the Last Glacial
-Maximum (LGM), a continuous blanket of ice, the Cordilleran ice sheet\renote{
-    In \citep{Seguinot.etal.2014}, The Cryosphere changed all my occurences of
+Maximum (LGM\renote{
+    I decided to adopt ``LGM'', which is very common, but not ``CIS'', for the
+    sake of readability. This corresponds to abbreviations used in
+    \citet{Seguinot.etal.2014} (and now, in the kappa).}),
+a continuous blanket of ice, the Cordilleran ice sheet\renote{
+    In \citet{Seguinot.etal.2014}, The Cryosphere changed all my occurences of
     Cordilleran (Greenland etc) \textbf{I}ce \textbf{S}heet to lowercase
     \textbf{i}ce \textbf{s}heet. Let's keep it so for now for consistency
     within the thesis (kappa + papers).}
@@ -144,10 +148,10 @@ predates the last glacial cycle
     \citep{Hidy.etal.2013}.
 In parts of the Yukon Territory and Alaska, the distribution of tills
     \citep{Turner.etal.2013}
-and dated glacial erratics indicate an extensive Marine Oxygen Isotope Stage
-(MIS)~4 glaciation
+and dated glacial erratics
     \citep{Ward.etal.2007, Ward.etal.2008, Briner.Kaufman.2008,
-           Stroeven.etal.2010, Stroeven.etal.2014},
+           Stroeven.etal.2010, Stroeven.etal.2014}
+indicate an extensive Marine Oxygen Isotope Stage (MIS)~4 glaciation,
 yet it is not known whether other regions in the study area were affected.
 Landforms in the interior regions include flow sets that are likely
 older than the LGM
@@ -157,8 +161,8 @@ but their absolute age remains uncertain.
 In contrast, evidence for the deglaciation history of the Cordilleran
 ice sheet since the LGM is considerable, albeit mostly at a regional scale.
 Geomorphological evidence from south-central British Columbia indicates a rapid
-deglaciation, including an early emergence of elevated areas while thin
-stagnant ice still covered surrounding lowlands
+deglaciation, including an early emergence of the elevated areas while thin,
+stagnant ice still covered the surrounding lowlands
     \citep{Fulton.1967, Fulton.1991, Margold.etal.2011, Margold.etal.2013a}.
 This model, although credible, may not apply in all areas of the Cordilleran
 ice sheet
@@ -169,7 +173,10 @@ the Coast, Columbia and Rocky mountains
            Kovanen.2002, Kovanen.Easterbrook.2002, Lakeman.etal.2008,
            Menounos.etal.2008},
 it appears to be more sparse than for formerly glaciated regions surrounding
-the North Atlantic \aref, thus allowing for considerable uncertainty concerning
+the North Atlantic \aref\footnote{
+    Do we need to add a couple of refs. from Britain, Scandinavia, the Alps,
+    Eastern America here? Or a review paper? Could yuo help me with this?},
+thus allowing for considerable uncertainty concerning
 the possibility of a regional late glacial cold reversal.
 
 In general, the topographic complexity of the North American Cordillera and its
@@ -188,16 +195,16 @@ analyse some of the long-standing questions related to its evolution:
   \item How much ice was locked in the Cordilleran ice sheet during the
     last glacial maximum?
   \item What was the scale of glaciation prior to the last glacial maximum?
-  \item Which were its primary dispersal centres? Do they reflect stable or
+  \item Which were the primary dispersal centres? Do they reflect stable or
     ephemeral configurations?
   \item How rapid was the last deglaciation? Did it include late glacial
-    stand-stills or re-advances?
+    standstills or readvances?
 \end{itemize}
 
 Although numerical ice sheet modelling has been established as a useful tool to
 improve our understanding of the Cordilleran ice sheet
     (\citealp[p.~227]{Jackson.Clague.1991}; \citealp{Robert.1991},
-     \citealp{Marshall.etal.2000})
+     \citealp{Marshall.etal.2000}),
 the ubiquitously mountainous
 topography of the region has presented two major challenges to its application.
 First, only recent development of numerical ice sheet models and underlying
@@ -212,14 +219,14 @@ high-resolution atmospheric forcing fields as an input to the ice sheet model
 \citep{Seguinot.etal.2014}.
 
 Because climate conditions over the last glacial cycle are subject to
-considerable uncertainty, our palaeoclimate forcing is a simplistic approach
+considerable uncertainty, our palaeo-climate forcing is a simplistic approach
 including temperature and precipitation fields derived from a
 present-day atmospheric reanalysis \citep{Mesinger.etal.2006,
-Seguinot.etal.2014} supplemented by a lapse-rate correction
+Seguinot.etal.2014} supplemented by lapse-rate corrections
 and temperature offset time series. The latter are obtained by scaling six
 different palaeo-temperature reconstructions from proxy records around the
-globe, including two oxygen isotopes records from Greenland ice cores
-\citep{Dansgaard.etal.1993, Andersen.etal.2004}, two oxygen isotopes
+globe, including two oxygen isotope records from Greenland ice cores
+\citep{Dansgaard.etal.1993, Andersen.etal.2004}, two oxygen isotope
 records from Antarctic ice cores \citep{Petit.etal.1999,Jouzel.etal.2007},
 and two alkenone unsaturation index records from Northwest Pacific ocean
 sediment cores \citep{Herbert.etal.2001}. We then proceed to compare the model
@@ -236,8 +243,6 @@ and the patterns of deglaciation.
 \subsection{Overview}
 % -----------------------------------------------------------------------------
 
-\todo{Move parameter values into a separate table.}
-
 The simulations presented here were run using the Parallel Ice Sheet Model
 (PISM, development version~11b0a7f and stable version~0.6.1), an open source,
 finite difference, shallow ice sheet model \citep{PISM-authors.2014}. The model
@@ -246,8 +251,8 @@ atmospheric\renote{
     Changed here from ``climate'' to ``atmospheric''. Although I have used
     ``climate forcing'' in the previous paper, I now think that ``atmospheric
     forcing'' is more appropriate: ``climate'' may also encompass the oceanic
-    component, not really assessed here.}
-forcing, and computes the evolution of ice extent
+    component, which is not assessed here.}
+forcing. It computes the evolution of ice extent
 and thickness over time, the thermal and dynamic\renote{
     Thermal = temperature, dynamic = force + movement. If I meant movement
     alone, I would use ``cinematic''. Here we could use ``ice temperatures,
@@ -263,8 +268,9 @@ is lowered as a function of time based on the Spectral Mapping Project\renote{
     (everything will have to be re-run anyway).}
 \citep[SPECMAP;][]{Imbrie.etal.1989} time scale. Geothermal heat flux
 is applied as a constant value of 70\,\unit{mW\,m^{-2}} at 3\,km depth
-(Sect.~\ref{sec:icedyn}). Atmospheric forcing is provided by a monthly
-climatology from the North American Regional Reanalysis
+(Sect.~\ref{sec:icedyn}). Surface mass balance is computed using a positive
+degree-day (PDD) model (Sect.~\ref{sec:surface}). Atmospheric forcing is
+provided by a monthly climatology from the North American Regional Reanalysis
 \citep[NARR;][]{Mesinger.etal.2006} perturbated by time-dependent and
 lapse-rate temperature corrections (Sect.~\ref{sec:atm}).
 
@@ -285,7 +291,8 @@ Ice sheet dynamics are typically modelled using a combination of internal
 deformation and basal sliding. PISM is a~shallow ice sheet model, which implies
 that the balance of stresses is approximated based on their predominant
 components. The Shallow Shelf Approximation (SSA) is used as a ``sliding law''
-for the Shallow Ice Approximation (SIA) by adding both velocity solutions
+for the Shallow Ice Approximation (SIA) by adding velocity solutions of the
+two approximation
 \citep[Eqns.~7--9 and 15]{Bueler.Brown.2009, Winkelmann.etal.2011}\renote{
     Arjen, I don't agree with your comment. Reference to equation number(s)
     show the reader where to look. \citet{Winkelmann.etal.2011} is a rather
@@ -311,12 +318,14 @@ where it is conditioned by a lower boundary geothermal heat flux of
 high spatial geothermal variability in the region
 \citep{Blackwell.Richards.2004}, it is, on average, representative of available
 heat flow measurements. In the low-resolution simulations, the vertical grid
-consists of to 51~enthalpy layers in the ice sheet and 31~temperature layers in
-the bedrock. In the high-resolution simulations, up to 101~ice layers, and
+consists of up to 51~enthalpy layers in the ice sheet and 31~temperature layers
+in the bedrock. In the high-resolution simulations, up to 101~ice layers, and
 61~bedrock layers are used.
 
 A~pseudo-plastic sliding law \citep{Bueler.Pelt.2014} relates the
-bed-parallel shear stress to the sliding velocity. The yield stress, $\tau_c$,
+bed-parallel shear stresses to the sliding velocity\footnote{
+    Should I pull in this equation, too?}.
+The yield stress, $\tau_c$,
 is modelled using the Mohr--Coulomb criterion,
 \begin{equation}
    \tau_c = c_0 + N\,\tan{\phi} \,,
@@ -327,8 +336,10 @@ varies from 15 to 45{\degree}\renote{
     $\alpha$ and $\delta$ parameter values and corresponding equations in the
     kappa, basal sliding section). These values are is based on a quick
     sensitivity test on Greenland.}.
-It is taken to be a~function of modern bed elevation, with lower values at
-lower elevations (<200\,m above sea level), thus accounting for a~weakening of
+It is taken to be a piecewise-linear function of modern bed elevation, with
+the lowest value below modern sea level (0\,m above sea level, m~a.s.l) and the
+highest value above the approximate elevation of highest shorelines
+(200\,m~a.s.l), thus accounting for a~weakening of
 till associated with the presence of marine sediments. Effective pressure, $N$,
 is related to the ice overburden stress, $\rho gh$, and the modelled amount of
 subglacial water, using a formula derived from laboratory experiments with till
@@ -337,35 +348,35 @@ Bueler.Pelt.2014},
 \begin{equation}
     N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
 \end{equation}
-where $delta$ is choosed as 0.95, $e_0$ is a measured reference void ratio and
-$C_c$ a measured compressibility coefficient. The amount of water at the base,
-$W$, varies from zero to $W_{max}=2$\,m, a threshold above which instantaneous
-drainage is assumed\renote{
-    Regarding a parameter table, it is in the kappa, I am skipping it for now
-    but will try to include it soon.}.
+where $delta$ is chosen as 0.02, $e_0$ is a measured reference void ratio and
+$C_c$ a measured compressibility coefficient (Table~\ref{tab:params}). The
+amount of water at the base, $W$, varies from zero to $W_{max}=2$\,m, a
+threshold above which instantaneous drainage is assumed.
 Finally, the bedrock topography responds to ice load\renote{
     I disagree with writing ``the isostatic response''. The main point in
     using this model is that computes a non-isostatic response.}
 following a bedrock deformation model that includes point-wise isostasy,
 elastic lithosphere flexure and viscous mantle deformation in the lower
 half-space\renote{
-    I had put an emphasis on semi-infinite at this is the key assumption of
-    that model, allowing effective solution in Fourier domain. This is the
-    whole point of Ed's paper and probably the reason why he picked it for PISM
-    But yes, I guess that ``lower half-space'' is fine, too...}
-\citep{Lingle.Clark.1985,Bueler.etal.2007}.
+    I had put an emphasis on semi-infinite as this is, from a mathematical
+    point of view, the key assumption of that model, allowing effective
+    solution in Fourier domain. This is the whole point of Ed's paper and
+    probably the reason why he picked it for PISM. But yes, I guess that
+    ``lower half-space'' is fine, too...}
+\citep[Table~\ref{tab:params};][]{Lingle.Clark.1985,Bueler.etal.2007}.
 
 % -----------------------------------------------------------------------------
 \subsection{Surface mass balance}
+\label{sec:surface}
 % -----------------------------------------------------------------------------
 
 \renote{
     Surface mass balance is the balance of mass fluxes at the surface,
     consisting of ice accumulation and ice ablation, which I introduce straight
-    away. I don't know what kind of ``opening sentence'' can be added here.}
+    away. I don't see what kind of ``opening sentence'' can be added here.}
 Ice surface accumulation and ablation are computed from monthly mean
-near-surface air temperature $T_m$, monthly standard deviation of near-surface
-air temperature $\sigma$, and monthly precipitation $P_m$, using
+near-surface air temperature, $T_m$, monthly standard deviation of near-surface
+air temperature, $\sigma$, and monthly precipitation, $P_m$, using
 a~temperature-index model \citep[e.g.,][]{Hock.2003}. Accumulation is equal to
 precipitation when air temperatures are below 0\,\unit{{\degree}C}, and
 decreases to zero linearly with temperatures between 0 and
@@ -393,20 +404,19 @@ values from the North American Regional Reanalysis
 with the seasonal cycle itself \citep[cf.][]{Seguinot.Rogozhina.2014}\renote{
     I may add a figure in the kappa if I find time, but I don't think that we
     should do it here. The subject is too marginal for the present study.}.
-The ablation model incorporates degree-day factors of
-3.04\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for snow and
-4.59\,\unit{mm\,{\degree}C^{-1}\,day^{-1}} for ice, as derived from
+Degree-day factors for snow and ice melt are derived from
 mass-balance measurements on contemporary glaciers from the Coast Mountains and
-Rocky Mountains in British Columbia \citep{Shea.etal.2009}.
+Rocky Mountains in British Columbia
+\citep[Table~\ref{tab:params};][]{Shea.etal.2009}.
 
 % -----------------------------------------------------------------------------
 \subsection{Atmospheric forcing}
 \label{sec:atm}
 % -----------------------------------------------------------------------------
 
-Atmospheric forcing of the model consists of a present-day monthly climatology
+Atmospheric forcing of the model consists of a present-day monthly climatology%
 \renote{
-    ``Monthly climatology'' is a common term in meteorology to design a set
+    ``Climatology'' is a common term in meteorology, used to design a set
     of variables aggregated over several decades, and assumed to represent
     some climate state.},
 $\{T_{m0}, P_{m0}\}$, where temperatures are modified by offset time series,
@@ -418,7 +428,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \end{align}
 
 The present-day monthly climatology, $\{T_{m0}, P_{m0}\}$, was computed from
-near-surface air temperature and precipitation rate fields of the NARR
+near-surface air temperature and precipitation rate fields from the NARR
 \citep{Mesinger.etal.2006}, averaged between 1979 and 2000. Modern climate of the
 North American Cordillera is characterised by strong geographic variations in
 temperature seasonality, timing of the maximum annual precipitation, and
@@ -445,9 +455,9 @@ using a quadratic equation \citep{Johnsen.etal.1995},
                                 -\chem{\delta^{18}O}(0)^2] \,,
 \end{equation}
 while temperature reconstructions from Antarctic and oceanic cores were
-provided as such. All records were scaled linearly in
-order to simulate realistic and comparable ice limits at the last
-glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
+provided as such. All records were scaled linearly (Table~\ref{tab:records}) in
+order to simulate realistic and comparable ice extents at the LGM
+(Fig.~\ref{fig:timeseries}).
 
 Finally, lapse-rate corrections, ${\Delta}T_{LR}$, are computed as a function
 of ice surface elevation, $s$, using the NARR surface geopotential height
@@ -513,7 +523,7 @@ slower deglaciation than modelled using the other palaeo-temperature records.
 Finally, model runs forced by Antarctic palaeo-temperature records results in a
 rapid an uninterrupted deglaciation after the last glacial maximum, whereas the
 simulation driven by the GRIP palaeo-temperature record also result in a rapid
-deglaciation but in three steps, interrupted by two stand-stills and readvances
+deglaciation but in three steps, interrupted by two standstills and readvances
 of the ice margin.
 
 % -----------------------------------------------------------------------------
@@ -527,7 +537,7 @@ different palaeo-temperature proxy records (Table~\ref{tab:records}), modelled
 ice sheet geometries during the last glacial maximum (MIS~2;
 Fig.~\ref{fig:snapshots}, lower panels) appear highly similar from one
 simulation to the next. They include a ca. 1500\,km-long central divide
-located about 3500\,m\ above sea level (a.s.l.) along the spine of the Rocky
+located about 3500\,m~a.s.l. along the spine of the Rocky
 Mountains. The volumes of these modelled last glacial maximum ice sheets are
 contained within a close range from 8.24 to 8.66\,m of sea-level equivalent
 (s.l.e; Table~\ref{tab:extrema}).
@@ -819,7 +829,7 @@ The possibility of late glacial readvances in the North American Cordillera has
 been debated for some time \citep{Osborn.Gerloff.1997}, and locally these have
 been reconstructed and dated. Radiocarbon-dated end moraines in the Fraser and
 Squamish valleys off the southern tip of the Coast Mountains, indicates
-consecutive glacier maximal (or stillstands while in overall retreat), one of
+consecutive glacier maximal (or standstills while in overall retreat), one of
 which one corresponds to the Younger Dryas chronozone \citep{Clague.etal.1997,
 Friele.Clague.2002, Friele.Clague.2002a, Kovanen.2002,
 Kovanen.Easterbrook.2002}. In the Finlay River area of northern Rocky
