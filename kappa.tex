@@ -104,30 +104,39 @@ This doctoral dissertation consists of a cover summary and the following
 journal articles, which are referred to by their Roman numerals in the text.
 
 \begin{description}
-  \item[\CCLI] \bibentry{Seguinot.etal.2014}
-  \item[\PSDV] \bibentry{Seguinot.2013}
-  \item[\PSDP] \bibentry{Seguinot.Rogozhina.2014}
-  \item[\CCYC] \bibentry{Seguinot.etal.inpreparation}
+  \item[\CCLI] \bibentry{Seguinot.etal.2014}.
+  \item[\PSDV] \bibentry{Seguinot.2013}.
+  \item[\PSDP] \bibentry{Seguinot.Rogozhina.2014}.
+  \item[\CCYC] \bibentry{Seguinot.etal.manuscript}.\renote{
+    Arjen, you had several comments regarding the style of references
+    throughout the kappa (name formatting, italic text). I am using the
+    Copernicus style here, but is there another recommendation to follow?
+    Maybe Peter knows?}
 \end{description}
 
 \vfill
 \noindent\textbf{Author contributions}
 
-\small{\begin{enumerate}
-  \item[I] I set-up the ice sheet model and supercomputing workflow, ran the
-simulations and wrote the manuscript; C.~Khroulev implemented necessary code
-changes in PISM; I.~Rogozhina guided experiment design; A.~P.~Stroeven
-initiated the Cordilleran ice sheet modelling project; and Q.~Zhang prepared
-some of the forcing data. All co-authors contributed to improve the text.
-  \item[II] I analysed the weather data, wrote the positive degree day model,
-ran computations and wrote the manuscript. I.~Rogozhina helped to assess the
-reviews.
+\footnotesize{\begin{enumerate}
+  \item[I] A.~P.~Stroeven initiated the Cordilleran ice sheet modelling
+project; I set-up the ice sheet model (PISM) and supercomputing workflow, ran
+simulations and wrote the first draft; C.~Khroulev implemented necessary code
+changes in the model; I.~Rogozhina contributed to experiment design; A.~P.~Stroeven
+helped with interpretation of the results; and Q.~Zhang prepared some of the
+forcing data. All co-authors contributed to improve the text.
+  \item[II] I analysed the weather data, wrote the positive degree day model
+(PyPDD), ran computations and wrote the manuscript. A.~P.~Stroeven contributed
+with editorial comments at the pre-submission stage and I.~Rogozhina helped to
+assess the reviews.
   \item[III] I.~Rogozhina provided the original idea; I analysed the weather
-data; and we wrote the manuscript together.
-  \item[IV] I implemented necessary code changes in PISM, ran the simulations
-and wrote the manuscript; I.~Rogozhina guided experiment design; M.~Margold,
-J.~Kleman and A.~P.~Stroeven took part in the interpretation. All authors
-contributed to improve the text.
+data and developed a new parameterization of daily temperature standard
+deviation. I.~Rogozhina and I wrote the manuscript. A.~P.~Stroeven contributed
+with editorial comments at the pre-submission stage.
+  \item[IV] I integrated the new parameterization of standard deviation into
+PISM, ran the simulations and wrote the first draft; I.~Rogozhina guided
+experiment design; A.~P.~Stroeven, M.~Margold and J.~Kleman took part in the
+interpretation and comparison of model results against geological evidence. All
+co-authors contributed to improve the text.
 \end{enumerate}}
 
 \newpage
@@ -1622,10 +1631,10 @@ Next to the atmospheric forcing, another critical source of uncertainty in
 palaeo-ice sheet modelling is the choice of parameters used by the surface mass
 balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
 are the degree-day factors for snow, $F_s$, and ice, $F_i$
-(\cref{fig:model-pdd, tab:surfaceparams}), and the standard deviation of
-near-surface air temperature, $\sPDD$ (\cref{eq:calovgreve,
-tab:surfaceparams}). Although the first two can only be deduced from surface
-mass-balance measurements on present-day glaciers
+(\cref{fig:model-pdd,tab:surfaceparams}), and the standard deviation of
+near-surface air temperature,$\sPDD$
+(\cref{eqn:calovgreve,tab:surfaceparams}). Although the first two can only be
+deduced from surface mass-balance measurements on present-day glaciers
 \citep[e.g.,][]{Shea.etal.2009} and assumptions that these values are also
 valid for palaeo-simulations, $\sPDD$ can be estimated from temperature time
 series \citep[e.g.,][]{Fausto.etal.2011}.
@@ -1710,7 +1719,7 @@ to the one used in \CCLI\ (\cref{fig:plot-sdeffect}).
 \subsection{Glacial cycle simulations}
 % ----------------------------------------------------------------------
 
-\noindent\textbf{\CCYC} --- \bibentry{Seguinot.etal.inpreparation}.
+\noindent\textbf{\CCYC} --- \bibentry{Seguinot.etal.manuscript}.
 \bigskip
 
 The primary goal of this thesis has been to perform simulations of the
