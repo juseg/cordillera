@@ -201,13 +201,14 @@ improve our understanding of the Cordilleran ice sheet
 the ubiquitously mountainous
 topography of the region has presented two major challenges to its application.
 First, only recent development of numerical ice sheet models and underlying
-scientific computing tools \citep{Bueler.Brown.2009, Balay.etal.2014} allows
-high-resolution numerical modelling of palaeo-glaciers on mountainous terrain
+scientific computing tools \citep{Bueler.Brown.2009, Balay.etal.2014} has
+allowed for high-resolution numerical modelling of glaciers and ice sheets on
+mountainous terrain
 over millenial time scales \citep[e.g.,][]{Golledge.etal.2012}. Second, the
 complex
 topography of the North American Cordillera also induces strong gradients in
 seasonality and distinct patterns of precipition, thus requiring the use of
-high-resolution atmospheric forcing fields as input to the ice sheet model
+high-resolution atmospheric forcing fields as an input to the ice sheet model
 \citep{Seguinot.etal.2014}.
 
 Because climate conditions over the last glacial cycle are subject to
@@ -221,9 +222,9 @@ globe, including two oxygen isotopes records from Greenland ice cores
 \citep{Dansgaard.etal.1993, Andersen.etal.2004}, two oxygen isotopes
 records from Antarctic ice cores \citep{Petit.etal.1999,Jouzel.etal.2007},
 and two alkenone unsaturation index records from Northwest Pacific ocean
-sediment cores \citep{Herbert.etal.2001}. Model output is compared to
-geomorphological evidence in terms of the timing and extent of glaciation and
-patterns of deglaciation.
+sediment cores \citep{Herbert.etal.2001}. We then proceed to compare the model
+output to geological evidence and discuss the timing and extent of glaciation
+and the patterns of deglaciation.
 
 
 % =============================================================================
@@ -268,7 +269,8 @@ climatology from the North American Regional Reanalysis
 lapse-rate temperature corrections (Sect.~\ref{sec:atm}).
 
 Each simulation starts from assumed ice-free conditions at 120\,000 years ago
-(120\,ka), and runs to present. Our modelling domain of 1\,500 by 3\,000\,km
+(120\,ka), and runs to the present. Our modelling domain of 1\,500 by
+3\,000\,km
 encompasses the entire area covered by the Cordilleran ice sheet at the LGM
 (Fig.~\ref{fig:locmap}). The simulations were run on two distinct grids, using
 a lower horizontal resolution of 10\,km, and a higher horizontal resolution of
@@ -403,7 +405,11 @@ Rocky Mountains in British Columbia \citep{Shea.etal.2009}.
 \label{sec:atm}
 % -----------------------------------------------------------------------------
 
-Atmospheric forcing of the model consists of a present-day monthly climatology,
+Atmospheric forcing of the model consists of a present-day monthly climatology
+\renote{
+    ``Monthly climatology'' is a common term in meteorology to design a set
+    of variables aggregated over several decades, and assumed to represent
+    some climate state.},
 $\{T_{m0}, P_{m0}\}$, where temperatures are modified by offset time series,
 ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \begin{align}
@@ -428,8 +434,9 @@ the Greenland Ice Core Project \citep[GRIP,][]{Dansgaard.etal.1993}, the
 North Greenland Ice Core Project \citep[NGRIP,][]{Andersen.etal.2004},
 the European Project for Ice Coring in Antarctica \citep[EPICA,][]
 {Jouzel.etal.2007}, the Vostok ice core \citep{Petit.etal.1999}, and Ocean
-Drilling Program (ODP) sites 1012 and 1020, both located off the Californian
-coast \citep{Herbert.etal.2001}. Palaeo-temperatures from the GRIP and NGRIP
+Drilling Program (ODP) sites 1012 and 1020, both located off the coast of
+California \citep{Herbert.etal.2001}. Palaeo-temperatures from the GRIP and
+NGRIP
 records were calculated from oxygen isotope (\chem{\delta^{18}O}) measurements
 using a quadratic equation \citep{Johnsen.etal.1995},
 \begin{equation}
@@ -442,8 +449,6 @@ while temperature reconstructions from Antarctic and oceanic cores were
 provided as such. All records were scaled linearly in
 order to simulate realistic and comparable ice limits at the last
 glacial maximum (Table~\ref{tab:records}, Fig.~\ref{fig:timeseries}).
-In the rest of this paper, we occasionally refer to different model
-runs by the name of the proxy record used for the palaeo-temperature forcing.
 
 Finally, lapse-rate corrections, ${\Delta}T_{LR}$, are computed as a function
 of ice surface elevation, $s$, using the NARR surface geopotential height
@@ -455,10 +460,12 @@ invariant field as a reference topography, $b_{ref}$, by
 
 thus accounting for the evolution of ice thickness, ${h=s-b}$\renote{
     Small change in notation to match with the kappa},
-on the one hand, and
-for differences between the the ice flow model basal topography, $b$, and the
+on the one hand, and for differences between the basal topography of the ice
+flow model, $b$, and the
 NARR reference topography, $b_{ref}$, on the other hand. All simulations use an
 annual temperature lapse rate of $\gamma = 6\,\unit{{\degree}C\,km^{-1}}$.
+In the rest of this paper, we refer to different model runs by the name of the
+proxy record used for the palaeo-temperature forcing.
 
 % =============================================================================
 \section{Sensitivity to atmospheric forcing time-series}
@@ -476,7 +483,7 @@ simulations, modelled ice volumes remain relatively low during most of the
 glacial cycle, except during two major glacial events which occur between 61.9
 and 55.4\,ka during Marine Oxygen Isotope Stage (MIS)~4, and between 29.5 and
 16.9\,ka during MIS~2 (Fig.~\ref{fig:timeseries}). An ice volume minimum is
-consistently attained between 52.2 and 45.6\,ka during MIS~3. However, the
+consistently reached between 52.2 and 45.6\,ka during MIS~3. However, the
 magnitude and precise timing of these three events depend significantly on the
 choice of proxy record used for time-dependent atmospheric forcing
 (Table~\ref{tab:extrema})\renote{
@@ -495,8 +502,7 @@ generally result in smaller\renote{
 modelled ice volumes during MIS~4 and larger ice volumes during MIS~3.
 More broadly speaking, they produce lower ice volume variability
 throughout the simulation length. The NGRIP atmospheric forcing is the only one
-that results in a larger ice volume during MIS~4 than during the last glacial
-maximum (MIS~2).
+that results in a larger ice volume during MIS~4 than during the LGM (MIS~2).
 
 While simulations driven by GRIP and the two Antarctic palaeo-temperature
 records attain a last ice volume maximum between 19.5 and 16.9\,ka, those
@@ -504,10 +510,10 @@ informed by NGRIP and the two oceanic palaeo-temperature records attain their
 maximum ice volume thousands of years earlier. Moreover, the ODP~1012 run
 yields a rapid deglaciation of the modelled area prior to 20\,ka. The ODP~1020
 simulation predicts an early maximum in ice volume at 29.5\,ka, followed by
-slower deglaciation than modelled using other palaeo-temperature records.
-Finally, model runs forced by Antarctic palaeo-temperature records produce a
+slower deglaciation than modelled using the other palaeo-temperature records.
+Finally, model runs forced by Antarctic palaeo-temperature records results in a
 rapid an uninterrupted deglaciation after the last glacial maximum, whereas the
-simulation driven by the GRIP palaeo-temperature record also yields a rapid
+simulation driven by the GRIP palaeo-temperature record also result in a rapid
 deglaciation but in three steps, interrupted by two stand-stills and readvances
 of the ice margin.
 
@@ -516,7 +522,7 @@ of the ice margin.
 % -----------------------------------------------------------------------------
 
 Despite such differences in the timing of attained volume maxima and mimima,
-snapshots of model output show relatively consistent patterns of glaciation
+all the model runs show relatively consistent patterns of glaciation
 (Fig.~\ref{fig:snapshots}). As a result of scaling factors applied to the
 different palaeo-temperature proxy records (Table~\ref{tab:records}), modelled
 ice sheet geometries during the last glacial maximum (MIS~2;
