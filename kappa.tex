@@ -1603,18 +1603,19 @@ Plotting tools for PISM\\
 % ======================================================================
 
 % ----------------------------------------------------------------------
-\subsection{Constant-climate simulations}
+\subsection{Simulations of the Last Glacial Maximum}
 % ----------------------------------------------------------------------
 
 \noindent\textbf{\CCLI} --- \bibentry{Seguinot.etal.2014}.
 \bigskip
 
-As a first step towards a simulation of the Cordilleran ice sheet through the
+As a first step towards a simulations of the Cordilleran ice sheet through the
 last glacial cycle, I have opted to run the ice sheet model under a range of
 constant temperature depressions, targeting the LGM as the period for which ice
-sheet limits are best known. These simulations, presented in \CCLI and run at
-10\,km grid resolution, use constant temperature depressions from the present
-climate state (using five different input climatologies). All model runs start
+sheet limits are best known. These simulations, presented in \CCLI\ and
+performed on a 10\,km-resolution grid, use constant temperature depressions
+from the present climate state, which is represented using five different input
+climatologies. All model runs start
 from ice free conditions and run for 10\,ka, a period chosen as representative
 of Cordilleran ice sheet build-up from assumed, negligible ice cover. Although
 this assumption appears unjustified from results in \CCYC, the simplistic
@@ -1666,7 +1667,7 @@ here and in \CCYC.
 
 
 % ----------------------------------------------------------------------
-\subsection{Importance of daily temperature variability for ice sheet modelling}
+\subsection{Role of daily temperature variability on melt}
 % ----------------------------------------------------------------------
 
 \noindent\textbf{\PSDV} --- \bibentry{Seguinot.2013}.
@@ -1680,7 +1681,7 @@ palaeo-ice sheet modelling is the choice of parameters used by the surface mass
 balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
 are the degree-day factors for snow, $F_s$, and ice, $F_i$
 (\cref{fig:model-pdd,tab:surfaceparams}), and the standard deviation of
-near-surface air temperature,$\sPDD$
+near-surface air temperature, $\sPDD$
 (\cref{eqn:calovgreve,tab:surfaceparams}). Although the first two can only be
 deduced from surface mass-balance measurements on present-day glaciers
 \citep[e.g.,][]{Shea.etal.2009} and assumptions that these values are also
@@ -1696,10 +1697,10 @@ a simplified surface mass balance model, I then demonstrated the effect of this
 variation on the computation of positive degree-days (\PSDV, Fig.~2), and
 surface mass-balance (\PSDV, Fig.~3). Neglecting this variability in ice sheet
 modelling introduces significant errors in modelled PDD and surface mass
-balance calculations. The transient climate simulations presented in \CCYC\
-therefore now include this effect.
+balance calculations. Therefore, the Cordilleran ice sheet simulations
+presented in \CCYC\ now include this effect.
 
-The analysis is taken further extended in \PSDP, using re-analysed air
+The analysis is extended in \PSDP, using re-analysed air
 temperatures from ERA-40 \citep{Uppala.etal.2005}. Although of coarser spatial
 resolution than the ERA-Interim reanalysis used in \PSDV, the ERA-40 time
 series span over longer time, which is necessary to compute standard deviation
@@ -1718,13 +1719,20 @@ The effect of the PDD standard deviation, $\sPDD$, on simulations of the
 Cordilleran ice sheet is not shown in any of the papers. However, following
 these two studies, a natural step forward was to implement, in PISM, spatially
 and seasonally variable $\sPDD$ input (PISM issue~\issue{179}), and the
-parameterisation expressed by \cref{eqn:sigma} over ice-covered grid cells
+parameterisation expressed by \cref{eqn:sigma} over ice-filled grid cells
 (PISM issue~\issue{265}). Their effect on modelled Cordilleran ice sheet
 surface elevations is demonstrated here using a constant climate set-up similar
-to the one used in \CCLI\ (\cref{fig:plot-sdeffect}).
-
-\todo{You need to insert a couple of sentences of what you learn from Figure
-      16!}
+to the one used in \CCLI\ (\cref{fig:plot-sdeffect}). These simulations show
+that the effect of daily variability is strongest in continental regions, where
+the $\sPDD$ values are highest (cf. \cref{fig:plot-sdmap}). Where comparing the
+results to the mapped LGM ice limits (\cref{fig:map-cordillera}), which show
+a restricted ice extent in the continental areas despite low temperatures at
+present (\cref{fig:plot-atm}), it appears that including daily temperature
+variability in the ice sheet model results in closer agreement with these
+limits (\cref{fig:plot-sdeffect}b and~c). However, applying the parametrisation
+derived for the Greenland ice sheet (\cref{eqn:sigma}) over ice-filled grid
+cells partly reverts this effect (\cref{fig:plot-sdeffect}d), indicating that
+this parametrization may not be applicable to the former Cordilleran ice sheet.
 
 \begin{figure}
   \centering
@@ -1764,7 +1772,7 @@ to the one used in \CCLI\ (\cref{fig:plot-sdeffect}).
 
 
 % ----------------------------------------------------------------------
-\subsection{Glacial cycle simulations}
+\subsection{Simulations of the last glacial cycle}
 % ----------------------------------------------------------------------
 
 \noindent\textbf{\CCYC} --- \bibentry{Seguinot.etal.manuscript}.
@@ -1775,24 +1783,26 @@ Cordilleran ice sheet through the last glacial cycle. This is the topic of
 \CCYC, where monthly air temperature, precipitation, and PDD standard deviation
 climatologies from the NARR are combined with palaeo-temperature time-series
 from six proxy records to produce a time-dependent climate forcing (\CCYC,
-Fig.~2). The resulting simulations, using horizontal resolutions of 6 and
+Figs.~2--3). The resulting simulations, using horizontal resolutions of 6 and
 10\,km, all produced two major glaciations during the last glacial cycle, at
 MIS~4 and MIS~2. However, the differences in timing and magnitude of these
 glaciations are considerable (\CCYC, Figs.~3--4).
 
-Geological evidence for the timing and extent of maximum glaciation durng the
+Geological evidence for the timing and extent of maximum glaciation during the
 LGM allowed me to select two simulations, driven by the GRIP
-\citep{Dansgaard.etal.1993} and EPICA \citep{Jouzel.etal.2007} ice core
-records, as producing the most realistic reconstructions of the last glacial
-cycle. I re-ran these two simulations at a higher resolution of 6\,km, in order
-to allow for a more detailed study of transient ice caps before and after the
-LGM, of the stability of major ice-dispersal centres, and of patterns and rates
-of deglaciation (\CCYC, Figs.~5--15). Modelled ice volume evolution (expressed
-as metres of sea level equivalent) and snapshots of ice extent and ice flow
-patterns for the GRIP simulation (\cref{fig:plot-snapshots}) shows...
-\todo{complete}.
-
-\todo{Verify that figure numbers remain correct as \CCYC\ evolves.}
+\citep{Dansgaard.etal.1993} and EPICA \citep{Jouzel.etal.2007} ice core records
+(\CCYC, Figs.~5--6), as producing the most realistic reconstructions of the
+last glacial cycle. Using aggregated model output from these two runs, I
+analysed the location of transient ice caps before and after the LGM, the
+longevity of major ice-dispersal centres, and the rates and patterns of
+deglaciation (\CCYC, Figs.~6--15), in relation to available geological
+evidence. Modelled ice volume evolution, expressed as metres of sea level
+equivalent, and snapshots of ice extent and flow patterns from the GRIP
+simulation (\cref{fig:plot-snapshots}) show the growth and decay of the
+Cordilleran ice sheet over its last expansion cycle. Ice sheet growth begins on
+a residual ice cap located over the Skeena Mountains, which also corresponds
+to the location of the last remnants of the ice sheet towards the end of the
+deglaciation.
 
 \begin{figure}
   \centering
