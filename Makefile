@@ -8,5 +8,5 @@ figures:
 	cd figures && $(MAKE)
 
 clean:
-	cd figures && make clean
+	cd figures && $(MAKE) clean
 	latexmk -CA

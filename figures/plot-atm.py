@@ -51,7 +51,7 @@ cs = grid[1].contourf(x[:], y[:], (temp[:].max(axis=0)-temp[:].min(axis=0)).T,
                       levels=levs, norm=BoundaryNorm(levs, 256),
                       cmap='Oranges', alpha=0.75)
 cb = fig.colorbar(cs, grid[1].cax, orientation='horizontal', ticks=levs[:-1])
-cb.set_label(u'Seasonality (°C)')
+cb.set_label(u'Temperature seasonality (°C)')
 
 # plot mean precipitation
 print 'plotting precipitation maps...'

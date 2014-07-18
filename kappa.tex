@@ -326,17 +326,17 @@ sheet modelling \citep{Robert.1991}.
 
 During the last glacial cycle, much of North America has been covered by ice
 (\cref{fig:map-northamerica}).
-During the last glacial maximum, apex of glaciation, three major ice sheets had
-collided to form a continuous blanket of ice that spanned from Alaska to
+During the Last Glacial Maximum (LGM), three major ice sheets had collided to
+form a continuous blanket of ice that spanned from southern Alaska to
 Newfoundland, connecting with the Greenland ice sheet in the Canadian Arctic,
-and extending as far south as Chicago and the Great Lakes
+and extending as far south as Ohio
 (\cref{fig:map-northamerica}). The Laurentide ice
-sheet, largest of the three, was centred on the modern Hudson Bay,
+sheet, largest of the three, was centred on the Hudson Bay,
 and fully covered the Canadian Prairies, Eastern Canada, and the Great Lakes
 Basin. The Innuitian ice sheet, much smaller, covered the northernmost Canadian
-archipelago. Finally, \emph{the Cordilleran ice sheet} capped the mountain
-ranges of the Western Cordillera, which forms our region of focus in the
-present thesis.
+archipelago. Finally, \emph{the Cordilleran ice sheet}, intermediate in size,
+capped the mountain
+ranges of the Western Cordillera.
 
 \begin{figure}
   \centering
@@ -356,44 +356,47 @@ present thesis.
 \subsection{Topography}
 % ----------------------------------------------------------------------
 
-The North American Cordillera forms a broad mountain system with an
-average east-west width of about 1000\,km. Its topography is a complex
-jigsaw of mountain ranges and interior basins (\cref{fig:map-cordillera}).
-It was formed during multiple accretion phases associated with the closure of
-several back-arc oceanic trenches, over a 200\,Ma-long geological history
+The North American Cordillera forms an elongated but broad mountain system with
+an average east-west width of about 1000\,km (\cref{fig:map-cordillera}). Its
+topography is a complex jigsaw of mountain ranges and interior basins. It was
+formed during multiple accretion phases associated with the closure of several
+back-arc oceanic trenches, over a 200 million year (Ma)-long geological history
 \citep{Sigloch.Mihalynuk.2013}.
 
-Most of the dominant reliefs are found along two major ribbons that run
-parallel to each other along the general orientation of the Cordillera
-(\cref{fig:map-cordillera}). The western ribbon is formed by the Pacific Coast
-orogenic belt \mref. Major glaciated reliefs include,
+The dominant reliefs occur along two major ribbons that run
+parallel to each other along the general orientation of the North American Cordillera
+(\cref{photo-alaska-range}). The western ribbon is formed by the Pacific Coast
+orogenic belt \mref\ and includes,
 from North to South, the Alaska Range, the Wrangell and Saint-Elias Mountains,
 the Coast Mountains and the North Cascades. The eastern ribbon consists of the
 Nevadan and Laramide belts, which are separated by the deep and strikingly
-linear Rocky Mountain / Tintina Trench \mref. It includes the Selwyn and
-MacKenzie Mountains in the north, and the Rocky Mountains in the South. The
-Brooks Range, in northern Alaska, has been covered by ice, but its glaciers
-were not connected to the main body of the Cordilleran ice sheet
+linear Rocky Mountain / Tintina Trench \mref, depression and includes the Selwyn and
+MacKenzie Mountains in the north, and the Rocky mountains in the South. The
+Brooks Range of northern Alaska has been covered by ice, but its glaciers
+remained disjunct from the main body of the Cordilleran ice sheet
 \citep{Kaufman.Manley.2004}.
 
 \todo{Go to geolibrary and check \emph{Geology of Canada} books and such for a
       reference about the three orogenic belts.}
 
-The Cordillera comports several intermontane basins, which influenced the
-patterns of ice flow. The two major depressions are the Fraser Plateau in
-south-central British Columbia, and the Liard Lowland in northern British
-Columbia. Between these two basins is found a mildly elevated, but extensive
-and deeply incised mountain group, known as the Skeena Mountains.
+The North American Cordillera hosts several intermontane basins, the presence
+of which influenced former patterns of Cordilleran ice sheet flow. The two
+major depressions are the Fraser Plateau in south-central British Columbia, and
+the Liard Lowland in northern British Columbia (\cref{fig:map-cordillera}).
+These two basins are separated by the Skeena Mountains, a mildly elevated, but
+extensive and deeply incised mountain group. This is the most dominant upland
+area in-between the dominant topographic ribbons that form the North American
+Cordillera.
 
 The ubiquitously mountainous topography of the region presents a serious
-obstacle to reconstructing past dynamics of the Cordilleran ice sheet. Because
-of the irregular arrangement of valleys and ridges that formed the ice sheet's
-floor, ice moved along tortuous and intertwined pathways, sometimes following
-the major topographical troughs, and sometimes flowing across them
-\citep{Davis.Mathews.1944, Kleman.etal.2010}. In terms of numerical glacier
-modelling, this topography implies complex patterns of flow and stress
-within the ice and requires high-resolution, and thus, large computational
-grids.
+obstacle to reconstructing the palaeoglaciology of the Cordilleran ice sheet.
+Because of the irregular arrangement of valleys and ridges that formed the ice
+sheet's subglacial landscape, ice moved along tortuous and intertwined
+pathways, sometimes following the major topographical troughs, and sometimes
+flowing across them \citep{Davis.Mathews.1944, Kleman.etal.2010}. In terms of
+numerical ice sheet modelling, the presence of steep and irregular subglacial
+topography yields complex flow patterns and stress distributions within the ice
+sheet and requires high-resolution and thus, large computational grids.
 
 \begin{figure}
   \centering
@@ -424,32 +427,35 @@ grids.
 % ----------------------------------------------------------------------
 
 The topographic complexity of the North American Cordillera is associated with
-distinctive patterns of temperature and precipitation, whose effect is often
-clearly visible in the landscape (\cref{fig:photo-fraser-valley}). Due to the
-large latitudinal extent of the region, \emph{mean annual temperatures} vary
-significantly from north to south (\cref{fig:plot-atm}a). About half of the
-model domain has mean annual temperature below freezing. However,
-\emph{seasonality},
-here computed as the temperature difference between the warmest and the coldest
-months, varies between around 10\,\degC\ along most of the Pacific Coast to
-above 40\,\degC\ in the polar interior (\cref{fig:plot-atm}b). There exists a
+distinctive patterns of temperature and precipitation, whose effects on
+vegetation are clearly expressed in the landscape
+(\cref{fig:photo-fraser-valley}). Due to the large latitudinal extent of the
+region, \emph{mean annual temperatures} vary significantly from north to south
+(\cref{fig:plot-atm}a). About half of the model domain has mean annual
+temperatures below freezing. However, \emph{temperature seasonality}\renote{
+    This is a common term in the meteorological literature, I think. At least
+    this is what Qiong told me.},
+here computed as the difference between the warmest and the coldest months,
+varies between around 10\,\degC\ along most of the Pacific Coast to above
+40\,\degC\ for the interior Arctic sectors \renote{
+    I think the word ``polar'' or ``Arctic'' is needed here, see
+    \cref{fig:plot-atm}b.}
+(\cref{fig:plot-atm}b). There exists a
 partial correlation between cold regions and those that have a large
-seasonality, so that many regions where mean annual temperature is well below
-freezing point do experience warm summers.
+seasonality, so that many regions where mean annual temperatures are well below
+freezing point experience warm summers.
 
-Rates of \emph{precipitation} are highest on the western slopes of the Pacific
-Coast
-ranges and decline quickly on the eastern side of the mountains
-(\cref{fig:plot-atm}c). In terms of ice sheet mass balance, this contrast is
-even reinforced by the difference in timing of the \emph{precipitation peak}
-through
-the year (\cref{fig:plot-atm}d). Coastal regions receive most precipitation
-during winter and fall, thus as snow. On the contrary, many inland regions
-experience dry winters, and most of the annual precipitation,
-consequently falls there
-as rain during the ablation season. The climatic setting of the North American
-Cordillera is described further in \CCLI, where its effects on the ice sheet
-model response have been studied in detail.
+\emph{Annual precipitation rates} are highest on the western slopes of the
+Pacific Coast ranges and decline quickly on the eastern side of the mountains
+(\cref{fig:photo-fraser-valley}, \cref{fig:plot-atm}c). In terms of ice sheet
+mass balance, this contrast is even reinforced through the difference in timing
+of the \emph{precipitation peaks} through the year (\cref{fig:plot-atm}d).
+Coastal regions receive most precipitation during winter and fall, which is
+therefore largely delivered as snow. In contrast, many inland regions
+experience dry winters, and most of the annual precipitation, consequently
+falls there as rain during summer, further enhancing ice melt. The climatic
+setting of the North American Cordillera is further described in \CCLI, where
+its effects on the ice sheet model response have been studied in detail.
 
 \begin{figure}
   \centering
@@ -479,97 +485,91 @@ model response have been studied in detail.
 \subsection{Glacial history}
 % ----------------------------------------------------------------------
 
-The first presence of an ice sheet in the Cordilleran mountains is indicated by
-glaciofluvial deposits dated at $2.64^{+0.20}/_{-0.18}$\,Ma
-\citep{Hidy.etal.2013}. This suggests that the North American Cordillera has
-been glaciated many times, with the first glaciations occurring even before the
-onset of the 100-ka glacial cycle (\cref{fig:paleo-timeseries}). However, only
-the last few glaciations can be reconstructed from the geologic record, whereas
-much of the older evidence has been overridden by subsequent glacial
-re-advances and other geomorphological processes.
+Evidence from glaciofluvial deposited dated using cosmogenic nuclides at $2.64^{+0.20}/_{-0.18}$\,Ma indicates the first presence of an ice sheet in the Cordilleran mountains in the early Pleistocene
+\citep{Hidy.etal.2013}.
 
-In the \emph{northern sector} of the ice sheet, at least four glaciations have
+This indicates that the North American Cordillera has
+been glaciated many times since the late Pliocene, with the first of these glaciations occurring even before the mid-Pleistocene
+onset of 100 ka glacial cycles (\cref{fig:paleo-timeseries}). However, only fragments of
+the last few glaciations can be reconstructed from the geologic record, implying that
+much of the older evidence has been erased by subsequent glacial
+re-advances and perhaps even by other, non-glacial geomorphological processes.
+
+In the \emph{northern sector} of the Cordilleran ice sheet domain, at least four glaciations have
 been identified
     \citep{Duk-Rodkin.1999, Ward.etal.2007, Ward.etal.2008,
            Briner.Kaufman.2008, Demuro.etal.2012,
            Stroeven.etal.2010, Stroeven.etal.2014}.
-The two older ones, often collectively referred to as the Reid glaciations,
-pre-date the last glacial cycle, and thus are beyond the scope of this study.
-The two younger glaciations, though, occurred both during the last glacial
-cycle. First, the Gladstone glaciation reached its maximum between
+The two older ones, often collectively referred to as the Reid  and pre-Reid glaciations,
+pre-date the last glacial cycle, and are therefore beyond the scope of this study.
+The two younger glaciations, however, occurred both during the last glacial
+cycle. First, the older of the two, the Gladstone Glaciation, reached its maximum extent between
 $50.4\pm3.0$ and $54.3\pm2.0$\,\unit{^{10}Be\,ka} \citep{Ward.etal.2007},
-during a period of high global ice volume on Earth, known as the Marine Isotope
-Stage (MIS)~4. However, evidence from the Gladstone glaciation has not been
-found in the southern part of the ice-covered region, making it difficult to
-seize its magnitude. Second, the McConnell glaciation is associated with end
+during Marine Oxygen Isotope Stage (MIS) 4, a period of relatively large global ice volume. However, evidence from the Gladstone Glaciation has not been
+documented along the southern ice sheet margin, making it difficult to
+seize its spacial extent. The younger of the two last glacial cycle glaciations, the McConnell Glaciation, is associated with end
 moraines of oldest minimum apparent exposure ages of
 $15.7\pm1.5$ and $17.7\pm1.6$\,\unit{^{10}Be\,ka} \citep{Stroeven.etal.2014},
-which corresponds to the last global ice volume maximum (MIS~2). In contrary to
-the Gladstone glaciation, the McConnell glaciation has been correlated with a
-contemporaneous advance of the southern ice sheet margin, known as the Fraser
-glaciation, with a maximum extent framed between
-$17.4$ and $16.4$\,\unit{^{14}C\,cal\,ka} \citep[Fig.~4]{Porter.Swanson.1998}.
-Within errors inherent to the dating methods \citep{Heyman.etal.2011}, the
+which appears to correspond to the last global ice volume maximum (MIS~2). In contrast to
+the Gladstone Glaciation, the McConnell Glaciation appears contemporaneous with glacial advance of the southern ice sheet margin during the Fraser
+glaciation, with a maximum extent attained between
+$17.4$ and $16.4$\,\unit{^{14}C\,cal\,ka} \citep{Porter.Swanson.1998}.
+Within errors inherent to the cosmogenic nuclide exposure dating methods \citep{Heyman.etal.2011}, the
 McConnell and Fraser glaciations correspond to the same glacial episode, which
-resulted in the Last Glacial Maximum (LGM) extent of the Cordilleran ice sheet.
-This is the period where most geological observations point at.
+resulted in the Last Glacial Maximum (LGM) extent of the Cordilleran ice sheet. Apart from geological evidence of the final demise of the ice sheet, most field evidence relate to the LGM maximum extent.
 
-It is generally thought that the Cordilleran ice sheet was short-lived
-    \citep[e.g.]{Clague.etal.1980, Clague.1985, Cosma.etal.2008}.
-The ice sheet originated from the
-coalescence of several mountain-centred ice caps \citep{Davis.Mathews.1944}.
-During the last glacial maximum, ice covered most of the
-Canadian Cordillera, and some of the adjacent land in north-western contiguous
-USA and Alaska (\cref{fig:map-cordillera}).
+Ice has covered most of the
+Canadian Cordillera, and some of the adjacent regions in north-western contiguous
+USA and Alaska (\cref{fig:map-cordillera}). The ice sheet originated from the
+coalescence of several mountain-centred ice caps \citep{Davis.Mathews.1944}. It is generally thought that the LGM configuration of the Cordilleran ice sheet was short-lived
+    \citep{Clague.etal.1980, Clague.1985, Cosma.etal.2008}, a hypothesis which can be studied through numerical modelling.
+
+
 
 The \emph{southern margin} of the ice sheet has been studied extensively, and
 is in several respects better understood than its northern counterpart
-\citep{Booth.etal.2003}. It consists of different piedmont
-lobes that have formed at the outlet of the main valleys. The Puget lobe
-\citep[e.g.]{Thorson.1980, Porter.Swanson.1998} was the westernmost and
-largest lobe. It covered the Puget Lowland, a region that currently includes
-the cities of Vancouver and Seattle. East of the Cascade Range, were found the
-Okanagan and Purcell lobes. The latter once dammed the Clark Fork River to form
-Glacial Lake Missoula \citep{Pardee.1910}. As the ice sheet retreated, the lake
+\citep{Booth.etal.2003}. It consists of coalescent piedmont
+lobes, each of which formed at the outlet of the main valleys. The Puget Lobe
+\citep{Thorson.1980, Porter.Swanson.1998} was the westernmost and
+largest Lobes. It covered the Puget Lowland, a region that comprises
+the cities of Vancouver and Seattle. Further east, beyond the Cascade Range, the
+Okanagan and Purcell lobes formed the southern Cordilleran ice sheet margin. The latter once dammed the Clark Fork River, inhibiting runoff and forming
+Glacial Lake Missoula \citep{Pardee.1910}. As the ice sheet margin retreated, the lake
 repeatedly and catastrophically drained to the Pacific Ocean
 \citep{Bretz.1923,Waitt.1980}. These floods
 contributed to shape a distinctive landscape, known as the Channeled Scabland.
 
-The \emph{western margin} of the ice sheet covered part of the continental
-shelf. An
-ice cap covering Vancouver Island was well-connected to main body of ice on the
-continent \mref. A significant part of the ice sheet thus drained into the Georgia
-Strait and engulfed between Vancouver Island and the Olympic Peninsula where
-it formed the Juan the Fuca marine ice lobe, calving into the Pacific Ocean \mref.
-Further to the North, the ice margin reached Queen Charlotte Islands, yet the
-archipelago may not have been fully covered by ice
-flowing from the land. Submarine troughs likely indicate the erosional action of
-former ice streams, yet it is not clear whether they have formed during the
-last glacial cycle or earlier \mref.
+The \emph{western margin} of the Cordilleran ice sheet covered part of the Pacific continental
+shelf. An independent
+ice cap covering Vancouver Island diverted flow from the main body of ice to drain into the Strait of Georgia between Vancouver Island and the Olympic Peninsula to form the Juan the Fuca marine ice lobe, calving into the Pacific Ocean \mref.
+Further to the North, the ice margin encroached the Queen Charlotte Islands. However, the
+archipelago may not have been fully ice-covered, even during maximum of glaciation. Submarine troughs traversing several portions of the continental shelf indicate the erosional action of
+additional ice streams, yet it is not clear whether they have formed during the
+last glacial cycle or during earlier glaciations \mref.
 
-Finally, the \emph{eastern margin} of the ice sheet is the most unclear.
+Finally, the conditions at the \emph{eastern margin} of the Cordilleran ice sheet are the least understood.
 Although it
-is known that the Cordilleran ice sheet collided with its Laurentide neighbour,
+is known that the Cordilleran ice sheet collided with the Laurentide ice sheet at times during the last glacial cycle,
 the nature of the interaction between the two ice sheets and the precise
-location of this junction is unclear, while little information exists on its
+location of this junction remains unclear \citep{Gowan.2013}, while limited information exists on its
 timing
     \citep[e.g.][]{Jackson.etal.1997, Bednarski.Smith.2007}.
 Because the
-present thesis focuses specifically on the Cordilleran ice sheet, our largest
-assumption certainly consists of neglecting buttressing effects from the
+present thesis focuses specifically on the Cordilleran ice sheet, I, therefore, neglect buttressing effect of the
 Laurentide ice sheet.
 
-The ice sheet is believed to have retreated quickly. Most of the evidence comes
-from the Fraser Plateau, where it indicates that some of the highest relief
-emerged from the ice prior to the lowlands, possibly resulting in thin,
-stagnant ice remnants in the interior
+The retreat of the ice sheet during the last deglaciation was likely rapid. Most of the evidence for the style and pace of deglaciation comes
+from the Fraser Plateau. Studies here have indicated that some of the highest relief
+emerged from the ice prior to the surrounding lowlands, possibly resulting in thin,
+stagnant ice remnants covering parts of the plateau
     \citep{Fulton.1967, Fulton.1991, Margold.etal.2011, Margold.etal.2013a}.
-Much less is known about ice sheet decay in the northern parts of the
-ice-covered areas, but glacial landforms from the Liard Lowland suggest a
-different mode of \emph{deglaciation}, with active retreat of the ice lobe
+Less is known about the deglaciation of the northern sector of the Cordilleran ice sheet, but abundant glacial landforms from the Liard Lowland indicate a
+different mode of \emph{deglaciation}, with active retreat of the ice margin
 towards the surrounding mountain ranges \citep{Margold.etal.2013}. Patterns of
 deglaciation, as well as the possibility for a late-glacial re-advance, are
 discussed in further detail and compared with modelling results in \CCYC.
+
+\todo{To make this more complete I suggest two additions: 1. a few sentences regarding the timing of deglaciation (to complement your introduction where you have timing of glaciation) - look in my 2010 and Martin's papers for information. 2. A few more references older than Margold et al. 2013. You might check what Ward has written fordeglaciation in the Yukon for example? Didn't Dyke write about the deglaciation of the Liard Lowland?}
 
 % ======================================================================
 \section{Numerical ice sheet model}
@@ -579,20 +579,19 @@ discussed in further detail and compared with modelling results in \CCYC.
 \subsection{Overview}
 % ----------------------------------------------------------------------
 
-The simulations presented in this thesis use Parallel Ice Sheet Model (PISM),
-an open-source, finite-difference, shallow ice-sheet model
-\citep{PISM-authors.2014}. The model reads bedrock topography, sea level,
+The simulations presented in this thesis employ the Parallel Ice Sheet Model (PISM),
+an open-source, finite-difference, shallow ice sheet model
+\citep{PISM-authors.2014}. The model requires bedrock topography, sea level,
 geothermal heat flux and climate forcing as inputs, and computes the thermal
 and dynamic state of the ice sheet, and the associated thermal and
-deformational response of an idealised lithosphere. The atmospheric and oceanic
-envelopes are not part of the model. However, PISM includes boundary models
-that provide simple parametrisations of their effect on the ice model at
-supposedly well-defined interfaces (\cref{fig:model-interfaces}).
+deformational responses of an idealised lithosphere. However, the atmosphere and ocean
+are not part of the model. Instead, PISM includes boundary models
+that provide simple parametrisations of their interaction with the ice sheet across interfaces that are assumed to be well defined (\cref{fig:model-interfaces}).
 
 This section does not attempt to provide an extensive description of PISM,
-which can be found in the on-line documentation \citep{PISM-authors.2014}.
+which can be found in an on-line documentation \citep{PISM-authors.2014}.
 Instead, it aims to highlight modelling choices made in the context of this
-thesis, and give an overview of the physics involved in these choices.
+thesis, and presents an overview of the physics involved in these choices.
 
 \begin{figure}
   \centering
@@ -618,8 +617,8 @@ thesis, and give an overview of the physics involved in these choices.
 
 The thermodynamic core of the ice sheet model relies on four elementary field
 equations. Firstly, ice flow is assumed \emph{incompressible}. Hence, the ice
-density, $\rho$, is constant, and the
-conservation of mass implies a conservation of volume, which can be expressed
+density, $\rho$, is constant, and
+conservation of mass therefore implies a conservation of volume, which can be expressed
 in terms of the ice velocity vector, $\vv$ (\cref{fig:model-variables}), by
 \begin{equation}
     \label{eqn:incompressibility}
@@ -636,9 +635,10 @@ expressed by the Cauchy stress tensor, $\CST$, and gravity, $\vect{g}$:
 \end{equation}
 
 Thirdly, after defining the strain-rate tensor
-${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
-and the deviatoric stress tensor, ${\DST = \CST - p\,\IDT}$,
-where $p=\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
+${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$\renote{
+  $\grad$, $\div$, $\tgrad$, $\tdiv$, are the classic gradient and divergence operators, applied on vector and tensor fields. $\tr$ is the trace of a matrix. I don't think these need to be defined.},
+and the deviatoric stress tensor, ${\DST = \CST + p\,\IDT}$,
+where $p=-\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
 $\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice
 \citep{Nye.1953} based on laboratory experiments \citep{Glen.1952} is used to
 relate these two quantities. It reads:
@@ -649,8 +649,8 @@ relate these two quantities. It reads:
 The equivalent stress, $\tau_e$, is defined by
 ${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
 where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
-The ice softness coefficient, $A$, depends on ice temperature, pressure, and
-water content through an Arrhenius-type law
+The ice softness coefficient, $A$, depends on ice temperature, $T$, pressure, $p$, and
+water content, $\omega$, through an Arrhenius-type law
 \citep[Eqs.~63--65]{Aschwanden.etal.2012},
 \begin{equation}
     A =
@@ -667,7 +667,8 @@ capped at a threshold of 0.01, above which no measurements are available
 \citep{Lliboutry.Duval.1985}.
 
 \todo{I am trusting PISM's manual on that. Check other papers by Duval, or
-      the book by Greve (library).}
+      the book by Greve (library). Explain params (Arjen + Irina) or refer to
+      table, maybe.}
 
 Letting ${\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)$ and $B=A^{-1/n}$, the
 constitutive law (\ref{eqn:glenslaw}) can be rewritten using a sometimes more
@@ -686,9 +687,9 @@ by $\DST = 2 \nu\SRT$, thus yielding
 
 Finally, the evolution of temperature within the ice is governed by the
 \emph{conservation of energy}. In PISM, the conservation of energy uses an
-enthalpy formulation \citep[Eqs.~20--21]{Aschwanden.etal.2012} in order to
+enthalpy formulation in order to
 account for thermodynamic effects associated with internal phase changes in the
-glacier. This enthalpy ($H$) formulation reads
+glacier \citep[Eqs.~20--21]{Aschwanden.etal.2012}. This enthalpy ($H$) formulation reads
 \begin{equation}
     \label{eqn:enthalpy}
     \rho \left(\matdv{H}\right)
@@ -697,25 +698,26 @@ glacier. This enthalpy ($H$) formulation reads
 where $\vect{q}$ represents the heat flow and
 ${\frac{\nu\dot{\epsilon_e}^2}{4} = \tr(\DST\SRT)}$ is a
 source term corresponding to strain heat release. In the case where ice
-temperature, $T$, is below the pressure-melting point, the enthalpy can be
-expressed as $H=c\,T$, while the heat flow is given by Fourier's law,
-$\vect{q} = k\,\grad{T}$. Consequently, the enthalpy equation
+temperature, $T$, is below the pressure-melting point, $T_c$, the enthalpy can be
+expressed as $H=c\,T$, where, $c$, denotes the specific heat capacity of the ice, while the heat flow is given by Fourier's law,
+$\vect{q} = k\,\grad{T}$, where $k$ is its thermal conductivity of ice. Consequently, the enthalpy equation
 (\ref{eqn:enthalpy}) can be rewritten using a more familiar, cold-ice,
 temperature formulation,
 \begin{equation}
     \label{eqn:temperature}
     \matdv{T} = \frac{k}{\rho c} \Delta T
-                + \frac{\nu\doteps_e^2}{4\rho c} \,,
+                + \frac{\nu\doteps_e^2}{4\rho c} \,.
 \end{equation}
-where $c$ denotes the specific heat capacity of the ice and $k$ is its thermal
-conductivity. Parameter values for the ice flow model used in this thesis are
+Parameter values for the ice flow model used in this thesis are
 given in \cref{tab:iceflowparams}.
+
+\todo{Explain $H=c\,T$. Enthalpy here is equivalent to internal energy.}
 
 \Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,eqn:enthalpy}
 constitute the thermodynamic basis
-of our model. However, their resolution in full form implies a computational
+of the model. However, their resolution in full form implies a computational
 demand too high for multi-millennial, continental-scale applications, such as
-the numerical modelling of the Cordilleran ice sheet through the last glacial
+the numerical modelling of the Cordilleran ice sheet through the 120\,ka last glacial
 cycle, thus requiring shallow approximations.
 
 \begin{table}
@@ -814,24 +816,14 @@ cycle, thus requiring shallow approximations.
 \subsection{Shallow approximations}
 % ----------------------------------------------------------------------
 
-PISM, the ice sheet model that we use, employs two well-documented
+PISM employs two well-documented
 approximations of ice flow equations: the shallow ice approximation (SIA)
 and the the shallow shelf approximation (SSA). Although both approximations can
 be derived from a rigorous scaling approach
-    \citep[SIA,][]{Morland.Johnson.1980, Hutter.1983,
-                   Morland.1987, Weis.etal.1999},
-we don't expand these lengthy derivations
+    \citep{Morland.Johnson.1980, Hutter.1983,
+           Morland.1987, Weis.etal.1999},
+I won't expand these lengthy derivations
 here, assuming instead the simplifications and focusing on their effect.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=80mm]{model-siassa}
-  \caption{Shallow Ice Approximation (SIA) and Shallow Shelf Approximation
-           (SSA) velocities in PISM. From \citet{Winkelmann.etal.2011}.
-           \todo{Redraw in LaTeX in the same style as
-                 \cref{fig:model-variables}.}}
-  \label{fig:model-siassa}
-\end{figure}
 
 Distinguishing the hydrostatic and deviatoric components of the stress tensor,
 the balance of stresses (\ref{eqn:stressbalance}) can be expanded into
@@ -873,7 +865,7 @@ projected stress-balance can be simplified to
       function. Their equations look very different from here. Go to
       geolibrary and check the book by \citet{Hutter.1983}, if it is there.}
 
-Neglecting atmospheric pressure, \Cref{eqn:siaz} yield
+Neglecting atmospheric pressure, \Cref{eqn:siaz} yields \todo{detail}
 \begin{equation}
     p = \rho g (s-z) \,,
 \end{equation}
@@ -883,7 +875,7 @@ stresses,
 \begin{subequations}
 \begin{align}
     \tau_{xz} &= -\rho g (s-z) \pdv{s}{x} \,, \\
-    \tau_{yz} &= -\rho g (s-z) \pdv{s}{x} \,.
+    \tau_{yz} &= -\rho g (s-z) \pdv{s}{y} \,.
 \end{align}
 \end{subequations}
 
@@ -916,10 +908,9 @@ which yields, in vectorial notation,
       after one vertical integration. Show that vertical velocities can be
       obtained from the compressibility equation.}
 
-The \emph{shallow shelf approximation} (SSA), on the opposite of the SIA,
+The \emph{shallow shelf approximation} (SSA), in contrast to SIA,
 assumes that
-basal friction is low enough for ice to deform predominantly by horizontal
-expansion within the entire ice column. In this context, the stress-balance can
+basal friction is low enough for ice to deform uniformly within the entire ice column. In this context, the stress-balance can
 be simplified to \citep[Eqs.~4.10--4.12]{Weis.etal.1999}
 \begin{subequations}
 \label{eqn:ssa}
@@ -944,15 +935,15 @@ and horizontal velocities can be assumed independent of depth
 Once again neglecting atmospheric pressure, and remembering that $\tr(\DST)=0$,
 \Cref{eqn:ssaz} yields
 \begin{align}
-    p &= \rho g (s-z) - \tau_{zz} \,, \\
-      &= \rho g (s-z) + \tau_{xx} + \tau_{yy} \,,
+    p &= \rho g (s-z) + \tau_{zz} \,, \\
+      &= \rho g (s-z) - \tau_{xx} - \tau_{yy} \,,
 \end{align}
 which can be re-introduced into \cref{eqn:ssax,eqn:ssay}:
 \begin{subequations}
 \begin{align}
-    2\pdv{\tau_{xx}}{x} - \pdv{\tau_{yy}}{x} + \pdv{\tau_{xy}}{y}
+    2\pdv{\tau_{xx}}{x} + \pdv{\tau_{yy}}{x} + \pdv{\tau_{xy}}{y}
         + \pdv{\tau_{xz}}{z} &= \rho g \pdv{s}{x} \,, \\
-    \pdv{\tau_{yx}}{x} + 2\pdv{\tau_{yy}}{y} - \pdv{\tau_{xx}}{y}
+    \pdv{\tau_{yx}}{x} + 2\pdv{\tau_{yy}}{y} + \pdv{\tau_{xx}}{y}
         + \pdv{\tau_{yz}}{z} &= \rho g \pdv{s}{y} \,.
 \end{align}
 \end{subequations}
@@ -1013,8 +1004,18 @@ reciprocally, we can expect the model to perform well in regions where
 conditions for applicability of either the SIA or the SSA are met
 (\cref{fig:model-siassa}). However,
 \cref{eqn:siassa} is a heuristic, and its validity in the zone of
-transition between shear flow and longitudinal flow has not been
+transition between shear flow (SIA) and longitudinal flow (SSA) has not been
 mathematically proven.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=80mm]{model-siassa}
+  \caption{Shallow Ice Approximation (SIA) and Shallow Shelf Approximation
+           (SSA) velocities in PISM. From \citet{Winkelmann.etal.2011}.
+           \todo{Redraw in LaTeX in the same style as
+                 \cref{fig:model-variables}.}}
+  \label{fig:model-siassa}
+\end{figure}
 
 
 % ----------------------------------------------------------------------
@@ -1050,14 +1051,19 @@ criterion,
    \tau_c = c_0 + N\,\tan{\phi} \,.
 \end{equation}
 
-The till cohesion $c_0$ is assumed to be zero. The effective pressure on the
+The till cohesion $c_0$ is assumed to be zero \renote{
+  Yes, we should probably defend this choice, but I am not sure how (except
+  that it just diminishes the number of parameters).}.
+The effective pressure on the
 till, $N$, is determined by the modelled amount of water at the bed. However,
 two different parametrisations are used within this thesis. In {\CCLI}, using
 PISM~0.5, the effective pressure is linearly related to water content by a
 simple parametrisation \citep[Eq.~13]{Winkelmann.etal.2011},
 \begin{equation}
-    N = \rho gh (1 - \alpha \frac{W}{W_{max}}) \,.
+    N = \rho gh (1 - \alpha \frac{W}{W_{max}}) \,,
 \end{equation}
+where $W$ is the amount of water at the bed, and varies from zero to $W_{max}$,
+a threshold above which further melt simply exits the system.
 
 In {\CCYC}, using PISM~0.6, the effective pressure is determined by an
 empirical parametrisation based on laboratory experiments on Antarctic till
@@ -1066,11 +1072,10 @@ empirical parametrisation based on laboratory experiments on Antarctic till
     N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,.
 \end{equation}
 
+\todo{explain parameters}
+
 Drainage of water at the base of the ice sheet, although implemented in PISM,
 is not included in simulations presented here for the sake of simplicity.
-In turn, the amount of water at the bed, $W$, corresponds to the local
-accumulation of basal melt-water. In varies from zero to $W_{max}$, a threshold
-above which further melt simply exits the system.
 
 Finally, the till friction angle $\phi$ is taken a~function of modern bed
 elevation, with lowest values occurring at low elevations, thus accounting for
@@ -1172,7 +1177,7 @@ The modelled ice sheet interacts with the underlying bedrock in two ways.
 Firstly, \emph{bedrock temperatures} are computed to a given depth by
 appending the
 ice enthalpy model (\ref{eqn:enthalpy}) with an underlying bedrock thermal
-model. The only process accounted for is heat conduction, hence this model
+model. The only process accounted for is vertical heat conduction, hence this model
 consists of a simple diffusion equation,
 \begin{equation}
     \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T \,,
@@ -1182,10 +1187,11 @@ specific heat capacity of the bedrock. Bedrock temperature is conditioned at
 depth by a fixed upwards geothermal heat flux $q_G$. The bedrock thermal model
 is necessary for modelling the Cordilleran ice sheet on multi-millennial
 time-scales, because temperature fluctuations caused by climate change and
-isolating effects of the ice sheet penetrate several hundred meters into the
+varying isolation from the fluctuating ice sheet penetrate several kilometers
+into the
 rock, and eventually affect basal ice temperatures.
 
-Secondly, bedrock elevation evolve in response to the ice load. The
+Secondly, bedrock elevation evolve in response to the ice weight. The
 \emph{bedrock deformation} model used in this thesis describes the flexure of
 an elastic
 lithosphere on top of an infinite half-space viscous mantle
@@ -1205,7 +1211,7 @@ the left-hand side of \cref{eqn:beddef}, the first term accounts for mantle
 relaxation, the second for point-wise isostasy, and the third for elastic
 flexure. Due to high mantle viscosity, $\nu_m$, there exists a time lag between
 the ice sheet growth and the isostatic bedrock response. Parameter values for
-bedrock response model are given in \cref{tab:bedrockparams}.
+the bedrock response model are given in \cref{tab:bedrockparams}.
 
 \begin{table}
   \centering
@@ -1261,17 +1267,17 @@ bedrock response model are given in \cref{tab:bedrockparams}.
 At the interface between the ice sheet and the atmosphere
 (\cref{fig:model-interfaces}),
 surface mass fluxes are computed from monthly mean surface air temperature,
-$T_m$, and monthly precipitation, $P_m$, by a temperature-index model
+$T_m$, and monthly precipitation, $P_m$, using a temperature-index model
 \citep[e.g.,][]{Hock.2003}. Surface accumulation, $a_s$, equals precipitation
 when temperature is below ${T_0=0\,\degC}$, and decreases to zero linearly
-with temperature between $T_0$ and ${T_1=2\,\degC}$,
+with temperature between $T_s$ and ${T_r=2\,\degC}$,
 \begin{equation}
     a_s =
     \begin{cases}
-        0       & \text{if}\ T_m \le T_s \,, \\
-        P_m \frac{T_m-T_s}{T_r-T_s}
+        P_m     & \text{if}\ T_m \le T_s \,, \\
+        P_m \frac{T_r-T_m}{T_r-T_s}
                 & \text{if}\ T_s < T_m < T_r \,, \\
-        P_m     & \text{if}\ T_r \le T_m \,,
+        0       & \text{if}\ T_r \le T_m \,,
     \end{cases}
 \end{equation}
 
@@ -1282,14 +1288,14 @@ integral of positive Celcius temperature $T-T_0$,
     \mathrm{PDD} = \int_{0}^{A}\max(T(t)-T_0,0)\,dt \,.
 \end{equation}
 
-For multimillenial simulations of palaeo-ice sheet evolution such as the ones
+For multimillenial simulations of palaeo-ice sheet evolution such as
 presented in this thesis, daily or hourly temperature data is not available,
 forcing the PDD computation to rely on an idealised representation of the
 annual temperature cycle $T_{ac}$. Sub-annual temperature variability around
 the freezing point, however, significantly affects surface melt on a multi-year
 scale \citep{Arnold.Mackay.1964}. It is then typically included in the models
 under an assumption of normal temperature distribution, using a standard
-deviation parameter $\sPDD$ in the PDD computation \citep{Braithwaite.1984},
+deviation parameter $\sPDD$ in the PDD computation \citep{Braithwaite.1984}.
 PDDs can then be computed using a double-integral formulation
 \citep{Reeh.1991},
 \begin{equation}
@@ -1314,14 +1320,16 @@ approximated using week-long sub-intervals. For each sub-interval, PDDs, which
 serve as a proxy for the available energy for melt, define the amount of snow
 melt through a proportionality factor $F_s$. If all snow is melted, remaining
 PDDs are used to melt ice, using a proportionality factor $F_i$
-(\cref{fig:model-pdd}). The melt factors $F_s$ and $F_i$
+(\cref{fig:model-pdd}). The degree-day factors for snow, $F_s$, and ice, $F_i$,
 (\cref{tab:surfaceparams})
-as derived from mass-balance measurements on contemporary glaciers in the
+are derived from mass-balance measurements on contemporary glaciers in the
 Coast and Rocky Mountains of British Columbia \citep{Shea.etal.2009}. In
 {\CCLI}, the temperature standard deviation $\sPDD$ is a constant model
 parameter. In {\CCYC}, it is computed from daily temperature values from the
 North American Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, using
-a method initially developed in {\PSDV}, and further improved in {\PSDP}.
+a method initially developed in {\PSDV}, and further improved upon in {\PSDP}.
+
+\todo{explain why it is possible to linearly relate melt and PDDs.}
 
 \begin{figure}
   \centering
@@ -1389,7 +1397,7 @@ and a temperature-offset correction, ${\Delta}T_{TS}$,
 \end{align}
 \end{subequations}
 
-The present-day climatology, $\{T_{m0}, P_{m0}\}$, is computed from
+The present-day monthly climatology is computed from
 near-surface air temperature and precipitation rate fields extracted from
 observational data and atmospheric reanalyses.
 The lapse-rate correction, ${\Delta}T_{LR}$, is computed in relation to the
@@ -1401,13 +1409,14 @@ climate input reference bedrock topography, $b_{ref}$,
 thus accounting for the evolution of ice thickness, $h$, on the one hand, and
 for differences between the the ice flow model basal topography, $b$, and the
 climate input topography, $b_{ref}$, on the other hand. All simulations use an
-annual temperature lapse rate of $\gamma = 6\,\unit{\degC\,km^{-1}}$.
+annual temperature lapse rate of $\gamma = 6\,\unit{K\,km^{-1}}$
+\cref{tab:surfaceparams}.
 
-\CCLI\ tests the sensitivity of the model to different input present-day
-climatologies, $\{T_{m0}, P_{m0}\}$, while the temperature-offset corrections,
-${\Delta}T_{TS}$, uses constant values ranging from -10 to 0\,\degC. \CCYC,
-on the opposite, tests model sensitivity to time-dependent temperature-offset
-corrections derived from different palaeo-temperature proxy records. All
+In \CCLI, we test the sensitivity of the ice sheet model to five different input present-day
+climatologies, $\{T_{m0}, P_{m0}\}$ \cref{tab:datasources}, while adopting a range of constant temperature-offset corrections,
+${\Delta}T_{TS}$, between -10 and 0\,K. In \CCYC,
+on the opposite, we test ice sheet model sensitivity to time dependent temperature-offset
+corrections derived from six different palaeo-temperature proxy records. All
 climatic and topographic data sources used are summarised in
 \cref{tab:datasources}.
 
