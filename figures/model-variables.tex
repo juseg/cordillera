@@ -1,30 +1,39 @@
 \documentclass[border=0,tikz]{standalone}
 \usepackage{amsmath}
+\usepackage{physics}
 \usetikzlibrary{arrows}
 \usetikzlibrary{intersections}
 \usetikzlibrary{calc}
 
+% notations
+\newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
+
+% begin document
 \begin{document}
 \begin{tikzpicture}[>=latex]
 
 % background and axes
-\fill[white] (-0.5,-0.5) rectangle +(8,6);
+\fill[white] (-0.5,-0.5) rectangle +(8.5,6);
 %\draw [help lines, lightgray] (0,0) grid (7,5);
-\draw[->] (0,0) -- (7,0) node [below] {$x$};
+\draw[->] (0,0) -- (7.5,0) node [below] {$x$};
 \draw[->] (0,0) -- (0,5) node [left] {$z$};
 
-% surface and bed profiles
-\draw[name path=s] (0,4) -- (6.5,3) node [right] {$s$};
-\draw[name path=b] (0,1.5) -- (6.5,0.5) node [right] {$b$};
-
 % central point coordinates
-\coordinate (p) at (2,2);
+\coordinate (p) at (2.5,2.25);
 \draw[dashed] (p |- 0,0) -- (p);
 \draw[dashed] (p -| 0,0) -- (p);
 
+% surface and bed profiles
+\draw[name path=s]
+    (0,4.5) .. controls +(-20:1) and +(170:1) .. ($(p)+(0,1.5)$)
+            .. controls +(-10:2) and +(165:2) .. (7,3) node [right] {$s$};
+\draw[name path=b]
+    (0,2.0) .. controls +(-20:1) and +(170:1) .. ($(p)-(0,1.0)$)
+            .. controls +(-10:2) and +(165:2) .. (7,0.5) node [right] {$b$};
+
 % velocity and gravity vectors
-\draw[->, thick] (p) -- +(2,-1/3.25) node [midway, below] {$\vec{v}$};
-\draw[->, thick] (p) -- +(0,-1.5) node [midway, right] {$\vec{g}$};
+\draw[->, thick] (p) -- +(-10:2) node [midway, below] {$\vect{v}$};
+\draw[->, thick] (p) -- +(0,-1.5) node [midway, right] {$\vect{g}$};
 
 % stress tensor cube
 \node (box) at (p) [rectangle,draw,thick,minimum size=10mm] {};
@@ -34,7 +43,7 @@
 \draw[->] (box.east) ++(0.1,0) -- ++(0.5,0) node [above] {$\sigma_{xx}$};
 
 % ice thickness
-\path [name path=hx] (5,0) -- +(0,5);
+\path [name path=hx] (5.5,0) -- +(0,5);
 \path [name intersections={of=s and hx, by=hs}] ;
 \path [name intersections={of=b and hx, by=hb}] ;
 \draw[<->] (hb) -- (hs) node [midway, right] {$h$};
