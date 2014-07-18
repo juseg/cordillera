@@ -1,6 +1,12 @@
 % cordillera-climate.tex
 % =============================================================================
 
+% Copernicus-like latex2rtf compatible
+\newif\iflatextortf
+\iflatextortf
+\input{copernicus_rtf}
+\else
+
 % Copernicus manuscript
 \documentclass[tc, manuscript]{copernicus}
 
@@ -9,9 +15,7 @@
 
 % Copernicus discussion paper
 %\documentclass[tcd, hvmath, online]{copernicus}
-
-% Copernicus-like latex2rtf compatible
-%\input{copernicus_rtf}
+\fi
 
 % Coloured hyperlinks
 \hypersetup{colorlinks, citecolor=blue}
@@ -371,14 +375,14 @@ half-space\renote{
 \label{sec:surface}
 % -----------------------------------------------------------------------------
 
-\renote{
-    Surface mass balance is the balance of mass fluxes at the surface,
-    consisting of ice accumulation and ice ablation, which I introduce straight
-    away. I don't see what kind of ``opening sentence'' can be added here.}
 Ice surface accumulation and ablation are computed from monthly mean
 near-surface air temperature, $T_m$, monthly standard deviation of near-surface
 air temperature, $\sigma$, and monthly precipitation, $P_m$, using
-a~temperature-index model \citep[e.g.,][]{Hock.2003}. Accumulation is equal to
+a~temperature-index model \citep[e.g.,][]{Hock.2003}\renote{
+    Surface mass balance is the balance of mass fluxes at the surface,
+    consisting of ice accumulation and ice ablation, which I introduce straight
+    away. I don't see what kind of ``opening sentence'' can be added here.}.
+Accumulation is equal to
 precipitation when air temperatures are below 0\,\unit{{\degree}C}, and
 decreases to zero linearly with temperatures between 0 and
 2\,\unit{{\degree}C}. Ablation is computed from the number of positive
@@ -556,11 +560,11 @@ volumes are also contained within a close range of 8.24 to 8.66\,m~s.l.e.
 (Table~\ref{tab:extrema}).
 
 % =============================================================================
-\section[Comparison to the geologic record]
-        {Comparison to the geologic record\renote{
-    Arjen has proposed: 2.1 Evaluation of model runs agains field evidence, 2.2
-    Palaeoglaciology of the Cordilleran ice sheet, and 2.3 The last
-    deglaciation; but I don't think that these headers work. In my view, this
+\section{Comparison to the geologic record}
+\label{sec:discussion}
+% =============================================================================
+
+\emph{[\textbf{About the new titles}: In my view, this
     entire ``discussion'' part is all about evaluation of model runs agains
     field evidence and palaeoglaciology. It is necessary that this comparison
     starts here, in order to ``kick out'' the records that perform badly (ODP*,
@@ -579,9 +583,7 @@ volumes are also contained within a close range of 8.24 to 8.66\,m~s.l.e.
     Nucleation centres, where we study ``intermediate'' states, for which less
     is known, but the model can say something; and 4.3 The last deglaciation,
     which deserves a separate section because many people are interested in
-    this period, and much geological evidence is available.}}
-\label{sec:discussion}
-% =============================================================================
+    this period, and much geological evidence is available.]}
 
 % -----------------------------------------------------------------------------
 \subsection{Glacial maxima}

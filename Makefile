@@ -8,6 +8,10 @@ all: $(PAPER).tex figures
 figures:
 	cd figures && $(MAKE)
 
+rtf:
+	latex2rtf -E0 -f0 -M4 -t2 $(PAPER).tex
+
 clean:
 	cd figures && $(MAKE) clean
 	latexmk -CA
+	rm $(PAPER).rtf
