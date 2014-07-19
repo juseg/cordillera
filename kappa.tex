@@ -1823,35 +1823,57 @@ deglaciation.
 
 
 % ======================================================================
-\section{Conclusion and perpectives}
+\section{Sources of error}
 % ======================================================================
 
-In this thesis, I present numerical reconstructions of the former Cordilleran
-ice sheet to a level of detail that has, to my knowledge, not been attained
-before. The coupled SIA-SSA approximation is crude, yet it is currently the
-only approach that allows, combined with massively parallel computing, high
-spatial resolution over the multi-millenial time scales of ice sheet growth and
-decay.
-
 Through sensitivity studies, I have identified the predominant sources of
-uncertainty, which I have assessed using a combination of detailed
-meteorological datasets and available geological evidence.\todo{insert a
-statement which these sources of uncertainties are} Simulations supporting this
-thesis yielded estimates of the LGM Cordilleran ice sheet extent and volume,
+uncertainty involved in numerical modelling of Cordilleran ice sheet. Through
+the different papers constituting this thesis, I present an assessment of some
+of these sources, including the choice of present-day atmospheric forcing, the
+effects of daily temperature variability, and the choice of palaeo-temperature
+time series used to drive the model through past climate history.
+
+The resulting simulations, combined with available geological evidence,
+yielded estimates of the LGM Cordilleran ice sheet extent and volume,
 identification of the main ice-dispersal centres througout the last glacial
 cycle, and understanding of final deglaciation patterns. However, there remains
 considerable room for model improvements and further analysis of the simulation
-output \todo{introduce your perspectives here}.
+output. Sources of error not assessed in this thesis include potential
+buttressing effects of the Laurentide ice sheet, past changes in precipitation,
+and regional variability of the geothermal heat flux.
 
 
 % ----------------------------------------------------------------------
-\subsection{Precipitation change}
+\subsection{Interaction with the Laurentide ice sheet}
 % ----------------------------------------------------------------------
 
-One of the predominant uncertainties, for which Cordilleran ice sheet modelling
-is highly sensitive, is the treatment of precipitation. Throughout the
-modelling, we base precipitation patterns on current patterns derived from
-reanalysis data. Although the distribution of precipitation has undoubtedly
+Certainly the most important assumption made in this thesis is that of a
+Cordilleran ice sheet largely disconnected from its much larger neighbour, the
+Laurentide ice sheet. Geomorphological evidence from the suture zone indicates
+that, during the LGM, both Cordilleran and Laurentide ice flow has been
+deflected by their junction \citep{Kleman.etal.2010, Margold.etal.2013,
+Margold.etal.2013a}, although it remains unclear for how long this junction has
+lasted \citep{Jackson.etal.1997, Bednarski.Smith.2007, Gowan.2013}.
+
+Nevertheless, during most of the last glacial cycle, the two ice sheets have
+been disconnected \citep{Kleman.etal.2010}. Thus, this assumption only affects
+numerical reconstructions of the Cordilleran ice sheet presented here during
+the last glacial maximum and during the subsequent deglacation. Other numerical
+modelling results \citep{Gregoire.etal.2012} indicate the Laurentide ice sheet
+may have formed a buttress to ice flow from the Western Cordillera, resulting
+in a thicker Cordilleran ice sheet. However modelling alone will not elucidate
+the nature and duration of the interaction between of the Cordilleran and
+Laurentide ice sheets. For this, additional field constraints will be needed.
+
+
+% ----------------------------------------------------------------------
+\subsection{Past changes in precipitation}
+% ----------------------------------------------------------------------
+
+Another important source of error is the treatment of precipitation, to which
+the numerical ice sheet model is highly sensitive (\CCLI). In all sensitivity
+studies, we base precipitation patterns on current values derived atmospheric
+reanalyses. Although the distribution of precipitation has undoubtedly
 been affected by past changes in global climate and the intermittent presence
 of ice sheets and ice caps in the Northern Hemisphere, its changes are
 difficult to assess. In the North American Cordillera, much of the continental
@@ -1860,42 +1882,39 @@ Pacific Coast ranges, reinforcing the current topographic barrier. However,
 some regions were probably rainier as a side effect of modified wind patterns.
 
 In meteorology, these effects are typically analysed using atmospheric
-circulation models. However, I have shown in \CCLI\ that different atmospheric
-reanalyses which are circulation models that use data assimilation techniques,
-fail to agree regarding the present-day pattern of precipitation over the
-modelling domain. These discrepancies, which arise as a consequence of the
-highly mountainous terrain, have dramatic effects on the ice sheet model
-response. Considering additional difficulties inherent to modelling past
-climates, and the lack of data for assimilation, we must regard derived ice
-sheet histories as a highly generalized model output [only expect that
-palaeo-climate reconstructions will produce even higher discrepancies in the
-ice-sheet-model response].
-
-\todo{think tomorrow. can one say something about the robustness of some
-      features (ice caps that form, spreading centers which persist)which occur
-      irrespective of which reanalysis is used?}.
+circulation models. However, I have shown that different atmospheric reanalyses
+--- circulation models using data assimilation techniques --- fail to agree
+regarding the present-day pattern of precipitation over the modelling domain.
+These discrepancies, which arise as a consequence of the highly mountainous
+terrain, have dramatic effects on the ice sheet model response. Considering the
+lack of observational data for modelling past climates, the increased
+computational demand, and a decreased familiarity to processes at play, we must
+expect that, for ice sheet simulations forced by different palaeo-climate
+simulations, the uncertainty associated to the choice of atmospheric forcing
+will be even higher. Perhaps alternative methods of coupling between ice sheet
+evolution and precipitation changes need to be developed.
 
 
 % ----------------------------------------------------------------------
-\subsection{Geothermal heat flux}
+\subsection{Geothermal heat flux patterns}
 % ----------------------------------------------------------------------
 
-Geothermal heat flux, contributing to the en-glacial temperature distribution
-and the location of basal melt areas, was assumed constant over the modelling
-grid. However, the geology of the study area consists of an amalgamation of
-former subduction zone, resulting in complex geothermal patterns
-\citep{Blackwell.Richards.2004}. I am now at the stage to start including this
-variability as a driver to the ice sheet model, which will offer new
-opportunities to study its output in terms of ice flow patterns, consistent
-basal freezing and basal melting patterns, regions prone for glacial erosion,
-and regions characterised by glacial deposition.
+Geothermal heat flux forcing, a major contributor to the modelled distribution
+of en-glacial temperatures, and the location of basal melt areas, was assumed
+constant over the modelling domain. However, the geology of the study area
+consists of an amalgamation of former subduction zones, resulting in complex
+geothermal patterns \citep{Blackwell.Richards.2004}. I am now at the stage to
+start including this variability as a driver to the ice sheet model, which will
+offer new opportunities to study its output in terms of ice flow patterns,
+consistent basal freezing and basal melting patterns, regions prone for glacial
+erosion, and regions characterised by glacial deposition.
 
-I expect that inclusion of geothermal heat patterns allow modelled basal flow
-directions and distances to be compared with glacial lineations, which is one
-of the main sources of geomorphological evidence used to reconstruct former ice
-sheets \citep{Boulton.Clark.1990, Kleman.etal.1997, Kleman.etal.2010}. For
+I expect that inclusion of geothermal heat patterns will allow modelled basal
+flow directions and distances to be compared with glacial lineations, which is
+one of the main sources of geomorphological evidence used to reconstruct former
+ice sheets \citep{Boulton.Clark.1990, Kleman.etal.1997, Kleman.etal.2010}. For
 instance, in our simulations, large portions of the Cordilleran ice sheet
-remain cold-based throughout deglaciation (\CCYC, Fig.~15). As cold-based
+remain cold-based throughout the deglaciation (\CCYC, Fig.~15). As cold-based
 glaciers typically do not impact their beds significantly, this could indicate
 that some of the lineation patterns we observe within these zones of consistent
 cold-based deglaciation could be older features, formed during an earlier phase
@@ -1903,32 +1922,19 @@ of advance or retreat of the ice sheet. However, without a better control on
 the geothermal heat flux, such analysis are perhaps too premature.
 
 
-% ----------------------------------------------------------------------
-\subsection{The Cassiar ice cap}
-% ----------------------------------------------------------------------
+% ======================================================================
+\section{Conclusions}
+% ======================================================================
 
-In the summer of 2012, I have co-organised and participated in a fieldwork with
-Martin Margold and Ping Fu to collect samples of glacial deposits in the
-southern Cassiar Mountains of northern British Columbia
-(\cref{fig:map-cordillera}). The primary target of the fieldwork was a
-triple-crested, sharp, ca. 50\,m-high moraine located in the vicinity of Tuya
-Lake on the western slope of the Cassiar Mountains
-(\cref{fig:photo-tuya-moraine}). Although this is a unique feature in the area,
-the size of the moraine and its location at the foothill of the mountain range
-indicate that it was likely formed by a tributary glacier from an ice cap,
-rather than a stand-alone valley glacier. The relatively low-elevated Cassiar
-Mountains do not appear as a major nucleation centre in our simulations (\CCYC,
-Fig.~5). Therefore, it is tempting to think that such a large feature may
-result from the late-glacial re-advance of a remnant of the decaying ice sheet.
-High-resolution modelling of the deglaciation phase, perhaps at a regional
-scale, may help to study this hypothesis.
+In this thesis, I present numerical reconstructions of the former Cordilleran
+ice sheet to a level of detail that has, to my knowledge, not been attained
+before. Although mathematically uncertain, the coupled SIA-SSA approximation,
+combined with massively parallel computing, allowed ice sheet modelling at
+high spatial resolution and over multi-millenial time scales characteristic
+of ice sheet growth and decay.
 
-\begin{figure}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-tuya-moraine}}
-  \caption{The Tuya Lake Moraine in northern British Columbia.}
-  \label{fig:photo-tuya-moraine}
-\end{figure}
+
+
 
 % References
 \renewcommand{\urlprefix}[0]{}  % remove default "URL" prefix
