@@ -33,9 +33,6 @@ figures/data/*.tif
 figures/data/*.txt
 figures/data/*.zip
 
-# Figures to redraw
-!model-siassa.pdf
-
 # Statistics
 stats/count.csv
 stats/progress.pdf
