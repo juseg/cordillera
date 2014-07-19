@@ -1,63 +1,61 @@
-\documentclass[border=5mm,tikz]{standalone}
-\usepackage{amsmath}
-\usetikzlibrary{chains}
-\usetikzlibrary{arrows}
+\documentclass[border=0mm,tikz]{standalone}
 \usetikzlibrary{shapes}
+\usetikzlibrary{calc}
 
-\newcommand{\PDD}{\ensuremath{\text{PDD}}}
-\newcommand{\Hs}{\ensuremath{H_{\text{snow}}}}
-\newcommand{\Ms}{\ensuremath{\text{Melt}_{\text{snow}}}}
-\newcommand{\Mi}{\ensuremath{\text{Melt}_{\text{ice}}}}
+% TikZ styles
+\tikzstyle{block} = [draw, rectangle, fill=gray!5, rounded corners,
+                     text centered, minimum height=1cm]
+\tikzstyle{trunk}  = [block, text width=55mm, minimum width=60mm]
+\tikzstyle{branch} = [block, text width=32.5mm, minimum width=35mm]
+\tikzstyle{split} = [draw, diamond, fill=gray!5, minimum size=2.5cm]
+\newcommand{\PDD}{\mathrm{PDD}}
+\newcommand{\SMB}{\mathrm{SMB}}
 
+% begin document
 \begin{document}
-  \begin{tikzpicture}[ auto, thick, font=\small, node distance=3mm,
-    block/.style={rectangle, rounded corners, draw, fill=gray!5, text width=2in, text centered,
-      minimum width=2in, minimum height=1cm},
-    big block/.style={block, text width=3in},
-    decision/.style={diamond, draw, fill=gray!5},
-    line/.style={draw, -latex'},
-    start chain=1 going below, every node/.style={on chain},
-    every join/.style={-latex'},
-    ]
+\begin{tikzpicture}[thick, font=\small, >=latex]
 
-    \node [big block] {Compute snow accumulation \mbox{``Accumulation''}, discarding rain};
-    \node [big block, join] {Compute the number of \mbox{positive} degree days (\PDD) };
-    \node [big block, join] {Update snow depth \mbox{$\Hs \gets \Hs + \text{Accumulation}$}};
-    \node [big block, join] {Compute maximum possible snow melt \mbox{$\Ms^{\text{max}} := \PDD\times F_{s}$}};
-    \node (melt all snow) [decision, join] {$\Ms^{\text{max}} > \Hs?$};
+% background
+\fill[white] (-0.25,-0.25) rectangle +(8.5,14.75);
+%\draw[help lines, lightgray] (0,0) grid (8,14);
 
-    \begin{scope}[start branch=yes, node distance=4em]
-      \node (ice melt case) [block, on chain=going right] {\mbox{Melt all available snow:} $\Ms := \Hs$};
-    \end{scope}
-    \begin{scope}[start branch=no, node distance=4em]
-      \node (no ice melt case) [block, on chain=going left] {Melt some of the snow: \mbox{$\Ms := \Ms^{\text{max}}$}};
-    \end{scope}
+% add nodes
+\path     (4, 13.75) node [trunk] (acc) {Compute snow accumulation, $A_s$}
+  -- ++(0, -1.5) node [trunk] (pdd) {Compute PDDs}
+  -- ++(0, -1.5) node [trunk]  (s1) {Update snow depth \\
+                                      $S \gets S + A_s$}
+  -- ++(0, -1.5) node [trunk] (msp) {Compute potential snow melt \\
+                                      $M_{s,p} := \PDD \times F_{s}$}
+  -- ++(0, -2.25) node [split] (split) {$M_{s,p} > H_s?$};
 
-    \node (excess pdds) [big block] {$\PDD_{\text{excess}} := \PDD - \Ms / F_{s}$};
-    \node [big block, join] {Melt some ice: \mbox{$\Mi := \PDD_{\text{excess}} \times F_{i}$}};
-    \node (refreeze ice) [decision, join] {Refreeze melted ice?};
+\path ($(split)+(-2,-2)$) node [branch] (no)  {Melt some snow \\
+                                               $M_s := M_{s,p}$}
+  -- ++(0, -1.5) node [branch] (nomi) {Melt no ice \\
+                                      $M_i := 0$};
 
-    \begin{scope}[start branch=yes, node distance=4em]
-      \node (refreeze both) [block, on chain=going right] {Refreeze is \mbox{$(\Ms + \Mi) \times \theta_{\text{refreeze}}$}};
-    \end{scope}
 
-    \begin{scope}[start branch=no, node distance=4em]
-      \node (refreeze snow) [block, on chain=going left] {Refreeze is $\Ms \times \theta_{\text{refreeze}}$};
-    \end{scope}
+\path ($(split)+(+2,-2)$) node [branch] (yes) {Melt all snow \\
+                                               $M_s := H_s$}
+  -- ++(0, -1.5) node [branch] (yesmi) {Melt some ice \\
+                                        $M_i := (\PDD - \frac{M_s}{F_s}) \times F_i$};
 
-    \node (runoff) [big block] {$\text{Runoff} := \Ms + \Mi - \text{Refreeze}$};
-    \node [big block, join] {Compute surface mass balance: $\text{SMB} := \text{Accumulation} - \text{Runoff}$};
-    \node [big block, join] {Update snow depth: $\Hs \gets \Hs - \Ms$};
-    % special edges:
-    \path[line] (melt all snow) -- node {Yes} (ice melt case);
-    \path[line] (melt all snow) -- node {No}  (no ice melt case);
-    \path[line] (ice melt case) |- (excess pdds);
-    \path[line] (no ice melt case) |- (excess pdds);
-    \path[line] (refreeze ice) -- node {Yes} (refreeze both);
-    \path[line] (refreeze ice) -- node {No}  (refreeze snow);
-    \path[line] (refreeze both) |- (runoff);
-    \path[line] (refreeze snow) |- (runoff);
-  \end{tikzpicture}
+\path ($(split)+(0,-5)$) node [trunk](smb) {Compute surf. mass balance \\
+                                      $\SMB := A_s - M_s - M_i$}
+  -- ++(0, -1.5) node [trunk]  (s2) {Update snow depth \\
+                                      $S \gets S - M_s$};
 
+% add connections
+\draw[->] (acc) -- (pdd);
+\draw[->] (pdd) -- (s1);
+\draw[->] (s1) -- (msp);
+\draw[->] (msp) -- (split);
+\draw[->] (split) -| (no) node [pos=0.3, above] {No};
+\draw[->] (no) -- (nomi);
+\draw[->] (nomi) -- (smb);
+\draw[->] (split) -| (yes) node [pos=0.3, above] {Yes};
+\draw[->] (yes) -- (yesmi);
+\draw[->] (yesmi) -- (smb);
+\draw[->] (smb) -- (s2);
+
+\end{tikzpicture}
 \end{document}
-

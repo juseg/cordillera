@@ -1323,12 +1323,13 @@ At the interface between the ice sheet and the atmosphere
 (\cref{fig:model-interfaces}),
 surface mass fluxes are computed from monthly mean surface air temperature,
 $T_m$, and monthly precipitation, $P_m$, using a temperature-index model
-\citep[e.g.,][]{Hock.2003}. Surface accumulation, $a_s$, equals precipitation
+\citep[\cref{fig:model-pdd}; cf.][]{Hock.2003}. Snow accumulation, $A_s$,
+equals precipitation
 when temperature is below ${T_0=0\,\degC}$, and decreases to zero\renote{
     Well spotted, thanks!}
 linearly with temperature between $T_0$ and ${T_1=2\,\degC}$,
 \begin{equation}
-    a_s =
+    A_s =
     \begin{cases}
         P_m     & \text{if}\ T_m \le T_0 \,, \\
         P_m \frac{T_1-T_m}{T_1-T_0}
@@ -1337,7 +1338,7 @@ linearly with temperature between $T_0$ and ${T_1=2\,\degC}$,
     \end{cases}
 \end{equation}
 
-Surface melt, $m_s$, is assumed proportional to the number of positive degree
+Surface melt, $M$, is assumed proportional to the number of positive degree
 days (PDD), defined over an arbitrary time interval, $[t_1, t_2]$, as the
 integral of positive Celcius temperature $T-T_0$,
 \begin{equation}
@@ -1392,11 +1393,9 @@ uncertain for past periods such as the last glacial cycle.
 
 \begin{figure}
   \centering
-  \includegraphics[width=\linewidth]{model-pdd}
-  \caption{PDD model. From \citet{PISM-authors.2014}
-           \todo{This is again directly from the PISM manual. I can simplify
-                 it by removing the unused refreezing branch, I will match
-                 notations with the text and refer to equations in use.}}
+  \includegraphics{model-pdd}
+  \caption{Positive degree-day algorithm used to compute accumulation and melt
+           at the ice sheet surface. Adapted from \citet{PISM-authors.2014}.}
   \label{fig:model-pdd}
 \end{figure}
 
