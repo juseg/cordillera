@@ -1,9 +1,9 @@
 \documentclass[border=0,tikz]{standalone}
 \usepackage{amsmath}
 \usepackage{physics}
-\usetikzlibrary{arrows}
-\usetikzlibrary{intersections}
 \usetikzlibrary{calc}
+\usetikzlibrary{intersections}
+\usetikzlibrary{patterns}
 
 % notations
 \newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
@@ -30,6 +30,12 @@
 \draw[name path=b]
     (0,2.0) .. controls +(-20:1) and +(170:1) .. ($(p)-(0,1.0)$)
             .. controls +(-10:2) and +(165:2) .. (7,0.5) node [right] {$b$};
+\fill[pattern=north east lines]
+    (0,2.0) .. controls +(-20:1) and +(170:1) .. ($(p)-(0,1.0)$)
+            .. controls +(-10:2) and +(165:2) .. (7,0.5) node [right] {$b$}
+            -- ++(0,-0.25)
+            .. controls +(165:2) and +(-10:2) .. ($(p)-(0,1.25)$)
+            .. controls +(170:1) and +(-20:1) .. (0,1.75);
 
 % velocity and gravity vectors
 \draw[->, thick] (p) -- +(-10:2) node [midway, below] {$\vect{v}$};

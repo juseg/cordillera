@@ -1,9 +1,9 @@
 \documentclass[border=0,tikz]{standalone}
 \usepackage{amsmath}
 \usepackage{physics}
-\usetikzlibrary{arrows}
 \usetikzlibrary{intersections}
 \usetikzlibrary{calc}
+\usetikzlibrary{patterns}
 
 % TikZ styles
 \definecolor{blue}{rgb}{0.035, 0.471, 0.671}
@@ -25,12 +25,12 @@
 \fill[white] (-0.25,-0.25) rectangle +(8.5,6.0);
 %\draw [help lines, lightgray] (0,0) grid (8.0,5.5);
 
-% transition, grounding line and calving front coordinates
-\coordinate (tr) at (2.75, 1);
-\coordinate (gl) at (5.25, 1);
+% transition lines and calving front coordinates
+\coordinate (tr1) at (2.75, 0);  % transition one
+\coordinate (tr2) at (5.25, 0);  % transition two
 \coordinate (cf) at (7.75, 2);
-%\fill (gl) circle [radius=1mm] ;
-%\fill (cf) circle [radius=1mm] ;
+\draw[lightgray, name path=tr1] (tr1 |- 0,0) -- +(0,5.5) ;
+\draw[lightgray, name path=tr2] (tr2 |- 0,0) -- +(0,5.5) ;
 
 % location of the velocity profiles
 \path [name path=x1] (1.0,0) -- +(0,5) ;
@@ -39,17 +39,23 @@
 
 % bedrock topography
 \draw [name path=bed]
-    (0,2) .. controls ($(gl)+(-1,0.5)$) .. (gl)
-          .. controls ($(gl)+(0.5,-0.25)$) .. (8,0.75);
+    (0,2) .. controls +(-5:4) and +(180:2) .. (8,1);
+\fill [pattern=north east lines]
+    (0,2) .. controls +(-5:4) and +(180:2) .. (8,1)
+          -- +(0,-0.25)
+          .. controls +(180:2) and +(-5:4) .. (0,1.75);
+
+% locate the grounding line
+\path [name intersections={of=bed and tr2, by=gl}] ;
 
 % surface topograpy
 \draw [name path=surf]
-    (0,4.5) .. controls ++(4,-1) and ($(cf)+(-3,0.1)$) .. ($(cf)+(0,0.1)$)
+    (0,4.5) .. controls +(-10:4) and +(180:3) .. ($(cf)+(0,0.1)$)
           -- (cf) ;
 
 % ice shelf base
 \draw [name path=base]
-    (gl) .. controls ++(0.5,0.25) and ($(cf)-(0.5,0.4)$) .. ($(cf)-(0,0.4)$)
+    (gl) .. controls +(15:0.5) and +(180:1) .. ($(cf)-(0,0.4)$)
          -- (cf);
 
 % sea level
@@ -90,12 +96,10 @@
 \draw[vssa, ->] (a-2) -- (b-2);
 \draw[vssa, ->] (a-3) -- (b-3) node [midway, above] {$\vssa$};
 \draw[vssa, ->] (a-4) -- (b-4);
-%\draw[vssa, ->] (a-5) -- (b-5);
 \draw[vsia, ->] (b-1) -- (c-1);
 \draw[vsia, ->] (b-2) -- (c-2);
 \draw[vsia, ->] (b-3) -- (c-3) node [midway, above] {$\vsia$};
 \draw[vsia, ->] (b-4) -- (c-4);
-%\draw[vsia, ->] (b-5) -- (c-5);
 
 % third velocity profile
 \path [name intersections={of=surf and x3, by=s3}] ;
@@ -113,10 +117,8 @@
 \draw[vssa, ->] (a-3) -- (b-3) node [midway, above] {$\vssa$};
 
 % add transition lines and annotations
-\draw[lightgray] (tr |- 0,0) -- +(0,5.5) ;
-\draw[lightgray] (gl |- 0,0) -- +(0,5.5) ;
-\coordinate (m1) at ($(0,0)!0.5!(tr)$) ;
-\coordinate (m2) at ($(tr)!0.5!(gl)$) ;
+\coordinate (m1) at ($(0,0)!0.5!(tr1)$) ;
+\coordinate (m2) at ($(tr1)!0.5!(gl)$) ;
 \coordinate (m3) at ($(gl)!0.5!(8,0)$) ;
 \coordinate (top) at ($(0,5.25)$) ;
 \coordinate (bot) at ($(0,0.25)$) ;
