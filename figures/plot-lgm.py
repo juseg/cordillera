@@ -10,6 +10,8 @@ from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
 from iceplot import plot as iplt
+import cartopy.crs as ccrs
+import cartopy.io.shapereader as shpreader
 
 # file path
 filename = '/home/julien/pism/archive/cordillera-climate-3km/' \
@@ -17,11 +19,17 @@ filename = '/home/julien/pism/archive/cordillera-climate-3km/' \
            'y0010000-extra.nc'
 t = -1
 
+# Canadian Atlas Lambert projection
+proj = ccrs.LambertConformal(
+    central_longitude=-95.0, central_latitude=49.0,
+    false_easting=0.0, false_northing=0.0,
+    secant_latitudes=(49.0, 77.0), globe=None, cutoff=0)
+
 # prepare figure
 figw, figh = 112.5, 225.0
 fig = plt.figure(0, (figw/25.4, figh/25.4))
-ax  = fig.add_axes([0, 0, 1, 1])
-ax.axis('off')
+ax  = fig.add_axes([0, 0, 1, 1], projection=proj)
+ax.outline_patch.set_linewidth(2.0)  # only with cartopy
 nc = Dataset(filename)
 
 # bed topography
@@ -45,8 +53,15 @@ cs = iplt.contour(nc, 'usurf', t, levels=range(1000,6000,1000),
 cs.clabel(fontsize=6, fmt='%g', linewidths=0.5)
 
 # ice margin
-cs = iplt.icemargin(nc, t)
+cs = iplt.icemargin(nc, t, linewidths=0.5, zorder=4)
 nc.close()
+
+# Dyke margin
+sf = shpreader.Reader('data/ice14k.shp')
+for rec in sf.records():
+    if rec.attributes['SYMB'] == 'ICE':
+        ax.add_geometries(rec.geometry, proj,
+                          edgecolor='#800000', facecolor='none', zorder=0.5)
 
 # colorbars
 cax = fig.add_axes([5/figw, 10/figh, 2.5/figw, 40/figh])

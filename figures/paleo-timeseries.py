@@ -36,7 +36,7 @@ fig.subplots_adjust(left=10.0/figw, bottom=7.5/figh,
 ax = grid[0]
 age, d18o = np.genfromtxt('data/lr04.txt', skip_header=89, skip_footer=9387,
                           unpack=True, usecols=(0, 1))
-ax.plot(age, d18o, 'b')
+ax.plot(age, d18o, '#1f78b4')  # alt. wiki color #0978ab
 
 # set LR04 axes properties
 ax.set_ylim(5.5, 2.5)
@@ -49,7 +49,7 @@ ax = grid[1]
 age, temp = np.genfromtxt('data/epica.txt', delimiter=(4, 13, 17, 13, 13),
                           skip_header=104, skip_footer=1,
                           unpack=True, usecols=(2, 4))
-ax.plot(age/1000.0, temp, 'r')
+ax.plot(age/1000.0, temp, '#e31a1c')  # alt. wiki color #e0584e
 
 # set EPICA axes properties
 ax.set_yticks(range(-12, 6, 4))

@@ -70,7 +70,7 @@ figinvtrans = fig.transFigure.inverted()
 
 # plot time series
 print 'plotting time series...'
-ax.plot(time, ivol, color='#0978ab')
+ax.plot(time, ivol, color='#1f78b4')  # alt. wiki color #0978ab
 ax.set_xlabel('model time (kyr)')
 ax.set_ylabel('ice volume (m s.l.e.)')
 ax.yaxis.set_ticks_position('right')

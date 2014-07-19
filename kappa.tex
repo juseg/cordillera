@@ -85,9 +85,13 @@
   \phantom{\usebox1}% Insert appropriate spacing
 }
 
-% Finally to not include graphics
-%\renewcommand{\includegraphics}[2][,]{}
-%\renewcommand{\subgraphics}[3][,]{}
+% Some general low-priority todos
+% -- switch to kappa.cls
+% -- incorporate figs as pdf, rasterize heavy elements
+% -- use latex in matplotlib figures
+% -- homogeneize subfig label fonts
+% -- add software references
+% -- redraw PISM interface
 
 % Document properties
 \title{Numerical modelling of the Cordilleran ice sheet}
@@ -313,8 +317,7 @@ sheet modelling \citep{Robert.1991}.
            \textbf{(b)} Temperature anomalies ($\Delta T$) reconstructed from a
            central Antarctic ice core \citep[EPICA Dome~C,][]{Jouzel.etal.2007}.
            The grey bands indicate the approximate time span of the last
-           glacial period of 110 to 10\,ka.
-           \todo{Put nicer blue and red colours.}}
+           glacial period of 110 to 10\,ka.}
   \label{fig:paleo-timeseries}
 \end{figure}
 
@@ -324,8 +327,7 @@ sheet modelling \citep{Robert.1991}.
   \caption{Spatial extent of ice sheet and glacier cover in the northern
            hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
            \textbf{(b)} during the last glacial maximum
-           \citep{Ehlers.Gibbard.2007}.
-           \todo{Make these globes look a little bigger. Add (a) and (b).}}
+           \citep{Ehlers.Gibbard.2007}.}
   \label{fig:paleo-glaciation}
 \end{figure}
 
@@ -627,10 +629,12 @@ thesis, and to present an overview of the physics involved in these choices.
 
 \begin{figure}
   \centering
-  \includegraphics[width=80mm]{model-interfaces}
-  \caption{Model interfaces in PISM. From \citet{PISM-authors.2014}.
-           \todo{This is directly from the PISM manual. I may redraw it here
-                 if I have the time.}}
+  \includegraphics[width=85mm]{model-interfaces}
+  \caption{PISM is a numerical model for ice and bedrock physics. Processes
+           occurring at the interface with the atmosphere and the ocean, that
+           are progressive transitions in nature, are parametrised along
+           well-defined boundaries in the model.
+           From \citet{PISM-authors.2014}.}
   \label{fig:model-interfaces}
 \end{figure}
 
@@ -642,8 +646,8 @@ thesis, and to present an overview of the physics involved in these choices.
   \centering
   \includegraphics{model-variables}
   \caption{Sketch of notations used for the main variables of the ice sheet
-           model. A particle of ice is moving at velocity $\vv$, under the
-           balance of stresses $\CST$ and gravity $\vect{g}$.}
+           model. An infinitesimal ice parcel is moving at velocity $\vv$,
+           under the balance of stresses $\CST$ and gravity $\vect{g}$.}
   \label{fig:model-variables}
 \end{figure}
 
@@ -1055,10 +1059,10 @@ mathematically proven.
 \begin{figure}
   \centering
   \includegraphics[width=80mm]{model-siassa}
-  \caption{Shallow Ice Approximation (SIA) and Shallow Shelf Approximation
-           (SSA) velocities in PISM. From \citet{Winkelmann.etal.2011}.
-           \todo{Redraw in LaTeX in the same style as
-                 \cref{fig:model-variables}.}}
+  \caption{Combination of Shallow Ice Approximation (SIA) and Shallow Shelf
+           Approximation (SSA) velocities in PISM, assuring a smooth transition
+           between shear-dominant and longitudinal stress regimes. After
+           \citet[Fig.~1]{Winkelmann.etal.2011}. Not to scale.}
   \label{fig:model-siassa}
 \end{figure}
 
@@ -1646,9 +1650,12 @@ here and in \CCYC.
   \hspace{1cm}
   \begin{minipage}[t]{47.5mm}\vspace{0pt}
     \caption{Constant-climate simulation of the LGM Cordilleran ice sheet using
-             an horizontal resolution of 3\,km. Modelled basal topography,
-             cold-based areas (hatches), surface topography (100\,m contours)
-             and surface velocities. The simulation is forced by atmospheric
+             an horizontal resolution of 3\,km. The map depicts modelled basal
+             topography, cold-based areas (hatches), surface topography (100\,m
+             contours) and surface velocities, and a reconstruction of the
+             approximate ice sheet margin at 16.8\,cal\,ka from compiled
+             geomorphological evidence \citep[red contour;][]{Dyke.2004}.
+             The simulation is forced by atmospheric
              fields from the NARR \citep{Mesinger.etal.2006} and a temperature
              depression of 7\,\degC, using the set-up described in \CCLI. There
              are several issues with this run. First, all east-facing margins
@@ -1657,8 +1664,7 @@ here and in \CCYC.
              most notably in the south-western corner where the Puget and Juan
              de Fuca lobes are missing. Third, en-glacial temperatures are
              anomalously low due to brutal application of cold climate
-             condition to ice-free bedrock at the inception of the run.
-             \todo{Add black frame, and maybe the LGM outline from Dyke?}}
+             condition to ice-free bedrock at the inception of the run.}
     \label{fig:plot-lgm}
   \end{minipage}
   }

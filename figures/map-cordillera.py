@@ -117,6 +117,13 @@ def add_names():
     # add names of intermontane plateaus
     ax.text(-127, 60, 'Liard\nLowland', **txtkwa)
     ax.text(-124, 54, 'Fraser\nPlateau', **txtkwa)
+    #ax.text(-123, 48, 'Puget\nLowland', **txtkwa)
+
+    # mark Puget Lowland. annotate is tricky
+    xy = ax.projection.transform_point(-122, 48, src_crs=ll)
+    xytext = ax.projection.transform_point(-126, 46, src_crs=ll)
+    ax.annotate('Puget\nLowland', xy=xy, xytext=xytext,
+                arrowprops=dict(arrowstyle='->'), **txtkwa)
 
     # add names of islands
     ax.text(-132, 53, 'Q. Charlotte I.', rotation=-45, **txtkwa)

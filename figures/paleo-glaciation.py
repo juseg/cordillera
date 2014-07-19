@@ -15,12 +15,18 @@ scale = '50m'
 proj = ccrs.Orthographic(central_longitude=-90.0, central_latitude=75.0)
 
 # Initialize figure in inches
-figw, figh = 80.0/25.4, 40.0/25.4
+figw, figh = 85.0/25.4, 85.0/25.4
 fig = plt.figure(0, (figw, figh))
 fig.subplots_adjust(left=0.5/72/figw, bottom=0.5/72/figh,
                     right=1-0.5/72/figw, top=1-0.5/72/figh,
                     wspace=1/((1+figw/(1./72))/2-1))
-grid = [fig.add_subplot(121+i, projection=proj) for i in range(2)]
+figw, figh = 85.0, 85.0
+#grid = [fig.add_subplot(121+i, projection=proj) for i in range(2)]
+mapw = 50
+grid = [fig.add_axes([2.5/figw, 1-(2.5+mapw)/figh, mapw/figw, mapw/figh],
+                     projection=proj),
+        fig.add_axes([1-(2.5+mapw)/figw, 2.5/figh, mapw/figw, mapw/figh],
+                     projection=proj)]
 
 # draw common parts
 for ax in grid:
@@ -30,7 +36,7 @@ for ax in grid:
 # add present glaciers
 grid[0].add_feature(cfeature.NaturalEarthFeature(
     category='physical', name='glaciated_areas', scale=scale,
-    edgecolor='none', facecolor='#0978ab', alpha=0.5,))
+    edgecolor='none', facecolor='#1f78b4', alpha=0.5,))  # alt. #0978ab
 
 # add Ehlers & Gibbard 2003 LGM outline
 # try to identify duplicates using centroids
@@ -50,6 +56,11 @@ for i, geom in enumerate(shp.geometries()):
         centroids.append((x, y))
         grid[1].add_geometries(geom, ccrs.PlateCarree(),
                   edgecolor='none', facecolor='#0978ab', alpha=0.5)
+
+# add subfigure labels
+for i, ax in enumerate(grid):
+    ax.text(0.9, 0.9, '(%s)' % chr(97+i),
+            fontweight='bold', transform=ax.transAxes)
 
 # save
 fig.savefig('paleo-glaciation')

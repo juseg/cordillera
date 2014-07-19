@@ -88,5 +88,10 @@ for ax in grid:
 # close
 nc.close()
 
+# add subfigure labels
+for i, ax in enumerate(grid):
+    ax.text(0.04, 0.96, '(%s)' % chr(97+i),
+            fontweight='bold', transform=ax.transAxes)
+
 # save
 fig.savefig('plot-atm')
