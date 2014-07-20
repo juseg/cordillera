@@ -47,6 +47,11 @@ for i, rec in enumerate(records):
                          cmap=vel_cmap, norm=vel_norm, alpha=0.75)
         annotate(ax, '%s kyr' % time[t])
 
+        # add profile lines
+        for yp in [1.7e6, 1.4e6, 1.1e6, 0.8e6]:
+            ax.plot([-2.4e6, -1.25e6], [yp, yp], 'k|',
+                    lw=0.25, ls='--', dashes=(2, 2))
+
     # add record label
     annotate(ax, rec.upper(), bottom=True)
 

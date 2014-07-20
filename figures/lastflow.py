@@ -81,8 +81,20 @@ for i, rec in enumerate(records):
     ax.contour(x[:], y[:], glaciated, levels=[0.5],
                colors='k', linewidths=0.5)
 
+    # add profile lines
+    for yp in [1.7e6, 1.4e6, 1.1e6, 0.8e6]:
+        ax.plot([-2.4e6, -1.25e6], [yp, yp], 'k|',
+                         lw=0.25, ls='--', dashes=(2, 2))
+
     # annotate
     annotate(ax, rec.upper())
+
+# locate Liard Lowland and Fraser Plateau
+txtkwa = dict(ha='center', va='center',
+              bbox=dict(ec='k', fc='w', alpha=1.0),
+              arrowprops=dict(arrowstyle="->"))
+ax.annotate('LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3), **txtkwa)
+ax.annotate('FP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3), **txtkwa)
 
 # add colorbar and save
 print 'saving...'

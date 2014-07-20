@@ -56,6 +56,13 @@ for i, rec in enumerate(records):
     annotate(ax, rec.upper())
     nc.close()
 
+# locate Skeena Mountains
+txtkwa = dict(ha='center', va='center',
+              bbox=dict(ec='k', fc='w', alpha=1.0),
+              arrowprops=dict(arrowstyle="->"))
+ax.annotate('SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3), **txtkwa)
+ax.annotate('MKM', xy=(-1550e3, 2000e3), xytext=(-1200e3, 2000e3), **txtkwa)
+
 # add colorbar and save
 cb = fig.colorbar(cs, ax.cax, ticks=levs[1:])
 cb.set_label('Duration of warm-based ice cover (kyr)')

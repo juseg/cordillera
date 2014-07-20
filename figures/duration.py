@@ -46,7 +46,7 @@ for i, rec in enumerate(records):
     cf = ax.contourf(x[:], y[:], icecover, levels=levs, alpha=0.75,
                      colors=colors, hatches=hatches)
     cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k', linewidths=0.25)
-    cs.clabel(fontsize=6, fmt='%i kyr', manual=[(-1825e3, 1000e3)])
+    cs.clabel(fontsize=6, fmt='%i ka', manual=[(-1825e3, 1000e3)])
     ax.contour(x[:], y[:], icecover, [levs[0]], colors='k', linewidths=0.5)
 
     # close extra file
@@ -59,8 +59,12 @@ txtkwa = dict(ha='center', va='center',
               arrowprops=dict(arrowstyle="->"))
 ax.annotate('AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3), **txtkwa)
 ax.annotate('SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3), **txtkwa)
-ax.annotate('CM', xy=(-2000e3,  650e3), xytext=(-2350e3,  650e3), **txtkwa)
-ax.annotate('RM', xy=(-1500e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
+ax.annotate('CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3), **txtkwa)
+ax.annotate('NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3), **txtkwa)
+ax.annotate('WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3), **txtkwa)
+ax.annotate('SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3), **txtkwa)
+ax.annotate('NR', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3), **txtkwa)
+ax.annotate('CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
 
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
