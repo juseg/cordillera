@@ -32,7 +32,7 @@
 
 % My commands
 \newcommand{\renote}[1]{\footnote{\textbf{Comment reply}: #1}}
-\newcommand{\todo}[1]{\emph{[\textbf{Todo:} #1]}}
+\newcommand{\todo}[1]{} %\emph{[\textbf{Todo:} #1]}}
 \newcommand{\mref}[0]{\textbf{[ref.]}}
 
 % Vectors and tensors
@@ -111,7 +111,7 @@ north-western North America using numerical ice sheet modelling calibrated by
 geological evidence.
 
 The North American Cordillera is an immense maze of mountain ranges and
-intermontane basins which once hosted an ice mass of the size of Greenland: the
+intermontane basins which once hosted an ice mass comparable to Greenland: the
 Cordilleran ice sheet. Although less extensive than the former Laurentide and
 Fennoscandian ice sheets, the Cordilleran ice sheet perhaps remains the least
 understood Pleistocene ice sheet in terms of its extent, volume, and dynamics.
@@ -123,7 +123,8 @@ This thesis presents simulations performed with PISM, a numerical ice sheet
 model that approximates glacier flow by basal sliding and internal deformation.
 These simulations show that the somewhat paradoxical geometry of the last
 glacial maximum Cordilleran ice sheet can be largely explained by the present
-distribution of temperature and precipitation in the region, provided an
+distribution of temperature and precipitation in the region combined with
+paleoclimate reconstructions, provided an
 accurate treatment of seasonality, orographic precipitation, and daily
 temperature variability in the ice sheet model. Nevertheless, at the scale of
 the last glacial cycle, this configuration appears ephemeral. In contrast, the
@@ -131,8 +132,8 @@ average stage of glaciation consists of isolated glaciers and ice caps covering
 the major mountain ranges of the North American Cordillera.
 
 The simulations presented in this thesis demonstrate the potential of combining
-numerical ice sheet modelling to analysis of geological evidence in order to
-improve our understanding of the former glaciations.
+numerical ice sheet modelling with analysis of geological evidence in order to
+improve our understanding of former glaciations.
 
 \end{abstract}
 
@@ -600,15 +601,15 @@ The \emph{western margin} of the Cordilleran ice sheet covered part of the
 Pacific continental shelf. An independent ice cap covering Vancouver Island
 diverted flow from the main body of ice to drain into the Strait of Georgia
 between Vancouver Island and the Olympic Peninsula, where it formed the Juan
-de Fuca marine ice lobe, calving into the Pacific Ocean \mref. Further to the
+de Fuca marine ice lobe, calving into the Pacific Ocean. Further to the
 North, the ice margin encroached the Queen Charlotte Islands. However, the
 archipelago may not have been fully ice-covered, even during the maximum of
 glaciation. Submarine troughs traversing several portions of the continental
 shelf indicate the erosional action of additional ice streams, yet it is not
 clear whether they have formed during the last glacial cycle or during earlier
-glaciations \mref.
+glaciations.
 
-\todo{Find missing refs}
+\todo{Find refs for marine extent of the ice sheet}
 
 Finally, the conditions at the \emph{eastern margin} of the Cordilleran ice
 sheet are the least understood. Although it is known that the Cordilleran ice
@@ -797,10 +798,7 @@ glacial cycle, thus requiring shallow approximations.
 
 \begin{table}
   \centering
-  \caption{Constant parameters of the ice flow model.
-           \todo{find a better reference than \citet{Aschwanden.etal.2012}
-                 (library) for all the physical constants. Double-check
-                 \citet{Paterson.Budd.1982} and add missing references.}}
+  \caption{Constant parameters of the ice flow model.}
   \label{tab:iceflowparams}
   \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
     \hline
@@ -820,7 +818,7 @@ glacial cycle, thus requiring shallow approximations.
     $n$     & Glen exponent
             & 3
             & -
-            & \mref \\
+            & - \\
 
     $A_c$   & Ice hardness coefficient cold
             & 3.61\e{-13}
@@ -845,7 +843,7 @@ glacial cycle, thus requiring shallow approximations.
     $R$     & Ideal gas constant
             & 8.31441
             & \unit{J\,mol^{-1}\,K^{-1}}
-            & \mref \\
+            & - \\
 
     $T_c$   & Flow law critical temperature
             & 263.15
@@ -1204,12 +1202,12 @@ highest observed palaeo-shoreline elevations in the model domain
             & Pa
             & - \\
 
-    $\alpha$& \todo{check value}
+    $\alpha$& Effective pressure coefficient (\CCLI)
             & 0.95
             & -
             & - \\
 
-    $\delta$& \todo{find a good name}
+    $\delta$& Effective pressure coefficient (\CCYC)
             & 0.02
             & -
             & - \\
@@ -1301,9 +1299,7 @@ the ice sheet growth and the isostatic bedrock response.
 
 \begin{table}
   \centering
-  \caption{Constant parameters of the bedrock thermal and deformation models.
-           \todo{Find out what the bedrock density corresponds to. Track down
-                 original sources in \citet{Ritz.1997}}}
+  \caption{Constant parameters of the bedrock thermal and deformation models.}
   \label{tab:bedrockparams}
   \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
     \hline
@@ -1313,22 +1309,22 @@ the ice sheet growth and the isostatic bedrock response.
     $\rho_b$& Bedrock density
             & 3300
             & \unit{kg\,m^{-3}}
-            & \mref \\
+            & - \\
 
     $c_b$   & Bedrock specific heat capacity
             & 1000
             & \unit{J\,kg^{-1}\,K^{-1}}
-            & \citet{Ritz.1997} \\
+            & - \\
 
     $k_b$   & Bedrock thermal conductivity
             & 3.0
             & \unit{W\,m^{-1}\,K^{-1}}
-            & \citet{Ritz.1997} \\
+            & - \\
 
     $q_G$   & Geothermal heat flux
             & 70.0
             & \unit{mW\,m^{-2}}
-            &  \\
+            & - \\
 
     $\nu_m$ & Mantle viscosity
             & 1\e21
@@ -1346,7 +1342,6 @@ the ice sheet growth and the isostatic bedrock response.
             & \citet{Lingle.Clark.1985} \\
 
     \hline
-%	pism overrides:bootstrapping geothermal flux value no var = 0.070 ;
   \end{tabular*}}
 \end{table}
 
@@ -1438,9 +1433,7 @@ uncertain for past periods such as the last glacial cycle.
 
 \begin{table}
   \centering
-  \caption{Constant parameters of the surface and atmosphere models.
-           \todo{Find a reference for the snow and rain temperature thresholds,
-                 maybe \citet{Hock.2003}.}}
+  \caption{Constant parameters of the surface and atmosphere models.}
   \label{tab:surfaceparams}
   \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
     \hline
@@ -1450,12 +1443,12 @@ uncertain for past periods such as the last glacial cycle.
     $T_0$   & Temperature of snow precipitation
             & 0.0
             & \degC
-            & \mref \\
+            & - \\
 
     $T_1$   & Temperature of rain precipitation
             & 2.0
             & \degC
-            & \mref \\
+            & - \\
 
     $F_s$   & Degree-day factor for ice
             & 3.04\e{-3}
@@ -1584,59 +1577,59 @@ derived from six different palaeo-temperature proxy records
 
 
 % ----------------------------------------------------------------------
-\subsection{Numerical implementation}
+%\subsection{Numerical implementation}
 % ----------------------------------------------------------------------
 
-\todo{Add here a short section about discretization of the SIA and SSA, and
-      their numerical implementation. The main subtlety, I think, lies in the
-      fact that some computation need to use a ``staggered'' grid in order to
-      ensure that we add SIA and SSA values corresponding to the same point in
-      space. I need to check that. This section is also the place where to
-      introduce geographic transformation parameters that I used throughout
-      the thesis -- except in \cref{fig:map-cordillera}!}
+%\todo{Add here a short section about discretization of the SIA and SSA, and
+%      their numerical implementation. The main subtlety, I think, lies in the
+%      fact that some computation need to use a ``staggered'' grid in order to
+%      ensure that we add SIA and SSA values corresponding to the same point in
+%      space. I need to check that. This section is also the place where to
+%      introduce geographic transformation parameters that I used throughout
+%      the thesis -- except in \cref{fig:map-cordillera}!}
 
-\begin{table}
-  \centering
-  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
-           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
-           PROJ.4 parameter names, as used in all model runs, ice volume and
-           area calculations, and most figures.}
-  \label{tab:projparams}
-  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
-    \hline
-    Parameter               & Name              & Value \\
-    \hline
-    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
-    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
-    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
-    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
-    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
-    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
-    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
-    \hline
-  \end{tabular*}}
-\end{table}
+%\begin{table}
+%  \centering
+%  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
+%           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
+%           PROJ.4 parameter names, as used in all model runs, ice volume and
+%           area calculations, and most figures.}
+%  \label{tab:projparams}
+%  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
+%    \hline
+%    Parameter               & Name              & Value \\
+%    \hline
+%    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
+%    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
+%    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
+%    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
+%    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
+%    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
+%    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
+%    \hline
+%  \end{tabular*}}
+%\end{table}
 
 % ======================================================================
-\section{Software implementation}
+%\section{Software implementation}
 % ======================================================================
 
 % ----------------------------------------------------------------------
-\subsection{Computational workflow}
+%\subsection{Computational workflow}
 % ----------------------------------------------------------------------
-\todo{Figure. computational workflow}
+%\todo{Figure. computational workflow}
 
 % ----------------------------------------------------------------------
-\subsection{Contributions to PISM}
+%\subsection{Contributions to PISM}
 % ----------------------------------------------------------------------
-\todo{Table. PISM ``issues'' identified}
+%\todo{Table. PISM ``issues'' identified}
 
 % ----------------------------------------------------------------------
-\subsection{Peripheral tools}
+%\subsection{Peripheral tools}
 % ----------------------------------------------------------------------
-A Python PDD model\\
-Pre-processing scripts for GRASS GIS\\
-Plotting tools for PISM\\
+%A Python PDD model\\
+%Pre-processing scripts for GRASS GIS\\
+%Plotting tools for PISM\\
 
 % ======================================================================
 \section{Results summary}
