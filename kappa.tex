@@ -31,9 +31,9 @@
 \crefname{table}{Table}{Tables}
 
 % My commands
-\newcommand{\renote}[1]{\footnote{\textbf{Comment reply}: #1}}
+%\newcommand{\renote}[1]{\footnote{\textbf{Comment reply}: #1}}
 \newcommand{\todo}[1]{} %\emph{[\textbf{Todo:} #1]}}
-\newcommand{\mref}[0]{\textbf{[ref.]}}
+%\newcommand{\mref}[0]{\textbf{[ref.]}}
 
 % Vectors and tensors
 \newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
@@ -148,11 +148,7 @@ journal articles, which are referred to by their Roman numerals in the text.
   \item[\CCLI] \bibentry{Seguinot.etal.2014}.
   \item[\PSDV] \bibentry{Seguinot.2013}.
   \item[\PSDP] \bibentry{Seguinot.Rogozhina.2014}.
-  \item[\CCYC] \bibentry{Seguinot.etal.manuscript}.\renote{
-    Arjen, you had several comments regarding the style of references
-    throughout the kappa (name formatting, italic text). I am using the
-    Copernicus style here, but is there another recommendation to follow?
-    Maybe Peter knows?}
+  \item[\CCYC] \bibentry{Seguinot.etal.manuscript}.
 \end{description}
 
 \vfill
@@ -197,37 +193,20 @@ cumulative snowfall until it reaches a critical thickness. Beyond this
 threshold, usually in excess of 50\,m, but dependent on temperature, ice
 deforms under its own weight to flow downhill (\cref{fig:glacier-mechanics}).
 \emph{Glaciers}, these bodies of moving ice, move by a combination of
-meltwater-induced sliding at the base \citep[\S532]{Saussure.1786}\renote{
-    Actually I mean volume 1, published in ``MDCCLXXXVI'' (1786, right?),
-    which as a couple of beautiful paragraphs (would be worth
-    translating if I had time) about how the "heat from the Earth's interior"
-    melts basal ice to lubricate glacier flow. This is precisely those
-    paragraphs that \citet{Forbes.1846} refers to sixty years later when
-    advancing his ``viscous theory of glacier notion''.},
+meltwater-induced sliding at the base \citep[\S532]{Saussure.1786},
 and viscous deformation within the
 ice body \citep{Forbes.1846b}.
 
-As glaciers flow and slide across their bed, they transport\renote{
-    I would like to keep this statement general, surface transport is also
-    important. Erosion is not only by basal rock debris but also, indirectly,
-    by glacial meltwater.}
+As glaciers flow and slide across their bed, they transport
 rock debris and erode the landscape, thereby leaving geomorphological traces of
 their former presence (\cref{fig:glaciation-indicators}). In several parts of
-the world, montane people\renote{
-    I insist on keeping this: people of the Alps, for istance, had understood
-    that glacial erratics originated from glaciers before it has ever been
-    documented by explorers and scientists. It is stated in the old literature.
-    Check the new reference, reprinted in \citet{Mathews.1898} (not quite sure
-    how to cite this material).}
+the world, montane people
 and early explorers learned since long to read these traces, and to
 understand that glaciers had once been more extensive than today
 \citep[e.g.,][p.~21]{Windham.Martel.1744}. With the emergence of the glacial
 theory came the idea that, under colder temperatures
 than today, expansive \emph{ice sheets} had once covered much of Europe and
-North America \citep{Agassiz.1840}\renote{
-    I am a bit reluctant to write ``\citet{Agassiz.1840} eventually posed the
-    glacial theory''. Although he published these ideas, do they really
-    originate from him?}.
+North America \citep{Agassiz.1840}.
 
 However, the glacial theory did not gain general acceptance until the
 discovery and exploration
@@ -286,10 +265,7 @@ not
 In addition, numerical ice sheet models provide quantitative insights on the
 four-dimensional distribution of stresses and deformations in palaeo-ice sheets
 and allow for reconstructions of their past thickness and volume evolution, which
-are difficult to infer from geological evidence\renote{
-    Is this the place where to cite \citep{Denton.Hughes.1981}? \todo{I need to
-    check the contents of this book (library).}
-}.
+are difficult to infer from geological evidence.
 
 In this thesis, I focus on numerical modelling of the last Cordilleran ice
 sheet, which once covered much of the mountainous terrain of western North
@@ -377,9 +353,7 @@ During the last glacial cycle, much of North America has been covered by ice
 glaciation, three major ice sheets had collided to
 form a continuous blanket of ice that spanned from southern Alaska to
 Newfoundland, connecting with the Greenland ice sheet in the Canadian Arctic,
-and extending as far south as Chicago\renote{
-    Although already a few 100\,km into the ice margin, I think that Chicago
-    is a more illustrative location than Ohio or smaller cities there.}.
+and extending as far south as Chicago.
 The Laurentide ice sheet, largest of the three, was centred on the Hudson Bay,
 and fully covered the Canadian Prairies, Eastern Canada, and the Great Lakes
 Basin. The Innuitian ice sheet, much smaller, covered the northernmost Canadian
@@ -482,15 +456,10 @@ vegetation are clearly expressed in the landscape
 (\cref{fig:photo-fraser-valley}). Due to the large latitudinal extent of the
 region, mean annual \emph{temperatures} vary significantly from north to south
 (\cref{fig:plot-atm}a). About half of the model domain has mean annual
-temperatures below freezing. However, temperature \emph{seasonality}\renote{
-    ``Seasonality'' is a common term in the meteorological literature,
-    implicitly referring to temperature. At least this is what I understood
-    from Qiong.},
+temperatures below freezing. However, temperature \emph{seasonality},
 here computed as the difference between the warmest and the coldest months,
 varies between around 10\,\degC\ along most of the Pacific Coast to above
-40\,\degC\ for the interior Arctic sectors\renote{
-    I think the word ``polar'' or ``Arctic'' is needed here, see
-    \cref{fig:plot-atm}b.}
+40\,\degC\ for the interior Arctic sectors
 (\cref{fig:plot-atm}b). There exists a
 partial correlation between cold regions and those that have a large
 seasonality, so that many regions where mean annual temperatures are well below
@@ -633,11 +602,7 @@ different mode of deglaciation, with active retreat of the ice margin towards
 the surrounding mountain ranges \citep{Margold.etal.2013}. Patterns of
 deglaciation, as well as the possibility for a late-glacial re-advance, are
 discussed in further detail and compared with modelling results in
-\CCYC\renote{
-    I have not had time to dig into new literature. The Ward paper on
-    deglacial valley fills in the Pelly River is like Chinese to me, and I
-    could not access the Dyke paper on the Liard Lowland, assuming this is the
-    one cited by Martin in his paper.}.
+\CCYC.
 
 % ======================================================================
 \section{Numerical ice sheet model}
@@ -708,8 +673,7 @@ $\vect{g}$:
 \end{equation}
 
 Thirdly, after defining the strain-rate tensor
-${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$\renote{
-  $\grad$, $\div$, $\tgrad$, $\tdiv$, are the classic gradient and divergence operators, applied on vector and tensor fields. $\tr$ is the trace of a matrix. I don't think these need to be defined.},
+${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
 and the deviatoric stress tensor, ${\DST = \CST + p\,\IDT}$,
 where $p=-\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
 $\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice
@@ -1131,9 +1095,7 @@ criterion,
     \tau_c = c_0 + N\,\tan{\phi} \,.
 \end{equation}
 
-The till cohesion $c_0$ is assumed to be zero\renote{
-  Yes, we should probably defend this choice, but I am not aware of any
-  observations justifying this.}.
+The till cohesion $c_0$ is assumed to be zero.
 The effective pressure on the
 till, $N$, is determined by the modelled amount of water at the bed. However,
 two different parametrisations are used within this thesis. In {\CCLI}, using
@@ -1356,8 +1318,7 @@ surface mass fluxes are computed from monthly mean surface air temperature,
 $T_m$, and monthly precipitation, $P_m$, using a temperature-index model
 \citep[\cref{fig:model-pdd}; cf.][]{Hock.2003}. Snow accumulation, $A_s$,
 equals precipitation
-when temperature is below ${T_0=0\,\degC}$, and decreases to zero\renote{
-    Well spotted, thanks!}
+when temperature is below ${T_0=0\,\degC}$, and decreases to zero
 linearly with temperature between $T_0$ and ${T_1=2\,\degC}$,
 \begin{equation}
     A_s =
