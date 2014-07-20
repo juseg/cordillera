@@ -42,7 +42,7 @@ for i, rec in enumerate(records):
 
     # print info in table style
     tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-    print tabline % ( (labels[i],) + tuple(mis_times[i]) )
+    print tabline % ( (labels[i],) + tuple(-mis_times[i]) )
     print tabline % ( ('',) + tuple(mis_iareas[i]) )
     print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
@@ -87,10 +87,10 @@ for i in range(3):
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
 
 # print info in table style
-print tabline % ( ('Minimum',) + tuple(mistmin) )
+print tabline % ( ('Minimum',) + tuple(-mistmin) )
 print tabline % ( ('',) + tuple(misamin) )
 print tabline % ( ('',) + tuple(misvmin) ) + '\\\\'
-print tabline % ( ('Maximum',) + tuple(mistmax) )
+print tabline % ( ('Maximum',) + tuple(-mistmax) )
 print tabline % ( ('',) + tuple(misamax) )
 print tabline % ( ('',) + tuple(misvmax) ) + '\\\\'
 
@@ -100,7 +100,7 @@ ax1.set_xlim(-120.0, 0.0)
 ax1.set_ylim(-10.0, 2.0)
 ax1.xaxis.set_ticklabels([])
 ax1.set_ylabel('temperature offset (K)')
-ax2.set_ylabel('ice volume (m s.-l. eq.)')
+ax2.set_ylabel('ice volume (m s.l.e.)')
 ax1.yaxis.set_label_coords(-0.05, 0.5)
 ax2.yaxis.set_label_coords(-0.05, 0.5)
 ax2.set_xlabel('model time (kyr)')
