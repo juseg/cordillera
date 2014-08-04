@@ -77,4 +77,4 @@ for i, ax in enumerate(grid):
             fontweight='bold', transform=ax.transAxes)
 
 # save
-fig.savefig('plot-sdeffect.png')
+fig.savefig('plot-sdeffect')
