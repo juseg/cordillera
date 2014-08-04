@@ -358,7 +358,7 @@ sheet modelling \citep{Robert.1991}.
 \end{figure}
 
 % ======================================================================
-\section{Physical setting}
+\section{North American Cordillera}
 % ======================================================================
 
 During the last glacial cycle, much of North America has been covered by ice
@@ -389,7 +389,7 @@ ranges of the Western Cordillera.
 \end{figure}
 
 % ----------------------------------------------------------------------
-\subsection{Topography}
+\subsection{Topographic setting}
 % ----------------------------------------------------------------------
 
 The North American Cordillera forms an elongated but broad mountain system with
@@ -460,7 +460,7 @@ sheet and requires high-resolution and thus, large computational grids.
 \end{figure}
 
 % ----------------------------------------------------------------------
-\subsection{Climate}
+\subsection{Climatic setting}
 % ----------------------------------------------------------------------
 
 The topographic complexity of the North American Cordillera is associated with
@@ -483,12 +483,18 @@ Pacific Coast ranges and decline quickly on the eastern side of the mountains
 (\cref{fig:photo-fraser-valley,fig:plot-atm}c). In terms of ice sheet
 mass balance, this contrast is even reinforced through the differences in
 \emph{timing of maximum precipitation} through the year (\cref{fig:plot-atm}d).
-Coastal regions receive most precipitation during winter and fall, which is
+Coastal regions receive most precipitation during fall and winter, which is
 therefore largely delivered as snow. In contrast, many inland regions
 experience dry winters, and most of the annual precipitation, consequently
-falls there as rain during summer, further enhancing ice melt. The climatic
-setting of the North American Cordillera is further described in \CCLI, where
-its effects on the ice sheet model response have been studied in detail.
+falls there as rain during summer, further enhancing ice melt.
+
+These topographically-induced, spatial variations in temperature and
+precipitations tightly constrain the location of potential ice sheet nucleation
+centres that lead to the formation of a Cordilleran ice sheet. The numerical
+ice sheet model is therefore highly sensitive to the choice of input topography
+and climate used (\cref{sec:atm}). This forms the motivation for the study
+presented in \CCLI, where the climatic setting of the North American Cordillera
+is also described in further detail.
 
 \begin{figure}
   \centering
@@ -519,7 +525,8 @@ its effects on the ice sheet model response have been studied in detail.
 % ----------------------------------------------------------------------
 
 Evidence from glaciofluvial deposits dated using cosmogenic nuclides at
-$2.64^{+0.20}/_{-0.18}$\,Ma indicates the first presence of an ice sheet in the
+$2.64^{+0.20}_{-0.18}$\,Ma (uncertainty range from 2.46 to 2.84\,Ma)
+indicates the first presence of an ice sheet in the
 Cordilleran mountains during the late Pliocene \citep{Hidy.etal.2013}.
 This indicates that the North American Cordillera has been glaciated many times
 since the late Pliocene, with the first of these glaciations occurring even
@@ -537,12 +544,14 @@ four glaciations have been identified
 The two older ones, often collectively referred to as the Reid and pre-Reid
 glaciations, pre-date the last glacial cycle, and are therefore beyond the
 scope of this study. The two younger glaciations, however, occurred both during
-the last glacial cycle. First, the older of the two, the Gladstone Glaciation,
+the last glacial cycle. First, the older one of the two, the Gladstone
+Glaciation,
 reached its maximum extent between $50.4\pm3.0$ and $54.3\pm2.0\,^{10}$Be\,ka
 \citep{Ward.etal.2007}, during Marine Oxygen Isotope Stage (MIS) 4, a period of
 relatively large global ice volume. However, evidence from the Gladstone
 Glaciation has not been documented along the southern ice sheet margin, making
-it difficult to seize its spacial extent. The younger of the two last glacial
+it difficult to seize its spacial extent. The younger one of the two last
+glacial
 cycle glaciations, the McConnell Glaciation, is associated with end moraines of
 oldest minimum apparent exposure ages of $15.7\pm1.5$ and
 $17.7\pm1.6\,^{10}$Be\,ka \citep{Stroeven.etal.2014}, which appears to
@@ -637,7 +646,8 @@ across interfaces that are assumed to be well defined
 (\cref{fig:model-interfaces}).
 
 This section does not attempt to provide an extensive description of PISM,
-which can be found in an on-line documentation \citep{PISM-authors.2014}.
+which can be found in an on-line documentation
+\citep[\url{http://www.pism-docs.org},][]{PISM-authors.2014}.
 Instead, it aims to highlight the modelling choices that I have made in this
 thesis, and to present an overview of the physics involved in these choices.
 
@@ -648,7 +658,8 @@ thesis, and to present an overview of the physics involved in these choices.
            occurring at the interface with the atmosphere and the ocean, that
            are progressive transitions in nature, are parametrised along
            well-defined boundaries in the model.
-           From \citet{PISM-authors.2014}.}
+           From \citet{PISM-authors.2014}.
+           \todo{replace air by atmosphere.}}
   \label{fig:model-interfaces}
 \end{figure}
 
@@ -1446,6 +1457,7 @@ uncertain for past periods such as the last glacial cycle.
 
 % ----------------------------------------------------------------------
 \subsection{Atmospheric forcing}
+\label{sec:atm}
 % ----------------------------------------------------------------------
 
 Atmospheric forcing of the model consists of a present-day monthly climatology,
@@ -1633,7 +1645,7 @@ Discrepancies between the five input data sets used (\cref{tab:datasources})
 caused considerable variability in modelled ice sheet geometries (\CCLI,
 Figs.~5--7). In particular, ice growth in continental sectors of the modelling
 domain is strongly dependent on input precipitation patterns, which are often
-poorly resolved by atmospheric reanalysis fields used to force the model
+poorly resolved by atmospheric reanalysis fields
 (\CCLI, Figs.~10--14). The closest match between modelled ice sheet extent and
 the reconstructed LGM ice margin \citep{Dyke.2004} was obtained using the North
 American Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006} climatologies
@@ -1842,7 +1854,8 @@ Through sensitivity studies presented in my thesis, I have identified some of
 the predominant sources of uncertainty involved in numerical modelling of the
 Cordilleran ice sheet, including the choice of present-day atmospheric forcing
 fields, the effects of daily temperature variability, and the choice of
-palaeoclimate time series used simulate ice sheet growth over glacial cycle
+palaeoclimate time series used to simulate ice sheet growth and decay over
+glacial cycle
 time scales. The resulting simulations, combined with available geological
 evidence, yielded estimates of the LGM Cordilleran ice sheet extent and volume,
 identification of the main ice-dispersal centres througout the last glacial
