@@ -1,27 +1,31 @@
 % kappa.tex
 % ======================================================================
 
-% Base class and packages
-\documentclass{article}
-%\makeatletter\newcommand{\@ptsize}{0}\makeatother  % needed by setspace
+% Kappa class and personal tweaks
+\documentclass[a4paper]{kappa}
+\makeatletter
+\setlength{\textwidth}{170mm}
+\setlength{\columnsep}{1cm}  % increase space betweem columns
+\setlength{\@figureindent}{0cm}  % remore figure caption padding
+\makeatother
+
+% load packages
 \usepackage{amsmath}
 \usepackage{bibentry}
 \usepackage{bm}
 \usepackage[T1]{fontenc}
 \usepackage{natbib}
-\usepackage{setspace}
 \usepackage{physics}
 \usepackage[colorlinks, citecolor=blue]{hyperref}
 \usepackage[sort]{cleveref}  % needs to be loaded after hyperref
 \usepackage{doi}  % needs to be loaded after hyperref
-\usepackage[pdftex]{graphicx}
-\onehalfspacing
+\usepackage{graphicx}
 \graphicspath{{figures/}}
 \nobibliography*
 
 % Move floats to the end
-\usepackage[nolists]{endfloat}
-\renewcommand{\efloatseparator}{\mbox{}}
+%\usepackage[nolists]{endfloat}
+%\renewcommand{\efloatseparator}{\mbox{}}
 
 % Copernicus-style internal references
 \crefname{chapter}{Chap.}{Chaps.}
@@ -94,15 +98,26 @@
 % -- redraw PISM interface
 
 % Document properties
-\title{Numerical modelling of the Cordilleran ice sheet}
-%\runningtitle{Numerical modelling of the Cordilleran ice sheet}
-\author{Julien Seguinot}
+%\title{Numerical modelling of the Cordilleran ice sheet}
+%\author{Julien Seguinot}
+\thesistitle{Numerical modelling of the Cordilleran ice sheet}
+\runningtitle{Numerical modelling of the Cordilleran ice sheet}
+\candidate{Julien Seguinot}
+\runningauthor{J. Seguinot}
+\pubyear{2014}
+\department{Department of Physical Geography and Quaternary Geology}
+\university{Stockholm University}
+\printed{Universitetsservice US-AB, 2014.}
+%\issn{}
+%\isbn{}
+%\coverpic{Richard Swan. \textsf {www.richardswan.com}. Back cover portrait: Louise Tränk.}
+%\layout{Summary and Papers IV \& V: Alistair Auffret based on  \LaTeX~templates by Rickard Petterson. Published papers typeset by respective publishers, reprinted with permission. Graphics created using \textsf{Inkscape}, \textsf{R} and \textsf{OpenOffice Draw}.}
 
 % ======================================================================
 \begin{document}
 % ======================================================================
 
-\maketitle
+\begin{frontmatter}
 
 \begin{abstract}
 
@@ -150,24 +165,29 @@ provided that ice sheet models can be calibrated against field constraints.
 
 \end{abstract}
 
-\newpage
+%\begin{keyword}
+%\end{keyword}
+%\begin{svabstract}
+%\end{svabstract}
 
-\section*{List of papers}
+\begin{thepapers}
+
+\textbf{List of papers}
 
 This doctoral dissertation consists of a cover summary and the following
 journal articles, which are referred to by their Roman numerals in the text.
 
-\begin{description}
-  \item[\CCLI] \bibentry{Seguinot.etal.2014}.
-  \item[\PSDV] \bibentry{Seguinot.2013}.
-  \item[\PSDP] \bibentry{Seguinot.Rogozhina.2014}.
-  \item[\CCYC] \bibentry{Seguinot.etal.manuscript}.
-\end{description}
+\begin{paper}
+  \item \bibentry{Seguinot.etal.2014}.
+  \item \bibentry{Seguinot.2013}.
+  \item \bibentry{Seguinot.Rogozhina.2014}.
+  \item \bibentry{Seguinot.etal.manuscript}.
+\end{paper}
 
 \vfill
-\noindent\textbf{Author contributions}
 
-\footnotesize{\begin{enumerate}
+\noindent\textbf{Author contributions}
+\footnotesize{\begin{paper}
   \item[I] A.~P.~Stroeven initiated the Cordilleran ice sheet modelling
 project; I set-up the ice sheet model (PISM) and supercomputing workflow, ran
 simulations and wrote the first draft; C.~Khroulev implemented necessary code
@@ -187,12 +207,14 @@ PISM, ran the simulations and wrote the first draft; I.~Rogozhina guided
 experiment design; A.~P.~Stroeven, M.~Margold and J.~Kleman took part in the
 interpretation and comparison of model results against geological evidence. All
 co-authors contributed to improve the text.
-\end{enumerate}}
+\end{paper}}
 
-\newpage
-%\maketitle
+\end{thepapers}
+
+\end{frontmatter}
+
+\renewcommand{\contentsname}{Contents of cover summary}
 \tableofcontents
-\newpage
 
 % ======================================================================
 \section{Introduction}
@@ -287,7 +309,7 @@ presented a particular challenge to reconstructing glacial history based on the
 geomorphological record \citep[e.g.,][]{Kleman.etal.2010} or numerical ice
 sheet modelling \citep{Robert.1991}.
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{
     \subgraphics{a}{photo-glacier-crevasses}
@@ -306,9 +328,9 @@ sheet modelling \citep{Robert.1991}.
            folded structure formed by deformed debris layers in the ice,
            Glacier d'Arsine, French Alps, 2004.}
   \label{fig:glacier-mechanics}
-\end{figure}
+\end{figure*}
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{
     \subgraphics{a}{photo-glacial-valley}
@@ -328,11 +350,11 @@ sheet modelling \citep{Robert.1991}.
            as the ice margin retreated towards the valley bottom, Tuya Lake
            area, Canadian Cordillera, 2012.}
   \label{fig:glaciation-indicators}
-\end{figure}
+\end{figure*}
 
 \begin{figure}
   \centering
-  \includegraphics[width=80mm]{paleo-timeseries}
+  \includegraphics{paleo-timeseries}
   \caption{Palaeo-climate records of the last 800\,ka.
            \textbf{(a)} Benthic oxygen isotope (\chem{\delta^{18}O}) record
            from a compilation of globally-distributed deep sea sediment cores
@@ -349,7 +371,7 @@ sheet modelling \citep{Robert.1991}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=80mm]{paleo-glaciation}
+  \includegraphics{paleo-glaciation}
   \caption{Spatial extent of ice sheet and glacier cover in the northern
            hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
            \textbf{(b)} during the last glacial maximum
@@ -374,7 +396,7 @@ archipelago. Finally, the \emph{Cordilleran ice sheet}, intermediate in size,
 capped the mountain
 ranges of the Western Cordillera.
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{map-northamerica}}
   \caption{Relief map of northern North America showing a reconstruction of the
@@ -386,7 +408,7 @@ ranges of the Western Cordillera.
            map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
            Data \citep{Patterson.Kelso.2014}.}
   \label{fig:map-northamerica}
-\end{figure}
+\end{figure*}
 
 % ----------------------------------------------------------------------
 \subsection{Topographic setting}
@@ -435,7 +457,7 @@ numerical ice sheet modelling, the presence of steep and irregular subglacial
 topography yields complex flow patterns and stress distributions within the ice
 sheet and requires high-resolution and thus, large computational grids.
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{map-cordillera}}
   \caption{Topographic map of the northern American Cordillera, oriented north.
@@ -444,9 +466,9 @@ sheet and requires high-resolution and thus, large computational grids.
            The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
            and Natural Earth Data \citep{Patterson.Kelso.2014}.}
   \label{fig:map-cordillera}
-\end{figure}
+\end{figure*}
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{photo-alaska-range}}
   \caption{The Alaska Range hosts several of the highest peaks in the North
@@ -457,7 +479,7 @@ sheet and requires high-resolution and thus, large computational grids.
            The Alaska Range is tectonically active and rapidly eroding, as
            shown by landslide-covered valley sides on this photograph.}
   \label{fig:photo-alaska-range}
-\end{figure}
+\end{figure*}
 
 % ----------------------------------------------------------------------
 \subsection{Climatic setting}
@@ -496,7 +518,7 @@ and climate used (\cref{sec:atm}). This forms the motivation for the study
 presented in \CCLI, where the climatic setting of the North American Cordillera
 is also described in further detail.
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{
     \subgraphics{a}{photo-vancouver-island}
@@ -508,16 +530,16 @@ is also described in further detail.
            Columbia, by Martin Margold, 2010.
            \textbf{(b)} Fraser Valley, south-central British Columbia, 2010.}
   \label{fig:photo-fraser-valley}
-\end{figure}
+\end{figure*}
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{plot-atm}}
   \caption{Some characteristics of the Cordilleran climate according to the
            North American Regional Reanalysis
            \citep[NARR,][]{Mesinger.etal.2006}.}
   \label{fig:plot-atm}
-\end{figure}
+\end{figure*}
 
 
 % ----------------------------------------------------------------------
@@ -783,7 +805,7 @@ demand too high for multi-millennial, continental-scale applications, such as
 the numerical modelling of the Cordilleran ice sheet through the last 100\,ka
 glacial cycle, thus requiring shallow approximations.
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{Constant parameters of the ice flow model.}
   \label{tab:iceflowparams}
@@ -869,7 +891,7 @@ glacial cycle, thus requiring shallow approximations.
 
     \hline
   \end{tabular*}}
-\end{table}
+\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1162,7 +1184,7 @@ where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
 highest observed palaeo-shoreline elevations in the model domain
 \citep[\cref{tab:slidingparams};][]{Clague.James.2002}.
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{Constant parameters of the sliding model. Missing sources
            correspond to uncalibrated values.}
@@ -1234,7 +1256,7 @@ highest observed palaeo-shoreline elevations in the model domain
 
     \hline
   \end{tabular*}}
-\end{table}
+\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1282,7 +1304,7 @@ relaxation, the second for point-wise isostasy, and the third for elastic
 flexure. Due to high mantle viscosity, $\nu_m$, there exists a time lag between
 the ice sheet growth and the isostatic bedrock response.
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{Constant parameters of the bedrock thermal and deformation models.}
   \label{tab:bedrockparams}
@@ -1328,7 +1350,7 @@ the ice sheet growth and the isostatic bedrock response.
 
     \hline
   \end{tabular*}}
-\end{table}
+\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1415,7 +1437,7 @@ uncertain for past periods such as the last glacial cycle.
   \label{fig:model-pdd}
 \end{figure}
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{Constant parameters of the surface and atmosphere models.}
   \label{tab:surfaceparams}
@@ -1451,7 +1473,7 @@ uncertain for past periods such as the last glacial cycle.
 
     \hline
   \end{tabular*}}
-\end{table}
+\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1495,7 +1517,7 @@ sheet model sensitivity to time dependent temperature-offset corrections
 derived from six different palaeo-temperature proxy records
 (\cref{tab:datasources}).
 
-\begin{table}
+\begin{table*}
   \centering
   \caption{Sources of forcing data used to inform the ice sheet model.}
   \label{tab:datasources}
@@ -1558,7 +1580,7 @@ derived from six different palaeo-temperature proxy records
 
     \hline
   \end{tabular*}}
-\end{table}
+\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1656,13 +1678,12 @@ the last glacial cycle (\CCYC).
 
 \begin{figure*}
   \centering
-  \vspace{-16mm}
   \makebox[0pt]{
   \begin{minipage}[t]{112.5mm}\vspace{0pt}
     \includegraphics{plot-lgm}
   \end{minipage}
   \hspace{1cm}
-  \begin{minipage}[t]{47.5mm}\vspace{0pt}
+  \begin{minipage}[t]{47.5mm}\vspace{-12pt}  % kappa class add 12 pt here
     \caption{Constant-climate simulation of the LGM Cordilleran ice sheet using
              an horizontal resolution of 3\,km. The map depicts modelled basal
              topography, cold-based areas (hatches), surface topography (100\,m
@@ -1682,7 +1703,6 @@ the last glacial cycle (\CCYC).
     \label{fig:plot-lgm}
   \end{minipage}
   }
-  \vspace{-16mm}
 \end{figure*}
 
 
@@ -1768,7 +1788,7 @@ this parametrization may not be applicable to the former Cordilleran ice sheet.
   \label{fig:plot-sdmap}
 \end{figure}
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{plot-sdeffect}}
   \caption{Effect of temperature variability on Cordilleran ice sheet
@@ -1788,7 +1808,7 @@ this parametrization may not be applicable to the former Cordilleran ice sheet.
            Differences in surface elevation are displayed relative to case (c).
            Note the different colour scales.}
   \label{fig:plot-sdeffect}
-\end{figure}
+\end{figure*}
 
 
 % ----------------------------------------------------------------------
@@ -1827,7 +1847,7 @@ ice sheet. After the LGM the ice sheet shrinks rapidly such that the last
 remnants of the ice sheet towards the end of the deglaciation in the early
 Holocene reside once again in the Skeena Mountains.
 
-\begin{figure}
+\begin{figure*}
   \centering
   \makebox[0pt]{\includegraphics{plot-snapshots}}
   \caption{\textbf{(a)} Modelled growth and decay of the last Cordilleran ice
@@ -1842,7 +1862,7 @@ Holocene reside once again in the Skeena Mountains.
            this run, the Cordilleran ice sheet was almost as voluminous during
            MIS~4 as it was during the LGM.}
   \label{fig:plot-snapshots}
-\end{figure}
+\end{figure*}
 
 
 % ======================================================================

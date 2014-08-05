@@ -48,6 +48,7 @@
 \newcommand{\@authorstyle}{\large}                               % Format on Author list
 \newcommand{\@historystyle}{\small}                              % Format on paper history list
 \newcommand{\@addressstyle}{\small\itshape}                      % Format on Address field
+\newcommand{\@abstractstyle}{\normalfont\small}                  % Format on abstract
 \newcommand{\@keywordstyle}{\normalfont\small}                   % Format on keywords
 \newcommand{\@acknowledgestyle}{\normalfont\small}               % Format on acknowledgement
 \newcommand{\@runheadstyle}{\normalsize}
