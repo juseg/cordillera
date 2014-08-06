@@ -1053,18 +1053,22 @@ Using the inverse formulation of the constitutive law \eqref{eqn:invglenslaw},
 components of the deviatoric stress tensor can be replaced by corresponding
 velocity components, yielding
 \begin{subequations}
-\begin{align}
+\begin{gather}
+  \begin{split}
     \pdv{x} \left[2\bar{\nu}
                   \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
-        + \pdv{y} \left[\bar{\nu}
-                        \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \pdv{\tau_{xz}}{z} &= \rho g \pdv{s}{x} \,, \\
+        &+ \pdv{y} \left[\bar{\nu}
+                         \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right] \\
+        &+ \pdv{\tau_{xz}}{z} = \rho g \pdv{s}{x} \,,
+  \end{split}\\
+  \begin{split}
     \pdv{x} \left[\bar{\nu}
                   \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \pdv{y} \left[2\bar{\nu}
-                        \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
-         + \pdv{\tau_{yz}}{z} &= \rho g \pdv{s}{y} \,,
-\end{align}
+        &+ \pdv{y} \left[2\bar{\nu}
+                         \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right] \\
+        &+ \pdv{\tau_{yz}}{z} = \rho g \pdv{s}{y} \,,
+  \end{split}
+\end{gather}
 \end{subequations}
 where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 \begin{equation}
@@ -1074,19 +1078,23 @@ where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 A final integration over the entire ice column yields
 \citep[Eqs.~7.7--7.8]{Weis.etal.1999}
 \begin{subequations}
-\begin{align}
-    \label{eqn:vssa}
+\begin{gather}
+  \label{eqn:vssa}
+  \begin{split}
     \pdv{x} \left[2\bar{\nu}h
                   \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
-        + \pdv{y} \left[\bar{\nu}h
-                        \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \tau_{bx} &= \rho gh \pdv{s}{x} \,, \\
+        &+ \pdv{y} \left[\bar{\nu}h
+                         \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right] \\
+        &+ \tau_{bx} = \rho gh \pdv{s}{x} \,,
+  \end{split}\\
+  \begin{split}
     \pdv{x} \left[\bar{\nu}H
                   \left(\pdv{v_x}{y} + \pdv{v_y}{x}\right) \right]
-        + \pdv{y} \left[2\bar{\nu}h
-                        \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right]
-        + \tau_{by} &= \rho gh \pdv{s}{y} \,,
-\end{align}
+        &+ \pdv{y} \left[2\bar{\nu}h
+                         \left(\pdv{v_x}{x} + 2\pdv{v_y}{y}\right) \right] \\
+        &+ \tau_{by} = \rho gh \pdv{s}{y} \,,
+  \end{split}
+\end{gather}
 \end{subequations}
 where $\tau_{bx}$ and $\tau_{by}$ correspond to $x$ and $y$-components of the
 basal traction, and will be determined by a sliding law.
@@ -1389,37 +1397,38 @@ linearly with temperature between $T_0$ and ${T_1=2\,\degC}$,
 
 Surface melt, $M$, is assumed proportional to the number of positive degree
 days (PDD), defined over an arbitrary time interval, $[t_1, t_2]$, as the
-integral of positive Celcius temperature $T-T_0$,
+integral of positive Celcius temperature $\theta = T-T_0$,
 \begin{equation}
-    \mathrm{PDD} = \int_{0}^{A}\max(T(t)-T_0,0)\,dt \,.
+    \mathrm{PDD} = \int_{0}^{A}\max(\theta(t),0)\,dt \,.
 \end{equation}
 
 For multimillenial simulations of palaeo-ice sheet evolution such as
 presented in this thesis, daily or hourly temperature data is not available,
 forcing the PDD computation to rely on an idealised representation of the
-annual temperature cycle $T_{ac}$. Sub-annual temperature variability around
+annual temperature cycle $\theta_{ac}$. Sub-annual temperature variability around
 the freezing point, however, significantly affects surface melt on a multi-year
 scale \citep{Arnold.Mackay.1964}. It is then typically included in the models
 under an assumption of normal temperature distribution, using a standard
 deviation parameter $\sPDD$ in the PDD computation \citep{Braithwaite.1984}.
 PDDs can then be computed using a double-integral formulation
 \citep{Reeh.1991},
-\begin{equation}
-    \PDD = \frac{1}{\sPDD\sqrt{2\pi}}
+\begin{multline}
+    \PDD = \frac{1}{\sPDD\sqrt{2\pi}} \\
+        \times
         \int_{t_1}^{t_2} \mathrm{d}t
-        \int_{0}^{\infty} \mathrm{d}T \,
-        T \exp\left({-\frac{(T-T_{ac})^2}{2\sPDD^2}}\right) \,,
-\end{equation}
+        \int_{0}^{\infty} \mathrm{d}\theta \,
+        \theta \exp\left({-\frac{(\theta-\theta_{ac})^2}{2\sPDD^2}}\right) \,,
+\end{multline}
 or more efficiently using an error function formulation
 \citep{Calov.Greve.2005},
-\begin{equation}
+\begin{multline}
     \label{eqn:calovgreve}
     \PDD = \int_{t_1}^{t_2} \mathrm{d}t
-        \left[\frac{\sPDD}{\sqrt{2\pi}}
-                \exp\left({-\frac{T_{ac}^2}{2\sPDD^2}}\right)
-              + \frac{T_{ac}}{2} \, \mathrm{erfc}
-                \left(-\frac{T_{ac}}{\sqrt{2}\sPDD}\right)\right] \,.
-\end{equation}
+        \bigg[\frac{\sPDD}{\sqrt{2\pi}}
+                \exp\left({-\frac{\theta_{ac}^2}{2\sPDD^2}}\right) \\
+              + \frac{\theta_{ac}}{2} \, \mathrm{erfc}
+                \left(-\frac{\theta_{ac}}{\sqrt{2}\sPDD}\right)\bigg] \,.
+\end{multline}
 
 In the simulations presented here, \cref{eqn:calovgreve} is numerically
 approximated using week-long sub-intervals. For each sub-interval, PDDs, which
@@ -1511,8 +1520,9 @@ The lapse-rate correction, ${\Delta}T_{LR}$, is computed from the ice sheet
 surface elevation, $s$, in relation to the
 climate input reference bedrock topography, $b_{ref}$,
 \begin{align}
-    {\Delta}T_{LR}(t, x, y) &= -\gamma [s(t, x, y)-b_{ref}(x, y)] \\
-                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{ref}(x, y)]\,,
+    {\Delta}T_{LR}(t, x, y) = -\gamma\,[&s(t, x, y) - b_{ref}(x, y)] \\
+                            = -\gamma\,[&h(t, x, y) + b(t, x, y) \notag \\
+                                        &- b_{ref}(x, y)] \,,
 \end{align}
 thus accounting for the evolution of ice thickness, ${h=s-b}$, on the one hand,
 and
