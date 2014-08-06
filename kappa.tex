@@ -40,6 +40,11 @@
 \newcommand{\todo}[1]{} %\emph{[\textbf{Todo:} #1]}}
 %\newcommand{\mref}[0]{\textbf{[ref.]}}
 
+% Copernicus-like vertical space in tables
+\newcommand\tophline{\hline\noalign{\vspace{1mm}}}
+\newcommand\middlehline{\noalign{\vspace{1mm}}\hline\noalign{\vspace{1mm}}}
+\newcommand\bottomhline{\noalign{\vspace{1mm}}\hline}
+
 % Vectors and tensors
 \newcommand{\vect}[1]{\va*{#1}} % bold arrow vectors
 \newcommand{\tens}[1]{\vb*{#1}} % bold tensors
@@ -684,6 +689,7 @@ which can be found in an on-line documentation
 \citep[\url{http://www.pism-docs.org},][]{PISM-authors.2014}.
 Instead, it aims to highlight the modelling choices that I have made in this
 thesis, and to present an overview of the physics involved in these choices.
+Parameter values are summarised in \cref{tab:params}.
 
 \begin{figure}
   \centering
@@ -696,135 +702,16 @@ thesis, and to present an overview of the physics involved in these choices.
   \label{fig:model-interfaces}
 \end{figure}
 
-% ----------------------------------------------------------------------
-\subsection{Field equations}
-% ----------------------------------------------------------------------
-
-The thermodynamic core of the ice sheet model relies on four elementary field
-equations: the equation of incompressibility, the balance of stresses, the constitutive law for ice, and the conservation of energy. Firstly, ice flow is assumed \emph{incompressible}. Hence, ice
-density, $\rho$, is constant, and
-conservation of mass therefore implies a conservation of volume, which can be expressed
-in terms of the ice velocity vector, $\vv$ (\cref{fig:model-variables}), by
-\begin{equation}
-    \label{eqn:incompressibility}
-    \div{\vv} = 0 \,.
-\end{equation}
-
-\begin{figure}
-  \centering
-  \includegraphics{model-variables}
-  \caption{Sketch of notations used for the main variables of the ice sheet
-           model. An infinitesimal ice parcel is moving at velocity $\vv$,
-           under the balance of stresses $\CST$ and gravity $\vect{g}$.}
-  \label{fig:model-variables}
-\end{figure}
-
-Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
-thus assuming creeping flow. In other words, ice is considered as a slow-moving
-fluid whose deformation is entirely controlled by internal friction, here
-expressed by the Cauchy stress tensor, $\CST$, and the gravity vector,
-$\vect{g}$:
-\begin{equation}
-    \label{eqn:stressbalance}
-    \tdiv{\CST} + \rho\,\vect{g} = \vect{0} \,.
-\end{equation}
-
-Thirdly, after defining the strain-rate tensor
-${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
-and the deviatoric stress tensor, ${\DST = \CST + p\,\IDT}$,
-where $p=-\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
-$\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice
-\citep{Nye.1953} based on laboratory experiments \citep{Glen.1952} is used to
-relate these two quantities. It reads:
-\begin{equation}
-    \label{eqn:glenslaw}
-    \SRT = A\,\tau_e^{n-1}\,\DST \,.
-\end{equation}
-The equivalent stress, $\tau_e$, is defined by
-${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
-where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
-The ice softness coefficient, $A$, depends on ice temperature, $T$, pressure, $p$, and
-water content, $\omega$, through an Arrhenius-type law
-\citep[Eqs.~63--65]{Paterson.Budd.1982, Aschwanden.etal.2012},
-\begin{equation}
-    A =
-    \begin{cases}
-        A_c (1+f\omega)\,e^\frac{-Q_c}{RT_{pa}}
-            & \text{if}\ T < T_c \,, \\
-        A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
-            & \text{if}\ T \ge T_c \,,
-    \end{cases}
-\end{equation}
-where $T_{pa}$ is the pressure-adjusted temperature calculated using the
-Clapeyron relation, ${T_{pa} = T - \beta p}$. $R$ is the ideal gas constant,
-and $A_c$, $A_w$, $Q_c$ and $Q_w$, are constant parameter corresponding to
-values measured below and above a critical temperature threshold
-${T_c=-10}$\,\degC\ \citep[\cref{tab:iceflowparams};][]{Paterson.Budd.1982}.
-The water fraction, $\omega$, is capped at a maximum value of 0.01, above which
-no measurements are available \citep[Eq.~5.7]{Lliboutry.Duval.1985,
-Greve.1997}.
-
-For a convenient derivation of the shallow shelf approximation, developed in
-the next section (\cref{sec:siassa}), the constitutive law can be rewritten
-using an inverted formulation. Assuming
-${{\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)}$ and ${B=A^{-1/n}}$,
-\cref{eqn:glenslaw} becomes
-\begin{equation}
-    \label{eqn:invglenslaw}
-    \DST = B\,\doteps_e^{(1/n)-1}\,\SRT \,.
-\end{equation}
-
-By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
-by ${\DST = 2 \nu\SRT}$, thus yielding
-\begin{equation}
-    \label{eqn:viscosity}
-    \nu = \frac{B}{2}\,\doteps_e^{(1/n)-1} \,.
-\end{equation}
-
-Finally, the evolution of temperature within the ice is governed by the
-\emph{conservation of energy}. In PISM, the conservation of energy uses an
-enthalpy formulation in order to
-account for thermodynamic effects associated with internal phase changes in the
-glacier \citep[Eqs.~20--21]{Aschwanden.etal.2012}. This enthalpy ($H$)
-formulation reads
-\begin{equation}
-    \label{eqn:enthalpy}
-    \rho \left(\matdv{H}\right)
-        = -\div{\vect{q}} + \frac{\nu\doteps_e^2}{4} \,,
-\end{equation}
-where $\vect{q}$ represents the heat flow and
-${\nu\dot{\epsilon_e}^2/4 = \tr(\DST\SRT)}$ is a
-source term corresponding to strain heat release. In the case where ice
-temperature, $T$, is below the pressure-melting point, the heat flow is
-modelled by Fourier's law, $\vect{q} = k\,\grad{T}$, where $k$ is the thermal
-conductivity of ice, while enthalpy can be expressed as $H=c\,T$, where $c$
-denotes the ice specific heat capacity (\cref{tab:iceflowparams}).
-Consequently, the enthalpy equation (\ref{eqn:enthalpy}) can be rewritten using
-a more familiar, cold-ice, temperature formulation,
-\begin{equation}
-    \label{eqn:temperature}
-    \matdv{T} = \frac{k}{\rho c} \Delta T
-                + \frac{\nu\doteps_e^2}{4\rho c} \,.
-\end{equation}
-However, note that, here, the term ``enthalpy'' is actually an abuse of
-language, commonly used in glaciology as a synonym of ``interval energy''
-\citep{Aschwanden.etal.2012}.
-
-\Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,eqn:enthalpy}
-constitute the thermodynamic basis
-of the model. However, their resolution in full form implies a computational
-demand too high for multi-millennial, continental-scale applications, such as
-the numerical modelling of the Cordilleran ice sheet through the last 100\,ka
-glacial cycle, thus requiring shallow approximations.
-
 \begin{table*}
   \centering
-  \caption{Constant parameters of the ice flow model.}
-  \label{tab:iceflowparams}
-  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
-    \hline
+  \caption{Constant parameters of the ice sheet model.}
+  \label{tab:params}
+  \makebox[0pt]{\begin{tabular*}{170mm}{@{\hspace{2em}}l@{\extracolsep{\fill}}lrll}
+    \tophline
     Not.    & Name & Value & Unit & Source \\
-    \hline
+    \middlehline
+
+    \multicolumn{2}{l}{\emph{Ice material properties}} \\
 
     $\rho$  & Ice density
             & 910
@@ -901,9 +788,256 @@ glacial cycle, thus requiring shallow approximations.
             & \unit{J\,kg^{-1}\,K^{-1}}
             & \citet{Aschwanden.etal.2012} \\
 
-    \hline
+    \multicolumn{2}{l}{\emph{Basal sliding}} \\
+
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & -
+            & - \\
+
+    $v_{th}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}}
+            & - \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa
+            & - \\
+
+    $\alpha$& Effective pressure coefficient (\CCLI)
+            & 0.95
+            & -
+            & - \\
+
+    $\delta$& Effective pressure coefficient (\CCYC)
+            & 0.02
+            & -
+            & - \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $C_c$   & Till compressibility coefficient
+            & 0.12
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $W_{max}$ & Maximal till water thickness
+            & 2.0
+            & m
+            & - \\
+
+    $b_0$   & Altitude of max. friction angle
+            & 0
+            & m
+            & - \\
+
+    $b_1$   & Altitude of min. friction angle
+            & 200
+            & m
+            & - \\
+
+    $\phi_0$& Minimum friction angle
+            & 10/15
+            & \degree
+            & - \\
+
+    $\phi_1$& Maximum friction angle
+            & 30/45
+            & \degree
+            & - \\
+
+    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
+
+    $\rho_b$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & - \\
+
+    $c_b$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & - \\
+
+    $k_b$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{W\,m^{-1}\,K^{-1}}
+            & - \\
+
+    $q_G$   & Geothermal heat flux
+            & 70.0
+            & \unit{mW\,m^{-2}}
+            & - \\
+
+    $\nu_m$ & Mantle viscosity
+            & 1\e21
+            & \unit{Pa\,s}
+            & \citet{Lingle.Clark.1985} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \citet{Lingle.Clark.1985} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & 5.0\e24
+            & \unit{N}
+            & \citet{Lingle.Clark.1985} \\
+
+    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
+
+    $T_0$   & Temperature of snow precipitation
+            & 0.0
+            & \degC
+            & - \\
+
+    $T_1$   & Temperature of rain precipitation
+            & 2.0
+            & \degC
+            & - \\
+
+    $F_s$   & Degree-day factor for ice
+            & 3.04\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $F_i$   & Degree-day factor for ice
+            & 4.59\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $\gamma$& Air temperature lapse-rate
+            & 6\e{-3}
+            & \unit{K\,m{-1}}
+            & - \\
+
+    \bottomhline
   \end{tabular*}}
 \end{table*}
+
+% ----------------------------------------------------------------------
+\subsection{Field equations}
+% ----------------------------------------------------------------------
+
+The thermodynamic core of the ice sheet model relies on four elementary field
+equations: the equation of incompressibility, the balance of stresses, the constitutive law for ice, and the conservation of energy. Firstly, ice flow is assumed \emph{incompressible}. Hence, ice
+density, $\rho$, is constant, and
+conservation of mass therefore implies a conservation of volume, which can be expressed
+in terms of the ice velocity vector, $\vv$ (\cref{fig:model-variables}), by
+\begin{equation}
+    \label{eqn:incompressibility}
+    \div{\vv} = 0 \,.
+\end{equation}
+
+\begin{figure}
+  \centering
+  \includegraphics{model-variables}
+  \caption{Sketch of notations used for the main variables of the ice sheet
+           model. An infinitesimal ice parcel is moving at velocity $\vv$,
+           under the balance of stresses $\CST$ and gravity $\vect{g}$.}
+  \label{fig:model-variables}
+\end{figure}
+
+Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
+thus assuming creeping flow. In other words, ice is considered as a slow-moving
+fluid whose deformation is entirely controlled by internal friction, here
+expressed by the Cauchy stress tensor, $\CST$, and the gravity vector,
+$\vect{g}$:
+\begin{equation}
+    \label{eqn:stressbalance}
+    \tdiv{\CST} + \rho\,\vect{g} = \vect{0} \,.
+\end{equation}
+
+Thirdly, after defining the strain-rate tensor
+${\SRT = \frac{1}{2}(\tgrad{\vv} + \tgrad{\vv}^{\mathrm{T}})}$,
+and the deviatoric stress tensor, ${\DST = \CST + p\,\IDT}$,
+where $p=-\frac{1}{3}\tr(\CST)$ is the hydrostatic pressure and
+$\tens{\delta}$ is the identity tensor, a \emph{constitutive law} for ice
+\citep{Nye.1953} based on laboratory experiments \citep{Glen.1952} is used to
+relate these two quantities. It reads:
+\begin{equation}
+    \label{eqn:glenslaw}
+    \SRT = A\,\tau_e^{n-1}\,\DST \,.
+\end{equation}
+The equivalent stress, $\tau_e$, is defined by
+${\tau_e}^2 = -\mathrm{II}_{\DST} = \frac{1}{2} \tr(\DST^2)$,
+where $\mathrm{II}_{\DST}$ is the second invariant of the stress tensor.
+The ice softness coefficient, $A$, depends on ice temperature, $T$, pressure, $p$, and
+water content, $\omega$, through an Arrhenius-type law
+\citep[Eqs.~63--65]{Paterson.Budd.1982, Aschwanden.etal.2012},
+\begin{equation}
+    A =
+    \begin{cases}
+        A_c (1+f\omega)\,e^\frac{-Q_c}{RT_{pa}}
+            & \text{if}\ T < T_c \,, \\
+        A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
+            & \text{if}\ T \ge T_c \,,
+    \end{cases}
+\end{equation}
+where $T_{pa}$ is the pressure-adjusted temperature calculated using the
+Clapeyron relation, ${T_{pa} = T - \beta p}$. $R$ is the ideal gas constant,
+and $A_c$, $A_w$, $Q_c$ and $Q_w$, are constant parameter corresponding to
+values measured below and above a critical temperature threshold
+${T_c=-10}$\,\degC\ \citep[\cref{tab:params};][]{Paterson.Budd.1982}.
+The water fraction, $\omega$, is capped at a maximum value of 0.01, above which
+no measurements are available \citep[Eq.~5.7]{Lliboutry.Duval.1985,
+Greve.1997}.
+
+For a convenient derivation of the shallow shelf approximation, developed in
+the next section (\cref{sec:siassa}), the constitutive law can be rewritten
+using an inverted formulation. Assuming
+${{\doteps_e}^2 = \frac{1}{2} \tr(\SRT^2)}$ and ${B=A^{-1/n}}$,
+\cref{eqn:glenslaw} becomes
+\begin{equation}
+    \label{eqn:invglenslaw}
+    \DST = B\,\doteps_e^{(1/n)-1}\,\SRT \,.
+\end{equation}
+
+By analogy to Newtonian flow, an apparent viscosity, $\nu$, can then be defined
+by ${\DST = 2 \nu\SRT}$, thus yielding
+\begin{equation}
+    \label{eqn:viscosity}
+    \nu = \frac{B}{2}\,\doteps_e^{(1/n)-1} \,.
+\end{equation}
+
+Finally, the evolution of temperature within the ice is governed by the
+\emph{conservation of energy}. In PISM, the conservation of energy uses an
+enthalpy formulation in order to
+account for thermodynamic effects associated with internal phase changes in the
+glacier \citep[Eqs.~20--21]{Aschwanden.etal.2012}. This enthalpy ($H$)
+formulation reads
+\begin{equation}
+    \label{eqn:enthalpy}
+    \rho \left(\matdv{H}\right)
+        = -\div{\vect{q}} + \frac{\nu\doteps_e^2}{4} \,,
+\end{equation}
+where $\vect{q}$ represents the heat flow and
+${\nu\dot{\epsilon_e}^2/4 = \tr(\DST\SRT)}$ is a
+source term corresponding to strain heat release. In the case where ice
+temperature, $T$, is below the pressure-melting point, the heat flow is
+modelled by Fourier's law, $\vect{q} = k\,\grad{T}$, where $k$ is the thermal
+conductivity of ice, while enthalpy can be expressed as $H=c\,T$, where $c$
+denotes the ice specific heat capacity (\cref{tab:params}).
+Consequently, the enthalpy equation (\ref{eqn:enthalpy}) can be rewritten using
+a more familiar, cold-ice, temperature formulation,
+\begin{equation}
+    \label{eqn:temperature}
+    \matdv{T} = \frac{k}{\rho c} \Delta T
+                + \frac{\nu\doteps_e^2}{4\rho c} \,.
+\end{equation}
+However, note that, here, the term ``enthalpy'' is actually an abuse of
+language, commonly used in glaciology as a synonym of ``interval energy''
+\citep{Aschwanden.etal.2012}.
+
+\Cref{eqn:incompressibility,eqn:stressbalance,eqn:glenslaw,eqn:enthalpy}
+constitute the thermodynamic basis
+of the model. However, their resolution in full form implies a computational
+demand too high for multi-millennial, continental-scale applications, such as
+the numerical modelling of the Cordilleran ice sheet through the last 100\,ka
+glacial cycle, thus requiring shallow approximations.
 
 
 % ----------------------------------------------------------------------
@@ -1145,7 +1279,7 @@ The simulations presented here use a \emph{pseudo-plastic} sliding law,
 \end{equation}
 where $\vect{\tau}_b$ is the basal traction force, $\vv_b$ is the basal
 velocity, and $v_{th}$ is an arbitrary velocity threshold
-(\cref{tab:slidingparams}). Note that, in the case of
+(\cref{tab:params}). Note that, in the case of
 $q=0$, \cref{eqn:pseudoplastic} corresponds to a purely plastic law
 \citep[Eq.~11]{Winkelmann.etal.2011},
 \begin{equation}
@@ -1184,7 +1318,7 @@ empirical parametrisation based on laboratory experiments on Antarctic till
 where $e_0$ is a measured reference void ratio, $C_c$ a measured
 compressibility coefficient, and $\delta$ is a non-dimensional parameter
 chosen as 0.02 based on simple sensitivity tests on the Greenland ice sheet
-(Table~\ref{tab:slidingparams}).
+(Table~\ref{tab:params}).
 
 Finally, the till friction angle, $\phi$ (\cref{eqn:coulomb}), is taken as a
 function of modern bed
@@ -1202,81 +1336,7 @@ a weakening of till associated with the presence of marine sediments
 \end{equation}
 where $b_0=0$\,m is modern sea-level and $b_1=200$\,m is a rough average of
 highest observed palaeo-shoreline elevations in the model domain
-\citep[\cref{tab:slidingparams};][]{Clague.James.2002}.
-
-\begin{table*}
-  \centering
-  \caption{Constant parameters of the sliding model. Missing sources
-           correspond to uncalibrated values.}
-  \label{tab:slidingparams}
-  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
-    \hline
-    Not.    & Name & Value & Unit & Source \\
-    \hline
-
-    $q$     & Pseudo-plastic sliding exponent
-            & 0.25
-            & -
-            & - \\
-
-    $v_{th}$& Pseudo-plastic threshold velocity
-            & 100.0
-            & \unit{m\,yr^{-1}}
-            & - \\
-
-    $c_0$   & Till cohesion
-            & 0.0
-            & Pa
-            & - \\
-
-    $\alpha$& Effective pressure coefficient (\CCLI)
-            & 0.95
-            & -
-            & - \\
-
-    $\delta$& Effective pressure coefficient (\CCYC)
-            & 0.02
-            & -
-            & - \\
-
-    $e_0$   & Till reference void ratio
-            & 0.69
-            & -
-            & \citet{Tulaczyk.etal.2000} \\
-
-    $C_c$   & Till compressibility coefficient
-            & 0.12
-            & -
-            & \citet{Tulaczyk.etal.2000} \\
-
-    $W_{max}$ & Maximal till water thickness
-            & 2.0
-            & m
-            & - \\
-
-    $b_0$   & Altitude of max. friction angle
-            & 0
-            & m
-            & - \\
-
-    $b_1$   & Altitude of min. friction angle
-            & 200
-            & m
-            & - \\
-
-    $\phi_0$& Minimum friction angle
-            & 10/15
-            & \degree
-            & - \\
-
-    $\phi_1$& Maximum friction angle
-            & 30/45
-            & \degree
-            & - \\
-
-    \hline
-  \end{tabular*}}
-\end{table*}
+\citep[\cref{tab:params};][]{Clague.James.2002}.
 
 
 % ----------------------------------------------------------------------
@@ -1293,9 +1353,9 @@ consists of a simple diffusion equation,
     \pdv{T}{t} = \frac{k_b}{\rho_b c_b} \Delta T \,,
 \end{equation}
 where $k_b$, $\rho_b$ and $c_b$ are the thermal conductivity, density and
-specific heat capacity of the bedrock (\cref{tab:bedrockparams}).
+specific heat capacity of the bedrock (\cref{tab:params}).
 Bedrock temperature is conditioned at depth by a fixed upwards geothermal heat
-flux $q_G$  (\cref{tab:bedrockparams}). The bedrock thermal model
+flux $q_G$  (\cref{tab:params}). The bedrock thermal model
 is necessary for modelling the Cordilleran ice sheet on multi-millennial
 time-scales, because temperature fluctuations caused by climate change and
 varying degrees of isolation from atmospheric temperatures by ice sheet
@@ -1313,7 +1373,7 @@ equation of the bed elevation, $b$,
     2\nu_m\,|\grad|\,\pdv{b}{t} + \rho_l g b + D\,\Delta^2 b = \sigma_{zzb} \,,
 \end{equation}
 where $\nu_m$ is mantle viscosity, $\rho_l$ is lithosphere density, $D$ is the
-lithosphere's flexural rigidity (\cref{tab:bedrockparams}), and $\sigma_{zzb}$
+lithosphere's flexural rigidity (\cref{tab:params}), and $\sigma_{zzb}$
 corresponds to the ice load
 \citep{Bueler.etal.2007}. Here, ${\Delta^2 = (\div\grad{})^2}$ designs the
 biharmonic (Laplacian square) operator of
@@ -1323,54 +1383,6 @@ the left-hand side of \cref{eqn:beddef}, the first term accounts for mantle
 relaxation, the second for point-wise isostasy, and the third for elastic
 flexure. Due to high mantle viscosity, $\nu_m$, there exists a time lag between
 the ice sheet growth and the isostatic bedrock response.
-
-\begin{table*}
-  \centering
-  \caption{Constant parameters of the bedrock thermal and deformation models.}
-  \label{tab:bedrockparams}
-  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
-    \hline
-    Not.    & Name & Value & Unit & Source \\
-    \hline
-
-    $\rho_b$& Bedrock density
-            & 3300
-            & \unit{kg\,m^{-3}}
-            & - \\
-
-    $c_b$   & Bedrock specific heat capacity
-            & 1000
-            & \unit{J\,kg^{-1}\,K^{-1}}
-            & - \\
-
-    $k_b$   & Bedrock thermal conductivity
-            & 3.0
-            & \unit{W\,m^{-1}\,K^{-1}}
-            & - \\
-
-    $q_G$   & Geothermal heat flux
-            & 70.0
-            & \unit{mW\,m^{-2}}
-            & - \\
-
-    $\nu_m$ & Mantle viscosity
-            & 1\e21
-            & \unit{Pa\,s}
-            & \citet{Lingle.Clark.1985} \\
-
-    $\rho_l$& Lithosphere density
-            & 3300
-            & \unit{kg\,m^{-3}}
-            & \citet{Lingle.Clark.1985} \\
-
-    $D$     & Lithosphere flexural rigidity
-            & 5.0\e24
-            & \unit{N}
-            & \citet{Lingle.Clark.1985} \\
-
-    \hline
-  \end{tabular*}}
-\end{table*}
 
 
 % ----------------------------------------------------------------------
@@ -1436,7 +1448,7 @@ serve as a proxy for the available energy for melt, define the amount of snow
 melt through a proportionality factor $F_s$. If all snow is melted, remaining
 PDDs are then used to melt ice, using a proportionality factor $F_i$
 (\cref{fig:model-pdd}). The degree-day factors for snow, $F_s$, and ice, $F_i$
-(\cref{tab:surfaceparams}),
+(\cref{tab:params}),
 are derived from mass-balance measurements on contemporary glaciers in the
 Coast and Rocky mountains of British Columbia \citep{Shea.etal.2009}. In
 {\CCLI}, the temperature standard deviation $\sPDD$ is a constant model
@@ -1458,95 +1470,20 @@ uncertain for past periods such as the last glacial cycle.
   \label{fig:model-pdd}
 \end{figure}
 
-\begin{table*}
-  \centering
-  \caption{Constant parameters of the surface and atmosphere models.}
-  \label{tab:surfaceparams}
-  \makebox[0pt]{\begin{tabular*}{165mm}{@{\extracolsep{\fill}}rlrll}
-    \hline
-    Not.    & Name & Value & Unit & Source \\
-    \hline
-
-    $T_0$   & Temperature of snow precipitation
-            & 0.0
-            & \degC
-            & - \\
-
-    $T_1$   & Temperature of rain precipitation
-            & 2.0
-            & \degC
-            & - \\
-
-    $F_s$   & Degree-day factor for ice
-            & 3.04\e{-3}
-            & \unit{m\,K^{-1}\,day^{-1}}
-            & \citet{Shea.etal.2009} \\
-
-    $F_i$   & Degree-day factor for ice
-            & 4.59\e{-3}
-            & \unit{m\,K^{-1}\,day^{-1}}
-            & \citet{Shea.etal.2009} \\
-
-    $\gamma$& Air temperature lapse-rate
-            & 6\e{-3}
-            & \unit{K\,m{-1}}
-            & - \\
-
-    \hline
-  \end{tabular*}}
-\end{table*}
-
 
 % ----------------------------------------------------------------------
 \subsection{Atmospheric forcing}
 \label{sec:atm}
 % ----------------------------------------------------------------------
 
-Atmospheric forcing of the model consists of a present-day monthly climatology,
-$\{T_{m0}, P_{m0}\}$, modified by temperature-offset corrections,
-${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$,
-\begin{subequations}
-\begin{align}
-    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t)
-                                 + {\Delta}T_{LR}(t, x, y) \,, \\
-    P_m(t, x, y) &= P_{m0}(x, y) \,.
-\end{align}
-\end{subequations}
-
-The present-day monthly climatology is computed from
-near-surface air temperature and precipitation rate fields extracted from
-observational data and atmospheric reanalyses (\cref{tab:datasources}).
-The lapse-rate correction, ${\Delta}T_{LR}$, is computed from the ice sheet
-surface elevation, $s$, in relation to the
-climate input reference bedrock topography, $b_{ref}$,
-\begin{align}
-    {\Delta}T_{LR}(t, x, y) = -\gamma\,[&s(t, x, y) - b_{ref}(x, y)] \\
-                            = -\gamma\,[&h(t, x, y) + b(t, x, y) \notag \\
-                                        &- b_{ref}(x, y)] \,,
-\end{align}
-thus accounting for the evolution of ice thickness, ${h=s-b}$, on the one hand,
-and
-for differences between the the ice flow model basal topography, $b$, and the
-climate input topography, $b_{ref}$, on the other hand. All simulations use an
-annual temperature lapse rate of $\gamma = 6\,\unit{K\,km^{-1}}$
-(\cref{tab:surfaceparams}).
-
-In \CCLI, we test the sensitivity of the ice sheet model to five different
-input present-day climatologies, $\{T_{m0}, P_{m0}\}$ (\cref{tab:datasources}),
-while adopting a range of constant temperature-offset corrections,
-${\Delta}T_{TS}$, between -10 and 0\,K. In \CCYC, on the contrary, we test ice
-sheet model sensitivity to time dependent temperature-offset corrections
-derived from six different palaeo-temperature proxy records
-(\cref{tab:datasources}).
-
 \begin{table*}
   \centering
   \caption{Sources of forcing data used to inform the ice sheet model.}
   \label{tab:datasources}
-  \makebox[0pt]{\begin{tabular*}{160mm}{@{\extracolsep{\fill}}llll}
-    \hline
+  \makebox[0pt]{\begin{tabular*}{170mm}{l@{\extracolsep{\fill}}lll}
+    \tophline
     Name        & Type & Original reference & Employed in \\
-    \hline
+    \middlehline
 
     ETOPO1      & Bedrock topography
                 & \citet{Amante.Eakins.2009}
@@ -1600,9 +1537,46 @@ derived from six different palaeo-temperature proxy records
                 & \citet{Herbert.etal.2001}
                 & \CCYC \\
 
-    \hline
+    \bottomhline
   \end{tabular*}}
 \end{table*}
+
+Atmospheric forcing of the model consists of a present-day monthly climatology,
+$\{T_{m0}, P_{m0}\}$, modified by temperature-offset corrections,
+${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$,
+\begin{subequations}
+\begin{align}
+    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t)
+                                 + {\Delta}T_{LR}(t, x, y) \,, \\
+    P_m(t, x, y) &= P_{m0}(x, y) \,.
+\end{align}
+\end{subequations}
+
+The present-day monthly climatology is computed from
+near-surface air temperature and precipitation rate fields extracted from
+observational data and atmospheric reanalyses (\cref{tab:datasources}).
+The lapse-rate correction, ${\Delta}T_{LR}$, is computed from the ice sheet
+surface elevation, $s$, in relation to the
+climate input reference bedrock topography, $b_{ref}$,
+\begin{align}
+    {\Delta}T_{LR}(t, x, y) = -\gamma\,[&s(t, x, y) - b_{ref}(x, y)] \\
+                            = -\gamma\,[&h(t, x, y) + b(t, x, y) \notag \\
+                                        &- b_{ref}(x, y)] \,,
+\end{align}
+thus accounting for the evolution of ice thickness, ${h=s-b}$, on the one hand,
+and
+for differences between the the ice flow model basal topography, $b$, and the
+climate input topography, $b_{ref}$, on the other hand. All simulations use an
+annual temperature lapse rate of $\gamma = 6\,\unit{K\,km^{-1}}$
+(\cref{tab:params}).
+
+In \CCLI, we test the sensitivity of the ice sheet model to five different
+input present-day climatologies, $\{T_{m0}, P_{m0}\}$ (\cref{tab:datasources}),
+while adopting a range of constant temperature-offset corrections,
+${\Delta}T_{TS}$, between -10 and 0\,K. In \CCYC, on the contrary, we test ice
+sheet model sensitivity to time dependent temperature-offset corrections
+derived from six different palaeo-temperature proxy records
+(\cref{tab:datasources}).
 
 
 % ----------------------------------------------------------------------
@@ -1623,7 +1597,7 @@ derived from six different palaeo-temperature proxy records
 %           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
 %           PROJ.4 parameter names, as used in all model runs, ice volume and
 %           area calculations, and most figures.}
-%  \label{tab:projparams}
+%  \label{tab:params}
 %  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
 %    \hline
 %    Parameter               & Name              & Value \\
@@ -1742,9 +1716,9 @@ Next to the atmospheric forcing, another critical source of uncertainty in
 palaeo-ice sheet modelling is the choice of parameters used by the surface mass
 balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
 are the degree-day factors for snow, $F_s$, and ice, $F_i$
-(\cref{fig:model-pdd,tab:surfaceparams}), and the standard deviation of
+(\cref{fig:model-pdd,tab:params}), and the standard deviation of
 near-surface air temperature, $\sPDD$
-(\cref{eqn:calovgreve,tab:surfaceparams}). Although the first two can only be
+(\cref{eqn:calovgreve,tab:params}). Although the first two can only be
 deduced from surface mass-balance measurements on present-day glaciers
 \citep[e.g.,][]{Shea.etal.2009} and assumptions that these values are also
 valid for palaeo-simulations, $\sPDD$ can be estimated from temperature time
