@@ -1,15 +1,15 @@
 # Figures Makefile
 
-PY_FIGS = atm.png deglac.png deglacseries.png deglacshots.png \
-          duration.png icemaps-mis2.png icemaps-mis4.png \
-          lastflow.png locmap.png \
-          profiles-epica.png profiles-grip.png \
-          snapshots.png timeseries.png warmbase.png warmfrac.png
+PY_FIGS = atm.pdf deglac.pdf deglacseries.pdf deglacshots.pdf \
+          duration.pdf icemaps-mis2.pdf icemaps-mis4.pdf \
+          lastflow.pdf locmap.pdf \
+          profiles-epica.pdf profiles-grip.pdf \
+          snapshots.pdf timeseries.pdf warmbase.pdf warmfrac.pdf
 ALL_FIGS = $(PY_FIGS)
 
 all: data $(ALL_FIGS)
 
-$(PY_FIGS): %.png : %.py
+$(PY_FIGS): %.pdf : %.py
 	python2 $<
 
 .PHONY : data clean
