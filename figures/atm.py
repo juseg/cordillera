@@ -41,7 +41,7 @@ levs = np.logspace(1/3., 3, 9).round(0)
 #levs = [2, 5, 10, 20, 50, 100, 200, 500, 1000]
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[1+3*i].contourf(x[:], y[:], prec[6*i].T*1000/12., cmap='Greens',
+    im = grid[1+3*i].contourf(x[:], y[:], prec[6*i].T*910/12., cmap='Greens',
                               levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
