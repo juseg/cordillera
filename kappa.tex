@@ -230,14 +230,11 @@ co-authors contributed to improve the text.
 \newpage
 
 \begin{figure*}[b]
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-glacier-crevasses}
-    \hspace{1cm}
-    \subgraphics{b}{photo-glacier-susitna}
-    \hspace{1cm}
-    \subgraphics{c}{photo-glacier-fold}
-  }
+  \subgraphics{a}{photo-glacier-crevasses}%
+  \hspace{1cm}%
+  \subgraphics{b}{photo-glacier-susitna}%
+  \hspace{1cm}%
+  \subgraphics{c}{photo-glacier-fold}%
   \caption{Illustration of various glacier ice behaviours:
            \textbf{(a)} surface crevasses formed by ice flow over a hidden
            bedrock knob, Glacier Blanc, French Alps, 2004;
@@ -251,14 +248,11 @@ co-authors contributed to improve the text.
 \end{figure*}
 
 \begin{figure*}[b]
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-glacial-valley}
-    \hspace{1cm}
-    \subgraphics{b}{photo-erratic-boulder}
-    \hspace{1cm}
-    \subgraphics{c}{photo-melt-channels}
-  }
+  \subgraphics{a}{photo-glacial-valley}%
+  \hspace{1cm}%
+  \subgraphics{b}{photo-erratic-boulder}%
+  \hspace{1cm}%
+  \subgraphics{c}{photo-melt-channels}%
   \caption{Different indicators of past glaciation:
            \textbf{(a)} glacial valley, exhibiting a broad, U-shaped profile
            characteristic of erosion by glaciers,
@@ -325,7 +319,6 @@ However, much of the traces left by glaciers on the landscape date from the
 most recent of these cycles, the \emph{last glacial cycle}.
 
 \begin{figure}
-  \centering
   \includegraphics{paleo-timeseries}
   \caption{Palaeo-climate records of the last 800\,ka.
            \textbf{(a)} Benthic oxygen isotope (\chem{\delta^{18}O}) record
@@ -360,7 +353,6 @@ Innuitian, Laurentide, and \emph{Cordilleran} ice
 sheets over North America (\cref{fig:paleo-glaciation}).
 
 \begin{figure}
-  \centering
   \includegraphics{paleo-glaciation}
   \caption{Spatial extent of ice sheet and glacier cover in the northern
            hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
@@ -386,8 +378,7 @@ physics-based, quantitative reconstructions of ice sheet sectors where they do
 not \citep[e.g.,][]{Marshall.etal.2002, Tarasov.Peltier.2004}.
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{map-northamerica}}
+  \includegraphics{map-northamerica}
   \caption{Relief map of northern North America showing a reconstruction of the
            areas covered by the Cordilleran (CIS), Laurentide (LIS), Innuitian
            (IIS) and Greenland (GIS) ice sheets during the last glacial maximum
@@ -430,8 +421,7 @@ capped the mountain
 ranges of the Western Cordillera.
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{map-cordillera}}
+  \includegraphics{map-cordillera}
   \caption{Topographic map of the northern American Cordillera, oriented north.
            Cumulative last glacial maximum ice cover \citep{Dyke.2004} is
            marked in red, and the model domain in black.
@@ -441,8 +431,7 @@ ranges of the Western Cordillera.
 \end{figure*}
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-alaska-range}}
+  \includegraphics{photo-alaska-range}
   \caption{The Alaska Range hosts several of the highest peaks in the North
            American Cordillera. Despite this fact and its northerly location,
            its north slope hosts relatively small glaciers only, which had not
@@ -454,12 +443,9 @@ ranges of the Western Cordillera.
 \end{figure*}
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-vancouver-island}
-    \hspace{1cm}
-    \subgraphics{b}{photo-fraser-valley}
-  }
+  \subgraphics{a}{photo-vancouver-island}%
+  \hspace{1cm}%
+  \subgraphics{b}{photo-fraser-valley}%
   \caption{Contrasted climates of the North American Cordillera:
            \textbf{(a)} Pacific Coast at Vancouver Island, western British
            Columbia, by Martin Margold, 2010.
@@ -519,8 +505,7 @@ sheet and requires high-resolution and thus, large computational grids.
 % ----------------------------------------------------------------------
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{plot-atm}}
+  \includegraphics{plot-atm}
   \caption{Some characteristics of the Cordilleran climate according to the
            North American Regional Reanalysis
            \citep[NARR,][]{Mesinger.etal.2006}.}
@@ -693,8 +678,7 @@ thesis, and to present an overview of the physics involved in these choices.
 Parameter values are summarised in \cref{tab:params}.
 
 \begin{figure}
-  \centering
-  \includegraphics[width=85mm]{model-interfaces}
+  \includegraphics[width=80mm]{model-interfaces}
   \caption{PISM is a numerical model for ice and bedrock physics. Processes
            occurring at the interface with the atmosphere and the ocean, that
            are progressive transitions in nature, are parametrised along
@@ -704,10 +688,9 @@ Parameter values are summarised in \cref{tab:params}.
 \end{figure}
 
 \begin{table*}
-  \centering
   \caption{Constant parameters of the ice sheet model.}
   \label{tab:params}
-  \makebox[0pt]{\begin{tabular*}{170mm}{@{\hspace{2em}}l@{\extracolsep{\fill}}lrll}
+  \begin{tabular*}{170mm}{@{\hspace{2em}}l@{\extracolsep{\fill}}lrll}
     \tophline
     Not.    & Name & Value & Unit & Source \\
     \middlehline
@@ -916,7 +899,7 @@ Parameter values are summarised in \cref{tab:params}.
             & - \\
 
     \bottomhline
-  \end{tabular*}}
+  \end{tabular*}
 \end{table*}
 
 % ----------------------------------------------------------------------
@@ -934,7 +917,6 @@ in terms of the ice velocity vector, $\vv$ (\cref{fig:model-variables}), by
 \end{equation}
 
 \begin{figure}
-  \centering
   \includegraphics{model-variables}
   \caption{Sketch of notations used for the main variables of the ice sheet
            model. An infinitesimal ice parcel is moving at velocity $\vv$,
@@ -1254,7 +1236,6 @@ transition between shear flow (SIA) and longitudinal flow (SSA) has not been
 mathematically proven.
 
 \begin{figure}
-  \centering
   \includegraphics[width=80mm]{model-siassa}
   \caption{Combination of Shallow Ice Approximation (SIA) and Shallow Shelf
            Approximation (SSA) velocities in PISM, assuring a smooth transition
@@ -1464,7 +1445,6 @@ precise knowledge of the physical state of the atmosphere, which typically is hi
 uncertain for past periods such as the last glacial cycle.
 
 \begin{figure}
-  \centering
   \includegraphics{model-pdd}
   \caption{Positive degree-day algorithm used to compute accumulation and melt
            at the ice sheet surface. Adapted from \citet{PISM-authors.2014}.}
@@ -1478,10 +1458,9 @@ uncertain for past periods such as the last glacial cycle.
 % ----------------------------------------------------------------------
 
 \begin{table*}
-  \centering
   \caption{Sources of forcing data used to inform the ice sheet model.}
   \label{tab:datasources}
-  \makebox[0pt]{\begin{tabular*}{170mm}{l@{\extracolsep{\fill}}lll}
+  \begin{tabular*}{170mm}{l@{\extracolsep{\fill}}lll}
     \tophline
     Name        & Type & Original reference & Employed in \\
     \middlehline
@@ -1539,7 +1518,7 @@ uncertain for past periods such as the last glacial cycle.
                 & \CCYC \\
 
     \bottomhline
-  \end{tabular*}}
+  \end{tabular*}
 \end{table*}
 
 Atmospheric forcing of the model consists of a present-day monthly climatology,
@@ -1593,13 +1572,12 @@ derived from six different palaeo-temperature proxy records
 %      the thesis -- except in \cref{fig:map-cordillera}!}
 
 %\begin{table}
-%  \centering
 %  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
 %           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
 %           PROJ.4 parameter names, as used in all model runs, ice volume and
 %           area calculations, and most figures.}
 %  \label{tab:params}
-%  \makebox[0pt]{\begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
+%  \begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
 %    \hline
 %    Parameter               & Name              & Value \\
 %    \hline
@@ -1611,7 +1589,7 @@ derived from six different palaeo-temperature proxy records
 %    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
 %    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
 %    \hline
-%  \end{tabular*}}
+%  \end{tabular*}
 %\end{table}
 
 % ======================================================================
@@ -1674,12 +1652,10 @@ NARR climatology as input to simulations of the Cordilleran ice sheet through
 the last glacial cycle (\CCYC).
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{
   \begin{minipage}[t]{112.5mm}\vspace{0pt}
     \includegraphics{plot-lgm}
-  \end{minipage}
-  \hspace{1cm}
+  \end{minipage}%
+  \hspace{1cm}%
   \begin{minipage}[t]{47.5mm}\vspace{-12pt}  % kappa class add 12 pt here
     \caption{Constant-climate simulation of the LGM Cordilleran ice sheet using
              an horizontal resolution of 3\,km. The map depicts modelled basal
@@ -1699,7 +1675,6 @@ the last glacial cycle (\CCYC).
              condition to ice-free bedrock at the inception of the run.}
     \label{fig:plot-lgm}
   \end{minipage}
-  }
 \end{figure*}
 
 
@@ -1714,8 +1689,7 @@ the last glacial cycle (\CCYC).
 \bigskip
 
 \begin{figure}
-  \centering
-  \makebox[0pt]{\includegraphics{plot-sdmap}}
+  \includegraphics{plot-sdmap}
   \caption{July, daily temperature variability in the Arctic, as shown by
            monthly standard deviation of near-surface daily mean air
            temperature computed from ERA-40 reanalysis
@@ -1728,8 +1702,7 @@ the last glacial cycle (\CCYC).
 \end{figure}
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{plot-sdeffect}}
+  \includegraphics{plot-sdeffect}
   \caption{Effect of temperature variability on Cordilleran ice sheet
            simulations. Modelled basal topography and surface topography
            (250\,m contours). The simulations use atmospheric forcing from the
@@ -1816,8 +1789,7 @@ this parametrization may not be applicable to the former Cordilleran ice sheet.
 \bigskip
 
 \begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{plot-snapshots}}
+  \includegraphics{plot-snapshots}
   \caption{\textbf{(a)} Modelled growth and decay of the last Cordilleran ice
            sheet. Basal topography, surface topography (1\,km contours) and
            surface velocity (m/a) are model results.
