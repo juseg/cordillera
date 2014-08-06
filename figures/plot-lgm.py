@@ -69,4 +69,4 @@ cb = plt.colorbar(im, cax=cax)
 cb.set_label('ice surface velocity (m/a)')
 
 # save
-fig.savefig('plot-lgm')
+fig.savefig('plot-lgm.png')

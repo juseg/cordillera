@@ -30,6 +30,7 @@ grid = [fig.add_axes([2.5/figw, 1-(2.5+mapw)/figh, mapw/figw, mapw/figh],
 
 # draw common parts
 for ax in grid:
+    ax.set_rasterization_zorder(2.5)
     ax.gridlines(color='0.5', linestyle='-', linewidth=0.1)
     ax.coastlines(edgecolor='k', lw=0.25)
 

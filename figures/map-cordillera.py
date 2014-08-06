@@ -151,6 +151,7 @@ fig = plt.figure(0, (170/25.4, 120/25.4))
 ax = fig.add_axes([0.0, 0.0, 1.0, 1.0], projection=proj)
 ax.set_xlim((-2125e3, 2125e3))
 ax.set_ylim((-0e3, 3000e3))
+ax.set_rasterization_zorder(2)
 
 # draw stuff
 draw_etopo1()

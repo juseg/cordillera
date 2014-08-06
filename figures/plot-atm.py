@@ -35,6 +35,7 @@ grid = ImageGrid(fig, rect, (1, 4), axes_pad=2.5/25.4,
 for ax in grid:
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
+    ax.set_rasterization_zorder(2.5)
 
 # plot mean temperature
 print 'plotting temperature maps...'

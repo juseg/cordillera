@@ -91,6 +91,7 @@ for i, tka in enumerate(tkalist):
     ax = plt.subplot(gs[0, i])
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
+    ax.set_rasterization_zorder(2.5)
 
     # find nearest slice
     t = (np.abs(time[:]-tka)).argmin()
@@ -105,10 +106,10 @@ for i, tka in enumerate(tkalist):
 
     # surface topography
     cs = iplt.contour(nc, 'usurf', t, ax, levels=range(1000, 6000, 1000),
-                      cmap=None, colors='k', linewidths=0.10)
+                      cmap=None, colors='k', linewidths=0.1)
 
     # ice margin
-    cs = iplt.icemargin(nc, t, ax)
+    cs = iplt.icemargin(nc, t, ax, linewidths=0.5)
 
     # annotate time
     ax.text(0.9, 0.95, '%s ka' % tka, ha='right', va='top',

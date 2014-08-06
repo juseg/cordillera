@@ -24,6 +24,7 @@ rect = [2.5/figw, 17.5/figh, 75.0/figw, 90.0/figh]
 ax = fig.add_axes(rect, projection=proj)
 ax.set_xlim(-4125e3, 4125e3)  # 75*55 = 4125
 ax.set_ylim(-5950e3, 3950e3)  # 90*55 = 4950
+ax.set_rasterization_zorder(2.5)
 
 # read SD data, select July North hemisphere
 sd = iris.load_cube('data/era40.sat.day.5801.dev.monstd.nc')
@@ -47,7 +48,7 @@ ymin = 0
 ymax = 3e6
 x = [xmin, xmin, xmax, xmax, xmin]
 y = [ymin, ymax, ymax, ymin, ymin]
-ax.plot(x, y, 'k', lw=1.0, transform=cal)
+ax.plot(x, y, 'k', lw=1.0, transform=cal, zorder=3)
 
 # add colorbar
 cax = fig.add_axes([2.5/figw, 10.0/figh, 1-5.0/figw, 5.0/figh])

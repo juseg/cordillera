@@ -23,6 +23,7 @@ grid = ImageGrid(fig, rect, (1, 4), axes_pad=2.5/25.4,
 for ax in grid:
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
+    ax.set_rasterization_zorder(2.5)
 
 # loop on datasets
 sdargs = ['+sd0', '+sd3', '', '+sdp']
@@ -40,7 +41,7 @@ for i, s in enumerate(sdargs):
                       cmap=None, colors='k', linewidths=0.10)
     cs = iplt.contour(nc, 'usurf', 0, ax, levels=range(1000,6000,1000),
                       cmap=None, colors='k', linewidths=0.25)
-    cs = iplt.icemargin(nc, 0, ax)
+    cs = iplt.icemargin(nc, 0, ax, linewidths=0.5)
 
     # store mask and surface elevations
     mask = nc.variables['mask'][0].T
