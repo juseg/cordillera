@@ -26,6 +26,7 @@ draw_boot_topo(fig.grid, res)
 # loop on records
 for i, rec in enumerate(records):
     ax = fig.grid[i]
+    ax.set_rasterization_zorder(2.5)
     this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
@@ -93,6 +94,7 @@ for i, rec in enumerate(records):
 txtkwa = dict(ha='center', va='center',
               bbox=dict(ec='k', fc='w', alpha=1.0),
               arrowprops=dict(arrowstyle="->"))
+ax.set_rasterization_zorder(2.5)
 ax.annotate('LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3), **txtkwa)
 ax.annotate('FP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3), **txtkwa)
 

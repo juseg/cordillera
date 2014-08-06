@@ -41,6 +41,7 @@ for i, rec in enumerate(records):
     for j, t in enumerate(mis_idces):
         print 'plotting %s at %s...' % (rec, mis_times[j])
         ax = grid[i+j*len(records)]
+        ax.set_rasterization_zorder(2.5)
         iplt.imshow(nc, 'topg', t, ax=ax,
                     cmap=topo_cmap, norm=topo_norm)
         iplt.icemargin(nc, t, ax=ax,

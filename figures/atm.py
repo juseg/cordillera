@@ -23,6 +23,8 @@ fig = mplt.figure(0, (figw*in2mm, figh*in2mm))
 rect = [2.5/figw, 12.5/figh, 80/figw, 107.5/figh]
 grid = ImageGrid(fig, rect, (2, 3), axes_pad=2.5*in2mm, cbar_mode='none')
 remove_ticks(grid)
+for ax in grid:
+    ax.set_rasterization_zorder(2.5)
 
 # plot temperature
 print 'plotting temperature maps...'

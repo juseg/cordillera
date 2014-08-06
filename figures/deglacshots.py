@@ -33,6 +33,7 @@ for i, rec in enumerate(records):
     for j, t in enumerate(idxlist):
         print 'plotting %s at %s ka...' % (rec, time[t])
         ax = fig.grid[4*i+j]
+        ax.set_rasterization_zorder(2.5)
         iplt.imshow(nc, 'topg', t, ax,
                     cmap=topo_cmap, norm=topo_norm)
         iplt.icemargin(nc, t, ax,

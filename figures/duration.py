@@ -24,6 +24,7 @@ draw_boot_topo(fig.grid, res)
 for i, rec in enumerate(records):
     print 'reading %s extra output...' % rec
     ax = fig.grid[i]
+    ax.set_rasterization_zorder(2.5)
     this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # load extra output
@@ -69,4 +70,4 @@ ax.annotate('CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)
 cb.set_label('Duration of ice cover (kyr)')
-fig.savefig('duration.png')
+fig.savefig('duration')

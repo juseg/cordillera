@@ -32,6 +32,7 @@ def profiles(res, rec, dt, color):
     # plot
     kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
     for ax, yp in zip(grid, yplist):
+        ax.set_rasterization_zorder(2.5)
         j = np.argmin(np.abs(y[:]-yp))
         xpf = x[:]*1e-3
         maskpf = mask[kmin:kmax, :, j] != 2

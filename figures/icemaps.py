@@ -21,6 +21,7 @@ def icemaps(mis):
     # loop on records
     for i, rec in enumerate(records):
         ax = fig.grid[i]
+        ax.set_rasterization_zorder(2.5)
         this_run_path = run_path % (res, rec, offsets[i]*100)
 
         # get ice volume maximum

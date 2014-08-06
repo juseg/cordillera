@@ -26,6 +26,7 @@ draw_boot_topo(fig.grid, res)
 # loop on records
 for i, rec in enumerate(records):
     ax = fig.grid[i]
+    ax.set_rasterization_zorder(2.5)
     this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
