@@ -20,6 +20,7 @@
 \usepackage[sort]{cleveref}  % needs to be loaded after hyperref
 \usepackage{doi}  % needs to be loaded after hyperref
 \usepackage{graphicx}
+\usepackage{multicol}
 \graphicspath{{figures/}}
 \nobibliography*
 
@@ -213,8 +214,60 @@ co-authors contributed to improve the text.
 
 \end{frontmatter}
 
+
+% ======================================================================
+\onecolumn
 \renewcommand{\contentsname}{Contents of cover summary}
 \tableofcontents
+% ======================================================================
+
+\begin{figure*}[b]
+  \centering
+  \makebox[0pt]{
+    \subgraphics{a}{photo-glacier-crevasses}
+    \hspace{1cm}
+    \subgraphics{b}{photo-glacier-susitna}
+    \hspace{1cm}
+    \subgraphics{c}{photo-glacier-fold}
+  }
+  \caption{Illustration of various glacier ice behaviours:
+           \textbf{(a)} surface crevasses formed by ice flow over a hidden
+           bedrock knob, Glacier Blanc, French Alps, 2004;
+           \textbf{(b)} medial moraines illustrating downhill ice flow on
+           Susitna Glacier, Alaska Range, photo by Austin Post, 1970
+           \citep{NSIDC.2009}; and
+           \textbf{(c)} mountain glacier calving into a small lake, revealing a
+           folded structure formed by deformed debris layers in the ice,
+           Glacier d'Arsine, French Alps, 2004.}
+  \label{fig:glacier-mechanics}
+\end{figure*}
+
+\newpage
+
+\begin{figure*}[b]
+  \centering
+  \makebox[0pt]{
+    \subgraphics{a}{photo-glacial-valley}
+    \hspace{1cm}
+    \subgraphics{b}{photo-erratic-boulder}
+    \hspace{1cm}
+    \subgraphics{c}{photo-melt-channels}
+  }
+  \caption{Different indicators of past glaciation:
+           \textbf{(a)} glacial valley, exhibiting a broad, U-shaped profile
+           characteristic of erosion by glaciers,
+           Cirque du Fer-\`{a}-Cheval, French Alps, 2013;
+           \textbf{(b)} erratic boulders, deposited in an improbable
+           configuration as the glacier melted underneath,
+           Finse area, Norwegian Scandes, 2011; and
+           \textbf{(c)} lateral meltwater channels, formed on a gentle slope
+           as the ice margin retreated towards the valley bottom, Tuya Lake
+           area, Canadian Cordillera, 2012.}
+  \label{fig:glaciation-indicators}
+\end{figure*}
+
+\begin{multicols}{2}  % appears necessary for adequate figure positions
+
 
 % ======================================================================
 \section{Introduction}
@@ -281,6 +334,36 @@ the Fennoscandian and Barents-Kara ice sheets in the Eurasian Arctic, and the
 Innuitian, Laurentide, and \emph{Cordilleran} ice
 sheets over North America (\cref{fig:paleo-glaciation}).
 
+\end{multicols}
+\twocolumn
+
+\begin{figure}[t]
+  \centering
+  \includegraphics{paleo-timeseries}
+  \caption{Palaeo-climate records of the last 800\,ka.
+           \textbf{(a)} Benthic oxygen isotope (\chem{\delta^{18}O}) record
+           from a compilation of globally-distributed deep sea sediment cores
+           \citep{Lisiecki.Raymo.2005}. Higher \chem{\delta^{18}O} values
+           correspond to periods of lower temperatures \citep{Emiliani.1955}
+           or lower global sea level, and thus higher ice volume stored in
+           glaciers and ice sheets on land \citep{Shackleton.1967}.
+           \textbf{(b)} Temperature anomalies ($\Delta T$) reconstructed from a
+           central Antarctic ice core \citep[EPICA Dome~C,][]{Jouzel.etal.2007}.
+           The grey bands indicate the approximate time span of the last
+           glacial period of 110 to 10\,ka.}
+  \label{fig:paleo-timeseries}
+\end{figure}
+
+\begin{figure}[t]
+  \centering
+  \includegraphics{paleo-glaciation}
+  \caption{Spatial extent of ice sheet and glacier cover in the northern
+           hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
+           \textbf{(b)} during the last glacial maximum
+           \citep{Ehlers.Gibbard.2007}.}
+  \label{fig:paleo-glaciation}
+\end{figure}
+
 Nevertheless, the landform record is sparse in time and, most often, spatially
 incomplete. Palaeo-ice sheets did not leave a continuous imprint on the
 lanscape, and much of this evidence has been overprinted by subsequent glacier
@@ -308,76 +391,6 @@ America \citep{Dawson.1888}, a region where topographic complexity has
 presented a particular challenge to reconstructing glacial history based on the
 geomorphological record \citep[e.g.,][]{Kleman.etal.2010} or numerical ice
 sheet modelling \citep{Robert.1991}.
-
-\begin{figure*}
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-glacier-crevasses}
-    \hspace{1cm}
-    \subgraphics{b}{photo-glacier-susitna}
-    \hspace{1cm}
-    \subgraphics{c}{photo-glacier-fold}
-  }
-  \caption{Illustration of various glacier ice behaviours:
-           \textbf{(a)} surface crevasses formed by ice flow over a hidden
-           bedrock knob, Glacier Blanc, French Alps, 2004;
-           \textbf{(b)} medial moraines illustrating downhill ice flow on
-           Susitna Glacier, Alaska Range, photo by Austin Post, 1970
-           \citep{NSIDC.2009}; and
-           \textbf{(c)} mountain glacier calving into a small lake, revealing a
-           folded structure formed by deformed debris layers in the ice,
-           Glacier d'Arsine, French Alps, 2004.}
-  \label{fig:glacier-mechanics}
-\end{figure*}
-
-\begin{figure*}
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-glacial-valley}
-    \hspace{1cm}
-    \subgraphics{b}{photo-erratic-boulder}
-    \hspace{1cm}
-    \subgraphics{c}{photo-melt-channels}
-  }
-  \caption{Different indicators of past glaciation:
-           \textbf{(a)} glacial valley, exhibiting a broad, U-shaped profile
-           characteristic of erosion by glaciers,
-           Cirque du Fer-\`{a}-Cheval, French Alps, 2013;
-           \textbf{(b)} erratic boulders, deposited in an improbable
-           configuration as the glacier melted underneath,
-           Finse area, Norwegian Scandes, 2011; and
-           \textbf{(c)} lateral meltwater channels, formed on a gentle slope
-           as the ice margin retreated towards the valley bottom, Tuya Lake
-           area, Canadian Cordillera, 2012.}
-  \label{fig:glaciation-indicators}
-\end{figure*}
-
-\begin{figure}
-  \centering
-  \includegraphics{paleo-timeseries}
-  \caption{Palaeo-climate records of the last 800\,ka.
-           \textbf{(a)} Benthic oxygen isotope (\chem{\delta^{18}O}) record
-           from a compilation of globally-distributed deep sea sediment cores
-           \citep{Lisiecki.Raymo.2005}. Higher \chem{\delta^{18}O} values
-           correspond to periods of lower temperatures \citep{Emiliani.1955}
-           or lower global sea level, and thus higher ice volume stored in
-           glaciers and ice sheets on land \citep{Shackleton.1967}.
-           \textbf{(b)} Temperature anomalies ($\Delta T$) reconstructed from a
-           central Antarctic ice core \citep[EPICA Dome~C,][]{Jouzel.etal.2007}.
-           The grey bands indicate the approximate time span of the last
-           glacial period of 110 to 10\,ka.}
-  \label{fig:paleo-timeseries}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics{paleo-glaciation}
-  \caption{Spatial extent of ice sheet and glacier cover in the northern
-           hemisphere \textbf{(a)} at present \citep{Patterson.Kelso.2014}, and
-           \textbf{(b)} during the last glacial maximum
-           \citep{Ehlers.Gibbard.2007}.}
-  \label{fig:paleo-glaciation}
-\end{figure}
 
 % ======================================================================
 \section{North American Cordillera}
@@ -408,6 +421,44 @@ ranges of the Western Cordillera.
            map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
            Data \citep{Patterson.Kelso.2014}.}
   \label{fig:map-northamerica}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \makebox[0pt]{\includegraphics{map-cordillera}}
+  \caption{Topographic map of the northern American Cordillera, oriented north.
+           Cumulative last glacial maximum ice cover \citep{Dyke.2004} is
+           marked in red, and the model domain in black.
+           The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
+           and Natural Earth Data \citep{Patterson.Kelso.2014}.}
+  \label{fig:map-cordillera}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \makebox[0pt]{\includegraphics{photo-alaska-range}}
+  \caption{The Alaska Range hosts several of the highest peaks in the North
+           American Cordillera. Despite this fact and its northerly location,
+           its north slope hosts relatively small glaciers only, which had not
+           been much more extensive during the Last Glacial Maximum
+           \citep{Kaufman.Manley.2004}, indicating dry climatic conditions.
+           The Alaska Range is tectonically active and rapidly eroding, as
+           shown by landslide-covered valley sides on this photograph.}
+  \label{fig:photo-alaska-range}
+\end{figure*}
+
+\begin{figure*}
+  \centering
+  \makebox[0pt]{
+    \subgraphics{a}{photo-vancouver-island}
+    \hspace{1cm}
+    \subgraphics{b}{photo-fraser-valley}
+  }
+  \caption{Contrasted climates of the North American Cordillera:
+           \textbf{(a)} Pacific Coast at Vancouver Island, western British
+           Columbia, by Martin Margold, 2010.
+           \textbf{(b)} Fraser Valley, south-central British Columbia, 2010.}
+  \label{fig:photo-fraser-valley}
 \end{figure*}
 
 % ----------------------------------------------------------------------
@@ -457,33 +508,18 @@ numerical ice sheet modelling, the presence of steep and irregular subglacial
 topography yields complex flow patterns and stress distributions within the ice
 sheet and requires high-resolution and thus, large computational grids.
 
-\begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{map-cordillera}}
-  \caption{Topographic map of the northern American Cordillera, oriented north.
-           Cumulative last glacial maximum ice cover \citep{Dyke.2004} is
-           marked in red, and the model domain in black.
-           The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
-           and Natural Earth Data \citep{Patterson.Kelso.2014}.}
-  \label{fig:map-cordillera}
-\end{figure*}
-
-\begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{photo-alaska-range}}
-  \caption{The Alaska Range hosts several of the highest peaks in the North
-           American Cordillera. Despite this fact and its northerly location,
-           its north slope hosts relatively small glaciers only, which had not
-           been much more extensive during the Last Glacial Maximum
-           \citep{Kaufman.Manley.2004}, indicating dry climatic conditions.
-           The Alaska Range is tectonically active and rapidly eroding, as
-           shown by landslide-covered valley sides on this photograph.}
-  \label{fig:photo-alaska-range}
-\end{figure*}
-
 % ----------------------------------------------------------------------
 \subsection{Climatic setting}
 % ----------------------------------------------------------------------
+
+\begin{figure*}
+  \centering
+  \makebox[0pt]{\includegraphics{plot-atm}}
+  \caption{Some characteristics of the Cordilleran climate according to the
+           North American Regional Reanalysis
+           \citep[NARR,][]{Mesinger.etal.2006}.}
+  \label{fig:plot-atm}
+\end{figure*}
 
 The topographic complexity of the North American Cordillera is associated with
 distinctive patterns of temperature and precipitation, whose effects on
@@ -517,30 +553,6 @@ ice sheet model is therefore highly sensitive to the choice of input topography
 and climate used (\cref{sec:atm}). This forms the motivation for the study
 presented in \CCLI, where the climatic setting of the North American Cordillera
 is also described in further detail.
-
-\begin{figure*}
-  \centering
-  \makebox[0pt]{
-    \subgraphics{a}{photo-vancouver-island}
-    \hspace{1cm}
-    \subgraphics{b}{photo-fraser-valley}
-  }
-  \caption{Contrasted climates of the North American Cordillera:
-           \textbf{(a)} Pacific Coast at Vancouver Island, western British
-           Columbia, by Martin Margold, 2010.
-           \textbf{(b)} Fraser Valley, south-central British Columbia, 2010.}
-  \label{fig:photo-fraser-valley}
-\end{figure*}
-
-\begin{figure*}
-  \centering
-  \makebox[0pt]{\includegraphics{plot-atm}}
-  \caption{Some characteristics of the Cordilleran climate according to the
-           North American Regional Reanalysis
-           \citep[NARR,][]{Mesinger.etal.2006}.}
-  \label{fig:plot-atm}
-\end{figure*}
-
 
 % ----------------------------------------------------------------------
 \subsection{Glacial history}
@@ -2009,7 +2021,6 @@ Cordilleran ice sheet needs to be thought of as a three-dimensional body of
 moving ice in perpetual transformation towards evolving climate conditions.
 
 \end{enumerate}
-
 
 % References
 \renewcommand{\urlprefix}[0]{}  % remove default "URL" prefix
