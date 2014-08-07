@@ -118,7 +118,7 @@ def add_names():
 
     # add names of intermontane plateaus
     ax.text(-127, 60, 'LL', **txtkwa)
-    ax.text(-124, 54, 'FL', **txtkwa)
+    ax.text(-122, 52, 'IP', **txtkwa)
     ax.text(-122.5, 47.5, 'PL', **txtkwa)
 
 # modelling domain

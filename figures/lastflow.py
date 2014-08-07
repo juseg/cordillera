@@ -96,7 +96,7 @@ txtkwa = dict(ha='center', va='center',
               arrowprops=dict(arrowstyle="->"))
 ax.set_rasterization_zorder(2.5)
 ax.annotate('LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3), **txtkwa)
-ax.annotate('FP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3), **txtkwa)
+ax.annotate('IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3), **txtkwa)
 
 # add colorbar and save
 print 'saving...'
