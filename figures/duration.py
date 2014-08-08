@@ -8,9 +8,9 @@ from matplotlib.colors import BoundaryNorm
 from paperglobals import *
 
 # simulations used
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 cislevs = [29.0, 29.0]
 
 # initialize figure

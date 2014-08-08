@@ -61,7 +61,7 @@ for i, rec in enumerate(records):
 
     # look for a high-resolution run
     try:
-        nc = Dataset(run_path % ('6km', rec, dt*100) + '-ts.nc')
+        nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

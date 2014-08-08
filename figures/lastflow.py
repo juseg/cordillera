@@ -9,12 +9,13 @@ from matplotlib.colorbar import ColorbarBase
 from paperglobals import *
 
 # parameters
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 tmin, tmax = -22.0, -8.0
-cmap = plt.get_cmap('RdBu_r')
-cmap.set_over(darkgreen)
+cmap='RdBu_r'
+norm=Normalize(-tmax, -tmin)
+plotres=12  # in km
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -47,6 +48,8 @@ for i, rec in enumerate(records):
     lastu = np.zeros_like(u[0])
     lastv = np.zeros_like(v[0])
     imin, imax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    if imin == imax:  # run has not reached tmin yet
+        continue
     for i in range(imin, imax+1):
         print '[ %02.1f %% ]\r' % (100.0*(i-imin)/(imax-imin)),
         icy = (mask[i] == 2)
@@ -62,11 +65,6 @@ for i, rec in enumerate(records):
     lastc = (lastu**2 + lastv**2)**0.5
     slidage = slidage.T
     glaciated = glaciated.T
-
-    # plot parameters
-    cmap='RdBu_r'
-    norm=Normalize(-tmax, -tmin)
-    plotres=12  # in km
 
     # plot last velocity stream lines
     print 'plotting...'
@@ -89,6 +87,7 @@ for i, rec in enumerate(records):
 
     # annotate
     annotate(ax, rec.upper())
+    nc.close()
 
 # locate Liard Lowland and Fraser Plateau
 txtkwa = dict(ha='center', va='center',
@@ -103,4 +102,3 @@ print 'saving...'
 cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
 cb.set_label('Age of last basal sliding (kyr)')
 fig.savefig('lastflow')
-nc.close()

@@ -8,9 +8,9 @@ from matplotlib.colors import BoundaryNorm, LogNorm
 from paperglobals import *
 
 # simulations used
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,

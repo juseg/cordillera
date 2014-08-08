@@ -5,9 +5,9 @@ from paperglobals import darkblue
 from profiles import profiles
 
 # parameters
-res = '6km'
+res = '5km'
 rec = 'grip'
-dt = 5.8
+dt = 5.6
 color = darkblue
 
 # plot

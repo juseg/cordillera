@@ -5,9 +5,9 @@ from paperglobals import darkred
 from profiles import profiles
 
 # parameters
-res = '6km'
+res = '5km'
 rec = 'epica'
-dt = 5.6
+dt = 5.4
 color = darkred
 
 # plot

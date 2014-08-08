@@ -31,6 +31,8 @@ def profiles(res, rec, dt, color):
 
     # plot
     kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    if kmin == kmax:  # run has not reached tmin yet
+        return fig
     for ax, yp in zip(grid, yplist):
         ax.set_rasterization_zorder(2.5)
         j = np.argmin(np.abs(y[:]-yp))

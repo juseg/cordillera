@@ -9,9 +9,9 @@ from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
 
 # parameters
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 tkalist = [-16, -14, -12, -10]
 
 # initialize figure

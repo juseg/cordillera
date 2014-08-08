@@ -20,7 +20,7 @@ fig = iplt.gridfigure((25.0, 25.0), (4, 3), axes_pad=2.5*in2mm,
 
 # load extra output
 print 'reading extra output...'
-this_run_path = run_path % ('6km', 'grip', 580)
+this_run_path = run_path % ('5km', 'grip', 580)
 nc = Dataset(this_run_path + '-extra.nc')
 
 # loop on records[i]
