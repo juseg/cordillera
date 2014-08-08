@@ -28,16 +28,16 @@ for i, rec in enumerate(records):
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
 
     # compute deglaciation age
     print 'computing deglaciation age...'
-    wasicefree = np.ones_like(mask[0].T)*0
-    readvance = np.ones_like(mask[0].T)*0
-    deglacage = np.ones_like(mask[0].T)*-1.0
+    wasicefree = np.ones_like(thk[0].T)*0
+    readvance = np.ones_like(thk[0].T)*0
+    deglacage = np.ones_like(thk[0].T)*-1.0
     for i, t in enumerate(time[:]*s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (mask[i].T == 2)
+        icy = (thk[i].T >= thkth)
         if -14.0 < t < -10.0:
             readvance = np.where(icy*wasicefree, 1, readvance)
             wasicefree = 1-icy

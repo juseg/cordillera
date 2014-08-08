@@ -29,10 +29,10 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = Dataset(this_run_path + '-extra.nc')
-    mask = nc.variables['mask']
     x = nc.variables['x']
     y = nc.variables['y']
-    icecover = (mask[:] == 2).sum(axis=0).T
+    thk = nc.variables['thk']
+    icecover = (thk[:] >= thkth).sum(axis=0).T
     icecover *= 120.0/len(nc.variables['time'])
 
     # set contour levels, colors and hatches

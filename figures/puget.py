@@ -7,20 +7,19 @@ from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm
 from matplotlib.ticker import FuncFormatter
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
-from iceplot import plot as iplt
 from paperglobals import *
 
 # initialize figure
 times = np.arange(-23.0, -17.0, 0.5)
-imin, imax = 60, 99
-jmin, jmax = 30, 69
+imin, imax = 70, 120
+jmin, jmax = 35, 85
 fig = iplt.gridfigure((25.0, 25.0), (4, 3), axes_pad=2.5*in2mm,
                       cbar_mode='none', cbar_location='bottom',
                       cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
 
 # load extra output
 print 'reading extra output...'
-this_run_path = run_path % ('5km', 'grip', 580)
+this_run_path = run_path % ('5km', 'grip', 560)
 nc = Dataset(this_run_path + '-extra.nc')
 
 # loop on records[i]
@@ -31,7 +30,7 @@ for i, t in enumerate(times):
 
     # slice
     time = nc.variables['time'][k]*s2ka
-    mask = nc.variables['mask'][k,imin:imax,jmin:jmax].T
+    thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
     topg = nc.variables['topg'][k,imin:imax,jmin:jmax].T
     usurf = nc.variables['usurf'][k,imin:imax,jmin:jmax].T
     u = nc.variables['uvelsurf'][k,imin:imax,jmin:jmax].T
@@ -39,7 +38,7 @@ for i, t in enumerate(times):
     thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
 
     # apply masks
-    icy = (mask == 2)
+    icy = (thk >= thkth)
     usurf = np.ma.array(usurf, mask=(1-icy))
     u = np.sign(u)*np.log(1+np.abs(u)/100)
     v = np.sign(v)*np.log(1+np.abs(v)/100)
@@ -48,6 +47,7 @@ for i, t in enumerate(times):
     # plot
     print 'plotting at %s kyr...' % time
     ax = fig.grid[i]
+    ax.set_rasterization_zorder(2.5)
     ax.imshow(topg-125.0, cmap=topo_cmap, norm=topo_norm)
     ax.contour(usurf, levels=range(100, 5000, 100), colors='k', linewidths=0.2)
     ax.contour(usurf, levels=range(1000, 5000, 1000), colors='k', linewidths=0.5)

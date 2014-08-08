@@ -34,11 +34,11 @@ for i, rec in enumerate(records):
     e = (3*x[-1]-x[-2])/2 - (x[-1]-x[-2])/2  # weird but works
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     temp = nc.variables['temppabase']
 
     # compute duration of warm-based coved
-    warm = np.ma.array((temp[:] > -1e-9), mask=(mask[:] != 2))
+    warm = np.ma.array((temp[:] > -1e-9), mask=(thk[:] < thkth))
     warm = warm.mean(axis=0).T
 
     # set levels, colors and hatches

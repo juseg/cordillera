@@ -27,7 +27,7 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = Dataset(this_run_path + '-extra.nc')
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     x = nc.variables['x']
     y = nc.variables['y']
     w = (3*x[0]-x[1])/2
@@ -35,7 +35,7 @@ for i, rec in enumerate(records):
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
     c = nc.variables['velbase_mag']
-    c = np.ma.array(c[:], mask=(mask[:] != 2))
+    c = np.ma.array(c[:], mask=(thk[:] < thkth))
     dist = c.sum(axis=0).T/10.0  # convert to km
 
     # set levels, colors and hatches

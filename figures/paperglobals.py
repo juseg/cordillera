@@ -67,6 +67,9 @@ colors = [darkblue, lightblue, darkred, lightred, darkgreen, lightgreen]
 markers = ['s', 'D', 'o', 'h', 'v', '^']
 offsets = [5.6, 6.0, 5.4, 5.5, 5.6, 5.6]
 
+# default thickness threshold
+thkth = 1.0
+
 
 # analysis functions
 def bounded_argmin(a, coord, bmin, bmax):

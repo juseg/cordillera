@@ -36,15 +36,15 @@ for i, rec in enumerate(records):
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     u = nc.variables['uvelbase']
     v = nc.variables['vvelbase']
     c = nc.variables['velbase_mag']
 
     # compute last flow velocities
     print 'computing last flow velocities...'
-    slidage = np.ones_like(mask[0])*-1.0
-    glaciated = np.zeros_like(mask[0])
+    slidage = np.ones_like(thk[0])*-1.0
+    glaciated = np.zeros_like(thk[0])
     lastu = np.zeros_like(u[0])
     lastv = np.zeros_like(v[0])
     imin, imax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
@@ -52,7 +52,7 @@ for i, rec in enumerate(records):
         continue
     for i in range(imin, imax+1):
         print '[ %02.1f %% ]\r' % (100.0*(i-imin)/(imax-imin)),
-        icy = (mask[i] == 2)
+        icy = (thk[i] >= thkth)
         sliding = icy * (c[i].data > 1.0)
         lastu = np.where(sliding, u[i], lastu)
         lastv = np.where(sliding, v[i], lastv)

@@ -31,7 +31,7 @@ for i, rec in enumerate(records):
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
     ex_idces = [(np.abs(ex_time[:]*s2ka-t)).argmin() for t in mis_times[i]]
-    mis_iareas[i] = (ex_thk[ex_idces] > 1.0).sum(axis=(1,2))*1e-4
+    mis_iareas[i] = (ex_thk[ex_idces] > thkth).sum(axis=(1,2))*1e-4
     nc.close()
 
     # load forcing time series
