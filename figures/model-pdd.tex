@@ -16,11 +16,11 @@
 \begin{tikzpicture}[thick, font=\small, >=latex]
 
 % background
-\fill[white] (-0.25,-0.25) rectangle +(8.5,14.75);
+\fill[white] (0,0) rectangle +(8.0,14.75);
 %\draw[help lines, lightgray] (0,0) grid (8,14);
 
 % add nodes
-\path     (4, 13.75) node [trunk] (acc) {Compute snow accumulation, $A_s$}
+\path     (4, 14) node [trunk] (acc) {Compute snow accumulation, $A_s$}
   -- ++(0, -1.5) node [trunk] (pdd) {Compute PDDs}
   -- ++(0, -1.5) node [trunk]  (s1) {Update snow depth \\
                                       $S \gets S + A_s$}

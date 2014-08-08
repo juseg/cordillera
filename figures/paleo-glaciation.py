@@ -15,14 +15,9 @@ scale = '50m'
 proj = ccrs.Orthographic(central_longitude=-90.0, central_latitude=75.0)
 
 # Initialize figure in inches
-figw, figh = 85.0/25.4, 85.0/25.4
-fig = plt.figure(0, (figw, figh))
-fig.subplots_adjust(left=0.5/72/figw, bottom=0.5/72/figh,
-                    right=1-0.5/72/figw, top=1-0.5/72/figh,
-                    wspace=1/((1+figw/(1./72))/2-1))
-figw, figh = 85.0, 85.0
-#grid = [fig.add_subplot(121+i, projection=proj) for i in range(2)]
+figw, figh = 80.0, 80.0
 mapw = 50
+fig = plt.figure(0, (figw/25.4, figh/25.4))
 grid = [fig.add_axes([2.5/figw, 1-(2.5+mapw)/figh, mapw/figw, mapw/figh],
                      projection=proj),
         fig.add_axes([1-(2.5+mapw)/figw, 2.5/figh, mapw/figw, mapw/figh],
