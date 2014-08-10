@@ -1,7 +1,8 @@
 # Figures Makefile
 
-INK_FIGS = model-interfaces.pdf
-TEX_FIGS = model-pdd.pdf model-siassa.pdf model-variables.pdf soft-workflow.pdf
+INK_FIGS =
+TEX_FIGS = model-pdd.pdf model-siassa.pdf model-variables.pdf \
+           model-interfaces.pdf soft-workflow.pdf
 PY_FIGS = map-cordillera.pdf map-northamerica.pdf \
           paleo-glaciation.pdf paleo-timeseries.pdf \
           plot-atm.pdf plot-sdmap.pdf plot-sdeffect.pdf \
