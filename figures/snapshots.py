@@ -42,18 +42,18 @@ for i, rec in enumerate(records):
         print 'plotting %s at %s...' % (rec, mis_times[j])
         ax = grid[i+j*len(records)]
         ax.set_rasterization_zorder(2.5)
-        iplt.imshow(nc, 'topg', t, ax=ax,
+        iplt.imshow(nc, 'topg', t, ax=ax, thkth=thkth,
                     cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargin(nc, t, ax=ax,
+        iplt.icemargin(nc, t, ax=ax, thkth=thkth,
                        linewidths=0.5)
         levs = range(0, 4001, 500)
-        cs = iplt.contourf(nc, 'usurf', t, ax=ax,
+        cs = iplt.contourf(nc, 'usurf', t, ax=ax, thkth=thkth,
                      levels=levs, cmap='Blues_r',
                      norm=BoundaryNorm(levs, 256), alpha=0.75)
-        iplt.contour(nc, 'usurf', t, ax=ax,
+        iplt.contour(nc, 'usurf', t, ax=ax, thkth=thkth,
                      levels=range(0, 4001, 500),
                      cmap=None, colors='k', linewidths=0.1)
-        iplt.contour(nc, 'usurf', t, ax=ax,
+        iplt.contour(nc, 'usurf', t, ax=ax, thkth=thkth,
                      levels=range(1000, 5000, 1000),
                      cmap=None, colors='k', linewidths=0.25)
         annotate(ax, '%s kyr' % (mis_times[j]))

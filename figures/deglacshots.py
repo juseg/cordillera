@@ -34,17 +34,17 @@ for i, rec in enumerate(records):
         print 'plotting %s at %s ka...' % (rec, time[t])
         ax = fig.grid[4*i+j]
         ax.set_rasterization_zorder(2.5)
-        iplt.imshow(nc, 'topg', t, ax,
+        iplt.imshow(nc, 'topg', t, ax, thkth=thkth,
                     cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargin(nc, t, ax,
+        iplt.icemargin(nc, t, ax, thkth=thkth,
                        linewidths=0.5)
-        iplt.contour(nc, 'usurf', t, ax,
+        iplt.contour(nc, 'usurf', t, ax, thkth=thkth,
                      levels=range(200, 5000, 200),
                      cmap=None, colors='k', linewidths=0.1)
-        iplt.contour(nc, 'usurf', t, ax,
+        iplt.contour(nc, 'usurf', t, ax, thkth=thkth,
                      levels=range(1000, 5000, 1000),
                      cmap=None, colors='k', linewidths=0.25)
-        im = iplt.imshow(nc, 'velsurf_mag', t, ax,
+        im = iplt.imshow(nc, 'velsurf_mag', t, ax, thkth=thkth,
                          cmap=vel_cmap, norm=vel_norm, alpha=0.75)
         annotate(ax, '%s kyr' % time[t])
 

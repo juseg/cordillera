@@ -36,17 +36,17 @@ def icemaps(mis):
 
         print 'plotting %s at %s ka...' % (rec, t)
         ax = fig.grid[i]
-        iplt.imshow(nc, 'topg', idx, ax,
+        iplt.imshow(nc, 'topg', idx, ax, thkth=thkth,
                     cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargin(nc, idx, ax,
+        iplt.icemargin(nc, idx, ax, thkth=thkth,
                        linewidths=0.5)
-        iplt.contour(nc, 'usurf', idx, ax,
+        iplt.contour(nc, 'usurf', idx, ax, thkth=thkth,
                      levels=range(200, 5000, 200),
                      cmap=None, colors='k', linewidths=0.1)
-        iplt.contour(nc, 'usurf', idx, ax,
+        iplt.contour(nc, 'usurf', idx, ax, thkth=thkth,
                      levels=range(1000, 5000, 1000),
                      cmap=None, colors='k', linewidths=0.25)
-        im = iplt.imshow(nc, 'velsurf_mag', idx, ax,
+        im = iplt.imshow(nc, 'velsurf_mag', idx, ax, thkth=thkth,
                          cmap=vel_cmap, norm=vel_norm, alpha=0.75)
         annotate(ax, '%s, %s kyr' % (rec.upper(), t))
 
