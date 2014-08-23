@@ -64,7 +64,7 @@ ax.annotate('CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3), **txtkwa)
 ax.annotate('NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3), **txtkwa)
 ax.annotate('WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3), **txtkwa)
 ax.annotate('SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3), **txtkwa)
-ax.annotate('NR', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3), **txtkwa)
+ax.annotate('NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3), **txtkwa)
 ax.annotate('CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
 
 # add colorbar and save
