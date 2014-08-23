@@ -107,19 +107,19 @@ def add_names():
 
     # add names of mountain ranges
     txtkwa = dict(ha='center', va='center', transform=ll,
-                  color='k', fontsize=4, style='italic')
+                  color='k', fontsize=6, style='italic')
     ax.text(-146, 63.5, 'AR', **txtkwa)
     ax.text(-141, 61, 'WSEM', **txtkwa)
     ax.text(-129, 63, 'SMKM', **txtkwa)
     ax.text(-129, 57, 'SM', **txtkwa)
-    ax.text(-128, 53, 'CM', **txtkwa)
+    ax.text(-127, 52, 'CM', **txtkwa)
     ax.text(-118, 52, 'CRM', **txtkwa)
     ax.text(-121, 49, 'NC', **txtkwa)
 
     # add names of intermontane plateaus
     ax.text(-127, 60, 'LL', **txtkwa)
     ax.text(-122, 52, 'IP', **txtkwa)
-    ax.text(-122.5, 47.5, 'PL', **txtkwa)
+    ax.text(-122, 47.5, 'PL', **txtkwa)
 
 # modelling domain
 def draw_modeldomain():
