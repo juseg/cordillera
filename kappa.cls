@@ -41,7 +41,9 @@
 \newcommand{\figurename}{Figure}                                 % Name of Figure captions
 \newcommand{\tablename}{Table}                                   % Name of Table captions
 \newcommand{\@abstractheading}{{\normalsize\bfseries Abstract.}\ } % Name of Abstract header
+\newcommand{\@svabstractheading}{{\normalsize\bfseries Sammanfattning.}\ } % Name of svAbstract header
 \newcommand{\@keywordheading}{{\itshape Keywords: \ }}
+\newcommand{\@svkeywordheading}{{\itshape Nyckelord: \ }}
 \newcommand{\@acknowledgementheading}{{\normalsize\bfseries Acknowledgements.}\ } % Name of Acknowledgement header
 
 \newcommand{\@titlestyle}{\Large\bfseries}                       % Format on Title
@@ -576,6 +578,16 @@
         \fi
         \vspace*{\stretch{3}}
     \fi
+    \if@hassvabstract                              % IF abstract/ keywords THEN
+        \vspace*{\stretch{1}}
+        \vspace{\@aboveabstractskip}
+        \unvbox\t@svabstract                    % Appends abstract box
+        \if@hassvkeywords                         % IF keywords exist print them
+            \vspace{\@abovekeywordskip}           % Space over keyword list
+            \unvbox\t@svkeyword                     % Appends keywords box
+        \fi
+        \vspace*{\stretch{3}}
+    \fi
     \vspace{\@belowfmskip}                    % Vertical space below frontmatter
     \cleardoublepage
     \thispagestyle{empty}
@@ -642,6 +654,42 @@
     \noindent\@keywordheading                       % No indent and print keyword header
     \ignorespaces}
 {\par \egroup}                                      % END KEYWORD ENVIRONMENT
+
+%% SVABSTRACT ENVIRONMENT
+\newif\if@hassvabstract                             % If abstract exists
+\newbox\t@svabstract                                % Box for abstract
+\newenvironment{svabstract}{
+    \global\@hassvabstracttrue                      % Abstract is available
+    \hyphenpenalty\sv@hyphenpenalty                 % restore \hyphenpenalty
+    \global\setbox\t@svabstract=\vbox\bgroup        % Initialize the box for abstract
+    \leftskip\@abstractleftskip                     % Space between text and box edge
+    \rightskip\@abstractrightskip                   % Space between text and box edge
+    \parfillskip\@flushglue                         % Horisontal space on last line of paragraph
+    \@abstractstyle                                 % Text size of the abstract
+    \parskip\z@                                     % The space between paragraphs
+    \noindent\@svabstractheading                    % Paragraph indent in abstract and Caption for Abstract
+    \ignorespaces}
+{\par \egroup}                                      % END ABSTRACT ENVIRONMENT
+
+%% SVKEYWORD ENVIRONMENT
+\newif\if@hassvkeywords                             % If keyword exists
+\newbox\t@svkeyword                                 % Box for keyword abstract
+\newenvironment{svkeyword}{
+    \global\@hassvkeywordstrue                      % Keyword list is available
+    \hyphenpenalty\sv@hyphenpenalty                 % restore \hyphenpenalty
+    \def\sep{\unskip, }                             % separator for multiple keywords
+    \global\setbox\t@svkeyword=\vbox\bgroup         % Initalize the box for keywords
+    \leftskip\z@
+    \rightskip\z@
+    \leftskip\@abstractleftskip                     % Space between text and box edge
+    \rightskip\@abstractrightskip                   % Space between text and box edge
+    \parfillskip\@flushglue                         % Horisontal space on last line of paragraph
+    \@keywordstyle                                  % Font of the keywords
+    \parskip\z@                                     % The space between paragraphs
+    \noindent\@svkeywordheading                     % No indent and print keyword header
+    \ignorespaces}
+{\par \egroup}                                      % END KEYWORD ENVIRONMENT
+
 
 %% THEPAPERS ENVIRONMENT
 \newif\if@hasthepapers                              % If keyword exists
