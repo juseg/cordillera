@@ -147,7 +147,7 @@
 \else
     \renewcommand\normalsize{%
         \@setfontsize\normalsize\@xpt\@xiipt
-        \baselineskip=12pt plus .001\p@ minus 0.25\p@           % Allow little stretch of the baseline
+        \baselineskip 12\p@ % plus .001\p@ minus 0.25\p@           % Allow little stretch of the baseline
         \abovedisplayskip 12\p@ \@plus2\p@ \@minus5\p@
         \abovedisplayshortskip \z@ \@plus3\p@
         \belowdisplayshortskip 6\p@ \@plus3\p@ \@minus3\p@
