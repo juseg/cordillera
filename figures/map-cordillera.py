@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # coding: utf-8
 
 import sys
@@ -144,7 +144,7 @@ def draw_modeldomain():
     ymax = 3e6
     x = [xmin, xmin, xmax, xmax, xmin]
     y = [ymin, ymax, ymax, ymin, ymin]
-    ax.plot(x, y, 'k', lw=bwu, transform=cal)
+    ax.plot(x, y, 'k', lw=2*bwu, transform=cal)
 
 # initialize figure
 fig = plt.figure(0, (170/25.4, 120/25.4))

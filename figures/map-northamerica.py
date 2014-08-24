@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # coding: utf-8
 
 import sys
@@ -83,10 +83,10 @@ def draw_glaciers():
 def draw_countries():
     ax.add_feature(cfeature.NaturalEarthFeature(
         category='cultural', name='admin_0_boundary_lines_land', scale=scale,
-        edgecolor='#646464', facecolor='none', lw=1.0*bwu))
-    ax.add_feature(cfeature.NaturalEarthFeature(
-        category='cultural', name='admin_1_states_provinces_lines', scale=scale,
-        edgecolor='#646464', facecolor='none', lw=0.5*bwu))
+        edgecolor='#646464', facecolor='none', lw=2.0*bwu))
+    #ax.add_feature(cfeature.NaturalEarthFeature(
+    #    category='cultural', name='admin_1_states_provinces_lines', scale=scale,
+    #    edgecolor='#646464', facecolor='none', lw=0.5*bwu))
 
 def draw_graticules():
     ax.add_feature(cfeature.NaturalEarthFeature(
@@ -101,9 +101,26 @@ def add_names():
     txtkwa = dict(ha='center', va='center', transform=ll,
                   color='#0978AB', fontsize=10, style='italic')
     ax.text(-127, 55, 'CIS', **txtkwa)
-    ax.text(-85, 60, 'LIS', **txtkwa)
+    ax.text(-80, 55, 'LIS', **txtkwa)
     ax.text(-95, 77.5, 'IIS', **txtkwa)
     ax.text(-42, 74, 'GIS', **txtkwa)
+
+    # add physical names
+    txtkwa = dict(ha='center', va='center', transform=ll, style='italic')
+    ax.text(-150, 65, 'Alaska', **txtkwa)
+    ax.text(-95, 55, 'Prairies', **txtkwa)
+    ax.text(-85, 60, 'Hudson Bay', **txtkwa)
+    ax.text(-55, 48, 'Newfoundland', **txtkwa)
+    ax.text(-83, 45, 'Great\n\nLakes', **txtkwa)
+
+    # add other names
+    txtkwa = dict(ha='center', va='center', transform=ll,
+                  fontsize=10, style='italic')
+    ax.text(-140, 77, 'ARCTIC OCEAN', color='#0978AB', **txtkwa)
+    ax.text(-140, 45, 'PACIFIC\n\nOCEAN', color='#0978AB', **txtkwa)
+    ax.text(-60, 35, 'ATLANTIC\n\nOCEAN', color='#0978AB', **txtkwa)
+    ax.text(-100, 65, 'CANADA', **txtkwa)
+    ax.text(-100, 40, 'USA', **txtkwa)
 
 # modelling domain
 def draw_modeldomain():
@@ -113,7 +130,7 @@ def draw_modeldomain():
     ymax = 3e6
     x = [xmin, xmin, xmax, xmax, xmin]
     y = [ymin, ymax, ymax, ymin, ymin]
-    ax.plot(x, y, 'k', lw=bwu, transform=proj)
+    ax.plot(x, y, 'k', lw=2*bwu, transform=proj)
 
 # Initialize figure
 fig = plt.figure(0, (170/25.4, 100/25.4))
@@ -126,6 +143,7 @@ ax.set_rasterization_zorder(2)
 draw_etopo1()
 draw_rivers()
 draw_lakes()
+draw_countries()
 draw_lgm()
 draw_modeldomain()
 draw_graticules()
