@@ -685,9 +685,13 @@ which can be found in an on-line documentation
 Instead, it aims to highlight the modelling choices that I have made in this
 thesis, and to present an overview of the physics involved in these choices.
 
-Vectors are identified by bold arrow symbols ($\vv$) and second-order tensors by bold symbols ($\CST$), while scalars use a normal font ($s$). The divergence of a vector field is written $\div{\vv}$, and $\grad{s}$ denotes the gradient of a scalar field. The divergence of a tensor field is characterised by $\tdiv{\CST}$ and the gradient of a vector field by $\tgrad{\vv}$. The race of a tensor $\CST$ is written $\tr(\CST)$. Parameter values are summarised in \cref{tab:params}.
-
-\newpage  %FIXME temporary fix
+Vectors are identified by bold arrow symbols ($\vv$) and second-order tensors
+by bold symbols ($\CST$), while scalars use a normal font ($s$). The divergence
+of a vector field is written $\div{\vv}$, and $\grad{s}$ denotes the gradient
+of a scalar field. The divergence of a tensor field is characterised by
+$\tdiv{\CST}$ and the gradient of a vector field by $\tgrad{\vv}$. The race of
+a tensor $\CST$ is written $\tr(\CST)$. Parameter values are summarised in
+\cref{tab:params}, \cpageref{tab:params}.
 
 \begin{figure}
   \includegraphics[width=80mm]{model-interfaces}
@@ -699,220 +703,14 @@ Vectors are identified by bold arrow symbols ($\vv$) and second-order tensors by
   \label{fig:model-interfaces}
 \end{figure}
 
-\begin{table*}
-  \caption{Constant parameters of the ice sheet model.}
-  \label{tab:params}
-  \begin{tabular*}{170mm}{@{\hspace{2em}}l@{\extracolsep{\fill}}lrll}
-    \tophline
-    Not.    & Name & Value & Unit & Source \\
-    \middlehline
+\begin{figure}
+  \includegraphics{model-variables}
+  \caption{Sketch of notations used for the main variables of the ice sheet
+           model. An infinitesimal ice parcel is moving at velocity $\vv$,
+           under the balance of stresses $\CST$ and gravity $\vect{g}$.}
+  \label{fig:model-variables}
+\end{figure}
 
-    \multicolumn{2}{l}{\emph{Ice material properties}} \\
-
-    $\rho$  & Ice density
-            & 910
-            & \unit{kg\,m^{-3}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    $g$     & Standard gravity
-            & 9.81
-            & \unit{m\,s^{-2}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    $n$     & Glen exponent
-            & 3
-            & -
-            & - \\
-
-    $A_c$   & Ice hardness coefficient cold
-            & 3.61\e{-13}
-            & \unit{Pa^{-3}\,s^{-1}}
-            & \citet{Paterson.Budd.1982} \\
-
-    $A_w$   & Ice hardness coefficient warm
-            & 1.73\e3
-            & \unit{Pa^{-3}\,s^{-1}}
-            & \citet{Paterson.Budd.1982} \\
-
-    $Q_c$   & Flow law activation energy cold
-            & 6.0\e4
-            & \unit{J\,mol^{-1}}
-            & \citet{Paterson.Budd.1982} \\
-
-    $Q_w$   & Flow law activation energy warm
-            & 13.9\e4
-            & \unit{J\,mol^{-1}}
-            & \citet{Paterson.Budd.1982} \\
-
-    $R$     & Ideal gas constant
-            & 8.31441
-            & \unit{J\,mol^{-1}\,K^{-1}}
-            & - \\
-
-    $T_c$   & Flow law critical temperature
-            & 263.15
-            & \unit{K}
-            & \citet{Paterson.Budd.1982} \\
-
-    $f$     & Flow law water fraction coeff.
-            & 181.25
-            & -
-            & \citet{Lliboutry.Duval.1985} \\
-
-    $\beta$ & Clapeyron constant
-            & 7.9\e{-8}
-            & \unit{K\,Pa^{-1}}
-            & \citet{Luthi.etal.2002} \\
-
-    $c_i$   & Ice specific heat capacity
-            & 2009
-            & \unit{J\,kg^{-1}\,K^{-1}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    $c_w$   & Water specific heat capacity
-            & 4170
-            & \unit{J\,kg^{-1}\,K^{-1}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    $k$     & Ice thermal conductivity
-            & 2.10
-            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    $L$     & Water latent heat of fusion
-            & 3.34\e5
-            & \unit{J\,kg^{-1}\,K^{-1}}
-            & \citet{Aschwanden.etal.2012} \\
-
-    \multicolumn{2}{l}{\emph{Basal sliding}} \\
-
-    $q$     & Pseudo-plastic sliding exponent
-            & 0.25
-            & -
-            & \citet{Aschwanden.etal.2013} \\
-
-    $v_{th}$& Pseudo-plastic threshold velocity
-            & 100.0
-            & \unit{m\,yr^{-1}}
-            & \citet{Aschwanden.etal.2013} \\
-
-    $c_0$   & Till cohesion
-            & 0.0
-            & Pa
-            & \citet{Aschwanden.etal.2013} \\
-
-    $\alpha$& Effective pressure coefficient (\CCLI)
-            & 0.95
-            & -
-            & \citet{Aschwanden.etal.2013} \\
-
-    $\delta$& Effective pressure coefficient (\CCYC)
-            & 0.02
-            & -
-            & \citet{Bueler.Pelt.2014} \\
-
-    $e_0$   & Till reference void ratio
-            & 0.69
-            & -
-            & \citet{Tulaczyk.etal.2000} \\
-
-    $C_c$   & Till compressibility coefficient
-            & 0.12
-            & -
-            & \citet{Tulaczyk.etal.2000} \\
-
-    $W_{max}$ & Maximal till water thickness
-            & 2.0
-            & m
-            & \citet{Aschwanden.etal.2013} \\
-
-    $b_0$   & Altitude of max. friction angle
-            & 0
-            & m
-            & - \\
-
-    $b_1$   & Altitude of min. friction angle
-            & 200
-            & m
-            & - \\
-
-    $\phi_0$& Minimum friction angle
-            & 10/15
-            & \degree
-            & - \\
-
-    $\phi_1$& Maximum friction angle
-            & 30/45
-            & \degree
-            & - \\
-
-    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
-
-    $\rho_b$& Bedrock density
-            & 3300
-            & \unit{kg\,m^{-3}}
-            & - \\
-
-    $c_b$   & Bedrock specific heat capacity
-            & 1000
-            & \unit{J\,kg^{-1}\,K^{-1}}
-            & - \\
-
-    $k_b$   & Bedrock thermal conductivity
-            & 3.0
-            & \unit{W\,m^{-1}\,K^{-1}}
-            & - \\
-
-    $q_G$   & Geothermal heat flux
-            & 70.0
-            & \unit{mW\,m^{-2}}
-            & - \\
-
-    $\nu_m$ & Mantle viscosity
-            & 1\e{21}
-            & \unit{Pa\,s}
-            & \citet{Lingle.Clark.1985} \\
-
-    $\rho_l$& Lithosphere density
-            & 3300
-            & \unit{kg\,m^{-3}}
-            & \citet{Lingle.Clark.1985} \\
-
-    $D$     & Lithosphere flexural rigidity
-            & 5.0\e{24}
-            & \unit{N}
-            & \citet{Lingle.Clark.1985} \\
-
-    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
-
-    $T_0$   & Temperature of snow precipitation
-            & 0.0
-            & \degC
-            & - \\
-
-    $T_1$   & Temperature of rain precipitation
-            & 2.0
-            & \degC
-            & - \\
-
-    $F_s$   & Degree-day factor for snow
-            & 3.04\e{-3}
-            & \unit{m\,K^{-1}\,day^{-1}}
-            & \citet{Shea.etal.2009} \\
-
-    $F_i$   & Degree-day factor for ice
-            & 4.59\e{-3}
-            & \unit{m\,K^{-1}\,day^{-1}}
-            & \citet{Shea.etal.2009} \\
-
-    $\gamma$& Air temperature lapse rate
-            & 6\e{-3}
-            & \unit{K\,m{-1}}
-            & - \\
-
-    \bottomhline
-  \end{tabular*}
-\end{table*}
 
 % ----------------------------------------------------------------------
 \subsection{Field equations}
@@ -929,14 +727,6 @@ in terms of the ice velocity vector, $\vv$ (\cref{fig:model-variables}), by
     \label{eqn:incompressibility}
     \div{\vv} = 0 \,.
 \end{equation}
-
-\begin{figure}
-  \includegraphics{model-variables}
-  \caption{Sketch of notations used for the main variables of the ice sheet
-           model. An infinitesimal ice parcel is moving at velocity $\vv$,
-           under the balance of stresses $\CST$ and gravity $\vect{g}$.}
-  \label{fig:model-variables}
-\end{figure}
 
 Secondly, the \emph{balance of stresses} is expressed by the Stokes equation,
 thus assuming creeping flow. In other words, ice is considered as a slow-moving
@@ -1255,6 +1045,221 @@ mathematically proven.
 % ----------------------------------------------------------------------
 \subsection{Basal sliding}
 % ----------------------------------------------------------------------
+
+\begin{table*}
+  \caption{Constant parameters of the ice sheet model.}
+  \label{tab:params}
+  \begin{tabular*}{170mm}{@{\hspace{2em}}l@{\extracolsep{\fill}}lrll}
+    \tophline
+    Not.    & Name & Value & Unit & Source \\
+    \middlehline
+
+    \multicolumn{2}{l}{\emph{Ice material properties}} \\
+
+    $\rho$  & Ice density
+            & 910
+            & \unit{kg\,m^{-3}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $g$     & Standard gravity
+            & 9.81
+            & \unit{m\,s^{-2}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $n$     & Glen exponent
+            & 3
+            & -
+            & - \\
+
+    $A_c$   & Ice hardness coefficient cold
+            & 3.61\e{-13}
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $A_w$   & Ice hardness coefficient warm
+            & 1.73\e3
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_c$   & Flow law activation energy cold
+            & 6.0\e4
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_w$   & Flow law activation energy warm
+            & 13.9\e4
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $R$     & Ideal gas constant
+            & 8.31441
+            & \unit{J\,mol^{-1}\,K^{-1}}
+            & - \\
+
+    $T_c$   & Flow law critical temperature
+            & 263.15
+            & \unit{K}
+            & \citet{Paterson.Budd.1982} \\
+
+    $f$     & Flow law water fraction coeff.
+            & 181.25
+            & -
+            & \citet{Lliboutry.Duval.1985} \\
+
+    $\beta$ & Clapeyron constant
+            & 7.9\e{-8}
+            & \unit{K\,Pa^{-1}}
+            & \citet{Luthi.etal.2002} \\
+
+    $c_i$   & Ice specific heat capacity
+            & 2009
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $c_w$   & Water specific heat capacity
+            & 4170
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $k$     & Ice thermal conductivity
+            & 2.10
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $L$     & Water latent heat of fusion
+            & 3.34\e5
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    \multicolumn{2}{l}{\emph{Basal sliding}} \\
+
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & -
+            & \citet{Aschwanden.etal.2013} \\
+
+    $v_{th}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}}
+            & \citet{Aschwanden.etal.2013} \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa
+            & \citet{Aschwanden.etal.2013} \\
+
+    $\alpha$& Effective pressure coefficient (\CCLI)
+            & 0.95
+            & -
+            & \citet{Aschwanden.etal.2013} \\
+
+    $\delta$& Effective pressure coefficient (\CCYC)
+            & 0.02
+            & -
+            & \citet{Bueler.Pelt.2014} \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $C_c$   & Till compressibility coefficient
+            & 0.12
+            & -
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $W_{max}$ & Maximal till water thickness
+            & 2.0
+            & m
+            & \citet{Aschwanden.etal.2013} \\
+
+    $b_0$   & Altitude of max. friction angle
+            & 0
+            & m
+            & - \\
+
+    $b_1$   & Altitude of min. friction angle
+            & 200
+            & m
+            & - \\
+
+    $\phi_0$& Minimum friction angle
+            & 10/15
+            & \degree
+            & - \\
+
+    $\phi_1$& Maximum friction angle
+            & 30/45
+            & \degree
+            & - \\
+
+    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
+
+    $\rho_b$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & - \\
+
+    $c_b$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & - \\
+
+    $k_b$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{W\,m^{-1}\,K^{-1}}
+            & - \\
+
+    $q_G$   & Geothermal heat flux
+            & 70.0
+            & \unit{mW\,m^{-2}}
+            & - \\
+
+    $\nu_m$ & Mantle viscosity
+            & 1\e{21}
+            & \unit{Pa\,s}
+            & \citet{Lingle.Clark.1985} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}}
+            & \citet{Lingle.Clark.1985} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & 5.0\e{24}
+            & \unit{N}
+            & \citet{Lingle.Clark.1985} \\
+
+    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
+
+    $T_0$   & Temperature of snow precipitation
+            & 0.0
+            & \degC
+            & - \\
+
+    $T_1$   & Temperature of rain precipitation
+            & 2.0
+            & \degC
+            & - \\
+
+    $F_s$   & Degree-day factor for snow
+            & 3.04\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $F_i$   & Degree-day factor for ice
+            & 4.59\e{-3}
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
+
+    $\gamma$& Air temperature lapse rate
+            & 6\e{-3}
+            & \unit{K\,m{-1}}
+            & - \\
+
+    \bottomhline
+  \end{tabular*}
+\end{table*}
 
 Although the SIA is valid only under non-sliding conditions, the SSA requires
 a sliding law as basal boundary condition, which in fact constitutes the main
@@ -1620,7 +1625,9 @@ derived from six different palaeo-temperature proxy records
 %Pre-processing scripts for GRASS GIS\\
 %Plotting tools for PISM\\
 
+
 % ======================================================================
+\newpage
 \section{Results summary}
 % ======================================================================
 
@@ -1695,6 +1702,30 @@ the last glacial cycle (\cref{sec:ccyc}; \CCYC).
 \noindent\textbf{\PSDP} --- \bibentry{Seguinot.Rogozhina.2014}.
 \bigskip
 
+Next to the atmospheric forcing, another critical source of uncertainty in
+palaeo-ice sheet modelling is the choice of parameters used by the surface mass
+balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
+are the degree-day factors for snow, $F_s$, and ice, $F_i$
+(\cref{fig:model-pdd,tab:params}), and the standard deviation of
+near-surface air temperature, $\sPDD$ (Eq.~\ref{eqn:calovgreve} and
+\cref{tab:params}). Although the first two can only be
+deduced from surface mass-balance measurements on present-day glaciers
+\citep[e.g.,][]{Shea.etal.2009} and assumptions that these values are also
+valid for palaeo-simulations, $\sPDD$ can be estimated from temperature time
+series \citep[e.g.,][]{Fausto.etal.2011}.
+
+In \PSDV, I used near-surface air temperatures from the ERA-Interim reanalysis
+\citep{Dee.etal.2011} to compute a global, monthly distribution of $\sPDD$. The
+resulting grids show that, although often assumed constant in ice sheet
+modelling, $\sPDD$ exhibits significant spacial and temporal variation, most
+particularly in the polar regions (\cref{fig:plot-sdmap}; \PSDV, Fig.~1). Using
+a simplified surface mass balance model, I then demonstrated the effect of this
+variation on the computation of positive degree-days (\PSDV, Fig.~2), and
+surface mass-balance (\PSDV, Fig.~3). Neglecting this variability in ice sheet
+modelling introduces significant errors in modelled PDD and surface mass
+balance calculations. Therefore, the Cordilleran ice sheet simulations
+presented in \CCYC\ now include this effect.
+
 \begin{figure}
   \includegraphics{plot-sdmap}
   \caption{July, daily temperature variability in the Arctic, as shown by
@@ -1728,30 +1759,6 @@ the last glacial cycle (\cref{sec:ccyc}; \CCYC).
            Note the different colour scales.}
   \label{fig:plot-sdeffect}
 \end{figure*}
-
-Next to the atmospheric forcing, another critical source of uncertainty in
-palaeo-ice sheet modelling is the choice of parameters used by the surface mass
-balance model \citep[e.g.,][]{Hebeler.etal.2008}. In our case, these parameters
-are the degree-day factors for snow, $F_s$, and ice, $F_i$
-(\cref{fig:model-pdd,tab:params}), and the standard deviation of
-near-surface air temperature, $\sPDD$ (Eq.~\ref{eqn:calovgreve} and
-\cref{tab:params}). Although the first two can only be
-deduced from surface mass-balance measurements on present-day glaciers
-\citep[e.g.,][]{Shea.etal.2009} and assumptions that these values are also
-valid for palaeo-simulations, $\sPDD$ can be estimated from temperature time
-series \citep[e.g.,][]{Fausto.etal.2011}.
-
-In \PSDV, I used near-surface air temperatures from the ERA-Interim reanalysis
-\citep{Dee.etal.2011} to compute a global, monthly distribution of $\sPDD$. The
-resulting grids show that, although often assumed constant in ice sheet
-modelling, $\sPDD$ exhibits significant spacial and temporal variation, most
-particularly in the polar regions (\cref{fig:plot-sdmap}; \PSDV, Fig.~1). Using
-a simplified surface mass balance model, I then demonstrated the effect of this
-variation on the computation of positive degree-days (\PSDV, Fig.~2), and
-surface mass-balance (\PSDV, Fig.~3). Neglecting this variability in ice sheet
-modelling introduces significant errors in modelled PDD and surface mass
-balance calculations. Therefore, the Cordilleran ice sheet simulations
-presented in \CCYC\ now include this effect.
 
 The analysis is extended in \PSDP, using re-analysed air
 temperatures from ERA-40 \citep{Uppala.etal.2005}. Although of coarser spatial
