@@ -13,7 +13,8 @@
 \usepackage{amsmath}
 \usepackage{bibentry}
 \usepackage{bm}
-\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[T5, T1]{fontenc}
 \usepackage{natbib}
 \usepackage{physics}
 \usepackage[hidelinks]{hyperref}
@@ -98,13 +99,6 @@
         \raisebox{\dimexpr\ht1-3ex}{\textbf{(#2)}}}% Print label
   \phantom{\usebox1}% Insert appropriate spacing
 }
-
-% Some general low-priority todos
-% -- use latex in matplotlib figures
-% -- homogeneize subfig label fonts
-% -- add software references
-% -- add Swedish abstract
-% -- add numerical implementation
 
 % Document properties
 \thesistitle{Numerical modelling of the Cordilleran ice sheet}
@@ -2007,22 +2001,74 @@ moving ice in perpetual transformation towards evolving climate conditions.
 
 \end{enumerate}
 
-\clearpage
-% ======================================================================
-\section*{Acknowledgements}
-% ======================================================================
-
-%This work would not have been possible without the help and involvement of many friends and colleagues.
-
-%Foremost, I would like to thank you, Irina, for your fearless jump onto the supervising team and constant support from then on. Thank you Arjen for your continuous support in good and bad times, and for your scrutinous reading of all my texts. 
-
-\clearpage
-
-
 % References
 \renewcommand{\urlprefix}[0]{}  % remove default "URL" prefix
+\onecolumn
+\begin{multicols}{2}  % ensure levelled end-of-text
 \bibliographystyle{copernicus}
 \bibliography{refs/references.bib}
+\end{multicols}
+
+% ======================================================================
+\clearpage
+\thispagestyle{plain}
+\hfill \textbf{\huge Acknowledgements}
+\vfill
+% ======================================================================
+
+\noindent This work would not have been possible without the help and
+involvement of many friends and colleagues. I am grateful to Arjen Stroeven, my
+main supervisor, for his continuous support through good and bad times. I most
+particularly thank him for his scrutinized work and tough criticism on all my
+texts, which is hopefully reflected in the quality of this thesis. I also would
+like to thank Irina Rogozhina for her fearless jump into my supervising team
+last year and constant support since then. She has been a great mentor, a good
+friend and a fantastic colleague, and I hope that we will continue to work
+together. I thank Qiong Zhang for her positiveness and encouragement, technical
+help with meteorological data and useful advice in my early writing steps, and
+Johan Kleman for few but always inspiring discussions.
+
+I also wish to particularly thank Jakob Heyman and Martin Margold, who have
+been great tutors on glacial geomorphology and many other things during the
+first years of my PhD. Likewise, I am immensely grateful to Ed Bueler and
+Constantine Khroulev for dedicated support on PISM during the last three years
+and for precious advice during my short visit at the University of Alaska
+Fairbanks.
+
+To my office mates; Carl Lilja, Markus Nathansson, Ping Fu and Natacha
+Gribenski; thank you for cultivating a friendly working atmosphere. I also wish
+to thank colleagues from the glaciology group for many entertaining paper
+discussions, empowered by the incorruptible commitment and delicious cookies of
+Patrick Applegate. Thanks to the administrative staff, and most particularly
+Susanna Blåndman, Carina Henricksson and Linus Richert, for having been
+constantly available for help, as well as to Helle Skånes, for guiding me
+through the last steps towards my doctoral defense.
+
+To colleagues from the German Research Centre for Geosciences, and especially
+to Maik Thomas, Jorge Bernales and Tonio; thank you for supporting my visit and
+welcoming me in Potsdam. To Ola Fredin and Lena Rubensdotter; thank you for
+introducing me to glacial geology during my stay in Trondheim in 2008, for
+encouraging me to pursue this path and for unforgettable fieldwork memories.
+
+To my friends from Stockholm and Potsdam; Max, Nathalie, Juri, Lisa, Reto,
+Peng, Ying, Nikki, Thomas, Viola; thank you for making these years enjoyable.
+Finally, I thank my family, and most specially my parents Lydie and Christophe,
+for having given me the chance to pursue a higher education, and for all those
+summers spent mountain-hiking in the Alps.
+{\fontencoding{T5}\selectfont Th\h{u}y}, your determination to push me to the
+finish line had no limits. Thank you for providing this amazing support, and
+for sharing my frustrations and my joys along the way.
+
+\bigskip
+\noindent\textbf{Funding sources}
+
+\noindent My salary was provided by Stockholm University, and research grants
+from the Swedish Research Council (VR) and the German Academic Exchange Service
+(DAAD). Additional funds for conference participations, course attendances,
+collaborative travels and fieldwork were provided by the Carl Mannerfelt Fund,
+the Bolin Centre for Climate Research, the Ahlmanns and Lagrelius Funds for
+Geographic Research, the De Geer Foundation for Quaternary Research and the
+Wallenberg Foundation.
 
 % ----------------------------------------------------------------------
 \end{document}
