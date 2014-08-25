@@ -996,8 +996,8 @@ where $\bar{\nu}$ is the depth-integrated apparent viscosity defined by
 A final integration over the entire ice column yields
 \citep[Eqs.~7.7--7.8]{Weis.etal.1999}
 \begin{subequations}
+\label{eqn:vssa}
 \begin{gather}
-  \label{eqn:vssa}
   \begin{split}
     \pdv{x} \left[2\bar{\nu}h
                   \left(2\pdv{v_x}{x} + \pdv{v_y}{y}\right) \right]
@@ -1576,58 +1576,45 @@ derived from six different palaeo-temperature proxy records
 
 
 % ----------------------------------------------------------------------
-%\subsection{Numerical implementation}
+\subsection{Numerical implementation}
 % ----------------------------------------------------------------------
 
-%\todo{Add here a short section about discretization of the SIA and SSA, and
-%      their numerical implementation. The main subtlety, I think, lies in the
-%      fact that some computation need to use a ``staggered'' grid in order to
-%      ensure that we add SIA and SSA values corresponding to the same point in
-%      space. I need to check that. This section is also the place where to
-%      introduce geographic transformation parameters that I used throughout
-%      the thesis -- except in \cref{fig:map-cordillera}!}
+In PISM, the SIA and the SSA are resolved numerically using centred, explicit
+finite difference methods. Ice velocities, $\vsia$ and $\vssa$, are computed on
+a staggered grid, i.e., a grid offset by half a grid cell in both directions of
+the $x$- and $y$-axes \citep{Bueler.Brown.2009, Winkelmann.etal.2011}. The
+computation of SSA velocities involves the numerical resolution of
+\cref{eqn:vssa}. After discretization, this can be thought of as the inversion
+of a large but sparse linear system of the form $\tens{A}\vssa=\vect{b}$. This
+sparse linear problem is resolved in parallel by numerical iteration methods
+implemented in PETSc \citep{Balay.etal.2014}. The simulations presented here
+use the generalized minimal residual method \citep[GMRES,][]{Saad.2003}. The
+vertically-averaged mass continuity equation is then treated as a
+diffusion-advection equation, where SIA velocities are diffusive and SSA
+velocities advective \citep{Bueler.Brown.2009, Winkelmann.etal.2011}. The
+horizontal grid uses the Canadian Atlas Lambert conformal conic projection
+(\cref{tab:proj}). Time-stepping is adaptive.
 
-%\begin{table}
-%  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
-%           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
-%           PROJ.4 parameter names, as used in all model runs, ice volume and
-%           area calculations, and most figures.}
-%  \label{tab:params}
-%  \begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
-%    \hline
-%    Parameter               & Name              & Value \\
-%    \hline
-%    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
-%    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
-%    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
-%    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
-%    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
-%    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
-%    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
-%    \hline
-%  \end{tabular*}
-%\end{table}
-
-% ======================================================================
-%\section{Software implementation}
-% ======================================================================
-
-% ----------------------------------------------------------------------
-%\subsection{Computational workflow}
-% ----------------------------------------------------------------------
-%\todo{Figure. computational workflow}
-
-% ----------------------------------------------------------------------
-%\subsection{Contributions to PISM}
-% ----------------------------------------------------------------------
-%\todo{Table. PISM ``issues'' identified}
-
-% ----------------------------------------------------------------------
-%\subsection{Peripheral tools}
-% ----------------------------------------------------------------------
-%A Python PDD model\\
-%Pre-processing scripts for GRASS GIS\\
-%Plotting tools for PISM\\
+\begin{table}
+  \caption{Properties of the Canadian Atlas Lambert conformal conic projection
+           (EPSG code~3978) and the GRS~1980 ellipsoid, and corresponding
+           PROJ.4 parameter names, as used in all model runs, ice volume and
+           area calculations, and most figures.}
+  \label{tab:proj}
+  \begin{tabular*}{80mm}{@{\extracolsep{\fill}}lcc}
+    \tophline
+    Parameter               & Name              & Value \\
+    \middlehline
+    Projection name         & \texttt{+proj}    & \texttt{lcc} \\
+    Central meridian        & \texttt{+lon\_0}  & 95\degree W \\
+    Latitude of origin      & \texttt{+lat\_0}  & 49\degree N \\
+    First secant parallel   & \texttt{+lat\_1}  & 49\degree N \\
+    Second secant parallel  & \texttt{+lat\_2}  & 77\degree N \\
+    Semimajor radius        & \texttt{+a}       & 6378137\,m \\
+    Reciprocal flattening   & \texttt{+rf}      & 298.257222101 \\
+    \bottomhline
+  \end{tabular*}
+\end{table}
 
 
 % ======================================================================
