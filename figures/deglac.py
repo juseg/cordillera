@@ -12,7 +12,7 @@ res = '5km'
 records = records[0:3:2]
 offsets = offsets[0:3:2]
 ages = range(8, 23, 1)
-levs = [0] + ages
+levs = [-0.5] + ages
 cmap = plt.get_cmap('RdBu_r')
 cmap.set_over(darkgreen)
 
@@ -57,7 +57,8 @@ for i, rec in enumerate(records):
     ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5], colors='none', hatches=['//'])
     ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
     ax.contour(x[:], y[:], deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage, levels=[0], colors='k', linewidths=0.5)
+    ax.contour(x[:], y[:], deglacage, levels=[-0.5], colors='k',
+	       linestyles='solid', linewidths=0.5)
 
     # annotate
     annotate(ax, rec.upper())
