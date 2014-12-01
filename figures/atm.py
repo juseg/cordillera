@@ -9,7 +9,7 @@ from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
 
 # read atmosphere file
-res = '6km'
+res = '5km'
 nc = Dataset(atm_file % res)
 x = nc.variables['x']
 y = nc.variables['y']

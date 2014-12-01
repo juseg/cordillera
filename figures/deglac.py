@@ -8,11 +8,11 @@ from matplotlib.colors import BoundaryNorm, Normalize
 from paperglobals import *
 
 # parameters
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 ages = range(8, 23, 1)
-levs = [0] + ages
+levs = [-0.5] + ages
 cmap = plt.get_cmap('RdBu_r')
 cmap.set_over(darkgreen)
 
@@ -35,16 +35,16 @@ for i, rec in enumerate(records):
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
 
     # compute deglaciation age
     print 'computing deglaciation age...'
-    wasicefree = np.ones_like(mask[0].T)*0
-    readvance = np.ones_like(mask[0].T)*0
-    deglacage = np.ones_like(mask[0].T)*-1.0
+    wasicefree = np.ones_like(thk[0].T)*0
+    readvance = np.ones_like(thk[0].T)*0
+    deglacage = np.ones_like(thk[0].T)*-1.0
     for i, t in enumerate(time[:]*s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (mask[i].T == 2)
+        icy = (thk[i].T >= thkth)
         if -14.0 < t < -10.0:
             readvance = np.where(icy*wasicefree, 1, readvance)
             wasicefree = 1-icy
@@ -57,7 +57,8 @@ for i, rec in enumerate(records):
     ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5], colors='none', hatches=['//'])
     ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
     ax.contour(x[:], y[:], deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage, levels=[0], colors='k', linewidths=0.5)
+    ax.contour(x[:], y[:], deglacage, levels=[-0.5], colors='k',
+	       linestyles='solid', linewidths=0.5)
 
     # annotate
     annotate(ax, rec.upper())

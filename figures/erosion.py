@@ -8,9 +8,9 @@ from matplotlib.colors import BoundaryNorm, LogNorm
 from paperglobals import *
 
 # simulations used
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -27,7 +27,7 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = Dataset(this_run_path + '-extra.nc')
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     x = nc.variables['x']
     y = nc.variables['y']
     w = (3*x[0]-x[1])/2
@@ -35,7 +35,7 @@ for i, rec in enumerate(records):
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
     c = nc.variables['velbase_mag']
-    c = np.ma.array(c[:], mask=(mask[:] != 2))
+    c = np.ma.array(c[:], mask=(thk[:] < thkth))
     dist = c.sum(axis=0).T/10.0  # convert to km
 
     # set levels, colors and hatches

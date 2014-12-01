@@ -4,7 +4,7 @@
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
-from paperglobals import in2mm, run_path, s2ka
+from paperglobals import in2mm, run_path, s2ka, thkth
 
 # parameters
 tmin, tmax = -22.0, -8.0
@@ -25,17 +25,19 @@ def profiles(res, rec, dt, color):
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     topg = nc.variables['topg']
     usurf = nc.variables['usurf']
 
     # plot
     kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    if kmin == kmax:  # run has not reached tmin yet
+        return fig
     for ax, yp in zip(grid, yplist):
         ax.set_rasterization_zorder(2.5)
         j = np.argmin(np.abs(y[:]-yp))
         xpf = x[:]*1e-3
-        maskpf = mask[kmin:kmax, :, j] != 2
+        maskpf = thk[kmin:kmax, :, j] < thkth
         topgpf = topg[kmin:kmax, :, j]*1e-3
         surfpf = usurf[kmin:kmax, :, j]*1e-3
         surfpf = np.where(maskpf, topgpf, surfpf)  # apply topg where ice-free

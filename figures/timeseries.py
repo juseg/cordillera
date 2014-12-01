@@ -21,9 +21,18 @@ mis_iareas = np.zeros((len(records), 3), dtype=float)
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
 for i, rec in enumerate(records):
     dt = offsets[i]
+    this_run_path = run_path % (res, rec, dt*100)
 
     # get MIS times
-    mis_idces[i], mis_times[i] = get_mis_times(run_path % (res, rec, dt*100) + '-ts.nc')
+    mis_idces[i], mis_times[i] = get_mis_times(this_run_path + '-ts.nc')
+
+    # compute area from extra file
+    nc = Dataset(this_run_path + '-extra.nc')
+    ex_thk = nc.variables['thk']
+    ex_time = nc.variables['time']
+    ex_idces = [(np.abs(ex_time[:]*s2ka-t)).argmin() for t in mis_times[i]]
+    mis_iareas[i] = (ex_thk[ex_idces] > thkth).sum(axis=(1,2))*1e-4
+    nc.close()
 
     # load forcing time series
     nc = Dataset(dt_file % (rec, dt*100))
@@ -32,12 +41,10 @@ for i, rec in enumerate(records):
     nc.close()
 
     # load output time series
-    nc = Dataset(run_path % ('10km', rec, dt*100) + '-ts.nc')
+    nc = Dataset(this_run_path + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
-    ts_iarea = nc.variables['iarea'][:]/1e12
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
-    mis_iareas[i] = ts_iarea[mis_idces[i]]
     mis_ivols[i] = ts_ivol[mis_idces[i]]
 
     # print info in table style
@@ -54,7 +61,7 @@ for i, rec in enumerate(records):
 
     # look for a high-resolution run
     try:
-        nc = Dataset(run_path % ('6km', rec, dt*100) + '-ts.nc')
+        nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

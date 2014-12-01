@@ -9,9 +9,9 @@ from iceplot import plot as iplt
 from paperglobals import *
 
 # parameters
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -28,16 +28,16 @@ for i, rec in enumerate(records):
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
 
     # compute deglaciation age
     print 'computing deglaciation age...'
-    wasicefree = np.ones_like(mask[0].T)*0
-    readvance = np.ones_like(mask[0].T)*0
-    deglacage = np.ones_like(mask[0].T)*-1.0
+    wasicefree = np.ones_like(thk[0].T)*0
+    readvance = np.ones_like(thk[0].T)*0
+    deglacage = np.ones_like(thk[0].T)*-1.0
     for i, t in enumerate(time[:]*s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (mask[i].T == 2)
+        icy = (thk[i].T >= thkth)
         if -14.0 < t < -10.0:
             readvance = np.where(icy*wasicefree, 1, readvance)
             wasicefree = 1-icy

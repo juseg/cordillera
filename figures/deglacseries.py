@@ -8,8 +8,8 @@ from matplotlib.patches import Rectangle
 from paperglobals import *
 
 # parameters
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 colors = [darkblue, darkred]
 
 # initialize time-series figure
@@ -31,7 +31,7 @@ for i, rec in enumerate(records):
     ax1.plot(dt_time, dt_temp, color=colors[i], label=labels[i])
 
     # plot output time series
-    for res in ('10km', '6km'):
+    for res in ('10km', '5km'):
         nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]

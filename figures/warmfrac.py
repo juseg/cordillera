@@ -8,9 +8,9 @@ from matplotlib.colors import BoundaryNorm, LogNorm
 from paperglobals import *
 
 # simulations used
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -34,11 +34,11 @@ for i, rec in enumerate(records):
     e = (3*x[-1]-x[-2])/2 - (x[-1]-x[-2])/2  # weird but works
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
-    mask = nc.variables['mask']
+    thk = nc.variables['thk']
     temp = nc.variables['temppabase']
 
     # compute duration of warm-based coved
-    warm = np.ma.array((temp[:] > -1e-9), mask=(mask[:] != 2))
+    warm = np.ma.array((temp[:] > -1e-9), mask=(thk[:] < thkth))
     warm = warm.mean(axis=0).T
 
     # set levels, colors and hatches

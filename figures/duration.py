@@ -8,9 +8,9 @@ from matplotlib.colors import BoundaryNorm
 from paperglobals import *
 
 # simulations used
-res = '6km'
-records = ['grip', 'epica']
-offsets = [5.8, 5.6]
+res = '5km'
+records = records[0:3:2]
+offsets = offsets[0:3:2]
 cislevs = [29.0, 29.0]
 
 # initialize figure
@@ -29,10 +29,10 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = Dataset(this_run_path + '-extra.nc')
-    mask = nc.variables['mask']
     x = nc.variables['x']
     y = nc.variables['y']
-    icecover = (mask[:] == 2).sum(axis=0).T
+    thk = nc.variables['thk']
+    icecover = (thk[:] >= thkth).sum(axis=0).T
     icecover *= 120.0/len(nc.variables['time'])
 
     # set contour levels, colors and hatches
