@@ -26,8 +26,8 @@ pism_dir = '/home/julien/pism/'
 atm_file = pism_dir + 'input/atm/cordillera-narr-%s-bl.nc'  # % res
 boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'  # % res
 dt_file = pism_dir + 'input/dt/%s-3222-cool%i.nc'  # % rec, 10*dt
-run_path = pism_dir + 'output/cordillera-narr-%s-bl/' \
-                      '%s3222cool%i+ccyc2+till1545/y0120000'  # % res, rec, 10*dt
+run_path = (pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s-bl/'
+            '%s3222cool%i+ccyc4+till1545/y0120000')  # % res, rec, 10*dt
 
 # default params
 res = '10km'
@@ -65,7 +65,7 @@ records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
 labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
 colors = [darkblue, lightblue, darkred, lightred, darkgreen, lightgreen]
 markers = ['s', 'D', 'o', 'h', 'v', '^']
-offsets = [5.6, 6.0, 5.4, 5.5, 5.6, 5.6]
+offsets = [6.0, 6.4, 5.8, 5.9, 6.0, 5.7]
 
 # default thickness threshold
 thkth = 1.0
