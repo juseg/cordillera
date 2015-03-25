@@ -9,8 +9,14 @@ ALL_FIGS = $(PY_FIGS)
 
 all: data $(ALL_FIGS)
 
-$(PY_FIGS): %.pdf : %.py
+$(PY_FIGS): %.pdf : %.py paperglobals.py
 	python2 $<
+
+icemaps-mis4.pdf: icemaps.py
+icemaps-mis3.pdf: icemaps.py
+icemaps-mis2.pdf: icemaps.py
+profiles-grip.pdf: profiles.py
+profiles-epica.pdf: profiles.py
 
 .PHONY : data clean
 
