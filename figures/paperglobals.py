@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('iceplot')
 
+import os
 import numpy as np
 import brewer2mpl
 from netCDF4 import Dataset
@@ -22,7 +23,7 @@ s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 
 # file paths
-pism_dir = '/home/julien/pism/'
+pism_dir = os.environ['HOME'] + '/pism/'
 atm_file = pism_dir + 'input/atm/cordillera-narr-%s-bl.nc'  # % res
 boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'  # % res
 dt_file = pism_dir + 'input/dt/%s-3222-cool%i.nc'  # % rec, 10*dt
