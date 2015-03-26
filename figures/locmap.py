@@ -28,7 +28,7 @@ proj = ccrs.LambertConformal(
 # ETOPO1 background topo
 def draw_etopo1(**kwargs):
     """Draw ETOPO1 background and coastline"""
-    nc = Dataset('data/etopo1.nc')
+    nc = ncopen('data/etopo1.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     z = nc.variables['Band1']

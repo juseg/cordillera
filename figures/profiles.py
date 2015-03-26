@@ -2,9 +2,8 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
-from paperglobals import in2mm, run_path, s2ka, thkth
+from paperglobals import in2mm, run_path, s2ka, thkth, ncopen
 
 # parameters
 tmin, tmax = -22.0, -8.0
@@ -21,7 +20,7 @@ def profiles(res, rec, dt, color):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = Dataset(run_path % (res, rec, 100*dt) + '-extra.nc')
+    nc = ncopen(run_path % (res, rec, 100*dt) + '-extra.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

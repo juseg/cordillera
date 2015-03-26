@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from matplotlib.colors import BoundaryNorm
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
@@ -10,7 +9,7 @@ from paperglobals import *
 
 # read atmosphere file
 res = '5km'
-nc = Dataset(atm_file % res)
+nc = ncopen(atm_file % res)
 x = nc.variables['x']
 y = nc.variables['y']
 temp = nc.variables['air_temp']

@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
@@ -28,7 +27,7 @@ def icemaps(mis):
         t = get_mis_times(this_run_path + '-ts.nc')[-1][1-mis]
 
         # load extra output
-        nc = Dataset(this_run_path + '-extra.nc')
+        nc = ncopen(this_run_path + '-extra.nc')
         time = nc.variables['time'][:]*s2ka
 
         # round maximum time to nearest slice

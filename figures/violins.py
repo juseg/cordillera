@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from paperglobals import *
 import seaborn as sns
@@ -19,7 +18,7 @@ fig, ax = plt.subplots()
 data = []
 for i, rec in enumerate(records):
     dt = offsets[i]
-    nc = Dataset(run_path % ('10km', rec, dt*100) + '-ts.nc')
+    nc = ncopen(run_path % ('10km', rec, dt*100) + '-ts.nc')
     slvol = nc.variables['slvol'][:]
     nc.close()
     data.append(slvol)

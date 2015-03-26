@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import FuncFormatter
@@ -30,7 +29,7 @@ for i, rec in enumerate(records):
     mis_idces, mis_times = get_mis_times(this_run_path + '-ts.nc')
 
     # load extra output
-    nc = Dataset(this_run_path + '-extra.nc')
+    nc = ncopen(this_run_path + '-extra.nc')
     time = nc.variables['time'][:]*s2ka
 
     # round snapshot times to nearest slice

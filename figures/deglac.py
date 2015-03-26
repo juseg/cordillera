@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
 from paperglobals import *
@@ -31,7 +30,7 @@ for i, rec in enumerate(records):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = Dataset(this_run_path + '-extra.nc')
+    nc = ncopen(this_run_path + '-extra.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

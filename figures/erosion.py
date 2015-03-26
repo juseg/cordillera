@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm
 from paperglobals import *
@@ -26,7 +25,7 @@ for i, rec in enumerate(records):
     this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # load extra output
-    nc = Dataset(this_run_path + '-extra.nc')
+    nc = ncopen(this_run_path + '-extra.nc')
     thk = nc.variables['thk']
     x = nc.variables['x']
     y = nc.variables['y']

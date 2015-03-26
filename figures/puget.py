@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm
 from matplotlib.ticker import FuncFormatter
@@ -20,7 +19,7 @@ fig = iplt.gridfigure((25.0, 25.0), (4, 3), axes_pad=2.5*in2mm,
 # load extra output
 print 'reading extra output...'
 this_run_path = run_path % ('5km', 'grip', 560)
-nc = Dataset(this_run_path + '-extra.nc')
+nc = ncopen(this_run_path + '-extra.nc')
 
 # loop on records[i]
 for i, t in enumerate(times):

@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from matplotlib.patches import Rectangle
 from paperglobals import *
@@ -24,7 +23,7 @@ for i, rec in enumerate(records):
     dt = offsets[i]
 
     # plot forcing time series
-    nc = Dataset(dt_file % (rec, dt*100))
+    nc = ncopen(dt_file % (rec, dt*100))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
@@ -32,7 +31,7 @@ for i, rec in enumerate(records):
 
     # plot output time series
     for res in ('10km', '5km'):
-        nc = Dataset(run_path % (res, rec, dt*100) + '-ts.nc')
+        nc = ncopen(run_path % (res, rec, dt*100) + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

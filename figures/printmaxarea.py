@@ -3,7 +3,6 @@
 
 import os.path
 import numpy as np
-from netCDF4 import Dataset
 from paperglobals import *
 
 offsets = np.arange(5.4, 6.8, 0.1)
@@ -32,7 +31,7 @@ for i, dt in enumerate(offsets):
             idx, t = idx[-1], t[-1]
         
             # compute area from extra file
-            nc = Dataset(this_run_path + '-extra.nc')
+            nc = ncopen(this_run_path + '-extra.nc')
             thk = nc.variables['thk']
             time = nc.variables['time']
             idx = np.abs(time[:]*s2ka-t).argmin()

@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from matplotlib.patches import Rectangle
 from paperglobals import *
@@ -27,7 +26,7 @@ for i, rec in enumerate(records):
     mis_idces[i], mis_times[i] = get_mis_times(this_run_path + '-ts.nc')
 
     # compute area from extra file
-    nc = Dataset(this_run_path + '-extra.nc')
+    nc = ncopen(this_run_path + '-extra.nc')
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
     ex_idces = [(np.abs(ex_time[:]*s2ka-t)).argmin() for t in mis_times[i]]
@@ -35,13 +34,13 @@ for i, rec in enumerate(records):
     nc.close()
 
     # load forcing time series
-    nc = Dataset(dt_file % (rec, dt*100))
+    nc = ncopen(dt_file % (rec, dt*100))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
 
     # load output time series
-    nc = Dataset(this_run_path + '-ts.nc')
+    nc = ncopen(this_run_path + '-ts.nc')
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
@@ -61,7 +60,7 @@ for i, rec in enumerate(records):
 
     # look for a high-resolution run
     try:
-        nc = Dataset(run_path % ('5km', rec, dt*100) + '-ts.nc')
+        nc = ncopen(run_path % ('5km', rec, dt*100) + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

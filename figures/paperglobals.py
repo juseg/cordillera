@@ -8,7 +8,6 @@ sys.path.append('iceplot')
 import os
 import numpy as np
 import brewer2mpl
-from netCDF4 import Dataset
 from matplotlib.cm import get_cmap
 from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
@@ -73,6 +72,12 @@ thkth = 1.0
 
 
 # analysis functions
+def ncopen(filepath):
+    from netCDF4 import Dataset
+    nc = Dataset(filepath)
+    return nc
+
+
 def bounded_argmin(a, coord, bmin, bmax):
     return np.ma.argmin(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
@@ -85,7 +90,7 @@ def get_mis_times(filename):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
-    nc = Dataset(filename)
+    nc = ncopen(filename)
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
@@ -114,7 +119,7 @@ def annotate(ax, s, bottom=False):
 
 def draw_boot_topo(grid, res):
     from matplotlib.pyplot import sca
-    nc = Dataset(boot_file % res)
+    nc = ncopen(boot_file % res)
     for ax in grid:
         sca(ax)
         im = iplt.imshow(nc, 'topg',
@@ -125,7 +130,7 @@ def draw_boot_topo(grid, res):
 
 def draw_coastline(grid, res):
     from matplotlib.pyplot import sca
-    nc = Dataset(boot_file % res)
+    nc = ncopen(boot_file % res)
     for ax in grid:
         sca(ax)
         cs = iplt.contour(nc, 'topg', levels=[0.0],

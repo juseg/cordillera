@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from matplotlib.patches import Rectangle
 from paperglobals import *
@@ -41,13 +40,13 @@ for i, per in enumerate(periods):
         mis_idces[j], mis_times[j] = get_mis_times(this_run_path + '-ts.nc')
 
         # load forcing time series
-        nc = Dataset(dt_file % (rec, per))
+        nc = ncopen(dt_file % (rec, per))
         dt_time = nc.variables['time'][:]*1e-3
         dt_temp = nc.variables['delta_T'][:]
         nc.close()
 
         # load output time series
-        nc = Dataset(this_run_path + '-ts.nc')
+        nc = ncopen(this_run_path + '-ts.nc')
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
