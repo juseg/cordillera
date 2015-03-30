@@ -67,8 +67,16 @@ thkth = 1.0
 
 # file open functions
 def ncopen(filepath):
-    from netCDF4 import Dataset
-    nc = Dataset(filepath)
+    import glob
+    filelist = glob.glob(filepath)
+    if len(filelist) < 1:
+	raise RuntimeError('could not find %s' % filepath)
+    elif len(filelist) > 1:
+        from netCDF4 import MFDataset
+        nc = MFDataset(filepath)
+    else:
+        from netCDF4 import Dataset
+        nc = Dataset(filelist[0])
     return nc
 
 def open_atm_file(res):
@@ -86,12 +94,12 @@ def open_sd_file(res):
 
 def open_ts_file(res, rec, dt, period='3222'):
     return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
-                  '%s%scool%i+ccyc4+till1545/y0120000-ts.nc'
+                  '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
                   % (res, rec, period, round(100*dt)))
 
 def open_extra_file(res, rec, dt, period='3222'):
     return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
-                  '%s%scool%i+ccyc4+till1545/y0120000-extra.nc'
+                  '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
                   % (res, rec, period, round(100*dt)))
 
 
