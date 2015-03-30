@@ -21,13 +21,12 @@ def icemaps(mis):
     for i, rec in enumerate(records):
         ax = fig.grid[i]
         ax.set_rasterization_zorder(2.5)
-        this_run_path = run_path % (res, rec, offsets[i]*100)
 
         # get ice volume maximum
-        t = get_mis_times(this_run_path + '-ts.nc')[-1][1-mis]
+        t = get_mis_times(res, rec, offsets[i])[-1][1-mis]
 
         # load extra output
-        nc = ncopen(this_run_path + '-extra.nc')
+        nc = open_extra_file(res, rec, offsets[i])
         time = nc.variables['time'][:]*s2ka
 
         # round maximum time to nearest slice

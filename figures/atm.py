@@ -9,12 +9,11 @@ from paperglobals import *
 
 # read atmosphere file
 res = '5km'
-nc = ncopen(atm_file % res)
+nc = open_atm_file(res)
 x = nc.variables['x']
 y = nc.variables['y']
 temp = nc.variables['air_temp']
 prec = nc.variables['precipitation']
-stdv = nc.variables['air_temp_sd']
 
 # initialize figure
 figw, figh = 85.0, 120.0
@@ -47,6 +46,13 @@ for i in range(2):
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
 cb.set_label(r'Precipitation (mm)')
+nc.close()
+
+# read standard deviation file
+nc = open_sd_file(res)
+x = nc.variables['x']
+y = nc.variables['y']
+stdv = nc.variables['air_temp_sd']
 
 # plot standard deviation
 print 'plotting standard deviation maps...'

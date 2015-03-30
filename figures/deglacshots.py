@@ -19,10 +19,9 @@ fig = iplt.gridfigure((22.5, 45.0), (len(records), 4), axes_pad=2.5*in2mm,
 
 # loop on records
 for i, rec in enumerate(records):
-    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # load extra output
-    nc = ncopen(this_run_path + '-extra.nc')
+    nc = open_extra_file(res, rec, offsets[i])
     time = nc.variables['time'][:]*s2ka
 
     # round plotting times to nearest slices

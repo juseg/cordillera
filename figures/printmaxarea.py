@@ -17,21 +17,15 @@ for i, dt in enumerate(offsets):
 
     # for each record
     for j, rec in enumerate(records):
-        this_run_path = run_path % (res, rec, round(dt*100))
 
-        # if no file, print a blank line
-        if not os.path.isfile(this_run_path + '-ts.nc'):
-            print '|     -- ',
-
-        # else print the MIS2 area
-        else:
-
+        # try to print MIS2 area
+        try:
             # get MIS2 time
-            idx, t = get_mis_times(this_run_path + '-ts.nc')
+            idx, t = get_mis_times(res, rec, dt)
             idx, t = idx[-1], t[-1]
         
             # compute area from extra file
-            nc = ncopen(this_run_path + '-extra.nc')
+            nc = open_extra_file(res, rec, dt)
             thk = nc.variables['thk']
             time = nc.variables['time']
             idx = np.abs(time[:]*s2ka-t).argmin()
@@ -44,6 +38,10 @@ for i, dt in enumerate(offsets):
 
             # print
             print '| %7.3f' % (iarea-2.0),
+
+        # else print a blank cell
+        except RuntimeError:
+            print '|     -- ',
 
 # print table footer
 print '\n'

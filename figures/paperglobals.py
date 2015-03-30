@@ -20,14 +20,8 @@ in2mm = 1/25.4
 pt2mm = 72*in2mm
 s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
-
 # file paths
 pism_dir = os.environ['HOME'] + '/pism/'
-atm_file = pism_dir + 'input/atm/cordillera-narr-%s-bl.nc'  # % res
-boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'  # % res
-dt_file = pism_dir + 'input/dt/%s-3222-cool%i.nc'  # % rec, 10*dt
-run_path = (pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s-bl/'
-            '%s3222cool%i+ccyc4+till1545/y0120000')  # % res, rec, 10*dt
 
 # default params
 res = '10km'
@@ -71,13 +65,37 @@ offsets = [6.0, 6.4, 5.8, 5.9, 6.0, 5.7]
 thkth = 1.0
 
 
-# analysis functions
+# file open functions
 def ncopen(filepath):
     from netCDF4 import Dataset
     nc = Dataset(filepath)
     return nc
 
+def open_atm_file(res):
+    return ncopen(pism_dir + 'input/atm/cordillera-narr-%s.nc' % res)
 
+def open_boot_file(res):
+    return ncopen(pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc' % res)
+
+def open_dt_file(rec, dt, period='3222'):
+    return ncopen(pism_dir + 'input/dt/%s-%s-cool%i.nc'
+                  % (rec, period, round(100*dt)))
+
+def open_sd_file(res):
+    return ncopen(pism_dir + 'input/sd/cordillera-narr-%s.nc' % res)
+
+def open_ts_file(res, rec, dt, period='3222'):
+    return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+                  '%s%scool%i+ccyc4+till1545/y0120000-ts.nc'
+                  % (res, rec, period, round(100*dt)))
+
+def open_extra_file(res, rec, dt, period='3222'):
+    return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+                  '%s%scool%i+ccyc4+till1545/y0120000-extra.nc'
+                  % (res, rec, period, round(100*dt)))
+
+
+# analysis functions
 def bounded_argmin(a, coord, bmin, bmax):
     return np.ma.argmin(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
@@ -86,11 +104,11 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
-def get_mis_times(filename):
+def get_mis_times(res, rec, dt, period='3222'):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
-    nc = ncopen(filename)
+    nc = open_ts_file(res, rec, dt, period=period)
     ts_time = nc.variables['time'][:]*s2ka
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
@@ -119,7 +137,7 @@ def annotate(ax, s, bottom=False):
 
 def draw_boot_topo(grid, res):
     from matplotlib.pyplot import sca
-    nc = ncopen(boot_file % res)
+    nc = open_boot_file(res)
     for ax in grid:
         sca(ax)
         im = iplt.imshow(nc, 'topg',
@@ -130,7 +148,7 @@ def draw_boot_topo(grid, res):
 
 def draw_coastline(grid, res):
     from matplotlib.pyplot import sca
-    nc = ncopen(boot_file % res)
+    nc = open_boot_file(res)
     for ax in grid:
         sca(ax)
         cs = iplt.contour(nc, 'topg', levels=[0.0],

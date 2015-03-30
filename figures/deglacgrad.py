@@ -19,11 +19,10 @@ fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
 # loop on records
 for i, rec in enumerate(records):
     ax = fig.grid[i]
-    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = ncopen(this_run_path + '-extra.nc')
+    nc = open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

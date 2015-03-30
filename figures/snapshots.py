@@ -23,13 +23,12 @@ remove_ticks(grid)
 # loop on records[i]
 for i, rec in enumerate(records):
     print 'reading %s extra output...' % rec
-    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # get MIS times
-    mis_idces, mis_times = get_mis_times(this_run_path + '-ts.nc')
+    mis_idces, mis_times = get_mis_times(res, rec, offsets[i])
 
     # load extra output
-    nc = ncopen(this_run_path + '-extra.nc')
+    nc = open_extra_file(res, rec, offsets[i])
     time = nc.variables['time'][:]*s2ka
 
     # round snapshot times to nearest slice

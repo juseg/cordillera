@@ -23,10 +23,9 @@ for i, rec in enumerate(records):
     print 'reading %s extra output...' % rec
     ax = fig.grid[i]
     ax.set_rasterization_zorder(2.5)
-    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
-    nc = ncopen(this_run_path + '-extra.nc')
+    nc = open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     w = (3*x[0]-x[1])/2

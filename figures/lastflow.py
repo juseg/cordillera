@@ -27,11 +27,10 @@ draw_boot_topo(fig.grid, res)
 for i, rec in enumerate(records):
     ax = fig.grid[i]
     ax.set_rasterization_zorder(2.5)
-    this_run_path = run_path % (res, rec, offsets[i]*100)
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = ncopen(this_run_path + '-extra.nc')
+    nc = open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

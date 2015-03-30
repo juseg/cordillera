@@ -18,8 +18,7 @@ fig = iplt.gridfigure((25.0, 25.0), (4, 3), axes_pad=2.5*in2mm,
 
 # load extra output
 print 'reading extra output...'
-this_run_path = run_path % ('5km', 'grip', 560)
-nc = ncopen(this_run_path + '-extra.nc')
+nc = open_extra_file('5km', 'grip', 6.0)
 
 # loop on records[i]
 for i, t in enumerate(times):

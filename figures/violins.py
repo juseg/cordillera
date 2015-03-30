@@ -18,7 +18,7 @@ fig, ax = plt.subplots()
 data = []
 for i, rec in enumerate(records):
     dt = offsets[i]
-    nc = ncopen(run_path % ('10km', rec, dt*100) + '-ts.nc')
+    nc = open_ts_file('10km', rec, dt)
     slvol = nc.variables['slvol'][:]
     nc.close()
     data.append(slvol)

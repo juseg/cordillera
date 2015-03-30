@@ -23,7 +23,7 @@ for i, rec in enumerate(records):
     dt = offsets[i]
 
     # plot forcing time series
-    nc = ncopen(dt_file % (rec, dt*100))
+    nc = open_dt_file(rec, dt)
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
@@ -31,7 +31,7 @@ for i, rec in enumerate(records):
 
     # plot output time series
     for res in ('10km', '5km'):
-        nc = ncopen(run_path % (res, rec, dt*100) + '-ts.nc')
+        nc = open_ts_file(res, rec, dt)
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

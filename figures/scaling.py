@@ -7,12 +7,9 @@ from matplotlib.patches import Rectangle
 from paperglobals import *
 
 # parametres
+res = '20km'
+dt = 6.0
 periods = 3020 + np.arange(5)*101
-
-# file paths
-dt_file = pism_dir + 'input/dt/%s-%s-cool600.nc'  # % rec, per
-run_path = pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-20km-bl/' \
-                      '%s%scool600+ccyc4+till1545/y0120000'  # % rec, per
 
 # initialize time-series figure
 figw, figh = 120.0, 80.0
@@ -34,19 +31,18 @@ for i, per in enumerate(periods):
 
     # loop on records[i]
     for j, rec in enumerate(records):
-        this_run_path = run_path % (rec, per)
 
         # get MIS times
-        mis_idces[j], mis_times[j] = get_mis_times(this_run_path + '-ts.nc')
+        mis_idces[j], mis_times[j] = get_mis_times(res, rec, dt, per)
 
         # load forcing time series
-        nc = ncopen(dt_file % (rec, per))
+        nc = open_dt_file(rec, dt, period=per)
         dt_time = nc.variables['time'][:]*1e-3
         dt_temp = nc.variables['delta_T'][:]
         nc.close()
 
         # load output time series
-        nc = ncopen(this_run_path + '-ts.nc')
+        nc = open_ts_file(res, rec, dt, period=per)
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
