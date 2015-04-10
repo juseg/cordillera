@@ -71,10 +71,7 @@ for j in range(3):
             transform=ax.transAxes)
 
 # mark location of the skeena mountains
-grid[8].annotate('SM', xy=(-2000e3, 1450e3), xytext=(-1100e3, 1450e3),
-                       ha='center', va='center',
-                       bbox=dict(ec='k', fc='w', alpha=1.0),
-                       arrowprops=dict(arrowstyle="->"))
+add_pointer_tag(grid[8], 'SM', xy=(-2000e3, 1450e3), xytext=(-1100e3, 1450e3))
 
 # add colorbar and save
 cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],
