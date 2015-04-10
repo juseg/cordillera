@@ -132,14 +132,15 @@ def get_mis_times(res, rec, dt, period='3222'):
 
 
 # plotting functions
-def annotate(ax, s, bottom=False):
+def add_corner_tag(ax, s, ha='right', va='top'):
     fig = ax.get_figure()
-    xoffset = -2.5*in2mm
-    yoffset = (2*bottom-1)*2.5*in2mm  # pos. if bottom else neg.
+    x = (ha == 'right')  # 0 for left edge, 1 for right edge
+    y = (va == 'top')  # 0 for bottom edge, 1 for top edge
+    xoffset = (1 - 2*x)*2.5*in2mm
+    yoffset = (1 - 2*y)*2.5*in2mm
     offset = ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
-    return ax.text(1, 1-bottom, s,
-                   ha='right', va=('bottom' if bottom else 'top'),
-                   bbox=dict(ec='k', fc='w', alpha=1.0, pad=2.5*pt2mm),
+    return ax.text(x, y, s, ha=ha, va=va,
+                   bbox=dict(ec='k', fc='w', pad=2.5*pt2mm),
                    transform=ax.transAxes + offset)
 
 

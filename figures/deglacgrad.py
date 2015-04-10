@@ -54,7 +54,7 @@ for i, rec in enumerate(records):
     ax.contour(x[:], y[:], deglacage.mask, levels=[0.5], colors='k', linewidths=0.5)
 
     # annotate
-    annotate(ax, rec.upper())
+    add_corner_tag(ax, rec.upper())
 
 # add colorbar and save
 print 'saving...'

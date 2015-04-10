@@ -71,8 +71,8 @@ draw_boot_topo(grid, res)
 draw_coastline(grid, res)
 
 # annotate
-annotate(grid[2], 'January')
-annotate(grid[5], 'July')
+add_corner_tag(grid[2], 'January')
+add_corner_tag(grid[5], 'July')
 
 # save
 fig.savefig('atm')

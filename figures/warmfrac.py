@@ -52,7 +52,7 @@ for i, rec in enumerate(records):
     ax.contour(x[:], y[:], warm.mask, [0.5], colors='k', linewidths=0.5)
 
     # close extra file
-    annotate(ax, rec.upper())
+    add_corner_tag(ax, rec.upper())
     nc.close()
 
 # locate Skeena Mountains

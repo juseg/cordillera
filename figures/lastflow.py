@@ -84,7 +84,7 @@ for i, rec in enumerate(records):
                          lw=0.25, ls='--', dashes=(2, 2))
 
     # annotate
-    annotate(ax, rec.upper())
+    add_corner_tag(ax, rec.upper())
     nc.close()
 
 # locate Liard Lowland and Fraser Plateau

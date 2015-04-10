@@ -59,7 +59,7 @@ for i, rec in enumerate(records):
 	       linestyles='solid', linewidths=0.5)
 
     # annotate
-    annotate(ax, rec.upper())
+    add_corner_tag(ax, rec.upper())
 
     # add profile lines
     for yp in [1.7e6, 1.4e6, 1.1e6, 0.8e6]:

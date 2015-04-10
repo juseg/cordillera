@@ -52,7 +52,7 @@ for i, t in enumerate(times):
     ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
     ax.contour(icy, levels=[0.5], colors='k')
     ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
-    annotate(ax, '%s kyr' % (time))
+    add_corner_tag(ax, '%s kyr' % (time))
 
 # add colorbar and save
 #cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],

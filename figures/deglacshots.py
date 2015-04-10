@@ -44,7 +44,7 @@ for i, rec in enumerate(records):
                      cmap=None, colors='k', linewidths=0.25)
         im = iplt.imshow(nc, 'velsurf_mag', t, ax, thkth=thkth,
                          cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-        annotate(ax, '%s kyr' % time[t])
+        add_corner_tag(ax, '%s kyr' % time[t])
 
         # add profile lines
         for yp in [1.7e6, 1.4e6, 1.1e6, 0.8e6]:
@@ -52,7 +52,7 @@ for i, rec in enumerate(records):
                     lw=0.25, ls='--', dashes=(2, 2))
 
     # add record label
-    annotate(ax, rec.upper(), bottom=True)
+    add_corner_tag(ax, rec.upper(), va='bottom')
 
     # close extra file
     nc.close()

@@ -54,7 +54,7 @@ for i, rec in enumerate(records):
         iplt.contour(nc, 'usurf', t, ax=ax, thkth=thkth,
                      levels=range(1000, 5000, 1000),
                      cmap=None, colors='k', linewidths=0.25)
-        annotate(ax, '%s kyr' % (mis_times[j]))
+        add_corner_tag(ax, '%s kyr' % (mis_times[j]))
 
     # close extra file
     nc.close()

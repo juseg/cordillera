@@ -50,7 +50,7 @@ for i, rec in enumerate(records):
 
     # close extra file
     nc.close()
-    annotate(ax, rec.upper())
+    add_corner_tag(ax, rec.upper())
 
 # locate major mountain ranges
 txtkwa = dict(ha='center', va='center',
