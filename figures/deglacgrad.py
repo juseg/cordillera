@@ -4,7 +4,7 @@
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, Normalize
-from iceplot import plot as iplt
+from iceplotlib import plot as iplt
 from paperglobals import *
 
 # parameters

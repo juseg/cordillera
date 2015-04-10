@@ -3,14 +3,14 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
 import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
 import cartopy.feature as cfeature
-from iceplot import cm as icm
+from iceplotlib import cm as icm
 from paperglobals import *
 
 in2mm = 1/25.4

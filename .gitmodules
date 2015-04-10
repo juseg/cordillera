@@ -1,6 +1,6 @@
 [submodule "refs"]
 	path = refs
 	url = git@bitbucket.org:jsegu/references.git
-[submodule "figures/iceplot"]
-	path = figures/iceplot
-	url = git@github.com:jsegu/iceplot.git
+[submodule "figures/iceplotlib"]
+	path = figures/iceplotlib
+	url = git@github.com:jsegu/iceplotlib.git

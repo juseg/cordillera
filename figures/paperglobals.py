@@ -3,7 +3,7 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
 import os
 import numpy as np
@@ -11,8 +11,8 @@ import brewer2mpl
 from matplotlib.cm import get_cmap
 from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
-from iceplot.cm import velocity
-from iceplot import plot as iplt
+from iceplotlib.cm import velocity
+from iceplotlib import plot as iplt
 
 
 # unit conversion
