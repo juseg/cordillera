@@ -70,8 +70,8 @@ for i, rec in enumerate(records):
 
 # mark true MIS stages
 # source: http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
-ax2.axvspan(-71, -57, fc='0.95', lw=0.25)
-ax2.axvspan(-29, -14, fc='0.95', lw=0.25)
+ax2.axvspan(-71, -57, fc='0.85', lw=0.25)
+ax2.axvspan(-29, -14, fc='0.85', lw=0.25)
 ax2.text((-120-71)/2, 4.5, 'MIS 5', ha='center')
 ax2.text((-71-57)/2, 0.5, 'MIS 4', ha='center')
 ax2.text((-57-29)/2, 8.0, 'MIS 3', ha='center')
