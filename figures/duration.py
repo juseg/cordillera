@@ -10,7 +10,7 @@ from paperglobals import *
 res = '5km'
 records = records[0:3:2]
 offsets = offsets[0:3:2]
-cislevs = [29.0, 29.0]
+cislevs = [32.0, 26.0]
 
 # initialize figure
 fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
@@ -44,9 +44,14 @@ for i, rec in enumerate(records):
     # plot
     cf = ax.contourf(x[:], y[:], icecover, levels=levs, alpha=0.75,
                      colors=colors, hatches=hatches)
-    cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k', linewidths=0.25)
+    cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k',
+                    linewidths=0.25)
     cs.clabel(fontsize=6, fmt='%i ka', manual=[(-1825e3, 1000e3)])
     ax.contour(x[:], y[:], icecover, [levs[0]], colors='k', linewidths=0.5)
+
+    # to display the first discontinuous contour
+    #cs = ax.contour(x[:], y[:], icecover, [cislevs[i]+1.0], colors='green',
+    #                linewidths=0.25)
 
     # close extra file
     nc.close()
