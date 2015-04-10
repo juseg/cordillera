@@ -53,17 +53,14 @@ for i, rec in enumerate(records):
     add_corner_tag(ax, rec.upper())
 
 # locate major mountain ranges
-txtkwa = dict(ha='center', va='center',
-              bbox=dict(ec='k', fc='w', alpha=1.0),
-              arrowprops=dict(arrowstyle="->"))
-ax.annotate('AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3), **txtkwa)
-ax.annotate('SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3), **txtkwa)
-ax.annotate('CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3), **txtkwa)
-ax.annotate('NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3), **txtkwa)
-ax.annotate('WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3), **txtkwa)
-ax.annotate('SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3), **txtkwa)
-ax.annotate('NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3), **txtkwa)
-ax.annotate('CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3), **txtkwa)
+add_pointer_tag(ax, 'AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3))
+add_pointer_tag(ax, 'SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3))
+add_pointer_tag(ax, 'CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3))
+add_pointer_tag(ax, 'NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3))
+add_pointer_tag(ax, 'WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3))
+add_pointer_tag(ax, 'SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3))
+add_pointer_tag(ax, 'NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3))
+add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
 
 # add colorbar and save
 cb = fig.colorbar(cf, ax.cax)

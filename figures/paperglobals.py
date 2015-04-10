@@ -144,6 +144,13 @@ def add_corner_tag(ax, s, ha='right', va='top'):
                    transform=ax.transAxes + offset)
 
 
+def add_pointer_tag(ax, s, xy, xytext):
+    return ax.annotate(s, xy=xy, xytext=xytext, ha='center', va='center',
+                       xycoords='data', textcoords='data',
+                       bbox=dict(ec='k', fc='w', boxstyle='square'),
+                       arrowprops=dict(arrowstyle="->"))
+
+
 def draw_boot_topo(grid, res):
     from matplotlib.pyplot import sca
     nc = open_boot_file(res)

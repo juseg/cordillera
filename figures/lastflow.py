@@ -88,12 +88,9 @@ for i, rec in enumerate(records):
     nc.close()
 
 # locate Liard Lowland and Fraser Plateau
-txtkwa = dict(ha='center', va='center',
-              bbox=dict(ec='k', fc='w', alpha=1.0),
-              arrowprops=dict(arrowstyle="->"))
 ax.set_rasterization_zorder(2.5)
-ax.annotate('LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3), **txtkwa)
-ax.annotate('IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3), **txtkwa)
+add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))
+add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 
 # add colorbar and save
 print 'saving...'
