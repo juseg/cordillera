@@ -62,9 +62,11 @@ for i, rec in enumerate(records):
     add_corner_tag(ax, rec.upper())
 
     # add profile lines
-    for yp in [1.7e6, 1.4e6, 1.1e6, 0.8e6]:
+    for k, yp in enumerate([1.7e6, 1.4e6, 1.1e6, 0.8e6]):
         ax.plot([-2.4e6, -1.25e6], [yp, yp], 'k|',
                          lw=0.25, ls='--', dashes=(2, 2))
+        ax.text(-1.225e6, yp, chr(65+k), ha='left', va='bottom')
+
 
 # add colorbar and save
 print 'saving deglac...'

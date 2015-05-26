@@ -32,7 +32,8 @@ def profiles(res, rec, dt, color):
     kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
     if kmin == kmax:  # run has not reached tmin yet
         return fig
-    for ax, yp in zip(grid, yplist):
+    for i, yp in enumerate(yplist):
+        ax = grid[i]
         ax.set_rasterization_zorder(2.5)
         j = np.argmin(np.abs(y[:]-yp))
         xpf = x[:]*1e-3
@@ -45,7 +46,7 @@ def profiles(res, rec, dt, color):
         ax.grid(axis='y', c='0.5', ls='-', lw=0.1)
         ax.plot(xpf, surfpf.T, c=color, lw=0.1)
         ax.plot(xpf, topgpf.T, c='k', lw=0.1)
-        ax.text(0.04, 0.8, 'y = %i km' % (yp*1e-3), transform=ax.transAxes)
+        ax.text(0.04, 0.84, chr(65+i), transform=ax.transAxes)
     nc.close()
 
     # set axes properties
