@@ -37,7 +37,7 @@ for i, dt in enumerate(offsets):
             #iarea = (thk >= 8.0).any(axis=(0)).sum()*1e-4  # ice cover
 
             # print
-            print '| %7.3f' % (iarea-2.0),
+            print '| %7.3f' % (iarea-2.1),
 
         # else print a blank cell
         except RuntimeError:

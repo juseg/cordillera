@@ -74,9 +74,9 @@ ax2.axvspan(-71, -57, fc='0.85', lw=0.25)
 ax2.axvspan(-29, -14, fc='0.85', lw=0.25)
 ax2.text((-120-71)/2, 4.5, 'MIS 5', ha='center')
 ax2.text((-71-57)/2, 0.5, 'MIS 4', ha='center')
-ax2.text((-57-29)/2, 8.0, 'MIS 3', ha='center')
+ax2.text((-57-29)/2, 8.5, 'MIS 3', ha='center')
 ax2.text((-29-14)/2, 0.5, 'MIS 2', ha='center')
-ax2.text((-14-0)/2, 8.0, 'MIS 1', ha='center')
+ax2.text((-14-0)/2, 8.5, 'MIS 1', ha='center')
 
 # mark modelled glacial extrema
 mistmin = mis_times.min(axis=0)
@@ -103,6 +103,7 @@ print tabline % ( ('',) + tuple(misvmax) ) + '\\\\'
 print 'saving time series...'
 ax1.set_xlim(-120.0, 0.0)
 ax1.set_ylim(-10.0, 2.0)
+ax2.set_ylim(0.0, 9.5)
 ax1.xaxis.set_ticklabels([])
 ax1.set_ylabel('temperature offset (K)')
 ax2.set_ylabel('ice volume (m s.l.e.)')

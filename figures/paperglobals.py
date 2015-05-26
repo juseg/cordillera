@@ -59,7 +59,7 @@ records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
 labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
 colors = [darkblue, lightblue, darkred, lightred, darkgreen, lightgreen]
 markers = ['s', 'D', 'o', 'h', 'v', '^']
-offsets = [6.0, 6.4, 5.8, 5.9, 6.0, 5.7]
+offsets = [6.1, 6.5, 5.9, 5.9, 6.1, 6.0]
 
 # default thickness threshold
 thkth = 1.0
