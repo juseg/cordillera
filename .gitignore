@@ -28,3 +28,6 @@ figures/*.png
 # Statistics
 stats/count.csv
 stats/progress.pdf
+
+# Revisions from co-authors
+revisions/
