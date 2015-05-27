@@ -48,7 +48,7 @@ def icemaps(mis):
                      cmap=None, colors='k', linewidths=0.25)
         im = iplt.imshow(nc, 'velsurf_mag', idx, ax, thkth=thkth,
                          cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-        add_corner_tag(ax, '%s, %s ka' % (rec.upper(), t))
+        add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
 
     # close extra file
     nc.close()

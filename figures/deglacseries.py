@@ -27,7 +27,7 @@ for i, rec in enumerate(records):
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
-    ax1.plot(dt_time, dt_temp, color=colors[i], label=labels[i])
+    ax1.plot(-dt_time, dt_temp, color=colors[i], label=labels[i])
 
     # plot output time series
     for res in ('10km', '5km'):
@@ -35,14 +35,15 @@ for i, rec in enumerate(records):
         ts_time = nc.variables['time'][:]*s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
-        ax2.plot(ts_time, ts_ivol, color=colors[i],
+        ax2.plot(-ts_time, ts_ivol, color=colors[i],
                  dashes=((None, None) if res == '10km' else (1, 1)),
                  label='%s %s' % (rec.upper(), res))
 
 # set axes properties and save time series
 print 'saving...'
-ax1.set_xlim(-25.0, -5.0)
-ax2.set_xlim(-25.0, -5.0)
+ax2.invert_xaxis()
+ax1.set_xlim(25.0, 5.0)
+ax2.set_xlim(25.0, 5.0)
 ax1.set_ylim(-10.0, 2.0)
 ax2.set_ylim(0.0, 9.5)
 ax1.set_xticklabels([])
@@ -50,7 +51,7 @@ ax1.set_ylabel('temperature offset (K)')
 ax2.set_ylabel('ice volume (m s.-l. eq.)')
 ax1.yaxis.set_label_coords(-0.075, 0.5)
 ax2.yaxis.set_label_coords(-0.075, 0.5)
-ax2.set_xlabel('model time (ka)')
+ax2.set_xlabel('model age (ka)')
 ax2.legend(loc='upper right', bbox_to_anchor=(1, 1+2.5/32.5))
 ax1.grid(axis='y', c='0.5', ls='-', lw=0.1)
 ax2.grid(axis='y', c='0.5', ls='-', lw=0.1)
