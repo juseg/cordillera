@@ -31,7 +31,9 @@ def icemaps(mis):
 
         # round maximum time to nearest slice
         idx = (np.abs(time[:]-t)).argmin()
+        t = time[idx]
 
+        # plot
         print 'plotting %s at %s ka...' % (rec, t)
         ax = fig.grid[i]
         iplt.imshow(nc, 'topg', idx, ax, thkth=thkth,
