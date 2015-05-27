@@ -80,17 +80,17 @@ def ncopen(filepath):
     return nc
 
 def open_atm_file(res):
-    return ncopen(pism_dir + 'input/atm/cordillera-narr-%s.nc' % res)
+    return ncopen(pism_dir + 'input/atm/cordillera-narr-%s.cr.nc' % res)
 
 def open_boot_file(res):
-    return ncopen(pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc' % res)
+    return ncopen(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc' % res)
 
 def open_dt_file(rec, dt, period='3222'):
     return ncopen(pism_dir + 'input/dt/%s-%s-cool%i.nc'
                   % (rec, period, round(100*dt)))
 
 def open_sd_file(res):
-    return ncopen(pism_dir + 'input/sd/cordillera-narr-%s.nc' % res)
+    return ncopen(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
 def open_ts_file(res, rec, dt, period='3222'):
     return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
