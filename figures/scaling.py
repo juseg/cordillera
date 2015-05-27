@@ -87,7 +87,7 @@ for i, per in enumerate(periods):
     ax2.set_ylim(0.0, 12.0)
     ax1.set_ylabel('temperature offset (K)')
     ax2.set_ylabel('ice volume (m s.l.e.)')
-    ax2.set_xlabel('model time (kyr)')
+    ax2.set_xlabel('model time (ka)')
     ax2.legend(loc='upper left', ncol=2)
 
     # save figure

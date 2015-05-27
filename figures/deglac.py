@@ -71,6 +71,6 @@ for i, rec in enumerate(records):
 # add colorbar and save
 print 'saving deglac...'
 cb = fig.colorbar(cs, ax.cax, ticks=ages)
-cb.set_label('Deglaciation age (kyr)')
+cb.set_label('Deglaciation age (ka)')
 fig.savefig('deglac')
 nc.close()

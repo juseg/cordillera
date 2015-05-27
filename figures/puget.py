@@ -43,7 +43,7 @@ for i, t in enumerate(times):
     c = (u**2 + v**2)**0.5
 
     # plot
-    print 'plotting at %s kyr...' % time
+    print 'plotting at %s ka...' % time
     ax = fig.grid[i]
     ax.set_rasterization_zorder(2.5)
     ax.imshow(topg-125.0, cmap=topo_cmap, norm=topo_norm)
@@ -52,7 +52,7 @@ for i, t in enumerate(times):
     ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
     ax.contour(icy, levels=[0.5], colors='k')
     ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
-    add_corner_tag(ax, '%s kyr' % (time))
+    add_corner_tag(ax, '%s ka' % (time))
 
 # add colorbar and save
 #cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],
