@@ -403,6 +403,7 @@ components. The Shallow Shelf Approximation (SSA) is used as a ``sliding law''
 for the Shallow Ice Approximation (SIA) by adding velocity solutions of the
 two approximation
 \citep[Eqns.~7--9 and 15]{Bueler.Brown.2009, Winkelmann.etal.2011}.
+
 Ice rheology depends on temperature and water content through an enthalpy
 formulation \citep{Aschwanden.etal.2012}. Surface air temperature derived from
 the climate forcing (Sect.~\ref{sec:atm}) provides the upper boundary
@@ -458,6 +459,17 @@ A relatively low viscosity value of $\nu_m = 1\times10^{19}$\,\unit{Pa\,s} is
 used for the astenosphere in accordance to the results of regional glacial
 isostatic adjustment modelling at the northern Cascadia subduction zone
 \citep{James.etal.2009}.
+
+Ice-shelve calving is computed by a double criterion. First, a
+physically-realistic calving flux is computed based on eigenvalues of the
+horizontal strain rate tensor \citep{Winkelmann.etal.2011,
+Levermann.etal.2012}. This allows outlet glaciers to advance in confined
+embayments, but prevents extensive ice-shelves to build-up in the open ocean.
+Second, floating ice thinner than 50\,m is systematically calved off. A subgrid
+scheme \citep{Albrecht.etal.2011} allows for a continuous migration of the
+calving frontm. Such treatment of calving was applied to the Antarctic ice
+sheet and shown to produce realistic calving front positons for many of the
+ice-shelves \citep{Martin.etal.2011}.
 
 % -----------------------------------------------------------------------------
 \subsection{Surface mass balance}
