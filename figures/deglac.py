@@ -67,6 +67,8 @@ for i, rec in enumerate(records):
                          lw=0.25, ls='--', dashes=(2, 2))
         ax.text(-1.225e6, yp, chr(65+k), ha='left', va='bottom')
 
+# mark location of the Omineca mountains
+add_pointer_tag(fig.grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
 
 # add colorbar and save
 print 'saving deglac...'
