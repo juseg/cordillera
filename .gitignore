@@ -33,6 +33,7 @@ figures/*.png
 
 # Animations
 figures/*.mp4
+figures/*.zip
 figures/frames
 
 # Statistics
