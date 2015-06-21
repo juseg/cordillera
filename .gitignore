@@ -25,6 +25,10 @@ figures/*.pyc
 figures/*.pdf
 figures/*.png
 
+# Animations
+figures/*.mp4
+figures/frames
+
 # Statistics
 stats/count.csv
 stats/progress.pdf
