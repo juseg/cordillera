@@ -12,6 +12,12 @@
 /*.pdf
 /*.rtf
 
+# Files produced by endfloat
+/*.fff
+/*.lof
+/*.lot
+/*.ttt
+
 # Data
 figures/data/*.dbf
 figures/data/*.nc

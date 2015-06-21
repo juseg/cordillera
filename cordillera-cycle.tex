@@ -8,10 +8,10 @@
 \else
 
 % Copernicus manuscript
-%\documentclass[tc, manuscript]{copernicus}
+\documentclass[tc, manuscript]{copernicus}
 
 % Copernicus final print
-\documentclass[tc]{copernicus}
+%\documentclass[tc]{copernicus}
 
 % Copernicus discussion paper
 %\documentclass[tcd, hvmath, online]{copernicus}
@@ -19,6 +19,9 @@
 
 % Coloured hyperlinks
 \hypersetup{hidelinks}
+
+% Push floats to the end
+\usepackage[nolists, nomarkers]{endfloat}
 
 % Figure directory
 \graphicspath{{figures/}}
