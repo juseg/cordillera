@@ -1,23 +1,24 @@
 % cordillera-climate.tex
 % ----------------------------------------------------------------------
 
+% Copernicus-like latex2rtf compatible
+\newif\iflatextortf
+\iflatextortf
+\input{copernicus_rtf}
+\else
+
 % Copernicus manuscript
-\documentclass[tc, ms]{copernicus}
+\documentclass[tc, manuscript]{copernicus}
 
 % Copernicus final print
 %\documentclass[tc]{copernicus}
 
 % Copernicus discussion paper
-%\documentclass[tcd, hvmath]{copernicus_discussions}
-
-% Copernicus-like latex2rtf compatible
-%\input{copernicus_rtf}
+%\documentclass[tcd, hvmath, online]{copernicus}
+\fi
 
 % Coloured hyperlinks
-\usepackage[colorlinks,citecolor=blue]{hyperref}
-
-% Encoding
-\usepackage[T1]{fontenc}
+\hypersetup{hidelinks}
 
 % Figure directory
 \graphicspath{{figures/}}
