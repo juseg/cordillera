@@ -1,9 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm, LogNorm
 from paperglobals import *
 
 # simulations used
@@ -12,16 +9,20 @@ records = records[0:3:2]
 offsets = offsets[0:3:2]
 
 # initialize figure
-fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
-                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
+figw, figh = 120.0, 100.0
+fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
+cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # draw topo and coastline
-draw_boot_topo(fig.grid, res)
+draw_boot_topo(grid, res)
 
 # loop on records[i]
 for i, rec in enumerate(records):
     print 'reading %s extra output...' % rec
-    ax = fig.grid[i]
+    ax = grid[i]
     ax.set_rasterization_zorder(2.5)
 
     # read extra output
@@ -41,15 +42,17 @@ for i, rec in enumerate(records):
 
     # set levels, colors and hatches
     levs = [-1, 0.0, 0.5, 0.9, 0.99, 1.0]
-    cmap = plt.get_cmap('Reds')
+    cmap = iplt.get_cmap('Reds')
     colors = cmap(np.linspace(0.0, 1.0, len(levs)-1))
     hatches = ['//'] + ['']*(len(levs)-2)
 
     # draw contours
-    cs = ax.contourf(x[:], y[:], warm, levels=levs, alpha=0.75,
-                     colors=colors, hatches=hatches)
-    ax.contour(x[:], y[:], warm, [0.0], colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], warm.mask, [0.5], colors='k', linewidths=0.5)
+    cs = iplt.Axes.contourf(ax, x[:], y[:], warm, levels=levs, alpha=0.75,
+                            colors=colors, hatches=hatches)
+    iplt.Axes.contour(ax, x[:], y[:], warm, [0.0],
+                      colors='k', linewidths=0.25)
+    iplt.Axes.contour(ax, x[:], y[:], warm.mask, [0.5],
+                      colors='k', linewidths=0.5)
 
     # close extra file
     add_corner_tag(ax, rec.upper())
@@ -60,6 +63,6 @@ add_pointer_tag(ax, 'SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3))
 add_pointer_tag(ax, 'MKM', xy=(-1550e3, 2000e3), xytext=(-1200e3, 2000e3))
 
 # add colorbar and save
-cb = fig.colorbar(cs, ax.cax, ticks=levs[1:])
+cb = fig.colorbar(cs, cax, ticks=levs[1:])
 cb.set_label('Fraction of warm-based ice cover')
 fig.savefig('warmfrac')

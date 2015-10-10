@@ -1,24 +1,22 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm, LogNorm
-from matplotlib.ticker import FuncFormatter
-from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
+from matplotlib.ticker import FuncFormatter
 
 # initialize figure
 times = np.arange(-23.0, -17.0, 0.5)
 imin, imax = 70, 120
 jmin, jmax = 35, 85
-fig = iplt.gridfigure((25.0, 25.0), (4, 3), axes_pad=2.5*in2mm,
-                      cbar_mode='none', cbar_location='bottom',
-                      cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
+figw, figh = 120.0, 90.0
+fig, grid = iplt.subplots_mm(nrows=3, ncols=4, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=2.5, bottom=2.5, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
 
 # load extra output
 print 'reading extra output...'
-nc = open_extra_file('5km', 'grip', 6.0)
+nc = open_extra_file('5km', 'grip', 6.1)
 
 # loop on records[i]
 for i, t in enumerate(times):
@@ -27,6 +25,7 @@ for i, t in enumerate(times):
     k = np.argmin(np.abs(nc.variables['time'][:]*s2ka-t))
 
     # slice
+    # FIXME: enable cropping in iceplotlib
     time = nc.variables['time'][k]*s2ka
     thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
     topg = nc.variables['topg'][k,imin:imax,jmin:jmax].T
@@ -44,20 +43,19 @@ for i, t in enumerate(times):
 
     # plot
     print 'plotting at %s ka...' % time
-    ax = fig.grid[i]
+    ax = grid.flat[i]
     ax.set_rasterization_zorder(2.5)
-    ax.imshow(topg-125.0, cmap=topo_cmap, norm=topo_norm)
-    ax.contour(usurf, levels=range(100, 5000, 100), colors='k', linewidths=0.2)
-    ax.contour(usurf, levels=range(1000, 5000, 1000), colors='k', linewidths=0.5)
-    ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
-    ax.contour(icy, levels=[0.5], colors='k')
-    ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
+    iplt.Axes.imshow(ax, topg-125.0, cmap=topo_cmap, norm=topo_norm)
+    iplt.Axes.contour(ax, usurf, levels=range(100, 5000, 100),
+                      colors='k', linewidths=0.2)
+    iplt.Axes.contour(ax, usurf, levels=range(1000, 5000, 1000),
+                      colors='k', linewidths=0.5)
+    iplt.Axes.contourf(ax, icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
+    iplt.Axes.contour(ax, icy, levels=[0.5], colors='k')
+    iplt.Axes.quiver(ax, u, v, c, cmap=vel_cmap, scale=25.0)
     add_corner_tag(ax, '%s ka' % (time))
 
-# add colorbar and save
-#cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],
-#                  format=FuncFormatter(lambda x, pos: '%g' % (x/1000.0)))
-#cb.set_label(r'surface elevation (km)')  #, labelpad=-1.5*pt2mm)
-print 'saving...'
+# save
+print 'saving puget...'
 fig.savefig('puget')
 nc.close()

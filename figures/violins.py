@@ -1,18 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from matplotlib import pyplot as plt
 from paperglobals import *
-import seaborn as sns
 
 # violin plot
-sns.set_style("whitegrid")
-fig, ax = plt.subplots()
-
-# initialize time-series figure
-#figw, figh = 85.0, 60.0
-#fig = plt.figure(0, (figw*in2mm, figh*in2mm))
-#ax = fig.add_axes([10/figw, 10/figh, 70/figw, 40/figh])
+fig, ax = iplt.subplots()
 
 # read ice volume time series
 data = []
@@ -24,10 +16,10 @@ for i, rec in enumerate(records):
     data.append(slvol)
 
 # plot
-sns.violinplot(data, color=colors, names=labels, bw=1/12.0)
+iplt.violinplot(data)
 
-# set axes properties and save time series
-print 'saving time series...'
+# set axes properties and save
+print 'saving violins...'
 ax.set_ylim(0.0, 10.0)
 ax.set_ylabel('ice volume (m s.-l. eq.)')
 fig.savefig('violins')

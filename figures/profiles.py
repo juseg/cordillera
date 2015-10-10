@@ -1,8 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
 from paperglobals import *
 
 # parameters
@@ -12,7 +10,7 @@ yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 def profiles(res, rec, dt, color):
     # initialize figure
     figw, figh = 85.0, 100.0
-    fig, grid = plt.subplots(len(yplist), figsize=(figw*in2mm, figh*in2mm),
+    fig, grid = iplt.subplots(len(yplist), figsize=(figw*in2mm, figh*in2mm),
                              sharex=True, sharey=True)
     fig.subplots_adjust(left=10.0/figw, bottom=10/figh,
                         right=1-2.5/figw, top=1-2.5/figh,

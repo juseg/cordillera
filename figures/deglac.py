@@ -1,9 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm, Normalize
 from paperglobals import *
 
 # parameters
@@ -12,19 +9,23 @@ records = records[0:3:2]
 offsets = offsets[0:3:2]
 ages = range(8, 23, 1)
 levs = [-0.5] + ages
-cmap = plt.get_cmap('RdBu_r')
+cmap = iplt.get_cmap('RdBu_r')
 cmap.set_over(darkgreen)
 
 # initialize figure
-fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
-                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
+figw, figh = 120.0, 100.0
+fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
+cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # plot topographic map
-draw_boot_topo(fig.grid, res)
+draw_boot_topo(grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
-    ax = fig.grid[i]
+    ax = grid[i]
     ax.set_rasterization_zorder(2.5)
 
     # read extra output
@@ -49,14 +50,17 @@ for i, rec in enumerate(records):
         deglacage = np.where(icy, -t, deglacage)
 
     # plot
-    cs = ax.contourf(x[:], y[:], deglacage, levels=levs, cmap=cmap, alpha=0.75,
-                     norm=BoundaryNorm(levs, 256), extend='max')
-    #ax.contour(x[:], y[:], deglacage, levels=levs, colors='k', linewidths=0.25)
-    ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5], colors='none', hatches=['//'])
-    ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5], colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage, levels=[levs[-1]], colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage, levels=[-0.5], colors='k',
-	       linestyles='solid', linewidths=0.5)
+    cs = iplt.Axes.contourf(ax, x[:], y[:], deglacage, levels=levs,
+                            cmap=cmap, alpha=0.75,
+                            norm=BoundaryNorm(levs, 256), extend='max')
+    iplt.Axes.contourf(ax, x[:], y[:], readvance, levels=[0.5, 1.5],
+                       colors='none', hatches=['//'])
+    iplt.Axes.contour(ax, x[:], y[:], readvance, levels=[0.5, 1.5],
+                      colors='k', linewidths=0.25)
+    iplt.Axes.contour(ax, x[:], y[:], deglacage, levels=[levs[-1]],
+                      colors='k', linewidths=0.25)
+    iplt.Axes.contour(ax, x[:], y[:], deglacage, levels=[-0.5],
+                      colors='k', linestyles='solid', linewidths=0.5)
 
     # annotate
     add_corner_tag(ax, rec.upper())
@@ -68,11 +72,11 @@ for i, rec in enumerate(records):
         ax.text(-1.225e6, yp, chr(65+k), ha='left', va='bottom')
 
 # mark location of the Omineca mountains
-add_pointer_tag(fig.grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
+add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
 
 # add colorbar and save
 print 'saving deglac...'
-cb = fig.colorbar(cs, ax.cax, ticks=ages)
+cb = fig.colorbar(cs, cax, ticks=ages)
 cb.set_label('Deglaciation age (ka)')
 fig.savefig('deglac')
 nc.close()

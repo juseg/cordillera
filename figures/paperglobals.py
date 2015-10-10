@@ -9,7 +9,7 @@ import os
 import numpy as np
 import brewer2mpl
 from matplotlib.cm import get_cmap
-from matplotlib.colors import LinearSegmentedColormap, LogNorm, Normalize
+from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
 from iceplotlib.cm import velocity
 from iceplotlib import plot as iplt
@@ -66,39 +66,26 @@ thkth = 1.0
 
 
 # file open functions
-def ncopen(filepath):
-    import glob
-    filelist = glob.glob(filepath)
-    if len(filelist) < 1:
-	raise RuntimeError('could not find %s' % filepath)
-    elif len(filelist) > 1:
-        from netCDF4 import MFDataset
-        nc = MFDataset(filepath)
-    else:
-        from netCDF4 import Dataset
-        nc = Dataset(filelist[0])
-    return nc
-
 def open_atm_file(res):
-    return ncopen(pism_dir + 'input/atm/cordillera-narr-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/atm/cordillera-narr-%s.cr.nc' % res)
 
 def open_boot_file(res):
-    return ncopen(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc' % res)
 
 def open_dt_file(rec, dt, period='3222'):
-    return ncopen(pism_dir + 'input/dt/%s-%s-cool%i.nc'
+    return iplt.load(pism_dir + 'input/dt/%s-%s-cool%i.nc'
                   % (rec, period, round(100*dt)))
 
 def open_sd_file(res):
-    return ncopen(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
 def open_ts_file(res, rec, dt, period='3222'):
-    return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+    return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
                   '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
                   % (res, rec, period, round(100*dt)))
 
 def open_extra_file(res, rec, dt, period='3222'):
-    return ncopen(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+    return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
                   '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
                   % (res, rec, period, round(100*dt)))
 
@@ -152,27 +139,23 @@ def add_pointer_tag(ax, s, xy, xytext):
 
 
 def draw_boot_topo(grid, res):
-    from matplotlib.pyplot import sca
     nc = open_boot_file(res)
-    for ax in grid:
-        sca(ax)
-        im = iplt.imshow(nc, 'topg',
-                         cmap=topo_cmap, norm=topo_norm)
+    for ax in grid.flat:
+        im = ax.imshow(nc, 'topg',
+                       cmap=topo_cmap, norm=topo_norm)
     nc.close()
     return im
 
 
 def draw_coastline(grid, res):
-    from matplotlib.pyplot import sca
     nc = open_boot_file(res)
-    for ax in grid:
-        sca(ax)
-        cs = iplt.contour(nc, 'topg', levels=[0.0],
-                          cmap=None, colors='k', linewidths=0.5)
+    for ax in grid.flat:
+        cs = ax.contour(nc, 'topg', levels=[0.0],
+                        cmap=None, colors='k', linewidths=0.5)
     nc.close()
     return cs
 
-
+# FIXME: this should be useless now.
 def remove_ticks(grid):
     for ax in grid:
         ax.xaxis.set_visible(False)

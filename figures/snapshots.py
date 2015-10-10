@@ -1,24 +1,21 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm
-from matplotlib.ticker import FuncFormatter
-from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
+from matplotlib.ticker import FuncFormatter
 
 # parameters
 res = '10km'
 
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
-fig = plt.figure(0, (figw*in2mm, figh*in2mm))
-rect = [5.0/figw, 2.5/figh, 107.5/figw, 95.0/figh]
-grid = ImageGrid(fig, rect, (3, len(records)), axes_pad=2.5*in2mm,
-                 cbar_mode='single', cbar_location='right',
-                 cbar_pad=2.5*in2mm, cbar_size=2.5*in2mm)
-remove_ticks(grid)
+fig, grid = iplt.subplots(3, len(records), sharex=True, sharey=True,
+                          figsize=(figw*in2mm, figh*in2mm),
+                          subplot_kw={'projection': 'mapaxes'})
+fig.subplots_adjust(left=5.0/figw, right=1-12.5/figw,
+                    bottom=2.5/figh, top=1-5.0/figh,
+                    hspace=1/((1+figh/2.5)/4-1))
+cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -38,22 +35,22 @@ for i, rec in enumerate(records):
     # plot maps
     for j, t in enumerate(mis_idces):
         print 'plotting %s at %s...' % (rec, mis_times[j])
-        ax = grid[i+j*len(records)]
+        ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
-        iplt.imshow(nc, 'topg', t, ax=ax, thkth=thkth,
-                    cmap=topo_cmap, norm=topo_norm)
-        iplt.icemargin(nc, t, ax=ax, thkth=thkth,
-                       linewidths=0.5)
+        ax.imshow(nc, 'topg', t, thkth=thkth,
+                  cmap=topo_cmap, norm=topo_norm)
+        ax.icemargin(nc, t, thkth=thkth,
+                     linewidths=0.5)
         levs = range(0, 4001, 500)
-        cs = iplt.contourf(nc, 'usurf', t, ax=ax, thkth=thkth,
-                     levels=levs, cmap='Blues_r',
-                     norm=BoundaryNorm(levs, 256), alpha=0.75)
-        iplt.contour(nc, 'usurf', t, ax=ax, thkth=thkth,
-                     levels=range(0, 4001, 500),
-                     cmap=None, colors='k', linewidths=0.1)
-        iplt.contour(nc, 'usurf', t, ax=ax, thkth=thkth,
-                     levels=range(1000, 5000, 1000),
-                     cmap=None, colors='k', linewidths=0.25)
+        cs = ax.contourf(nc, 'usurf', t, thkth=thkth,
+                         levels=levs, cmap='Blues_r',
+                         norm=BoundaryNorm(levs, 256), alpha=0.75)
+        ax.contour(nc, 'usurf', t, thkth=thkth,
+                   levels=range(0, 4001, 500),
+                   cmap=None, colors='k', linewidths=0.1)
+        ax.contour(nc, 'usurf', t, thkth=thkth,
+                   levels=range(1000, 5000, 1000),
+                   cmap=None, colors='k', linewidths=0.25)
         add_corner_tag(ax, '%s ka' % (-mis_times[j]))
 
     # close extra file
@@ -61,20 +58,20 @@ for i, rec in enumerate(records):
 
 # add labels
 for i, label in enumerate(labels):
-    ax = grid[i]
+    ax = grid[0, i]
     ax.text(0.5, 1.05, labels[i], ha='center',
             transform=ax.transAxes)
 for j in range(3):
-    ax = grid[j*len(records)]
+    ax = grid[j, 0]
     ax.text(-0.05, 0.5, 'MIS %i' % (4-j),
             ha='right', va='center', rotation='vertical',
             transform=ax.transAxes)
 
 # mark location of the skeena mountains
-add_pointer_tag(grid[8], 'SM', xy=(-2000e3, 1450e3), xytext=(-1100e3, 1450e3))
+add_pointer_tag(grid[1, 2], 'SM', xy=(-2000e3, 1450e3), xytext=(-1100e3, 1450e3))
 
 # add colorbar and save
-cb = fig.colorbar(cs, ax.cax, ticks=levs[::2],
+cb = fig.colorbar(cs, cax, ticks=levs[::2],
                   format=FuncFormatter(lambda x, pos: '%g' % (x/1000.0)))
 cb.set_label(r'surface elevation (km)')  #, labelpad=-1.5*pt2mm)
 print 'saving snapshots...'

@@ -1,13 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as mplt
-from matplotlib.colors import BoundaryNorm
-from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 from paperglobals import *
 
 # read atmosphere file
+# FIXME: add unit conversion to iceplotlib
 res = '5km'
 nc = open_atm_file(res)
 x = nc.variables['x']
@@ -17,11 +14,11 @@ prec = nc.variables['precipitation']
 
 # initialize figure
 figw, figh = 85.0, 120.0
-fig = mplt.figure(0, (figw*in2mm, figh*in2mm))
-rect = [2.5/figw, 12.5/figh, 80/figw, 107.5/figh]
-grid = ImageGrid(fig, rect, (2, 3), axes_pad=2.5*in2mm, cbar_mode='none')
-remove_ticks(grid)
-for ax in grid:
+fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=2.5, bottom=15.0, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
+for ax in grid.flat:
     ax.set_rasterization_zorder(2.5)
 
 # plot temperature
@@ -29,8 +26,8 @@ print 'plotting temperature maps...'
 levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]
 norm=BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[0+3*i].contourf(x[:], y[:], temp[6*i].T-273.15, cmap='RdBu_r',
-                              levels=levs, norm=norm, alpha=0.75)
+    im = iplt.Axes.contourf(grid[i, 0], x[:], y[:], temp[6*i].T-273.15,
+                            cmap='RdBu_r', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([2.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal')
 cb.set_label(u'Temperature (°C)')
@@ -38,17 +35,17 @@ cb.set_label(u'Temperature (°C)')
 # plot precipitation
 print 'plotting precipitation maps...'
 levs = np.logspace(1/3., 3, 9).round(0)
-#levs = [2, 5, 10, 20, 50, 100, 200, 500, 1000]
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[1+3*i].contourf(x[:], y[:], prec[6*i].T*910/12., cmap='Greens',
-                              levels=levs, norm=norm, alpha=0.75)
+    im = iplt.Axes.contourf(grid[i, 1], x[:], y[:], prec[6*i].T*910/12.,
+                            cmap='Greens', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
 cb.set_label(r'Precipitation (mm)')
 nc.close()
 
 # read standard deviation file
+# FIXME: add unit conversion to iceplotlib
 nc = open_sd_file(res)
 x = nc.variables['x']
 y = nc.variables['y']
@@ -59,7 +56,7 @@ print 'plotting standard deviation maps...'
 levs = np.linspace(0.0, 12.0, 9)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = grid[2+3*i].contourf(x[:], y[:], stdv[6*i].T, cmap='Reds',
+    im = iplt.Axes.contourf(grid[i, 2], x[:], y[:], stdv[6*i].T, cmap='Reds',
                               levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([57.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[2::2])
@@ -71,8 +68,8 @@ draw_boot_topo(grid, res)
 draw_coastline(grid, res)
 
 # annotate
-add_corner_tag(grid[2], 'January')
-add_corner_tag(grid[5], 'July')
+add_corner_tag(grid[0, 2], 'January')
+add_corner_tag(grid[1, 2], 'July')
 
 # save
 fig.savefig('atm')

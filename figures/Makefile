@@ -7,7 +7,7 @@ PY_FIGS = atm.pdf deglac.pdf deglacseries.pdf deglacshots.pdf \
           snapshots.pdf timeseries.pdf warmbase.pdf warmfrac.pdf
 ALL_FIGS = $(PY_FIGS)
 
-all: data $(ALL_FIGS) figures.zip
+all: data $(ALL_FIGS)
 
 figures.zip: $(ALL_FIGS)
 	zip figures.zip $(ALL_FIGS)

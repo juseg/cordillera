@@ -1,10 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm, Normalize
-from iceplotlib import plot as iplt
 from paperglobals import *
 
 # parameters
@@ -13,12 +9,16 @@ records = records[0:3:2]
 offsets = offsets[0:3:2]
 
 # initialize figure
-fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
-                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
+figw, figh = 120.0, 100.0
+fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
 
 # loop on records
 for i, rec in enumerate(records):
-    ax = fig.grid[i]
+    ax = grid[i]
+    ax.set_rasterization_zorder(2.5)
 
     # read extra output
     print 'reading %s extra output...' % rec
@@ -44,14 +44,14 @@ for i, rec in enumerate(records):
     # compute gradient
     deglacage = np.ma.masked_less(deglacage, 0.0)
     v, u = np.gradient(-deglacage)
-    print u.min(), u.mean(), u.max()
-
 
     # plot
     ages = range(8, 23, 1)
     levs = [0] + ages
-    ax.streamplot(x[:], y[:], u, v, color='k', density=(10, 20), linewidth=0.25)
-    ax.contour(x[:], y[:], deglacage.mask, levels=[0.5], colors='k', linewidths=0.5)
+    iplt.Axes.streamplot(ax, x[:], y[:], u, v,
+                         color='k', density=(10, 20), linewidth=0.25)
+    iplt.Axes.contour(ax, x[:], y[:], deglacage.mask,
+                      levels=[0.5], colors='k', linewidths=0.5)
 
     # annotate
     add_corner_tag(ax, rec.upper())

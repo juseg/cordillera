@@ -5,13 +5,13 @@ import sys
 
 sys.path.append('iceplotlib')
 
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
 import cartopy.feature as cfeature
 from iceplotlib import cm as icm
-from paperglobals import *
+from netCDF4 import Dataset
 
 in2mm = 1/25.4
 pt2mm = 72*in2mm
@@ -28,7 +28,7 @@ proj = ccrs.LambertConformal(
 # ETOPO1 background topo
 def draw_etopo1(**kwargs):
     """Draw ETOPO1 background and coastline"""
-    nc = ncopen('data/etopo1.nc')
+    nc = Dataset('data/etopo1.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     z = nc.variables['Band1']

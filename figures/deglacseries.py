@@ -1,9 +1,6 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as mplt
-from matplotlib.patches import Rectangle
 from paperglobals import *
 
 # parameters
@@ -13,9 +10,10 @@ colors = [darkblue, darkred]
 
 # initialize time-series figure
 figw, figh = 85.01, 80.01
-fig = mplt.figure(2, (figw*in2mm, figh*in2mm))
-ax1 = fig.add_axes([10/figw, 45/figh, 72.5/figw, 32.5/figh])
-ax2 = fig.add_axes([10/figw, 10/figh, 72.5/figw, 32.5/figh])
+fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
+                                   figsize=(figw, figh),
+                                   left=10.0, right=2.5, bottom=10.0, top=2.5,
+                                   wspace=2.5, hspace=2.5)
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -40,13 +38,12 @@ for i, rec in enumerate(records):
                  label='%s %s' % (rec.upper(), res))
 
 # set axes properties and save time series
-print 'saving...'
+print 'saving deglacseries...'
 ax2.invert_xaxis()
 ax1.set_xlim(25.0, 5.0)
 ax2.set_xlim(25.0, 5.0)
 ax1.set_ylim(-10.0, 2.0)
 ax2.set_ylim(0.0, 9.5)
-ax1.set_xticklabels([])
 ax1.set_ylabel('temperature offset (K)')
 ax2.set_ylabel('ice volume (m s.-l. eq.)')
 ax1.yaxis.set_label_coords(-0.075, 0.5)

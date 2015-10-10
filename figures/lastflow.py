@@ -1,11 +1,8 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import numpy as np
-from matplotlib import pyplot as plt
-from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
-from matplotlib.colorbar import ColorbarBase
 from paperglobals import *
+from matplotlib.colorbar import ColorbarBase
 
 # parameters
 res = '5km'
@@ -17,15 +14,19 @@ norm=Normalize(-tmax, -tmin)
 plotres=12  # in km
 
 # initialize figure
-fig = iplt.gridfigure((47.5, 95.0), (1, len(records)), axes_pad=2.5*in2mm,
-                      cbar_mode='single', cbar_pad=2.5*in2mm, cbar_size=5*in2mm)
+figw, figh = 120.0, 100.0
+fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             wspace=2.5, hspace=2.5, projection='mapaxes')
+cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # plot topographic map
-draw_boot_topo(fig.grid, res)
+draw_boot_topo(grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
-    ax = fig.grid[i]
+    ax = grid[i]
     ax.set_rasterization_zorder(2.5)
 
     # read extra output
@@ -66,17 +67,17 @@ for i, rec in enumerate(records):
 
     # plot last velocity stream lines
     print 'plotting...'
-    ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
-                  density=(60.0/plotres, 120.0/plotres),
-                  cmap=cmap, norm=norm, linewidth=0.5)
+    iplt.Axes.streamplot(ax, x[:], y[:], lastu, lastv, color=slidage,
+                         density=(60.0/plotres, 120.0/plotres),
+                         cmap=cmap, norm=norm, linewidth=0.5)
 
     # plot glaciated and non-sliding areas
-    ax.contourf(x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
-                colors='none', hatches=['//'])
-    ax.contour(x[:], y[:], slidage, levels=[0.0],
-               colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], glaciated, levels=[0.5],
-               colors='k', linewidths=0.5)
+    iplt.Axes.contourf(ax, x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
+                       colors='none', hatches=['//'])
+    iplt.Axes.contour(ax, x[:], y[:], slidage, levels=[0.0],
+                      colors='k', linewidths=0.25)
+    iplt.Axes.contour(ax, x[:], y[:], glaciated, levels=[0.5],
+                      colors='k', linewidths=0.5)
 
     # annotate
     add_corner_tag(ax, rec.upper())
@@ -89,6 +90,6 @@ add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 
 # add colorbar and save
 print 'saving...'
-cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
+cb = ColorbarBase(cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
 cb.set_label('Age of last basal sliding (ka)')
 fig.savefig('lastflow')
