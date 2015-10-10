@@ -6,7 +6,7 @@ from paperglobals import *
 # parameters
 records = records[0:3:2]
 offsets = offsets[0:3:2]
-colors = [darkblue, darkred]
+colors = colors[0:3:2]
 
 # initialize time-series figure
 figw, figh = 85.01, 80.01

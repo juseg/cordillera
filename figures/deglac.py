@@ -10,7 +10,7 @@ offsets = offsets[0:3:2]
 ages = range(8, 23, 1)
 levs = [-0.5] + ages
 cmap = iplt.get_cmap('RdBu_r')
-cmap.set_over(darkgreen)
+cmap.set_over(colors[5])  # dark green
 
 # initialize figure
 figw, figh = 120.0, 100.0

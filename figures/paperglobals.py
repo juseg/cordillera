@@ -1,13 +1,12 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
+# FIXME: make iceplotlib a package
 import sys
-
 sys.path.append('iceplotlib')
 
 import os
 import numpy as np
-import brewer2mpl
 from matplotlib.cm import get_cmap
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
 from matplotlib.transforms import ScaledTranslation
@@ -29,35 +28,15 @@ dt = 5.8
 rec = 'grip'
 
 # colors
-palette = brewer2mpl.get_map('Paired', 'qualitative', 6).mpl_colors
-lightblue, darkblue = palette[0:2]
-lightgreen, darkgreen = palette[2:4]
-lightred, darkred = palette[4:6]
 topo_cmap = 'Greys'
 topo_norm = Normalize(-3000, 6000)
 vel_cmap = 'RdBu_r'
 vel_norm = LogNorm(1e1, 1e3)
 
-# alternative velocity colormap
-#vel_cols = ['w', darkblue, darkgreen, '#ffff99', darkred, 'k']
-#vel_cmap = LinearSegmentedColormap.from_list('vel', vel_cols)
-
-# alternative for controlled brightness
-#rbmap = brewer2mpl.get_map('Reds', 'sequential', 9)
-#bbmap = brewer2mpl.get_map('Blues', 'sequential', 9)
-#gbmap = brewer2mpl.get_map('Greens', 'sequential', 9)
-#rcols = rbmap.mpl_colors
-#gcols = gbmap.mpl_colors
-#bcols = bbmap.mpl_colors
-#lightred, darkred = rcols[3], rcols[6]
-#lightblue, darkblue = bcols[3], bcols[6]
-#lightgreen, darkgreen = gcols[3], gcols[6]
-
-
 # record properties
 records = ['grip', 'ngrip', 'epica', 'vostok', 'odp1012', 'odp1020']
 labels = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
-colors = [darkblue, lightblue, darkred, lightred, darkgreen, lightgreen]
+colors = ['#1F78B4', '#A6CEE3', '#E31A1C', '#FB9A99', '#33A02C', '#B2DF8A']
 markers = ['s', 'D', 'o', 'h', 'v', '^']
 offsets = [6.1, 6.5, 5.9, 5.9, 6.1, 6.0]
 
@@ -69,25 +48,31 @@ thkth = 1.0
 def open_atm_file(res):
     return iplt.load(pism_dir + 'input/atm/cordillera-narr-%s.cr.nc' % res)
 
+
 def open_boot_file(res):
-    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc'
+                     % res)
+
 
 def open_dt_file(rec, dt, period='3222'):
     return iplt.load(pism_dir + 'input/dt/%s-%s-cool%i.nc'
-                  % (rec, period, round(100*dt)))
+                     % (rec, period, round(100*dt)))
+
 
 def open_sd_file(res):
     return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
+
 def open_ts_file(res, rec, dt, period='3222'):
     return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
-                  '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
-                  % (res, rec, period, round(100*dt)))
+                     '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
+                     % (res, rec, period, round(100*dt)))
+
 
 def open_extra_file(res, rec, dt, period='3222'):
     return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
-                  '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
-                  % (res, rec, period, round(100*dt)))
+                     '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
+                     % (res, rec, period, round(100*dt)))
 
 
 # analysis functions
@@ -154,9 +139,3 @@ def draw_coastline(grid, res):
                         cmap=None, colors='k', linewidths=0.5)
     nc.close()
     return cs
-
-# FIXME: this should be useless now.
-def remove_ticks(grid):
-    for ax in grid:
-        ax.xaxis.set_visible(False)
-        ax.yaxis.set_visible(False)
