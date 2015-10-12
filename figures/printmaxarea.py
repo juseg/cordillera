@@ -28,7 +28,7 @@ for i, dt in enumerate(offsets):
             nc = open_extra_file(res, rec, dt)
             thk = nc.variables['thk']
             time = nc.variables['time']
-            idx = np.abs(time[:]*s2ka-t).argmin()
+            idx = np.abs(time[:]-t*a2s).argmin()
             iarea = (thk[idx] >= thkth).sum()*1e-4  # area at MIS2
             nc.close()
 

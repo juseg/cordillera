@@ -27,7 +27,7 @@ for i, rec in enumerate(records):
     nc = open_extra_file(res, rec, dt)
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
-    ex_idces = [(np.abs(ex_time[:]*s2ka-t)).argmin() for t in mis_times[i]]
+    ex_idces = [(np.abs(ex_time[:]-t*a2s)).argmin() for t in mis_times[i]]
     mis_iareas[i] = (ex_thk[ex_idces] > thkth).sum(axis=(1,2))*1e-4
     nc.close()
 
@@ -46,7 +46,7 @@ for i, rec in enumerate(records):
 
     # print info in table style
     tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-    print tabline % ( (labels[i],) + tuple(-mis_times[i]) )
+    print tabline % ( (labels[i],) + tuple(-mis_times[i]/1e3) )
     print tabline % ( ('',) + tuple(mis_iareas[i]) )
     print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
@@ -85,16 +85,16 @@ misvmax = mis_ivols.max(axis=0)
 misamin = mis_iareas.min(axis=0)
 misamax = mis_iareas.max(axis=0)
 for i in range(3):
-    ax2.add_patch(Rectangle((-mistmin[i], misvmin[i]),
-                             -mistmax[i] + mistmin[i],
+    ax2.add_patch(Rectangle((-mistmin[i]/1e3, misvmin[i]),
+                             -(mistmax[i]-mistmin[i])/1e3,
                              misvmax[i] - misvmin[i],
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
 
 # print info in table style
-print tabline % ( ('Minimum',) + tuple(-mistmin) )
+print tabline % ( ('Minimum',) + tuple(-mistmin/1e3) )
 print tabline % ( ('',) + tuple(misamin) )
 print tabline % ( ('',) + tuple(misvmin) ) + '\\\\'
-print tabline % ( ('Maximum',) + tuple(-mistmax) )
+print tabline % ( ('Maximum',) + tuple(-mistmax/1e3) )
 print tabline % ( ('',) + tuple(misamax) )
 print tabline % ( ('',) + tuple(misvmax) ) + '\\\\'
 

@@ -17,7 +17,9 @@ from iceplotlib import plot as iplt
 # unit conversion
 in2mm = 1/25.4
 pt2mm = 72*in2mm
-s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
+a2s = 365.0 * 24 * 60 * 60
+s2a = 1/a2s
+s2ka = s2a/1e3
 
 # file paths
 pism_dir = os.environ['HOME'] + '/pism/'
@@ -89,15 +91,15 @@ def get_mis_times(res, rec, dt, period='3222'):
 
     # load output time series
     nc = open_ts_file(res, rec, dt, period=period)
-    ts_time = nc.variables['time'][:]*s2ka
+    ts_time = nc.variables['time'][:]*s2a
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
 
     # locate snapshot times using time series
     mis = np.array([
-        bounded_argmax(ts_ivol, ts_time, -80, -40),  # MIS4
-        bounded_argmin(ts_ivol, ts_time, -60, -20),  # MIS3
-        bounded_argmax(ts_ivol, ts_time, -40, -00)])  # MIS2
+        bounded_argmax(ts_ivol, ts_time, -80e3, -40e3),  # MIS4
+        bounded_argmin(ts_ivol, ts_time, -60e3, -20e3),  # MIS3
+        bounded_argmax(ts_ivol, ts_time, -40e3, -00e3)])  # MIS2
 
     # return indices and time values
     return mis, ts_time[mis]

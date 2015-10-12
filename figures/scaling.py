@@ -66,8 +66,8 @@ for i, per in enumerate(periods):
     mis2tmax = mis_times[:,-1].max()
     mis2vmin = mis_ivols[:,-1].min()
     mis2vmax = mis_ivols[:,-1].max()
-    ax2.add_patch(Rectangle((-mis2tmin, mis2vmin),
-                             -mis2tmax + mis2tmin,
+    ax2.add_patch(Rectangle((-mis2tmin/1e3, mis2vmin),
+                             -(mis2tmax-mis2tmin)/1e3,
                              mis2vmax - mis2vmin,
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
 

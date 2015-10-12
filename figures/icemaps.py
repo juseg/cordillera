@@ -27,28 +27,23 @@ def icemaps(mis):
 
         # load extra output
         nc = open_extra_file(res, rec, offsets[i])
-        time = nc.variables['time'][:]*s2ka
-
-        # round maximum time to nearest slice
-        idx = (np.abs(time[:]-t)).argmin()
-        t = time[idx]
 
         # plot
-        print 'plotting %s at %s ka...' % (rec, t)
+        print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i]
-        ax.imshow(nc, 'topg', idx, thkth=thkth,
+        ax.imshow(nc, 'topg', t, thkth=thkth,
                   cmap=topo_cmap, norm=topo_norm)
-        ax.icemargin(nc, idx, thkth=thkth,
+        ax.icemargin(nc, t, thkth=thkth,
                      linewidths=0.5)
-        ax.contour(nc, 'usurf', idx, thkth=thkth,
+        ax.contour(nc, 'usurf', t, thkth=thkth,
                    levels=range(200, 5000, 200),
                    cmap=None, colors='k', linewidths=0.1)
-        ax.contour(nc, 'usurf', idx, thkth=thkth,
+        ax.contour(nc, 'usurf', t, thkth=thkth,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
-        im = ax.imshow(nc, 'velsurf_mag', idx, thkth=thkth,
+        im = ax.imshow(nc, 'velsurf_mag', t, thkth=thkth,
                        cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-        add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
+        add_corner_tag(ax, '%s, %.1f ka' % (rec.upper(), -t/1e3))
 
     # close extra file
     nc.close()

@@ -26,15 +26,10 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = open_extra_file(res, rec, offsets[i])
-    time = nc.variables['time'][:]*s2ka
-
-    # round snapshot times to nearest slice
-    mis_idces = [(np.abs(time[:]-t)).argmin() for t in mis_times]
-    mis_times = time[mis_idces]
 
     # plot maps
-    for j, t in enumerate(mis_idces):
-        print 'plotting %s at %s...' % (rec, mis_times[j])
+    for j, t in enumerate(mis_times):
+        print 'plotting %s at %.1f ka...' % (rec, -mis_times[j]/1e3)
         ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
         ax.imshow(nc, 'topg', t, thkth=thkth,
@@ -51,7 +46,7 @@ for i, rec in enumerate(records):
         ax.contour(nc, 'usurf', t, thkth=thkth,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
-        add_corner_tag(ax, '%s ka' % (-mis_times[j]))
+        add_corner_tag(ax, '%.1f ka' % (-mis_times[j]/1e3))
 
     # close extra file
     nc.close()

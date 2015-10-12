@@ -7,7 +7,7 @@ from paperglobals import *
 res = '5km'
 records = records[0:3:2]
 offsets = offsets[0:3:2]
-tkalist = [-16, -14, -12, -10]
+times = [-16e3, -14e3, -12e3, -10e3]
 
 # initialize figure
 figw, figh = 120.0, 97.5
@@ -22,14 +22,10 @@ for i, rec in enumerate(records):
 
     # load extra output
     nc = open_extra_file(res, rec, offsets[i])
-    time = nc.variables['time'][:]*s2ka
-
-    # round plotting times to nearest slices
-    idxlist = [(np.abs(time[:]-t)).argmin() for t in tkalist]
 
     # plot
-    for j, t in enumerate(idxlist):
-        print 'plotting %s at %s ka...' % (rec, time[t])
+    for j, t in enumerate(times):
+        print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
         ax.imshow(nc, 'topg', t, thkth=thkth, cmap=topo_cmap, norm=topo_norm)
@@ -40,7 +36,7 @@ for i, rec in enumerate(records):
                    cmap=None, colors='k', linewidths=0.25)
         im = ax.imshow(nc, 'velsurf_mag', t, thkth=thkth,
                        cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-        add_corner_tag(ax, '%s ka' % -time[t])
+        add_corner_tag(ax, '%s ka' % (-t/1e3))
 
         # add profile lines
         for k, yp in enumerate([1.7e6, 1.4e6, 1.1e6, 0.8e6]):
