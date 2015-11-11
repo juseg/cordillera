@@ -1,0 +1,271 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+
+\sloppy
+\setlength{\parskip}{1.2ex}
+\setlength{\parindent}{0em}
+\renewcommand\familydefault{\sfdefault}
+
+\graphicspath{{../figures/}}
+\definecolor{journalname}{rgb}{0.34,0.59,0.82}
+
+\begin{document}
+\textbf{Authors' response to A.~H.~Jarosch}
+\bigskip
+
+% ----------------------------------------------------------------------
+% Interactive comment text begins
+% ----------------------------------------------------------------------
+
+\newcommand{\sechead}[1]{\bigskip\noindent\textbf{#1}}
+\newcommand{\referee}[1]{\bigskip\textcolor{journalname}{\textit{#1}}}
+\newcommand{\msquote}[1]{\begin{quote}\textit{#1}\end{quote}}
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+
+To A.~H.~Jarosch,
+
+% ----------------------------------------------------------------------
+
+\sechead{1 \quad General comments}
+
+\referee{%
+    Seguinot et al. present in this well written and structured manuscript a
+    numerical modelling study of the Cordilleran ice sheet through the last
+    glacial cycle. The model is driven by several temperature reconstructions
+    based on proxy data and model output is subsequently compared in detail to
+    the existing geological evidence in the region. The study is of significant
+    relevance as it focuses on the Cordilleran ice sheet evolution in the past,
+    which is still poorly understood.}
+
+\referee{%
+    Nevertheless, the manuscript is quite unbalanced in its presentation as it
+    focuses strongly on section~4 (Comparison with geological record) and by
+    doing so neglects crucial details in section~2 (Model setup). This poses a
+    fundamental challenge for understanding the science presented. If it is not
+    quite clear what the model does and how it performs to start with, it
+    becomes difficult to discuss the results of the modelling study and why
+    there are mismatches with geological evidence.}
+
+\referee{%
+    An overall sensitivity study of the parameters used in the model is
+    completely lacking, thereby making it almost impossible to understand
+    different responses of the ice sheet model. After reading the manuscript,
+    one is left with the impression that the authors assume the PISM ice sheet
+    model to be a black box which just requires one initial ``correct'' setup
+    with literature values. This notion is reflected in the current manuscript,
+    where almost all mismatches of model output with geological evidence (as
+    discussed in section~4) are attributed to climate variations lacking in the
+    proxy data, or climate-ice sheet feedback mechanisms not represented in the
+    model chain. Similarly in a previous study Seguinot et al. ( 2014 ) have
+    focused only on the driving climate sensitivities and have omitted
+    influences of the ice sheet model as well as mass balance model pa-
+    rameters even though they note in that study that these sensitivities
+    require attention as well.}
+
+\referee{%
+    What I advocate at this point is not a complete, strict sensitivity study
+    of all parameters involved in the model setup (that would be probably a
+    work package large enough to fill a science career). However several key
+    parameters can be investigated with not too much effort. Contrasting the
+    influence of e.g. basal sliding and ice rheology parameters with the
+    influence of driving climate on the model results would help to estimate
+    the overall sensitivity of the model system as well as help guiding future
+    efforts performing such modelling studies. Implicitly the authors assume
+    that all other model sensitivities are negligibly small in comparison to
+    the driving climate. However it is obvious from an ice sheet model
+    perspective that at least chosen basal sliding parameters as well as ice
+    rheology parameters will strongly influence the shape and volume of the
+    modelled ice sheet. Thus it would be nice to see evidence supporting the
+    claim that driving climate is the only input to worry about being presented
+    in the current manuscript. Or should it turn out that basal sliding and ice
+    rheology play an important role too, as one would expect, then the relative
+    importance of each including error estimates on the chosen parameters
+    should be presented as well.}
+
+\referee{%
+    Generally section~4 appears to be quite long and seems to re-summarize
+    known geological evidence for the region. At times the language is quite
+    speculative, for example P4162 L1 and 7, P4164 L18, P4171 L7, L9, L17, L19
+    and L20 and so forth. I would recommend to shorten that section to focus
+    only on the geological evidence which can or can not clearly be reproduced
+    by the presented model and avoid extensive speculation on what the reasons
+    for mismatch are, especially in the present form of the manuscript, where a
+    sensitivity study of the model itself is completely missing. However I
+    leave the choice of how much geological evidence is discussed in the
+    manuscript entirely up to the authors.}
+
+% ----------------------------------------------------------------------
+
+\sechead{2 \quad Specific Comments}
+
+\referee{%
+    I refer to text locations in the discussion paper by page number (P) and
+    line number range (L) for the specific comments.}
+
+\referee{%
+    \textbf{P4151 L11-16:}
+    In this sentence the authors refer back to their previous work ( Seguinot
+    et al. , 2014 ) and highlight that the NARR temperature and precipitation
+    fields are the most suitable present day climate datasets to be used.
+    Especially since the NARR precipitation fields include steep precipitation
+    gradients which are required as identified by Seguinot et al. ( 2014 ).
+    NARR is delivered on a 32\,km Lambert grid, and thus it is ques- tionable
+    how ``steep'' these gradients can be, given the rather smooth
+    representation of the existing topography on a 32\,km grid. Seguinot et al.
+    ( 2014 ) have partly discussed that however. NARR precipitation and
+    temperature fields have been evaluated in detail based on available station
+    data for large parts of the study domain dealt with in this manuscript.
+    This evaluation ( Jarosch et al. , 2012 ) demonstrated that NARR has
+    difficulties simulating orographic processes in the Coast Mountains which
+    in turn results in unrealistic atmospheric conditions over the Rocky
+    Mountains. Jarosch et al. ( 2012 ) further concluded that physics based
+    downscaling is required to adequately drive glacier models in that region.
+    The authors should argue in more detail here why they think that NARR
+    precipitation fields at 32\,km are adequate to drive their model and
+    reflect their arguments with the findings of Jarosch et al. ( 2012 ). A
+    solid argument here is of special importance as the authors assume the
+    present day precipitation fields to be valid throughout their model time
+    period (120\,ky to present) without further corrections (cf. section~2.4
+    equation~6).}
+
+\referee{%
+    \textbf{P4152 L11:}
+    Basal topography is ``derived'' from ETOPO1 data. What does this mean? Do
+    the authors just re-sample the DEM data to their 10\,km and 5\,km model
+    grids (P4152 L21-22) or is there more processing done? The ETOPO1 data
+    contains the present day ice volumes within the study region. Clarke et al.
+    ( 2013 ) have estimated the ice volume in parts of that region to be $2530
+    \pm 220\,km^2$, with maximum ice thicknesses up to 200\,m. It can be argued
+    that the volume is negligible in this study and the authors should do so if
+    they think this is appropriate, but I wonder about the ice thicknesses.
+    Assuming that the authors did not remove the present day ice cover, basal
+    topography could be up to 200\,m higher that it actually is in reality.
+    Given their used temperature lapse rate of $6\,K\,km^{-1}$ (P4157 L1),
+    parts of the Cordilleran ice sheet growing in those regions with 200\,m too
+    high topography would experience a 1.2\,K colder atmosphere than it
+    actually should in reality. This favours unrealistic ice growth and thus
+    the omission of present day ice cover removal should be clearly argued for
+    in the manuscript.}
+
+\referee{%
+    \textbf{P4153 L2-3:}
+    That the ``shallow shelf approximation'' (SSA) is used as a ``sliding law''
+    for the ``shallow ice approximation'' (SIA) is a confusing statement in
+    this context. Bueler has coined the term in his 2009 paper as cited in the
+    manuscript. However the casual reader will be confused at this point,
+    especially since the authors state the pseudoplastic sliding law the model
+    actually uses in equation~1. I would recommend to leave out the statement
+    on the SSA being the ``sliding law'' for the SIA.}
+
+\referee{%
+    \textbf{P4153 L5-6:}
+    As stated here, ice rheology within the used ice sheet model is based on
+    Aschwanden et al. ( 2012 ). This enthalpy based formulation has proofed
+    itself to be very suitable for estimating ice rheology in ice sheet models,
+    but it also depends on several parameters to translate enthalpy within the
+    ice to ice viscosity (see Aschwanden et al. ( 2012 ), equations 62-65). The
+    authors do not mention any of these parameters (e.g. any of the rate
+    factors or nonlinear power $n$ ) within the manuscript or in Table~1. I
+    have mentioned above in the general comments section that parameters used
+    in ice rheology and basal sliding formulations are important model
+    parameters which will influence the ice sheet model output and that a basic
+    sensitivity study on those parameters is required to understand the model
+    results. Here the authors could start with listing the parameters used in
+    the ice rheology formulation, than continue with estimating uncertainties
+    for those from literature and afterwards perform additional model
+    simulations to identify the influence of the chosen parameter sets on the
+    ice volume and ice margin position history the model creates. In the end
+    the authors will be able to identify the relative importance of
+    uncertainties in driving climate as well as model parameters, which will
+    strengthen their discussion in section~4.}
+
+\referee{%
+    \textbf{P4153 L8:}
+    It is not clear where the geothermal heat flux boundary is located. Does
+    the ``depth of 3\,km'' refer to a depth measured from the ice surface,
+    which would not make much sense for a ice thickness evolving ice sheet
+    model or is it measured from the ice-bedrock interface downward. In that
+    case the term ``computed subglacially'' is confusing as it refers to the
+    ice-bedrock interface. Please be more specific here.}
+
+\referee{%
+    \textbf{P4153 L16 - P4154 L0:}
+    Here the authors describe the basal sliding setup in their model. However
+    they do not explain how they came up with the parameters used in
+    equations~1-3 that are listed in Table~1 (part on ``basal sliding''). What
+    motivates these parameter choices (references?) and how sensitive is the
+    model and its results to these choices? Both question come instantly to
+    mind and need to be addressed in detail. Here a basic sensitivity study on
+    how basal sliding parameters in the model control the outcome discussed in
+    section~4 is in order and I strongly recommend to include one in the
+    manuscript. The authors can start by estimating the uncertainties in the
+    chosen basal sliding parameters and run two extra simulation runs with
+    their preferred climate forcing and the end member values of the
+    uncertainties. This would create the most simple sensitivity study with
+    respect to basal sliding, but would be extremely helpful for the argument
+    made above in my general comments.}
+
+\referee{%
+    \textbf{P4156 L3-5:}
+    In addition to what I have stated above on the NARR precipitation fields
+    and their suitability, it is important to state at this location in the
+    manuscript how the 32\,km NARR data is translated to the 10 and 5\,km
+    computational grids of the current study. I disagree with the notion that a
+    32\,km precipitation field can be called ``high- resolution'' in the
+    context of 10 and 5\,km grid based ice sheet modelling. The input data is
+    either 3 or 6 times coarser than the numerical grid, thus not at all
+    high-resolution. Seguinot et al. ( 2014 ) state in their section~3.3 that
+    the NARR data fields have been bilinearly interpolated to 10\,km resolution
+    in their work. Did the authors do the same here for their 10 and 5\,km
+    working grids? This is crucial information to be included in the
+    manuscript. It has been demonstrated by spectral power analysis ( Jarosch
+    et al. , 2012 ) that the NARR precipitation fields do not contain any
+    significant spacial information below approximately 39\,km resolution and
+    that bilinear interpolation does not add any information whatsoever on
+    smaller scales, which should come to no surprise. Physics-based downscaling
+    techniques however are able to add spatial information to precipitation
+    fields down to about 1\,km grid sizes ( Jarosch et al. , 2012 ). Taking
+    these findings into the current context of the manuscript at hand, the NARR
+    precipitation fields can hardly be called ``high resolution'' with their
+    effective precipitation grid size of 39\,km. The authors should argue for
+    their choice of not performing any downscaling whatsoever to their
+    computational grids of 10 and 5\,km for precipitation and temperature and
+    discuss their choice in the light of the findings from Jarosch et al. (
+    2012 ). Temperature however is better constrained in NARR ( Jarosch et al.
+    , 2012 ) and contains spectral information down to 10\,km resolution, which
+    justifies the usage of NARR temperature fields on the 10\,km computational
+    grid of this study. The 5\,km grid still needs to be argued for.}
+
+\referee{%
+    \textbf{P4157 L1:}
+    How is a fixed temperature lapse rate justified for simulations over 120k
+    years, when there is ample published evidence that temperature lapse rates
+    vary significantly within space and time? I am sure that the choice of
+    $\gamma$ in this study has a significant influence on the model outcome and
+    I leave it to the authors to explore this possibility.}
+
+% ----------------------------------------------------------------------
+
+\sechead{3 \quad Technical Corrections}
+
+\referee{%
+    \textbf{P4161 L10:}
+    ``further analysis further;'' maybe change to ``further analysis'' or
+    ``further analysis here''.}
+
+\referee{%
+    \textbf{P4166 L13:}
+    double ``the'' in the sentence.}
+
+\referee{%
+    I hope the authors find my comments helpful in revising their manuscript
+    and wish them success for their future endeavours.}
+
+% ----------------------------------------------------------------------
+% Interactive comment text ends
+% ----------------------------------------------------------------------
+
+\end{document}

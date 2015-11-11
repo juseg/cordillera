@@ -40,5 +40,10 @@ figures/frames
 stats/count.csv
 stats/progress.pdf
 
+# Reviews
+/reviews/*.aux
+/reviews/*.log
+/reviews/*.pdf
+
 # Revisions from co-authors
 revisions/
