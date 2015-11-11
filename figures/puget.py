@@ -12,7 +12,7 @@ figw, figh = 120.0, 90.0
 fig, grid = iplt.subplots_mm(nrows=3, ncols=4, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=2.5, right=2.5, bottom=2.5, top=2.5,
-                             wspace=2.5, hspace=2.5, projection='mapaxes')
+                             wspace=2.5, hspace=2.5)
 
 # load extra output
 print 'reading extra output...'

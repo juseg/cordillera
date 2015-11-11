@@ -128,8 +128,7 @@ def add_pointer_tag(ax, s, xy, xytext):
 def draw_boot_topo(grid, res):
     nc = open_boot_file(res)
     for ax in grid.flat:
-        im = ax.imshow(nc, 'topg',
-                       cmap=topo_cmap, norm=topo_norm)
+        im = nc.imshow('topg', ax=ax, cmap=topo_cmap, norm=topo_norm)
     nc.close()
     return im
 
@@ -137,7 +136,7 @@ def draw_boot_topo(grid, res):
 def draw_coastline(grid, res):
     nc = open_boot_file(res)
     for ax in grid.flat:
-        cs = ax.contour(nc, 'topg', levels=[0.0],
+        cs = nc.contour('topg', ax=ax, levels=[0.0],
                         cmap=None, colors='k', linewidths=0.5)
     nc.close()
     return cs

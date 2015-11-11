@@ -17,7 +17,7 @@ figw, figh = 85.0, 120.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=2.5, right=2.5, bottom=15.0, top=2.5,
-                             wspace=2.5, hspace=2.5, projection='mapaxes')
+                             wspace=2.5, hspace=2.5)
 for ax in grid.flat:
     ax.set_rasterization_zorder(2.5)
 

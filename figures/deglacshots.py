@@ -14,7 +14,7 @@ figw, figh = 120.0, 97.5
 fig, grid = iplt.subplots_mm(nrows=2, ncols=4, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=2.5, right=20.0, bottom=2.5, top=2.5,
-                             wspace=2.5, hspace=2.5, projection='mapaxes')
+                             wspace=2.5, hspace=2.5)
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # loop on records
@@ -28,13 +28,13 @@ for i, rec in enumerate(records):
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
-        ax.imshow(nc, 'topg', t, thkth=thkth, cmap=topo_cmap, norm=topo_norm)
-        ax.icemargin(nc, t, thkth=thkth, linewidths=0.5)
-        ax.contour(nc, 'usurf', t, thkth=thkth, levels=range(200, 5000, 200),
+        nc.imshow('topg', ax=ax, t=t, thkth=thkth, cmap=topo_cmap, norm=topo_norm)
+        nc.icemargin(ax=ax, t=t, thkth=thkth, linewidths=0.5)
+        nc.contour('usurf', ax=ax, t=t, thkth=thkth, levels=range(200, 5000, 200),
                    cmap=None, colors='k', linewidths=0.1)
-        ax.contour(nc, 'usurf', t, thkth=thkth, levels=range(1000, 5000, 1000),
+        nc.contour('usurf', ax=ax, t=t, thkth=thkth, levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
-        im = ax.imshow(nc, 'velsurf_mag', t, thkth=thkth,
+        im = nc.imshow('velsurf_mag', ax=ax, t=t, thkth=thkth,
                        cmap=vel_cmap, norm=vel_norm, alpha=0.75)
         add_corner_tag(ax, '%s ka' % (-t/1e3))
 

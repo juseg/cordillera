@@ -16,17 +16,17 @@ def draw(ax, idx):
     ax.cla()
 
     # plot
-    ax.imshow(nc, 'topg', idx, thkth=thkth,
+    nc.imshow('topg', ax=ax, t=idx, thkth=thkth,
               cmap=topo_cmap, norm=topo_norm)
-    ax.icemargin(nc, idx, thkth=thkth,
+    nc.icemargin(ax=ax, t=idx, thkth=thkth,
                  linewidths=0.5)
-    ax.contour(nc, 'usurf', idx, thkth=thkth,
+    nc.contour('usurf', ax=ax, t=idx, thkth=thkth,
                levels=range(200, 5000, 200),
                cmap=None, colors='k', linewidths=0.1)
-    ax.contour(nc, 'usurf', idx, thkth=thkth,
+    nc.contour('usurf', ax=ax, t=idx, thkth=thkth,
                levels=range(1000, 5000, 1000),
                cmap=None, colors='k', linewidths=0.25)
-    im = ax.imshow(nc, 'velsurf_mag', idx, thkth=thkth,
+    im = nc.imshow('velsurf_mag', ax=ax, t=idx, thkth=thkth,
                    cmap=vel_cmap, norm=vel_norm, alpha=0.75)
     add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
 
@@ -43,7 +43,7 @@ for i, rec in enumerate(records):
     figw, figh = 70.0, 100.0
     fig, ax = iplt.subplots_mm(figsize=(figw, figh),
                                left=2.5, right=20.0, bottom=2.5, top=2.5,
-                               wspace=2.5, hspace=2.5, projection='mapaxes')
+                               wspace=2.5, hspace=2.5)
     cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
     # draw first frame and colorbar

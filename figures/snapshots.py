@@ -10,8 +10,7 @@ res = '10km'
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
 fig, grid = iplt.subplots(3, len(records), sharex=True, sharey=True,
-                          figsize=(figw*in2mm, figh*in2mm),
-                          subplot_kw={'projection': 'mapaxes'})
+                          figsize=(figw*in2mm, figh*in2mm))
 fig.subplots_adjust(left=5.0/figw, right=1-12.5/figw,
                     bottom=2.5/figh, top=1-5.0/figh,
                     hspace=1/((1+figh/2.5)/4-1))
@@ -32,18 +31,18 @@ for i, rec in enumerate(records):
         print 'plotting %s at %.1f ka...' % (rec, -mis_times[j]/1e3)
         ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
-        ax.imshow(nc, 'topg', t, thkth=thkth,
+        nc.imshow('topg', ax=ax, t=t, thkth=thkth,
                   cmap=topo_cmap, norm=topo_norm)
-        ax.icemargin(nc, t, thkth=thkth,
+        nc.icemargin(ax=ax, t=t, thkth=thkth,
                      linewidths=0.5)
         levs = range(0, 4001, 500)
-        cs = ax.contourf(nc, 'usurf', t, thkth=thkth,
+        cs = nc.contourf('usurf', ax=ax, t=t, thkth=thkth,
                          levels=levs, cmap='Blues_r',
                          norm=BoundaryNorm(levs, 256), alpha=0.75)
-        ax.contour(nc, 'usurf', t, thkth=thkth,
+        nc.contour('usurf', ax=ax, t=t, thkth=thkth,
                    levels=range(0, 4001, 500),
                    cmap=None, colors='k', linewidths=0.1)
-        ax.contour(nc, 'usurf', t, thkth=thkth,
+        nc.contour('usurf', ax=ax, t=t, thkth=thkth,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
         add_corner_tag(ax, '%.1f ka' % (-mis_times[j]/1e3))
