@@ -47,11 +47,11 @@ for i, rec in enumerate(records):
     hatches = ['//'] + ['']*(len(levs)-2)
 
     # draw contours
-    cs = iplt.Axes.contourf(ax, x[:], y[:], warm, levels=levs, alpha=0.75,
+    cs = ax.contourf(x[:], y[:], warm, levels=levs, alpha=0.75,
                             colors=colors, hatches=hatches)
-    iplt.Axes.contour(ax, x[:], y[:], warm, [0.0],
+    ax.contour(x[:], y[:], warm, [0.0],
                       colors='k', linewidths=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], warm.mask, [0.5],
+    ax.contour(x[:], y[:], warm.mask, [0.5],
                       colors='k', linewidths=0.5)
 
     # close extra file

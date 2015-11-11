@@ -48,9 +48,9 @@ for i, rec in enumerate(records):
     # plot
     ages = range(8, 23, 1)
     levs = [0] + ages
-    iplt.Axes.streamplot(ax, x[:], y[:], u, v,
+    ax.streamplot(x[:], y[:], u, v,
                          color='k', density=(10, 20), linewidth=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], deglacage.mask,
+    ax.contour(x[:], y[:], deglacage.mask,
                       levels=[0.5], colors='k', linewidths=0.5)
 
     # annotate

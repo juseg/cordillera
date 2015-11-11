@@ -26,8 +26,8 @@ print 'plotting temperature maps...'
 levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]
 norm=BoundaryNorm(levs, 256)
 for i in range(2):
-    im = iplt.Axes.contourf(grid[i, 0], x[:], y[:], temp[6*i].T-273.15,
-                            cmap='RdBu_r', levels=levs, norm=norm, alpha=0.75)
+    im = grid[i, 0].contourf(x[:], y[:], temp[6*i].T-273.15,
+                             cmap='RdBu_r', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([2.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal')
 cb.set_label(u'Temperature (°C)')
@@ -37,8 +37,8 @@ print 'plotting precipitation maps...'
 levs = np.logspace(1/3., 3, 9).round(0)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = iplt.Axes.contourf(grid[i, 1], x[:], y[:], prec[6*i].T*910/12.,
-                            cmap='Greens', levels=levs, norm=norm, alpha=0.75)
+    im = grid[i, 1].contourf(x[:], y[:], prec[6*i].T*910/12.,
+                             cmap='Greens', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
 cb.set_label(r'Precipitation (mm)')
@@ -56,8 +56,8 @@ print 'plotting standard deviation maps...'
 levs = np.linspace(0.0, 12.0, 9)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
-    im = iplt.Axes.contourf(grid[i, 2], x[:], y[:], stdv[6*i].T, cmap='Reds',
-                              levels=levs, norm=norm, alpha=0.75)
+    im = grid[i, 2].contourf(x[:], y[:], stdv[6*i].T, cmap='Reds',
+                             levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([57.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[2::2])
 cb.set_label(u'PDD SD (°C)')

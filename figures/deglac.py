@@ -50,16 +50,16 @@ for i, rec in enumerate(records):
         deglacage = np.where(icy, -t, deglacage)
 
     # plot
-    cs = iplt.Axes.contourf(ax, x[:], y[:], deglacage, levels=levs,
+    cs = ax.contourf(x[:], y[:], deglacage, levels=levs,
                             cmap=cmap, alpha=0.75,
                             norm=BoundaryNorm(levs, 256), extend='max')
-    iplt.Axes.contourf(ax, x[:], y[:], readvance, levels=[0.5, 1.5],
+    ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5],
                        colors='none', hatches=['//'])
-    iplt.Axes.contour(ax, x[:], y[:], readvance, levels=[0.5, 1.5],
+    ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5],
                       colors='k', linewidths=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], deglacage, levels=[levs[-1]],
+    ax.contour(x[:], y[:], deglacage, levels=[levs[-1]],
                       colors='k', linewidths=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], deglacage, levels=[-0.5],
+    ax.contour(x[:], y[:], deglacage, levels=[-0.5],
                       colors='k', linestyles='solid', linewidths=0.5)
 
     # annotate

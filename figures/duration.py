@@ -43,16 +43,16 @@ for i, rec in enumerate(records):
     hatches = ['']*5 + ['//'] + ['']*4
 
     # plot
-    cf = iplt.Axes.contourf(ax, x[:], y[:], icecover, levels=levs, alpha=0.75,
+    cf = ax.contourf(x[:], y[:], icecover, levels=levs, alpha=0.75,
                             colors=colors, hatches=hatches)
-    cs = iplt.Axes.contour(ax, x[:], y[:], icecover, [cislevs[i]], colors='k',
+    cs = ax.contour(x[:], y[:], icecover, [cislevs[i]], colors='k',
                            linewidths=0.25)
     cs.clabel(fontsize=6, fmt='%i ka', manual=[(-1825e3, 1000e3)])
-    iplt.Axes.contour(ax, x[:], y[:], icecover, [levs[0]],
+    ax.contour(x[:], y[:], icecover, [levs[0]],
                       colors='k', linewidths=0.5)
 
     # to display the first discontinuous contour
-    #cs = iplt.Axes.contour(ax, x[:], y[:], icecover, [cislevs[i]+1.0],
+    #cs = ax.contour(x[:], y[:], icecover, [cislevs[i]+1.0],
     #                       colors='green', linewidths=0.25)
 
     # close extra file

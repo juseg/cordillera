@@ -67,16 +67,16 @@ for i, rec in enumerate(records):
 
     # plot last velocity stream lines
     print 'plotting...'
-    iplt.Axes.streamplot(ax, x[:], y[:], lastu, lastv, color=slidage,
+    ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
                          density=(60.0/plotres, 120.0/plotres),
                          cmap=cmap, norm=norm, linewidth=0.5)
 
     # plot glaciated and non-sliding areas
-    iplt.Axes.contourf(ax, x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
+    ax.contourf(x[:], y[:], glaciated * (slidage < 0), levels=[0.5, 1.5],
                        colors='none', hatches=['//'])
-    iplt.Axes.contour(ax, x[:], y[:], slidage, levels=[0.0],
+    ax.contour(x[:], y[:], slidage, levels=[0.0],
                       colors='k', linewidths=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], glaciated, levels=[0.5],
+    ax.contour(x[:], y[:], glaciated, levels=[0.5],
                       colors='k', linewidths=0.5)
 
     # annotate

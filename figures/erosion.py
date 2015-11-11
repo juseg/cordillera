@@ -45,12 +45,12 @@ for i, rec in enumerate(records):
     hatches = ['//'] + ['']*len(levs)
 
     # plot
-    cf = iplt.Axes.contourf(ax, x[:], y[:], dist, levels=levs,
+    cf = ax.contourf(x[:], y[:], dist, levels=levs,
                             colors=cols, hatches=hatches,
                             extend='both', alpha=0.75)
-    iplt.Axes.contour(ax, x[:], y[:], dist, levels=[levs[0]],
+    ax.contour(x[:], y[:], dist, levels=[levs[0]],
                       colors='k', linewidths=0.25)
-    iplt.Axes.contour(ax, x[:], y[:], dist.mask, [0.5],
+    ax.contour(x[:], y[:], dist.mask, [0.5],
                       colors='k', linewidths=0.5)
 
     # close extra file

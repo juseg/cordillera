@@ -45,14 +45,14 @@ for i, t in enumerate(times):
     print 'plotting at %s ka...' % time
     ax = grid.flat[i]
     ax.set_rasterization_zorder(2.5)
-    iplt.Axes.imshow(ax, topg-125.0, cmap=topo_cmap, norm=topo_norm)
-    iplt.Axes.contour(ax, usurf, levels=range(100, 5000, 100),
+    ax.imshow(topg-125.0, cmap=topo_cmap, norm=topo_norm)
+    ax.contour(usurf, levels=range(100, 5000, 100),
                       colors='k', linewidths=0.2)
-    iplt.Axes.contour(ax, usurf, levels=range(1000, 5000, 1000),
+    ax.contour(usurf, levels=range(1000, 5000, 1000),
                       colors='k', linewidths=0.5)
-    iplt.Axes.contourf(ax, icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
-    iplt.Axes.contour(ax, icy, levels=[0.5], colors='k')
-    iplt.Axes.quiver(ax, u, v, c, cmap=vel_cmap, scale=25.0)
+    ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
+    ax.contour(icy, levels=[0.5], colors='k')
+    ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
     add_corner_tag(ax, '%s ka' % (time))
 
 # save
