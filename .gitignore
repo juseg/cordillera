@@ -43,6 +43,7 @@ stats/progress.pdf
 # Reviews
 /reviews/*.aux
 /reviews/*.log
+/reviews/*.out
 /reviews/*.pdf
 
 # Revisions from co-authors

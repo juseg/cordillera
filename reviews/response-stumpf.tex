@@ -3,6 +3,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[pdftex]{graphicx}
 \usepackage[pdftex]{color}
+\usepackage{hyperref}
+\usepackage{natbib}
 
 \sloppy
 \setlength{\parskip}{1.2ex}
@@ -20,6 +22,7 @@
 % Interactive comment text begins
 % ----------------------------------------------------------------------
 
+\newcommand{\doi}[1]{doi:\allowbreak\href{http://dx.doi.org/#1}{#1}}
 \newcommand{\sechead}[1]{\bigskip\noindent\textbf{#1}}
 \newcommand{\referee}[1]{\bigskip\textcolor{journalname}{\textit{#1}}}
 \newcommand{\msquote}[1]{\begin{quote}\textit{#1}\end{quote}}
@@ -36,7 +39,7 @@ To A.~Stumpf,
     data sets. The modeling confirms what geologists have observed in the
     field; there was a fast decay of the CIS during MIS~2 and MIS~4 and
     non-glacial conditions existed during MIS (Olympia Nonglacial Interval;
-    e.g., Plouffe and Jett\'e, 1997). I applaud them for undertaking of such a
+    \citealp[e.g.,][]{Plouffe.Jette.1997}). I applaud them for undertaking of such a
     difficult task, and notifying the reader where input data is sparse or
     inconclusive.}
 
@@ -54,7 +57,7 @@ To A.~Stumpf,
     extent, volume and dynamics ice sheet, the impression left on the reader by
     the opening sentence would be incorrect. These studies have greatly
     advanced our understanding of the CIS, and could be an important dataset to
-    test against the modeling. Stumpf et al. (2014) provides a list of some of
+    test against the modeling. \citet{Stumpf.etal.2014} provides a list of some of
     these studies.}
 
 \referee{%
@@ -63,12 +66,12 @@ To A.~Stumpf,
     grids; political boundaries; lakes and rivers, place names etc..).}
 
 \referee{%
-    3) Was the model tested against regional-scale ground-based data (e.g.,
-    Ferbey et al. 2013) to constrain ice divide positions, ice flow direction,
+    3) Was the model tested against regional-scale ground-based data
+    \citep[e.g.,][]{Ferbey.etal.2013} to constrain ice divide positions, ice flow direction,
     and ice sheet thickness?}
 
 \referee{%
-    4) For the central sector of the CIS, Stumpf et al. (2000) provides some
+    4) For the central sector of the CIS, \citet{Stumpf.etal.2000} provides some
     insight into the chronology and effectiveness of glacial erosional during
     the MIS. In figure~5, and in the accompanying text, they describe how
     landforms on the surface formed. For example, in lake valleys east of the
@@ -78,12 +81,47 @@ To A.~Stumpf,
     impacted them.}
 
 \referee{%
-    5) Stumpf et al. (2000) was the first study to extensively document a
+    5) \citet{Stumpf.etal.2000} was the first study to extensively document a
     predominant westerly directed ice flow across high elevations in the Skeena
     and Coast Mountains. This flow direction appeared to continue into the
     late-glacial period. Other subsequent studies also confirm that
     late-glacial readvance eastward out of these mountains and retreat of ice
     margins westward into these mountains was limited.}
+
+% ----------------------------------------------------------------------
+
+\begin{thebibliography}{69}
+
+\bibitem[{Ferbey et~al.(2013)}]{Ferbey.etal.2013}
+Ferbey, T., Arnold, H., and Hickin, A.: Ice-flow indicator compilation, British
+  Columbia., British Columbia Geol. Surv., Victoria, BC, Open-File 2013-06,
+  \url{http://www.em.gov.bc.ca/Mining/Geoscience/PublicationsCatalogue/OpenFiles/2013/Pages/2013-06.aspx},
+  2013.
+
+\bibitem[{Seguinot et~al.(2014)}]{Seguinot.etal.2014}
+Seguinot, J., Khroulev, C., Rogozhina, I., Stroeven, A.~P., and Zhang, Q.: The
+  effect of climate forcing on numerical simulations of the {C}ordilleran ice
+  sheet at the {L}ast {G}lacial {M}aximum, The Cryosphere, 8, 1087--1103,
+  \doi{10.5194/tc-8-1087-2014}, 2014.
+
+\bibitem[{Stumpf et~al.(2000)}]{Stumpf.etal.2000}
+Stumpf, A.~J., Broster, B.~E., and Levson, V.~M.: Multiphase flow of the late
+  Wisconsinan Cordilleran ice sheet in western Canada, Geol. Soc. Am. Bull.,
+  112, 1850--1863, \doi{10.1130/0016-7606(2000)112<1850:mfotlw>2.0.co;2}, 2000.
+
+\bibitem[{Stumpf et~al.(2014)}]{Stumpf.etal.2014}
+Stumpf, A.~J., Ferbey, T., Plouffe, A., Clague, J.~J., Ward, B.~C., Paulen,
+  R.~C., and Bush, A.~B.: Discussion: ``Streamlined erosional residuals and
+  drumlins in central British Columbia, Canada'' by J. Donald {McClenagan},
+  (2013) Geomorphology 189, 41--54, Geomorphology, 209, 147--150,
+  \doi{10.1016/j.geomorph.2013.10.019}, 2014.
+
+\bibitem[{Plouffe and Jett{\'{e}}(1997)}]{Plouffe.Jette.1997}
+Plouffe, A. and Jett{\'{e}}, H.: Middle Wisconsinan sediments and paleoecology
+  of central British Columbia: sites at Necoslie and Nautley rivers, Can. J.
+  Earth Sci., 34, 200--208, \doi{10.1139/e17-016}, 1997.
+
+\end{thebibliography}
 
 % ----------------------------------------------------------------------
 % Interactive comment text ends

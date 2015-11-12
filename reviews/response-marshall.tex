@@ -3,6 +3,8 @@
 \usepackage[T1]{fontenc}
 \usepackage[pdftex]{graphicx}
 \usepackage[pdftex]{color}
+\usepackage{hyperref}
+\usepackage{natbib}
 
 \sloppy
 \setlength{\parskip}{1.2ex}
@@ -21,6 +23,7 @@
 % Interactive comment text begins
 % ----------------------------------------------------------------------
 
+\newcommand{\doi}[1]{doi:\allowbreak\href{http://dx.doi.org/#1}{#1}}
 \newcommand{\sechead}[1]{\bigskip\noindent\textbf{#1}}
 \newcommand{\referee}[1]{\bigskip\textcolor{journalname}{\textit{#1}}}
 \newcommand{\msquote}[1]{\begin{quote}\textit{#1}\end{quote}}
@@ -66,6 +69,7 @@ To S.~J.~Marshall,
 
 % ----------------------------------------------------------------------
 
+\newpage
 \sechead{1 \quad Specific comments}
 
 \referee{%
@@ -77,8 +81,9 @@ To S.~J.~Marshall,
     temporal variations in climate conditions during the glacial period. The
     authors confront these challenges well, with a adequate ice sheet model
     resolution (5 to 10\,km) and ice physics, carefully calibrated `control'
-    climatology (published in Seguinot et al., 2014), and a good exploration of
-    different paleoclimate time series histories in this contribution.}
+    climatology \citep[published in][]{Seguinot.etal.2014}), and a good
+    exploration of different paleoclimate time series histories in this
+    contribution.}
 
 \referee{%
     Nevertheless, it is not clear that ice-core based paleoclimate proxies from
@@ -126,6 +131,19 @@ To S.~J.~Marshall,
     Congratulations to the authors and thanks for this fine work.}
 
 \todo{Correct mistakes.}
+
+% ----------------------------------------------------------------------
+
+\begin{thebibliography}{69}
+
+\bibitem[{Seguinot et~al.(2014)Seguinot, Khroulev, Rogozhina, Stroeven, and
+  Zhang}]{Seguinot.etal.2014}
+Seguinot, J., Khroulev, C., Rogozhina, I., Stroeven, A.~P., and Zhang, Q.: The
+  effect of climate forcing on numerical simulations of the {C}ordilleran ice
+  sheet at the {L}ast {G}lacial {M}aximum, The Cryosphere, 8, 1087--1103,
+  \doi{10.5194/tc-8-1087-2014}, 2014.
+
+\end{thebibliography}
 
 % ----------------------------------------------------------------------
 % Interactive comment text ends
