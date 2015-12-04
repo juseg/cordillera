@@ -23,6 +23,7 @@ s2ka = s2a/1e3
 
 # file paths
 pism_dir = os.environ['HOME'] + '/pism/'
+version = '0.7.2'
 
 # default params
 res = '10km'
@@ -48,11 +49,11 @@ thkth = 1.0
 
 # file open functions
 def open_atm_file(res):
-    return iplt.load(pism_dir + 'input/atm/cordillera-narr-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/atm/cordillera-narr-%s.nc' % res)
 
 
 def open_boot_file(res):
-    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.cr.nc'
+    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'
                      % res)
 
 
@@ -65,13 +66,13 @@ def open_sd_file(res):
     return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
 
-def open_ts_file(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
+def open_ts_file(res, rec, dt, period='3222', version=version):
     return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
                      '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
                      % (version, res, rec, period, round(100*dt)))
 
 
-def open_extra_file(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
+def open_extra_file(res, rec, dt, period='3222', version=version):
     return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
                      '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
                      % (version, res, rec, period, round(100*dt)))
@@ -86,7 +87,7 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
-def get_mis_times(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
+def get_mis_times(res, rec, dt, period='3222', version=version):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
