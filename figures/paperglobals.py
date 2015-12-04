@@ -65,16 +65,16 @@ def open_sd_file(res):
     return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
 
-def open_ts_file(res, rec, dt, period='3222'):
-    return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+def open_ts_file(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
+    return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
                      '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
-                     % (res, rec, period, round(100*dt)))
+                     % (version, res, rec, period, round(100*dt)))
 
 
-def open_extra_file(res, rec, dt, period='3222'):
-    return iplt.load(pism_dir + 'output/dev-140915-8ff7cbe/cordillera-narr-%s/'
+def open_extra_file(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
+    return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
                      '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
-                     % (res, rec, period, round(100*dt)))
+                     % (version, res, rec, period, round(100*dt)))
 
 
 # analysis functions
@@ -86,11 +86,11 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
-def get_mis_times(res, rec, dt, period='3222'):
+def get_mis_times(res, rec, dt, period='3222', version='dev-140915-8ff7cbe'):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
-    nc = open_ts_file(res, rec, dt, period=period)
+    nc = open_ts_file(res, rec, dt, period=period, version=version)
     ts_time = nc.variables['time'][:]*s2a
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
