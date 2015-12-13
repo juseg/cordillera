@@ -115,7 +115,7 @@ def add_corner_tag(ax, s, ha='right', va='top'):
     yoffset = (1 - 2*y)*2.5*in2mm
     offset = ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
     return ax.text(x, y, s, ha=ha, va=va,
-                   bbox=dict(ec='k', fc='w', pad=2.5*pt2mm),
+                   bbox=dict(ec='k', fc='w', pad=1.25*pt2mm),
                    transform=ax.transAxes + offset)
 
 
