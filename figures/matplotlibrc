@@ -1,12 +1,29 @@
 # matplotlib configuration parameters
 
-font.family 		: sans-serif
-font.size   		: 6.0
+### FONT
+font.size               : 6
+font.family             : sans-serif
 
-image.interpolation : nearest
-image.origin	   	: lower
+### TEXT
+mathtext.default        : regular
 
-mathtext.default 	: regular
+### AXES
+axes.grid               : False     # display grid or not
 
-savefig.dpi         : 254
-savefig.format      : pdf
+### FIGURE
+#figure.figsize         : 3.346, 2.362  #  85x 60mm
+figure.figsize          : 4.724, 3.937  # 120x100mm
+figure.subplot.left     : 0.020833  #     2.5 / 120
+figure.subplot.right    : 0.833333  # 1 -  20 / 120
+figure.subplot.bottom   : 0.025000  #     2.5 / 100
+figure.subplot.top      : 0.975000  # 1 - 2.5 / 100
+figure.subplot.wspace   : 0.052631  # 2 / ((120-2.5-20.)/2.5-1)
+figure.subplot.hspace   : 0.054054  # 2 / ((100-2.5-2.5)/2.5-1)
+
+### IMAGES
+image.interpolation     : nearest
+image.origin            : lower
+
+### SAVING FIGURES
+savefig.dpi             : 254       # figure dots per inch
+savefig.format          : pdf       # png, ps, pdf, svg
