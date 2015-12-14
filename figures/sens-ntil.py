@@ -2,7 +2,7 @@
 # coding: utf-8
 
 from paperglobals import *
-
+from matplotlib.transforms import ScaledTranslation
 
 def plot_Ntil(W,
               ax=None,
@@ -13,6 +13,7 @@ def plot_Ntil(W,
               Cc=0.12,     # -      (Bueler and van Pelt, 2015)
               rho=910.0,   # kg m-3 (Bueler and van Pelt, 2015)
               g=9.81,      # m s-2  (Bueler and van Pelt, 2015)
+              annotate=False,
               **kwargs):
     """Plot effective pressure on till as a function of water level in the
     style of Bueler and van Pelt (2015, Fig. 1).
@@ -29,15 +30,33 @@ def plot_Ntil(W,
     Ntil = np.ma.array(Ntil, mask=(W>Wmax))
     
     # plot in bars
-    ax.plot(W, Ntil_cap*1e-5, ls='--', **kwargs)
+    ax.plot(W, Ntil_cap*1e-5, ls=':', **kwargs)
     ax.plot(W, Ntil*1e-5, ls='-', **kwargs)
     ax.plot(Wmax, delta*P0*1e-5, marker='o', **kwargs)
+
+    # add annotations
+    if annotate is True:
+
+        # prepare offset transform
+        transOffset = ScaledTranslation(2.0/72, 2.0/72,
+                                        ax.figure.dpi_scale_trans)
+
+        # compute point of compensation where Ntil_cap = P0
+        W0 = Wmax * (1+Cc/e0*np.log10(delta))
+
+        # mark point of compensation
+        ax.text(W0, P0*1e-5, '$W_0, P_0$',
+                transform=ax.transData+transOffset, **kwargs)
+
+        # mark minimal effective pressure
+        ax.text(Wmax, delta*P0*1e-5, '$W_{max}, \delta P_0$',
+                transform=ax.transData+transOffset,**kwargs)
 
 
 if __name__ == '__main__':
 
     # pressure-adjusted temperature
-    W = np.linspace(0.0, 4.0, 101)
+    W = np.linspace(0.0, 6.0, 121)
 
     # initialize figure
     fig, grid = iplt.subplots_mm(2, 1, sharex=True, figsize=(85.0, 100.0),
@@ -48,15 +67,15 @@ if __name__ == '__main__':
     for ax in grid:
 
         # plot default run
-        plot_Ntil(W, ax=ax, c='k')
+        plot_Ntil(W, ax=ax, color='k')
 
         # plot with different Wmax
-        for Wmax in [1.0, 3.0]:
-            plot_Ntil(W, ax=ax, Wmax=Wmax, c=colors[0])
+        plot_Ntil(W, ax=ax, Wmax=1.0, color=colors[0])
+        plot_Ntil(W, ax=ax, Wmax=5.0, color=colors[0], annotate=True)
 
         # plot with different delta
-        for delta in [0.01, 0.05]:
-            plot_Ntil(W, ax=ax, delta=delta, c=colors[2])
+        plot_Ntil(W, ax=ax, delta=0.01, color=colors[2])
+        plot_Ntil(W, ax=ax, delta=0.05, color=colors[2])
 
         # set axes properties
         ax.set_ylabel('Ntil (bar)')
