@@ -10,6 +10,12 @@ mathtext.default        : regular
 ### AXES
 axes.grid               : False     # display grid or not
 
+### GRIDS
+grid.color              :   0.5     # grid color
+grid.linestyle          :   -       # dotted
+grid.linewidth          :   0.1     # in points
+grid.alpha              :   1.0     # transparency, between 0.0 and 1.0
+
 ### FIGURE
 #figure.figsize         : 3.346, 2.362  #  85x 60mm
 figure.figsize          : 4.724, 3.937  # 120x100mm

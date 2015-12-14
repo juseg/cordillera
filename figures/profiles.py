@@ -41,7 +41,7 @@ def profiles(res, rec, dt, color):
         surfpf = np.where(maskpf, topgpf, surfpf)  # apply topg where ice-free
         maskpf = np.roll(maskpf, -1) * np.roll(maskpf, 1)  # shrink mask by 1 cell
         surfpf = np.ma.masked_where(maskpf, surfpf)  # apply mask
-        ax.grid(axis='y', c='0.5', ls='-', lw=0.1)
+        ax.grid(axis='y')
         ax.plot(xpf, surfpf.T, c=color, lw=0.1)
         ax.plot(xpf, topgpf.T, c='k', lw=0.1)
         ax.text(0.04, 0.84, chr(65+i), transform=ax.transAxes)
