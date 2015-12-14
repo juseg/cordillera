@@ -1,11 +1,10 @@
 # Figures Makefile
 
-PY_FIGS = atm.pdf deglac.pdf deglacseries.pdf deglacshots.pdf \
-          duration.pdf icemaps-mis2.pdf icemaps-mis3.pdf icemaps-mis4.pdf \
-          lastflow.pdf locmap.pdf \
-          profiles-epica.pdf profiles-grip.pdf \
-          sens-ntil.pdf sens-rheo.pdf sens-tauc.pdf \
-          snapshots.pdf timeseries.pdf warmbase.pdf warmfrac.pdf
+PY_FIGS = atm deglac deglacseries deglacshots duration \
+          icemaps-mis2 icemaps-mis3 icemaps-mis4 lastflow locmap \
+          profiles-epica profiles-grip sens-ntil sens-rheo sens-tauc \
+          snapshots timeseries warmbase warmfrac
+PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
 ALL_FIGS = $(PY_FIGS)
 
 all: data $(ALL_FIGS)
@@ -13,7 +12,7 @@ all: data $(ALL_FIGS)
 figures.zip: $(ALL_FIGS)
 	zip figures.zip $(ALL_FIGS)
 
-$(PY_FIGS): %.pdf : %.py paperglobals.py matplotlibrc
+${PY_FIGS}: %.pdf : %.py paperglobals.py matplotlibrc
 	python2 $<
 
 icemaps-mis4.pdf: icemaps.py
