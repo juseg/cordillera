@@ -53,7 +53,7 @@ for i, rec in enumerate(records):
     # plot time series
     ax1.plot(-dt_time, dt_temp, color=colors[i])
     ax2.plot(-ts_time, ts_ivol, color=colors[i])
-    ax2.plot(-mis_times[i], ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
+    ax2.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
              color=colors[i], marker=markers[i], label=labels[i])
 
     # look for a high-resolution run
