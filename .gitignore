@@ -27,6 +27,7 @@ figures/data/*.tif
 figures/data/*.zip
 
 # Figures
+figures/util/*.pyc
 figures/*.pyc
 figures/*.pdf
 figures/*.png
