@@ -5,7 +5,7 @@ import os.path
 import numpy as np
 from paperglobals import *
 
-offsets = np.arange(5.4, 6.8, 0.1)
+offsets = np.arange(5.7, 7.0, 0.1)
 
 # print table header
 print '\n    dt ' + '| %7s ' * 6 % tuple(records),
@@ -23,20 +23,25 @@ for i, dt in enumerate(offsets):
             # get MIS2 time
             idx, t = get_mis_times(res, rec, dt)
             idx, t = idx[-1], t[-1]
-        
-            # compute area from extra file
+
+            # open extra file
             nc = open_extra_file(res, rec, dt)
             thk = nc.variables['thk']
+            mask = nc.variables['mask']
             time = nc.variables['time']
             idx = np.abs(time[:]-t*a2s).argmin()
-            iarea = (thk[idx] >= thkth).sum()*1e-4  # area at MIS2
-            nc.close()
 
-            # to compute true max area
-            #iarea = (thk >= thkth).sum(axis=(1, 2)).max()*1e-4  # max area
-            #iarea = (thk >= 8.0).any(axis=(0)).sum()*1e-4  # ice cover
+            # to compute maximum grounded ice area
+            #iarea = ((thk[:] >= thkth)*(mask[:] == 2)).sum(axis=(1, 2)).max()*1e-4
+
+            # to compute grounded ice area at MIS 2
+            iarea = ((thk[idx] >= thkth)*(mask[idx] == 2)).sum()*1e-4
+
+            # to compute area ever covered by grounded ice or footprint
+            #iarea = ((thk[:] >= thkth)*(mask[:] == 2)).any(axis=(0)).sum()*1e-4
 
             # print
+            nc.close()
             print '| %7.3f' % (iarea-2.1),
 
         # else print a blank cell
