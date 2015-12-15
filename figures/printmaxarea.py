@@ -3,7 +3,10 @@
 
 import os.path
 import numpy as np
-from paperglobals import *
+from util import *
+from util.io import *
+from util.pl import *
+import iceplotlib.plot as iplt
 
 offsets = np.arange(5.7, 7.0, 0.1)
 

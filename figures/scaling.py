@@ -1,7 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from paperglobals import *
+from util import *
+from util.io import *
+from util.pl import *
+import iceplotlib.plot as iplt
 from matplotlib.patches import Rectangle
 
 # parametres

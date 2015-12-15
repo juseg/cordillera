@@ -12,7 +12,7 @@ all: data $(ALL_FIGS)
 figures.zip: $(ALL_FIGS)
 	zip figures.zip $(ALL_FIGS)
 
-${PY_FIGS}: %.pdf : %.py paperglobals.py matplotlibrc
+${PY_FIGS}: %.pdf : %.py util matplotlibrc
 	python2 $<
 
 icemaps-mis4.pdf: icemaps.py

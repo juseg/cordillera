@@ -1,7 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from paperglobals import *
+from util import *
+from util.io import *
+from util.pl import *
+import iceplotlib.plot as iplt
 
 
 def tillphi(b, phi_0=15.0, phi_1=45.0, b_0=0.0, b_1=200.0):

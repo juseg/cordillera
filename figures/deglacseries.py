@@ -1,7 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from paperglobals import *
+from util import *
+from util.io import *
+from util.pl import *
+import iceplotlib.plot as iplt
 
 # parameters
 records = records[0:3:2]
