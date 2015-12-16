@@ -23,10 +23,10 @@ grid.alpha              :   1.0     # transparency, between 0.0 and 1.0
 ### FIGURE
 #figure.figsize         : 3.346, 2.362  #  85x 60mm
 figure.figsize          : 4.724, 3.937  # 120x100mm
-figure.subplot.left     : 0.020833  #     2.5 / 120
-figure.subplot.right    : 0.833333  # 1 -  20 / 120
-figure.subplot.bottom   : 0.025000  #     2.5 / 100
-figure.subplot.top      : 0.975000  # 1 - 2.5 / 100
+figure.subplot.left     : 0.083333  #     10 / 120
+figure.subplot.right    : 0.916666  # 1 - 10 / 120
+figure.subplot.bottom   : 0.100000  #     10 / 100
+figure.subplot.top      : 0.900000  # 1 - 10 / 100
 figure.subplot.wspace   : 0.052631  # 2 / ((120-2.5-20.)/2.5-1)
 figure.subplot.hspace   : 0.054054  # 2 / ((100-2.5-2.5)/2.5-1)
 
