@@ -1,15 +1,17 @@
 # Figures Makefile
 
-PY_FIGS = atm locmap lr_maps lr_ts lr_ts_deglac \
-          hr_geom_deglacage hr_geom_duration hr_geom_lastflow \
-          hr_geom_warmbase hr_geom_warmfrac \
+PY_FIGS = atm locmap \
+          lr_maps lr_ts lr_ts_diff lr_ts_deglac lr_violins \
+          hr_geom_basedispl hr_geom_deglacage hr_geom_duration \
+          hr_geom_lastflow hr_geom_warmbase hr_geom_warmfrac \
           hr_maps_deglac hr_maps_mis2 hr_maps_mis3 hr_maps_mis4 \
+          hr_maps_puget \
           hr_pf_epica hr_pf_grip sens_ntil sens_rheo sens_tauc
 
 PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
 ALL_FIGS = $(PY_FIGS)
 
-all: data $(ALL_FIGS)
+all: data $(ALL_FIGS) lr_ts_scaling_3222.png
 
 figures.zip: $(ALL_FIGS)
 	zip figures.zip $(ALL_FIGS)
@@ -22,6 +24,9 @@ hr_maps_mis2.pdf: hr_maps_base.py
 hr_maps_mis2.pdf: hr_maps_base.py
 hr_pf_epica.pdf: hr_pf_base.py
 hr_pf_grip.pdf: hr_pf_base.py
+
+lr_ts_scaling_3222.png: lr_ts_scaling.py
+	python2 $<
 
 .PHONY : data clean
 

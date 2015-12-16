@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.ticker import FuncFormatter
 
@@ -36,7 +37,7 @@ for i, t in enumerate(times):
     thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
 
     # apply masks
-    icy = (thk >= thkth)
+    icy = (thk >= ut.thkth)
     usurf = np.ma.array(usurf, mask=(1-icy))
     u = np.sign(u)*np.log(1+np.abs(u)/100)
     v = np.sign(v)*np.log(1+np.abs(v)/100)
@@ -46,14 +47,14 @@ for i, t in enumerate(times):
     print 'plotting at %s ka...' % time
     ax = grid.flat[i]
     ax.set_rasterization_zorder(2.5)
-    ax.imshow(topg-125.0, cmap=topo_cmap, norm=topo_norm)
+    ax.imshow(topg-125.0, cmap=ut.topo_cmap, norm=ut.topo_norm)
     ax.contour(usurf, levels=range(100, 5000, 100),
                       colors='k', linewidths=0.2)
     ax.contour(usurf, levels=range(1000, 5000, 1000),
                       colors='k', linewidths=0.5)
     ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
     ax.contour(icy, levels=[0.5], colors='k')
-    ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
+    ax.quiver(u, v, c, cmap=ut.vel_cmap, scale=25.0)
     ut.pl.add_corner_tag(ax, '%s ka' % (time))
 
 # save

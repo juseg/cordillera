@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.patches import Rectangle
 
@@ -9,6 +10,7 @@ from matplotlib.patches import Rectangle
 res = '20km'
 dt = 6.0
 periods = 3020 + np.arange(5)*101
+version = 'dev-140915-8ff7cbe'
 
 # initialize time-series figure
 figw, figh = 120.0, 80.0
@@ -16,9 +18,9 @@ fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,
                                    wspace=2.5, hspace=2.5)
-mis_idces = np.zeros((len(records), 3), dtype=int)
-mis_times = np.zeros((len(records), 3), dtype=float)
-mis_ivols = np.zeros((len(records), 3), dtype=float)
+mis_idces = np.zeros((len(ut.records), 3), dtype=int)
+mis_times = np.zeros((len(ut.records), 3), dtype=float)
+mis_ivols = np.zeros((len(ut.records), 3), dtype=float)
 print 'per:    min,   max,   std'
 
 # loop on scaling periods
@@ -27,10 +29,11 @@ for i, per in enumerate(periods):
     ax2.cla()
 
     # loop on records[i]
-    for j, rec in enumerate(records):
+    for j, rec in enumerate(ut.records):
 
         # get MIS times
-        mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt, per)
+        mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt, per,
+                                                         version=version)
 
         # load forcing time series
         nc = ut.io.open_dt_file(rec, dt, period=per)
@@ -39,17 +42,17 @@ for i, per in enumerate(periods):
         nc.close()
 
         # load output time series
-        nc = ut.io.open_ts_file(res, rec, dt, period=per)
+        nc = ut.io.open_ts_file(res, rec, dt, period=per, version=version)
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
         mis_ivols[j] = ts_ivol[mis_idces[j]]
 
         # plot time series
-        ax1.plot(-dt_time, dt_temp, color=colors[j])
-        ax2.plot(-ts_time, ts_ivol, color=colors[j])
+        ax1.plot(-dt_time, dt_temp, color=ut.colors[j])
+        ax2.plot(-ts_time, ts_ivol, color=ut.colors[j])
         ax2.plot(-mis_times[j]/1e3, mis_ivols[j], ls=' ', mew=0.2, ms=4,
-                 color=colors[j], marker=markers[j], label=labels[j])
+                 color=ut.colors[j], marker=ut.markers[j], label=ut.labels[j])
 
 
     # mark true MIS stages
@@ -93,5 +96,5 @@ for i, per in enumerate(periods):
 
     # save figure
     print 'saving plot...'
-    fig.savefig('scaling-%s.png' % per)
+    fig.savefig('lr_ts_scaling_%s.png' % per)
 

@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 versions = ('dev-140915-8ff7cbe', '0.7.2')
@@ -12,15 +13,15 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,
                                    wspace=2.5, hspace=2.5)
-mis_idces = np.zeros((len(records), 3), dtype=int)
-mis_times = np.zeros((len(records), 3), dtype=float)
-mis_ivols = np.zeros((len(records), 3), dtype=float)
-mis_iareas = np.zeros((len(records), 3), dtype=float)
+mis_idces = np.zeros((len(ut.records), 3), dtype=int)
+mis_times = np.zeros((len(ut.records), 3), dtype=float)
+mis_ivols = np.zeros((len(ut.records), 3), dtype=float)
+mis_iareas = np.zeros((len(ut.records), 3), dtype=float)
 
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-for i, rec in enumerate(records):
-    dt = offsets[i]
+for i, rec in enumerate(ut.records):
+    dt = ut.offsets[i]
 
     # load output time series
     nc1 = ut.io.open_ts_file('10km', rec, dt, version=versions[0])
@@ -31,9 +32,9 @@ for i, rec in enumerate(records):
     nc2.close()
 
     # plot time series
-    ax.plot(-ts_time, ts_ivol, color=colors[i])
+    ax.plot(-ts_time, ts_ivol, color=ut.colors[i])
     ax.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
-             color=colors[i], marker=markers[i], label=labels[i])
+             color=ut.colors[i], marker=ut.markers[i], label=ut.labels[i])
 
     # look for a high-resolution run
     try:    
@@ -43,7 +44,7 @@ for i, rec in enumerate(records):
         ts_ivol = nc1.variables['slvol'][:] - nc2.variables['slvol'][:]
         nc1.close()
         nc2.close()
-        ax.plot(-ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+        ax.plot(-ts_time, ts_ivol, color=ut.colors[i], dashes=(1, 1))
     except (ValueError, RuntimeError):
         pass
 

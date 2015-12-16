@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 # simulations used
@@ -36,7 +37,7 @@ for i, rec in enumerate(records):
     n = (3*y[0]-y[1])/2
     s = (3*y[-1]-y[-2])/2 - (y[-1]-y[-2])/2  # weird but works
     c = nc.variables['velbase_mag']
-    c = np.ma.array(c[:], mask=(thk[:] < thkth))
+    c = np.ma.array(c[:], mask=(thk[:] < ut.thkth))
     dist = c.sum(axis=0).T/10.0  # convert to km
 
     # set levels, colors and hatches

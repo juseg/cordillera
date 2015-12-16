@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 # violin plot
@@ -9,8 +10,8 @@ fig, ax = iplt.subplots()
 
 # read ice volume time series
 data = []
-for i, rec in enumerate(records):
-    dt = offsets[i]
+for i, rec in enumerate(ut.records):
+    dt = ut.offsets[i]
     nc = ut.io.open_ts_file('10km', rec, dt)
     slvol = nc.variables['slvol'][:]
     nc.close()
