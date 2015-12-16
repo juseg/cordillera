@@ -23,7 +23,6 @@ for i, rec in enumerate(ut.records):
 violins = iplt.violinplot(data)
 
 # set colors
-print violins
 for p, c in zip(violins['bodies'], ut.colors):
     p.set_color(c)
 violins['cbars'].set_color('0.5')

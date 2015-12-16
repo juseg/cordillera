@@ -79,17 +79,17 @@ def fig_hr_maps_mis(mis):
         # plot
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i]
-        nc.imshow('topg', ax=ax, t=t, thkth=ut.thkth,
+        nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm)
-        nc.icemargin(ax=ax, t=t, thkth=ut.thkth,
+        nc.icemargin(ax=ax, t=t,
                      linewidths=0.5)
-        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth,
+        nc.contour('usurf', ax=ax, t=t,
                    levels=range(200, 5000, 200),
                    cmap=None, colors='k', linewidths=0.1)
-        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth,
+        nc.contour('usurf', ax=ax, t=t,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
-        im = nc.imshow('velsurf_mag', ax=ax, t=t, thkth=ut.thkth,
+        im = nc.imshow('velsurf_mag', ax=ax, t=t,
                        cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
         ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (rec.upper(), -t/1e3))
 

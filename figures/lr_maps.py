@@ -32,18 +32,18 @@ for i, rec in enumerate(ut.records):
         print 'plotting %s at %.1f ka...' % (rec, -mis_times[j]/1e3)
         ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
-        nc.imshow('topg', ax=ax, t=t, thkth=ut.thkth,
+        nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm)
-        nc.icemargin(ax=ax, t=t, thkth=ut.thkth,
+        nc.icemargin(ax=ax, t=t,
                      linewidths=0.5)
         levs = range(0, 4001, 500)
-        cs = nc.contourf('usurf', ax=ax, t=t, thkth=ut.thkth,
+        cs = nc.contourf('usurf', ax=ax, t=t,
                          levels=levs, cmap='Blues_r',
                          norm=BoundaryNorm(levs, 256), alpha=0.75)
-        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth,
+        nc.contour('usurf', ax=ax, t=t,
                    levels=range(0, 4001, 500),
                    cmap=None, colors='k', linewidths=0.1)
-        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth,
+        nc.contour('usurf', ax=ax, t=t,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
         ut.pl.add_corner_tag(ax, '%.1f ka' % (-mis_times[j]/1e3))

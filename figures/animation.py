@@ -17,17 +17,17 @@ def draw(ax, idx):
     ax.cla()
 
     # plot
-    nc.imshow('topg', ax=ax, t=idx, thkth=ut.thkth,
+    nc.imshow('topg', ax=ax, t=idx,
               cmap=topo_cmap, norm=topo_norm)
-    nc.icemargin(ax=ax, t=idx, thkth=ut.thkth,
+    nc.icemargin(ax=ax, t=idx,
                  linewidths=0.5)
-    nc.contour('usurf', ax=ax, t=idx, thkth=ut.thkth,
+    nc.contour('usurf', ax=ax, t=idx,
                levels=range(200, 5000, 200),
                cmap=None, colors='k', linewidths=0.1)
-    nc.contour('usurf', ax=ax, t=idx, thkth=ut.thkth,
+    nc.contour('usurf', ax=ax, t=idx,
                levels=range(1000, 5000, 1000),
                cmap=None, colors='k', linewidths=0.25)
-    im = nc.imshow('velsurf_mag', ax=ax, t=idx, thkth=ut.thkth,
+    im = nc.imshow('velsurf_mag', ax=ax, t=idx,
                    cmap=vel_cmap, norm=vel_norm, alpha=0.75)
     ut.pl.add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
 
