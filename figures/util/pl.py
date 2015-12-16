@@ -110,12 +110,10 @@ def fig_hr_pf(res, rec, dt, color):
     yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 
     # initialize figure
-    figw, figh = 85.0, 100.0
-    fig, grid = iplt.subplots(len(yplist), figsize=(figw*ut.in2mm, figh*ut.in2mm),
-                             sharex=True, sharey=True)
-    fig.subplots_adjust(left=10.0/figw, bottom=10/figh,
-                        right=1-2.5/figw, top=1-2.5/figh,
-                        hspace=1/((1+figh/2.5)/4-1))
+    fig, grid = iplt.subplots_mm(len(yplist), figsize=(85.0, 100.0),
+                                 sharex=True, sharey=True,
+                                 left=10.0, bottom=10.0, right=2.5, top=2.5,
+                                 hspace=2.5)
 
     # read extra output
     print 'reading %s extra output...' % rec

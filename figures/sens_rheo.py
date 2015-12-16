@@ -47,7 +47,7 @@ if __name__ == '__main__':
 
     # initialize figure
     fig, grid = iplt.subplots_mm(2, 1, sharex=True, figsize=(85.0, 100.0),
-                                 left=10.0, right=2.5, bottom=7.5, top=2.5,
+                                 left=10.0, right=2.5, bottom=10.0, top=2.5,
                                  wspace=2.5, hspace=2.5)
 
     # for each axes

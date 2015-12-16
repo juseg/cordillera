@@ -35,7 +35,7 @@ if __name__ == '__main__':
 
     # initialize figure
     fig, ax = iplt.subplots_mm(1, 1, sharex=True, figsize=(85.0, 60.0),
-                                 left=10.0, right=2.5, bottom=7.5, top=2.5,
+                                 left=10.0, right=2.5, bottom=10.0, top=2.5,
                                  wspace=2.5, hspace=2.5)
 
     # plot default run

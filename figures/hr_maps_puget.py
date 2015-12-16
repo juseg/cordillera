@@ -46,6 +46,8 @@ for i, t in enumerate(times):
     # plot
     print 'plotting at %s ka...' % time
     ax = grid.flat[i]
+    ax.xaxis.set_visible(False)
+    ax.yaxis.set_visible(False)
     ax.set_rasterization_zorder(2.5)
     ax.imshow(topg-125.0, cmap=ut.topo_cmap, norm=ut.topo_norm)
     ax.contour(usurf, levels=range(100, 5000, 100),

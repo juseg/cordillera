@@ -11,11 +11,10 @@ res = '10km'
 
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
-fig, grid = iplt.subplots(3, len(ut.records), sharex=True, sharey=True,
-                          figsize=(figw*ut.in2mm, figh*ut.in2mm))
-fig.subplots_adjust(left=5.0/figw, right=1-12.5/figw,
-                    bottom=2.5/figh, top=1-5.0/figh,
-                    hspace=1/((1+figh/2.5)/4-1))
+fig, grid = iplt.subplots_mm(3, len(ut.records), sharex=True, sharey=True,
+                             figsize=(figw, figh),
+                             left=5.0, right=12.5, bottom=2.5, top=5.0,
+                             hspace=2.5, wspace=2.5)
 cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]

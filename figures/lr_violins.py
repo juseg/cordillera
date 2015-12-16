@@ -7,6 +7,8 @@ import iceplotlib.plot as iplt
 
 # violin plot
 fig, ax = iplt.subplots()
+fig, ax = iplt.subplots_mm(1, 1, figsize=(85.0, 60.0),
+                           left=10.0, bottom=10.0, right=2.5, top=2.5)
 
 # read ice volume time series
 data = []
