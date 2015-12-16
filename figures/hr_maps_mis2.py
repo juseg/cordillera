@@ -1,10 +1,10 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from hr_maps_base import icemaps
+import util as ut
 
 # plot
-fig = icemaps(mis=2)
+fig = ut.pl.fig_hr_maps_mis(mis=2)
 
 # save
 print('saving...')

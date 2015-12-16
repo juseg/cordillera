@@ -19,10 +19,6 @@ figures.zip: $(ALL_FIGS)
 ${PY_FIGS}: %.pdf : %.py util matplotlibrc
 	python2 $<
 
-hr_maps_mis2.pdf: hr_maps_base.py
-hr_maps_mis2.pdf: hr_maps_base.py
-hr_maps_mis2.pdf: hr_maps_base.py
-
 .PHONY : data clean
 
 data:
