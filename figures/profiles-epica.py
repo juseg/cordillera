@@ -1,14 +1,14 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import records, offsets, colors
+import util as ut
 from profiles import profiles
 
 # parameters
 res = '5km'
-rec = records[2]
-dt = offsets[2]
-color = colors[2]
+rec = ut.records[2]
+dt = ut.offsets[2]
+color = ut.colors[2]
 
 # plot
 fig = profiles(res, rec, dt, color)

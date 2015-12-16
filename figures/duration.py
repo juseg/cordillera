@@ -1,15 +1,14 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 # simulations used
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 cislevs = [32.0, 26.0]
 
 # initialize figure
@@ -21,7 +20,7 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # draw topo and coastline
-draw_boot_topo(grid, res)
+ut.pl.draw_boot_topo(grid, res)
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -30,11 +29,11 @@ for i, rec in enumerate(records):
     ax.set_rasterization_zorder(2.5)
 
     # load extra output
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     thk = nc.variables['thk']
-    icecover = (thk[:] >= thkth).sum(axis=0).T.astype('float')
+    icecover = (thk[:] >= ut.thkth).sum(axis=0).T.astype('float')
     icecover *= 120.0/len(nc.variables['time'])
 
     # set contour levels, colors and hatches
@@ -60,17 +59,17 @@ for i, rec in enumerate(records):
 
     # close extra file
     nc.close()
-    add_corner_tag(ax, rec.upper())
+    ut.pl.add_corner_tag(ax, rec.upper())
 
 # locate major mountain ranges
-add_pointer_tag(ax, 'AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3))
-add_pointer_tag(ax, 'SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3))
-add_pointer_tag(ax, 'CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3))
-add_pointer_tag(ax, 'NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3))
-add_pointer_tag(ax, 'WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3))
-add_pointer_tag(ax, 'SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3))
-add_pointer_tag(ax, 'NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3))
-add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
+ut.pl.add_pointer_tag(ax, 'AR', xy=(-2300e3, 2600e3), xytext=(-2000e3, 2600e3))
+ut.pl.add_pointer_tag(ax, 'SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3))
+ut.pl.add_pointer_tag(ax, 'CM', xy=(-1950e3,  700e3), xytext=(-2350e3,  700e3))
+ut.pl.add_pointer_tag(ax, 'NC', xy=(-1900e3, 250e3), xytext=(-2350e3, 250e3))
+ut.pl.add_pointer_tag(ax, 'WSEM', xy=(-2200e3, 2150e3), xytext=(-1200e3, 2150e3))
+ut.pl.add_pointer_tag(ax, 'SMKM', xy=(-1550e3, 1900e3), xytext=(-1200e3, 1900e3))
+ut.pl.add_pointer_tag(ax, 'NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3))
+ut.pl.add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
 
 # add colorbar and save
 cb = fig.colorbar(cf, cax)

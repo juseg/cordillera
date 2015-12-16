@@ -1,15 +1,13 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 # parameters
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 
 # initialize figure
 figw, figh = 120.0, 100.0
@@ -25,7 +23,7 @@ for i, rec in enumerate(records):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -36,7 +34,7 @@ for i, rec in enumerate(records):
     wasicefree = np.ones_like(thk[0].T)*0
     readvance = np.ones_like(thk[0].T)*0
     deglacage = np.ones_like(thk[0].T)*-1.0
-    for i, t in enumerate(time[:]*s2ka):
+    for i, t in enumerate(time[:]*ut.s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
         icy = (thk[i].T >= thkth)
         if -14.0 < t < -10.0:
@@ -57,7 +55,7 @@ for i, rec in enumerate(records):
                       levels=[0.5], colors='k', linewidths=0.5)
 
     # annotate
-    add_corner_tag(ax, rec.upper())
+    ut.pl.add_corner_tag(ax, rec.upper())
 
 # add colorbar and save
 print 'saving...'

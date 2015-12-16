@@ -1,15 +1,13 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 # simulations used
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 
 # initialize figure
 figw, figh = 120.0, 100.0
@@ -20,7 +18,7 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # draw topo and coastline
-draw_boot_topo(grid, res)
+ut.pl.draw_boot_topo(grid, res)
 
 # loop on records[i]
 for i, rec in enumerate(records):
@@ -29,7 +27,7 @@ for i, rec in enumerate(records):
     ax.set_rasterization_zorder(2.5)
 
     # load extra output
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
     thk = nc.variables['thk']
     x = nc.variables['x']
     y = nc.variables['y']
@@ -57,7 +55,7 @@ for i, rec in enumerate(records):
                       colors='k', linewidths=0.5)
 
     # close extra file
-    add_corner_tag(ax, rec.upper())
+    ut.pl.add_corner_tag(ax, rec.upper())
     nc.close()
 
 # add colorbar and save

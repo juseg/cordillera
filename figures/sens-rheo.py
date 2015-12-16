@@ -1,9 +1,8 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.ticker import FuncFormatter
 
@@ -56,13 +55,13 @@ if __name__ == '__main__':
 
         # plot softness as in Bueler and Brown, 2009
         A = A_bb09(T)
-        ax.plot(T-273.15, A, c=colors[2], label='Paterson and Budd, 1982')
+        ax.plot(T-273.15, A, c=ut.colors[2], label='Paterson and Budd, 1982')
 
         # plot softness as in Cuffey and Paterson, 2010
         A = A_cp10(T)
-        ax.plot(T-273.15, A, c=colors[0], label='Cuffey and Paterson, 2010')
-        ax.plot(T-273.15, 2*A, c=colors[0], ls='--')
-        ax.plot(T-273.15, 5*A, c=colors[0], ls='--')
+        ax.plot(T-273.15, A, c=ut.colors[0], label='Cuffey and Paterson, 2010')
+        ax.plot(T-273.15, 2*A, c=ut.colors[0], ls='--')
+        ax.plot(T-273.15, 5*A, c=ut.colors[0], ls='--')
 
         # set axes properties
         ax.grid()

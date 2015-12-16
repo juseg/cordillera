@@ -1,9 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 from matplotlib.patches import Rectangle
 
@@ -32,17 +30,17 @@ for i, per in enumerate(periods):
     for j, rec in enumerate(records):
 
         # get MIS times
-        mis_idces[j], mis_times[j] = get_mis_times(res, rec, dt, per)
+        mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt, per)
 
         # load forcing time series
-        nc = open_dt_file(rec, dt, period=per)
+        nc = ut.io.open_dt_file(rec, dt, period=per)
         dt_time = nc.variables['time'][:]*1e-3
         dt_temp = nc.variables['delta_T'][:]
         nc.close()
 
         # load output time series
-        nc = open_ts_file(res, rec, dt, period=per)
-        ts_time = nc.variables['time'][:]*s2ka
+        nc = ut.io.open_ts_file(res, rec, dt, period=per)
+        ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
         mis_ivols[j] = ts_ivol[mis_idces[j]]

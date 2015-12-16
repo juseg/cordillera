@@ -1,9 +1,8 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.transforms import ScaledTranslation
 
@@ -73,12 +72,12 @@ if __name__ == '__main__':
         plot_Ntil(W, ax=ax, color='k')
 
         # plot with different Wmax
-        plot_Ntil(W, ax=ax, Wmax=1.0, color=colors[0])
-        plot_Ntil(W, ax=ax, Wmax=5.0, color=colors[0], annotate=True)
+        plot_Ntil(W, ax=ax, Wmax=1.0, color=ut.colors[0])
+        plot_Ntil(W, ax=ax, Wmax=5.0, color=ut.colors[0], annotate=True)
 
         # plot with different delta
-        plot_Ntil(W, ax=ax, delta=0.01, color=colors[2])
-        plot_Ntil(W, ax=ax, delta=0.05, color=colors[2])
+        plot_Ntil(W, ax=ax, delta=0.01, color=ut.colors[2])
+        plot_Ntil(W, ax=ax, delta=0.05, color=ut.colors[2])
 
         # set axes properties
         ax.set_ylabel('Ntil (bar)')

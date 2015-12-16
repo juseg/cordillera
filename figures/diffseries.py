@@ -1,9 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 versions = ('dev-140915-8ff7cbe', '0.7.2')
@@ -25,9 +23,9 @@ for i, rec in enumerate(records):
     dt = offsets[i]
 
     # load output time series
-    nc1 = open_ts_file('10km', rec, dt, version=versions[0])
-    nc2 = open_ts_file('10km', rec, dt, version=versions[1])
-    ts_time = nc1.variables['time'][:] * s2ka
+    nc1 = ut.io.open_ts_file('10km', rec, dt, version=versions[0])
+    nc2 = ut.io.open_ts_file('10km', rec, dt, version=versions[1])
+    ts_time = nc1.variables['time'][:] * ut.s2ka
     ts_ivol = nc1.variables['slvol'][:] - nc2.variables['slvol'][:]
     nc1.close()
     nc2.close()
@@ -39,9 +37,9 @@ for i, rec in enumerate(records):
 
     # look for a high-resolution run
     try:    
-        nc1 = open_ts_file('5km', rec, dt, version=versions[0])
-        nc2 = open_ts_file('5km', rec, dt, version=versions[1])
-        ts_time = nc1.variables['time'][:] * s2ka
+        nc1 = ut.io.open_ts_file('5km', rec, dt, version=versions[0])
+        nc2 = ut.io.open_ts_file('5km', rec, dt, version=versions[1])
+        ts_time = nc1.variables['time'][:] * ut.s2ka
         ts_ivol = nc1.variables['slvol'][:] - nc2.variables['slvol'][:]
         nc1.close()
         nc2.close()

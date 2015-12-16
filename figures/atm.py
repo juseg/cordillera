@@ -1,16 +1,15 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.colors import BoundaryNorm
 
 # read atmosphere file
 # FIXME: add unit conversion to iceplotlib
 res = '5km'
-nc = open_atm_file(res)
+nc = ut.io.open_atm_file(res)
 x = nc.variables['x']
 y = nc.variables['y']
 temp = nc.variables['air_temp']
@@ -50,7 +49,7 @@ nc.close()
 
 # read standard deviation file
 # FIXME: add unit conversion to iceplotlib
-nc = open_sd_file(res)
+nc = ut.io.open_sd_file(res)
 x = nc.variables['x']
 y = nc.variables['y']
 stdv = nc.variables['air_temp_sd']
@@ -68,12 +67,12 @@ cb.set_label(u'PDD SD (°C)')
 nc.close()
 
 # draw topo and coastline
-draw_boot_topo(grid, res)
-draw_coastline(grid, res)
+ut.pl.draw_boot_topo(grid, res)
+ut.pl.draw_coastline(grid, res)
 
 # annotate
-add_corner_tag(grid[0, 2], 'January')
-add_corner_tag(grid[1, 2], 'July')
+ut.pl.add_corner_tag(grid[0, 2], 'January')
+ut.pl.add_corner_tag(grid[1, 2], 'July')
 
 # save
 fig.savefig('atm')

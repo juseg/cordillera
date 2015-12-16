@@ -1,9 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 from matplotlib.ticker import FuncFormatter
 
@@ -19,17 +17,17 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=4, sharex=True, sharey=True,
 
 # load extra output
 print 'reading extra output...'
-nc = open_extra_file('5km', 'grip', 6.1)
+nc = ut.io.open_extra_file('5km', 'grip', 6.1)
 
 # loop on records[i]
 for i, t in enumerate(times):
 
     # find nearest time slice
-    k = np.argmin(np.abs(nc.variables['time'][:]*s2ka-t))
+    k = np.argmin(np.abs(nc.variables['time'][:]*ut.s2ka-t))
 
     # slice
     # FIXME: enable cropping in iceplotlib
-    time = nc.variables['time'][k]*s2ka
+    time = nc.variables['time'][k]*ut.s2ka
     thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
     topg = nc.variables['topg'][k,imin:imax,jmin:jmax].T
     usurf = nc.variables['usurf'][k,imin:imax,jmin:jmax].T
@@ -56,7 +54,7 @@ for i, t in enumerate(times):
     ax.contourf(icy, levels=[0.5, 1.5], colors='w', alpha=0.75)
     ax.contour(icy, levels=[0.5], colors='k')
     ax.quiver(u, v, c, cmap=vel_cmap, scale=25.0)
-    add_corner_tag(ax, '%s ka' % (time))
+    ut.pl.add_corner_tag(ax, '%s ka' % (time))
 
 # save
 print 'saving puget...'

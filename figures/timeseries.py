@@ -1,11 +1,12 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.patches import Rectangle
+
+res = '10km'
 
 # initialize time-series figure
 figw, figh = 120.0, 80.01
@@ -13,59 +14,59 @@ fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,
                                    wspace=2.5, hspace=2.5)
-mis_idces = np.zeros((len(records), 3), dtype=int)
-mis_times = np.zeros((len(records), 3), dtype=float)
-mis_ivols = np.zeros((len(records), 3), dtype=float)
-mis_iareas = np.zeros((len(records), 3), dtype=float)
+mis_idces = np.zeros((len(ut.records), 3), dtype=int)
+mis_times = np.zeros((len(ut.records), 3), dtype=float)
+mis_ivols = np.zeros((len(ut.records), 3), dtype=float)
+mis_iareas = np.zeros((len(ut.records), 3), dtype=float)
 
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-for i, rec in enumerate(records):
-    dt = offsets[i]
+for i, rec in enumerate(ut.records):
+    dt = ut.offsets[i]
 
     # get MIS times
-    mis_idces[i], mis_times[i] = get_mis_times(res, rec, dt)
+    mis_idces[i], mis_times[i] = ut.io.get_mis_times(res, rec, dt)
 
     # compute area from extra file
-    nc = open_extra_file(res, rec, dt)
+    nc = ut.io.open_extra_file(res, rec, dt)
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
-    ex_idces = [(np.abs(ex_time[:]-t*a2s)).argmin() for t in mis_times[i]]
-    mis_iareas[i] = (ex_thk[ex_idces] > thkth).sum(axis=(1,2))*1e-4
+    ex_idces = [(np.abs(ex_time[:]-t*ut.a2s)).argmin() for t in mis_times[i]]
+    mis_iareas[i] = (ex_thk[ex_idces] > ut.thkth).sum(axis=(1,2))*1e-4
     nc.close()
 
     # load forcing time series
-    nc = open_dt_file(rec, dt)
+    nc = ut.io.open_dt_file(rec, dt)
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
 
     # load output time series
-    nc = open_ts_file('10km', rec, dt)
-    ts_time = nc.variables['time'][:]*s2ka
+    nc = ut.io.open_ts_file('10km', rec, dt)
+    ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
     mis_ivols[i] = ts_ivol[mis_idces[i]]
 
     # print info in table style
     tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-    print tabline % ( (labels[i],) + tuple(-mis_times[i]/1e3) )
+    print tabline % ( (ut.labels[i],) + tuple(-mis_times[i]/1e3) )
     print tabline % ( ('',) + tuple(mis_iareas[i]) )
     print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
     # plot time series
-    ax1.plot(-dt_time, dt_temp, color=colors[i])
-    ax2.plot(-ts_time, ts_ivol, color=colors[i])
+    ax1.plot(-dt_time, dt_temp, color=ut.colors[i])
+    ax2.plot(-ts_time, ts_ivol, color=ut.colors[i])
     ax2.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ', mew=0.2, ms=4,
-             color=colors[i], marker=markers[i], label=labels[i])
+             color=ut.colors[i], marker=ut.markers[i], label=ut.labels[i])
 
     # look for a high-resolution run
     try:
-        nc = open_ts_file('5km', rec, dt)
-        ts_time = nc.variables['time'][:]*s2ka
+        nc = ut.io.open_ts_file('5km', rec, dt)
+        ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
-        ax2.plot(-ts_time, ts_ivol, color=colors[i], dashes=(1, 1))
+        ax2.plot(-ts_time, ts_ivol, color=ut.colors[i], dashes=(1, 1))
     except RuntimeError:
         pass
 

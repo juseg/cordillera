@@ -1,9 +1,8 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 
@@ -47,7 +46,7 @@ if __name__ == '__main__':
 
     # plot with different delta
     for delta in [0.01, 0.05]:
-        ax.plot(b, tauc_min(tillphi(b), delta=delta)*1e-5, c=colors[2])
+        ax.plot(b, tauc_min(tillphi(b), delta=delta)*1e-5, c=ut.colors[2])
 
     # set axes properties
     ax.set_xlabel('b (m)')

@@ -1,20 +1,19 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.colors import BoundaryNorm
 
 # parameters
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 ages = range(8, 23, 1)
 levs = [-0.5] + ages
 cmap = iplt.get_cmap('RdBu_r')
-cmap.set_over(colors[4])  # dark green
+cmap.set_over(ut.colors[4])  # dark green
 
 # initialize figure
 figw, figh = 120.0, 100.0
@@ -25,7 +24,7 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # plot topographic map
-draw_boot_topo(grid, res)
+ut.pl.draw_boot_topo(grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
@@ -34,7 +33,7 @@ for i, rec in enumerate(records):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -45,9 +44,9 @@ for i, rec in enumerate(records):
     wasicefree = np.ones_like(thk[0].T)*0
     readvance = np.ones_like(thk[0].T)*0
     deglacage = np.ones_like(thk[0].T)*-1.0
-    for i, t in enumerate(time[:]*s2ka):
+    for i, t in enumerate(time[:]*ut.s2ka):
         print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (thk[i].T >= thkth)
+        icy = (thk[i].T >= ut.thkth)
         if -14.0 < t < -10.0:
             readvance = np.where(icy*wasicefree, 1, readvance)
             wasicefree = 1-icy
@@ -67,7 +66,7 @@ for i, rec in enumerate(records):
                       colors='k', linestyles='solid', linewidths=0.5)
 
     # annotate
-    add_corner_tag(ax, rec.upper())
+    ut.pl.add_corner_tag(ax, rec.upper())
 
     # add profile lines
     for k, yp in enumerate([1.7e6, 1.4e6, 1.1e6, 0.8e6]):
@@ -76,7 +75,7 @@ for i, rec in enumerate(records):
         ax.text(-1.225e6, yp, chr(65+k), ha='left', va='bottom')
 
 # mark location of the Omineca mountains
-add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
+ut.pl.add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
 
 # add colorbar and save
 print 'saving deglac...'

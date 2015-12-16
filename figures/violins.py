@@ -1,9 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 # violin plot
@@ -13,7 +11,7 @@ fig, ax = iplt.subplots()
 data = []
 for i, rec in enumerate(records):
     dt = offsets[i]
-    nc = open_ts_file('10km', rec, dt)
+    nc = ut.io.open_ts_file('10km', rec, dt)
     slvol = nc.variables['slvol'][:]
     nc.close()
     data.append(slvol)

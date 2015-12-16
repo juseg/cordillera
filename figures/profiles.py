@@ -1,9 +1,8 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 # parameters
@@ -13,7 +12,7 @@ yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 def profiles(res, rec, dt, color):
     # initialize figure
     figw, figh = 85.0, 100.0
-    fig, grid = iplt.subplots(len(yplist), figsize=(figw*in2mm, figh*in2mm),
+    fig, grid = iplt.subplots(len(yplist), figsize=(figw*ut.in2mm, figh*ut.in2mm),
                              sharex=True, sharey=True)
     fig.subplots_adjust(left=10.0/figw, bottom=10/figh,
                         right=1-2.5/figw, top=1-2.5/figh,
@@ -21,7 +20,7 @@ def profiles(res, rec, dt, color):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = open_extra_file(res, rec, dt)
+    nc = ut.io.open_extra_file(res, rec, dt)
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -30,7 +29,7 @@ def profiles(res, rec, dt, color):
     usurf = nc.variables['usurf']
 
     # plot
-    kmin, kmax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    kmin, kmax = [np.argmin(np.abs(time[:]*ut.s2ka-t)) for t in (tmin, tmax)]
     if kmin == kmax:  # run has not reached tmin yet
         return fig
     for i, yp in enumerate(yplist):
@@ -38,7 +37,7 @@ def profiles(res, rec, dt, color):
         ax.set_rasterization_zorder(2.5)
         j = np.argmin(np.abs(y[:]-yp))
         xpf = x[:]*1e-3
-        maskpf = thk[kmin:kmax, :, j] < thkth
+        maskpf = thk[kmin:kmax, :, j] < ut.thkth
         topgpf = topg[kmin:kmax, :, j]*1e-3
         surfpf = usurf[kmin:kmax, :, j]*1e-3
         surfpf = np.where(maskpf, topgpf, surfpf)  # apply topg where ice-free

@@ -1,15 +1,14 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
 
 # parameters
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 times = [-16e3, -14e3, -12e3, -10e3]
 
 # initialize figure
@@ -24,22 +23,22 @@ cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 for i, rec in enumerate(records):
 
     # load extra output
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
 
     # plot
     for j, t in enumerate(times):
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
-        nc.imshow('topg', ax=ax, t=t, thkth=thkth, cmap=topo_cmap, norm=topo_norm)
-        nc.icemargin(ax=ax, t=t, thkth=thkth, linewidths=0.5)
-        nc.contour('usurf', ax=ax, t=t, thkth=thkth, levels=range(200, 5000, 200),
+        nc.imshow('topg', ax=ax, t=t, thkth=ut.thkth, cmap=ut.topo_cmap, norm=ut.topo_norm)
+        nc.icemargin(ax=ax, t=t, thkth=ut.thkth, linewidths=0.5)
+        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth, levels=range(200, 5000, 200),
                    cmap=None, colors='k', linewidths=0.1)
-        nc.contour('usurf', ax=ax, t=t, thkth=thkth, levels=range(1000, 5000, 1000),
+        nc.contour('usurf', ax=ax, t=t, thkth=ut.thkth, levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
-        im = nc.imshow('velsurf_mag', ax=ax, t=t, thkth=thkth,
-                       cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-        add_corner_tag(ax, '%s ka' % (-t/1e3))
+        im = nc.imshow('velsurf_mag', ax=ax, t=t, thkth=ut.thkth,
+                       cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
+        ut.pl.add_corner_tag(ax, '%s ka' % (-t/1e3))
 
         # add profile lines
         for k, yp in enumerate([1.7e6, 1.4e6, 1.1e6, 0.8e6]):
@@ -49,7 +48,7 @@ for i, rec in enumerate(records):
                 ax.text(-1.2e6, yp, chr(65+k), ha='left', va='bottom')
 
     # add record label
-    add_corner_tag(ax, rec.upper(), va='bottom')
+    ut.pl.add_corner_tag(ax, rec.upper(), va='bottom')
 
     # close extra file
     nc.close()

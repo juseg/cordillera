@@ -1,16 +1,16 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
+import numpy as np
 import iceplotlib.plot as iplt
+from matplotlib.colors import Normalize
 from matplotlib.colorbar import ColorbarBase
 
 # parameters
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 tmin, tmax = -22.0, -8.0
 cmap='RdBu_r'
 norm=Normalize(-tmax, -tmin)
@@ -25,7 +25,7 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # plot topographic map
-draw_boot_topo(grid, res)
+ut.pl.draw_boot_topo(grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
@@ -34,7 +34,7 @@ for i, rec in enumerate(records):
 
     # read extra output
     print 'reading %s extra output...' % rec
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']
@@ -49,16 +49,16 @@ for i, rec in enumerate(records):
     glaciated = np.zeros_like(thk[0])
     lastu = np.zeros_like(u[0])
     lastv = np.zeros_like(v[0])
-    imin, imax = [np.argmin(np.abs(time[:]*s2ka-t)) for t in (tmin, tmax)]
+    imin, imax = [np.argmin(np.abs(time[:]*ut.s2ka-t)) for t in (tmin, tmax)]
     if imin == imax:  # run has not reached tmin yet
         continue
     for i in range(imin, imax+1):
         print '[ %02.1f %% ]\r' % (100.0*(i-imin)/(imax-imin)),
-        icy = (thk[i] >= thkth)
+        icy = (thk[i] >= ut.thkth)
         sliding = icy * (c[i].data > 1.0)
         lastu = np.where(sliding, u[i], lastu)
         lastv = np.where(sliding, v[i], lastv)
-        slidage = np.where(sliding, -time[i]*s2ka, slidage)
+        slidage = np.where(sliding, -time[i]*ut.s2ka, slidage)
         glaciated = np.where(icy, 1, glaciated)
 
     # transpose and scale last flow velocity
@@ -83,13 +83,13 @@ for i, rec in enumerate(records):
                       colors='k', linewidths=0.5)
 
     # annotate
-    add_corner_tag(ax, rec.upper())
+    ut.pl.add_corner_tag(ax, rec.upper())
     nc.close()
 
 # locate Liard Lowland and Fraser Plateau
 ax.set_rasterization_zorder(2.5)
-add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))
-add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
+ut.pl.add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))
+ut.pl.add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 
 # add colorbar and save
 print 'saving...'

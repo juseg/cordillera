@@ -3,9 +3,7 @@
 
 import os.path
 import numpy as np
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 offsets = np.arange(5.7, 7.0, 0.1)
@@ -24,11 +22,11 @@ for i, dt in enumerate(offsets):
         # try to print MIS2 area
         try:
             # get MIS2 time
-            idx, t = get_mis_times(res, rec, dt)
+            idx, t = ut.io.get_mis_times(res, rec, dt)
             idx, t = idx[-1], t[-1]
 
             # open extra file
-            nc = open_extra_file(res, rec, dt)
+            nc = ut.io.open_extra_file(res, rec, dt)
             thk = nc.variables['thk']
             mask = nc.variables['mask']
             time = nc.variables['time']

@@ -1,15 +1,13 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 # parameters
-records = records[0:3:2]
-offsets = offsets[0:3:2]
-colors = colors[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
+colors = ut.colors[0:3:2]
 
 # initialize time-series figure
 figw, figh = 85.01, 80.01
@@ -24,16 +22,16 @@ for i, rec in enumerate(records):
     dt = offsets[i]
 
     # plot forcing time series
-    nc = open_dt_file(rec, dt)
+    nc = ut.io.open_dt_file(rec, dt)
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
-    ax1.plot(-dt_time, dt_temp, color=colors[i], label=labels[i])
+    ax1.plot(-dt_time, dt_temp, color=colors[i], label=ut.labels[i])
 
     # plot output time series
     for res in ('10km', '5km'):
-        nc = open_ts_file(res, rec, dt)
-        ts_time = nc.variables['time'][:]*s2ka
+        nc = ut.io.open_ts_file(res, rec, dt)
+        ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
         ax2.plot(-ts_time, ts_ivol, color=colors[i],

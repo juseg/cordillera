@@ -1,37 +1,35 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from util import *
-from util.io import *
-from util.pl import *
+import util as ut
 import iceplotlib.plot as iplt
 
 # parameters
 res = '5km'
-records = records[0:3:2]
-offsets = offsets[0:3:2]
+records = ut.records[0:3:2]
+offsets = ut.offsets[0:3:2]
 
 
 # drawing function for animations
 def draw(ax, idx):
-    t = nc.variables['time'][idx]*s2ka
+    t = nc.variables['time'][idx]*ut.s2ka
     print 'plotting %s at %s ka...' % (rec, t)
     ax.cla()
 
     # plot
-    nc.imshow('topg', ax=ax, t=idx, thkth=thkth,
+    nc.imshow('topg', ax=ax, t=idx, thkth=ut.thkth,
               cmap=topo_cmap, norm=topo_norm)
-    nc.icemargin(ax=ax, t=idx, thkth=thkth,
+    nc.icemargin(ax=ax, t=idx, thkth=ut.thkth,
                  linewidths=0.5)
-    nc.contour('usurf', ax=ax, t=idx, thkth=thkth,
+    nc.contour('usurf', ax=ax, t=idx, thkth=ut.thkth,
                levels=range(200, 5000, 200),
                cmap=None, colors='k', linewidths=0.1)
-    nc.contour('usurf', ax=ax, t=idx, thkth=thkth,
+    nc.contour('usurf', ax=ax, t=idx, thkth=ut.thkth,
                levels=range(1000, 5000, 1000),
                cmap=None, colors='k', linewidths=0.25)
-    im = nc.imshow('velsurf_mag', ax=ax, t=idx, thkth=thkth,
+    im = nc.imshow('velsurf_mag', ax=ax, t=idx, thkth=ut.thkth,
                    cmap=vel_cmap, norm=vel_norm, alpha=0.75)
-    add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
+    ut.pl.add_corner_tag(ax, '%s, %s ka' % (rec.upper(), -t))
 
     # return mappable for colorbar
     return im
@@ -40,7 +38,7 @@ def draw(ax, idx):
 for i, rec in enumerate(records):
 
     # load data
-    nc = open_extra_file(res, rec, offsets[i])
+    nc = ut.io.open_extra_file(res, rec, offsets[i])
 
     # initialize figure
     figw, figh = 70.0, 100.0
