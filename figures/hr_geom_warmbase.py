@@ -67,4 +67,4 @@ ut.pl.add_pointer_tag(ax, 'MKM', xy=(-1550e3, 2000e3), xytext=(-1200e3, 2000e3))
 # add colorbar and save
 cb = fig.colorbar(cs, cax, ticks=levs[1:])
 cb.set_label('Duration of warm-based ice cover (ka)')
-fig.savefig('warmbase')
+fig.savefig('hr_geom_warmbase')

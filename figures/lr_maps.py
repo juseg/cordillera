@@ -71,4 +71,4 @@ cb = fig.colorbar(cs, cax, ticks=levs[::2],
                   format=FuncFormatter(lambda x, pos: '%g' % (x/1000.0)))
 cb.set_label(r'surface elevation (km)')  #, labelpad=-1.5*pt2mm)
 print 'saving snapshots...'
-fig.savefig('snapshots')
+fig.savefig('lr_maps')

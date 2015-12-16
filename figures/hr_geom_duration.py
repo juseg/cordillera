@@ -74,4 +74,4 @@ ut.pl.add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
 # add colorbar and save
 cb = fig.colorbar(cf, cax)
 cb.set_label('Duration of ice cover (ka)')
-fig.savefig('duration')
+fig.savefig('hr_geom_duration')

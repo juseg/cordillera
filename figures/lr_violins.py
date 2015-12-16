@@ -23,4 +23,4 @@ iplt.violinplot(data)
 print 'saving violins...'
 ax.set_ylim(0.0, 10.0)
 ax.set_ylabel('ice volume (m s.-l. eq.)')
-fig.savefig('violins')
+fig.savefig('lr_violins')

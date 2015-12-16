@@ -2,7 +2,7 @@
 # coding: utf-8
 
 import util as ut
-from profiles import profiles
+from hr_pf_base import profiles
 
 # parameters
 res = '5km'
@@ -15,4 +15,4 @@ fig = profiles(res, rec, dt, color)
 
 # save
 print('saving...')
-fig.savefig('profiles-grip')
+fig.savefig('hr_pf_grip')

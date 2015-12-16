@@ -81,5 +81,5 @@ ut.pl.add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250
 print 'saving deglac...'
 cb = fig.colorbar(cs, cax, ticks=ages)
 cb.set_label('Deglaciation age (ka)')
-fig.savefig('deglac')
+fig.savefig('hr_geom_deglacage')
 nc.close()

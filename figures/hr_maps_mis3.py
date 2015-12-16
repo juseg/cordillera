@@ -1,11 +1,11 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-from icemaps import icemaps
+from hr_maps_base import icemaps
 
 # plot
 fig = icemaps(mis=3)
 
 # save
 print('saving...')
-fig.savefig('icemaps-mis3')
+fig.savefig('hr_maps_mis3')

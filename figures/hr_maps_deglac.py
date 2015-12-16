@@ -58,4 +58,4 @@ cb = fig.colorbar(im, cax, extend='both', format='%i',
                   ticks=np.logspace(1, 3.5, 6))
 cb.set_label(r'surface velocity ($m\,yr^{-1}$)', labelpad=-2.0)
 print 'saving...'
-fig.savefig('deglacshots')
+fig.savefig('hr_maps_deglac')

@@ -1,9 +1,11 @@
 # Figures Makefile
 
-PY_FIGS = atm deglac deglacseries deglacshots duration \
-          icemaps-mis2 icemaps-mis3 icemaps-mis4 lastflow locmap \
-          profiles-epica profiles-grip sens-ntil sens-rheo sens-tauc \
-          snapshots timeseries warmbase warmfrac
+PY_FIGS = atm locmap lr_maps lr_ts lr_ts_deglac \
+          hr_geom_deglacage hr_geom_duration hr_geom_lastflow \
+          hr_geom_warmbase hr_geom_warmfrac \
+          hr_maps_deglac hr_maps_mis2 hr_maps_mis3 hr_maps_mis4 \
+          hr_pf_epica hr_pf_grip sens_ntil sens_rheo sens_tauc
+
 PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
 ALL_FIGS = $(PY_FIGS)
 
@@ -15,11 +17,11 @@ figures.zip: $(ALL_FIGS)
 ${PY_FIGS}: %.pdf : %.py util matplotlibrc
 	python2 $<
 
-icemaps-mis4.pdf: icemaps.py
-icemaps-mis3.pdf: icemaps.py
-icemaps-mis2.pdf: icemaps.py
-profiles-grip.pdf: profiles.py
-profiles-epica.pdf: profiles.py
+hr_maps_mis2.pdf: hr_maps_base.py
+hr_maps_mis2.pdf: hr_maps_base.py
+hr_maps_mis2.pdf: hr_maps_base.py
+hr_pf_epica.pdf: hr_pf_base.py
+hr_pf_grip.pdf: hr_pf_base.py
 
 .PHONY : data clean
 
