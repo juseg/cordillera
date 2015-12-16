@@ -53,17 +53,17 @@ for i, rec in enumerate(ut.records):
 # source: http://www.lorraine-lisiecki.com/LR04_MISboundaries.txt
 ax.axvspan(71, 57, fc='0.85', lw=0.25)
 ax.axvspan(29, 14, fc='0.85', lw=0.25)
-ax.text((120+71)/2, 4.5, 'MIS 5', ha='center')
-ax.text((71+57)/2, 0.5, 'MIS 4', ha='center')
-ax.text((57+29)/2, 8.5, 'MIS 3', ha='center')
-ax.text((29+14)/2, 0.5, 'MIS 2', ha='center')
-ax.text((14+0)/2, 8.5, 'MIS 1', ha='center')
+ax.text((120+71)/2, -0.15, 'MIS 5', ha='center')
+ax.text((71+57)/2, -0.15, 'MIS 4', ha='center')
+ax.text((57+29)/2, -0.15, 'MIS 3', ha='center')
+ax.text((29+14)/2, -0.15, 'MIS 2', ha='center')
+ax.text((14+0)/2, -0.15, 'MIS 1', ha='center')
 
 # set axes properties and save time series
 print 'saving diffseries...'
 ax.invert_xaxis()
 ax.set_xlim(120.0, 0.0)
-#ax.set_ylim(0.0, 9.5)
+ax.set_ylim(-0.2, 0.8)
 ax.set_ylabel('ice volume (m s.l.e.)')
 ax.yaxis.set_label_coords(-0.05, 0.5)
 ax.set_xlabel('model age (ka)')
