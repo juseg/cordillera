@@ -22,8 +22,6 @@ ${PY_FIGS}: %.pdf : %.py util matplotlibrc
 hr_maps_mis2.pdf: hr_maps_base.py
 hr_maps_mis2.pdf: hr_maps_base.py
 hr_maps_mis2.pdf: hr_maps_base.py
-hr_pf_epica.pdf: hr_pf_base.py
-hr_pf_grip.pdf: hr_pf_base.py
 
 .PHONY : data clean
 

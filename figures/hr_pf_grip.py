@@ -2,7 +2,6 @@
 # coding: utf-8
 
 import util as ut
-from hr_pf_base import profiles
 
 # parameters
 res = '5km'
@@ -11,7 +10,7 @@ dt = ut.offsets[0]
 color = ut.colors[0]
 
 # plot
-fig = profiles(res, rec, dt, color)
+fig = ut.pl.fig_hr_pf(res, rec, dt, color)
 
 # save
 print('saving...')
