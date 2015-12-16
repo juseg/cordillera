@@ -49,7 +49,7 @@ for i, per in enumerate(periods):
         # plot time series
         ax1.plot(-dt_time, dt_temp, color=ut.colors[j])
         ax2.plot(-ts_time, ts_ivol, color=ut.colors[j])
-        ax2.plot(-mis_times[j]/1e3, mis_ivols[j], ls=' ', mew=0.2, ms=4,
+        ax2.plot(-mis_times[j]/1e3, mis_ivols[j], ls=' ',
                  color=ut.colors[j], marker=ut.markers[j], label=ut.labels[j])
 
     # mark scaling period

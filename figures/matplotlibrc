@@ -1,5 +1,9 @@
 # matplotlib configuration parameters
 
+### LINES
+lines.markeredgewidth   : 0.25      # the line width around the marker symbol
+lines.markersize        : 4         # markersize, in points
+
 ### FONT
 font.size               : 6
 font.family             : sans-serif
