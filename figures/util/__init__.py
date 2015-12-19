@@ -34,3 +34,17 @@ hrs = slice(0, 3, 2)
 
 # default thickness threshold
 thkth = 1.0
+
+# sensitivity test parameters
+sens_configs = ['ccyc4+till1545',
+                'ccyc4+rheocp10+esia2+till1545',
+                'ccyc4+rheocp10+esia5+till1545',
+                'ccyc4+rheocp10+till1545',
+                'ccyc4+till3030',
+                'ccyc4+d010+till1545',
+                'ccyc4+d050+till1545',
+                'ccyc4+wmax01m+till1545',
+                'ccyc4+wmax05m+till1545']
+sens_labels = ['dflt', 'CP10', '2CP10', '5CP10',
+               'phi30', 'd01', 'd05', 'wmax1', 'wmax5']
+sens_colors = ['k'] + ['#6a3d9a']*3 + ['#ff7f00']*3 + ['#b15928']*2
