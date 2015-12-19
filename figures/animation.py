@@ -6,8 +6,8 @@ import iceplotlib.plot as iplt
 
 # parameters
 res = '5km'
-records = ut.records[hrs]
-offsets = ut.offsets[hrs]
+records = ut.records[ut.hrs]
+offsets = ut.offsets[ut.hrs]
 
 
 # drawing function for animations

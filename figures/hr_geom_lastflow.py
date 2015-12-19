@@ -9,8 +9,8 @@ from matplotlib.colorbar import ColorbarBase
 
 # parameters
 res = '5km'
-records = ut.records[hrs]
-offsets = ut.offsets[hrs]
+records = ut.records[ut.hrs]
+offsets = ut.offsets[ut.hrs]
 tmin, tmax = -22.0, -8.0
 cmap='RdBu_r'
 norm=Normalize(-tmax, -tmin)
