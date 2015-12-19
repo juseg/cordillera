@@ -14,10 +14,10 @@ fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,
                                    wspace=2.5, hspace=2.5)
-mis_idces = np.zeros((len(ut.records), 3), dtype=int)
-mis_times = np.zeros((len(ut.records), 3), dtype=float)
-mis_ivols = np.zeros((len(ut.records), 3), dtype=float)
-mis_iareas = np.zeros((len(ut.records), 3), dtype=float)
+mis_idces = np.zeros((6, 3), dtype=int)
+mis_times = np.zeros((6, 3), dtype=float)
+mis_ivols = np.zeros((6, 3), dtype=float)
+mis_iareas = np.zeros((6, 3), dtype=float)
 
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3

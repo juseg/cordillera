@@ -7,7 +7,7 @@ import iceplotlib.plot as iplt
 
 # violin plot
 fig, ax = iplt.subplots()
-fig, ax = iplt.subplots_mm(1, 1, figsize=(85.0, 60.0),
+fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
                            left=10.0, bottom=10.0, right=2.5, top=2.5)
 
 # read ice volume time series
@@ -33,7 +33,7 @@ violins['cmaxes'].set_color('0.5')
 ax.set_ylim(0.0, 10.0)
 ax.set_ylabel('ice volume (m s.-l. eq.)')
 ax.set_xlim(0.5, 6.5)
-ax.set_xticks(np.arange(len(ut.records))+1)
+ax.set_xticks(np.arange(6)+1)
 ax.set_xticklabels(ut.labels)
 ax.set_xlabel('record')
 

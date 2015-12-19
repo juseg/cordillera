@@ -11,7 +11,7 @@ res = '10km'
 
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
-fig, grid = iplt.subplots_mm(3, len(ut.records), sharex=True, sharey=True,
+fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=5.0, right=12.5, bottom=2.5, top=5.0,
                              hspace=2.5, wspace=2.5)

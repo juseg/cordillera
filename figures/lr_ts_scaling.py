@@ -13,12 +13,12 @@ periods = 3020 + np.arange(5)*101
 version = 'dev-140915-8ff7cbe'
 
 # initialize time-series figure
-fig, grid = iplt.subplots_mm(5, 2, sharex=True, figsize=(240.0, 160.0),
+fig, grid = iplt.subplots_mm(nrows=5, ncols=2, sharex=True, figsize=(240.0, 160.0),
                              left=10.0, right=2.5, bottom=10.0, top=2.5,
                              wspace=12.5, hspace=2.5)
-mis_idces = np.zeros((len(ut.records), 3), dtype=int)
-mis_times = np.zeros((len(ut.records), 3), dtype=float)
-mis_ivols = np.zeros((len(ut.records), 3), dtype=float)
+mis_idces = np.zeros((6, 3), dtype=int)
+mis_times = np.zeros((6, 3), dtype=float)
+mis_ivols = np.zeros((6, 3), dtype=float)
 print 'per:    min,   max,   std'
 
 # loop on scaling periods
