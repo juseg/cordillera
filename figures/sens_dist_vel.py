@@ -50,6 +50,7 @@ for i, ax in enumerate(grid):
     violins['cmins'].set_color('0.5')
     violins['cmaxes'].set_color('0.5')
     ax.text(0.5, 4.5, 'MIS %d' % (4-i))
+    ax.grid(axis='y')
 
 # set axes properties
 ax.set_ylim(-0.5, 5.5)
