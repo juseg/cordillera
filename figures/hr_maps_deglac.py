@@ -7,8 +7,8 @@ import iceplotlib.plot as iplt
 
 # parameters
 res = '5km'
-records = ut.records[0:3:2]
-offsets = ut.offsets[0:3:2]
+records = ut.records[hrs]
+offsets = ut.offsets[hrs]
 times = [-16e3, -14e3, -12e3, -10e3]
 
 # initialize figure
