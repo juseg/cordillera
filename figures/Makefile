@@ -9,7 +9,7 @@ PY_FIGS = atm locmap \
           hr_pf_epica hr_pf_grip \
           sens_dist_vel sens_maps_mis2 \
           sens_plot_ntil sens_plot_rheo sens_plot_tauc \
-          sens_ts.py
+          sens_ts
 
 PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
 ALL_FIGS = $(PY_FIGS)

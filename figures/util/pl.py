@@ -54,8 +54,8 @@ def fig_hr_maps_mis(mis):
 
     # parameters
     res = '5km'
-    records = ut.records[hrs]
-    offsets = ut.offsets[hrs]
+    records = ut.records[ut.hrs]
+    offsets = ut.offsets[ut.hrs]
 
     # initialize figure
     figw, figh = 120.0, 100.0
