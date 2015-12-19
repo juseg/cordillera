@@ -54,4 +54,4 @@ if __name__ == '__main__':
     ax.grid()
     
     # save
-    fig.savefig('sens_tauc')
+    fig.savefig('sens_plot_tauc')

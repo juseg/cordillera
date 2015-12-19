@@ -6,7 +6,8 @@ PY_FIGS = atm locmap \
           hr_geom_lastflow hr_geom_warmbase hr_geom_warmfrac \
           hr_maps_deglac hr_maps_mis2 hr_maps_mis3 hr_maps_mis4 \
           hr_maps_puget \
-          hr_pf_epica hr_pf_grip sens_ntil sens_rheo sens_tauc
+          hr_pf_epica hr_pf_grip \
+          sens_plot_ntil sens_plot_rheo sens_plot_tauc
 
 PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
 ALL_FIGS = $(PY_FIGS)

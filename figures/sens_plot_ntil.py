@@ -92,4 +92,4 @@ if __name__ == '__main__':
     grid[1].set_yscale('log')
 
     # save
-    fig.savefig('sens_ntil')
+    fig.savefig('sens_plot_ntil')
