@@ -7,7 +7,8 @@ PY_FIGS = atm locmap \
           hr_maps_deglac hr_maps_mis2 hr_maps_mis3 hr_maps_mis4 \
           hr_maps_puget \
           hr_pf_epica hr_pf_grip \
-          sens_dist_vel sens_plot_ntil sens_plot_rheo sens_plot_tauc \
+          sens_dist_vel sens_maps_mis2 \
+          sens_plot_ntil sens_plot_rheo sens_plot_tauc \
           sens_ts.py
 
 PY_FIGS := $(addsuffix .pdf, ${PY_FIGS})
