@@ -42,11 +42,11 @@ if __name__ == '__main__':
     ax.plot(b, tauc_min(tillphi(b))*1e-5, 'k')
 
     # plot with different friction angles
-    ax.plot(b, tauc_min(tillphi(b, 24.0, 24.0))*1e-5, c='k', ls='--')
+    ax.plot(b, tauc_min(tillphi(b, 30.0, 30.0))*1e-5, c='k', ls='--')
 
     # plot with different delta
     for delta in [0.01, 0.05]:
-        ax.plot(b, tauc_min(tillphi(b), delta=delta)*1e-5, c=ut.colors[2])
+        ax.plot(b, tauc_min(tillphi(b), delta=delta)*1e-5, c=ut.sens_colors[4])
 
     # set axes properties
     ax.set_xlabel('b (m)')
