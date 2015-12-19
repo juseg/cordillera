@@ -30,7 +30,8 @@ for i, per in enumerate(periods):
     for j, rec in enumerate(ut.records):
 
         # get MIS times
-        mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt, per,
+        mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt,
+                                                         period=per,
                                                          version=version)
 
         # load forcing time series

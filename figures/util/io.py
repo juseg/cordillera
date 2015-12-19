@@ -13,6 +13,8 @@ import iceplotlib.plot as iplt
 
 # file path default params
 pism_dir = os.environ['HOME'] + '/pism/'
+config='ccyc4+till1545'
+period='3222'
 version = '0.7.2'
 
 # unit conversion
@@ -38,16 +40,18 @@ def open_sd_file(res):
     return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
 
 
-def open_ts_file(res, rec, dt, period='3222', version=version):
+def open_ts_file(res, rec, dt,
+                 config=config, period=period, version=version):
     return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
-                     '%s%scool%i+ccyc4+till1545/y0??0000-ts.nc'
-                     % (version, res, rec, period, round(100*dt)))
+                     '%s%scool%i+%s/y0??0000-ts.nc'
+                     % (version, res, rec, period, round(100*dt), config))
 
 
-def open_extra_file(res, rec, dt, period='3222', version=version):
+def open_extra_file(res, rec, dt,
+                    config=config, period=period, version=version):
     return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
-                     '%s%scool%i+ccyc4+till1545/y0??0000-extra.nc'
-                     % (version, res, rec, period, round(100*dt)))
+                     '%s%scool%i+%s/y0??0000-extra.nc'
+                     % (version, res, rec, period, round(100*dt), config))
 
 
 # analysis functions
@@ -59,11 +63,13 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
-def get_mis_times(res, rec, dt, period='3222', version=version):
+def get_mis_times(res, rec, dt,
+                  config=config, period=period, version=version):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
-    nc = open_ts_file(res, rec, dt, period=period, version=version)
+    nc = open_ts_file(res, rec, dt,
+                      config=config, period=period, version=version)
     ts_time = nc.variables['time'][:]*s2a
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
