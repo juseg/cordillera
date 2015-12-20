@@ -34,7 +34,7 @@ for i, conf in enumerate(ut.sens_configs):
             nc.icemargin(ax=ax, t=t, colors=ut.sens_colors[i], zorder=3)
 
     # plot ice margin from other runs
-    elif i <=3:
+    elif i <=2:
         nc.icemargin(ax=grid[0], t=t, colors=ut.sens_colors[i])
     else:
         nc.icemargin(ax=grid[1], t=t, colors=ut.sens_colors[i])

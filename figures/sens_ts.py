@@ -51,7 +51,7 @@ for i, conf in enumerate(ut.sens_configs):
 
 
     # plot sensitivity to rheologic parameters
-    elif i <=3:
+    elif i <=2:
         grid[0].plot(-ts_time, ts_ivol, color=ut.sens_colors[i])
 
     else:

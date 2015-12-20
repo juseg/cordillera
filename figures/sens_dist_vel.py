@@ -54,7 +54,7 @@ for i, ax in enumerate(grid):
 
 # set axes properties
 ax.set_ylim(-0.5, 5.5)
-ax.set_xticks(range(1,10))
+ax.set_xticks(range(1,6))
 ax.set_xticklabels(ut.sens_labels)
 grid[1].set_ylabel(r'log of surface velocity ($m\,yr^{-1}$)')
 
