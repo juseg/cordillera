@@ -10,7 +10,7 @@ res = '10km'
 offsets = np.arange(5.7, 7.0, 0.1)
 
 # print table header
-print '\n    dt ' + '| %7s ' * 6 % tuple(ut.records),
+print '\n    dt ' + '| %7s ' * 6 % tuple(ut.lr.records),
 print '\n  -----' + '+---------' * 6,
 
 # for required temperature offset values
@@ -18,7 +18,7 @@ for i, dt in enumerate(offsets):
     print '\n   ' + '%3.1f' % dt,
 
     # for each record
-    for j, rec in enumerate(ut.records):
+    for j, rec in enumerate(ut.lr.records):
 
         # try to print MIS2 area
         try:

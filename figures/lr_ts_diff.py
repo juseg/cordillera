@@ -20,8 +20,8 @@ mis_iareas = np.zeros((6, 3), dtype=float)
 
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-for i, rec in enumerate(ut.records):
-    dt = ut.offsets[i]
+for i, rec in enumerate(ut.lr.records):
+    dt = ut.lr.offsets[i]
 
     # load output time series
     nc1 = ut.io.open_ts_file('10km', rec, dt, version=versions[0])
@@ -32,9 +32,9 @@ for i, rec in enumerate(ut.records):
     nc2.close()
 
     # plot time series
-    ax.plot(-ts_time, ts_ivol, color=ut.colors[i])
+    ax.plot(-ts_time, ts_ivol, color=ut.lr.colors[i])
     ax.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ',
-             color=ut.colors[i], marker=ut.markers[i], label=ut.labels[i])
+             color=ut.lr.colors[i], marker=ut.lr.markers[i], label=ut.lr.labels[i])
 
     # look for a high-resolution run
     try:    
@@ -44,7 +44,7 @@ for i, rec in enumerate(ut.records):
         ts_ivol = nc1.variables['slvol'][:] - nc2.variables['slvol'][:]
         nc1.close()
         nc2.close()
-        ax.plot(-ts_time, ts_ivol, color=ut.colors[i], dashes=(1, 1))
+        ax.plot(-ts_time, ts_ivol, color=ut.lr.colors[i], dashes=(1, 1))
     except (ValueError, RuntimeError):
         pass
 

@@ -21,8 +21,8 @@ mis_iareas = np.zeros((6, 3), dtype=float)
 
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-for i, rec in enumerate(ut.records):
-    dt = ut.offsets[i]
+for i, rec in enumerate(ut.lr.records):
+    dt = ut.lr.offsets[i]
 
     # get MIS times
     mis_idces[i], mis_times[i] = ut.io.get_mis_times(res, rec, dt)
@@ -52,15 +52,15 @@ for i, rec in enumerate(ut.records):
 
     # print info in table style
     tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-    print tabline % ( (ut.labels[i],) + tuple(-mis_times[i]/1e3) )
+    print tabline % ( (ut.lr.labels[i],) + tuple(-mis_times[i]/1e3) )
     print tabline % ( ('',) + tuple(mis_iareas[i]) )
     print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
     # plot time series
-    ax1.plot(-dt_time, dt_temp, color=ut.colors[i])
-    ax2.plot(-ts_time, ts_ivol, color=ut.colors[i])
+    ax1.plot(-dt_time, dt_temp, color=ut.lr.colors[i])
+    ax2.plot(-ts_time, ts_ivol, color=ut.lr.colors[i])
     ax2.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ',
-             color=ut.colors[i], marker=ut.markers[i], label=ut.labels[i])
+             color=ut.lr.colors[i], marker=ut.lr.markers[i], label=ut.lr.labels[i])
 
     # look for a high-resolution run
     try:
@@ -68,7 +68,7 @@ for i, rec in enumerate(ut.records):
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
-        ax2.plot(-ts_time, ts_ivol, color=ut.colors[i], dashes=(1, 1))
+        ax2.plot(-ts_time, ts_ivol, color=ut.lr.colors[i], dashes=(1, 1))
     except RuntimeError:
         pass
 

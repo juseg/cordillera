@@ -5,9 +5,9 @@ import util as ut
 import iceplotlib.plot as iplt
 
 # parameters
-records = ut.records[ut.hrs]
-offsets = ut.offsets[ut.hrs]
-colors = ut.colors[ut.hrs]
+records = ut.lr.records[ut.hrs]
+offsets = ut.lr.offsets[ut.hrs]
+colors = ut.lr.colors[ut.hrs]
 
 # initialize time-series figure
 figw, figh = 85.01, 80.01
@@ -26,7 +26,7 @@ for i, rec in enumerate(records):
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
-    ax1.plot(-dt_time, dt_temp, color=colors[i], label=ut.labels[i])
+    ax1.plot(-dt_time, dt_temp, color=colors[i], label=ut.lr.labels[i])
 
     # plot output time series
     for res in ('10km', '5km'):

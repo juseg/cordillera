@@ -8,12 +8,12 @@ from matplotlib.colors import BoundaryNorm
 
 # parameters
 res = '5km'
-records = ut.records[ut.hrs]
-offsets = ut.offsets[ut.hrs]
+records = ut.lr.records[ut.hrs]
+offsets = ut.lr.offsets[ut.hrs]
 ages = range(8, 23, 1)
 levs = [-0.5] + ages
 cmap = iplt.get_cmap('RdBu_r')
-cmap.set_over(ut.colors[4])  # dark green
+cmap.set_over(ut.lr.colors[4])  # dark green
 
 # initialize figure
 figw, figh = 120.0, 100.0

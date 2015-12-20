@@ -27,7 +27,7 @@ for i, per in enumerate(periods):
     ax2 = grid[i][1]
 
     # loop on records[i]
-    for j, rec in enumerate(ut.records):
+    for j, rec in enumerate(ut.lr.records):
 
         # get MIS times
         mis_idces[j], mis_times[j] = ut.io.get_mis_times(res, rec, dt,
@@ -48,10 +48,10 @@ for i, per in enumerate(periods):
         mis_ivols[j] = ts_ivol[mis_idces[j]]
 
         # plot time series
-        ax1.plot(-dt_time, dt_temp, color=ut.colors[j])
-        ax2.plot(-ts_time, ts_ivol, color=ut.colors[j])
+        ax1.plot(-dt_time, dt_temp, color=ut.lr.colors[j])
+        ax2.plot(-ts_time, ts_ivol, color=ut.lr.colors[j])
         ax2.plot(-mis_times[j]/1e3, mis_ivols[j], ls=' ',
-                 color=ut.colors[j], marker=ut.markers[j], label=ut.labels[j])
+                 color=ut.lr.colors[j], marker=ut.lr.markers[j], label=ut.lr.labels[j])
 
     # mark scaling period
     ps, pe = per/100, per%100

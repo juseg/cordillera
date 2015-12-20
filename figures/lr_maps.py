@@ -18,14 +18,14 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
 cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]
-for i, rec in enumerate(ut.records):
+for i, rec in enumerate(ut.lr.records):
     print 'reading %s extra output...' % rec
 
     # get MIS times
-    mis_idces, mis_times = ut.io.get_mis_times(res, rec, ut.offsets[i])
+    mis_idces, mis_times = ut.io.get_mis_times(res, rec, ut.lr.offsets[i])
 
     # load extra output
-    nc = ut.io.open_extra_file(res, rec, ut.offsets[i])
+    nc = ut.io.open_extra_file(res, rec, ut.lr.offsets[i])
 
     # plot maps
     for j, t in enumerate(mis_times):
@@ -52,7 +52,7 @@ for i, rec in enumerate(ut.records):
     nc.close()
 
 # add labels
-for i, label in enumerate(ut.labels):
+for i, label in enumerate(ut.lr.labels):
     ax = grid[0, i]
     ax.text(0.5, 1.05, label, ha='center',
             transform=ax.transAxes)
