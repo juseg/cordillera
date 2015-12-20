@@ -5,9 +5,9 @@ import util as ut
 
 # parameters
 res = '5km'
-rec = ut.lr.records[0]
-dt = ut.lr.offsets[0]
-color = ut.lr.colors[0]
+rec = ut.hr.records[0]
+dt = ut.hr.offsets[0]
+color = ut.hr.colors[0]
 
 # plot
 fig = ut.pl.fig_hr_pf(res, rec, dt, color)
