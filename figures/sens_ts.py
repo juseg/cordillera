@@ -17,26 +17,45 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=1, sharex=True, sharey=True,
                              left=10.0, right=2.5, bottom=10.0, top=2.5,
                              wspace=2.5, hspace=2.5)
 
+# loop on records
+tabline = ' '*4 + '%-30s '+ '& %6.2f '*3
 for i, conf in enumerate(ut.sens_configs):
+
+    # get MIS times
+    mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
+
+    # compute area from extra file
+    nc = ut.io.open_extra_file(res, rec, dt, config=conf)
+    ex_thk = nc.variables['thk']
+    ex_time = nc.variables['time']
+    ex_idces = [(np.abs(ex_time[:]-t*ut.a2s)).argmin() for t in mis_times]
+    mis_iareas = (ex_thk[ex_idces] > ut.thkth).sum(axis=(1,2))*1e-4
+    nc.close()
 
     # get ice volume from time series
     nc = ut.io.open_ts_file(res, rec, dt, config=conf)
-    time = nc.variables['time'][:]*ut.s2ka
-    ivol = nc.variables['slvol'][:]
+    ts_time = nc.variables['time'][:]*ut.s2ka
+    ts_ivol = nc.variables['slvol'][:]
     nc.close()
+    mis_ivols = ts_ivol[mis_idces]
+
+    # print info in table style
+    print tabline % ( (conf,) + tuple(-mis_times/1e3) )
+    print tabline % ( ('',) + tuple(mis_iareas) )
+    print tabline % ( ('',) + tuple(mis_ivols) ) + '\\\\'
 
     # plot reference run
     if i == 0:
         for ax in grid:
-            ax.plot(-time, ivol, color=ut.sens_colors[i], zorder=3)
+            ax.plot(-ts_time, ts_ivol, color=ut.sens_colors[i], zorder=3)
 
 
     # plot sensitivity to rheologic parameters
     elif i <=3:
-        grid[0].plot(-time, ivol, color=ut.sens_colors[i])
+        grid[0].plot(-ts_time, ts_ivol, color=ut.sens_colors[i])
 
     else:
-        grid[1].plot(-time, ivol, color=ut.sens_colors[i])
+        grid[1].plot(-ts_time, ts_ivol, color=ut.sens_colors[i])
 
 # set axes properties
 for ax in grid:
