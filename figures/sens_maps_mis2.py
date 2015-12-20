@@ -17,6 +17,8 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              left=2.5, right=20.0, bottom=2.5, top=2.5,
                              wspace=2.5, hspace=2.5)
 
+icemasks = []
+
 # plot sensitivity to rheologic parameters
 for i, conf in enumerate(ut.sens_configs):
 
@@ -25,6 +27,8 @@ for i, conf in enumerate(ut.sens_configs):
 
     # load extra output
     nc = ut.io.open_extra_file(res, rec, dt, config=conf)
+    x, y, thk = nc._extract_xyz('thk', t=t)
+    mask = nc._extract_mask(t=t)
 
     # plot topo and margin from default run
     if i == 0:
@@ -33,14 +37,23 @@ for i, conf in enumerate(ut.sens_configs):
                       cmap=ut.topo_cmap, norm=ut.topo_norm)
             nc.icemargin(ax=ax, t=t, colors=ut.sens_colors[i], zorder=3)
 
-    # plot ice margin from other runs
-    elif i <=2:
-        nc.icemargin(ax=grid[0], t=t, colors=ut.sens_colors[i])
-    else:
-        nc.icemargin(ax=grid[1], t=t, colors=ut.sens_colors[i])
-
     # close
     nc.close()
+
+    # append
+    icemasks.append(mask)
+
+# plot sensitivity to rheologic parameters
+mask = icemasks[2]-icemasks[1]
+grid[0].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens_colors[2],
+                 alpha=0.75)
+grid[0].contour(x, y, mask, levels=[0.5], colors=ut.sens_colors[1])
+
+# plot sensitivity to sliding parameters
+mask = icemasks[4]-icemasks[3]
+grid[1].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens_colors[4],
+                 alpha=0.75)
+grid[1].contour(x, y, mask, levels=[0.5], colors=ut.sens_colors[3])
 
 # set axes properties and save time series
 print 'saving...'
