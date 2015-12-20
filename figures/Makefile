@@ -21,7 +21,7 @@ HR_FIGS := $(addsuffix .$(EXT), $(HR_FIGS))
 
 # sensitivity tests figures
 SENS_FIGS := sens_plot_ntil sens_plot_rheo sens_plot_tauc \
-             sens_dist_vel sens_maps sens_ts
+             sens_dist_vel sens_maps sens_misareas sens_ts
 SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 
 # all python figures
