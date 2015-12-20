@@ -53,15 +53,14 @@ if __name__ == '__main__':
     # for each axes
     for ax in grid:
 
-        # plot softness as in Bueler and Brown, 2009
+        # plot softness as in Paterson and Budd, 1982
         A = A_bb09(T)
-        ax.plot(T-273.15, A, c=ut.sens.colors[0], label='Paterson and Budd, 1982')
+        ax.plot(T-273.15, A, c=ut.sens.colors[0], label=ut.sens.labels[0])
 
         # plot softness as in Cuffey and Paterson, 2010
         A = A_cp10(T)
-        ax.plot(T-273.15, A, c=ut.sens.colors[1], label='Cuffey and Paterson, 2010')
-        ax.plot(T-273.15, 2*A, c=ut.sens.colors[1], ls='--')
-        ax.plot(T-273.15, 5*A, c=ut.sens.colors[1], ls='--')
+        ax.plot(T-273.15, 5*A, c=ut.sens.colors[2], label=ut.sens.labels[2])
+        ax.plot(T-273.15, A, c=ut.sens.colors[1], label=ut.sens.labels[1])
 
         # set axes properties
         ax.grid()

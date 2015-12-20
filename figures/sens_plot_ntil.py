@@ -68,16 +68,10 @@ if __name__ == '__main__':
     # for each axes
     for ax in grid:
 
-        # plot default run
-        plot_Ntil(W, ax=ax, color='k')
-
-        # plot with different Wmax
-        plot_Ntil(W, ax=ax, Wmax=1.0, color=ut.sens.colors[7])
-        plot_Ntil(W, ax=ax, Wmax=5.0, color=ut.sens.colors[7], annotate=True)
-
-        # plot with different delta
-        plot_Ntil(W, ax=ax, delta=0.01, color=ut.sens.colors[4])
-        plot_Ntil(W, ax=ax, delta=0.05, color=ut.sens.colors[4])
+        # plot
+        plot_Ntil(W, ax=ax, delta=0.05, Wmax=5.0, color=ut.sens.colors[4])
+        plot_Ntil(W, ax=ax, color='k', annotate=True)
+        plot_Ntil(W, ax=ax, delta=0.01, Wmax=1.0, color=ut.sens.colors[3])
 
         # set axes properties
         ax.set_ylabel('Ntil (bar)')
