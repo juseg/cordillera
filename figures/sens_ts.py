@@ -28,8 +28,10 @@ for i, conf in enumerate(ut.sens_configs):
     nc = ut.io.open_extra_file(res, rec, dt, config=conf)
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
+    ex_mask = nc.variables['mask']
     ex_idces = [(np.abs(ex_time[:]-t*ut.a2s)).argmin() for t in mis_times]
-    mis_iareas = (ex_thk[ex_idces] > ut.thkth).sum(axis=(1,2))*1e-4
+    mis_iareas = ((ex_thk[ex_idces] >= ut.thkth)*
+                  (ex_mask[ex_idces] == 2)).sum(axis=(1,2))*1e-4
     nc.close()
 
     # get ice volume from time series
