@@ -8,7 +8,7 @@ BASE_FIGS := atm locmap
 BASE_FIGS := $(addsuffix .$(EXT), $(BASE_FIGS))
 
 # lo-res runs figures
-LR_FIGS := lr_maps lr_ts lr_ts_diff lr_ts_scaling lr_violins
+LR_FIGS := lr_maps lr_misareas lr_ts lr_ts_diff lr_ts_scaling lr_violins
 LR_FIGS := $(addsuffix .$(EXT), $(LR_FIGS))
 
 # hi-res runs figures
