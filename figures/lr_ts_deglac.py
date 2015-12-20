@@ -5,9 +5,9 @@ import util as ut
 import iceplotlib.plot as iplt
 
 # parameters
-records = ut.lr.records[ut.hrs]
-offsets = ut.lr.offsets[ut.hrs]
-colors = ut.lr.colors[ut.hrs]
+records = ut.hr.records
+offsets = ut.hr.offsets
+colors = ut.hr.colors
 
 # initialize time-series figure
 figw, figh = 85.01, 80.01

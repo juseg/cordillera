@@ -7,8 +7,8 @@ import iceplotlib.plot as iplt
 
 # simulations used
 res = '5km'
-records = ut.lr.records[ut.hrs]
-offsets = ut.lr.offsets[ut.hrs]
+records = ut.hr.records
+offsets = ut.hr.offsets
 cislevs = [32.0, 26.0]
 
 # initialize figure

@@ -5,6 +5,7 @@
 
 
 from matplotlib.colors import LogNorm, Normalize
+import hr
 import io
 import lr
 import pl
@@ -22,9 +23,6 @@ topo_cmap = 'Greys'
 topo_norm = Normalize(-3000, 6000)
 vel_cmap = 'RdBu_r'
 vel_norm = LogNorm(1e1, 1e3)
-
-# high-resolution run selector
-hrs = slice(0, 3, 2)
 
 # default thickness threshold
 thkth = 1.0
