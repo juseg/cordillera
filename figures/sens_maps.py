@@ -19,7 +19,7 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
 
 # compute ice masks
 icemasks=[[], [], []]
-for i, conf in enumerate(ut.sens_configs):
+for i, conf in enumerate(ut.sens.configs):
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
@@ -38,7 +38,7 @@ for i, conf in enumerate(ut.sens_configs):
             for ax in grid[:, j]:
                 nc.imshow('topg', ax=ax, t=t,
                           cmap=ut.topo_cmap, norm=ut.topo_norm)
-                nc.icemargin(ax=ax, t=t, colors=ut.sens_colors[i], zorder=3)
+                nc.icemargin(ax=ax, t=t, colors=ut.sens.colors[i], zorder=3)
 
     # close
     nc.close()
@@ -48,15 +48,15 @@ for j in range(3):
 
     # plot sensitivity to rheologic parameters
     mask = icemasks[j][2]-icemasks[j][1]
-    grid[0][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens_colors[2],
+    grid[0][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens.colors[2],
                         alpha=0.75)
-    grid[0][j].contour(x, y, mask, levels=[0.5], colors=ut.sens_colors[1])
+    grid[0][j].contour(x, y, mask, levels=[0.5], colors=ut.sens.colors[1])
 
     # plot sensitivity to sliding parameters
     mask = icemasks[j][4]-icemasks[j][3]
-    grid[1][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens_colors[4],
+    grid[1][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens.colors[4],
                         alpha=0.75)
-    grid[1][j].contour(x, y, mask, levels=[0.5], colors=ut.sens_colors[3])
+    grid[1][j].contour(x, y, mask, levels=[0.5], colors=ut.sens.colors[3])
 
 # add labels
 for j in range(3):

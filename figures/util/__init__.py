@@ -9,6 +9,7 @@ import hr
 import io
 import lr
 import pl
+import sens
 
 # unit conversion
 # FIXME: use iplt.subplots_mm instead
@@ -26,12 +27,3 @@ vel_norm = LogNorm(1e1, 1e3)
 
 # default thickness threshold
 thkth = 1.0
-
-# sensitivity test parameters
-sens_configs = ['ccyc4+till1545',
-                'ccyc4+rheocp10+till1545',
-                'ccyc4+rheocp10+esia5+till1545',
-                'ccyc4+d050+wmax05m+till1545',
-                'ccyc4+d010+wmax01m+till1545']
-sens_labels = ['default', 'hard ice', 'soft ice', 'sticky bed', 'slippy bed']
-sens_colors = ['k', '#ff7f00', '#fdbf6f', '#6a3d9a', '#cab2d6']

@@ -37,7 +37,7 @@ ivol_series = []
 
 # loop on records
 tabline = ' '*4 + '%-30s '+ '& %6.2f '*3
-for i, conf in enumerate(ut.sens_configs):
+for i, conf in enumerate(ut.sens.configs):
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
@@ -70,17 +70,17 @@ for i, conf in enumerate(ut.sens_configs):
 
 # plot reference run on top
 for ax in grid:
-    ax.plot(-time_series[0], ivol_series[0], color=ut.sens_colors[0],
+    ax.plot(-time_series[0], ivol_series[0], color=ut.sens.colors[0],
             alpha=0.75, zorder=3)
 
 # plot sensitivity to rheologic parameters
 fill_between_safe(-time_series[1], ivol_series[1], ivol_series[2], ax=grid[0],
-                  edgecolor=ut.sens_colors[1], facecolor=ut.sens_colors[2],
+                  edgecolor=ut.sens.colors[1], facecolor=ut.sens_colors[2],
                   alpha=0.75)
 
 # plot sensitivity to sliding parameters
 fill_between_safe(-time_series[3], ivol_series[3], ivol_series[4], ax=grid[1],
-                  edgecolor=ut.sens_colors[3], facecolor=ut.sens_colors[4],
+                  edgecolor=ut.sens.colors[3], facecolor=ut.sens_colors[4],
                   alpha=0.75)
 
 # set axes properties

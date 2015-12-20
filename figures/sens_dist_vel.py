@@ -18,7 +18,7 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=1, sharex=True, sharey=True,
 
 # build velocity distributions
 vdistlists=[[], [], []]
-for i, conf in enumerate(ut.sens_configs):
+for i, conf in enumerate(ut.sens.configs):
     print 'reading %s ...' % conf
 
     # get MIS times
@@ -44,7 +44,7 @@ for i, conf in enumerate(ut.sens_configs):
 # plot
 for i, ax in enumerate(grid):
     violins = ax.violinplot(vdistlists[i])
-    for p, c in zip(violins['bodies'], ut.sens_colors):
+    for p, c in zip(violins['bodies'], ut.sens.colors):
         p.set_color(c)
     violins['cbars'].set_color('0.5')
     violins['cmins'].set_color('0.5')
@@ -55,7 +55,7 @@ for i, ax in enumerate(grid):
 # set axes properties
 ax.set_ylim(-0.5, 5.5)
 ax.set_xticks(range(1,6))
-ax.set_xticklabels(ut.sens_labels)
+ax.set_xticklabels(ut.sens.labels)
 grid[1].set_ylabel(r'log of surface velocity ($m\,yr^{-1}$)')
 
 # save
