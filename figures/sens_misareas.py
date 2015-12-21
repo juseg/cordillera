@@ -26,15 +26,16 @@ for i, conf in enumerate(ut.sens.configs):
             t = ut.io.get_mis_times(res, rec, dt, config=conf)[1][2]
 
             # open extra file
-            print 'reading %s, %.1f' % (rec, dt)
-            nc = ut.io.open_extra_file(res, rec, dt)
+            nc = ut.io.open_extra_file(res, rec, dt, config=conf)
             time = nc.variables['time']
             idx = np.abs(time[:]-t*ut.a2s).argmin()
             thk = nc.variables['thk'][idx]
             mask = nc.variables['mask'][idx]
 
             # compute grounded ice area at MIS 2
-            misareas[i, j] = ((thk >= ut.thkth)*(mask == 2)).sum()*1e-4
+            a = ((thk >= ut.thkth)*(mask == 2)).sum()*1e-4
+            print '%-30s, %.1f : %.2f, %.2f' % (conf, dt, t*1e-3, a)
+            misareas[i, j] = a
 
             # close
             nc.close()
@@ -61,7 +62,7 @@ for i, conf in enumerate(ut.sens.configs):
 # set axes properties
 ax.axhline(target, lw=0.1, c='0.5')
 ax.set_xlim(5.7, 6.9)
-ax.set_ylim(1.7, 2.3)
+ax.set_ylim(1.7, 2.4)
 ax.set_xlabel('offset')
 ax.set_ylabel('grounded ice area')
 
