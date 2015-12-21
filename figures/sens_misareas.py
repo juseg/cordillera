@@ -53,8 +53,9 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
 for i, conf in enumerate(ut.sens.configs):
     c = ut.sens.colors[i]
     argmin = np.argmin(np.abs(misareas[i]-target))
-    ax.plot(offsets, misareas[i], c=c)
-    ax.plot(offsets[argmin], misareas[i, argmin], c=c, marker='o')
+    ax.plot(offsets, misareas[i], c=c, marker='o')
+    ax.plot(offsets[argmin], misareas[i, argmin], c=c, marker='D')
+    ax.axvline(offsets[argmin], lw=0.1, c=c)
     for dt, a in zip(offsets, misareas[i]):
         if a:
             ax.text(dt, a+0.02, '%.2f' % a, color=c, ha='center')

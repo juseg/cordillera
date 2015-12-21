@@ -49,13 +49,14 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
 
 # plot
 for i, rec in enumerate(ut.lr.records):
+    c = ut.lr.colors[i]
     argmin = np.argmin(np.abs(misareas[i]-target))
-    ax.plot(offsets, misareas[i], c=ut.lr.colors[i])
-    ax.plot(offsets[argmin], misareas[i, argmin],
-            c=ut.lr.colors[i], marker=ut.lr.markers[i])
+    ax.plot(offsets, misareas[i], c=c, marker='o')
+    ax.plot(offsets[argmin], misareas[i, argmin], c=c, marker='D')
+    ax.axvline(offsets[argmin], lw=0.1, c=c)
     for dt, a in zip(offsets, misareas[i]):
         if a:
-            ax.text(dt, a+0.02, '%.2f' % a, color=ut.lr.colors[i], ha='center')
+            ax.text(dt, a+0.02, '%.2f' % a, color=c, ha='center')
 
 # set axes properties
 ax.axhline(target, lw=0.1, c='0.5')
