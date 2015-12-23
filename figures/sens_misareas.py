@@ -65,7 +65,7 @@ ax.axhline(target, lw=0.1, c='0.5')
 ax.set_xlim(5.7, 6.9)
 ax.set_ylim(1.7, 2.4)
 ax.set_xlabel('offset')
-ax.set_ylabel('grounded ice area')
+ax.set_ylabel('grounded ice area at MIS2')
 
 # save
 print 'saving...'

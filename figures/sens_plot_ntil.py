@@ -32,8 +32,9 @@ def plot_Ntil(W,
     Ntil = np.ma.array(Ntil, mask=(W>Wmax))
     
     # plot in bars
+    label = kwargs.pop('label', None)
     ax.plot(W, Ntil_cap*1e-5, ls=':', **kwargs)
-    ax.plot(W, Ntil*1e-5, ls='-', **kwargs)
+    ax.plot(W, Ntil*1e-5, ls='-', label=label, **kwargs)
     ax.plot(Wmax, delta*P0*1e-5, marker='o', **kwargs)
 
     # add annotations
@@ -69,9 +70,12 @@ if __name__ == '__main__':
     for ax in grid:
 
         # plot
-        plot_Ntil(W, ax=ax, delta=0.05, Wmax=5.0, color=ut.sens.colors[4])
-        plot_Ntil(W, ax=ax, color='k', annotate=True)
-        plot_Ntil(W, ax=ax, delta=0.01, Wmax=1.0, color=ut.sens.colors[3])
+        plot_Ntil(W, ax=ax, delta=0.02, Wmax=2.0, annotate=True,
+                  color=ut.sens.colors[0], label=ut.sens.labels[0])
+        plot_Ntil(W, ax=ax, delta=0.01, Wmax=1.0,
+                  color=ut.sens.colors[3], label=ut.sens.labels[3])
+        plot_Ntil(W, ax=ax, delta=0.05, Wmax=5.0,
+                  color=ut.sens.colors[4], label=ut.sens.labels[4])
 
         # set axes properties
         ax.set_ylabel('Ntil (bar)')
@@ -79,6 +83,7 @@ if __name__ == '__main__':
 
     # linear scale on top axes
     grid[0].set_ylim(-2.0, 100.0)
+    grid[0].legend(loc='upper right')
 
     # log scale on bottom axes
     grid[1].set_xlabel('W (m)')

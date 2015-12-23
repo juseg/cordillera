@@ -42,13 +42,16 @@ if __name__ == '__main__':
     ax.plot(b, tauc_min(tillphi(b))*1e-5, 'k')
 
     # plot with different delta
-    ax.plot(b, tauc_min(tillphi(b), delta=0.05)*1e-5, c=ut.sens.colors[3])
-    ax.plot(b, tauc_min(tillphi(b), delta=0.01)*1e-5, c=ut.sens.colors[4])
+    ax.plot(b, tauc_min(tillphi(b), delta=0.05)*1e-5,
+            c=ut.sens.colors[3], label=ut.sens.labels[3])
+    ax.plot(b, tauc_min(tillphi(b), delta=0.01)*1e-5,
+            c=ut.sens.colors[4], label=ut.sens.labels[4])
 
     # set axes properties
     ax.set_xlabel('b (m)')
     ax.set_ylabel(r'$\tau_{c,min}$ (bar)')
     ax.grid()
+    ax.legend(loc='best')
     
     # save
     fig.savefig('sens_plot_tauc')
