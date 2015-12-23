@@ -8,7 +8,6 @@ import iceplotlib.plot as iplt
 # parameters
 res = '10km'
 rec = 'grip'
-dt = 6.2
 
 # initialize figure
 figw, figh = 85.0, 110.0
@@ -20,6 +19,7 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
 # compute ice masks
 icemasks=[[], [], []]
 for i, conf in enumerate(ut.sens.configs):
+    dt = ut.sens.offsets[i]
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)

@@ -22,7 +22,6 @@ def fill_between_safe(x, y1, y2, ax=None, **kwargs):
 # parameters
 res = '10km'
 rec = 'grip'
-dt = 6.2
 
 # initialize time-series figure
 figw, figh = 120.0, 80.01
@@ -38,6 +37,7 @@ ivol_series = []
 # loop on records
 tabline = ' '*4 + '%-30s '+ '& %6.2f '*3
 for i, conf in enumerate(ut.sens.configs):
+    dt = ut.sens.offsets[i]
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
