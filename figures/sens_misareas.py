@@ -13,13 +13,20 @@ target = 2.1
 # prepare empty array
 misareas = np.ma.masked_all((5, (len(offsets))))
 
-# for required temperature offset values
-for i, conf in enumerate(ut.sens.configs):
+# initialize figure
+fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
+                           left=10.0, right=2.5, bottom=10.0, top=2.5,
+                           wspace=2.5, hspace=2.5)
 
-    # for each record
+# for each configuration
+for i, conf in enumerate(ut.sens.configs):
+    c = ut.sens.colors[i]
+    misareas = np.ma.masked_all_like(offsets)
+
+    # for each temperature offset
     for j, dt in enumerate(offsets):
 
-        # try to find MIS2 area
+        # try to read MIS2 area
         try:
 
             # get MIS2 time
@@ -35,28 +42,21 @@ for i, conf in enumerate(ut.sens.configs):
             # compute grounded ice area at MIS 2
             a = ((thk >= ut.thkth)*(mask == 2)).sum()*1e-4
             print '%-30s, %.1f : %.2f, %.2f' % (conf, dt, t*1e-3, a)
-            misareas[i, j] = a
+            misareas[j] = a
 
             # close
             nc.close()
 
-        # else print a blank cell
+        # else do nothing
         except RuntimeError:
             pass
 
-# initialize figure
-fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
-                           left=10.0, right=2.5, bottom=10.0, top=2.5,
-                           wspace=2.5, hspace=2.5)
-
-# plot
-for i, conf in enumerate(ut.sens.configs):
-    c = ut.sens.colors[i]
-    argmin = np.argmin(np.abs(misareas[i]-target))
-    ax.plot(offsets, misareas[i], c=c, marker='o')
-    ax.plot(offsets[argmin], misareas[i, argmin], c=c, marker='D')
+    # plot
+    argmin = np.argmin(np.abs(misareas-target))
+    ax.plot(offsets, misareas, c=c, marker='o')
+    ax.plot(offsets[argmin], misareas[argmin], c=c, marker='D')
     ax.axvline(offsets[argmin], lw=0.1, c=c)
-    for dt, a in zip(offsets, misareas[i]):
+    for dt, a in zip(offsets, misareas):
         if a:
             ax.text(dt, a+0.02, '%.2f' % a, color=c, ha='center')
 
