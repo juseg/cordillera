@@ -27,8 +27,12 @@ SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 # all python figures
 PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS)
 
+# all python-latex figures
+PYTEX_FIGS := tab_lr tab_sens
+PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
+
 # all figures
-ALL_FIGS = $(PY_FIGS)
+ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS)
 
 # to make all figures
 all: data $(ALL_FIGS)
@@ -40,6 +44,14 @@ $(PY_FIGS): %.pdf : %.py matplotlibrc util/__init__.py util/io.py util/pl.py
 $(LR_FIGS): util/lr.py
 $(HR_FIGS): util/hr.py
 $(SENS_FIGS): util/sens.py
+
+# rules and dependencies for python-latex figures
+$(PYTEX_FIGS): %.pdf : %.py util/__init__.py util/io.py util/pl.py
+	python2 $<
+	pdflatex $*.tex
+
+tab_lr.$(EXT): util/lr.py
+tab_sens.$(EXT): util/sens.py
 
 # prepare figure.zip for the journal
 figures.zip: $(ALL_FIGS)
