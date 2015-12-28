@@ -33,12 +33,12 @@ footer=r'''    \bottomhline
 '''
 
 # latex table line
-tabline = (' '*4 + '%-8s ' + '& %6.2f '*3 + '\n'+
-           ' '*13 + '& %6.2f '*3 + '\n'+
-           ' '*13 + '& %6.2f '*3 + '\\\\\n')
 tabline = (' '*4 + '{title:8} ' + '& {:6.2f} '*3 + '\n'+
            ' '*13 + '& {:6.2f} '*3 + '\n'+
            ' '*13 + '& {:6.2f} '*3 + '\\\\\n')
+errline = (' '*4 + '{title:8} ' + r'& {:4.0f}\% '*3 + '\n'+
+           ' '*13 + r'& {:4.0f}\% '*3 + '\n'+
+           ' '*13 + r'& {:4.0f}\% '*3 + '\\\\\n')
 
 # initialize array
 results = np.zeros((5, 9), dtype=float)
@@ -78,14 +78,14 @@ with open('tab_sens.tex', 'w') as f:
         results[i] = np.concatenate((-mis_times/1e3, mis_gareas, mis_slvols))
         f.write(tabline.format(title=label, *results[i]))
 
-    # compute extrema
-    minima = results.min(axis=0)
-    maxima = results.max(axis=0)
+        # compute relative errors
+        if i in (2, 4):
+            relerr = 100*np.abs(results[i]-results[i-1])/results[0]
+            f.write(errline.format(title='R. diff.', *relerr))
 
-    # write info in table
-    f.write('    \middlehline\n')
-    f.write(tabline.format(title='Minimum', *minima))
-    f.write(tabline.format(title='Maximum', *maxima))
+        # add horizontal lines
+        if i in (0, 2):
+            f.write('    \middlehline\n')
 
     # write footer
     f.write(footer)
