@@ -28,9 +28,12 @@ figures/data/*.zip
 
 # Figures
 figures/util/*.pyc
+figures/*.aux
+figures/*.log
 figures/*.pyc
 figures/*.pdf
 figures/*.png
+figures/*.tex
 
 # Animations
 figures/*.mp4
