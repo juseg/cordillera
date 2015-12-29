@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
 
+\usepackage{amsmath}
 \usepackage[T1]{fontenc}
 \usepackage[pdftex]{graphicx}
 \usepackage[pdftex]{color}
@@ -10,6 +11,7 @@
 \setlength{\parskip}{1.2ex}
 \setlength{\parindent}{0em}
 \renewcommand\familydefault{\sfdefault}
+\renewcommand{\vec}[1]{\ensuremath{\mbox{\boldmath$#1$}}}
 
 \graphicspath{{../figures/}}
 \definecolor{journalname}{rgb}{0.34,0.59,0.82}
@@ -138,12 +140,74 @@ be divided into:
     importance of each including error estimates on the chosen parameters
     should be presented as well.}
 
-\todo{%
-    Perform new sensitivity tests on rheological parameters (water content,
-    activation energies, rate factors) and sliding (friction angle). This will
-    take some time. Based on the results, decide if they should be presented in
-    the manuscript (before/after) discussion, in a supplement, or perhaps just
-    here in this response.}
+To keep this sensitivity study as simple as possible, we choose to present only
+four additional runs, two with varying rheologic parameters and two with
+varying sliding parameters, using the simulation driven by the GRIP record as
+a control, at the horizontal resolution of 10\,km.
+
+In all simulations, ice deformation is governed by the constitutive law for ice
+\citep{Glen.1952, Nye.1953},
+
+\begin{equation}
+    \label{eqn:glenslaw}
+    \vec{\dot{\epsilon}} = A\,\tau_e^{n-1}\,\vec{\tau} \,.
+\end{equation}
+
+Where $\vec{\dot{\epsilon}}$ is the the strain-rate tensor, $\vec{\tau}$ the
+deviatoric stress tensor, and $\tau_e$ the equivalent stress defined by
+${\tau_e}^2 = \frac{1}{2} \mathrm{tr}(\vec{\tau}^2)$.
+The ice softness coefficient, $A$, depends on ice temperature, $T$, pressure, $p$, and
+water content, $\omega$, through a piece-wise Arrhenius-type law
+\citep[Eqs.~63--65]{Aschwanden.etal.2012},
+
+\begin{equation}
+    A = E\cdot
+    \begin{cases}
+        A_c \,e^\frac{-Q_c}{RT_{pa}}
+            & \text{if}\ T_{pa} < T_c \,, \\
+        A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
+            & \text{if}\ T_{pa} \ge T_c \,,
+    \end{cases}
+\end{equation}
+
+where $T_{pa}$ is the pressure-adjusted ice temperature calculated using the
+Clapeyron relation, ${T_{pa} = T - \beta p}$.
+$R=8.31441$\,J\,mol$^{-1}$\,K$^{-1}$ is the ideal gas constant, and $A_c$,
+$A_w$, $Q_c$ and $Q_w$, are constant parameters corresponding to values
+measured below and above a critical temperature threshold ${T_c=-10}^\circ$C
+\citep[p.~72]{Paterson.Budd.1982,Cuffey.Paterson.2010}. The water fraction,
+$\omega$, is capped at a maximum value of 0.01, above which no measurements
+are available \citep[Eq.~5.7]{Lliboutry.Duval.1985, Greve.1997}. Finally,
+$E$ is a non-dimensional enhancement factor which can take different values,
+$E_{SIA}$, in the Shallow Ice Approximation (SIA) and $E_{SSA}$, in the Shallow
+Shelf Approximation (SSA).
+
+In our short sensitivity study, we set constant the power-law exponent, $n=3$,
+according to \citet[p.~55--57]{Cuffey.Paterson.2010}, the Clapeyron constant,
+$\beta=7.9\times 10^{-8}$\,K\,Pa$^{-1}$, according to \citep{Luthi.etal.2002},
+the water fraction coefficient, $f=181.25$, according to
+\citet{Lliboutry.Duval.1985}, and the SSA enhancement factor, $E_{SSA}=1$,
+according to \citep[p.~77]{Cuffey.Paterson.2010}.
+
+On the other hand, we test different values for the two creep parameters, $A_c$
+and $A_w$, the two activation energies, $Q_c$ and $Q_w$, and the SIA
+enhancement factor, $E_{SIA}$, as follow.
+
+\begin{itemize}
+    \item{Our \emph{default} configuration used in the control run and all other
+          simulations in the manuscript include rheologic parameters, $A_c$,
+          $A_w$, $Q_c$ and $Q_w$, derived from \citet{Paterson.Budd.1982} and
+          given in \citet[Eqn.~5]{Bueler.Brown.2009}, and $E_{SIA}=1$.}
+    \item{Our \emph{hard ice} configuration include rheologic parameters,
+          $A_c$, $A_w$, $Q_c$ and $Q_w$, derived from
+          \citet[p.~72 and 76]{Cuffey.Paterson.2010}, and $E_{SIA}=1$, which
+          correspond to a stiffer rheology than that used in the control run.}
+    \item{Our \emph{soft ice} configuration include rheologic parameters,
+          $A_c$, $A_w$, $Q_c$ and $Q_w$, derived from
+          \citet[p.~72 and 76]{Cuffey.Paterson.2010}, and $E_{SIA}=5$, the
+          recommended value by \citet[p.~77]{Cuffey.Paterson.2010} for ice age
+          polar ice.}
+\end{itemize}
 
 \referee{%
     Generally section~4 appears to be quite long and seems to re-summarize
