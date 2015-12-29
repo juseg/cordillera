@@ -245,6 +245,79 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
     \label{fig:sens_plot_rheo}
 \end{figure}
 
+\clearpage  % moving on to basal sliding
+
+In our simulations, basal sliding is governed by a~pseudo-plastic sliding law,
+already given in the manuscript but recalled here for the sake of completeness,
+%
+\begin{equation}
+    \label{eqn:pseudoplastic}
+    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{{v_{th}}^q\,|\vec{v}_b|^{1-q}} \,,
+\end{equation}
+%
+which relates the bed-parallel shear stresses, $\vec{\tau}_b$, to the sliding
+velocity, $\vec{v}_b$. The yield stress, $\tau_c$, is modelled using the
+Mohr--Coulomb criterion,
+%
+\begin{equation}
+   \tau_c = c_0 + N\,\tan{\phi} \,,
+\end{equation}
+%
+where cohesion, $c_0$, is assumed to be zero. Effective pressure, $N$,
+is related to the ice overburden stress, $\rho gh$, and the modelled amount of
+subglacial water, using a formula derived from laboratory experiments with till
+extracted from the base of Ice Stream B in West Antarctica
+\citep[Eqn.~23]{Tulaczyk.etal.2000, Bueler.Pelt.2015},
+\begin{equation}
+    N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
+\end{equation}
+where $\delta$ sets the minimum ratio between the effective pressure, $N$, and
+the ice overburden stress, $\rho gh$, $e_0$ is a measured reference void ratio
+and $C_c$ is a measured compressibility coefficient. The amount of water at the
+base, $W$, varies from zero to $W_{max}$, a threshold above which additional
+melt water is assumed to drain off instantaneously.
+
+In our sensitivity test, we set constant the pseudo-plastic sliding exponent,
+$q=0.25$, and the threshold velocity, $v_{th}=100$\,\unit{m\,s^{-1}}, according
+to values used by \citet{Aschwanden.etal.2013}, the till cohesion, $c_0=0$,
+whose measured values are consistently negligible
+\citep[p.~268]{Tulaczyk.etal.2000, Cuffey.Paterson.2010}, the till reference
+void ratio, $e_0=0.69$, and the till compressibility coefficient, $C_c=0.12$,
+according to the only measurements available to our knowledge by
+\citep{Tulaczyk.etal.2000}.
+
+We also use a constant spatial distribution of the till friction angle, $\phi$,
+whose values vary from 15 to 45{\degree} as a piecewise-linear function of
+modern bed elevation, with the lowest value occuring below modern sea level
+(0\,m above sea level, m~a.s.l.) and the highest value occuring above the
+generalised elevation of the highest shorelines
+\citep[200\,m~a.s.l.,][Fig.~5]{Clague.1981}. This range of value span over the
+range of measured values for glacial till of 18 to 40{\degree}
+\citep[p.~268]{Cuffey.Paterson.2010}. It accounts for frictional basal
+conditions associated with discontinuous till cover at high elevations, and
+a~weakening of till associated with the presence of marine sediments at low
+elevations (cf. \citealp{Martin.etal.2011};
+\citealp[supplement]{Aschwanden.etal.2013}; \citealp{PISM-authors.2015}).
+
+An additional simulation with a constant till friction angle, $\phi=30\degree$,
+corresponding to the average value in \citet[p.~268]{Cuffey.Paterson.2010}, was
+actually performed, but the induced variability was small as compared to that
+which will be presented here, and therefore we decided to not include this run.
+
+On the other hand, we test different values for the minimum ratio between the
+effective pressure and the overburden stress, $\delta$, and the maximum water
+height in the till, $W_{max}$, as follow.
+
+\begin{itemize}
+    \item{Our \emph{default} configuration used in the control run and all other
+          simulations in the manuscript include $\delta=0.02$ and
+          $W_{max}=2$\,m as in \citet{Bueler.Pelt.2015}.}
+    \item{Our \emph{hard bed} configuration use $\delta=0.01$ and
+          $W_{max}=1$\,m.}
+    \item{Our \emph{soft bed} configuration use $\delta=0.05$ and
+          $W_{max}=5$\,m.}
+\end{itemize}
+
 \referee{%
     Generally section~4 appears to be quite long and seems to re-summarize
     known geological evidence for the region. At times the language is quite
