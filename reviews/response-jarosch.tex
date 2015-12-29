@@ -83,7 +83,7 @@ hope that our changes described below will correct for that.
 As announced earlier, we have decided to add a new section to the manuscript
 containing a short sensitivity study to some of the most influential rheologic
 and basal sliding parameters. Thus the new outline will be as follow:
-
+%
 \begin{enumerate}
     \item{Introduction}
     \item{Model setup}
@@ -91,12 +91,12 @@ and basal sliding parameters. Thus the new outline will be as follow:
     \item{Sensitivity to ice flow parameters}
     \item{Comparison with the geologic record}
 \end{enumerate}
-
+%
 In accordance, Sect.~2 (Model setup) will be amended with an description of
 default and alternative parameters for ice rheology and basal sliding with
 illustrations of their role in the model. Sect.~2.2 (Ice thermodynamics) will
 be divided into:
-
+%
 \begin{enumerate}
     \item[2.2]{Ice rheology}
     \item[2.3]{Basal sliding}
@@ -128,21 +128,21 @@ four additional runs, two with varying rheologic parameters and two with
 varying sliding parameters, using the simulation driven by the GRIP record as
 a control, at the horizontal resolution of 10\,km.
 
-In all simulations, ice deformation is governed by the constitutive law for ice
+In our simulations, ice deformation is governed by the constitutive law for ice
 \citep{Glen.1952, Nye.1953},
-
+%
 \begin{equation}
     \label{eqn:glenslaw}
     \vec{\dot{\epsilon}} = A\,\tau_e^{n-1}\,\vec{\tau} \,.
 \end{equation}
-
-Where $\vec{\dot{\epsilon}}$ is the the strain-rate tensor, $\vec{\tau}$ the
+%
+where $\vec{\dot{\epsilon}}$ is the the strain-rate tensor, $\vec{\tau}$ the
 deviatoric stress tensor, and $\tau_e$ the equivalent stress defined by
 ${\tau_e}^2 = \frac{1}{2} \mathrm{tr}(\vec{\tau}^2)$.
 The ice softness coefficient, $A$, depends on ice temperature, $T$, pressure, $p$, and
 water content, $\omega$, through a piece-wise Arrhenius-type law
 \citep[Eqs.~63--65]{Aschwanden.etal.2012},
-
+%
 \begin{equation}
     A = E\cdot
     \begin{cases}
@@ -152,7 +152,7 @@ water content, $\omega$, through a piece-wise Arrhenius-type law
             & \text{if}\ T_{pa} \ge T_c \,,
     \end{cases}
 \end{equation}
-
+%
 where $T_{pa}$ is the pressure-adjusted ice temperature calculated using the
 Clapeyron relation, ${T_{pa} = T - \beta p}$.
 $R=8.31441$\,J\,mol$^{-1}$\,K$^{-1}$ is the ideal gas constant, and $A_c$,
@@ -191,6 +191,12 @@ enhancement factor, $E_{SIA}$, as follow.
           recommended value for ice age polar ice
           \citep[p.~77]{Cuffey.Paterson.2010}.}
 \end{itemize}
+
+An additional simulation with rheologic parameters, $A_c$, $A_w$, $Q_c$ and
+$Q_w$, derived from \citet{Cuffey.Paterson.2010}, and $E_{SIA}=2$, the
+recommended value for Holocene polar ice \citep[p.~77]{Cuffey.Paterson.2010}
+was performed, but its results were very similar to that of our default run,
+thus we decided to not present it here.
 
 Actual parameter values for $A_c$, $A_w$, $Q_c$, $Q_w$ and $E_{SIA}$ used in
 our simulations are given in Table~\ref{tab:rheo_params}, while the effect of
