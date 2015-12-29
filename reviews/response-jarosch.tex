@@ -188,12 +188,45 @@ enhancement factor, $E_{SIA}$, as follow.
     \item{Our \emph{soft ice} configuration include rheologic parameters,
           $A_c$, $A_w$, $Q_c$ and $Q_w$, derived from
           \citet[p.~72 and 76]{Cuffey.Paterson.2010}, and $E_{SIA}=5$, the
-          recommended value by \citet[p.~77]{Cuffey.Paterson.2010} for ice age
-          polar ice.}
+          recommended value for ice age polar ice
+          \citep[p.~77]{Cuffey.Paterson.2010}.}
 \end{itemize}
 
-The effect of these three different parametrisations on temperature-dependent
-ice softness, $A$, are illustrated in Fig.~\ref{fig:sens_plot_rheo}.
+Actual parameter values for $A_c$, $A_w$, $Q_c$, $Q_w$ and $E_{SIA}$ used in
+our simulations are given in Table~\ref{tab:rheo_params}, while the effect of
+the three different parametrisations on temperature-dependent ice softness,
+$A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
+
+\begin{table*}
+  \caption{Rheologic parameter values used in the sensitivity test.}
+  \label{tab:rheo_params}
+  \centering
+  {\begin{tabular}{l|ccccc}
+    \tophline
+    Config. & $A_c$ & $A_w$ & $Q_c$ & $Q_w$ & $E_{SIA}$ \\
+            & \multicolumn{2}{c}{(\unit{Pa^{-3}\,s^{-1}})}
+            & \multicolumn{2}{c}{(\unit{J\,mol^{-1}})} & \\
+    \middlehline
+    Default$^1$  & $ 3.61\times 10^{-13}$
+                 & $ 1.73\times 10^3$
+                 & $   60\times 10^3$
+                 & $  139\times 10^3$
+                 & 1 \\
+    Hard ice$^2$ & $2.847\times 10^{-13}$
+                 & $2.356\times 10^{-2}$
+                 & $   60\times 10^3$
+                 & $  115\times 10^3$
+                 & 1 \\
+    Soft ice$^2$ & $2.847\times 10^{-13}$
+                 & $2.356\times 10^{-2}$
+                 & $   60\times 10^3$
+                 & $  115\times 10^3$
+                 & 5 \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{According to $^1$\citet{Paterson.Budd.1982} and
+              $^2$\citet{Cuffey.Paterson.2010}.}
+\end{table*}
 
 \begin{figure}
     \centering
