@@ -1,54 +1,44 @@
 # Temporary files
 *~
 
-# Files produced by latex
-/*.aux
-/*.bbl
-/*.blg
-/*.fdb_latexmk
-/*.fls
-/*.log
-/*.out
-/*.pdf
-/*.rtf
+# Latex
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.rtf
 
-# Files produced by endfloat
-/*.fff
-/*.lof
-/*.lot
-/*.ttt
+# Endfloat
+*.fff
+*.lof
+*.lot
+*.ttt
+
+# Python
+*.pyc
+*.png
 
 # Data
-figures/data/*.dbf
-figures/data/*.nc
-figures/data/*.shp
-figures/data/*.shx
-figures/data/*.tif
-figures/data/*.zip
+*.dbf
+*.nc
+*.shp
+*.shx
+*.tif
+*.zip
 
 # Figures
-figures/util/*.pyc
-figures/*.aux
-figures/*.log
-figures/*.pyc
-figures/*.pdf
-figures/*.png
 figures/*.tex
 
 # Animations
-figures/*.mp4
-figures/*.zip
-figures/frames
+*.mp4
 
 # Statistics
 stats/count.csv
 stats/progress.pdf
-
-# Reviews
-/reviews/*.aux
-/reviews/*.log
-/reviews/*.out
-/reviews/*.pdf
 
 # Revisions from co-authors
 revisions/
