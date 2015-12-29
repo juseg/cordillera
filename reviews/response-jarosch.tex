@@ -318,10 +318,27 @@ height in the till, $W_{max}$, as follow.
           $W_{max}=1$\,m.}
 \end{itemize}
 
-These parameter choices are recalled in Table~\ref{tab:ntil_params}, while the
+These parameter choices are recalled in Table~\ref{tab:slip_params}, while the
 effect of the three different parametrisations on the effective pressure on
 the till, $N$, in response to water content, $W$, is illustrated in
 Fig.~\ref{fig:sens_plot_ntil}.
+
+\begin{table*}
+  \caption{Basal sliding parameter values used in the sensitivity test.}
+  \label{tab:slip_params}
+  \centering
+  {\begin{tabular}{l|cc}
+    \tophline
+    Config. & $\delta$ & $W_{max}$ \\
+            &          & m \\
+    \middlehline
+    Default$^1$ & 0.02 & 2 \\
+    Hard bed    & 0.05 & 5 \\
+    Soft bed    & 0.01 & 1 \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{$^1$According to \citet{Bueler.Pelt.2015}.}
+\end{table*}
 
 \begin{figure}
     \centering
@@ -333,6 +350,8 @@ Fig.~\ref{fig:sens_plot_ntil}.
              linear scale (top panel) and a logarithmic scale (bottom panel).}
     \label{fig:sens_plot_ntil}
 \end{figure}
+
+\clearpage  % moving on to the results
 
 \referee{%
     Generally section~4 appears to be quite long and seems to re-summarize
