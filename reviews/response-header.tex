@@ -1,0 +1,45 @@
+% response-header.tex
+% ----------------------------------------------------------------------
+
+% Base class and packages
+\documentclass[11pt]{article}
+
+% Included in online comment header
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+\usepackage{amssymb}
+\usepackage{lastpage}
+%\usepackage{times}
+
+% Additional packages
+\usepackage{amsmath}
+\usepackage[T1]{fontenc}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}
+\usepackage{doi}
+
+% Graphic path of main manuscript
+\graphicspath{{../figures/}}
+
+% Replacements for Copernicus commands
+\newcommand{\tophline}{\hline\noalign{\vspace{1mm}}}
+\newcommand{\middlehline}{\noalign{\vspace{1mm}}\hline\noalign{\vspace{1mm}}}
+\newcommand{\bottomhline}{\noalign{\vspace{1mm}}\hline}
+\newcommand{\belowtable}[1]{\par\vspace{1ex}\raggedleft{\scriptsize#1}}
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\chem}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\degree}[0]{\ensuremath{^{\circ}}}
+%\renewcommand{\vec}[1]{\ensuremath{\mbox{\boldmath$#1$}}}
+
+% Default font and spacing
+\renewcommand\familydefault{\sfdefault}
+\setlength{\parskip}{1.2ex}
+\setlength{\parindent}{0em}
+
+
+% color defined in comment template
+\definecolor{journalname}{rgb}{0.34,0.59,0.82}
+
+% todo command which should not be used in final version
+\definecolor{todored}{rgb}{0.439,0.157,0.145}  % from Advances in Geoscience
+\newcommand{\todo}[1]{\textcolor{todored}{TODO: #1}}
