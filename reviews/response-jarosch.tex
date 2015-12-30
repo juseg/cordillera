@@ -259,7 +259,9 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
              temperature, $T_{pa}$, for the default \citet{Paterson.Budd.1982},
              hard ice \citet{Cuffey.Paterson.2010}, and soft ice
              \citet[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
-             a linear scale (top panel) and logarithmic scale (bottom panel).}
+             a linear scale (top panel) and logarithmic scale (bottom panel).
+             Figure made using Eqn.~\ref{eqn:softness} with parameters from
+             Table~\ref{tab:sens_params}.}
     \label{fig:sens_plot_rheo}
 \end{figure}
 
@@ -287,6 +289,7 @@ subglacial water, using a formula derived from laboratory experiments with till
 extracted from the base of Ice Stream B in West Antarctica
 \citep[Eqn.~23]{Tulaczyk.etal.2000, Bueler.Pelt.2015},
 \begin{equation}
+    \label{eqn:ntil}
     N = \delta P_0 \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
 \end{equation}
 where $\delta$ sets the minimum ratio between the effective and
@@ -355,7 +358,11 @@ since we consider this scaling factor as a free parameter in our study.
              base, $W$, for the default ($\delta=0.02$, $W_{max}=2$\,m),
              hard bed ($\delta=0.05$, $W_{max}=5$\,m), and soft bed
              ($\delta=0.01$, $W_{max}=1$\,m) sliding parametrisations, using a
-             linear scale (top panel) and a logarithmic scale (bottom panel).}
+             linear scale (top panel) and a logarithmic scale (bottom panel).
+             Calculations are made for an ice thickness, $h$, of 1000\,m.
+             Figure made using Eqn.~\ref{eqn:ntil} with parameters from
+             Table~\ref{tab:sens_params} after
+             \citet[Fig.~1]{Bueler.Pelt.2015}.}
     \label{fig:sens_plot_ntil}
 \end{figure}
 
