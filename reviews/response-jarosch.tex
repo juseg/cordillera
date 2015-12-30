@@ -207,10 +207,13 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
   \caption{Parameter values used in the sensitivity test.}
   \label{tab:sens_params}
   \centering\makebox[\textwidth]
-  {\begin{tabular}{l|ccccc|cc}
+  {\begin{tabular}{l|ccccc|cc|cc}
     \tophline
+            & \multicolumn{5}{c|}{Rheology}
+            & \multicolumn{2}{c|}{Sliding}
+            & \multicolumn{2}{c}{GRIP scaling} \\
     Config. & $A_c$ & $A_w$ & $Q_c$ & $Q_w$ & $E_{SIA}$
-            & $\delta$ & $W_{max}$ \\
+            & $\delta$ & $W_{max}$ & $f$ & $T_{[32, 22]}$ \\
             & \multicolumn{2}{c}{(\unit{Pa^{-3}\,s^{-1}})}
             & \multicolumn{2}{c}{(\unit{J\,mol^{-1}})}
             & & & (m) \\
@@ -219,29 +222,29 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
                  & $ 1.73\times 10^3$
                  & $   60\times 10^3$
                  & $  139\times 10^3$
-                 & 1 & 0.02 & 2 \\
+                 & 1 & 0.02 & 2 & 0.38 & 6.2 \\
     \middlehline
     Hard ice$^2$ & $2.847\times 10^{-13}$
                  & $2.356\times 10^{-2}$
                  & $   60\times 10^3$
                  & $  115\times 10^3$
-                 & 1 & 0.02 & 2 \\
+                 & 1 & 0.02 & 2 & 0.37 & 6.0 \\
     Soft ice$^2$ & $2.847\times 10^{-13}$
                  & $2.356\times 10^{-2}$
                  & $   60\times 10^3$
                  & $  115\times 10^3$
-                 & 5 & 0.02 & 2 \\
+                 & 5 & 0.02 & 2 & 0.40 & 6.6 \\
     \middlehline
     Hard bed     & $ 3.61\times 10^{-13}$
                  & $ 1.73\times 10^3$
                  & $   60\times 10^3$
                  & $  139\times 10^3$
-                 & 1 & 0.05 & 5 \\
+                 & 1 & 0.05 & 5 & 0.36 & 5.9 \\
     Soft bed     & $ 3.61\times 10^{-13}$
                  & $ 1.73\times 10^3$
                  & $   60\times 10^3$
                  & $  139\times 10^3$
-                 & 1 & 0.01 & 1 \\
+                 & 1 & 0.01 & 1 & 0.40 & 6.5 \\
     \bottomhline
   \end{tabular}}
   \belowtable{After $^1$\citet{Paterson.Budd.1982,Bueler.Pelt.2015};
@@ -336,6 +339,10 @@ The effect of the three different parametrisations on the effective pressure on
 the till, $N$, in response to water content, $W$, is illustrated in
 Fig.~\ref{fig:sens_plot_ntil}.
 All parameter choices are recalled in Table~\ref{tab:sens_params}.
+
+Finally, we adjusted the GRIP linear scaling factor for each run, so that they
+result in a similar glaciated area at the Last Glacial Maximum (LGM) to that
+modelled with the default configuration (Table~\ref{tab:sens_params}).
 
 \begin{figure}
     \centering
