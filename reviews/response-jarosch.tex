@@ -281,16 +281,16 @@ Mohr--Coulomb criterion,
    \tau_c = c_0 + N\,\tan{\phi} \,,
 \end{equation}
 %
-where cohesion, $c_0$, is assumed to be zero. Effective pressure, $N$,
-is related to the ice overburden stress, $\rho gh$, and the modelled amount of
+where cohesion, $c_0$, is assumed to be zero. Effective pressure, $N$, is
+related to the overburden pressure, $P_0=\rho gh$, and the modelled amount of
 subglacial water, using a formula derived from laboratory experiments with till
 extracted from the base of Ice Stream B in West Antarctica
 \citep[Eqn.~23]{Tulaczyk.etal.2000, Bueler.Pelt.2015},
 \begin{equation}
-    N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
+    N = \delta P_0 \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
 \end{equation}
-where $\delta$ sets the minimum ratio between the effective pressure, $N$, and
-the ice overburden stress, $\rho gh$, $e_0$ is a measured reference void ratio
+where $\delta$ sets the minimum ratio between the effective and
+overburden pressures, $e_0$ is a measured reference void ratio
 and $C_c$ is a measured compressibility coefficient. The amount of water at the
 base, $W$, varies from zero to $W_{max}$, a threshold above which additional
 melt water is assumed to drain off instantaneously.
@@ -323,7 +323,7 @@ actually performed, but the induced variability was small as compared to that
 which will be presented here, and therefore we decided to not include this run.
 
 On the other hand, we test different values for the minimum ratio between the
-effective pressure and the overburden stress, $\delta$, and the maximum water
+effective and overburden pressures, $\delta$, and the maximum water
 height in the till, $W_{max}$, as follow.
 
 \begin{itemize}
