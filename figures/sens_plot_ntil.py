@@ -78,7 +78,7 @@ if __name__ == '__main__':
                   color=ut.sens.colors[4], label=ut.sens.labels[4])
 
         # set axes properties
-        ax.set_ylabel('Ntil (bar)')
+        ax.set_ylabel('N (bar)')
         ax.grid()
 
     # linear scale on top axes
