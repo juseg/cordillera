@@ -68,20 +68,23 @@ for i, conf in enumerate(ut.sens.configs):
     time_series.append(ts_time)
     ivol_series.append(ts_ivol)
 
-# plot reference run on top
-for ax in grid:
-    ax.plot(-time_series[0], ivol_series[0], color=ut.sens.colors[0],
-            alpha=0.75, zorder=3)
-
 # plot sensitivity to rheologic parameters
-fill_between_safe(-time_series[1], ivol_series[1], ivol_series[2], ax=grid[0],
-                  edgecolor=ut.sens.colors[1], facecolor=ut.sens.colors[2],
-                  alpha=0.75)
+ax = grid[0]
+fill_between_safe(-time_series[1], ivol_series[1], ivol_series[2], ax=ax,
+                  edgecolor='none', facecolor=ut.sens.colors[1], alpha=0.25)
+for i in [0, 1, 2]:
+    l = ax.plot(-time_series[i], ivol_series[i], color=ut.sens.colors[i],
+            label=ut.sens.labels[i])
+ax.legend(loc='upper left')
 
 # plot sensitivity to sliding parameters
-fill_between_safe(-time_series[3], ivol_series[3], ivol_series[4], ax=grid[1],
-                  edgecolor=ut.sens.colors[3], facecolor=ut.sens.colors[4],
-                  alpha=0.75)
+ax = grid[1]
+fill_between_safe(-time_series[3], ivol_series[3], ivol_series[4], ax=ax,
+                  edgecolor='none', facecolor=ut.sens.colors[3], alpha=0.25)
+for i in [0, 3, 4]:
+    ax.plot(-time_series[i], ivol_series[i], color=ut.sens.colors[i],
+            label=ut.sens.labels[i])
+ax.legend(loc='upper left')
 
 # set axes properties
 for ax in grid:
