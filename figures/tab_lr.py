@@ -32,9 +32,9 @@ footer=r'''    \bottomhline
 '''
 
 # latex table line
-tabline = (' '*4 + '{title:8} ' + '& {:6.2f} '*3 + '\n'+
-           ' '*13 + '& {:6.2f} '*3 + '\n'+
-           ' '*13 + '& {:6.2f} '*3 + '\\\\\n')
+tabline = (' '*4 + '{title:8}' + ' &{:7.2f}'*3 + '\n'+
+           ' '*12 + ' &{:7.2f}'*3 + '\n'+
+           ' '*12 + ' &{:7.2f}'*3 + r' \\' + '\n')
 
 # initialize array
 results = np.zeros((6, 9), dtype=float)

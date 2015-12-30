@@ -21,7 +21,7 @@ header=r'''\documentclass[border=2.5mm]{standalone}
              & \multicolumn{3}{c}{Age (ka)}
              & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
              & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
-    Config   &  MIS~4 &  MIS~3 &  MIS~2
+    Config.  &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2 \\
     \middlehline
@@ -33,12 +33,12 @@ footer=r'''    \bottomhline
 '''
 
 # latex table line
-tabline = (' '*4 + '{title:8} ' + '& {:6.2f} '*3 + '\n'+
-           ' '*13 + '& {:6.2f} '*3 + '\n'+
-           ' '*13 + '& {:6.2f} '*3 + '\\\\\n')
-errline = (' '*4 + '{title:8} ' + r'& {:4.0f}\% '*3 + '\n'+
-           ' '*13 + r'& {:4.0f}\% '*3 + '\n'+
-           ' '*13 + r'& {:4.0f}\% '*3 + '\\\\\n')
+tabline = (' '*4 + '{title:8}' + ' &{:7.2f}'*3 + '\n'+
+           ' '*12 + ' &{:7.2f}'*3 + '\n'+
+           ' '*12 + ' &{:7.2f}'*3 + r' \\' + '\n')
+errline = (' '*4 + '{title:8}' + r' &{:5.0f}\%'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\%'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\%'*3 + r' \\' + '\n')
 
 # initialize array
 results = np.zeros((5, 9), dtype=float)
