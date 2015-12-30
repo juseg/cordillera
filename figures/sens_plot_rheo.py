@@ -74,7 +74,7 @@ if __name__ == '__main__':
                  va='center', rotation=90.0, transform=grid[0].transAxes)
 
     # log scale on bottom axes
-    grid[1].set_xlabel(u'temparture $T$ (°C)')
+    grid[1].set_xlabel(u'pressure-adjusted temparture $T_{pa}$ (°C)')
     grid[1].set_yscale('log')
     grid[1].text(-0.125, 0.5, r'ice softness $A$ ($Pa^{-3}\,s^{-1}$)',
                  va='center', rotation=90.0, transform=grid[1].transAxes)
