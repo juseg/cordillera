@@ -16,14 +16,18 @@
 
 To A.~H.~Jarosch,
 
-We apologize for our delayed response and thank you for this detailed review of
-our manuscript. Following your comments, we decide to amend the manuscript with
+We thank you for this detailed review of our manuscript and apologize for our
+delayed response, due to the fact that I moved to a different institution and
+had to set-up the sensitivity study presented hereafter on a different
+supercomputer than the one used for the first version of the manuscript, using
+a new allocation to which I have access only since October.
+
+Following your comments, we decide to amend the manuscript with
 a new section that explores the sensitivity of one of our runs to some of the
 parameters governing ice deformation and sliding. Although the discussion of
 model results against geological evidence is indeed extensive and partly
 speculative, we prefer not to shorten it for reasons we will detail below.
-Although you may feel we have not applied all the changes you requested, we
-hope that those we do plan fill much of the voids you pointed at.
+We hope that the changes described below address your comments.
 
 % ----------------------------------------------------------------------
 
@@ -60,9 +64,11 @@ a team of co-authors with different backgrounds, that a balance is kept between
 the description of the physics embedded in the numerical model (documented
 elsewhere) and the level of regional detail in the discussion of geological
 evidence (documented elsewhere too, though perhaps in a more fragmented way).
+We would be grateful if you can keep this point in mind when reading on.
 
-Yet, in doing so, we may have omitted crucial details in the model set-up. We
-hope that our changes described below will correct for that.
+Yet, in trying to keep this balance, we admit that we may have omitted crucial
+details in the model set-up. We will try to correct for that in the present
+response and in the new version of the manuscript.
 
 \referee{%
     An overall sensitivity study of the parameters used in the model is
@@ -95,7 +101,7 @@ and basal sliding parameters. Thus the new outline will be as follow:
 In accordance, Sect.~2 (Model setup) will be amended with an description of
 default and alternative parameters for ice rheology and basal sliding with
 illustrations of their role in the model. Sect.~2.2 (Ice thermodynamics) will
-be divided into:
+be expanded and divided into:
 %
 \begin{enumerate}
     \item[2.2]{Ice rheology}
@@ -166,7 +172,7 @@ $E$ is a non-dimensional enhancement factor which can take different values,
 $E_{SIA}$, in the Shallow Ice Approximation (SIA) and $E_{SSA}$, in the Shallow
 Shelf Approximation (SSA).
 
-In our short sensitivity study, we set constant the power-law exponent, $n=3$,
+In our sensitivity study, we set constant the power-law exponent, $n=3$,
 according to \citet[p.~55--57]{Cuffey.Paterson.2010}, the Clapeyron constant,
 $\beta=7.9\times 10^{-8}$\,K\,Pa$^{-1}$, according to \citep{Luthi.etal.2002},
 the water fraction coefficient, $f=181.25$, according to
@@ -186,15 +192,14 @@ enhancement factor, $E_{SIA}$, as follow.
           $A_c$, $A_w$, $Q_c$ and $Q_w$, derived from
           \citet[p.~72 and 76]{Cuffey.Paterson.2010}, and $E_{SIA}=1$, which
           correspond to a stiffer rheology than that used in the control run.}
-    \item{Our \emph{soft ice} configuration include rheologic parameters,
-          $A_c$, $A_w$, $Q_c$ and $Q_w$, derived from
-          \citet[p.~72 and 76]{Cuffey.Paterson.2010}, and $E_{SIA}=5$, the
+    \item{Our \emph{soft ice} configuration include rheologic parameters
+          from \citet{Cuffey.Paterson.2010}, and $E_{SIA}=5$, the
           recommended value for ice age polar ice
           \citep[p.~77]{Cuffey.Paterson.2010}.}
 \end{itemize}
 
-An additional simulation with rheologic parameters, $A_c$, $A_w$, $Q_c$ and
-$Q_w$, derived from \citet{Cuffey.Paterson.2010}, and $E_{SIA}=2$, the
+An additional simulation using the ice rheology from
+\citet{Cuffey.Paterson.2010} and $E_{SIA}=2$, the
 recommended value for Holocene polar ice \citep[p.~77]{Cuffey.Paterson.2010}
 was performed, but its results were very similar to that of our default run,
 thus we decided to not present it here.
@@ -257,7 +262,7 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
     \includegraphics{sens_plot_rheo}
     \caption{Ice softness parameter, $A$, as a function of pressure-adjusted
              temperature, $T_{pa}$, for the default \citet{Paterson.Budd.1982},
-             hard ice \citet{Cuffey.Paterson.2010}, and soft ice
+             hard ice \citet[with $E_{SIA}=5$]{Cuffey.Paterson.2010}, and soft ice
              \citet[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
              a linear scale (top panel) and logarithmic scale (bottom panel).
              Figure made using Eqn.~\ref{eqn:softness} with parameters from
@@ -304,7 +309,7 @@ to values used by \citet{Aschwanden.etal.2013}, the till cohesion, $c_0=0$,
 whose measured values are consistently negligible
 \citep[p.~268]{Tulaczyk.etal.2000, Cuffey.Paterson.2010}, the till reference
 void ratio, $e_0=0.69$, and the till compressibility coefficient, $C_c=0.12$,
-according to the only measurements available to our knowledge by
+according to the only measurements available to our knowledge, published by
 \citep{Tulaczyk.etal.2000}.
 
 We also use a constant spatial distribution of the till friction angle, $\phi$,
@@ -323,7 +328,8 @@ elevations (cf. \citealp{Martin.etal.2011};
 An additional simulation with a constant till friction angle, $\phi=30\degree$,
 corresponding to the average value in \citet[p.~268]{Cuffey.Paterson.2010}, was
 actually performed, but the induced variability was small as compared to that
-which will be presented here, and therefore we decided to not include this run.
+which will be presented here, and therefore we decided to not include this run
+in our sensitivity study.
 
 On the other hand, we test different values for the minimum ratio between the
 effective and overburden pressures, $\delta$, and the maximum water
@@ -354,8 +360,8 @@ since we consider this scaling factor as a free parameter in our study.
 \begin{figure}
     \centering
     \includegraphics{sens_plot_ntil}
-    \caption{Effective pressure, $N$, as a function of water height at the
-             base, $W$, for the default ($\delta=0.02$, $W_{max}=2$\,m),
+    \caption{Effective pressure, $N$, as a function of water content in the
+             till, $W$, for the default ($\delta=0.02$, $W_{max}=2$\,m),
              hard bed ($\delta=0.05$, $W_{max}=5$\,m), and soft bed
              ($\delta=0.01$, $W_{max}=1$\,m) sliding parametrisations, using a
              linear scale (top panel) and a logarithmic scale (bottom panel).
@@ -376,7 +382,7 @@ Table~\ref{tab:sens_extrema} and Fig.~\ref{fig:sens_ts}.
 As a result of the different scaling factors applied, the resulting simulations
 show very little difference in the modelled glaciated areas corresponding to
 maximum ice volumes during MIS~2, but also during MIS~4
-(Table~\ref{tab:sens_extrema}). However, this can not be said for the modelled
+(Table~\ref{tab:sens_extrema}). However, such can not be said of the modelled
 glaciated area corresponding to minimum ice volume during MIS~3. In fact, the
 extent of the remnant ice cap which persists over the Skeena Mountains during
 this stage shows a significant sensitivity to ice rheology of 31\%, and
@@ -385,11 +391,11 @@ an even more important sensitivity to basal sliding parameters of 62\%
 
 The modelled sea-level relevant ice volumes show more variability than the
 modelled glaciated areas (Table~\ref{tab:sens_extrema},
-Fig.~\ref{fig:sens_ts}). As could be expected, softer ice and weaker till both
+Fig.~\ref{fig:sens_ts}). As one could expect, softer ice and weaker till both
 result in a thinner ice sheet, while harder ice and stronger till result in a
 thicker ice sheet. For instance, peak ice volume during the MIS~2 (LGM) varies
 by 30\% between the two parametrisations of ice rheology used, and by 21\%
-between the two parametrisations of till properties used. The differences in
+between the two parametrisations of basal sliding used. The differences in
 sea-level relevant ice volume are greatest during the MIS~3
 (Table~\ref{tab:sens_extrema}, Fig.~\ref{fig:sens_ts}) where both the areal and
 thickness contributions add up.
@@ -460,8 +466,8 @@ Eqns~\ref{eqn:glenslaw} and~\ref{eqn:softness}, default parameter values,
 Tables~\ref{tab:sens_params} and~\ref{tab:sens_extrema}, and
 Figs.~\ref{fig:sens_plot_rheo}--\ref{fig:sens_ts} will be included in Sect.~2
 (Model setup) or in the new section (Sensitivity to ice flow parameters).
-Relevant discussion points in Sect.~4(Comparison with the geologic record)
-will be updated to account for these new results.
+Relevant discussion points in Sect.~4 (Comparison with the geologic record)
+will also be updated to account for these new results.
 
 \referee{%
     Generally section~4 appears to be quite long and seems to re-summarize
@@ -478,13 +484,13 @@ will be updated to account for these new results.
 Our choice of language P4162 L1 and 7 (discussion of a the longitudinal shift
 between the modelled and geological reconstructed eastern margin and, in turn,
 the position of the main ice divide), P4164 L18 (discussion of the confined
-modelled ice extent in agreement with the regional geomorphology), and P4171
+modelled ice extent on the Alaska Range north slope in agreement with the
+regional reconstructions), and P4171
 L7, L9, L17, L19 and L20 (discussion of the modelled flow patterns and the
-observed lineation pattern on Interior Plateau of British Columbia) is
+observed lineation pattern on the Interior Plateau of British Columbia) is
 intentional. So is our choice to discuss some aspects of the model results that
-are not unequivocal, as a result of uncertain model parameters (as partly
-addressed by our new sensitivity study) or, more often, due to processes not
-included in the model.
+are not unequivocal, as a result of uncertain model parameters or, more often,
+due to processes not included in the model.
 
 Our rationale for including this ``extensive speculation'' takes into account
 the fact that glacial geology is no exact science. In fact, it often has to be
@@ -497,10 +503,12 @@ discussion), we chose to address some of the long-standing debates on
 Cordilleran ice sheet glacial geology, such as the location of ice divides or
 the enigmatic lineation pattern on the Interior Plateau.
 
-This is not only to prevent over-interpretation of our model results by
-researchers with little or no background in ice sheet modelling, but also to
+This is not only to prevent an over-interpretation of our model results by
+readers with little or no background in ice sheet modelling, but also to
 hint at potential model improvements that may be needed to approach these
-debates through numerical modelling. Thus we do not plan to shorten section~4.
+debates through numerical modelling in the future. We believe that such
+discussion, though speculative, is pertinent, and thus do not plan to shorten
+section~4.
 
 % ----------------------------------------------------------------------
 
