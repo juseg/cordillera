@@ -553,7 +553,10 @@ limitations implied by not including temperature and precipitation downscaling,
 and refer to the findings of \citet{Jarosch.etal.2010}. We will also rework
 parts of the interpretations in the light of your comment, for instance
 regarding the excess ice on an beyond the Columbia and Rocky mountains in our
-runs.
+runs. We have previously shown that forcing PISM with bilinearly-interpolated
+climate fields from the NARR without temperature and precipitation downscaling
+resulted in realistic ice margins at first order relative to the geological
+record, with limitations that have been identified \citep{Seguinot.etal.2014}.
 
 \referee{%
     \textbf{P4152 L11:}
@@ -675,7 +678,7 @@ choices.
     and their suitability, it is important to state at this location in the
     manuscript how the 32\,km NARR data is translated to the 10 and 5\,km
     computational grids of the current study. I disagree with the notion that a
-    32\,km precipitation field can be called ``high- resolution'' in the
+    32\,km precipitation field can be called ``high-resolution'' in the
     context of 10 and 5\,km grid based ice sheet modelling. The input data is
     either 3 or 6 times coarser than the numerical grid, thus not at all
     high-resolution. \citet{Seguinot.etal.2014} state in their section~3.3 that
@@ -701,8 +704,16 @@ choices.
     the 10\,km computational grid of this study. The 5\,km grid still needs to
     be argued for.}
 
-\todo{%
-    NARR data fields have been bilinearly interpolated. Decide what to do!}
+As in \citet{Seguinot.etal.2014}, the NARR data fields have been bilinearly
+interpolated from the NARR 32\,km Lambert grid to the computational domain
+grids. We apologize for omitting this information and will add it to the
+manuscript.
+
+We called the NARR data ``high resolution'' because its spatial resolution is
+higher than most other atmospheric reanalyses. But we agree that it is still
+too coarse for ice flow modelling and that temperature and precipitation
+downscaling techniques can correct for errors caused by resolution gap. We will
+rework this sentence to make it clear in manuscript.
 
 \referee{%
     \textbf{P4157 L1:}
