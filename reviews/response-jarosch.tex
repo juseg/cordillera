@@ -23,7 +23,7 @@ section that explores the sensitivity of our preferred run to some of the
 parameters governing ice deformation and sliding. Although the discussion of
 model results against geological evidence is indeed extensive and partly
 speculative, we prefer not to shorten it for the reasons we detail below.
-We hope that the changes described below address your comments.
+We hope that the changes described below address your concerns.
 
 % ----------------------------------------------------------------------
 
@@ -54,8 +54,8 @@ scientific communities, which have long remained largely disconnected, by
 presenting our work in such a way that both communities will understand it. We
 refer here to the community of numerical ice sheet modellers on the one side,
 and that of glacial geologists on the other. Thus from our viewpoint as
-co-authors, the fundamental challenge you refer to is to communicate to each
-community using their own slang and their methods to describe the results. 
+authors, the fundamental challenge you refer to is to communicate to each
+community using their own terminology and methods to describe the results.
 
 Because our manuscript is aimed at both communities, it is important for us, as
 a team of co-authors with different backgrounds, that a balance is kept between
@@ -89,7 +89,8 @@ in the new version of the manuscript.
 
 As announced earlier, we have decided to add a new section to the manuscript
 aiming to assess the sensitivity of the model to some of the most influential
-ice flow parameters. Thus the new outline is now as follows:
+ice flow parameters. Thus the new outline now includes a ``Sensitivity to ice
+flow parameters'' section and becomes:
 %
 \begin{enumerate}
     \item{Introduction}
@@ -99,10 +100,10 @@ ice flow parameters. Thus the new outline is now as follows:
     \item{Comparison with the geologic record}
 \end{enumerate}
 %
-In accordance, Sect.~2 (Model setup) will be amended with a description of
-default and alternative parameters for ice rheology and basal sliding with
-illustrations of their role in the model. Sect.~2.2 (Ice thermodynamics) will
-has been expanded and divided into:
+In accordance, Sect.~2 (Model setup) has been amended with a description of
+default and alternative parameters for ice rheology and basal sliding,
+including illustrations of their role in the model. Sect.~2.2 (Ice
+thermodynamics) has therefore been expanded and divided into:
 %
 \begin{enumerate}
     \item[2.2]{Ice rheology}
@@ -178,7 +179,7 @@ according to \citet[p.~55--57]{Cuffey.Paterson.2010}, the Clapeyron constant,
 $\beta=7.9\times 10^{-8}$\,K\,Pa$^{-1}$, according to \citep{Luthi.etal.2002},
 the water fraction coefficient, $f=181.25$, according to
 \citet{Lliboutry.Duval.1985}, and the SSA enhancement factor, $E_{SSA}=1$,
-according to \citep[p.~77]{Cuffey.Paterson.2010}.
+according to \citet[p.~77]{Cuffey.Paterson.2010}.
 
 On the other hand, we test different values for the two creep parameters, $A_c$
 and $A_w$, the two activation energies, $Q_c$ and $Q_w$, and the SIA
@@ -262,9 +263,9 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
     \centering
     \includegraphics{sens_plot_rheo}
     \caption{Ice softness parameter, $A$, as a function of pressure-adjusted
-             temperature, $T_{pa}$, for the default \citet{Paterson.Budd.1982},
-             hard ice \citet[with $E_{SIA}=5$]{Cuffey.Paterson.2010}, and soft ice
-             \citet[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
+             temperature, $T_{pa}$, for the default \citep{Paterson.Budd.1982},
+             hard ice \citep[with $E_{SIA}=1$]{Cuffey.Paterson.2010}, and soft ice
+             \citep[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
              a linear scale (top panel) and logarithmic scale (bottom panel).
              Figure made using Eqn.~\ref{eqn:softness} with parameters from
              Table~\ref{tab:sens_params}.}
@@ -305,7 +306,7 @@ base, $W$, varies from zero to $W_{max}$, a threshold above which additional
 melt water is assumed to drain off instantaneously.
 
 In our sensitivity test, we set constant the pseudo-plastic sliding exponent,
-$q=0.25$, and the threshold velocity, $v_{th}=100$\,\unit{m\,s^{-1}}, according
+$q=0.25$, and the threshold velocity, $v_{th}=100$\,\unit{m\,a^{-1}}, according
 to values used by \citet{Aschwanden.etal.2013}, the till cohesion, $c_0=0$,
 whose measured values are consistently negligible
 \citep[p.~268]{Tulaczyk.etal.2000, Cuffey.Paterson.2010}, the till reference
@@ -318,7 +319,7 @@ whose values vary from 15 to 45{\degree} as a piecewise-linear function of
 modern bed elevation, with the lowest value occurring below modern sea level
 (0\,m above sea level, m~a.s.l.) and the highest value occurring above the
 generalised elevation of the highest shorelines
-\citep[200\,m~a.s.l.,][Fig.~5]{Clague.1981}. This range of value span over the
+\citep[200\,m~a.s.l.,][Fig.~5]{Clague.1981}. This range of values span over the
 range of measured values for glacial till of 18 to 40{\degree}
 \citep[p.~268]{Cuffey.Paterson.2010}. It accounts for frictional basal
 conditions associated with discontinuous till cover at high elevations, and
@@ -349,7 +350,7 @@ height in the till, $W_{max}$, as follow.
 The effect of the three different parametrisations on the effective pressure on
 the till, $N$, in response to water content, $W$, is illustrated in
 Fig.~\ref{fig:sens_plot_ntil}.
-All parameter choices are recalled in Table~\ref{tab:sens_params}.
+All parameter choices are listed in Table~\ref{tab:sens_params}.
 
 Finally, we adjusted the GRIP linear scaling factor for each run, so that they
 result in a similar glaciated area at the Last Glacial Maximum (LGM) to that
@@ -405,9 +406,9 @@ thickness contributions add up.
   \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
            MIS~4, 3 and 2 using the GRIP paleo-climate forcing with each
            parameter configuration (Fig.~\ref{fig:sens_ts}). Relative
-           differences (r. diff.) give rough error estimates related to
+           differences (R. diff.) give rough error estimates related to
            varying selected ice rheology and basal sliding parameters
-           (Table.~\ref{tab:sens_params}).}
+           (Table~\ref{tab:sens_params}).}
   \label{tab:sens_extrema}
   \centering\makebox[\textwidth]
   {\begin{tabular}{l*{3}{|ccc}}
@@ -452,8 +453,8 @@ thickness contributions add up.
   \includegraphics{sens_ts}
   \caption{Modelled sea-level relevant ice volume through the last 120\,ka
            in the simulation forced by the GRIP paleo-climate record, using
-           default parameters (black curves), different ice rheology parameters,
-           (top panel) and different basal sliding parameters (bottom panel).
+           default parameters (black curves), different ice rheology parameters
+           (top panel), and different basal sliding parameters (bottom panel).
            Gray fields indicate Marine Oxygen Isotope Stage (MIS) boundaries
            for MIS~2 and MIS~4 according to a global compilation of benthic
            \chem{\delta^{18}O} records \citep{Lisiecki.Raymo.2005}.}
@@ -465,10 +466,10 @@ thickness contributions add up.
 All the information detailed above, including
 Eqns~\ref{eqn:glenslaw} and~\ref{eqn:softness}, default parameter values,
 Tables~\ref{tab:sens_params} and~\ref{tab:sens_extrema}, and
-Figs.~\ref{fig:sens_plot_rheo}--\ref{fig:sens_ts} will be included in Sect.~2
-(Model setup) or in the new section (Sensitivity to ice flow parameters).
-Relevant discussion points in Sect.~4 (Comparison with the geologic record)
-will also be updated to account for these new results.
+Figs.~\ref{fig:sens_plot_rheo}--\ref{fig:sens_ts} have been included in Sect.~2
+(Model setup) and in the new section (Sensitivity to ice flow parameters).
+Relevant discussion points in Sect.~5 (Comparison with the geologic record)
+have been revised to account for these new results.
 
 \referee{%
     Generally section~4 appears to be quite long and seems to re-summarize
@@ -508,8 +509,8 @@ This is not only to prevent an over-interpretation of our model results by
 readers with little or no background in ice sheet modelling, but also to
 hint at potential model improvements that may be needed to approach these
 debates through numerical modelling in the future. We believe that such
-discussion, though speculative, is pertinent, and thus do not plan to shorten
-section~4.
+discussion, though speculative, is pertinent, and, consequently, have not
+shortened this section.
 
 % ----------------------------------------------------------------------
 
@@ -549,11 +550,11 @@ We acknowledge that extending the downscaling method presented by
 downscaled temperature and precipitation fields as input to the model would be
 a significant and much needed improvement to our study. However, this would
 also be (for us) an entirely new work package which we can not complete during
-the time frame of this peer review. What we can and will do is acknowledge the
+the time frame of this peer review. What we have done is to acknowledge the
 limitations implied by not including temperature and precipitation downscaling,
-and refer to the findings of \citet{Jarosch.etal.2010}. We will also rework
+and refer to the findings of \citet{Jarosch.etal.2010}. We have also modified
 parts of the interpretations in the light of your comment, for instance
-regarding the excess ice on an beyond the Columbia and Rocky mountains in our
+regarding the excess ice on and beyond the Columbia and Rocky mountains in our
 runs. We have previously shown that forcing PISM with bilinearly-interpolated
 climate fields from the NARR without temperature and precipitation downscaling
 resulted in realistic ice margins at first order relative to the geological
@@ -580,7 +581,7 @@ record, with limitations that have been identified \citep{Seguinot.etal.2014}.
     in the manuscript.}
 
 By ``derived'' we meant that the ETOPO1 data is simply re-sampled with linear
-interpolation from the original to the projected grid. We will clarify this in
+interpolation from the original to the projected grid. We have clarified this in
 the methods.
 
 Thank you for pointing out the study by \citet{Clarke.etal.2013}.
@@ -589,10 +590,10 @@ part of the model domain in this respect is by far that of the Wrangell and
 St.-Elias mountains where ice thicknesses up to 1200\,m have recently been
 measured by low-frequency radar \citep{Rignot.etal.2013}. In this area, located
 over the USA Canada border and just north of 60{\degree}N and thus not included
-in the study by \citet{Clarke.etal.2013}, temperature ice, surge dynamics
+in the study by \citet{Clarke.etal.2013}, temperate ice, surge dynamics
 and deep subglacial depressions in the icefield interior pose a fundamental
 challenge to reconstructing basal topography for the entire ice cap. Although
-it is clear that our model overestimate ice thickness in this region, we are
+it is clear that our model overestimates ice thickness in this region, we are
 not aware of bed topography data or reconstructions that could be used to force
 the ice sheet model. This said, with the exception of the Wrangell and
 St.-Elias mountains ice field, present-day ice volumes are small relative to
@@ -608,7 +609,7 @@ the ice volumes concerned in our study.
     actually uses in equation~1. I would recommend to leave out the statement
     on the SSA being the ``sliding law'' for the SIA.}
 
-We agree and will reformulate. Thank you for spotting this.
+We agree and have reformulated this statement. Thank you for spotting this.
 
 \referee{%
     \textbf{P4153 L5-6:}
@@ -633,7 +634,7 @@ We agree and will reformulate. Thank you for spotting this.
     strengthen their discussion in section~4.}
 
 Our changes described above partly address this comment. To make our parameter
-choices clear, we also plan to include all default parameters values mentioned
+choices clear, we have included all default parameters values mentioned
 in this response in the manuscript's Table~1 (alternative values used in the
 sensitivity tests being given in a separate table)
 
@@ -649,7 +650,7 @@ sensitivity tests being given in a separate table)
 The ``depth of 3\,km'' is measured the ice-bedrock interface downward. This is
 where we apply geothermal heat flux as the lower boundary condition to the
 bedrock thermal model. By ``computed subglacially'' we mean below the
-ice-bedrock interface, into the bedrock. We will clarify these two points in
+ice-bedrock interface, into the bedrock. We have clarified these two points in
 the text.
 
 \referee{%
@@ -669,9 +670,8 @@ the text.
     respect to basal sliding, but would be extremely helpful for the argument
     made above in my general comments.}
 
-Our changes described above partly address this comment. We also plan to add
-add a new column to Table~1 containing references motivating default parameter
-choices.
+Our changes described above partly address this comment. We have added a new
+column to Table~1 containing references motivating default parameter choices.
 
 \referee{%
     \textbf{P4156 L3-5:}
@@ -707,14 +707,14 @@ choices.
 
 As in \citet{Seguinot.etal.2014}, the NARR data fields have been bilinearly
 interpolated from the NARR 32\,km Lambert grid to the computational domain
-grids. We apologize for omitting this information and will add it to the
+grids. We apologize for omitting this information and have now added it to the
 manuscript.
 
 We called the NARR data ``high resolution'' because its spatial resolution is
 higher than most other atmospheric reanalyses. But we agree that it is still
 too coarse for ice flow modelling and that temperature and precipitation
-downscaling techniques can correct for errors caused by resolution gap. We will
-rework this sentence to make it clear in manuscript.
+downscaling techniques can correct for errors caused by resolution gap. We have
+rephrased this sentence to highlight this.
 
 \referee{%
     \textbf{P4157 L1:}
