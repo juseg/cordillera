@@ -70,14 +70,14 @@ if __name__ == '__main__':
     ticks = FuncFormatter(lambda x, pos: '{0:g}'.format(x*1e24))
     ticks = FuncFormatter(lambda x, pos: '%g' % (x*1e24))
     grid[0].yaxis.set_major_formatter(ticks)
-    grid[0].text(-0.125, 0.5, r'ice softness $A$ ($10^{-24}\,Pa^{-3}\,s^{-1}$)',
+    grid[0].text(-0.125, 0.5, r'Ice softness $A$ ($10^{-24}\,Pa^{-3}\,s^{-1}$)',
                  va='center', rotation=90.0, transform=grid[0].transAxes)
 
     # log scale on bottom axes
-    grid[1].set_xlabel(u'pressure-adjusted temparture $T_{pa}$ (°C)')
+    grid[1].set_xlabel(u'Pressure-adjusted temperature $T_{pa}$ (°C)')
     grid[1].set_yscale('log')
     grid[1].set_ylim(1e-25, 2e-23)
-    grid[1].text(-0.125, 0.5, r'ice softness $A$ ($Pa^{-3}\,s^{-1}$)',
+    grid[1].text(-0.125, 0.5, r'Ice softness $A$ ($Pa^{-3}\,s^{-1}$)',
                  va='center', rotation=90.0, transform=grid[1].transAxes)
     
     # save
