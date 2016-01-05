@@ -162,12 +162,19 @@ water content, $\omega$, through a piece-wise Arrhenius-type law
 \begin{equation}
     \label{eqn:softness}
     A = E\cdot
-    \begin{cases}
+    \left\{\begin{array}{ll}
         A_c \,e^\frac{-Q_c}{RT_{pa}}
-            & \text{if}\ T_{pa} < T_c \,, \\
+            & \mathsf{if}\ T_{pa} < T_c \,, \\
         A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
-            & \text{if}\ T_{pa} \ge T_c \,,
-    \end{cases}
+            & \mathrm{if}\ T_{pa} \ge T_c \,,
+    \end{array}\right.
+    % or using amsmath:
+    %\begin{cases}
+    %    A_c \,e^\frac{-Q_c}{RT_{pa}}
+    %        & \text{if}\ T_{pa} < T_c \,, \\
+    %    A_w (1+f\omega)\,e^\frac{-Q_w}{RT_{pa}}
+    %        & \text{if}\ T_{pa} \ge T_c \,,
+    %\end{cases}
 \end{equation}
 %
 where $T_{pa}$ is the pressure-adjusted ice temperature calculated using the
