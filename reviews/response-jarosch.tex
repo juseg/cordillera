@@ -260,20 +260,7 @@ $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
               and $^2$\citet{Cuffey.Paterson.2010}.}
 \end{table*}
 
-\begin{figure}
-    \centering
-    \includegraphics{sens_plot_rheo}
-    \caption{Ice softness parameter, $A$, as a function of pressure-adjusted
-             temperature, $T_{pa}$, for the default \citep{Paterson.Budd.1982},
-             hard ice \citep[with $E_{SIA}=1$]{Cuffey.Paterson.2010}, and soft ice
-             \citep[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
-             a linear scale (top panel) and logarithmic scale (bottom panel).
-             Figure made using Eqn.~\ref{eqn:softness} with parameters from
-             Table~\ref{tab:sens_params}.}
-    \label{fig:sens_plot_rheo}
-\end{figure}
-
-\clearpage  % moving on to basal sliding
+%\clearpage  % moving on to basal sliding
 
 In our simulations, basal sliding is governed by a~pseudo-plastic sliding law,
 already given in the manuscript but recalled here for the sake of completeness,
@@ -360,22 +347,7 @@ In other words, the sensitivity in modelled ice sheet extent at MIS~2 is
 expressed through the scaling factor required to obtain a fixed target area,
 since we consider this scaling factor as a free parameter in our study.
 
-\begin{figure}
-    \centering
-    \includegraphics{sens_plot_ntil}
-    \caption{Effective pressure, $N$, as a function of water content in the
-             till, $W$, for the default ($\delta=0.02$, $W_{max}=2$\,m),
-             hard bed ($\delta=0.05$, $W_{max}=5$\,m), and soft bed
-             ($\delta=0.01$, $W_{max}=1$\,m) sliding parametrisations, using a
-             linear scale (top panel) and a logarithmic scale (bottom panel).
-             Calculations are made for an ice thickness, $h$, of 1000\,m.
-             Figure made using Eqn.~\ref{eqn:ntil} with parameters from
-             Table~\ref{tab:sens_params} after
-             \citet[Fig.~1]{Bueler.Pelt.2015}.}
-    \label{fig:sens_plot_ntil}
-\end{figure}
-
-\clearpage  % moving on to the results
+%\clearpage  % moving on to the results
 
 By analogy to our manuscript's Table~3 (ice volume and extent extrema) and
 Fig.~3 (sea-level relevant ice volume time series), the results of our
@@ -449,20 +421,7 @@ thickness contributions add up.
   \belowtable{}
 \end{table*}
 
-\begin{figure*}
-  \centering
-  \includegraphics{sens_ts}
-  \caption{Modelled sea-level relevant ice volume through the last 120\,ka
-           in the simulation forced by the GRIP paleo-climate record, using
-           default parameters (black curves), different ice rheology parameters
-           (top panel), and different basal sliding parameters (bottom panel).
-           Gray fields indicate Marine Oxygen Isotope Stage (MIS) boundaries
-           for MIS~2 and MIS~4 according to a global compilation of benthic
-           \chem{\delta^{18}O} records \citep{Lisiecki.Raymo.2005}.}
-  \label{fig:sens_ts}
-\end{figure*}
-
-\clearpage  % eventually moving on to the next point
+%\clearpage  % eventually moving on to the next point
 
 All the information detailed above, including
 Eqns~\ref{eqn:glenslaw} and~\ref{eqn:softness}, default parameter values,
@@ -901,5 +860,46 @@ Winkelmann, R., Martin, M.~A., Haseloff, M., Albrecht, T., Bueler, E.,
 % ----------------------------------------------------------------------
 % Interactive comment text ends
 % ----------------------------------------------------------------------
+
+\begin{figure}
+    \centering
+    \includegraphics{sens_plot_rheo}
+    \caption{Ice softness parameter, $A$, as a function of pressure-adjusted
+             temperature, $T_{pa}$, for the default \citep{Paterson.Budd.1982},
+             hard ice \citep[with $E_{SIA}=1$]{Cuffey.Paterson.2010}, and soft ice
+             \citep[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using
+             a linear scale (top panel) and logarithmic scale (bottom panel).
+             Figure made using Eqn.~\ref{eqn:softness} with parameters from
+             Table~\ref{tab:sens_params}.}
+    \label{fig:sens_plot_rheo}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics{sens_plot_ntil}
+    \caption{Effective pressure, $N$, as a function of water content in the
+             till, $W$, for the default ($\delta=0.02$, $W_{max}=2$\,m),
+             hard bed ($\delta=0.05$, $W_{max}=5$\,m), and soft bed
+             ($\delta=0.01$, $W_{max}=1$\,m) sliding parametrisations, using a
+             linear scale (top panel) and a logarithmic scale (bottom panel).
+             Calculations are made for an ice thickness, $h$, of 1000\,m.
+             Figure made using Eqn.~\ref{eqn:ntil} with parameters from
+             Table~\ref{tab:sens_params} after
+             \citet[Fig.~1]{Bueler.Pelt.2015}.}
+    \label{fig:sens_plot_ntil}
+\end{figure}
+
+\begin{figure*}
+  \centering
+  \includegraphics{sens_ts}
+  \caption{Modelled sea-level relevant ice volume through the last 120\,ka
+           in the simulation forced by the GRIP paleo-climate record, using
+           default parameters (black curves), different ice rheology parameters
+           (top panel), and different basal sliding parameters (bottom panel).
+           Gray fields indicate Marine Oxygen Isotope Stage (MIS) boundaries
+           for MIS~2 and MIS~4 according to a global compilation of benthic
+           \chem{\delta^{18}O} records \citep{Lisiecki.Raymo.2005}.}
+  \label{fig:sens_ts}
+\end{figure*}
 
 \end{document}
