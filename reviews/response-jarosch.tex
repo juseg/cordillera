@@ -212,54 +212,6 @@ our simulations are given in Table~\ref{tab:sens_params}, while the effect of
 the three different parametrisations on temperature-dependent ice softness,
 $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
 
-\begin{table*}
-  \caption{Parameter values used in the sensitivity test.}
-  \label{tab:sens_params}
-  \centering\makebox[\textwidth]
-  {\begin{tabular}{l|ccccc|cc|cc}
-    \tophline
-            & \multicolumn{5}{c|}{Rheology}
-            & \multicolumn{2}{c|}{Sliding}
-            & \multicolumn{2}{c}{GRIP scaling} \\
-    Config. & $A_c$ & $A_w$ & $Q_c$ & $Q_w$ & $E_{SIA}$
-            & $\delta$ & $W_{max}$ & $f$ & $T_{[32, 22]}$ \\
-            & \multicolumn{2}{c}{(\unit{Pa^{-3}\,s^{-1}})}
-            & \multicolumn{2}{c}{(\unit{J\,mol^{-1}})}
-            & & & (m) \\
-    \middlehline
-    Default$^1$  & $ 3.61\times 10^{-13}$
-                 & $ 1.73\times 10^3$
-                 & $   60\times 10^3$
-                 & $  139\times 10^3$
-                 & 1 & 0.02 & 2 & 0.38 & 6.2 \\
-    \middlehline
-    Soft ice$^2$ & $2.847\times 10^{-13}$
-                 & $2.356\times 10^{-2}$
-                 & $   60\times 10^3$
-                 & $  115\times 10^3$
-                 & 5 & 0.02 & 2 & 0.40 & 6.6 \\
-    Hard ice$^2$ & $2.847\times 10^{-13}$
-                 & $2.356\times 10^{-2}$
-                 & $   60\times 10^3$
-                 & $  115\times 10^3$
-                 & 1 & 0.02 & 2 & 0.37 & 6.0 \\
-    \middlehline
-    Soft bed     & $ 3.61\times 10^{-13}$
-                 & $ 1.73\times 10^3$
-                 & $   60\times 10^3$
-                 & $  139\times 10^3$
-                 & 1 & 0.01 & 1 & 0.40 & 6.5 \\
-    Hard bed     & $ 3.61\times 10^{-13}$
-                 & $ 1.73\times 10^3$
-                 & $   60\times 10^3$
-                 & $  139\times 10^3$
-                 & 1 & 0.05 & 5 & 0.36 & 5.9 \\
-    \bottomhline
-  \end{tabular}}
-  \belowtable{After $^1$\citet{Paterson.Budd.1982,Bueler.Pelt.2015};
-              and $^2$\citet{Cuffey.Paterson.2010}.}
-\end{table*}
-
 %\clearpage  % moving on to basal sliding
 
 In our simulations, basal sliding is governed by a~pseudo-plastic sliding law,
@@ -374,52 +326,6 @@ between the two parametrisations of basal sliding used. The differences in
 sea-level relevant ice volume are greatest during the MIS~3
 (Table~\ref{tab:sens_extrema}, Fig.~\ref{fig:sens_ts}) where both the areal and
 thickness contributions add up.
-
-\begin{table*}
-  \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
-           MIS~4, 3 and 2 using the GRIP paleo-climate forcing with each
-           parameter configuration (Fig.~\ref{fig:sens_ts}). Relative
-           differences (R. diff.) give rough error estimates related to
-           varying selected ice rheology and basal sliding parameters
-           (Table~\ref{tab:sens_params}).}
-  \label{tab:sens_extrema}
-  \centering\makebox[\textwidth]
-  {\begin{tabular}{l*{3}{|ccc}}
-    \tophline
-             & \multicolumn{3}{c}{Age (ka)}
-             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
-             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
-    Config.  &  MIS~4 &  MIS~3 &  MIS~2
-             &  MIS~4 &  MIS~3 &  MIS~2
-             &  MIS~4 &  MIS~3 &  MIS~2 \\
-    \middlehline
-    Default  &  57.59 &  42.91 &  19.14
-             &   1.93 &   0.67 &   2.09
-             &   7.43 &   1.54 &   8.62 \\
-    \middlehline
-    Soft ice &  58.89 &  49.97 &  21.57
-             &   1.96 &   0.54 &   2.08
-             &   6.58 &   1.03 &   6.88 \\
-    Hard ice &  57.32 &  42.90 &  19.14
-             &   1.90 &   0.75 &   2.12
-             &   7.83 &   1.91 &   9.46 \\
-    R. diff. &    3\% &   16\% &   13\%
-             &    3\% &   31\% &    2\%
-             &   17\% &   57\% &   30\% \\
-    \middlehline
-    Soft bed &  58.90 &  49.21 &  19.53
-             &   1.88 &   0.55 &   2.05
-             &   6.46 &   1.03 &   7.52 \\
-    Hard bed &  57.31 &  42.91 &  19.14
-             &   1.93 &   0.96 &   2.13
-             &   7.99 &   2.89 &   9.31 \\
-    R. diff. &    3\% &   15\% &    2\%
-             &    3\% &   62\% &    4\%
-             &   21\% &  120\% &   21\% \\
-    \bottomhline
-  \end{tabular}}
-  \belowtable{}
-\end{table*}
 
 %\clearpage  % eventually moving on to the next point
 
@@ -856,6 +762,102 @@ Winkelmann, R., Martin, M.~A., Haseloff, M., Albrecht, T., Bueler, E.,
   715--726, \doi{10.5194/tc-5-715-2011}, 2011.
 
 \end{thebibliography}
+
+% ----------------------------------------------------------------------
+
+\begin{table*}[p]
+  \caption{Parameter values used in the sensitivity test.}
+  \label{tab:sens_params}
+  \centering\makebox[\textwidth]
+  {\begin{tabular}{l|ccccc|cc|cc}
+    \tophline
+            & \multicolumn{5}{c|}{Rheology}
+            & \multicolumn{2}{c|}{Sliding}
+            & \multicolumn{2}{c}{GRIP scaling} \\
+    Config. & $A_c$ & $A_w$ & $Q_c$ & $Q_w$ & $E_{SIA}$
+            & $\delta$ & $W_{max}$ & $f$ & $T_{[32, 22]}$ \\
+            & \multicolumn{2}{c}{(\unit{Pa^{-3}\,s^{-1}})}
+            & \multicolumn{2}{c}{(\unit{J\,mol^{-1}})}
+            & & & (m) \\
+    \middlehline
+    Default$^1$  & $ 3.61\times 10^{-13}$
+                 & $ 1.73\times 10^3$
+                 & $   60\times 10^3$
+                 & $  139\times 10^3$
+                 & 1 & 0.02 & 2 & 0.38 & 6.2 \\
+    \middlehline
+    Soft ice$^2$ & $2.847\times 10^{-13}$
+                 & $2.356\times 10^{-2}$
+                 & $   60\times 10^3$
+                 & $  115\times 10^3$
+                 & 5 & 0.02 & 2 & 0.40 & 6.6 \\
+    Hard ice$^2$ & $2.847\times 10^{-13}$
+                 & $2.356\times 10^{-2}$
+                 & $   60\times 10^3$
+                 & $  115\times 10^3$
+                 & 1 & 0.02 & 2 & 0.37 & 6.0 \\
+    \middlehline
+    Soft bed     & $ 3.61\times 10^{-13}$
+                 & $ 1.73\times 10^3$
+                 & $   60\times 10^3$
+                 & $  139\times 10^3$
+                 & 1 & 0.01 & 1 & 0.40 & 6.5 \\
+    Hard bed     & $ 3.61\times 10^{-13}$
+                 & $ 1.73\times 10^3$
+                 & $   60\times 10^3$
+                 & $  139\times 10^3$
+                 & 1 & 0.05 & 5 & 0.36 & 5.9 \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{After $^1$\citet{Paterson.Budd.1982,Bueler.Pelt.2015};
+              and $^2$\citet{Cuffey.Paterson.2010}.}
+\end{table*}
+
+\begin{table*}[p]
+  \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
+           MIS~4, 3 and 2 using the GRIP paleo-climate forcing with each
+           parameter configuration (Fig.~\ref{fig:sens_ts}). Relative
+           differences (R. diff.) give rough error estimates related to
+           varying selected ice rheology and basal sliding parameters
+           (Table~\ref{tab:sens_params}).}
+  \label{tab:sens_extrema}
+  \centering\makebox[\textwidth]
+  {\begin{tabular}{l*{3}{|ccc}}
+    \tophline
+             & \multicolumn{3}{c}{Age (ka)}
+             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
+    Config.  &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2 \\
+    \middlehline
+    Default  &  57.59 &  42.91 &  19.14
+             &   1.93 &   0.67 &   2.09
+             &   7.43 &   1.54 &   8.62 \\
+    \middlehline
+    Soft ice &  58.89 &  49.97 &  21.57
+             &   1.96 &   0.54 &   2.08
+             &   6.58 &   1.03 &   6.88 \\
+    Hard ice &  57.32 &  42.90 &  19.14
+             &   1.90 &   0.75 &   2.12
+             &   7.83 &   1.91 &   9.46 \\
+    R. diff. &    3\% &   16\% &   13\%
+             &    3\% &   31\% &    2\%
+             &   17\% &   57\% &   30\% \\
+    \middlehline
+    Soft bed &  58.90 &  49.21 &  19.53
+             &   1.88 &   0.55 &   2.05
+             &   6.46 &   1.03 &   7.52 \\
+    Hard bed &  57.31 &  42.91 &  19.14
+             &   1.93 &   0.96 &   2.13
+             &   7.99 &   2.89 &   9.31 \\
+    R. diff. &    3\% &   15\% &    2\%
+             &    3\% &   62\% &    4\%
+             &   21\% &  120\% &   21\% \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
 
 % ----------------------------------------------------------------------
 % Interactive comment text ends
