@@ -14,12 +14,12 @@ from matplotlib.transforms import ScaledTranslation
 in2mm = 1/25.4
 pt2mm = 72*in2mm
 
-def add_corner_tag(ax, s, ha='right', va='top'):
+def add_corner_tag(ax, s, ha='right', va='top', offset=2.5*in2mm):
     fig = ax.get_figure()
     x = (ha == 'right')  # 0 for left edge, 1 for right edge
     y = (va == 'top')  # 0 for bottom edge, 1 for top edge
-    xoffset = (1 - 2*x)*2.5*in2mm
-    yoffset = (1 - 2*y)*2.5*in2mm
+    xoffset = (1 - 2*x)*offset
+    yoffset = (1 - 2*y)*offset
     offset = ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
     return ax.text(x, y, s, ha=ha, va=va,
                    bbox=dict(ec='k', fc='w', pad=1.25*pt2mm),
