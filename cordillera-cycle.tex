@@ -50,7 +50,7 @@ temperature offsets from six proxy records located around the
 globe. Although this approach reveals large variations in model
 response to evolving climate forcing, all simulations produce two
 major glaciations during marine oxygen isotope stages~4
-(61.9--56.5\,ka) and~2 (23.2--16.8\,ka). The timing of
+(61.9--56.5\,\unit{ka}) and~2 (23.2--16.8\,\unit{ka}). The timing of
 glaciation is better reproduced using temperature reconstructions
 from Greenland and Antarctic ice cores than from regional oceanic
 sediment cores. During most of the last glacial cycle, the modelled
@@ -59,7 +59,7 @@ areas. However, widespread precipitation over the Skeena Mountains
 favours the persistence of a central ice dome throughout the glacial
 cycle. It acts as a nucleation centre before the Last Glacial
 Maximum and hosts the last remains of Cordilleran ice until the
-qmiddle Holocene (6.6--6.2\,ka).
+qmiddle Holocene (6.6--6.2\,\unit{ka}).
 \end{abstract}
 
 % =============================================================================
@@ -129,7 +129,7 @@ qmiddle Holocene (6.6--6.2\,ka).
       Stea.etal.2011}. Nevertheless, recent oxygen isotope measurements from
       Gulf of Alaska sediments reveal a~climatic evolution highly correlated
       to that of Greenland during this period, including a~distinct Late
-      Glacial cold reversal between 14.1 and 11.7\,ka
+      Glacial cold reversal between 14.1 and 11.7\,\unit{ka}
       \citep{Praetorius.Mix.2014}.
 
       In general, the topographic complexity of the North American
@@ -215,22 +215,24 @@ qmiddle Holocene (6.6--6.2\,ka).
       \citep{Amante.Eakins.2009}. Sea level is lowered as a~function of time
       based on the Spectral Mapping Project
       \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Geothermal heat flux
-      is applied as a~constant value of 70\,\unit{mW\,m^{-2}} at 3\,km depth
-      (Sect.~\ref{sec:icedyn}). Surface mass balance is computed using a
-      positive degree-day (PDD) model (Sect.~\ref{sec:surface}). Climate
-      forcing is provided by a~monthly climatology averaged from 1979 to
-      2000 from the North American Regional Reanalysis
-      \citep[NARR,][]{Mesinger.etal.2006}, perturbated by time-dependent
-      offsets and lapse-rate temperature corrections (Sect.~\ref{sec:atm}).
+      is applied as a~constant value of 70\,\unit{mW\,m^{-2}} at
+      3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Surface mass balance is
+      computed using a positive degree-day (PDD) model
+      (Sect.~\ref{sec:surface}). Climate forcing is provided by a~monthly
+      climatology averaged from 1979 to 2000 from the North American
+      Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbated
+      by time-dependent offsets and lapse-rate temperature corrections
+      (Sect.~\ref{sec:atm}).
 
-      Each simulation starts from assumed ice-free conditions at 120000
-      years ago (120\,ka), and runs to the present. Our modelling domain of
-      1500 by 3000\,km encompasses the entire area covered by the
-      Cordilleran ice sheet at the LGM (Fig.~\ref{fig:locmap}). The
-      simulations were run on two distinct grids, using a~lower horizontal
-      resolution of 10\,km, and a~higher horizontal resolution of 5\,km.
-      These computations were performed on 16 to 128 computing cores at the
-      Swedish National Supercomputing Centre.
+      Each simulation starts from assumed ice-free conditions at
+      12\,0000\,\unit{years} ago (120\,\unit{ka}), and runs to the
+      present. Our modelling domain of 1500 by 3000\,\unit{km} encompasses
+      the entire area covered by the Cordilleran ice sheet at the LGM
+      (Fig.~\ref{fig:locmap}). The simulations were run on two distinct
+      grids, using a~lower horizontal resolution of 10\,\unit{km}, and
+      a~higher horizontal resolution of 5\,\unit{km}. These computations
+      were performed on 16 to 128 computing cores at the Swedish National
+      Supercomputing Centre.
 
 % -----------------------------------------------------------------------------
 \subsection{Ice thermodynamics}
@@ -248,17 +250,18 @@ qmiddle Holocene (6.6--6.2\,ka).
       Ice rheology depends on temperature and water content through an
       enthalpy formulation \citep{Aschwanden.etal.2012}. Surface air
       temperature derived from the climate forcing (Sect.~\ref{sec:atm})
-      provides the upper boundary condition to the ice enthalpy model.
-      Temperature is computed subglacially to a~depth of 3\,km, where it is
-      conditioned by a~lower boundary geothermal heat flux of
-      70\,\unit{mW\,m^{-2}}. Although this uniform value does not account
-      for the high spatial geothermal variability in the region
+      provides the upper boundary condition to the ice enthalpy
+      model. Temperature is computed subglacially to a~depth of
+      3\,\unit{km}, where it is conditioned by a~lower boundary geothermal
+      heat flux of 70\,\unit{mW\,m^{-2}}. Although this uniform value does
+      not account for the high spatial geothermal variability in the region
       \citep{Blackwell.Richards.2004}, it is, on average, representative of
       available heat flow measurements. In the low-resolution simulations,
       the vertical grid consists of 31~temperature layers in the bedrock and
       up to 51~enthalpy layers in the ice sheet, corresponding to a~vertical
-      resolution of 100\,m. The high-resolution simulations 61~bedrock
-      layers and up to 101~ice layers with a~vertical resolution of 50\,m.
+      resolution of 100\,\unit{m}. The high-resolution simulations
+      61~bedrock layers and up to 101~ice layers with a~vertical resolution
+      of 50\,\unit{m}.
 
       A~pseudo-plastic sliding law,
 \begin{equation}
@@ -274,11 +277,11 @@ qmiddle Holocene (6.6--6.2\,ka).
       where cohesion, $c_0$, is assumed to be zero. The friction angle,
       $\phi$, varies from 15 to 45\degree as a~piecewise-linear function of
       modern bed elevation, with the lowest value occuring below modern sea
-      level (0\,m above sea level, m~a.s.l.) and the highest value occuring
-      above the generalised elevation of the highest shorelines
-      \citep[200\,m~a.s.l.,][Fig.~5]{Clague.1981}, thus accounting for
-      a~weakening of till associated with the presence of marine sediments
-      (cf. \citealp{Martin.etal.2011};
+      level (0\,\unit{m} above sea level, \unit{m\,a.s.l.}) and the highest
+      value occuring above the generalised elevation of the highest
+      shorelines \citep[200\,\unit{m\,a.s.l.},][Fig.~5]{Clague.1981}, thus
+      accounting for a~weakening of till associated with the presence of
+      marine sediments (cf. \citealp{Martin.etal.2011};
       \citealp[supplement]{Aschwanden.etal.2013};
       \citealp{PISM-authors.2015}). Effective pressure, $N$, is related to
       the ice overburden stress, $\rho gh$, and the modelled amount of
@@ -291,11 +294,11 @@ qmiddle Holocene (6.6--6.2\,ka).
       where $\delta$ is chosen as 0.02, $e_0$ is a~measured reference void
       ratio and $C_c$ is a~measured compressibility coefficient
       (Table~\ref{tab:params}). The amount of water at the base, $W$, varies
-      from zero to $W_{max}=2$\,m, a~threshold above which additional melt
-      water is assumed to drain off instantaneously. Finally, the bedrock
-      topography responds to ice load following a~bedrock deformation model
-      that includes local isostasy, elastic lithosphere flexure and viscous
-      astenosphere deformation in an infinite half-space
+      from zero to $W_{max}=2$\,\unit{m}, a~threshold above which additional
+      melt water is assumed to drain off instantaneously. Finally, the
+      bedrock topography responds to ice load following a~bedrock
+      deformation model that includes local isostasy, elastic lithosphere
+      flexure and viscous astenosphere deformation in an infinite half-space
       \citep{Lingle.Clark.1985,Bueler.etal.2007}. A~relatively low viscosity
       value of $\nu_m = 1\times10^{19}$\,\unit{Pa\,s} is used for the
       astenosphere (Table~\ref{tab:params}) in accordance with the results
@@ -307,12 +310,13 @@ qmiddle Holocene (6.6--6.2\,ka).
       the horizontal strain rate tensor \citep{Winkelmann.etal.2011,
       Levermann.etal.2012}. This allows floating ice to advance in confined
       embayments, but prevents the formation of extensive ice shelves in the
-      open ocean. Second, floating ice thinner than 50\,m is systematically
-      calved off. A~subgrid scheme by \citet{Albrecht.etal.2011} allows for
-      a~continuous migration of the calving front. This formulation of
-      calving has been applied to the Antarctic ice sheet and has shown to
-      produce a~realistic calving front positon for many of the present-day
-      ice shelves \citep{Martin.etal.2011}.
+      open ocean. Second, floating ice thinner than 50\,\unit{m} is
+      systematically calved off. A~subgrid scheme by
+      \citet{Albrecht.etal.2011} allows for a~continuous migration of the
+      calving front. This formulation of calving has been applied to the
+      Antarctic ice sheet and has shown to produce a~realistic calving front
+      positon for many of the present-day ice shelves
+      \citep{Martin.etal.2011}.
 
 % -----------------------------------------------------------------------------
 \subsection{Surface mass balance}
@@ -430,12 +434,13 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       features that can be observed across the range of forcing data used.
       In all simulations, modelled ice volumes remain relatively low during
       most of the glacial cycle, except during two major glacial events
-      which occur between 61.9 and 56.5\,ka during MIS~4, and between 23.2
-      and 16.8\,ka during MIS~2 (Fig.~\ref{fig:lr_ts}, lower panel). An ice
-      volume minimum is consistently reached between 53.0 and 41.3\,ka
-      during MIS~3. However, the magnitude and precise timing of these three
-      events depend significantly on the choice of proxy record used to
-      derive a~time-dependent climate forcing (Table~\ref{tab:extrema}).
+      which occur between 61.9 and 56.5\,\unit{ka} during MIS~4, and between
+      23.2 and 16.8\,\unit{ka} during MIS~2 (Fig.~\ref{fig:lr_ts}, lower
+      panel). An ice volume minimum is consistently reached between 53.0 and
+      41.3\,\unit{ka} during MIS~3. However, the magnitude and precise
+      timing of these three events depend significantly on the choice of
+      proxy record used to derive a~time-dependent climate forcing
+      (Table~\ref{tab:extrema}).
 
       Simulations forced by the Greenland ice core palaeo-temperature
       records (GRIP, NGRIP) produce the highest variability in modelled ice
@@ -449,11 +454,11 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
       While simulations driven by the GRIP and the two Antarctic
       palaeo-temperature records attain a~last ice volume maximum between
-      19.1 and 16.8\,ka, those informed by the NGRIP and the two oceanic
-      palaeo-temperature records attain their maximum ice volumes thousands
-      of years earlier. Moreover, the ODP~1012 run yields a~rapid
-      deglaciation of the modelled area prior to 17\,ka. The ODP~1020
-      simulation predicts an early maximum in ice volume at 23.2\,ka,
+      19.1 and 16.8\,\unit{ka}, those informed by the NGRIP and the two
+      oceanic palaeo-temperature records attain their maximum ice volumes
+      thousands of years earlier. Moreover, the ODP~1012 run yields a~rapid
+      deglaciation of the modelled area prior to 17\,\unit{ka}. The ODP~1020
+      simulation predicts an early maximum in ice volume at 23.2\,\unit{ka},
       followed by slower deglaciation than modelled using the other
       palaeo-temperature records. Finally, whereas model runs forced by the
       Antarctic palaeo-temperature records result in a~rapid and
@@ -481,17 +486,18 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       panels). Although this ice cap is present in all simulations, its
       dimensions depend sensitively on the choice of the applied
       palaeo-temperature record. Modelled ice volume minima spread over a
-      wide range between 1.69 and 2.88\,m~s.l.e. (Table~\ref{tab:extrema}).
+      wide range between 1.69 and 2.88\,\unit{m}\,s.l.e.
+      (Table~\ref{tab:extrema}).
 
       Modelled ice sheet geometries during the LGM (MIS~2;
       Fig.~\ref{fig:lr_maps}, lower panels) invariably include a~ca.
-      1500\,km-long central divide above 3000\,m~a.s.l. located along the
-      spine of the Rocky Mountains. Although the similarity of modelled ice
-      extents is a~direct result of the choice of scaling factors applied to
-      different palaeo-temperature proxy records (Table~\ref{tab:records}),
-      it is interesting to note that modelled maximum ice volumes also fall
-      within a~tight range of 8.40 to 8.91\,m~s.l.e.
-      (Table~\ref{tab:extrema}).
+      1500\,\unit{km}-long central divide above 3000\,\unit{m\,a.s.l.}
+      located along the spine of the Rocky Mountains. Although the
+      similarity of modelled ice extents is a~direct result of the choice of
+      scaling factors applied to different palaeo-temperature proxy records
+      (Table~\ref{tab:records}), it is interesting to note that modelled
+      maximum ice volumes also fall within a~tight range of 8.40 to
+      8.91\,\unit{m}\,s.l.e. (Table~\ref{tab:extrema}).
 
 
 % =============================================================================
@@ -520,19 +526,19 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       Independently of the palaeo-temperature records used to force the ice
       sheet model, our simulations consistently produce two glacial maxima
       during the last glacial cycle. The first maximum configuration is
-      obtained during MIS~4 (61.9--56.5\,ka) and the second during MIS~2
-      (23.2--16.8\,ka; Figs.~\ref{fig:lr_ts}, \ref{fig:lr_maps};
-      Table~\ref{tab:extrema}). These events broadly correspond in timing to
-      the Gladstone (MIS~4) and McConnell (MIS~2) glaciations documented by
-      geological evidence for the northern sector of the Cordilleran ice
-      sheet \citep{Duk-Rodkin.etal.1996, Ward.etal.2007, Stroeven.etal.2010,
-      Stroeven.etal.2014}, and to the Fraser Glaciation (MIS~2) documented
-      for its southern sector \citep{Porter.Swanson.1998,
-      Margold.etal.2014}. There is stratigraphical evidence for an MIS~4
-      glaciation in British Columbia \citep{Clague.Ward.2011} and in the
-      Puget Lowland \citep{Troost.2014}, but their extent and timing are
-      still highly conjectural \citep[perhaps MIS~4 or early MIS~3;
-      e.g.,][]{Cosma.etal.2008}.
+      obtained during MIS~4 (61.9--56.5\,\unit{ka}) and the second during
+      MIS~2 (23.2--16.8\,\unit{ka}; Figs.~\ref{fig:lr_ts},
+      \ref{fig:lr_maps}; Table~\ref{tab:extrema}). These events broadly
+      correspond in timing to the Gladstone (MIS~4) and McConnell (MIS~2)
+      glaciations documented by geological evidence for the northern sector
+      of the Cordilleran ice sheet \citep{Duk-Rodkin.etal.1996,
+      Ward.etal.2007, Stroeven.etal.2010, Stroeven.etal.2014}, and to the
+      Fraser Glaciation (MIS~2) documented for its southern sector
+      \citep{Porter.Swanson.1998, Margold.etal.2014}. There is
+      stratigraphical evidence for an MIS~4 glaciation in British Columbia
+      \citep{Clague.Ward.2011} and in the Puget Lowland \citep{Troost.2014},
+      but their extent and timing are still highly conjectural
+      \citep[perhaps MIS~4 or early MIS~3; e.g.,][]{Cosma.etal.2008}.
 
       The exact timing of modelled MIS~2 maximum ice volume depends strongly
       on the choice of applied palaeo-temperature record, which allows for a
@@ -562,7 +568,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       Table~\ref{tab:extrema}). Simulations driven by the NGRIP, ODP~1012
       and ODP~1020 palaeo-temperature records, on the contrary, yield MIS~2
       maximum Cordilleran ice sheet volumes that pre-date field-based
-      constraints by several thousands of years (about 6, 6 and 4\,ka
+      constraints by several thousands of years (about 6, 6 and 4\,\unit{ka}
       respectively). Concerning the simulations driven by oceanic records,
       this early deglaciation is caused by an early warming present in the
       alkenone palaeo-temperature reconstructions (Fig.~\ref{fig:lr_ts},
@@ -571,8 +577,8 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       California current \citep{Herbert.etal.2001}. The California current,
       driving cold waters southwards along the south-western coast of North
       America, has been shown to have weakened during each peak of global
-      glaciation (in SPECMAP) during the past 550\,ka, including the LGM,
-      resulting in paradoxically warmer sea-surface temperatures at the
+      glaciation (in SPECMAP) during the past 550\,\unit{ka}, including the
+      LGM, resulting in paradoxically warmer sea-surface temperatures at the
       locations of the ODP~1012 and ODP~1020 sites
       \citep{Herbert.etal.2001}.
 
@@ -587,18 +593,18 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       sheet through the last glacial cycle. Similarly, the simulation using
       the NGRIP palaeo-temperature record depicts an early onset of
       deglaciation (Fig.~\ref{fig:lr_ts}) following its last glacial volume
-      maximum (22.9\,ka, Table~\ref{tab:extrema}) attained about 6\,ka
-      earlier than dated evidence of the LGM advance. There is a~fair
-      agreement between the EPICA and Vostok palaeo-temperature records,
-      resulting in only small differences between the simulations driven by
-      those records. These differences are not subject to further analysis
-      here; instead we focus on simulations forced by palaeo-temperature
-      records from the GRIP and EPICA ice cores that appear to produce the
-      most realistic reconstructions of regional glaciation history, yet
-      bearing significant disparities in model output. To allow for a~more
-      detailed comparison against the geological record, these two
-      simulations were re-run using a~higher-resolution grid
-      (Sect.~\ref{sec:model}; Fig.~\ref{fig:lr_ts}, lower panel, dotted
+      maximum (22.9\,\unit{ka}, Table~\ref{tab:extrema}) attained about
+      6\,\unit{ka} earlier than dated evidence of the LGM advance. There is
+      a~fair agreement between the EPICA and Vostok palaeo-temperature
+      records, resulting in only small differences between the simulations
+      driven by those records. These differences are not subject to further
+      analysis here; instead we focus on simulations forced by
+      palaeo-temperature records from the GRIP and EPICA ice cores that
+      appear to produce the most realistic reconstructions of regional
+      glaciation history, yet bearing significant disparities in model
+      output. To allow for a~more detailed comparison against the geological
+      record, these two simulations were re-run using a~higher-resolution
+      grid (Sect.~\ref{sec:model}; Fig.~\ref{fig:lr_ts}, lower panel, dotted
       lines).
 
 
@@ -649,9 +655,9 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       the ice divide ensure significant ice drainage across the Rocky
       Mountains at the LGM (Fig.~\ref{fig:mis2}).
 
-      During MIS~2, the modelled total ice volume peaks at 8.01\,m~s.l.e.
-      (19.1\,ka) in the GRIP simulation and at 8.77\,m~s.l.e. (17.2\,ka) in
-      the EPICA simulation.
+      During MIS~2, the modelled total ice volume peaks at
+      8.01\,\unit{m}\,s.l.e. (19.1\,\unit{ka}) in the GRIP simulation and at
+      8.77\,\unit{m}\,s.l.e. (17.2\,\unit{ka}) in the EPICA simulation.
 
 \subsubsection{Ice configuration during MIS~4}
 \label{sec:mis4}
@@ -674,10 +680,11 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       marine sediment record offshore Vancouver Island at
       ca.~47\,\unit{\chem{^{14}C}\,cal\,ka} \citep{Cosma.etal.2008}.
 
-      During MIS~4, the modelled total ice volume peaks at 7.19\,m~s.l.e.
-      (57.3\,ka) in the GRIP simulation and at 5.04\,m~s.l.e. (61.9\,ka) in
-      the EPICA simulation, corresponding to respectively 90\,\% and 57\,\%
-      of modelled MIS~2 ice volumes.
+      During MIS~4, the modelled total ice volume peaks at
+      7.19\,\unit{m}\,s.l.e. (57.3\,\unit{ka}) in the GRIP simulation and at
+      5.04\,\unit{m}\,s.l.e. (61.9\,\unit{ka}) in the EPICA simulation,
+      corresponding to respectively 90\,\% and 57\,\% of modelled MIS~2 ice
+      volumes.
 
 % -----------------------------------------------------------------------------
 \subsection{Nucleation centres}
@@ -709,15 +716,15 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       The resulting maps show that, during most of the glacial cycle,
       modelled ice cover is restricted to disjoint ice caps centred on major
       mountain ranges of the North American Cordillera
-      (Fig.~\ref{fig:hr_geom_duration}, blue areas). A~2500\,km-long
+      (Fig.~\ref{fig:hr_geom_duration}, blue areas). A~2500\,\unit{km}-long
       continuous expanse of ice, extending from the Alaska Range in the
       northeast to the Rocky Mountains in the southwest, is only in
-      operation for at most 32\,ka, which is about a~third of the timespan
-      of the last glacial cycle (Fig.~\ref{fig:hr_geom_duration}, hatched
-      areas). However, except for its margins in the Pacific Ocean and in
-      the northern foothills of the Alaska Range, the maximum extent of the
-      ice sheet is attained for a~much shorter period of time of only few
-      thousand years (Figs.~\ref{fig:hr_geom_duration}, red areas). This
+      operation for at most 32\,\unit{ka}, which is about a~third of the
+      timespan of the last glacial cycle (Fig.~\ref{fig:hr_geom_duration},
+      hatched areas). However, except for its margins in the Pacific Ocean
+      and in the northern foothills of the Alaska Range, the maximum extent
+      of the ice sheet is attained for a~much shorter period of time of only
+      few thousand years (Figs.~\ref{fig:hr_geom_duration}, red areas). This
       result illustrates that the maximum extents of the modelled ice sheet
       during MIS~4 and MIS~2 were both short-lived and therefore out of
       balance with contemporary climate.
@@ -763,8 +770,8 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
       Perhaps the most striking feature displayed by the distributions of
       modelled ice cover is the persistence of the Skeena Mountains ice cap
-      throughout the entire last glacial period (ca.~100--10\,ka) and its
-      predominance over the other ice-dispersal centres
+      throughout the entire last glacial period (ca.~100--10\,\unit{ka}) and
+      its predominance over the other ice-dispersal centres
       (Figs.~\ref{fig:lr_maps} and~\ref{fig:hr_geom_duration}, SM).
       Regardless of the applied forcing, this ice cap appears to survive
       MIS~3 (Fig.~\ref{fig:lr_maps}, middle panels), and serves as a
@@ -795,10 +802,10 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       precipitation (Fig.~\ref{fig:atm}).
 
       The modelled total ice volume corresponding to these persistent
-      ice-dispersal centres attains a~minimum of 1.52\,m~s.l.e. (42.9\,ka)
-      in the GRIP simulation and of 2.68\,m~s.l.e. (51.8\,ka) in the EPICA
-      simulation, corresponding to respectively 19\,\% and 31\,\% of the
-      MIS~2 ice volumes.
+      ice-dispersal centres attains a~minimum of 1.52\,\unit{m}\,s.l.e.
+      (42.9\,\unit{ka}) in the GRIP simulation and of 2.68\,\unit{m}\,s.l.e.
+      (51.8\,\unit{ka}) in the EPICA simulation, corresponding to
+      respectively 19\,\% and 31\,\% of the MIS~2 ice volumes.
 
 \subsubsection{Erosional imprint on the landscape}
 
@@ -834,7 +841,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       The modelled distribution of warm-based ice cover
       (Figs.~\ref{fig:hr_geom_warmbase} and~\ref{fig:hr_geom_warmfrac}) is
       inevitably affected by our assumption of a~constant,
-      70\,\unit{mW\,m^{-2}} geothermal heat flux at 3\,km depth
+      70\,\unit{mW\,m^{-2}} geothermal heat flux at 3\,\unit{km} depth
       (Sect.~\ref{sec:icedyn}). However, the Skeena Mountains and the area
       west of the Mackenzie Mountains experience higher-than-average
       geothermal heat flux with measured values of ca.~80 and
@@ -874,58 +881,59 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       Perkins.etal.2013, Margold.etal.2013} indicate that meltwater was
       produced over large portions of the ice sheet surface during
       deglaciation. The southern and northern margins of the Cordilleran ice
-      sheet reached their last glacial maximum extent around 17\,ka
+      sheet reached their last glacial maximum extent around 17\,\unit{ka}
       \citep[Sect.~\ref{sec:timing};][]{Porter.Swanson.1998,
       Cosma.etal.2008, Stroeven.etal.2010, Stroeven.etal.2014}, which we
       take as a~limiting age for the onset of ice retreat. The timing of
       final deglaciation is less well constrained, but recent cosmogenic
       dates from north-central British Columbia indicate that a~seizable ice
       cap emanating from the central Coast Mountains or the Skeena Mountains
-      persisted into the Younger Dryas chronozone, at least until 12.4\,ka
-      \citep{Margold.etal.2014}.
+      persisted into the Younger Dryas chronozone, at least until
+      12.4\,\unit{ka} \citep{Margold.etal.2014}.
 
       In our simulations, the timing of peak ice volume during the LGM and
       the pacing of deglaciation depend critically on the choice of climate
       forcing (Table~\ref{tab:extrema}; Figs.~\ref{fig:lr_ts}
       and~\ref{fig:lr_ts_deglac}). Adopting the EPICA climate forcing yields
-      peak ice volume at 17.2\,ka and an uninterrupted deglaciation until
-      about 9\,ka (Fig.~\ref{fig:lr_ts_deglac}, lower panel, red curves). On
-      the contrary, the simulation driven by the GRIP palaeo-temperature
-      record yields peak ice volume at 19.3\,ka and a~deglaciation
-      interrupted by two phases of regrowth until about 8\,ka. The first
-      interruption occurs between 16.6 and 14.5\,ka, and the second between
-      13.1 and 11.6\,ka (Fig.~\ref{fig:lr_ts_deglac}, lower panel, blue
-      curve).
+      peak ice volume at 17.2\,\unit{ka} and an uninterrupted deglaciation
+      until about 9\,\unit{ka} (Fig.~\ref{fig:lr_ts_deglac}, lower panel,
+      red curves). On the contrary, the simulation driven by the GRIP
+      palaeo-temperature record yields peak ice volume at 19.3\,\unit{ka}
+      and a~deglaciation interrupted by two phases of regrowth until about
+      8\,\unit{ka}. The first interruption occurs between 16.6 and
+      14.5\,\unit{ka}, and the second between 13.1 and 11.6\,\unit{ka}
+      (Fig.~\ref{fig:lr_ts_deglac}, lower panel, blue curve).
 
       Hence, the two model runs, while similar in overall timing compared to
       the runs with other climate drivers, differ in detail. On the one
-      hand, the EPICA run depicts peak glaciation about 2\,ka later than the
-      GRIP run, in closer agreement with dated maximum extents, and shows a
-      faster, uninterrupted deglaciation which yields sporadic ice cover
-      more than 1\,ka earlier. On the other hand, the GRIP run yields a
-      deglaciation in three steps, compatible with marine sediment sequences
-      offshore Vancouver Island, where the distribution of ice-rafted debris
-      indicates an ice margin retreat from the Georgia Strait in two phases
-      that are contemporary with warming oceanic temperatures from 17.2 to
-      16.5 and from 15.5 to 14.0\,\unit{\chem{^{14}C}\,cal\,ka}
-      \citep{Taylor.etal.2014}.
+      hand, the EPICA run depicts peak glaciation about 2\,\unit{ka} later
+      than the GRIP run, in closer agreement with dated maximum extents, and
+      shows a faster, uninterrupted deglaciation which yields sporadic ice
+      cover more than 1\,\unit{ka} earlier. On the other hand, the GRIP run
+      yields a deglaciation in three steps, compatible with marine sediment
+      sequences offshore Vancouver Island, where the distribution of
+      ice-rafted debris indicates an ice margin retreat from the Georgia
+      Strait in two phases that are contemporary with warming oceanic
+      temperatures from 17.2 to 16.5 and from 15.5 to
+      14.0\,\unit{\chem{^{14}C}\,cal\,ka} \citep{Taylor.etal.2014}.
 
       Modelled patterns of ice sheet retreat are relatively consistent
       between the two simulations (Figs.~\ref{fig:hr_geom_deglacageshots}
       and.~\ref{fig:hr_geom_deglacage}). The southern sector of the
       modelling domain, including the Puget Lowland, the Coast Mountains,
       the Columbia and and Rocky mountains, and the Interior Plateau of
-      British Columbia, becomes completely deglaciated by 10\,ka, whereas a
-      significant ice cover remains over the Skeena, the Selwyn and
-      Mackenzie, and the Wrangell and Saint Elias mountains in the northern
-      sector of the modelling domain. After 10\,ka, deglaciation continues
-      to proceed across the Liard Lowland with a~radial ice margin retreat
-      towards the surrounding mountain ranges, consistent with the regional
-      melt water record of the last deglaciation \citep{Margold.etal.2013}.
-      Remaining ice continues to decay by retreating towards the Selwyn and
-      MacKenzie, and Skeena mountains. The last remnants of the Cordilleran
-      ice sheet finally disappear from the Skeena Mountains at 6.5\,ka
-      (GRIP) and 6.1\,ka (EPICA).
+      British Columbia, becomes completely deglaciated by 10\,\unit{ka},
+      whereas a significant ice cover remains over the Skeena, the Selwyn
+      and Mackenzie, and the Wrangell and Saint Elias mountains in the
+      northern sector of the modelling domain. After 10\,\unit{ka},
+      deglaciation continues to proceed across the Liard Lowland with
+      a~radial ice margin retreat towards the surrounding mountain ranges,
+      consistent with the regional melt water record of the last
+      deglaciation \citep{Margold.etal.2013}. Remaining ice continues to
+      decay by retreating towards the Selwyn and MacKenzie, and Skeena
+      mountains. The last remnants of the Cordilleran ice sheet finally
+      disappear from the Skeena Mountains at 6.5\,\unit{ka} (GRIP) and
+      6.1\,\unit{ka} (EPICA).
 
 \subsubsection{Late-glacial readvance}
 
@@ -1055,19 +1063,20 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
       Numerical simulations of the Cordilleran ice sheet through the last
       glacial cycle presented in this study consistently produce two glacial
-      maxima during MIS~4 (61.9--56.5\,ka, 3.8--8.8\,m~s.l.e.) and MIS~2
-      (23.2--16.8\,ka, 8.40--8.91\,m~s.l.e.), two periods corresponding to
-      documented extensive glaciations. This result is independent of the
+      maxima during MIS~4 (61.9--56.5\,\unit{ka},
+      3.8--8.8\,\unit{m}\,s.l.e.) and MIS~2 (23.2--16.8\,\unit{ka},
+      8.40--8.91\,\unit{m}\,s.l.e.), two periods corresponding to documented
+      extensive glaciations. This result is independent of the
       palaeo-temperature record used among the six selected for this study,
       and thus can be regarded as a~robust model output, which broadly
       matches geological evidence. However, the timing of the two glaciation
       peaks depends sensitively on which climate record is used to drive the
       model. The timing of the LGM is best reproduced by the EPICA and
-      Vostok Antarctic ice core records. It occurs about 2\,ka too early in
-      the simulation forced by the GRIP ice core record, and occurs even
-      earlier in all other simulations. The mismatch is largest for the two
-      Northwest Pacific ODP palaeo-temperature records, which are affected
-      by the weakening of the California current during the LGM.
+      Vostok Antarctic ice core records. It occurs about 2\,\unit{ka} too
+      early in the simulation forced by the GRIP ice core record, and occurs
+      even earlier in all other simulations. The mismatch is largest for the
+      two Northwest Pacific ODP palaeo-temperature records, which are
+      affected by the weakening of the California current during the LGM.
 
       In all simulations presented here, ice cover is limited to disjoint
       mountain ice caps during most of the glacial cycle. The most
@@ -1098,10 +1107,10 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       simulations, this is followed by an opening of the Liard Lowland, and
       a~final retreat of the remaining ice caps towards the Selwyn and,
       finally, the Skeena mountains, which hosts the last remnant of the ice
-      sheet during the middle Holocene (6.6--6.2\,ka). Our results identify
-      the Skeena Mountains as a~key area to understanding glacial dynamics
-      of the Cordilleran ice sheet, highlighting the need for further
-      geological investigation of this region.
+      sheet during the middle Holocene (6.6--6.2\,\unit{ka}). Our results
+      identify the Skeena Mountains as a~key area to understanding glacial
+      dynamics of the Cordilleran ice sheet, highlighting the need for
+      further geological investigation of this region.
 
 % Author contributions
 \section*{Author contributions}
@@ -1245,7 +1254,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
     \tophline
     Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
            & Reference\\
-    & & & (m~a.s.l.) & & & (K) & \\
+    & & & (\unit{m\,a.s.l.}) & & & (K) & \\
     \middlehline
     GRIP     &  72{\degree}35$^{\prime}$\,N   % 72.58 (decimal)
              &  37{\degree}38$^{\prime}$\,W   % 37.64 (decimal)
@@ -1302,7 +1311,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
     \tophline
              & \multicolumn{3}{c}{Age (ka)}
              & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
-             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
+             & \multicolumn{3}{c}{Ice volume (\unit{m}\,s.l.e.)} \\
     Record   &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2 \\
@@ -1375,21 +1384,21 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   \caption{Temperature offset time-series from ice core and ocean records
            (Table~\ref{tab:records}) used as palaeo-climate forcing for the ice
            sheet model (top panel), and modelled ice volume (bottom panel)
-           through the last 120\,ka. Ice volumes are expressed in meters of sea
-           level equivalent (m~s.l.e.). Gray fields indicate Marine Oxygen
+           through the last 120\,\unit{ka}. Ice volumes are expressed in meters of sea
+           level equivalent (\unit{m}\,s.l.e.). Gray fields indicate Marine Oxygen
            Isotope Stage (MIS) boundaries for MIS~2 and MIS~4 according to a
            global compilation of benthic \chem{\delta^{18}O} records
            \citep{Lisiecki.Raymo.2005}. Hatched rectangles highlight the
            time-volume span for ice volume extremes corresponding to MIS~4
-           (61.9--56.5\,ka), MIS~3 (53.0--41.3\,ka), and MIS~2 (LGM,
-           23.2--16.8\,ka). Dotted lines correspond to GRIP- and EPICA-driven
-           5\,km-resolution runs.}
+           (61.9--56.5\,\unit{ka}), MIS~3 (53.0--41.3\,\unit{ka}), and MIS~2 (LGM,
+           23.2--16.8\,\unit{ka}). Dotted lines correspond to GRIP- and EPICA-driven
+           5\,\unit{km}-resolution runs.}
   \label{fig:lr_ts}
 \end{figure*}
 
 \begin{figure*}
   \includegraphics{lr_maps}
-  \caption{Snapshots of modelled surface topography (500\,m contours)
+  \caption{Snapshots of modelled surface topography (500\,\unit{m} contours)
            corresponding to the ice volume extremes indicated on
            Fig.~\ref{fig:lr_ts}. An ice cap persists over the Skeena
            Mountains (SM) during MIS~3. Note the occurence of spatial
@@ -1399,7 +1408,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
 \begin{figure*}
   \includegraphics{hr_maps_mis2}
-  \caption{Modelled surface topography (200\,m contours) and surface velocity
+  \caption{Modelled surface topography (200\,\unit{m} contours) and surface velocity
            (colour mapping) corresponding to the maximum ice volume during
            MIS~2 in the GRIP and EPICA high-resolution simulations.}
   \label{fig:mis2}
@@ -1407,7 +1416,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
 \begin{figure*}
   \includegraphics{hr_maps_mis4}
-  \caption{Modelled surface topography (200\,m contours) and surface velocity
+  \caption{Modelled surface topography (200\,\unit{m} contours) and surface velocity
            (colour mapping) corresponding to the maximum ice volume during
            MIS~4 in the GRIP and EPICA high-resolution simulations.}
   \label{fig:mis4}
@@ -1415,12 +1424,12 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
 \begin{figure*}
   \includegraphics{hr_geom_duration}
-  \caption{Modelled duration of ice cover during the last 120\,ka using GRIP
+  \caption{Modelled duration of ice cover during the last 120\,\unit{ka} using GRIP
            and EPICA climate forcing.
            Note the irregular colour scale. A~continuous ice cover spanning
            from the Alaska Range (AR) to the Coast Mountains (CM) and
-           the Columbia and Rocky mountains (CRM) exists for about 32\,ka in
-           the GRIP simulation and 26\,ka in the EPICA simulation.
+           the Columbia and Rocky mountains (CRM) exists for about 32\,\unit{ka} in
+           the GRIP simulation and 26\,\unit{ka} in the EPICA simulation.
            The maximum extent of the ice sheet generally
            corresponds to relatively short durations of ice cover, but ice
            cover persists over the Skeena Mountains (SM) during most of the
@@ -1431,7 +1440,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \begin{figure*}
   \includegraphics{hr_geom_warmbase}
   \caption{Modelled duration of warm-based ice cover during the last
-           120\,ka. Long ice cover durations combined with basal
+           120\,\unit{ka}. Long ice cover durations combined with basal
            temperatures at the pressure melting point may explain the strong
            glacial erosional imprint of the Skeena Mountains (SM) landscape.
            Hatches indicate areas that were covered by cold ice only.}
@@ -1459,9 +1468,9 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
 \begin{figure*}
   \includegraphics{hr_maps_deglac}
-  \caption{Snapshots of modelled surface topography (200\,m contours)
+  \caption{Snapshots of modelled surface topography (200\,\unit{m} contours)
            and surface velocity (colour mapping) during the last deglaciation
-           from the GRIP (top panels) and EPICA (bottom panels) 5\,km simulations.
+           from the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km} simulations.
            Dashed segments (A--D) indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
   \label{fig:hr_geom_deglacageshots}
@@ -1473,7 +1482,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   \caption{Modelled age of the last deglaciation. Areas that have been covered
            only before the last glacial maximum are marked
            in green. Hatches denote re-advance of mountain-centred ice caps and
-           the decaying ice sheet between 14 and 10\,ka..
+           the decaying ice sheet between 14 and 10\,\unit{ka}..
            Dashed segments (A--D) indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
   \label{fig:hr_geom_deglacage}
@@ -1483,7 +1492,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   \includegraphics{hr_geom_lastflow}
   \caption{Modelled deglacial basal ice velocities. Hatches
            indicate areas that remain non-sliding throughout deglaciation
-           (22.0--8.0\,ka), notably including parts of the Interior Plateau (IP).
+           (22.0--8.0\,\unit{ka}), notably including parts of the Interior Plateau (IP).
            Note the concentric patterns of deglacial flow in the Liard
            Lowland (LL).
            Sliding grid cells were distinguished from non-sliding grid cells
@@ -1494,7 +1503,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \begin{figure}
   \includegraphics{hr_pf_grip}
   \caption{Modelled bedrock (black) and ice surface (blue) topography profiles
-           during deglaciation (22.0--8.0\,ka) in the GRIP 5\,km
+           during deglaciation (22.0--8.0\,\unit{ka}) in the GRIP 5\,\unit{km}
            simulation, corresponding to the four transects indicated in
            Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
   \label{fig:hr_pf_grip}
@@ -1503,7 +1512,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \begin{figure}
   \includegraphics{hr_pf_epica}
   \caption{Modelled bedrock (black) and ice surface (red) topography profiles
-           during deglaciation (22.0--8.0\,ka) in the EPICA 5\,km
+           during deglaciation (22.0--8.0\,\unit{ka}) in the EPICA 5\,\unit{km}
            simulation, corresponding to the four transects indicated in
            Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
   \label{fig:hr_pf_epica}
