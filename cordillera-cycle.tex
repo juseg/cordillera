@@ -2,9 +2,7 @@
 
 \graphicspath{{figures/}}
 
-% =============================================================================
 \begin{document}
-% =============================================================================
 
 \title{Numerical simulations of the Cordilleran ice sheet
        through the last glacial cycle}
@@ -62,10 +60,8 @@ Maximum and hosts the last remains of Cordilleran ice until the
 qmiddle Holocene (6.6--6.2\,\unit{ka}).
 \end{abstract}
 
-% =============================================================================
 \introduction
 \label{sec:intro}
-% =============================================================================
 
       During the last glacial cycle, glaciers and ice caps of the North
       American Cordillera have been more extensive than today. At the Last
@@ -192,15 +188,11 @@ qmiddle Holocene (6.6--6.2\,\unit{ka}).
       Cordilleran ice sheet.
 
 
-% =============================================================================
 \section{Model setup}
 \label{sec:model}
-% =============================================================================
 
-% -----------------------------------------------------------------------------
 \subsection{Overview}
 \label{sec:overview}
-% -----------------------------------------------------------------------------
 
       The simulations presented here were run using the Parallel Ice Sheet
       Model (PISM, development version~8ff7cbe), an open source, finite
@@ -234,10 +226,8 @@ qmiddle Holocene (6.6--6.2\,\unit{ka}).
       were performed on 16 to 128 computing cores at the Swedish National
       Supercomputing Centre.
 
-% -----------------------------------------------------------------------------
 \subsection{Ice thermodynamics}
 \label{sec:icedyn}
-% -----------------------------------------------------------------------------
 
       Ice sheet dynamics are typically modelled using a~combination of
       internal deformation and basal sliding. PISM is a~shallow ice sheet
@@ -318,10 +308,8 @@ qmiddle Holocene (6.6--6.2\,\unit{ka}).
       positon for many of the present-day ice shelves
       \citep{Martin.etal.2011}.
 
-% -----------------------------------------------------------------------------
 \subsection{Surface mass balance}
 \label{sec:surface}
-% -----------------------------------------------------------------------------
 
       Ice surface accumulation and ablation are computed from monthly mean
       near-surface air temperature, $T_m$, monthly standard deviation of
@@ -355,10 +343,8 @@ qmiddle Holocene (6.6--6.2\,\unit{ka}).
       glaciers from the Coast Mountains and Rocky Mountains in British
       Columbia \citep[Table~\ref{tab:params};][]{Shea.etal.2009}.
 
-% -----------------------------------------------------------------------------
 \subsection{Climate forcing}
 \label{sec:atm}
-% -----------------------------------------------------------------------------
 
       Climate forcing driving ice sheet simulations consists of a
       present-day monthly climatology,
@@ -420,14 +406,10 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       to different model runs by the name of the proxy record used for the
       palaeo-temperature forcing.
 
-% =============================================================================
 \section{Sensitivity to climate forcing time-series}
 \label{sec:results}
-% =============================================================================
 
-% -----------------------------------------------------------------------------
 \subsection{Evolution of ice volume}
-% -----------------------------------------------------------------------------
 
       Despite large differences in the input climate forcing
       (Fig.~\ref{fig:lr_ts}, upper panel), model output presents consistent
@@ -467,9 +449,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       but in three steps, separated by two periods of ice sheet regrowth
       (Fig.~\ref{fig:lr_ts}).
 
-% -----------------------------------------------------------------------------
 \subsection{Extreme configurations}
-% -----------------------------------------------------------------------------
 
       Despite large differences in the timing of attained volume extrema
       (Table~\ref{tab:extrema}), all model runs show relatively consistent
@@ -500,10 +480,8 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       8.91\,\unit{m}\,s.l.e. (Table~\ref{tab:extrema}).
 
 
-% =============================================================================
 \section{Comparison with the geologic record}
 \label{sec:discussion}
-% =============================================================================
 
       Large variations in the model responses to evolving climate forcing
       reveal its sensitivity to the choice of palaeo-temperature proxy
@@ -516,9 +494,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       nucleation centres, and patterns of ice retreat during the last
       deglaciation.
 
-% -----------------------------------------------------------------------------
 \subsection{Glacial maxima}
-% -----------------------------------------------------------------------------
 
 \subsubsection{Timing of glaciation}
 \label{sec:timing}
@@ -686,9 +662,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       corresponding to respectively 90\,\% and 57\,\% of modelled MIS~2 ice
       volumes.
 
-% -----------------------------------------------------------------------------
 \subsection{Nucleation centres}
-% -----------------------------------------------------------------------------
 
 \subsubsection{Transient ice sheet states}
 
@@ -851,9 +825,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       forcing in our Cordilleran ice sheet simulations.
 
 
-% -----------------------------------------------------------------------------
 \subsection{The last deglaciation}
-% -----------------------------------------------------------------------------
 
 \subsubsection{Pace and patterns of deglaciation}
 
@@ -1056,10 +1028,8 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       area formerly covered by the Cordilleran ice sheet.
 
 
-% =============================================================================
 \conclusions
 \label{sec:concl}
-% =============================================================================
 
       Numerical simulations of the Cordilleran ice sheet through the last
       glacial cycle presented in this study consistently produce two glacial
@@ -1112,14 +1082,12 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       dynamics of the Cordilleran ice sheet, highlighting the need for
       further geological investigation of this region.
 
-% Author contributions
 \section*{Author contributions}
       J.~Seguinot ran the simulations; I.~Rogozhina guided experiment
       design; A.~P.~Stroeven, M.~Margold and J.~Kleman took part in the
       interpretation and comparison of model results against geological
       evidence. All authors contributed to the text.
 
-% Acknowledgements
 \begin{acknowledgements}
   Foremost, we would like to thank Shawn Marshall for providing a~detailed,
   constructive analysis of this study during J.~Seguinot's Ph.D. defence
@@ -1135,7 +1103,6 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   (NSC).
 \end{acknowledgements}
 
-% References
 \bibliographystyle{copernicus}
 \bibliography{refs/references}
 \newpage
@@ -1518,7 +1485,5 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   \label{fig:hr_pf_epica}
 \end{figure}
 
-% =============================================================================
 \end{document}
 \endinput
-% =============================================================================
