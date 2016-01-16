@@ -224,106 +224,6 @@
 \label{sec:overview}
 % -----------------------------------------------------------------------------
 
-\begin{table*}
-  \centering
-  \caption{Parameter values used in the ice sheet model.}
-  \label{tab:params}
-  {\begin{tabular}{llrl}
-    \tophline
-    Not.    & Name & Value & Unit \\
-    \middlehline
-
-    $\rho$  & Ice density
-            & 910
-            & \unit{kg\,m^{-3}} \\
-
-    $g$     & Standard gravity
-            & 9.81
-            & \unit{m\,s^{-2}} \\
-
-    \multicolumn{2}{l}{\emph{Basal sliding}} \\
-
-    $q$     & Pseudo-plastic sliding exponent
-            & 0.25
-            & - \\
-
-    $v_{th}$& Pseudo-plastic threshold velocity
-            & 100.0
-            & \unit{m\,yr^{-1}} \\
-
-    $c_0$   & Till cohesion
-            & 0.0
-            & Pa \\
-
-    $\delta$& Effective pressure coefficient
-            & 0.02
-            & - \\
-
-    $e_0$   & Till reference void ratio
-            & 0.69
-            & - \\
-
-    $C_c$   & Till compressibility coefficient
-            & 0.12
-            & - \\
-
-    $W_{max}$ & Maximal till water thickness
-            & 2.0
-            & m \\
-
-    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
-
-    $\rho_b$& Bedrock density
-            & 3300
-            & \unit{kg\,m^{-3}} \\
-
-    $c_b$   & Bedrock specific heat capacity
-            & 1000
-            & \unit{J\,kg^{-1}\,K^{-1}} \\
-
-    $k_b$   & Bedrock thermal conductivity
-            & 3.0
-            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}} \\
-
-    $\nu_m$ & Astenosphere viscosity
-            & $1\times10^{19}$
-            & \unit{Pa\,s} \\
-
-    $\rho_l$& Lithosphere density
-            & 3300
-            & \unit{kg\,m^{-3}} \\
-
-    $D$     & Lithosphere flexural rigidity
-            & $5.0\times10^{24}$
-            & \unit{N} \\
-
-    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
-
-    $T_s$   & Temperature of snow precipitation
-            & 273.15
-            & \unit{K} \\
-
-    $T_r$   & Temperature of rain precipitation
-            & 275.15
-            & \unit{K} \\
-
-    $F_s$   & Degree-day factor for snow
-            & $3.04\times10^{-3}$
-            & \unit{m\,K^{-1}\,day^{-1}} \\
-
-    $F_i$   & Degree-day factor for ice
-            & $4.59\times10^{-3}$
-            & \unit{m\,K^{-1}\,day^{-1}} \\
-
-    $\gamma$& Air temperature lapse rate
-            & $6\times10^{-3}$
-            & \unit{K\,m^{-1}} \\
-
-    \bottomhline
-  \end{tabular}}
-  \belowtable{}
-\end{table*}
-
       The simulations presented here were run using the Parallel Ice Sheet
       Model (PISM, development version~8ff7cbe), an open source, finite
       difference, shallow ice sheet model \citep{PISM-authors.2015}. The
@@ -491,67 +391,6 @@
 \label{sec:atm}
 % -----------------------------------------------------------------------------
 
-\begin{table*}[t]
-  \caption{Palaeo-temperature proxy records and scaling parameters yielding
-           temperature offset time-series used to force the ice sheet model
-           through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$
-           corresponds to the scaling factor adopted to yield last glacial
-           maximum ice limits in the vicinity of mapped end moraines, and
-           $T_{[32, 22]}$ refers to the resulting mean temperature anomaly
-           during the period -32 to~-22~ka after scaling.}
-  \label{tab:records}
-  {\begin{tabular}{l|ccc|ccc|l}
-    \tophline
-    Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
-           & Reference\\
-    & & & (m~a.s.l.) & & & (K) & \\
-    \middlehline
-    GRIP     &  72{\degree} 35' N  % 72.58 (decimal)
-             &  37{\degree} 38' W  % 37.64 (decimal)
-             & 3238
-             & \chem{\delta^{18}O}
-             & 0.37 & -5.8  % -16.4126 (before scaling)
-             & \citet{Dansgaard.etal.1993} \\
-
-    NGRIP    &  75{\degree} 06' N  % 75.10
-             &  42{\degree} 19' W  % 42.32
-             & 2917
-             & \chem{\delta^{18}O}
-             & 0.24 & -6.5  % -26.7098
-             & \citet{Andersen.etal.2004} \\
-
-    EPICA    &  75{\degree} 06' S  % 75.1
-             & 123{\degree} 21' E  % 123.35
-             & 3233
-             & \chem{\delta^{18}O}
-             & 0.64 & -5.9  % -9.2055
-             & \citet{Jouzel.etal.2007} \\
-
-    Vostok   &  78{\degree} 28' S  % 78.8
-             & 106{\degree} 50' E  % 106.8
-             & 3488
-             & \chem{\delta^{18}O}
-             & 0.74 & -5.9  % -7.9550
-             & \citet{Petit.etal.1999} \\
-
-    ODP~1012 &  32{\degree} 17' N
-             & 118{\degree} 23' W
-             & -1772
-             & \chem{U^{K'}_{37}}
-             & 1.61 & -6.1  % -3.7889
-             & \citet{Herbert.etal.2001} \\
-
-    ODP~1020 &  41{\degree} 00' N
-             & 126{\degree} 26' W
-             & -3038
-             & \chem{U^{K'}_{37}}
-             & 1.20 & -6.0 % -5.0000
-             & \citet{Herbert.etal.2001} \\
-    \bottomhline
-  \end{tabular}}
-  \belowtable{}
-\end{table*}
-
       Climate forcing driving ice sheet simulations consists of a
       present-day monthly climatology,
 $\{T_{m0}, P_{m0}\}$, where temperatures are modified by offset time series,
@@ -647,50 +486,6 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
            similarities despite large differences in timing.}
   \label{fig:lr_maps}
 \end{figure*}
-
-\begin{table*}
-  \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
-           MIS~4, 3 and 2 for each of the six low-resolution simulations
-           (Fig.~\ref{fig:lr_ts}).}
-  \label{tab:extrema}
-  {\begin{tabular}{l*{3}{|ccc}}
-    \tophline
-             & \multicolumn{3}{c}{Age (ka)}
-             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
-             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
-    Record   &  MIS~4 &  MIS~3 &  MIS~2
-             &  MIS~4 &  MIS~3 &  MIS~2
-             &  MIS~4 &  MIS~3 &  MIS~2 \\
-    \middlehline
-    GRIP     &  57.45 &  42.93 &  19.14
-             &   1.87 &   0.69 &   2.07
-             &   7.35 &   1.69 &   8.71 \\
-    NGRIP    &  60.25 &  45.86 &  22.85
-             &   2.11 &   0.74 &   2.10
-             &   8.84 &   1.82 &   8.76 \\
-    EPICA    &  61.89 &  45.30 &  17.23
-             &   1.51 &   1.01 &   2.09
-             &   5.11 &   2.74 &   8.91 \\
-    Vostok   &  60.86 &  41.25 &  16.84
-             &   1.51 &   1.03 &   2.01
-             &   5.15 &   2.88 &   8.40 \\
-    ODP 1012 &  56.46 &  47.39 &  23.19
-             &   1.38 &   0.90 &   2.07
-             &   4.39 &   2.35 &   8.62 \\
-    ODP 1020 &  60.23 &  52.97 &  20.56
-             &   1.25 &   0.72 &   2.09
-             &   3.84 &   1.75 &   8.81 \\
-    \middlehline
-    Minimum  &  61.89 &  52.97 &  23.19
-             &   1.25 &   0.69 &   2.01
-             &   3.84 &   1.69 &   8.40 \\
-    Maximum  &  56.46 &  41.25 &  16.84
-             &   2.11 &   1.03 &   2.10
-             &   8.84 &   2.88 &   8.91 \\
-    \bottomhline
-  \end{tabular}}
-  \belowtable{}
-\end{table*}
 
       Despite large differences in the input climate forcing
       (Fig.~\ref{fig:lr_ts}, upper panel), model output presents consistent
@@ -1509,6 +1304,212 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 \bibliographystyle{copernicus}
 \bibliography{refs/references}
 \newpage
+
+\begin{table*}
+  \centering
+  \caption{Parameter values used in the ice sheet model.}
+  \label{tab:params}
+  {\begin{tabular}{llrl}
+    \tophline
+    Not.    & Name & Value & Unit \\
+    \middlehline
+
+    $\rho$  & Ice density
+            & 910
+            & \unit{kg\,m^{-3}} \\
+
+    $g$     & Standard gravity
+            & 9.81
+            & \unit{m\,s^{-2}} \\
+
+    \multicolumn{2}{l}{\emph{Basal sliding}} \\
+
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & - \\
+
+    $v_{th}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}} \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa \\
+
+    $\delta$& Effective pressure coefficient
+            & 0.02
+            & - \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & - \\
+
+    $C_c$   & Till compressibility coefficient
+            & 0.12
+            & - \\
+
+    $W_{max}$ & Maximal till water thickness
+            & 2.0
+            & m \\
+
+    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
+
+    $\rho_b$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}} \\
+
+    $c_b$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}} \\
+
+    $k_b$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}} \\
+
+    $\nu_m$ & Astenosphere viscosity
+            & $1\times10^{19}$
+            & \unit{Pa\,s} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & $5.0\times10^{24}$
+            & \unit{N} \\
+
+    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
+
+    $T_s$   & Temperature of snow precipitation
+            & 273.15
+            & \unit{K} \\
+
+    $T_r$   & Temperature of rain precipitation
+            & 275.15
+            & \unit{K} \\
+
+    $F_s$   & Degree-day factor for snow
+            & $3.04\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}} \\
+
+    $F_i$   & Degree-day factor for ice
+            & $4.59\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}} \\
+
+    $\gamma$& Air temperature lapse rate
+            & $6\times10^{-3}$
+            & \unit{K\,m^{-1}} \\
+
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
+
+
+\begin{table*}[t]
+  \caption{Palaeo-temperature proxy records and scaling parameters yielding
+           temperature offset time-series used to force the ice sheet model
+           through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$
+           corresponds to the scaling factor adopted to yield last glacial
+           maximum ice limits in the vicinity of mapped end moraines, and
+           $T_{[32, 22]}$ refers to the resulting mean temperature anomaly
+           during the period -32 to~-22~ka after scaling.}
+  \label{tab:records}
+  {\begin{tabular}{l|ccc|ccc|l}
+    \tophline
+    Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
+           & Reference\\
+    & & & (m~a.s.l.) & & & (K) & \\
+    \middlehline
+    GRIP     &  72{\degree} 35' N  % 72.58 (decimal)
+             &  37{\degree} 38' W  % 37.64 (decimal)
+             & 3238
+             & \chem{\delta^{18}O}
+             & 0.37 & -5.8  % -16.4126 (before scaling)
+             & \citet{Dansgaard.etal.1993} \\
+
+    NGRIP    &  75{\degree} 06' N  % 75.10
+             &  42{\degree} 19' W  % 42.32
+             & 2917
+             & \chem{\delta^{18}O}
+             & 0.24 & -6.5  % -26.7098
+             & \citet{Andersen.etal.2004} \\
+
+    EPICA    &  75{\degree} 06' S  % 75.1
+             & 123{\degree} 21' E  % 123.35
+             & 3233
+             & \chem{\delta^{18}O}
+             & 0.64 & -5.9  % -9.2055
+             & \citet{Jouzel.etal.2007} \\
+
+    Vostok   &  78{\degree} 28' S  % 78.8
+             & 106{\degree} 50' E  % 106.8
+             & 3488
+             & \chem{\delta^{18}O}
+             & 0.74 & -5.9  % -7.9550
+             & \citet{Petit.etal.1999} \\
+
+    ODP~1012 &  32{\degree} 17' N
+             & 118{\degree} 23' W
+             & -1772
+             & \chem{U^{K'}_{37}}
+             & 1.61 & -6.1  % -3.7889
+             & \citet{Herbert.etal.2001} \\
+
+    ODP~1020 &  41{\degree} 00' N
+             & 126{\degree} 26' W
+             & -3038
+             & \chem{U^{K'}_{37}}
+             & 1.20 & -6.0 % -5.0000
+             & \citet{Herbert.etal.2001} \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
+
+\begin{table*}
+  \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
+           MIS~4, 3 and 2 for each of the six low-resolution simulations
+           (Fig.~\ref{fig:lr_ts}).}
+  \label{tab:extrema}
+  {\begin{tabular}{l*{3}{|ccc}}
+    \tophline
+             & \multicolumn{3}{c}{Age (ka)}
+             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
+    Record   &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2 \\
+    \middlehline
+    GRIP     &  57.45 &  42.93 &  19.14
+             &   1.87 &   0.69 &   2.07
+             &   7.35 &   1.69 &   8.71 \\
+    NGRIP    &  60.25 &  45.86 &  22.85
+             &   2.11 &   0.74 &   2.10
+             &   8.84 &   1.82 &   8.76 \\
+    EPICA    &  61.89 &  45.30 &  17.23
+             &   1.51 &   1.01 &   2.09
+             &   5.11 &   2.74 &   8.91 \\
+    Vostok   &  60.86 &  41.25 &  16.84
+             &   1.51 &   1.03 &   2.01
+             &   5.15 &   2.88 &   8.40 \\
+    ODP 1012 &  56.46 &  47.39 &  23.19
+             &   1.38 &   0.90 &   2.07
+             &   4.39 &   2.35 &   8.62 \\
+    ODP 1020 &  60.23 &  52.97 &  20.56
+             &   1.25 &   0.72 &   2.09
+             &   3.84 &   1.75 &   8.81 \\
+    \middlehline
+    Minimum  &  61.89 &  52.97 &  23.19
+             &   1.25 &   0.69 &   2.01
+             &   3.84 &   1.69 &   8.40 \\
+    Maximum  &  56.46 &  41.25 &  16.84
+             &   2.11 &   1.03 &   2.10
+             &   8.84 &   2.88 &   8.91 \\
+    \bottomhline
+  \end{tabular}}
+  \belowtable{}
+\end{table*}
 
 % =============================================================================
 \end{document}
