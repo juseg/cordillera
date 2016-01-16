@@ -50,10 +50,12 @@ for i, rec in enumerate(records):
         thk = nc.variables['thk'][k,imin:imax,jmin:jmax].T
         topg = nc.variables['topg'][k,imin:imax,jmin:jmax].T
         usurf = nc.variables['usurf'][k,imin:imax,jmin:jmax].T
+        velbase = nc.variables['velbase_mag'][k,imin:imax,jmin:jmax].T
 
         # apply masks
         icy = (thk >= 1.0)
         usurf = np.ma.array(usurf, mask=(-icy))
+        velbase = np.ma.array(velbase, mask=(-icy))
 
         # plot
         print 'plotting at %s ka...' % age
@@ -61,11 +63,14 @@ for i, rec in enumerate(records):
         ax.yaxis.set_visible(False)
         ax.set_rasterization_zorder(2.5)
         ax.pcolormesh(x, y, topg, cmap=ut.topo_cmap, norm=ut.topo_norm)
-        ax.contour(x, y, usurf, levels=range(100, 5000, 100),
+        ax.pcolormesh(x, y, velbase, cmap=ut.vel_cmap, norm=ut.vel_norm)
+        ax.contour(x, y, velbase, levels=[1, 10, 100],
                    colors='k', linewidths=0.2)
-        cs = ax.contour(x, y, usurf, levels=range(1000, 5000, 1000),
-                        colors='k', linewidths=0.5)
-        cs.clabel(fmt='%d', fontsize=4)
+        #ax.contour(x, y, usurf, levels=range(100, 5000, 100),
+        #           colors='k', linewidths=0.2)
+        #cs = ax.contour(x, y, usurf, levels=range(1000, 5000, 1000),
+        #                colors='k', linewidths=0.5)
+        #cs.clabel(fmt='%d', fontsize=4)
         ax.contourf(x, y, icy, levels=[0.5, 1.5], colors='1', alpha=0.75)
         ax.contour(x, y, icy, levels=[0.5], colors='k')
         ut.pl.add_corner_tag(ax, '%.1f ka' % age, offset=0.0)
