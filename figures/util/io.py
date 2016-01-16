@@ -37,7 +37,7 @@ def open_dt_file(rec, dt, period='3222'):
 
 
 def open_sd_file(res):
-    return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.cr.nc' % res)
+    return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.nc' % res)
 
 
 def open_ts_file(res, rec, dt,
