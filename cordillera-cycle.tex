@@ -258,16 +258,16 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       of 50\,\unit{m}.
 
       A~pseudo-plastic sliding law,
-\begin{equation}
-    \label{eqn:pseudoplastic}
+\begin{align}
+&\label{eqn:pseudoplastic}
     \vec{\tau}_{\mathrm{b}} = -\tau_{\mathrm{c}} \frac{\vec{v}_{\mathrm{b}}}{{v_{\text{th}}}^q\,|\vec{v}_{\mathrm{b}}|^{1-q}} \,,
-\end{equation}
+\end{align}
       relates the bed-parallel shear stresses, $\vec{\tau}_{\mathrm{b}}$, to the
       sliding velocity, $\vec{v}_{\mathrm{b}}$ (Table~\ref{tab:params}). The yield
       stress, $\tau_{\mathrm{c}}$, is modelled using the Mohr--Coulomb criterion,
-\begin{equation}
-   \tau_{\mathrm{c}} = c_0 + N\,\tan{\phi} \,,
-\end{equation}
+\begin{align}
+&\tau_{\mathrm{c}} = c_0 + N\,\tan{\phi} \,,
+\end{align}
       where cohesion, $c_0$, is assumed to be zero. The friction angle,
       $\phi$, varies from 15 to 45\degree as a~piecewise-linear function of
       modern bed elevation, with the lowest value occuring below modern sea
@@ -282,9 +282,9 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       subglacial water, using a~formula derived from laboratory experiments
       with till extracted from the base of Ice Stream B in West Antarctica
       \citep{Tulaczyk.etal.2000, Bueler.Pelt.2015},
-\begin{equation}
-    N = \delta \rho gh \, 10^{(e_0/C_{\mathrm{c}}) (1 - (W/W_{\text{max}}))} \,,
-\end{equation}
+\begin{align}
+&N = \delta \rho gh \, 10^{(e_0/C_{\mathrm{c}}) (1 - (W/W_{\text{max}}))} \,,
+\end{align}
       where $\delta$ is chosen as 0.02, $e_0$ is a~measured reference void
       ratio and $C_{\mathrm{c}}$ is a~measured compressibility coefficient
       (Table~\ref{tab:params}). The amount of water at the base, $W$, varies
@@ -329,14 +329,14 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       assuming a~normal temperature distribution of standard deviation
       $\sigma$ aroung the expected value $T_{\mathrm{m}}$. It is expressed by an
       error-function formulation \citep{Calov.Greve.2005},
-\begin{equation}
-    \label{eqn:calovgreve}
+\begin{align}
+&\label{eqn:calovgreve}
     {\text{PDD}} = \int_{t_1}^{t_2} \mathrm{d}t
         \left[\frac{\sigma}{\sqrt{2\pi}}
                 \exp\left({-\frac{T_{\mathrm{m}}^2}{2\sigma^2}}\right)
               + \frac{T_{\mathrm{m}}}{2} \, {\text{erfc}}
                 \left(-\frac{T_{\mathrm{m}}}{\sqrt{2}\sigma}\right)\right] \,,
-\end{equation}
+\end{align}
       which is numerically approximated using week-long sub-intervals. In
       order to account for the effects of spatial and seasonal variations of
       temperature variability \citep{Seguinot.2013}, $\sigma$ is computed
@@ -355,9 +355,9 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 $\{T_{\mathrm{m}0}, P_{\mathrm{m}0}\}$, where temperatures are modified by offset time series,
 ${\Delta}T_{\text{TS}}$, and lapse-rate corrections, ${\Delta}T_{\text{LR}}$:
 \begin{align}
-    T_{\mathrm{m}}(t, x, y) &= T_{\mathrm{m}0}(x, y) + {\Delta}T_{\text{TS}}(t)
+&T_{\mathrm{m}}(t, x, y) = T_{\mathrm{m}0}(x, y) + {\Delta}T_{\text{TS}}(t)
                     + {\Delta}T_{\text{LR}}(t, x, y) \,, \\
-    P_{\mathrm{m}}(t, x, y) &= P_{\mathrm{m}0}(x, y) \,.
+&    P_{\mathrm{m}}(t, x, y) = P_{\mathrm{m}0}(x, y) \,.
 \end{align}
 
       The present-day monthly climatology was computed from near-surface air
@@ -382,7 +382,7 @@ ${\Delta}T_{\text{TS}}$, and lapse-rate corrections, ${\Delta}T_{\text{LR}}$:
       (\chem{\delta^{18}O}) measurements using a~quadratic equation
       \citep{Johnsen.etal.1995},
 \begin{align}
-    {\Delta}T_{\text{TS}}(t) = &-11.88 [\chem{\delta^{18}O}(t)
+{\Delta}T_{\text{TS}}(t) ={~}&-11.88 [\chem{\delta^{18}O}(t)
                                 -\chem{\delta^{18}O}(0)] \nonumber \\
                         &-0.1925[\chem{\delta^{18}O}(t)^2
                                  -\chem{\delta^{18}O}(0)^2] \,,
@@ -398,7 +398,7 @@ ${\Delta}T_{\text{TS}}$, and lapse-rate corrections, ${\Delta}T_{\text{LR}}$:
       geopotential height invariant field as a~reference topography,
       $b_{\text{ref}}$:
 \begin{align}
-    {\Delta}T_{\text{LR}}(t, x, y) &= -\gamma [s(t, x, y)-b_{\text{ref}}] \\
+{\Delta}T_{\text{LR}}(t, x, y) &= -\gamma [s(t, x, y)-b_{\text{ref}}] \\
                             &= -\gamma [h(t, x, y)+b(t, x, y)-b_{\text{ref}}],
 \end{align}
 
