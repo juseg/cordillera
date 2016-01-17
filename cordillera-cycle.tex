@@ -260,13 +260,13 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       A~pseudo-plastic sliding law,
 \begin{equation}
     \label{eqn:pseudoplastic}
-    \vec{\tau}_b = -\tau_c \frac{\vec{v}_b}{{v_{th}}^q\,|\vec{v}_b|^{1-q}} \,,
+    \vec{\tau}_{\mathrm{b}} = -\tau_{\mathrm{c}} \frac{\vec{v}_{\mathrm{b}}}{{v_{\text{th}}}^q\,|\vec{v}_{\mathrm{b}}|^{1-q}} \,,
 \end{equation}
-      relates the bed-parallel shear stresses, $\vec{\tau}_b$, to the
-      sliding velocity, $\vec{v}_b$ (Table~\ref{tab:params}). The yield
-      stress, $\tau_c$, is modelled using the Mohr--Coulomb criterion,
+      relates the bed-parallel shear stresses, $\vec{\tau}_{\mathrm{b}}$, to the
+      sliding velocity, $\vec{v}_{\mathrm{b}}$ (Table~\ref{tab:params}). The yield
+      stress, $\tau_{\mathrm{c}}$, is modelled using the Mohr--Coulomb criterion,
 \begin{equation}
-   \tau_c = c_0 + N\,\tan{\phi} \,,
+   \tau_{\mathrm{c}} = c_0 + N\,\tan{\phi} \,,
 \end{equation}
       where cohesion, $c_0$, is assumed to be zero. The friction angle,
       $\phi$, varies from 15 to 45\degree as a~piecewise-linear function of
@@ -283,18 +283,18 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       with till extracted from the base of Ice Stream B in West Antarctica
       \citep{Tulaczyk.etal.2000, Bueler.Pelt.2015},
 \begin{equation}
-    N = \delta \rho gh \, 10^{(e_0/C_c) (1 - (W/W_{max}))} \,,
+    N = \delta \rho gh \, 10^{(e_0/C_{\mathrm{c}}) (1 - (W/W_{\text{max}}))} \,,
 \end{equation}
       where $\delta$ is chosen as 0.02, $e_0$ is a~measured reference void
-      ratio and $C_c$ is a~measured compressibility coefficient
+      ratio and $C_{\mathrm{c}}$ is a~measured compressibility coefficient
       (Table~\ref{tab:params}). The amount of water at the base, $W$, varies
-      from zero to $W_{max}=2$\,\unit{m}, a~threshold above which additional
+      from zero to $W_{\text{max}}=2$\,\unit{m}, a~threshold above which additional
       melt water is assumed to drain off instantaneously. Finally, the
       bedrock topography responds to ice load following a~bedrock
       deformation model that includes local isostasy, elastic lithosphere
       flexure and viscous astenosphere deformation in an infinite half-space
       \citep{Lingle.Clark.1985,Bueler.etal.2007}. A~relatively low viscosity
-      value of $\nu_m = 1\times10^{19}$\,\unit{Pa\,s} is used for the
+      value of $\nu_{m} = 1\times10^{19}$\,\unit{Pa\,s} is used for the
       astenosphere (Table~\ref{tab:params}) in accordance with the results
       from regional glacial isostatic adjustment modelling at the northern
       Cascadia subduction zone \citep{James.etal.2009}.
@@ -316,9 +316,9 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 \label{sec:surface}
 
       Ice surface accumulation and ablation are computed from monthly mean
-      near-surface air temperature, $T_m$, monthly standard deviation of
+      near-surface air temperature, $T_{\mathrm{m}}$, monthly standard deviation of
       near-surface air temperature, $\sigma$, and monthly precipitation,
-      $P_m$, using a~temperature-index model \citep[e.g.,][]{Hock.2003}.
+      $P_{\mathrm{m}}$, using a~temperature-index model \citep[e.g.,][]{Hock.2003}.
       Accumulation is equal to precipitation when air temperatures are below
       0\,\unit{{\degree}C}, and decreases to zero linearly with temperatures
       between 0 and 2\,\unit{{\degree}C}. Ablation is computed from PDD,
@@ -327,15 +327,15 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 
       The PDD computation accounts for stochastic temperature variations by
       assuming a~normal temperature distribution of standard deviation
-      $\sigma$ aroung the expected value $T_m$. It is expressed by an
+      $\sigma$ aroung the expected value $T_{\mathrm{m}}$. It is expressed by an
       error-function formulation \citep{Calov.Greve.2005},
 \begin{equation}
     \label{eqn:calovgreve}
-    \mathrm{PDD} = \int_{t_1}^{t_2} \mathrm{d}t
+    {\text{PDD}} = \int_{t_1}^{t_2} \mathrm{d}t
         \left[\frac{\sigma}{\sqrt{2\pi}}
-                \exp\left({-\frac{T_{m}^2}{2\sigma^2}}\right)
-              + \frac{T_{m}}{2} \, \mathrm{erfc}
-                \left(-\frac{T_{m}}{\sqrt{2}\sigma}\right)\right] \,,
+                \exp\left({-\frac{T_{\mathrm{m}}^2}{2\sigma^2}}\right)
+              + \frac{T_{\mathrm{m}}}{2} \, {\text{erfc}}
+                \left(-\frac{T_{\mathrm{m}}}{\sqrt{2}\sigma}\right)\right] \,,
 \end{equation}
       which is numerically approximated using week-long sub-intervals. In
       order to account for the effects of spatial and seasonal variations of
@@ -352,12 +352,12 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 
       Climate forcing driving ice sheet simulations consists of
       a~present-day monthly climatology,
-$\{T_{m0}, P_{m0}\}$, where temperatures are modified by offset time series,
-${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
+$\{T_{\mathrm{m}0}, P_{\mathrm{m}0}\}$, where temperatures are modified by offset time series,
+${\Delta}T_{\text{TS}}$, and lapse-rate corrections, ${\Delta}T_{\text{LR}}$:
 \begin{align}
-    T_m(t, x, y) &= T_{m0}(x, y) + {\Delta}T_{TS}(t)
-                    + {\Delta}T_{LR}(t, x, y) \,, \\
-    P_m(t, x, y) &= P_{m0}(x, y) \,.
+    T_{\mathrm{m}}(t, x, y) &= T_{\mathrm{m}0}(x, y) + {\Delta}T_{\text{TS}}(t)
+                    + {\Delta}T_{\text{LR}}(t, x, y) \,, \\
+    P_{\mathrm{m}}(t, x, y) &= P_{\mathrm{m}0}(x, y) \,.
 \end{align}
 
       The present-day monthly climatology was computed from near-surface air
@@ -370,7 +370,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       forcing, as identified in a~previous sensitivity study
       \citep{Seguinot.etal.2014}.
 
-      Temperature offset time-series, ${\Delta}T_{TS}$, are derived from
+      Temperature offset time-series, ${\Delta}T_{\text{TS}}$, are derived from
       palaeo-temperature proxy records from the Greenland Ice Core Project
       \citep[GRIP,][]{Dansgaard.etal.1993}, the North Greenland Ice Core
       Project \citep[NGRIP,][]{Andersen.etal.2004}, the European Project for
@@ -382,7 +382,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       (\chem{\delta^{18}O}) measurements using a~quadratic equation
       \citep{Johnsen.etal.1995},
 \begin{align}
-    {\Delta}T_{TS}(t) = &-11.88 [\chem{\delta^{18}O}(t)
+    {\Delta}T_{\text{TS}}(t) = &-11.88 [\chem{\delta^{18}O}(t)
                                 -\chem{\delta^{18}O}(0)] \nonumber \\
                         &-0.1925[\chem{\delta^{18}O}(t)^2
                                  -\chem{\delta^{18}O}(0)^2] \,,
@@ -393,18 +393,18 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
       at the LGM (Table~\ref{tab:extrema}) and realistic outlines
       (Fig.~\ref{fig:lr_maps}).
 
-      Finally, lapse-rate corrections, ${\Delta}T_{LR}$, are computed as
+      Finally, lapse-rate corrections, ${\Delta}T_{\text{LR}}$, are computed as
       a~function of ice surface elevation, $s$, using the NARR surface
       geopotential height invariant field as a~reference topography,
-      $b_{ref}$:
+      $b_{\text{ref}}$:
 \begin{align}
-    {\Delta}T_{LR}(t, x, y) &= -\gamma [s(t, x, y)-b_{ref}] \\
-                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{ref}],
+    {\Delta}T_{\text{LR}}(t, x, y) &= -\gamma [s(t, x, y)-b_{\text{ref}}] \\
+                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{\text{ref}}],
 \end{align}
 
       thus accounting for the evolution of ice thickness, ${h=s-b}$, on the
       one hand, and for differences between the basal topography of the ice
-      flow model, $b$, and the NARR reference topography, $b_{ref}$, on the
+      flow model, $b$, and the NARR reference topography, $b_{\text{ref}}$, on the
       other hand. All simulations use an annual temperature lapse rate of
       $\gamma = 6\,\unit{K\,km^{-1}}$. In the rest of this paper, we refer
       to different model runs by the name of the proxy record used for the
@@ -1134,7 +1134,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
             & 0.25
             & - \\
 
-    $v_{th}$& Pseudo-plastic threshold velocity
+    $v_{\text{th}}$& Pseudo-plastic threshold velocity
             & 100.0
             & \unit{m\,yr^{-1}} \\
 
@@ -1150,25 +1150,25 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
             & 0.69
             & - \\
 
-    $C_c$   & Till compressibility coefficient
+    $C_{\mathrm{c}}$   & Till compressibility coefficient
             & 0.12
             & - \\
 
-    $W_{max}$ & Maximal till water thickness
+    $W_{\text{max}}$ & Maximal till water thickness
             & 2.0
             & m \\
 
     \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
 
-    $\rho_b$& Bedrock density
+    $\rho_{\mathrm{b}}$& Bedrock density
             & 3300
             & \unit{kg\,m^{-3}} \\
 
-    $c_b$   & Bedrock specific heat capacity
+    $c_{\mathrm{b}}$   & Bedrock specific heat capacity
             & 1000
             & \unit{J\,kg^{-1}\,K^{-1}} \\
 
-    $k_b$   & Bedrock thermal conductivity
+    $k_{\mathrm{b}}$   & Bedrock thermal conductivity
             & 3.0
             & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}} \\
 
@@ -1186,19 +1186,19 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
 
     \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
 
-    $T_s$   & Temperature of snow precipitation
+    $T_{\mathrm{s}}$   & Temperature of snow precipitation
             & 273.15
             & \unit{K} \\
 
-    $T_r$   & Temperature of rain precipitation
+    $T_{\mathrm{r}}$   & Temperature of rain precipitation
             & 275.15
             & \unit{K} \\
 
-    $F_s$   & Degree-day factor for snow
+    $F_{\mathrm{s}}$   & Degree-day factor for snow
             & $3.04\times10^{-3}$
             & \unit{m\,K^{-1}\,day^{-1}} \\
 
-    $F_i$   & Degree-day factor for ice
+    $F_{\mathrm{i}}$   & Degree-day factor for ice
             & $4.59\times10^{-3}$
             & \unit{m\,K^{-1}\,day^{-1}} \\
 
@@ -1442,7 +1442,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
   \caption{Snapshots of modelled surface topography (200\,\unit{m} contours)
            and surface velocity (colour mapping) during the last deglaciation
            from the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km} simulations.
-           Dashed segments (A--D) indicate the location of profiles used in
+           Dashed segments \textbf{(A--D)} indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
   \label{fig:hr_geom_deglacageshots}
 \end{figure*}
@@ -1454,7 +1454,7 @@ ${\Delta}T_{TS}$, and lapse-rate corrections, ${\Delta}T_{LR}$:
            only before the last glacial maximum are marked
            in green. Hatches denote re-advance of mountain-centred ice caps and
            the decaying ice sheet between 14 and 10\,\unit{ka}..
-           Dashed segments (A--D) indicate the location of profiles used in
+           Dashed segments \textbf{(A--D)} indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
   \label{fig:hr_geom_deglacage}
 \end{figure*}
