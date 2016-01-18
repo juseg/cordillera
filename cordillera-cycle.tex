@@ -194,7 +194,7 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 \label{sec:model}
 
 \subsection{Overview}
-\label{sec:overview}
+\label{sec:overview}%
 
       The simulations presented here were run using the Parallel Ice Sheet
       Model (PISM, development version~8ff7cbe), an open source, finite
@@ -347,7 +347,7 @@ middle Holocene (6.6--6.2\,\unit{ka}).
       Columbia \citep[Table~\ref{tab:params};][]{Shea.etal.2009}.
 
 \subsection{Climate forcing}
-\label{sec:atm}
+\label{sec:atm}%
 
       Climate forcing driving ice sheet simulations consists of
       a~present-day monthly climatology, $\{T_{\mathrm{m}0},
@@ -1308,9 +1308,11 @@ middle Holocene (6.6--6.2\,\unit{ka}).
   \belowtable{}
 \end{table*}
 
-\begin{figure}
-  \includegraphics{locmap}
-  \caption{Relief map of northern North America showing a~reconstruction of the
+
+\begin{figure}%
+\includegraphics{locmap}
+\caption{%
+Relief map of northern North America showing a~reconstruction of the
            areas once covered by the Cordilleran (CIS), Laurentide (LIS),
            Innuitian (IIS), and Greenland (GIS) ice sheets during the last
            18\,\unit{\chem{^{14}C}\,ka} \citep[21.4\,cal\,ka,][]{Dyke.2004}.
@@ -1325,12 +1327,14 @@ middle Holocene (6.6--6.2\,\unit{ka}).
            Columbia (IP), and the Puget Lowland (PL). The background
            map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
            Data \citep{Patterson.Kelso.2015}.}
-  \label{fig:locmap}
-\end{figure}
+\label{fig:locmap}%
+\end{figure}%
 
-\begin{figure}
-  \includegraphics{atm}
-  \caption{Monthly mean near-surface air temperature, precipitation, and
+
+\begin{figure}%
+\includegraphics{atm}
+\caption{%
+Monthly mean near-surface air temperature, precipitation, and
            standard deviation of daily mean temperature (PDD SD) for January
            and July from the North American Regional Reanalysis
            \citep[NARR;][]{Mesinger.etal.2006}, used to force the surface mass
@@ -1338,12 +1342,14 @@ middle Holocene (6.6--6.2\,\unit{ka}).
            strong contrasts in seasonality, timing of the precipitation peak,
            and temperature variability over the model domain, notably between
            coastal and inland regions.}
-  \label{fig:atm}
-\end{figure}
+\label{fig:atm}%
+\end{figure}%
 
-\begin{figure*}
-  \includegraphics{lr_ts}
-  \caption{Temperature offset time-series from ice core and ocean records
+
+\begin{figure*}%
+\includegraphics{lr_ts}
+\caption{%
+Temperature offset time-series from ice core and ocean records
            (Table~\ref{tab:records}) used as palaeo-climate forcing for the ice
            sheet model (top panel), and modelled ice volume (bottom panel)
            through the last 120\,\unit{ka}. Ice volumes are expressed in meters of sea
@@ -1355,38 +1361,46 @@ middle Holocene (6.6--6.2\,\unit{ka}).
            (61.9--56.5\,\unit{ka}), MIS~3 (53.0--41.3\,\unit{ka}), and MIS~2 (LGM,
            23.2--16.8\,\unit{ka}). Dotted lines correspond to GRIP- and EPICA-driven
            5\,\unit{km}-resolution runs.}
-  \label{fig:lr_ts}
-\end{figure*}
+\label{fig:lr_ts}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{lr_maps}
-  \caption{Snapshots of modelled surface topography (500\,\unit{m} contours)
+
+\begin{figure*}%
+\includegraphics{lr_maps}
+\caption{%
+Snapshots of modelled surface topography (500\,\unit{m} contours)
            corresponding to the ice volume extremes indicated on
            Fig.~\ref{fig:lr_ts}. An ice cap persists over the Skeena
            Mountains (SM) during MIS~3. Note the occurence of spatial
            similarities despite large differences in timing.}
-  \label{fig:lr_maps}
-\end{figure*}
+\label{fig:lr_maps}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{hr_maps_mis2}
-  \caption{Modelled surface topography (200\,\unit{m} contours) and surface velocity
+
+\begin{figure*}%
+\includegraphics{hr_maps_mis2}
+\caption{%
+Modelled surface topography (200\,\unit{m} contours) and surface velocity
            (colour mapping) corresponding to the maximum ice volume during
            MIS~2 in the GRIP and EPICA high-resolution simulations.}
-  \label{fig:mis2}
-\end{figure*}
+\label{fig:mis2}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{hr_maps_mis4}
-  \caption{Modelled surface topography (200\,\unit{m} contours) and surface velocity
+
+\begin{figure*}%
+\includegraphics{hr_maps_mis4}
+\caption{%
+Modelled surface topography (200\,\unit{m} contours) and surface velocity
            (colour mapping) corresponding to the maximum ice volume during
            MIS~4 in the GRIP and EPICA high-resolution simulations.}
-  \label{fig:mis4}
-\end{figure*}
+\label{fig:mis4}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{hr_geom_duration}
-  \caption{Modelled duration of ice cover during the last 120\,\unit{ka} using GRIP
+
+\begin{figure*}%
+\includegraphics{hr_geom_duration}
+\caption{%
+Modelled duration of ice cover during the last 120\,\unit{ka} using GRIP
            and EPICA climate forcing.
            Note the irregular colour scale. A~continuous ice cover spanning
            from the Alaska Range (AR) to the Coast Mountains (CM) and
@@ -1396,89 +1410,104 @@ middle Holocene (6.6--6.2\,\unit{ka}).
            corresponds to relatively short durations of ice cover, but ice
            cover persists over the Skeena Mountains (SM) during most of the
            simulation. See Fig.~\ref{fig:locmap} for a~list of abbreviations.}
-  \label{fig:hr_geom_duration}
-\end{figure*}
+\label{fig:hr_geom_duration}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{hr_geom_warmbase}
-  \caption{Modelled duration of warm-based ice cover during the last
+
+\begin{figure*}%
+\includegraphics{hr_geom_warmbase}
+\caption{%
+Modelled duration of warm-based ice cover during the last
            120\,\unit{ka}. Long ice cover durations combined with basal
            temperatures at the pressure melting point may explain the strong
            glacial erosional imprint of the Skeena Mountains (SM) landscape.
            Hatches indicate areas that were covered by cold ice only.}
-  \label{fig:hr_geom_warmbase}
-\end{figure*}
+\label{fig:hr_geom_warmbase}%
+\end{figure*}%
 
-\begin{figure*}
-  \vspace{-0.5mm}  % enough to allow the two figures to fit on one page
-  \includegraphics{hr_geom_warmfrac}
-  \caption{Modelled fraction of warm-based ice cover during the ice-covered
+
+\begin{figure*}%
+\includegraphics{hr_geom_warmfrac}
+\caption{%
+Modelled fraction of warm-based ice cover during the ice-covered
            period. Note the dominance of warm-based conditions on the
            continental shelf and major glacial troughs of the coastal ranges.
            Hatches indicate areas that were covered by cold ice only.}
-  \label{fig:hr_geom_warmfrac}
-\end{figure*}
+\label{fig:hr_geom_warmfrac}%
+\end{figure*}%
 
-\begin{figure}
+
+\begin{figure}%
   \includegraphics{lr_ts_deglac}
-  \caption{Temperature offset time-series from the GRIP and EPICA ice core
+\caption{%
+Temperature offset time-series from the GRIP and EPICA ice core
            records (Table~\ref{tab:records}) (top panel), and modelled ice
            volume during the deglaciation, expressed in meters of sea-level
            equivalent (bottom panel).}
-  \label{fig:lr_ts_deglac}
-\end{figure}
+\label{fig:lr_ts_deglac}%
+\end{figure}%
 
-\begin{figure*}
-  \includegraphics{hr_maps_deglac}
-  \caption{Snapshots of modelled surface topography (200\,\unit{m} contours)
+
+\begin{figure*}%
+\includegraphics{hr_maps_deglac}
+\caption{%
+Snapshots of modelled surface topography (200\,\unit{m} contours)
            and surface velocity (colour mapping) during the last deglaciation
            from the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km} simulations.
            Dashed segments \textbf{(A--D)} indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
-  \label{fig:hr_geom_deglacageshots}
-\end{figure*}
+\label{fig:hr_geom_deglacageshots}%
+\end{figure*}%
 
-\begin{figure*}
-  \vspace{-1.5mm}  % enough to allow the two figures to fit on one page
-  \includegraphics{hr_geom_deglacage}
-  \caption{Modelled age of the last deglaciation. Areas that have been covered
+
+\begin{figure*}%
+\includegraphics{hr_geom_deglacage}
+\caption{%
+Modelled age of the last deglaciation. Areas that have been covered
            only before the last glacial maximum are marked
            in green. Hatches denote re-advance of mountain-centred ice caps and
            the decaying ice sheet between 14 and 10\,\unit{ka}.
            Dashed segments \textbf{(A--D)} indicate the location of profiles used in
            Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
-  \label{fig:hr_geom_deglacage}
-\end{figure*}
+\label{fig:hr_geom_deglacage}%
+\end{figure*}%
 
-\begin{figure*}
-  \includegraphics{hr_geom_lastflow}
-  \caption{Modelled deglacial basal ice velocities. Hatches
+
+\begin{figure*}%
+\includegraphics{hr_geom_lastflow}
+\caption{%
+Modelled deglacial basal ice velocities. Hatches
            indicate areas that remain non-sliding throughout deglaciation
            (22.0--8.0\,\unit{ka}), notably including parts of the Interior Plateau (IP).
            Note the concentric patterns of deglacial flow in the Liard
            Lowland (LL).
            Sliding grid cells were distinguished from non-sliding grid cells
            using a~basal velocity threshold of 1\,\unit{m\,yr^{-1}}.}
-  \label{fig:hr_geom_lastflow}
-\end{figure*}
+\label{fig:hr_geom_lastflow}%
+\end{figure*}%
 
-\begin{figure}
-  \includegraphics{hr_pf_grip}
-  \caption{Modelled bedrock (black) and ice surface (blue) topography profiles
+
+\begin{figure}%
+\includegraphics{hr_pf_grip}
+\caption{%
+Modelled bedrock (black) and ice surface (blue) topography profiles
            during deglaciation (22.0--8.0\,\unit{ka}) in the GRIP 5\,\unit{km}
            simulation, corresponding to the four transects indicated in
            Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
-  \label{fig:hr_pf_grip}
-\end{figure}
+\label{fig:hr_pf_grip}%
+\end{figure}%
 
-\begin{figure}
-  \includegraphics{hr_pf_epica}
-  \caption{Modelled bedrock (black) and ice surface (red) topography profiles
+
+\begin{figure}%
+\includegraphics{hr_pf_epica}
+\caption{%
+Modelled bedrock (black) and ice surface (red) topography profiles
            during deglaciation (22.0--8.0\,\unit{ka}) in the EPICA 5\,\unit{km}
            simulation, corresponding to the four transects indicated in
            Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
-  \label{fig:hr_pf_epica}
+\label{fig:hr_pf_epica}%
 \end{figure}
 
+
 \end{document}
-\endinput
+\endinput%%%%%%
