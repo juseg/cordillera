@@ -18,6 +18,11 @@
 *.lot
 *.ttt
 
+# Latexdiff
+*.cb
+*.cb2
+*-diff.tex
+
 # Python
 *.pyc
 *.png

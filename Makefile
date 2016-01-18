@@ -1,9 +1,15 @@
 PAPER = cordillera-cycle
 
-all: $(PAPER).tex figures
+all: $(PAPER).pdf revisions-diff.pdf figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
 
-.PHONY : figures clean
+%.pdf: %.tex
+	latexmk -pdf -dvi- -ps- $<
+
+revisions-diff.tex: typeset.tex $(PAPER).tex
+	latexdiff --type=CULINECHBAR $^ > revisions-diff.tex
+
+.PHONY : diff figures clean
 
 figures:
 	cd figures && $(MAKE)
