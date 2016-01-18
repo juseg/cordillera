@@ -1102,15 +1102,15 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 \bibliography{refs/references}
 \newpage
 
+
 \begin{table*}
-  \centering
-  \caption{Parameter values used in the ice sheet model.}
-  \label{tab:params}
-  {\begin{tabular}{llrl}
+\caption{Parameter values used in the ice sheet model.}
+\label{tab:params}
+%\scalebox{.85}[.85]
+{\begin{tabular}{llrl}
     \tophline
     Not.    & Name & Value & Unit \\
     \middlehline
-
     $\rho$  & Ice density
             & 910
             & \unit{kg\,m^{-3}} \\
@@ -1118,12 +1118,12 @@ middle Holocene (6.6--6.2\,\unit{ka}).
     $g$     & Standard gravity
             & 9.81
             & \unit{m\,s^{-2}} \\
-
-    \multicolumn{2}{l}{\emph{Basal sliding}} \\
-
+    \cline{1-4}
+    \multicolumn{2}{l}{{Basal sliding}} \\
+    \cline{1-4}
     $q$     & Pseudo-plastic sliding exponent
             & 0.25
-            & - \\
+            & -- \\
 
     $v_{\text{th}}$& Pseudo-plastic threshold velocity
             & 100.0
@@ -1135,22 +1135,22 @@ middle Holocene (6.6--6.2\,\unit{ka}).
 
     $\delta$& Effective pressure coefficient
             & 0.02
-            & - \\
+            & -- \\
 
     $e_0$   & Till reference void ratio
             & 0.69
-            & - \\
+            & -- \\
 
     $C_{\mathrm{c}}$   & Till compressibility coefficient
             & 0.12
-            & - \\
+            & -- \\
 
     $W_{\text{max}}$ & Maximal till water thickness
             & 2.0
             & m \\
-
-    \multicolumn{2}{l}{\emph{Bedrock and lithosphere}} \\
-
+    \cline{1-4}
+    \multicolumn{2}{l}{{Bedrock and lithosphere}} \\
+    \cline{1-4}
     $\rho_{\mathrm{b}}$& Bedrock density
             & 3300
             & \unit{kg\,m^{-3}} \\
@@ -1174,9 +1174,9 @@ middle Holocene (6.6--6.2\,\unit{ka}).
     $D$     & Lithosphere flexural rigidity
             & $5.0\times10^{24}$
             & \unit{N} \\
-
-    \multicolumn{2}{l}{\emph{Surface and atmosphere}} \\
-
+    \cline{1-4}
+    \multicolumn{2}{l}{{Surface and atmosphere}} \\
+    \cline{1-4}
     $T_{\mathrm{s}}$   & Temperature of snow precipitation
             & 273.15
             & \unit{K} \\
@@ -1196,23 +1196,23 @@ middle Holocene (6.6--6.2\,\unit{ka}).
     $\gamma$& Air temperature lapse rate
             & $6\times10^{-3}$
             & \unit{K\,m^{-1}} \\
-
     \bottomhline
-  \end{tabular}}
-  \belowtable{}
+\end{tabular}}
 \end{table*}
 
 
-\begin{table*}[t]
-  \caption{Palaeo-temperature proxy records and scaling parameters yielding
+\begin{table*}
+  \caption{%
+Palaeo-temperature proxy records and scaling parameters yielding
            temperature offset time-series used to force the ice sheet model
            through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$
            corresponds to the scaling factor adopted to yield last glacial
            maximum ice limits in the vicinity of mapped end moraines, and
            $T_{[32, 22]}$ refers to the resulting mean temperature anomaly
            during the period -32 to~-22\,\unit{ka} after scaling.}
-  \label{tab:records}
-  {\begin{tabular}{l|ccc|ccc|l}
+\label{tab:records}
+%\scalebox{.850}[.850]
+{\begin{tabular}{l|ccc|ccc|l}
     \tophline
     Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
            & Reference\\
@@ -1260,19 +1260,21 @@ middle Holocene (6.6--6.2\,\unit{ka}).
              & 1.20 & -6.0 % -5.0000
              & \citet{Herbert.etal.2001} \\
     \bottomhline
-  \end{tabular}}
-  \belowtable{}
+\end{tabular}}
 \end{table*}
 
+
 \begin{table*}
-  \caption{Extremes in Cordilleran ice sheet volume and extent corresponding to
+\caption{%
+Extremes in Cordilleran ice sheet volume and extent corresponding to
            MIS~4, 3 and 2 for each of the six low-resolution simulations
            (Fig.~\ref{fig:lr_ts}).}
-  \label{tab:extrema}
-  {\begin{tabular}{l*{3}{|ccc}}
+\label{tab:extrema}
+%\scalebox{.50}[.50]
+{\begin{tabular}{l|ccc|ccc|ccc}
     \tophline
-             & \multicolumn{3}{c}{Age (ka)}
-             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c|}{Age (ka)}
+             & \multicolumn{3}{c|}{Ice extent (\unit{10^6\,km^2})}
              & \multicolumn{3}{c}{Ice volume (m\,s.l.e.)} \\
     Record   &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2
@@ -1296,7 +1298,7 @@ middle Holocene (6.6--6.2\,\unit{ka}).
     ODP 1020 &  60.23 &  52.97 &  20.56
              &   1.25 &   0.72 &   2.09
              &   3.84 &   1.75 &   8.81 \\
-    \middlehline
+    \cline{1-10}
     Minimum  &  61.89 &  52.97 &  23.19
              &   1.25 &   0.69 &   2.01
              &   3.84 &   1.69 &   8.40 \\
@@ -1304,8 +1306,7 @@ middle Holocene (6.6--6.2\,\unit{ka}).
              &   2.11 &   1.03 &   2.10
              &   8.84 &   2.88 &   8.91 \\
     \bottomhline
-  \end{tabular}}
-  \belowtable{}
+\end{tabular}}
 \end{table*}
 
 
