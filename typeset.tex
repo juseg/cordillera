@@ -1718,7 +1718,8 @@ doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
 
 
 \begin{table}[t]
-\caption{Parameter values used in the ice sheet model.}
+\caption{%
+      Parameter values used in the ice sheet model.}
 %\scalebox{.85}[.85]
 {\begin{tabular}{llcc}
     \tophline
@@ -1827,14 +1828,14 @@ doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
 
 
 \begin{table}[t]
-  \caption{%
-Palaeo-temperature proxy records and scaling parameters yielding
-           temperature offset time-series used to force the ice sheet model
-           through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$
-           corresponds to the scaling factor adopted to yield last glacial
-           maximum ice limits in the vicinity of mapped end moraines, and
-           $T_{[32, 22]}$ refers to the resulting mean temperature anomaly
-           during the period $-$32 to~$-$22\,\unit{ka} after scaling.}
+\caption{%
+      Palaeo-temperature proxy records and scaling parameters yielding
+      temperature offset time-series used to force the ice sheet model
+      through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$ corresponds
+      to the scaling factor adopted to yield last glacial maximum ice limits
+      in the vicinity of mapped end moraines, and $T_{[32, 22]}$ refers to
+      the resulting mean temperature anomaly during the period $-$32
+      to~$-$22\,\unit{ka} after scaling.}
 \label{tab:records}
   {
 \scalebox{.850}[.850]
@@ -1890,10 +1891,10 @@ Palaeo-temperature proxy records and scaling parameters yielding
 \end{table}
 
 \begin{table}
-  \caption{%
-Extremes in Cordilleran ice sheet volume and extent corresponding to
-           MIS~4, 3 and 2 for each of the six low-resolution simulations
-           (Fig.~\ref{fig:lr_ts}).}
+\caption{%
+      Extremes in Cordilleran ice sheet volume and extent corresponding to
+      MIS~4, 3 and 2 for each of the six low-resolution simulations
+      (Fig.~\ref{fig:lr_ts}).}
 \label{tab:extrema}
   {
 %\scalebox{.50}[.50]
@@ -1939,21 +1940,19 @@ Extremes in Cordilleran ice sheet volume and extent corresponding to
 \begin{figure}%
 \includegraphics{locmap}
 \caption{%
-Relief map of northern North America showing a~reconstruction of the
-           areas once covered by the Cordilleran (CIS), Laurentide (LIS),
-           Innuitian (IIS), and Greenland (GIS) ice sheets during the last
-           18\,\unit{\chem{^{14}C}\,ka} \citep[21.4\,cal\,ka,][]{Dyke.2004}.
-           The rectangular box denotes the location of the
-           modelling domain used in this study. Major mountain ranges covered
-           by the ice sheet include the Alaska Range (AR), the Wrangell and
-           Saint Elias mountains (WSEM), the Selwyn and Mackenzie mountains
-           (SMKM), the Skeena Mountains (SM), the Coast Mountains (CM), the
-           Columbia and Rocky
-           Mountains (CRM), and the North Cascades (NC). Major depressions
-           include the Liard Lowland (LL), the Interior Plateau of British
-           Columbia (IP), and the Puget Lowland (PL). The background
-           map consists of ETOPO1 \citep{Amante.Eakins.2009} and Natural Earth
-           Data \citep{Patterson.Kelso.2015}.}
+      Relief map of northern North America showing a~reconstruction of the
+      areas once covered by the Cordilleran (CIS), Laurentide (LIS),
+      Innuitian (IIS), and Greenland (GIS) ice sheets during the last
+      18\,\unit{\chem{^{14}C}\,ka} \citep[21.4\,cal\,ka,][]{Dyke.2004}. The
+      rectangular box denotes the location of the modelling domain used in
+      this study. Major mountain ranges covered by the ice sheet include the
+      Alaska Range (AR), the Wrangell and Saint Elias mountains (WSEM), the
+      Selwyn and Mackenzie mountains (SMKM), the Skeena Mountains (SM), the
+      Coast Mountains (CM), the Columbia and Rocky Mountains (CRM), and the
+      North Cascades (NC). Major depressions include the Liard Lowland (LL),
+      the Interior Plateau of British Columbia (IP), and the Puget Lowland
+      (PL). The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
+      and Natural Earth Data \citep{Patterson.Kelso.2015}.}
 \label{fig:locmap}%
 \end{figure}%
 
@@ -1961,14 +1960,14 @@ Relief map of northern North America showing a~reconstruction of the
 \begin{figure}%
 \includegraphics{atm}
 \caption{%
-Monthly mean near-surface air temperature, precipitation, and
-           standard deviation of daily mean temperature (PDD SD) for January
-           and July from the North American Regional Reanalysis
-           \citep[NARR;][]{Mesinger.etal.2006}, used to force the surface mass
-           balance (PDD) component of the ice sheet model. Note the
-           strong contrasts in seasonality, timing of the precipitation peak,
-           and temperature variability over the model domain, notably between
-           coastal and inland regions.}
+      Monthly mean near-surface air temperature, precipitation, and standard
+      deviation of daily mean temperature (PDD SD) for January and July from
+      the North American Regional Reanalysis
+      \citep[NARR;][]{Mesinger.etal.2006}, used to force the surface mass
+      balance (PDD) component of the ice sheet model. Note the strong
+      contrasts in seasonality, timing of the precipitation peak, and
+      temperature variability over the model domain, notably between coastal
+      and inland regions.}
 \label{fig:atm}%
 \end{figure}%
 
@@ -1976,18 +1975,18 @@ Monthly mean near-surface air temperature, precipitation, and
 \begin{figure}%
 \includegraphics{lr_ts}
 \caption{%
-Temperature offset time-series from ice core and ocean records
-           (Table~\ref{tab:records}) used as palaeo-climate forcing for the ice
-           sheet model (top panel), and modelled ice volume (bottom panel)
-           through the last 120\,\unit{ka}. Ice volumes are expressed in meters of sea
-           level equivalent (m\,s.l.e.). Gray fields indicate Marine Oxygen
-           Isotope Stage (MIS) boundaries for MIS~2 and MIS~4 according to
-           a~global compilation of benthic \chem{\delta^{18}O} records
-           \citep{Lisiecki.Raymo.2005}. Hatched rectangles highlight the
-           time-volume span for ice volume extremes corresponding to MIS~4
-           (61.9--56.5\,\unit{ka}), MIS~3 (53.0--41.3\,\unit{ka}), and MIS~2 (LGM,
-           23.2--16.8\,\unit{ka}). Dotted lines correspond to GRIP- and EPICA-driven
-           5\,\unit{km}-resolution runs.}
+      Temperature offset time-series from ice core and ocean records
+      (Table~\ref{tab:records}) used as palaeo-climate forcing for the ice
+      sheet model (top panel), and modelled ice volume (bottom panel)
+      through the last 120\,\unit{ka}. Ice volumes are expressed in meters
+      of sea level equivalent (m\,s.l.e.). Gray fields indicate Marine
+      Oxygen Isotope Stage (MIS) boundaries for MIS~2 and MIS~4 according to
+      a~global compilation of benthic \chem{\delta^{18}O} records
+      \citep{Lisiecki.Raymo.2005}. Hatched rectangles highlight the
+      time-volume span for ice volume extremes corresponding to MIS~4
+      (61.9--56.5\,\unit{ka}), MIS~3 (53.0--41.3\,\unit{ka}), and MIS~2
+      (LGM, 23.2--16.8\,\unit{ka}). Dotted lines correspond to GRIP- and
+      EPICA-driven 5\,\unit{km}-resolution runs.}
 \label{fig:lr_ts}%
 \end{figure}%
 
@@ -1995,11 +1994,11 @@ Temperature offset time-series from ice core and ocean records
 \begin{figure}%
 \includegraphics{lr_maps}
 \caption{%
-Snapshots of modelled surface topography (500\,\unit{m} contours)
-           corresponding to the ice volume extremes indicated on
-           Fig.~\ref{fig:lr_ts}. An ice cap persists over the Skeena
-           Mountains (SM) during MIS~3. Note the occurence of spatial
-           similarities despite large differences in timing.}
+      Snapshots of modelled surface topography (500\,\unit{m} contours)
+      corresponding to the ice volume extremes indicated on
+      Fig.~\ref{fig:lr_ts}. An ice cap persists over the Skeena Mountains
+      (SM) during MIS~3. Note the occurence of spatial similarities despite
+      large differences in timing.}
 \label{fig:lr_maps}%
 \end{figure}%
 
@@ -2007,9 +2006,9 @@ Snapshots of modelled surface topography (500\,\unit{m} contours)
 \begin{figure}%
 \includegraphics{hr_maps_mis2}
 \caption{%
-Modelled surface topography (200\,\unit{m} contours) and surface velocity
-           (colour mapping) corresponding to the maximum ice volume during
-           MIS~2 in the GRIP and EPICA high-resolution simulations.}
+      Modelled surface topography (200\,\unit{m} contours) and surface
+      velocity (colour mapping) corresponding to the maximum ice volume
+      during MIS~2 in the GRIP and EPICA high-resolution simulations.}
 \label{fig:mis2}%
 \end{figure}%
 
@@ -2017,9 +2016,9 @@ Modelled surface topography (200\,\unit{m} contours) and surface velocity
 \begin{figure}%
 \includegraphics{hr_maps_mis4}
 \caption{%
-Modelled surface topography (200\,\unit{m} contours) and surface velocity
-           (colour mapping) corresponding to the maximum ice volume during
-           MIS~4 in the GRIP and EPICA high-resolution simulations.}
+      Modelled surface topography (200\,\unit{m} contours) and surface
+      velocity (colour mapping) corresponding to the maximum ice volume
+      during MIS~4 in the GRIP and EPICA high-resolution simulations.}
 \label{fig:mis4}%
 \end{figure}%
 
@@ -2027,16 +2026,15 @@ Modelled surface topography (200\,\unit{m} contours) and surface velocity
 \begin{figure}%
 \includegraphics{hr_geom_duration}
 \caption{%
-Modelled duration of ice cover during the last 120\,\unit{ka} using GRIP
-           and EPICA climate forcing.
-           Note the irregular colour scale. A~continuous ice cover spanning
-           from the Alaska Range (AR) to the Coast Mountains (CM) and
-           the Columbia and Rocky mountains (CRM) exists for about 32\,\unit{ka} in
-           the GRIP simulation and 26\,\unit{ka} in the EPICA simulation.
-           The maximum extent of the ice sheet generally
-           corresponds to relatively short durations of ice cover, but ice
-           cover persists over the Skeena Mountains (SM) during most of the
-           simulation. See Fig.~\ref{fig:locmap} for a~list of abbreviations.}
+      Modelled duration of ice cover during the last 120\,\unit{ka} using
+      GRIP and EPICA climate forcing. Note the irregular colour scale.
+      A~continuous ice cover spanning from the Alaska Range (AR) to the
+      Coast Mountains (CM) and the Columbia and Rocky mountains (CRM) exists
+      for about 32\,\unit{ka} in the GRIP simulation and 26\,\unit{ka} in
+      the EPICA simulation. The maximum extent of the ice sheet generally
+      corresponds to relatively short durations of ice cover, but ice cover
+      persists over the Skeena Mountains (SM) during most of the simulation.
+      See Fig.~\ref{fig:locmap} for a~list of abbreviations.}
 \label{fig:hr_geom_duration}%
 \end{figure}%
 
@@ -2044,11 +2042,11 @@ Modelled duration of ice cover during the last 120\,\unit{ka} using GRIP
 \begin{figure}%
 \includegraphics{hr_geom_warmbase}
 \caption{%
-Modelled duration of warm-based ice cover during the last
-           120\,\unit{ka}. Long ice cover durations combined with basal
-           temperatures at the pressure melting point may explain the strong
-           glacial erosional imprint of the Skeena Mountains (SM) landscape.
-           Hatches indicate areas that were covered by cold ice only.}
+      Modelled duration of warm-based ice cover during the last
+      120\,\unit{ka}. Long ice cover durations combined with basal
+      temperatures at the pressure melting point may explain the strong
+      glacial erosional imprint of the Skeena Mountains (SM) landscape.
+      Hatches indicate areas that were covered by cold ice only.}
 \label{fig:hr_geom_warmbase}%
 \end{figure}%
 
@@ -2056,10 +2054,10 @@ Modelled duration of warm-based ice cover during the last
 \begin{figure}%
 \includegraphics{hr_geom_warmfrac}
 \caption{%
-Modelled fraction of warm-based ice cover during the ice-covered
-           period. Note the dominance of warm-based conditions on the
-           continental shelf and major glacial troughs of the coastal ranges.
-           Hatches indicate areas that were covered by cold ice only.}
+      Modelled fraction of warm-based ice cover during the ice-covered
+      period. Note the dominance of warm-based conditions on the continental
+      shelf and major glacial troughs of the coastal ranges. Hatches
+      indicate areas that were covered by cold ice only.}
 \label{fig:hr_geom_warmfrac}%
 \end{figure}%
 
@@ -2067,10 +2065,10 @@ Modelled fraction of warm-based ice cover during the ice-covered
 \begin{figure}%
 \includegraphics{lr_ts_deglac}
 \caption{%
-Temperature offset time-series from the GRIP and EPICA ice core
-           records (Table~\ref{tab:records}) (top panel), and modelled ice
-           volume during the deglaciation, expressed in meters of sea-level
-           equivalent (bottom panel).}
+      Temperature offset time-series from the GRIP and EPICA ice core
+      records (Table~\ref{tab:records}) (top panel), and modelled ice volume
+      during the deglaciation, expressed in meters of sea-level equivalent
+      (bottom panel).}
 \label{fig:lr_ts_deglac}%
 \end{figure}%
 
@@ -2078,11 +2076,12 @@ Temperature offset time-series from the GRIP and EPICA ice core
 \begin{figure}%
 \includegraphics{hr_maps_deglac}
 \caption{%
-Snapshots of modelled surface topography (200\,\unit{m} contours)
-           and surface velocity (colour mapping) during the last deglaciation
-           from the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km} simulations.
-           Dashed segments \textbf{(A--D)} indicate the location of profiles used in
-           Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
+      Snapshots of modelled surface topography (200\,\unit{m} contours) and
+      surface velocity (colour mapping) during the last deglaciation from
+      the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km}
+      simulations. Dashed segments \textbf{(A--D)} indicate the location of
+      profiles used in Figs.~\ref{fig:hr_pf_grip}
+      and~\ref{fig:hr_pf_epica}.}
 \label{fig:hr_geom_deglacageshots}%
 \end{figure}%
 
@@ -2090,12 +2089,12 @@ Snapshots of modelled surface topography (200\,\unit{m} contours)
 \begin{figure}%
 \includegraphics{hr_geom_deglacage}
 \caption{%
-Modelled age of the last deglaciation. Areas that have been covered
-           only before the last glacial maximum are marked
-           in green. Hatches denote re-advance of mountain-centred ice caps and
-           the decaying ice sheet between 14 and 10\,\unit{ka}.
-           Dashed segments \textbf{(A--D)} indicate the location of profiles used in
-           Figs.~\ref{fig:hr_pf_grip} and~\ref{fig:hr_pf_epica}.}
+      Modelled age of the last deglaciation. Areas that have been covered
+      only before the last glacial maximum are marked in green. Hatches
+      denote re-advance of mountain-centred ice caps and the decaying ice
+      sheet between 14 and 10\,\unit{ka}. Dashed segments \textbf{(A--D)}
+      indicate the location of profiles used in Figs.~\ref{fig:hr_pf_grip}
+      and~\ref{fig:hr_pf_epica}.}
 \label{fig:hr_geom_deglacage}%
 \end{figure}%
 
@@ -2103,13 +2102,12 @@ Modelled age of the last deglaciation. Areas that have been covered
 \begin{figure}%
 \includegraphics{hr_geom_lastflow}
 \caption{%
-Modelled deglacial basal ice velocities. Hatches
-           indicate areas that remain non-sliding throughout deglaciation
-           (22.0--8.0\,\unit{ka}), notably including parts of the Interior Plateau (IP).
-           Note the concentric patterns of deglacial flow in the Liard
-           Lowland (LL).
-           Sliding grid cells were distinguished from non-sliding grid cells
-           using a~basal velocity threshold of 1\,\unit{m\,yr^{-1}}.}
+      Modelled deglacial basal ice velocities. Hatches indicate areas that
+      remain non-sliding throughout deglaciation (22.0--8.0\,\unit{ka}),
+      notably including parts of the Interior Plateau (IP). Note the
+      concentric patterns of deglacial flow in the Liard Lowland (LL).
+      Sliding grid cells were distinguished from non-sliding grid cells
+      using a~basal velocity threshold of 1\,\unit{m\,yr^{-1}}.}
 \label{fig:hr_geom_lastflow}%
 \end{figure}%
 
@@ -2117,10 +2115,11 @@ Modelled deglacial basal ice velocities. Hatches
 \begin{figure}%
 \includegraphics{hr_pf_grip}
 \caption{%
-Modelled bedrock (black) and ice surface (blue) topography profiles
-           during deglaciation (22.0--8.0\,\unit{ka}) in the GRIP 5\,\unit{km}
-           simulation, corresponding to the four transects indicated in
-           Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
+      Modelled bedrock (black) and ice surface (blue) topography profiles
+      during deglaciation (22.0--8.0\,\unit{ka}) in the GRIP 5\,\unit{km}
+      simulation, corresponding to the four transects indicated in
+      Figs.~\ref{fig:hr_geom_deglacageshots}
+      and~\ref{fig:hr_geom_deglacage}.}
 \label{fig:hr_pf_grip}%
 \end{figure}%
 
@@ -2128,10 +2127,11 @@ Modelled bedrock (black) and ice surface (blue) topography profiles
 \begin{figure}%
 \includegraphics{hr_pf_epica}
 \caption{%
-Modelled bedrock (black) and ice surface (red) topography profiles
-           during deglaciation (22.0--8.0\,\unit{ka}) in the EPICA 5\,\unit{km}
-           simulation, corresponding to the four transects indicated in
-           Figs.~\ref{fig:hr_geom_deglacageshots} and~\ref{fig:hr_geom_deglacage}.}
+      Modelled bedrock (black) and ice surface (red) topography profiles
+      during deglaciation (22.0--8.0\,\unit{ka}) in the EPICA 5\,\unit{km}
+      simulation, corresponding to the four transects indicated in
+      Figs.~\ref{fig:hr_geom_deglacageshots}
+      and~\ref{fig:hr_geom_deglacage}.}
 \label{fig:hr_pf_epica}%
 \end{figure}
 
