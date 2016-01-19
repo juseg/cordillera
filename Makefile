@@ -7,7 +7,7 @@ all: $(PAPER).pdf revisions-diff.pdf figures
 	latexmk -pdf -dvi- -ps- $<
 
 revisions-diff.tex: typeset.tex $(PAPER).tex
-	latexdiff --type=CULINECHBAR $^ > revisions-diff.tex
+	latexdiff $^ > revisions-diff.tex
 
 .PHONY : diff figures clean
 
