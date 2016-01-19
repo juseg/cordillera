@@ -15,7 +15,7 @@ LR_FIGS := $(addsuffix .$(EXT), $(LR_FIGS))
 HR_FIGS := hr_geom_basedispl hr_geom_deglacage hr_geom_duration \
            hr_geom_lastflow hr_geom_warmbase hr_geom_warmfrac \
            hr_maps_deglac hr_maps_mis2 hr_maps_mis3 hr_maps_mis4 \
-           hr_maps_puget lr_ts_deglac \
+           hr_maps_puget hr_ts_deglac \
            hr_pf_epica hr_pf_grip
 HR_FIGS := $(addsuffix .$(EXT), $(HR_FIGS))
 
