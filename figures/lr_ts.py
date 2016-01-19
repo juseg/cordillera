@@ -17,25 +17,13 @@ fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
 mis_idces = np.zeros((6, 3), dtype=int)
 mis_times = np.zeros((6, 3), dtype=float)
 mis_ivols = np.zeros((6, 3), dtype=float)
-mis_iareas = np.zeros((6, 3), dtype=float)
 
-# loop on records[i]
-tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
+# loop on records
 for i, rec in enumerate(ut.lr.records):
     dt = ut.lr.offsets[i]
 
     # get MIS times
     mis_idces[i], mis_times[i] = ut.io.get_mis_times(res, rec, dt)
-
-    # compute area from extra file
-    nc = ut.io.open_extra_file(res, rec, dt)
-    ex_thk = nc.variables['thk']
-    ex_time = nc.variables['time']
-    ex_mask = nc.variables['mask']
-    ex_idces = [(np.abs(ex_time[:]-t*ut.a2s)).argmin() for t in mis_times[i]]
-    mis_iareas[i] = ((ex_thk[ex_idces] >= ut.thkth)*
-                     (ex_mask[ex_idces] == 2)).sum(axis=(1,2))*1e-4
-    nc.close()
 
     # load forcing time series
     nc = ut.io.open_dt_file(rec, dt)
@@ -48,13 +36,6 @@ for i, rec in enumerate(ut.lr.records):
     ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
-    mis_ivols[i] = ts_ivol[mis_idces[i]]
-
-    # print info in table style
-    tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
-    print tabline % ( (ut.lr.labels[i],) + tuple(-mis_times[i]/1e3) )
-    print tabline % ( ('',) + tuple(mis_iareas[i]) )
-    print tabline % ( ('',) + tuple(mis_ivols[i]) ) + '\\\\'
 
     # plot time series
     ax1.plot(-dt_time, dt_temp, color=ut.lr.colors[i])
@@ -88,21 +69,11 @@ mistmin = mis_times.min(axis=0)
 mistmax = mis_times.max(axis=0)
 misvmin = mis_ivols.min(axis=0)
 misvmax = mis_ivols.max(axis=0)
-misamin = mis_iareas.min(axis=0)
-misamax = mis_iareas.max(axis=0)
 for i in range(3):
     ax2.add_patch(Rectangle((-mistmin[i]/1e3, misvmin[i]),
                              -(mistmax[i]-mistmin[i])/1e3,
                              misvmax[i] - misvmin[i],
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
-
-# print info in table style
-print tabline % ( ('Minimum',) + tuple(-mistmin/1e3) )
-print tabline % ( ('',) + tuple(misamin) )
-print tabline % ( ('',) + tuple(misvmin) ) + '\\\\'
-print tabline % ( ('Maximum',) + tuple(-mistmax/1e3) )
-print tabline % ( ('',) + tuple(misamax) )
-print tabline % ( ('',) + tuple(misvmax) ) + '\\\\'
 
 # set axes properties and save time series
 print 'saving timeseries...'
