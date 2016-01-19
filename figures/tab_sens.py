@@ -16,11 +16,11 @@ header=r'''\documentclass[border=2.5mm]{standalone}
 
 \begin{document}
 
-  \begin{tabular}{l*{3}{|ccc}}
+  \begin{tabular}{l|ccc|ccc|ccc}
     \tophline
-             & \multicolumn{3}{c}{Age (ka)}
-             & \multicolumn{3}{c}{Ice extent (\unit{10^6\,km^2})}
-             & \multicolumn{3}{c}{Ice volume (m~s.l.e.)} \\
+             & \multicolumn{3}{c|}{Age (ka)}
+             & \multicolumn{3}{c|}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c}{Ice volume (m\,s.l.e.)} \\
     Config.  &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2 \\
@@ -85,7 +85,7 @@ with open('tab_sens.tex', 'w') as f:
 
         # add horizontal lines
         if i in (0, 2):
-            f.write('    \middlehline\n')
+            f.write('    \cline{1-10}\n')
 
     # write footer
     f.write(footer)
