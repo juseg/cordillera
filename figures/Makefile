@@ -28,7 +28,7 @@ SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS)
 
 # all python-latex figures
-PYTEX_FIGS := tab_lr tab_sens
+PYTEX_FIGS := tab_hr tab_lr tab_sens
 PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
 
 # all figures
