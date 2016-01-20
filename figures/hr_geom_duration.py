@@ -9,7 +9,7 @@ import iceplotlib.plot as iplt
 res = '5km'
 records = ut.hr.records
 offsets = ut.hr.offsets
-cislevs = [32.0, 26.0]
+cislevs = [34.0, 28.0]
 
 # initialize figure
 figw, figh = 120.0, 100.0
