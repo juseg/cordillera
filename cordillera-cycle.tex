@@ -213,7 +213,8 @@ middle Holocene (6.7\,\unit{ka}).
       \citep{Amante.Eakins.2009}. Sea level is lowered as a~function of time
       based on the Spectral Mapping Project
       \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Geothermal heat flux
-      is applied as a~constant value of 70\,\unit{mW\,m^{-2}} at
+      is applied as a~constant value of
+      $q_{\mathrm{G}}=70$\,\unit{mW\,m^{-2}} at
       3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Basal sliding follows
       a pseudo-plastic law where the yield stress accounts for till
       deconsolidation under high water pressure (Sect.~\ref{sec:sliding}).
@@ -1952,100 +1953,222 @@ doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
 
 \begin{table*}
 \caption{%
-      Parameter values used in the ice sheet model.}
+      Default parameter values used in the ice sheet model.}
 \label{tab:params}
-%\scalebox{.85}[.85]
-{\begin{tabular}{llrl}
+\scalebox{.85}[.85]
+{\begin{tabular}{llrll}
     \tophline
-    Not.    & Name & Value & Unit \\
+    Not.    & Name & Value & Unit & Source \\
     \middlehline
+    \multicolumn{2}{l}{{Ice rheology}} \\
+    \cline{1-5}
+
     $\rho$  & Ice density
             & 910
-            & \unit{kg\,m^{-3}} \\
+            & \unit{kg\,m^{-3}}
+            & \citet{Aschwanden.etal.2012} \\
 
     $g$     & Standard gravity
             & 9.81
-            & \unit{m\,s^{-2}} \\
-    \cline{1-4}
+            & \unit{m\,s^{-2}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $n$     & Glen exponent
+            & 3
+            & --
+            & \citet{Cuffey.Paterson.2010} \\
+
+    $A_{\mathrm{c}}$   & Ice hardness coefficient cold$^1$
+            & $3.61\times10^{-13}$
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $A_{\mathrm{w}}$   & Ice hardness coefficient warm$^1$
+            & $1.73\times10^3$
+            & \unit{Pa^{-3}\,s^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_{\mathrm{c}}$   & Flow law activation energy cold$^1$
+            & $6.0\times10^4$
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $Q_{\mathrm{w}}$   & Flow law activation energy warm$^1$
+            & $13.9\times10^4$
+            & \unit{J\,mol^{-1}}
+            & \citet{Paterson.Budd.1982} \\
+
+    $T_{\mathrm{c}}$   & Flow law critical temperature
+            & 263.15
+            & \unit{K}
+            & \citet{Paterson.Budd.1982} \\
+
+    $f$     & Flow law water fraction coeff.
+            & 181.25
+            & --
+            & \citet{Lliboutry.Duval.1985} \\
+
+    $R$     & Ideal gas constant
+            & 8.31441
+            & \unit{J\,mol^{-1}\,K^{-1}}
+            & -- \\
+
+    $\beta$ & Clapeyron constant
+            & $7.9\times10^{-8}$
+            & \unit{K\,Pa^{-1}}
+            & \citet{Luthi.etal.2002} \\
+
+    $c_{\mathrm{i}}$   & Ice specific heat capacity
+            & 2009
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $c_{\mathrm{w}}$   & Water specific heat capacity
+            & 4170
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $k$     & Ice thermal conductivity
+            & 2.10
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    $L$     & Water latent heat of fusion
+            & $3.34\times10^5$
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & \citet{Aschwanden.etal.2012} \\
+
+    \cline{1-5}
     \multicolumn{2}{l}{{Basal sliding}} \\
-    \cline{1-4}
+    \cline{1-5}
+
     $q$     & Pseudo-plastic sliding exponent
             & 0.25
-            & -- \\
+            & --
+            & \citet{Aschwanden.etal.2013} \\
 
     $v_{\text{th}}$& Pseudo-plastic threshold velocity
             & 100.0
-            & \unit{m\,yr^{-1}} \\
+            & \unit{m\,yr^{-1}}
+            & \citet{Aschwanden.etal.2013} \\
 
     $c_0$   & Till cohesion
             & 0.0
-            & Pa \\
-
-    $\delta$& Effective pressure coefficient
-            & 0.02
-            & -- \\
-
+            & Pa
+            & \citet{Tulaczyk.etal.2000} \\
     $e_0$   & Till reference void ratio
             & 0.69
-            & -- \\
+            & --
+            & \citet{Tulaczyk.etal.2000} \\
 
     $C_{\mathrm{c}}$   & Till compressibility coefficient
             & 0.12
+            & --
+            & \citet{Tulaczyk.etal.2000} \\
+
+    $\delta$& Minimum effective pressure ratio$^1$
+            & 0.02
+            & --
+            & \citet{Bueler.Pelt.2015} \\
+
+    $W_{\text{max}}$ & Maximal till water thickness$^1$
+            & 2.0
+            & m
+            & \citet{Bueler.Pelt.2015} \\
+
+    $b_0$   & Altitude of max. friction angle
+            & 0
+            & m
             & -- \\
 
-    $W_{\text{max}}$ & Maximal till water thickness
-            & 2.0
-            & m \\
-    \cline{1-4}
+    $b_1$   & Altitude of min. friction angle
+            & 200
+            & m
+            & \citet{Clague.1981} \\
+
+    $\phi_0$& Minimum friction angle
+            & 15
+            & \degree
+            & -- \\
+
+    $\phi_1$& Maximum friction angle
+            & 45
+            & \degree
+            & -- \\
+
+    \cline{1-5}
     \multicolumn{2}{l}{{Bedrock and lithosphere}} \\
-    \cline{1-4}
+    \cline{1-5}
+
+    $q_{\mathrm{G}}$   & Geothermal heat flux
+            & 70.0
+            & \unit{mW\,m^{-2}}
+            & -- \\
+
     $\rho_{\mathrm{b}}$& Bedrock density
             & 3300
-            & \unit{kg\,m^{-3}} \\
+            & \unit{kg\,m^{-3}}
+            & -- \\
 
     $c_{\mathrm{b}}$   & Bedrock specific heat capacity
             & 1000
-            & \unit{J\,kg^{-1}\,K^{-1}} \\
+            & \unit{J\,kg^{-1}\,K^{-1}}
+            & -- \\
 
     $k_{\mathrm{b}}$   & Bedrock thermal conductivity
             & 3.0
-            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}} \\
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}}
+            & -- \\
 
-    $\nu_m$ & Astenosphere viscosity
+    $\nu_{\mathrm{m}}$ & Astenosphere viscosity
             & $1\times10^{19}$
-            & \unit{Pa\,s} \\
+            & \unit{Pa\,s}
+            & \citet{James.etal.2009} \\
 
-    $\rho_l$& Lithosphere density
+    $\rho_{\mathrm{l}}$& Lithosphere density
             & 3300
-            & \unit{kg\,m^{-3}} \\
+            & \unit{kg\,m^{-3}}
+            & \citet{Lingle.Clark.1985} \\
 
     $D$     & Lithosphere flexural rigidity
             & $5.0\times10^{24}$
-            & \unit{N} \\
-    \cline{1-4}
+            & \unit{N}
+            & \citet{Lingle.Clark.1985} \\
+
+    \cline{1-5}
     \multicolumn{2}{l}{{Surface and atmosphere}} \\
-    \cline{1-4}
+    \cline{1-5}
+
     $T_{\mathrm{s}}$   & Temperature of snow precipitation
             & 273.15
-            & \unit{K} \\
+            & \unit{K}
+            & -- \\
 
     $T_{\mathrm{r}}$   & Temperature of rain precipitation
             & 275.15
-            & \unit{K} \\
+            & \unit{K}
+            & -- \\
 
     $F_{\mathrm{s}}$   & Degree-day factor for snow
             & $3.04\times10^{-3}$
-            & \unit{m\,K^{-1}\,day^{-1}} \\
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
 
     $F_{\mathrm{i}}$   & Degree-day factor for ice
             & $4.59\times10^{-3}$
-            & \unit{m\,K^{-1}\,day^{-1}} \\
+            & \unit{m\,K^{-1}\,day^{-1}}
+            & \citet{Shea.etal.2009} \\
 
     $\gamma$& Air temperature lapse rate
             & $6\times10^{-3}$
-            & \unit{K\,m^{-1}} \\
+            & \unit{K\,m{-1}}
+            & -- \\
+
     \bottomhline
 \end{tabular}}
+\belowtable{%
+      $^1$Default value. Alternative values used in sensitivity tests are
+      given in Table~\ref{tab:sens_params}.}
 \end{table*}
 
 
