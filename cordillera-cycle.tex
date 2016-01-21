@@ -219,11 +219,12 @@ middle Holocene (6.7\,\unit{ka}).
       Ice shelf calving is calculated based on ice thickness and principle
       strain rates (Sect.~\ref{sec:sliding}). Surface mass balance is
       computed using a~positive degree-day (PDD) model
-      (Sect.~\ref{sec:surface}). Climate forcing is provided by a~monthly
+      (Sect.~\ref{sec:surface}). Default parameter values are given in
+      Table~\ref{tab:params}. Climate forcing is provided by a~monthly
       climatology averaged from 1979 to 2000 from the North American
       Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbated
       by time-dependent offsets and lapse-rate temperature corrections
-      (Sect.~\ref{sec:atm}).
+      (Sect.~\ref{sec:atm}, Table~\ref{tab:records}).
 
       Each simulation starts from assumed ice-free conditions at
       12\,0000\,\unit{years} ago (120\,\unit{ka}), and runs to the
@@ -246,8 +247,91 @@ middle Holocene (6.7\,\unit{ka}).
       (SIA) by adding velocity solutions of the two approximations
       \citep[Eqs.~7--9 and 15]{Bueler.Brown.2009, Winkelmann.etal.2011}.
 
-      Ice rheology depends on temperature and water content through an
-      enthalpy formulation \citep{Aschwanden.etal.2012}. Surface air
+      Ice deformation is governed by the constitutive law for ice
+      \citep{Glen.1952, Nye.1953},
+%
+\begin{align}
+&\label{eqn:glenslaw}
+&\vec{\dot{\epsilon}} = A\,\tau_{\mathrm{e}}^{n-1}\,\vec{\tau} \,.
+\end{align}
+%
+      where $\vec{\dot{\epsilon}}$ is the the strain-rate tensor,
+      $\vec{\tau}$ the deviatoric stress tensor, and $\tau_{\mathrm{e}}$ the
+      equivalent stress defined by ${\tau_{\mathrm{e}}}^2 = \frac{1}{2}
+      \mathrm{tr}(\vec{\tau}^2)$. The ice softness coefficient, $A$, depends
+      on ice temperature, $T$, pressure, $p$, and water content, $\omega$,
+      through a piece-wise Arrhenius-type law
+      \citep[Eqs.~63--65]{Aschwanden.etal.2012},
+%
+\begin{align}
+&\label{eqn:softness}
+&A = E\cdot
+\begin{cases}
+A_{\mathrm{c}} \,e^\frac{-Q_{\mathrm{c}}}{RT_{\text{pa}}}            & \text{if}\ T_{\text{pa}}  <  T_{\mathrm{c}} \,, \\
+A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}\ T_{\text{pa}} \ge T_{\mathrm{c}} \,,
+\end{cases}
+\end{align}
+%
+      where $T_{\text{pa}}$ is the pressure-adjusted ice temperature
+      calculated using the Clapeyron relation, ${T_{\text{pa}} = T - \beta
+      p}$. $R=8.31441$\,\unit{J\,mol^{-1}\,K^{-1}} is the ideal gas
+      constant, and $A_{\mathrm{c}}$, $A_{\mathrm{w}}$, $Q_{\mathrm{c}}$ and
+      $Q_{\mathrm{w}}$, are constant parameters corresponding to values
+      measured below and above a critical temperature threshold
+      $T_{\mathrm{c}}=-10$\,\unit{{\degree}C}
+      \citep[p.~72]{Paterson.Budd.1982,Cuffey.Paterson.2010}. The water
+      fraction, $\omega$, is capped at a maximum value of 0.01, above which
+      no measurements are available \citep[Eq.~5.7]{Lliboutry.Duval.1985,
+      Greve.1997}. Finally, $E$ is a non-dimensional enhancement factor
+      which can take different values, $E_{\text{SIA}}$, in the Shallow Ice
+      Approximation (SIA) and $E_{\text{SSA}}$, in the Shallow Shelf
+      Approximation (SSA).
+
+      In all our simulations, we set constant the power-law exponent, $n=3$,
+      according to \citet[p.~55--57]{Cuffey.Paterson.2010}, the Clapeyron
+      constant, $\beta=7.9\times 10^{-8}$\,\unit{K\,Pa^{-1}}, according to
+      \citet{Luthi.etal.2002}, the water fraction coefficient, $f=181.25$,
+      according to \citet{Lliboutry.Duval.1985}, and the SSA enhancement
+      factor, $E_{\text{SSA}}=1$, according to
+      \citet[p.~77]{Cuffey.Paterson.2010}. These fixed parameter values are
+      summarized in Table~\ref{tab:params}.
+
+      On the other hand, we test the model sensitivity
+      (Sect.~\ref{sec:sens}) to different values for the two creep
+      parameters, $A_{\mathrm{c}}$ and $A_{\mathrm{w}}$, the two activation
+      energies, $Q_{\mathrm{c}}$ and $Q_{\mathrm{w}}$, and the SIA
+      enhancement factor, $E_{\text{SIA}}$, as follow.
+%
+\begin{itemize}
+  \item Our \emph{default} configuration used in the control run and all
+    other simulations in the manuscript include rheological parameters,
+    $A_{\mathrm{c}}$, $A_{\mathrm{w}}$, $Q_{\mathrm{c}}$ and
+    $Q_{\mathrm{w}}$, derived from \citet{Paterson.Budd.1982} and given in
+    \citet[Eqn.~5]{Bueler.Brown.2009}, and $E_{\text{SIA}}=1$.
+  \item Our \emph{hard ice} configuration include rheological parameters,
+    $A_{\mathrm{c}}$, $A_{\mathrm{w}}$, $Q_{\mathrm{c}}$ and
+    $Q_{\mathrm{w}}$, derived from \citet[p.~72 and
+    76]{Cuffey.Paterson.2010}, and $E_{\text{SIA}}=1$, which correspond to a
+    stiffer rheology than that used in the control run.
+  \item Our \emph{soft ice} configuration include rheological parameters
+    from \citet{Cuffey.Paterson.2010}, and $E_{\text{SIA}}=5$, the
+    recommended value for ice age polar ice
+    \citep[p.~77]{Cuffey.Paterson.2010}.
+\end{itemize}
+%
+      An additional simulation using the ice rheology from
+      \citet{Cuffey.Paterson.2010} and $E_{\text{SIA}}=2$, the recommended
+      value for Holocene polar ice \citep[p.~77]{Cuffey.Paterson.2010} was
+      performed, but its results were very similar to that of our default
+      run and thus not presented here.
+
+      Actual parameter values for $A_{\mathrm{c}}$, $A_{\mathrm{w}}$,
+      $Q_{\mathrm{c}}$, $Q_{\mathrm{w}}$ and $E_{\text{SIA}}$ used in our
+      simulations are given in Table~\ref{tab:sens_params}, while the effect
+      of the three different parametrisations on temperature-dependent ice
+      softness, $A$, is illustrated in Fig.~\ref{fig:sens_plot_rheo}.
+
+      Surface air
       temperature derived from the climate forcing (Sect.~\ref{sec:atm})
       provides the upper boundary condition to the ice enthalpy
       model. Temperature is computed subglacially to a~depth of
@@ -1951,11 +2035,13 @@ doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
             & \multicolumn{5}{c|}{Rheology}
             & \multicolumn{2}{c|}{Sliding}
             & \multicolumn{2}{c}{GRIP scaling} \\
-    Config. & $A_c$ & $A_w$ & $Q_c$ & $Q_w$ & $E_{SIA}$
-            & $\delta$ & $W_{max}$ & $f$ & $T_{[32, 22]}$ \\
+    Config. & $A_{\mathrm{c}}$ & $A_{\mathrm{w}}$
+            & $Q_{\mathrm{c}}$ & $Q_{\mathrm{w}}$
+            & $E_{\text{SIA}}$ & $\delta$ & $W_{\text{max}}$
+            & $f$ & $T_{[32, 22]}$ \\
             & \multicolumn{2}{c}{(\unit{Pa^{-3}\,s^{-1}})}
             & \multicolumn{2}{c}{(\unit{J\,mol^{-1}})}
-            & & & (m) \\
+            & & & (\unit{m}) \\
     \middlehline
     Default$^1$  & $ 3.61\times 10^{-13}$
                  & $ 1.73\times 10^3$
@@ -2114,11 +2200,12 @@ doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
 \includegraphics{sens_plot_rheo}
 \caption{%
       Ice softness parameter, $A$, as a function of pressure-adjusted
-      temperature, $T_{pa}$, for the default \citep{Paterson.Budd.1982},
-      hard ice \citep[with $E_{SIA}=1$]{Cuffey.Paterson.2010}, and soft ice
-      \citep[with $E_{SIA}=5$]{Cuffey.Paterson.2010} rheologies, using a
-      linear scale (top panel) and logarithmic scale (bottom panel). Figure
-      made using Eqn.~\ref{eqn:softness} with parameters from
+      temperature, $T_{\text{pa}}$, for the default
+      \citep{Paterson.Budd.1982}, hard ice \citep[with
+      $E_{\text{SIA}}=1$]{Cuffey.Paterson.2010}, and soft ice \citep[with
+      $E_{\text{SIA}}=5$]{Cuffey.Paterson.2010} rheologies, using a linear
+      scale (top panel) and logarithmic scale (bottom panel). Figure made
+      using Eqn.~\ref{eqn:softness} with parameters from
       Table~\ref{tab:sens_params}.}
 \label{fig:sens_plot_rheo}%
 \end{figure}%
