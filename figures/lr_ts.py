@@ -36,6 +36,7 @@ for i, rec in enumerate(ut.lr.records):
     ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
+    mis_ivols[i] = ts_ivol[mis_idces[i]]
 
     # plot time series
     ax1.plot(-dt_time, dt_temp, color=ut.lr.colors[i])
