@@ -32,13 +32,13 @@ footer=r'''    \bottomhline
 \end{document}
 '''
 
-# latex table line
+# latex table line (curly braces need to be doubled to escape)
 tabline = (' '*4 + '{title:8}' + ' &{:7.2f}'*3 + '\n'+
            ' '*12 + ' &{:7.2f}'*3 + '\n'+
            ' '*12 + ' &{:7.2f}'*3 + r' \\' + '\n')
-errline = (' '*4 + '{title:8}' + r' &{:5.0f}\%'*3 + '\n'+
-           ' '*12 + r' &{:5.0f}\%'*3 + '\n'+
-           ' '*12 + r' &{:5.0f}\%'*3 + r' \\' + '\n')
+errline = (' '*4 + '{title:8}' + r' &{:5.0f}\,\unit{{\%}}'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\,\unit{{\%}}'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\,\unit{{\%}}'*3 + r' \\' + '\n')
 
 # initialize array
 results = np.zeros((5, 9), dtype=float)
