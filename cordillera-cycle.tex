@@ -184,7 +184,9 @@ middle Holocene (6.7\,\unit{ka}).
       Andersen.etal.2004}, two oxygen isotope records from Antarctic ice
       cores \citep{Petit.etal.1999,Jouzel.etal.2007}, and two alkenone
       unsaturation index records from Northwest Pacific ocean sediment cores
-      \citep{Herbert.etal.2001}. We then proceed to compare the model output
+      \citep{Herbert.etal.2001}. After testing the model sensitivity to
+      these climate forcing time-series and to some of the most influential
+      ice flow parameters, we then proceed to compare the model output
       to geological evidence and discuss the timing and extent of glaciation
       and the patterns of deglaciation, based on which we use the
       applicability of different records to modelling the history of the
@@ -211,7 +213,11 @@ middle Holocene (6.7\,\unit{ka}).
       based on the Spectral Mapping Project
       \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Geothermal heat flux
       is applied as a~constant value of 70\,\unit{mW\,m^{-2}} at
-      3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Surface mass balance is
+      3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Basal sliding follows
+      a pseudo-plastic law where the yield stress accounts for till
+      deconsolidation under high water pressure (Sect.~\ref{sec:sliding}).
+      Ice shelf calving is calculated based on ice thickness and principle
+      strain rates (Sect.~\ref{sec:sliding}). Surface mass balance is
       computed using a~positive degree-day (PDD) model
       (Sect.~\ref{sec:surface}). Climate forcing is provided by a~monthly
       climatology averaged from 1979 to 2000 from the North American
@@ -229,7 +235,7 @@ middle Holocene (6.7\,\unit{ka}).
       were performed on 16 to 128 computing cores at the Swedish National
       Supercomputing Centre.
 
-\subsection{Ice thermodynamics}
+\subsection{Ice rheology}
 \label{sec:icedyn}
 
       Ice sheet dynamics are typically modelled using a~combination of
@@ -255,6 +261,9 @@ middle Holocene (6.7\,\unit{ka}).
       resolution of 100\,\unit{m}. The high-resolution simulations
       61~bedrock layers and up to 101~ice layers with a~vertical resolution
       of 50\,\unit{m}.
+
+\subsection{Basal sliding}
+\label{sec:sliding}
 
       A~pseudo-plastic sliding law,
 \begin{align}
@@ -300,6 +309,9 @@ middle Holocene (6.7\,\unit{ka}).
       (Table~\ref{tab:params}) in accordance with the results from regional
       glacial isostatic adjustment modelling at the northern Cascadia
       subduction zone \citep{James.etal.2009}.
+
+\subsection{Ice shelf calving}
+\label{sec:calving}
 
       Ice shelf calving is computed using a~double criterion. First,
       a~physically-realistic calving flux is computed based on eigenvalues
@@ -411,6 +423,7 @@ middle Holocene (6.7\,\unit{ka}).
       refer to different model runs by the name of the proxy record used for
       the palaeo-temperature forcing.
 
+
 \section{Sensitivity to climate forcing time-series}
 \label{sec:results}
 
@@ -483,6 +496,10 @@ middle Holocene (6.7\,\unit{ka}).
       (Table~\ref{tab:records}), it is interesting to note that modelled
       maximum ice volumes also fall within a~tight range of 8.39 to
       9.07\,\unit{m}\,s.l.e. (Table~\ref{tab:extrema}).
+
+
+\section{Sensitivity to ice flow parameters}
+\label{sec:sens}
 
 
 \section{Comparison with the geologic record}
@@ -815,7 +832,6 @@ middle Holocene (6.7\,\unit{ka}).
       indicates that the observed landscape pattern originates from multiple
       glacial cycles and witnesses an increased relative importance of the
       Selwyn and Mackenzie mountains ice dispersal centre
-      (Fig.~\ref{fig:hr_geom_duration}, SMKM), prior to the Late Pleistocene
       \citep[cf.][]{Ward.etal.2008, Demuro.etal.2012}.
 
       The modelled distribution of warm-based ice cover
