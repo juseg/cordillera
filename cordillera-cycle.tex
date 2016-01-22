@@ -215,10 +215,9 @@ middle Holocene (6.7\,\unit{ka}).
       topography and bathymetry dataset with a~resolution of 1\,arc-min
       \citep{Amante.Eakins.2009} to the model grids. Sea level is lowered as
       a~function of time based on the Spectral Mapping Project
-      \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Geothermal heat flux
-      is applied as a~constant value of
-      $q_{\mathrm{G}}=70$\,\unit{mW\,m^{-2}} at
-      3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Basal sliding follows
+      \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Ice deformation
+      follows temperature and water-content dependent creep
+      (Sect.~\ref{sec:icedyn}). Basal sliding follows
       a pseudo-plastic law where the yield stress accounts for till
       deconsolidation under high water pressure (Sect.~\ref{sec:sliding}).
       Ice shelf calving is calculated based on ice thickness and principle
@@ -343,9 +342,11 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       Surface air
       temperature derived from the climate forcing (Sect.~\ref{sec:atm})
       provides the upper boundary condition to the ice enthalpy
-      model. Temperature is computed subglacially to a~depth of
-      3\,\unit{km}, where it is conditioned by a~lower boundary geothermal
-      heat flux of 70\,\unit{mW\,m^{-2}}. Although this uniform value does
+      model. Temperature is computed in the ice and in the bedrock to
+      a~depth of 3\,\unit{km} below the ice-bedrock interface, where it is
+      conditioned by a~lower boundary geothermal heat flux of
+      $q_{\mathrm{G}}=70$\,\unit{mW\,m^{-2}}. Although this uniform value
+      does
       not account for the high spatial geothermal variability in the region
       \citep{Blackwell.Richards.2004}, it is, on average, representative of
       available heat flow measurements. In the low-resolution simulations,
