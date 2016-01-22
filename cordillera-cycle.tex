@@ -502,7 +502,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       temperature variability \citep{Seguinot.2013}, $\sigma$ is computed
       from NARR daily temperature values from 1979 to 2000
       \citep{Mesinger.etal.2006}, including variability associated with the
-      seasonal cycle (Fig.~\ref{fig:atm}). Degree-day factors for snow and
+      seasonal cycle, and bilinearly interpolated to the model grids
+      (Fig.~\ref{fig:atm}). Degree-day factors for snow and
       ice melt are derived from mass-balance measurements on contemporary
       glaciers from the Coast Mountains and Rocky Mountains in British
       Columbia \citep[Table~\ref{tab:params};][]{Shea.etal.2009}.
@@ -520,7 +521,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
                     + {\Delta}T_{\text{LR}}(t, x, y) \,, \\
 &    P_{\mathrm{m}}(t, x, y) = P_{\mathrm{m}0}(x, y) \,.
 \end{align}
-      The present-day monthly climatology was computed from near-surface air
+      The present-day monthly climatology was bilinearly interpolated from
+      near-surface air
       temperature and precipitation rate fields from the NARR, averaged from
       1979 to 2000. Modern climate of the North American Cordillera is
       characterised by strong geographic variations in temperature
