@@ -163,7 +163,8 @@ middle Holocene (6.7\,\unit{ka}).
       of glaciers and ice sheets on mountainous terrain over millennial time
       scales \citep[e.g.,][]{Golledge.etal.2012}. Second, the complex
       topography of the North American Cordillera also induces strong
-      geographic variations in temperature and precipitation, thus requiring
+      geographic variations in temperature and precipitation
+      \citep{Jarosch.etal.2012}, thus requiring
       the use of high-resolution climate forcing fields as an input to an
       ice sheet model \citep{Seguinot.etal.2014}. However, evolving climate
       conditions over the last glacial cycle are subject to considerable
@@ -172,9 +173,11 @@ middle Holocene (6.7\,\unit{ka}).
 
       Our palaeo-climate forcing therefore includes spatial temperature and
       precipitation grids derived from a~present-day atmospheric reanalysis
-      \citep{Mesinger.etal.2006} that includes the steep precipitation
+      \citep{Mesinger.etal.2006} that was previously tested against
+      observational data and shown to best reproduce the steep precipitation
       gradients previously identified as necessary to model the LGM extent
       of the Cordilleran ice sheet in agreement with its geological imprint
+      among four atmospheric reanalyses available over the study area
       \citep{Seguinot.etal.2014}. To mimic climate evolution through the
       last glacial cycle, these grids are simply supplemented by lapse-rate
       corrections and temperature offset time series. The latter are
@@ -521,10 +524,13 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       1979 to 2000. Modern climate of the North American Cordillera is
       characterised by strong geographic variations in temperature
       seasonality, timing of the maximum annual precipitation, and daily
-      temperature variability (Fig.~\ref{fig:atm}). The use of NARR is
-      motivated by the need for an accurate, high-resolution precipitation
-      forcing, as identified in a~previous sensitivity study
-      \citep{Seguinot.etal.2014}.
+      temperature variability (Fig.~\ref{fig:atm}). Although the ability
+      of NARR to reproduce these steep climatic gradients is limited by its
+      spatial resolution of 32\,\unit{km} \citep{Jarosch.etal.2012}, it was
+      tested against observational data in a~previous sensitivity study and
+      identified as yielding modelled Cordilleran ice sheet LGM extent in
+      closer agreement to geological reconstructions than other atmospheric
+      reanalyses \citep{Seguinot.etal.2014}.
 
       Temperature offset time-series, ${\Delta}T_{\text{TS}}$, are derived
       from palaeo-temperature proxy records from the Greenland Ice Core
@@ -800,6 +806,29 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       over the southern Coast Mountains (Fig.~\ref{fig:hr_maps_mis2}).
 
       Such deviation from the geological inferences could reflect the fact
+      the NARR has difficulties with simulating orographic processes in some
+      areas of steep topography \citep{Jarosch.etal.2012}. In a previous
+      study \citep{Seguinot.etal.2014}, we have evaluated the performance of
+      NARR in forcing constant-climate simulations of the Cordilleran ice
+      sheet against that of an observation-based data set
+      \citep[WorldClim,][]{Hijmans.etal.2005}. Indeed, the use of NARR in
+      these simulations produced slightly different patterns of glaciation
+      relative to WorldClim, including more extensive ice cover on the
+      Columbia and Rocky mountains \citep[Figs.~6--7]{Seguinot.etal.2014}.
+      Our simulations have shown that these differences are mainly caused by
+      disparities in the precipitation fields of the two data sets
+      \citep[Figs.13--14]{Seguinot.etal.2014}. Over the southern part of our
+      model domain, it was shown that the implementation of temperature and
+      precipitation downscaling can address these limitations
+      \citep[e.g.,][]{Jarosch.etal.2012}. However, extending this
+      downscaling method to the entire model domain used in our study could
+      be challenging, because the northern part of the model domain is
+      characterized by stronger precipitation gradients (Fig.~\ref{fig:atm})
+      and includes much fewer weather stations than the south
+      \citep{Hijmans.etal.2005}.
+
+      The westerly position of the modelled ice divide and western ice sheet
+      margin may also reflect the fact
       that our model does not include feedback mechanisms between ice sheet
       topography and the regional climate. Firstly, during the build-up
       phase preceding the LGM, rapid accumulation over the Coast Mountains
