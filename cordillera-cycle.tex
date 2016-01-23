@@ -120,9 +120,10 @@ middle Holocene (6.7\,\unit{ka}).
       lowlands \citep{Fulton.1967, Fulton.1991, Margold.etal.2011,
       Margold.etal.2013a}. This model, although credible, may not apply in
       all areas of the Cordilleran ice sheet \citep{Margold.etal.2013}.
-      Although solid evidence for late-glacial glacier re-advances have been
+      Although solid evidence for late-glacial glacier re-advances has been
       found in the Coast, Columbia and Rocky mountains
-      \citep{Clague.etal.1997, Friele.Clague.2002, Friele.Clague.2002a,
+      \citep{Reasoner.etal.1994, Osborn.Gerloff.1997,
+      Clague.etal.1997, Friele.Clague.2002, Friele.Clague.2002a,
       Kovanen.2002, Kovanen.Easterbrook.2002, Lakeman.etal.2008,
       Menounos.etal.2008}, it appears to be sparser than for formerly
       glaciated regions surrounding the North Atlantic
@@ -226,7 +227,7 @@ middle Holocene (6.7\,\unit{ka}).
       (Sect.~\ref{sec:surface}). Default parameter values are given in
       Table~\ref{tab:params}. Climate forcing is provided by a~monthly
       climatology averaged from 1979 to 2000 from the North American
-      Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbated
+      Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbed
       by time-dependent offsets and lapse-rate temperature corrections
       (Sect.~\ref{sec:atm}, Table~\ref{tab:records}). A sensitivity study
       to some of the most influential ice rheology (Sect~\ref{sec:icedyn})
@@ -234,8 +235,8 @@ middle Holocene (6.7\,\unit{ka}).
       (Table~\ref{tab:sens_params}).
 
       Each simulation starts from assumed ice-free conditions at
-      12\,0000\,\unit{years} ago (120\,\unit{ka}), and runs to the
-      present. Our modelling domain of 1500 by 3000\,\unit{km} encompasses
+      120\,000\,\unit{years} ago (120\,\unit{ka}), and runs to the present.
+      Our modelling domain of 1\,500 by 3\,000\,\unit{km} encompasses
       the entire area covered by the Cordilleran ice sheet at the LGM
       (Fig.~\ref{fig:locmap}). The simulations were run on two distinct
       grids, using a~lower horizontal resolution of 10\,\unit{km}, and
@@ -252,7 +253,12 @@ middle Holocene (6.7\,\unit{ka}).
       based on their predominant components. The Shallow Shelf Approximation
       (SSA) is combined with the Shallow Ice Approximation
       (SIA) by adding velocity solutions of the two approximations
-      \citep[Eqs.~7--9 and 15]{Winkelmann.etal.2011}.
+      \citep[Eqs.~7--9 and 15]{Winkelmann.etal.2011}. The computational
+      efficiency of this hybrid scheme nevertheless comes at the cost of
+      violating stress conservation in the transition zone where
+      gravitational stresses have a double contribution to computed SIA and
+      SSA velocities, leading to a positive bias of total ice velocity that
+      remains to be quantified.
 
       Ice deformation is governed by the constitutive law for ice
       \citep{Glen.1952, Nye.1953},
@@ -352,7 +358,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       available heat flow measurements. In the low-resolution simulations,
       the vertical grid consists of 31~temperature layers in the bedrock and
       up to 51~enthalpy layers in the ice sheet, corresponding to a~vertical
-      resolution of 100\,\unit{m}. The high-resolution simulations
+      resolution of 100\,\unit{m}. The high-resolution simulations use
       61~bedrock layers and up to 101~ice layers with a~vertical resolution
       of 50\,\unit{m}.
 
@@ -388,10 +394,10 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 \end{align}
 %
       where $\delta$ sets the minimum ratio between the effective and
-      overburden pressures, $e_0$ is a~measured reference void
-      ratio and $C_{\mathrm{c}}$ is a~measured compressibility coefficient
-      (Table~\ref{tab:params}). The amount of water at the base, $W$, varies
-      from zero to $W_{\text{max}}$, a~threshold above which
+      overburden pressures, $e_0$ is a~reference void ratio and
+      $C_{\mathrm{c}}$ is the till compressibility coefficient
+      \citep{Tulaczyk.etal.2000}. The amount of water at the base, $W$,
+      varies from zero to $W_{\text{max}}$, a~threshold above which
       additional melt water is assumed to drain off instantaneously.
 
       In all our sumlations, we set constant the pseudo-plastic sliding
@@ -643,10 +649,9 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       Modelled ice sheet geometries during the LGM (MIS~2;
       Fig.~\ref{fig:lr_maps}, lower panels) invariably include a~ca.
       1500\,\unit{km}-long central divide above 3000\,\unit{m\,a.s.l.}
-      located along the spine of the Rocky Mountains. Although the
-      similarity of modelled ice extents is a~direct result of the choice of
-      scaling factors applied to different palaeo-temperature proxy records
-      (Table~\ref{tab:records}), it is interesting to note that modelled
+      located along the spine of the Rocky Mountains. As an indirect result
+      of the choice of scaling factors applied to different
+      palaeo-temperature proxy records (Table~\ref{tab:records}), modelled
       maximum ice volumes also fall within a~tight range of 8.39 to
       9.07\,\unit{m}\,s.l.e. (Table~\ref{tab:extrema}).
 
@@ -691,7 +696,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       Large variations in the model responses to evolving climate forcing
       reveal its sensitivity to the choice of palaeo-temperature proxy
       record. To distinguish between different records, geological evidence
-      of former glaciations provide a~basis for validation of our runs,
+      of former glaciations provides a~basis for validation of our runs,
       while the results from numerical modelling can perhaps help to analyse
       some of the complexity of this evidence. In this section, we compare
       model outputs to the geologic record, in terms of timing and
@@ -735,7 +740,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       Taylor.etal.2014}. Radiocarbon dating of the northern Cordilleran ice
       sheet margin is much less constrained but straddles presented
       constraints from the southern margin. However, cosmogenic exposure
-      dating places the timing of maximum CIS extent during the McConnell
+      dating places the timing of maximum northern ice sheet margin extent
+      during the McConnell
       glaciation close to 17\,\unit{\chem{^{10}Be}\,ka}
       \citep{Stroeven.etal.2010, Stroeven.etal.2014}. A~sharp transition in
       the sediment record of the Gulf of Alaska indicates a~retreat of
@@ -932,9 +938,9 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       The resulting maps show that, during most of the glacial cycle,
       modelled ice cover is restricted to disjoint ice caps centred on major
       mountain ranges of the North American Cordillera
-      (Fig.~\ref{fig:hr_geom_duration}, blue areas). A~2500\,\unit{km}-long
+      (Fig.~\ref{fig:hr_geom_duration}, blue areas). A~2\,500\,\unit{km}-long
       continuous expanse of ice, extending from the Alaska Range in the
-      northeast to the Rocky Mountains in the southwest, is only in
+      north-east to the Rocky Mountains in the south-west, is only in
       operation for at most 34\,\unit{ka}, which is about a~third of the
       timespan of the last glacial cycle (Fig.~\ref{fig:hr_geom_duration},
       hatched areas). However, except for its margins in the Pacific Ocean
@@ -1179,7 +1185,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 \subsubsection{Late-glacial readvance}
 
       The possibility of late glacial readvances in the North American
-      Cordillera has been debated for some time \citep{Osborn.Gerloff.1997},
+      Cordillera has been debated for some time \citep{Luckman.Osborn.1979,
+      Reasoner.etal.1994, Osborn.Gerloff.1997, Osborn.etal.1995},
       and locally these have been reconstructed and dated. Radiocarbon-dated
       end moraines in the Fraser and Squamish valleys, off the southern tip
       of the Coast Mountains, indicate consecutive glacier maxima, or
@@ -1196,7 +1203,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       Cordilleran ice sheet in the valleys \citep{Lakeman.etal.2008}.
       Additional evidence for late-glacial alpine glacier readvances
       includes moraines in the eastern Coast Mountains, and the Columbia and
-      Rocky mountains \citep{Osborn.Gerloff.1997, Menounos.etal.2008}.
+      Rocky mountains \citep{Reasoner.etal.1994, Osborn.Gerloff.1997,
+      Menounos.etal.2008}.
 
       Although further work is needed to constrain the timing of the
       late-glacial readvance, to assess its extents and geographical
@@ -1216,7 +1224,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 
 \subsubsection{Deglacial flow directions}
 
-      Because a~general tenant in glacial geomorphology is that the majority
+      Because a~general conjecture in glacial geomorphology is that the majority
       of landforms (lineations and eskers) are part of the deglacial
       envelope \citep[terminology from][]{Kleman.etal.2006}, having been
       formed close inside the retreating margin of ice sheets
@@ -1259,9 +1267,9 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       deglaciation (Fig.~\ref{fig:hr_geom_lastflow}). Yet, the Interior
       Plateau also hosts an impressive set of glacial lineations which
       indicate a~substantial eastwards flow component of the Cordilleran ice
-      sheet \citep{Prest.etal.1968, Kleman.etal.2010}. This Interior Plateau
-      lineation set could therefore present a~smoking gun for the
-      reliability of the presented model results. One explanation for the
+      sheet \citep{Prest.etal.1968, Kleman.etal.2010} not present in any of
+      the two simulations (Fig.~\ref{fig:hr_geom_lastflow}).
+      One explanation for the
       incongruent results could be that the missing feedback mechanisms
       between ice sheet topography and regional climate resulted in
       a~modelled ice divide of the LGM ice sheet being too far to the east
@@ -1269,7 +1277,9 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       \citealp{Seguinot.etal.2014}). A~more westerly-located LGM ice divide
       would certainly result in a~different deglacial flow pattern over the
       Interior Plateau. However, a~more westerly-positioned LGM ice divide
-      would certainly be associated with a~thinner ice sheet than that
+      would certainly be associated with an LGM ice sheet less extensive to
+      the west, and therefore thinner ice on the Interior Plateau during
+      deglaciation than
       modelled here. Decreased ice thickness would not promote warm-based
       conditions but, on the contrary, enlarge the region of negligible
       basal sliding (Fig.~\ref{fig:hr_geom_lastflow}). Thus, a~second
