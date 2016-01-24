@@ -12,10 +12,13 @@ output=etopo1.nc
 # inflate archive
 [ -f $input ] || unzip $archive
 
-# reproject
-gdalwarp -s_srs EPSG:4326 -t_srs EPSG:3979 \
-         -te -3187500 -900000 3187500 3600000 \
-         -tr 7500 7500 \
+# reproject for the Cordillera
+#proj='+proj=lcc +lon_0=-95 +lat_0=49 +lat_1=79 +lat_2=77'  # cal
+proj='+proj=lcc +lon_0=-135 +lat_0=45 +lat_1=45 +lat_2=70'
+gdalwarp -s_srs EPSG:4326 -t_srs "$proj" \
+         -te -2250000 000000 2250000 3000000 \
+         -tr 2500 2500 \
+         -wm 512 -wo SOURCE_EXTRA=1000 \
          -srcnodata -2147483648 -dstnodata -2147483648 \
          -of netcdf -overwrite \
          $input $output

@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # coding: utf-8
 
 import sys
@@ -13,17 +13,19 @@ import cartopy.feature as cfeature
 from iceplotlib import cm as icm
 from netCDF4 import Dataset
 
-in2mm = 1/25.4
-pt2mm = 72*in2mm
 bwu = 0.5  # base width unit
 scale = '50m'
 
-# Canadian Atlas Lambert projection
+# Geographic projections
 ll = ccrs.PlateCarree()
-proj = ccrs.LambertConformal(
+cal = ccrs.LambertConformal(
     central_longitude=-95.0, central_latitude=49.0,
     false_easting=0.0, false_northing=0.0,
-    secant_latitudes=(49.0, 77.0), globe=None, cutoff=0)
+    standard_parallels=(49.0, 77.0), globe=None, cutoff=0)
+proj = ccrs.LambertConformal(
+    central_longitude=-135.0, central_latitude=45.0,
+    false_easting=0.0, false_northing=0.0,
+    standard_parallels=(45.0, 70.0), globe=None, cutoff=0)
 
 # ETOPO1 background topo
 def draw_etopo1(**kwargs):
@@ -61,8 +63,7 @@ def draw_lgm():
                     union = rec.geometry
                 else:
                     union = union.union(rec.geometry)
-    ax.add_geometries(union, proj, edgecolor='none', facecolor='#f5f4f2', alpha=0.75)
-    ax.add_geometries(union, proj, edgecolor='#0978ab', facecolor='none', lw=1.0*bwu)
+    ax.add_geometries(union, cal, edgecolor='#b00000', facecolor='none', lw=1.0*bwu)
 
 # Natural Earth elements
 def draw_rivers():
@@ -90,36 +91,50 @@ def draw_countries():
 
 def draw_graticules():
     ax.add_feature(cfeature.NaturalEarthFeature(
-        category='physical', name='graticules_15', scale=scale,
+        category='physical', name='graticules_5', scale=scale,
         edgecolor='#000000', facecolor='none', lw=0.25*bwu))
 
 # Geographic names
 def add_names():
     """Add geographic names"""
 
-    # add names of palaeo-ice sheets
-    txtkwa = dict(ha='center', va='center', transform=ll,
-                  color='#0978AB', fontsize=8, style='italic')
-    ax.text(-127, 55, 'CIS', **txtkwa)
-    ax.text(-85, 60, 'LIS', **txtkwa)
-    ax.text(-95, 77.5, 'IIS', **txtkwa)
-    ax.text(-42, 74, 'GIS', **txtkwa)
-
     # add names of mountain ranges
-    txtkwa = dict(ha='center', va='center', transform=ll,
-                  color='k', fontsize=6, style='italic')
-    ax.text(-146, 63.5, 'AR', **txtkwa)
-    ax.text(-141, 61, 'WSEM', **txtkwa)
-    ax.text(-129, 63, 'SMKM', **txtkwa)
-    ax.text(-129, 57, 'SM', **txtkwa)
-    ax.text(-127, 52, 'CM', **txtkwa)
-    ax.text(-118, 52, 'CRM', **txtkwa)
-    ax.text(-121, 49, 'NC', **txtkwa)
+    txtkwa = dict(ha='center', va='center', transform=ll, style='italic')
+    ax.text(-149, 68.25, 'Brooks Range', rotation=0, **txtkwa)
+    ax.text(-148, 63.25, 'Alaska Range', rotation=0, **txtkwa)
+    ax.text(-143, 62, 'Wrangell\nMts', rotation=0, **txtkwa)
+    ax.text(-140, 60.25, 'St Elias Mts', rotation=-15, **txtkwa)
+    ax.text(-130, 63.75, 'McKenzie Mts', rotation=-30, **txtkwa)
+    ax.text(-130, 62, 'Selwyn Mts', rotation=-30, **txtkwa)
+    ax.text(-131, 60, 'Cassiar Mountains', rotation=-45, **txtkwa)
+    ax.text(-119, 51.5, 'Columbia Mts', rotation=-30, **txtkwa)
+    ax.text(-120, 54, 'Rocky Mountains', rotation=-30, **txtkwa)
+    ax.text(-128, 54, 'Coast Mountains', rotation=-45, **txtkwa)
+    ax.text(-128, 56, 'Skeena Mts', rotation=-45, **txtkwa)
+    ax.text(-121, 48, 'N. Cascades', rotation=90, **txtkwa)
 
     # add names of intermontane plateaus
-    ax.text(-127, 60, 'LL', **txtkwa)
-    ax.text(-122, 52, 'IP', **txtkwa)
-    ax.text(-122, 47.5, 'PL', **txtkwa)
+    ax.text(-127, 60, 'Liard\nLowland', **txtkwa)
+    ax.text(-122, 52.5, 'Interior\nPlateau', **txtkwa)
+    #ax.text(-124, 54, 'Fraser\nPlateau', **txtkwa)
+    #ax.text(-123, 48, 'Puget\nLowland', **txtkwa)
+
+    # mark Puget Lowland. annotate is tricky
+    xy = ax.projection.transform_point(-122, 48, src_crs=ll)
+    xytext = ax.projection.transform_point(-126, 46, src_crs=ll)
+    ax.annotate('Puget\nLowland', xy=xy, xytext=xytext,
+                arrowprops=dict(arrowstyle='->'), **txtkwa)
+
+    # add names of islands
+    ax.text(-132, 53, 'Q. Charlotte I.', rotation=-45, **txtkwa)
+    ax.text(-126, 49.5, 'Vancouver Island', rotation=-30, **txtkwa)
+
+    # add other names
+    txtkwa = dict(ha='center', va='center', transform=ll,
+                  fontsize=10, style='italic')
+    ax.text(-135, 71, 'ARCTIC OCEAN', color='#0978AB', **txtkwa)
+    ax.text(-145, 50, 'PACIFIC\n\nOCEAN', color='#0978AB', **txtkwa)
+    ax.text(-110, 60, 'CANADIAN\n\nPRAIRIES', **txtkwa)
 
 # modelling domain
 def draw_modeldomain():
@@ -129,19 +144,20 @@ def draw_modeldomain():
     ymax = 3e6
     x = [xmin, xmin, xmax, xmax, xmin]
     y = [ymin, ymax, ymax, ymin, ymin]
-    ax.plot(x, y, 'k', lw=bwu, transform=proj)
+    ax.plot(x, y, 'k', lw=2*bwu, transform=cal)
 
-# Initialize figure
-fig = plt.figure(0, (85/25.4, 60/25.4))
-ax = fig.add_axes([0, 0, 1, 1], projection=proj)
-ax.set_xlim((-3187.5e3, 3187.5e3))
-ax.set_ylim((-0900e3, 3600e3))
+# initialize figure
+fig = plt.figure(0, (160/25.4, 120/25.4))
+ax = fig.add_axes([0.0, 0.0, 1.0, 1.0], projection=proj)
+ax.set_xlim((-2000e3, 2000e3))
+ax.set_ylim((-0e3, 3000e3))
 ax.set_rasterization_zorder(2)
 
 # draw stuff
 draw_etopo1()
 draw_rivers()
 draw_lakes()
+draw_glaciers()
 draw_lgm()
 draw_modeldomain()
 draw_graticules()
