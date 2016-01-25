@@ -12,7 +12,7 @@ res = '10km'
 # initialize snapshots figure
 figw, figh = 120.0, 102.5
 fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
-                             figsize=(figw, figh),
+                             figsize=(figw, figh), projection=ut.pl.proj,
                              left=5.0, right=12.5, bottom=2.5, top=5.0,
                              hspace=2.5, wspace=2.5)
 cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
@@ -33,7 +33,10 @@ for i, rec in enumerate(ut.lr.records):
         ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t,
-                  cmap=ut.topo_cmap, norm=ut.topo_norm)
+                  cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
+        ut.pl.draw_ne_vectors(ax)
+        nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
+                   colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t,
                      linewidths=0.5)
         levs = range(0, 4001, 500)

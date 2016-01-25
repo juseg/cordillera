@@ -19,18 +19,24 @@ plotres=12  # in km
 # initialize figure
 figw, figh = 120.0, 100.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                             figsize=(figw, figh),
+                             figsize=(figw, figh), projection=ut.pl.proj,
                              left=2.5, right=20.0, bottom=2.5, top=2.5,
                              wspace=2.5, hspace=2.5)
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # plot topographic map
 ut.pl.draw_boot_topo(grid, res)
+ut.pl.draw_coastline(grid, res)
 
 # loop on records
 for i, rec in enumerate(records):
     ax = grid[i]
     ax.set_rasterization_zorder(2.5)
+    ut.pl.draw_ne_vectors(ax)
+
+    # backup axes limits
+    xlim = ax.get_xlim()
+    ylim = ax.get_ylim()
 
     # read extra output
     print 'reading %s extra output...' % rec
@@ -82,12 +88,15 @@ for i, rec in enumerate(records):
     ax.contour(x[:], y[:], glaciated, levels=[0.5],
                       colors='k', linewidths=0.5)
 
+    # restore axes limits
+    ax.set_xlim(xlim)
+    ax.set_ylim(ylim)
+
     # annotate
     ut.pl.add_corner_tag(ax, rec.upper())
     nc.close()
 
 # locate Liard Lowland and Fraser Plateau
-ax.set_rasterization_zorder(2.5)
 ut.pl.add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))
 ut.pl.add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 

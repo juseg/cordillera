@@ -14,7 +14,7 @@ times = [-16e3, -14e3, -12e3, -10e3]
 # initialize figure
 figw, figh = 120.0, 97.5
 fig, grid = iplt.subplots_mm(nrows=2, ncols=4, sharex=True, sharey=True,
-                             figsize=(figw, figh),
+                             figsize=(figw, figh), projection=ut.pl.proj,
                              left=2.5, right=20.0, bottom=2.5, top=2.5,
                              wspace=2.5, hspace=2.5)
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
@@ -31,6 +31,10 @@ for i, rec in enumerate(records):
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t, cmap=ut.topo_cmap, norm=ut.topo_norm)
+        ax = ut.pl.make_geoaxes(ax)  # only one image per geoaxes
+        ut.pl.draw_ne_vectors(ax)
+        nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
+                   colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t, linewidths=0.5)
         nc.contour('usurf', ax=ax, t=t, levels=range(200, 5000, 200),
                    cmap=None, colors='k', linewidths=0.1)

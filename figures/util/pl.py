@@ -9,10 +9,18 @@ import os
 import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.transforms import ScaledTranslation
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
 # unit conversion
 in2mm = 1/25.4
 pt2mm = 72*in2mm
+
+# geographic projection
+proj = ccrs.LambertConformal(
+    central_longitude=-95.0, central_latitude=49.0,
+    false_easting=0.0, false_northing=0.0,
+    standard_parallels=(49.0, 77.0), globe=None, cutoff=0)
 
 def add_corner_tag(ax, s, ha='right', va='top', offset=2.5*in2mm):
     fig = ax.get_figure()
@@ -36,19 +44,40 @@ def add_pointer_tag(ax, s, xy, xytext):
 def draw_boot_topo(grid, res):
     nc = ut.io.open_boot_file(res)
     for ax in grid.flat:
-        im = nc.imshow('topg', ax=ax, cmap=ut.topo_cmap, norm=ut.topo_norm)
+        im = nc.imshow('topg', ax=ax, cmap=ut.topo_cmap, norm=ut.topo_norm,
+                       zorder=-1)
     nc.close()
-    return im
 
 
 def draw_coastline(grid, res):
     nc = ut.io.open_boot_file(res)
     for ax in grid.flat:
-        cs = nc.contour('topg', ax=ax, levels=[0.0],
-                        cmap=None, colors='k', linewidths=0.5)
+        cs = nc.contour('topg', ax=ax, levels=[0.0], cmap=None,
+                        colors='0.25', linewidths=0.25, zorder=0)
     nc.close()
     return cs
 
+
+def make_geoaxes(ax):
+    gax = ax.figure.add_axes(ax.get_position(), projection=proj)
+    gax.background_patch.set_visible(False)
+    gax.set_rasterization_zorder(2.5)
+    gax.set_xlim(ax.get_xlim())
+    gax.set_ylim(ax.get_ylim())
+    return gax
+
+def draw_ne_vectors(ax):
+    bwu = 0.5
+    scale = '50m'
+    ax.add_feature(cfeature.NaturalEarthFeature(
+        category='physical', name='rivers_lake_centerlines', scale=scale,
+        edgecolor='0.25', facecolor='none', lw=1.0*bwu), zorder=0)
+    ax.add_feature(cfeature.NaturalEarthFeature(
+        category='physical', name='lakes', scale=scale,
+        edgecolor='0.25', facecolor='0.85', lw=0.5*bwu), zorder=0)
+    ax.add_feature(cfeature.NaturalEarthFeature(
+        category='physical', name='graticules_5', scale=scale,
+        edgecolor='0.25', facecolor='none', lw=0.25*bwu))
 
 def fig_hr_maps_mis(mis):
 
@@ -60,7 +89,7 @@ def fig_hr_maps_mis(mis):
     # initialize figure
     figw, figh = 120.0, 100.0
     fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                                 figsize=(figw, figh),
+                                 figsize=(figw, figh), projection=proj,
                                  left=2.5, right=20.0, bottom=2.5, top=2.5,
                                  wspace=2.5, hspace=2.5)
     cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
@@ -78,9 +107,12 @@ def fig_hr_maps_mis(mis):
 
         # plot
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
-        ax = grid[i]
         nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm)
+        ax = make_geoaxes(ax)  # only one image per geoaxes
+        ut.pl.draw_ne_vectors(ax)
+        nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
+                   colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t,
                      linewidths=0.5)
         nc.contour('usurf', ax=ax, t=t,

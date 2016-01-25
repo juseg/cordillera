@@ -13,7 +13,7 @@ offsets = ut.hr.offsets
 # initialize figure
 figw, figh = 120.0, 100.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                             figsize=(figw, figh),
+                             figsize=(figw, figh), projection=ut.pl.proj,
                              left=2.5, right=20.0, bottom=2.5, top=2.5,
                              wspace=2.5, hspace=2.5)
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
@@ -26,6 +26,7 @@ for i, rec in enumerate(records):
     print 'reading %s extra output...' % rec
     ax = grid[i]
     ax.set_rasterization_zorder(2.5)
+    ut.pl.draw_ne_vectors(ax)
 
     # read extra output
     nc = ut.io.open_extra_file(res, rec, offsets[i])

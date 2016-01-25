@@ -20,9 +20,16 @@ figw, figh = 85.0, 120.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=2.5, right=2.5, bottom=15.0, top=2.5,
-                             wspace=2.5, hspace=2.5)
+                             wspace=2.5, hspace=2.5, projection=ut.pl.proj)
+
+# draw topo and coastline
+ut.pl.draw_boot_topo(grid, res)
+ut.pl.draw_coastline(grid, res)
+
+# draw natural earth elements
 for ax in grid.flat:
     ax.set_rasterization_zorder(2.5)
+    ut.pl.draw_ne_vectors(ax)  # swap to geoaxes after that
 
 # plot temperature
 print 'plotting temperature maps...'
@@ -65,10 +72,6 @@ cax = fig.add_axes([57.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[2::2])
 cb.set_label(u'PDD SD (°C)')
 nc.close()
-
-# draw topo and coastline
-ut.pl.draw_boot_topo(grid, res)
-ut.pl.draw_coastline(grid, res)
 
 # annotate
 ut.pl.add_corner_tag(grid[0, 2], 'January')
