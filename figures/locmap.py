@@ -115,7 +115,7 @@ def add_names():
 
     # add names of intermontane plateaus
     ax.text(-127, 60, 'Liard\nLowland', **txtkwa)
-    ax.text(-122, 52.5, 'Interior\nPlateau', **txtkwa)
+    ax.text(-122.5, 52, 'Interior\nPlateau', **txtkwa)
     #ax.text(-124, 54, 'Fraser\nPlateau', **txtkwa)
     #ax.text(-123, 48, 'Puget\nLowland', **txtkwa)
 

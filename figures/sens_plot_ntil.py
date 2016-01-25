@@ -86,7 +86,7 @@ if __name__ == '__main__':
     grid[0].legend(loc='upper right')
 
     # log scale on bottom axes
-    grid[1].set_xlabel('till content W (m)')
+    grid[1].set_xlabel('till water content W (m)')
     grid[1].set_ylim(2e-1, 2e2)
     grid[1].set_yscale('log')
 
