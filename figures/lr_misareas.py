@@ -6,7 +6,7 @@ import numpy as np
 import iceplotlib.plot as iplt
 
 res = '10km'
-offsets = np.arange(5.7, 7.0, 0.1)
+offsets = np.arange(5.7, 7.0, 0.05)
 target = 2.1
 
 # prepare empty array
