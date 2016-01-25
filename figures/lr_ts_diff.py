@@ -5,6 +5,7 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
+offsets = [6.2, 6.6, 5.9, 6.0, 6.1, 5.9]
 versions = ('dev-140915-8ff7cbe', '0.7.2')
 
 # initialize time-series figure
@@ -21,7 +22,7 @@ mis_iareas = np.zeros((6, 3), dtype=float)
 # loop on records[i]
 tabline = ' '*4 + '%-8s '+ '& %6.2f '*3
 for i, rec in enumerate(ut.lr.records):
-    dt = ut.lr.offsets[i]
+    dt = offsets[i]
 
     # load output time series
     nc1 = ut.io.open_ts_file('10km', rec, dt, version=versions[0])
