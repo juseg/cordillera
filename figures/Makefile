@@ -46,7 +46,7 @@ $(HR_FIGS): util/hr.py
 $(SENS_FIGS): util/sens.py
 
 # rules and dependencies for python-latex figures
-$(PYTEX_FIGS): %.pdf : %.py util/__init__.py util/io.py util/pl.py
+$(PYTEX_FIGS): %.pdf : %.py util
 	python2 $<
 	pdflatex $*.tex
 
