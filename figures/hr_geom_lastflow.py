@@ -103,5 +103,5 @@ ut.pl.add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 # add colorbar and save
 print 'saving...'
 cb = ColorbarBase(cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
-cb.set_label('Age of last basal sliding (ka)')
+cb.set_label('age of last basal sliding (ka)')
 fig.savefig('hr_geom_lastflow')

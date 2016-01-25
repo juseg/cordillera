@@ -40,7 +40,7 @@ for i in range(2):
                              cmap='RdBu_r', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([2.5/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal')
-cb.set_label(u'Temperature (°C)')
+cb.set_label(u'temperature (°C)')
 
 # plot precipitation
 print 'plotting precipitation maps...'
@@ -51,7 +51,7 @@ for i in range(2):
                              cmap='Greens', levels=levs, norm=norm, alpha=0.75)
 cax = fig.add_axes([30.0/figw, 7.5/figh, 25.0/figw, 5.0/figh])
 cb = fig.colorbar(im, cax, orientation='horizontal', ticks=levs[::2])
-cb.set_label(r'Precipitation (mm)')
+cb.set_label(r'precipitation (mm)')
 nc.close()
 
 # read standard deviation file

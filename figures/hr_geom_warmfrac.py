@@ -67,5 +67,5 @@ ut.pl.add_pointer_tag(ax, 'MKM', xy=(-1550e3, 2000e3), xytext=(-1200e3, 2000e3))
 
 # add colorbar and save
 cb = fig.colorbar(cs, cax, ticks=levs[1:])
-cb.set_label('Fraction of warm-based ice cover')
+cb.set_label('fraction of warm-based ice cover')
 fig.savefig('hr_geom_warmfrac')

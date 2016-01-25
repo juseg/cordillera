@@ -78,7 +78,7 @@ if __name__ == '__main__':
                   color=ut.sens.colors[4], label=ut.sens.labels[4])
 
         # set axes properties
-        ax.set_ylabel('N (bar)')
+        ax.set_ylabel('effective pressure N (bar)')
         ax.grid()
 
     # linear scale on top axes
@@ -86,7 +86,7 @@ if __name__ == '__main__':
     grid[0].legend(loc='upper right')
 
     # log scale on bottom axes
-    grid[1].set_xlabel('W (m)')
+    grid[1].set_xlabel('till content W (m)')
     grid[1].set_ylim(2e-1, 2e2)
     grid[1].set_yscale('log')
 

@@ -63,5 +63,5 @@ for i, rec in enumerate(records):
 
 # add colorbar and save
 cb = fig.colorbar(cf, cax, format='%i')
-cb.set_label('Cumulative basal displacement (km)')
+cb.set_label('cumulative basal displacement (km)')
 fig.savefig('hr_geom_basedispl')
