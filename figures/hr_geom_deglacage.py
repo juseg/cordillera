@@ -43,28 +43,38 @@ for i, rec in enumerate(records):
 
     # compute deglaciation age
     print 'computing deglaciation age...'
-    wasicefree = np.ones_like(thk[0].T)*0
-    readvance = np.ones_like(thk[0].T)*0
-    deglacage = np.ones_like(thk[0].T)*-1.0
-    for i, t in enumerate(time[:]*ut.s2ka):
-        print '[ %02.1f %% ]\r' % (100.0*i/len(time)),
-        icy = (thk[i].T >= ut.thkth)
-        if -14.0 < t < -10.0:
-            readvance = np.where(icy*wasicefree, 1, readvance)
-            wasicefree = 1-icy
-        deglacage = np.where(icy, -t, deglacage)
+    age = -time[:]*ut.s2ka
+    icy = (thk[:] >= 1.0)
+    nlastfree = icy[::-1].argmax(axis=0)  # number of last free timesteps
+    deglacage = (age[-nlastfree-1]+age[-nlastfree]) / 2
+
+    # fill in always and never icy cases
+    nevericy = (nlastfree == 0)*(icy[-1] == 0)
+    alwaysicy = (nlastfree == 0)*(icy[-1] == 1)
+    deglacage[alwaysicy] = age[-1]
+    deglacage = np.ma.array(deglacage, mask=nevericy)
+
+    # check if there was a readvance
+    i0 = 1059  # 14 ka
+    i1 = 1099  # 10 ka
+    nadvances = (np.diff(icy[i0:i1], axis=0) > 0).sum(axis=0)
+    readvance = nadvances > 1  # I don't understand why this is not 0
+
+    # transpose
+    deglacage = deglacage.T
+    readvance = readvance.T
 
     # plot
     cs = ax.contourf(x[:], y[:], deglacage, levels=levs,
                             cmap=cmap, alpha=0.75,
                             norm=BoundaryNorm(levs, 256), extend='max')
     ax.contourf(x[:], y[:], readvance, levels=[0.5, 1.5],
-                       colors='none', hatches=['//'])
-    ax.contour(x[:], y[:], readvance, levels=[0.5, 1.5],
+                      colors='none', hatches=['//'])
+    ax.contour(x[:], y[:], readvance, levels=[0.5],
                       colors='k', linewidths=0.25)
     ax.contour(x[:], y[:], deglacage, levels=[levs[-1]],
                       colors='k', linewidths=0.25)
-    ax.contour(x[:], y[:], deglacage, levels=[-0.5],
+    ax.contour(x[:], y[:], deglacage.mask, levels=[0.5],
                       colors='k', linestyles='solid', linewidths=0.5)
 
     # annotate
