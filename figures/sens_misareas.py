@@ -7,11 +7,7 @@ import iceplotlib.plot as iplt
 
 res = '10km'
 rec = 'grip'
-offsets = np.arange(5.7, 7.0, 0.1)
 target = 2.1
-
-# prepare empty array
-misareas = np.ma.masked_all((5, (len(offsets))))
 
 # initialize figure
 fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
@@ -20,11 +16,11 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
 
 # for each configuration
 for i, conf in enumerate(ut.sens.configs):
-    c = ut.sens.colors[i]
-    misareas = np.ma.masked_all_like(offsets)
+    offsets = []
+    misareas = []
 
     # for each temperature offset
-    for j, dt in enumerate(offsets):
+    for dt in np.arange(5.7, 7.0, 0.05):
 
         # try to read MIS2 area
         try:
@@ -38,21 +34,23 @@ for i, conf in enumerate(ut.sens.configs):
             idx = np.abs(time[:]-t*ut.a2s).argmin()
             thk = nc.variables['thk'][idx]
             mask = nc.variables['mask'][idx]
+            nc.close()
 
             # compute grounded ice area at MIS 2
             a = ((thk >= ut.thkth)*(mask == 2)).sum()*1e-4
-            print '%-30s, %.1f : %.2f, %.2f' % (conf, dt, t*1e-3, a)
-            misareas[j] = a
+            print '%-30s, %.2f : %.2f, %.2f' % (conf, dt, t*1e-3, a)
 
-            # close
-            nc.close()
+            # append to list
+            offsets.append(dt)
+            misareas.append(a)
 
         # else do nothing
         except RuntimeError:
             pass
 
     # plot
-    argmin = np.argmin(np.abs(misareas-target))
+    c = ut.sens.colors[i]
+    argmin = np.argmin(np.abs(np.array(misareas)-target))
     ax.plot(offsets, misareas, c=c, marker='o')
     ax.plot(offsets[argmin], misareas[argmin], c=c, marker='D')
     ax.axvline(offsets[argmin], lw=0.1, c=c)
@@ -64,8 +62,8 @@ for i, conf in enumerate(ut.sens.configs):
 ax.axhline(target, lw=0.1, c='0.5')
 ax.set_xlim(5.7, 6.9)
 ax.set_ylim(1.7, 2.4)
-ax.set_xlabel('offset')
-ax.set_ylabel('grounded ice area at MIS2')
+ax.set_xlabel('temperature offset (K)')
+ax.set_ylabel(r'grounded ice extent at MIS 2 ($10^6\,km^2$)')
 
 # save
 print 'saving...'
