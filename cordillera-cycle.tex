@@ -176,7 +176,7 @@ middle Holocene (6.7\,\unit{ka}).
 
       Our palaeo-climate forcing therefore includes spatial temperature and
       precipitation grids derived from a~present-day atmospheric reanalysis
-      \citep{Mesinger.etal.2006} that was previously tested against
+      \citep{Mesinger.etal.2006}. These were previously tested against
       observational data and shown to best reproduce the steep precipitation
       gradients previously identified as necessary to model the LGM extent
       of the Cordilleran ice sheet in agreement with its geological imprint
@@ -234,14 +234,15 @@ middle Holocene (6.7\,\unit{ka}).
       a~function of time based on the Spectral Mapping Project
       \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Ice deformation
       follows temperature and water-content dependent creep
-      (Sect.~\ref{sec:icedyn}). Basal sliding follows
+      (Sect.~\ref{sec:icedyn}). Default parameter values are given in
+      Table~\ref{tab:params}. Basal sliding follows
       a~pseudo-plastic law where the yield stress accounts for till
       deconsolidation under high water pressure (Sect.~\ref{sec:sliding}).
-      Ice shelf calving is calculated based on ice thickness and principle
-      strain rates (Sect.~\ref{sec:calving}). Surface mass balance is
+      Ice shelf calving is simulated using an ice thickness threshold and
+      principle components of the strain rate tensor
+      (Sect.~\ref{sec:calving}). Surface mass balance is
       computed using a~positive degree-day (PDD) model
-      (Sect.~\ref{sec:surface}). Default parameter values are given in
-      Table~\ref{tab:params}. Climate forcing is provided by a~monthly
+      (Sect.~\ref{sec:surface}). Climate forcing is provided by a~monthly
       climatology averaged from 1979 to 2000 from the North American
       Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbed
       by time-dependent offsets and lapse-rate temperature corrections
@@ -310,9 +311,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       fraction, $\omega$, is capped at a~maximum value of 0.01, above which
       no measurements are available \citep[Eq.~5.7]{Lliboutry.Duval.1985,
       Greve.1997}. Finally, $E$ is a~non-dimensional enhancement factor
-      which can take different values, $E_{\text{SIA}}$, in the Shallow Ice
-      Approximation (SIA) and $E_{\text{SSA}}$, in the Shallow Shelf
-      Approximation (SSA).
+      which can take different values, $E_{\text{SIA}}$, in the SIA and
+      $E_{\text{SSA}}$, in the SSA.
 
       In all our simulations, we set constant the power-law exponent, $n=3$,
       according to \citet[p.~55--57]{Cuffey.Paterson.2010}, the Clapeyron
@@ -331,17 +331,17 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 %
 \begin{itemize}
   \item Our \emph{default} configuration used in the control run of the
-    sensitivity study and all other simulations in the paper include
+    sensitivity study and all other simulations in the paper includes
     rheological parameters,
     $A_{\mathrm{c}}$, $A_{\mathrm{w}}$, $Q_{\mathrm{c}}$ and
     $Q_{\mathrm{w}}$, derived from \citet{Paterson.Budd.1982} and given in
     \citet[Eqn.~5]{Bueler.Brown.2009}, and $E_{\text{SIA}}=1$.
-  \item Our \emph{hard ice} configuration include rheological parameters,
+  \item Our \emph{hard ice} configuration includes rheological parameters,
     $A_{\mathrm{c}}$, $A_{\mathrm{w}}$, $Q_{\mathrm{c}}$ and
     $Q_{\mathrm{w}}$, derived from \citet[p.~72 and
     76]{Cuffey.Paterson.2010}, and $E_{\text{SIA}}=1$, which correspond to
     a~stiffer rheology than that used in the control run.
-  \item Our \emph{soft ice} configuration include rheological parameters
+  \item Our \emph{soft ice} configuration includes rheological parameters
     from \citet{Cuffey.Paterson.2010}, and $E_{\text{SIA}}=5$, the
     recommended value for ice age polar ice
     \citep[p.~77]{Cuffey.Paterson.2010}.
@@ -414,7 +414,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       varies from zero to $W_{\text{max}}$, a~threshold above which
       additional melt water is assumed to drain off instantaneously.
 
-      In all our sumlations, we set constant the pseudo-plastic sliding
+      In all our simulations, we set constant the pseudo-plastic sliding
       exponent, $q=0.25$, and the threshold velocity,
       $v_{\text{th}}=100$\,\unit{m\,a^{-1}}, according to values used by
       \citet{Aschwanden.etal.2013}, the till cohesion, $c_0=0$, whose
@@ -448,11 +448,11 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       On the other hand, we test the model sensitivity
       (Sect.~\ref{sec:sens}) to different values for the minimum ratio
       between the effective and overburden pressures, $\delta$, and the
-      maximum water height in the till, $W_{\text{max}}$, as follow.
+      maximum water height in the till, $W_{\text{max}}$, as follows.
 %
 \begin{itemize}
   \item Our \emph{default} configuration used in the control run of the
-    sensitivity study and all other simulations in the paper include
+    sensitivity study and all other simulations in the paper includes
     $\delta=0.02$ and $W_{\text{max}}=2$\,\unit{m} as in
     \citet{Bueler.Pelt.2015}.
   \item Our \emph{soft bed} configuration use $\delta=0.01$ and
