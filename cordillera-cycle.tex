@@ -230,9 +230,19 @@ middle Holocene (6.7\,\unit{ka}).
 
       Basal topography is bilinearly interpolated from the ETOPO1 combined
       topography and bathymetry dataset with a~resolution of 1\,arc-min
-      \citep{Amante.Eakins.2009} to the model grids. Sea level is lowered as
+      \citep{Amante.Eakins.2009} to the model grids. It responds to ice load
+      following a~bedrock deformation model that includes local isostasy,
+      elastic lithosphere flexure and viscous astenosphere deformation in an
+      infinite half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
+      A~relatively low viscosity value of $\nu_{\mathrm{m}} =
+      1\times10^{19}$\,\unit{Pa\,s} is used for the astenosphere
+      (Table~\ref{tab:params}) in accordance with the results from regional
+      glacial isostatic adjustment modelling at the northern Cascadia
+      subduction zone \citep{James.etal.2009}. Sea level is lowered as
       a~function of time based on the Spectral Mapping Project
-      \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Ice deformation
+      \citep[SPECMAP,][]{Imbrie.etal.1989} time scale.
+    
+      Ice deformation
       follows temperature and water-content dependent creep
       (Sect.~\ref{sec:icedyn}). Default parameter values are given in
       Table~\ref{tab:params}. Basal sliding follows
@@ -248,7 +258,7 @@ middle Holocene (6.7\,\unit{ka}).
       by time-dependent offsets and lapse-rate temperature corrections
       (Sect.~\ref{sec:atm}, Table~\ref{tab:records}). A~sensitivity study
       to some of the most influential ice rheology (Sect~\ref{sec:icedyn})
-      and basal sliding (Sect.~\ref{sec:sliding}) parameters was performed
+      and basal sliding (Sect.~\ref{sec:sliding}) parameters is performed
       (Table~\ref{tab:sens_params}).
 
       Each simulation starts from assumed ice-free conditions at
@@ -327,7 +337,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       (Sect.~\ref{sec:sens}) to different values for the two creep
       parameters, $A_{\mathrm{c}}$ and $A_{\mathrm{w}}$, the two activation
       energies, $Q_{\mathrm{c}}$ and $Q_{\mathrm{w}}$, and the SIA
-      enhancement factor, $E_{\text{SIA}}$, as follow.
+      enhancement factor, $E_{\text{SIA}}$, as follows.
 %
 \begin{itemize}
   \item Our \emph{default} configuration used in the control run of the
@@ -349,9 +359,9 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 %
       An additional simulation using the ice rheology from
       \citet{Cuffey.Paterson.2010} and $E_{\text{SIA}}=2$, the recommended
-      value for Holocene polar ice \citep[p.~77]{Cuffey.Paterson.2010} was
-      performed, but its results were very similar to that of our default
-      run and thus not presented here.
+      value for Holocene polar ice \citep[p.~77]{Cuffey.Paterson.2010} has
+      been performed, but is not presented here, since its results were very
+      similar to that of our default run.
 
       Actual parameter values for $A_{\mathrm{c}}$, $A_{\mathrm{w}}$,
       $Q_{\mathrm{c}}$, $Q_{\mathrm{w}}$ and $E_{\text{SIA}}$ used in our
@@ -422,13 +432,13 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       \citep[p.~268]{Tulaczyk.etal.2000, Cuffey.Paterson.2010}, the till
       reference void ratio, $e_0=0.69$, and the till compressibility
       coefficient, $C_{\mathrm{c}}=0.12$, according to the only measurements
-      available to our knowledge, published by \citep{Tulaczyk.etal.2000}.
+      available to our knowledge, published by \citet{Tulaczyk.etal.2000}.
       These fixed parameter values are summarized in Table~\ref{tab:params}.
 
       We also use a~constant spatial distribution of the till friction
       angle, $\phi$, whose values vary from 15 to 45\unit{\degree} as
       a~piecewise-linear function of modern bed elevation, with the lowest
-      value occuring below modern sea level (0\,\unit{m} above sea level,
+      value occuring below the modern sea level (0\,\unit{m} above sea level,
       \unit{m\,a.s.l.}) and the highest value occuring above the generalised
       elevation of the highest shorelines
       \citep[200\,\unit{m\,a.s.l.},][Fig.~5]{Clague.1981}. This range of
@@ -442,8 +452,8 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 
       An additional simulation with a~constant till friction angle,
       $\phi=30$\unit{\degree}, corresponding to the average value in
-      \citet[p.~268]{Cuffey.Paterson.2010}, was actually performed, but the
-      induced variability was small and thus not presented here.
+      \citet[p.~268]{Cuffey.Paterson.2010}, has been performed, but is not
+      presented here, since the induced variability was small.
 
       On the other hand, we test the model sensitivity
       (Sect.~\ref{sec:sens}) to different values for the minimum ratio
@@ -465,16 +475,6 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       pressure on the till, $N$, in response to water content, $W$, is
       illustrated in Fig.~\ref{fig:sens_plot_ntil}. All parameter choices
       are listed in Table~\ref{tab:sens_params}.
-
-      Finally, the bedrock topography responds to ice load following
-      a~bedrock deformation model that includes local isostasy, elastic
-      lithosphere flexure and viscous astenosphere deformation in an
-      infinite half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
-      A~relatively low viscosity value of $\nu_{\mathrm{m}} =
-      1\times10^{19}$\,\unit{Pa\,s} is used for the astenosphere
-      (Table~\ref{tab:params}) in accordance with the results from regional
-      glacial isostatic adjustment modelling at the northern Cascadia
-      subduction zone \citep{James.etal.2009}.
 
 \subsection{Ice shelf calving}
 \label{sec:calving}
@@ -548,12 +548,12 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
       characterised by strong geographic variations in temperature
       seasonality, timing of the maximum annual precipitation, and daily
       temperature variability (Fig.~\ref{fig:atm}). Although the ability
-      of NARR to reproduce these steep climatic gradients is limited by its
-      spatial resolution of 32\,\unit{km} \citep{Jarosch.etal.2012}, it was
-      tested against observational data in a~previous sensitivity study and
-      identified as yielding modelled Cordilleran ice sheet LGM extent in
-      closer agreement to geological reconstructions than other atmospheric
-      reanalyses \citep{Seguinot.etal.2014}.
+      of the NARR to reproduce the steep climatic gradients is limited by its
+      spatial resolution of 32\,\unit{km} \citep{Jarosch.etal.2012}, it has
+      been tested against observational data in our previous sensitivity
+      study and identified as yielding a closer fit between the modelled LGM
+      extent of the Cordilleran ice sheet and the geological evidence than
+      other atmospheric reanalyses \citep{Seguinot.etal.2014}.
 
       Temperature offset time-series, ${\Delta}T_{\text{TS}}$, are derived
       from palaeo-temperature proxy records from the Greenland Ice Core
@@ -574,7 +574,7 @@ A_{\mathrm{w}} (1+f\omega)\,e^\frac{-Q_{\mathrm{w}}}{RT_{\text{pa}}} & \text{if}
 \end{align}
       while temperature reconstructions from Antarctic and oceanic cores
       were provided as such. For each proxy record used and each of the
-      configurations used in the sensitivity tests, palaeo-temperature
+      parameter setup used in the sensitivity tests, palaeo-temperature
       anomalies were scaled linearly (Tables~\ref{tab:records}
       and~\ref{tab:sens_params}) in order to simulate comparable ice extents
       at the LGM (Table~\ref{tab:extrema}) and realistic outlines
