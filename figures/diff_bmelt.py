@@ -63,5 +63,5 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 
 # add colorbar and save
 cb = fig.colorbar(im, cax)
-cb.set_label(r'basal melt rate anomaly ($m\,yr^{-1}$)')
+cb.set_label(r'basal melt rate anomaly ($m\,a^{-1}$)')
 fig.savefig('diff_bmelt')

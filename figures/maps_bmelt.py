@@ -48,5 +48,5 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 
 # add colorbar and save
 cb = fig.colorbar(im, cax)
-cb.set_label(r'basal melt rate ($m\,yr^{-1}$)')
+cb.set_label(r'basal melt rate ($m\,a^{-1}$)')
 fig.savefig('maps_bmelt')
