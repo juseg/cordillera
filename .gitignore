@@ -40,6 +40,7 @@ figures/*.tex
 
 # Animations
 *.mp4
+*.ogg
 
 # Statistics
 stats/count.csv
