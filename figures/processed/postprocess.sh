@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # output dir and variables to include
-odir="/home/juliens/pism/output/0.7.2/cordillera-narr-10km"
+odir="/home/juliens/pism/output/0.7.2/cordillera-narr-5km"
 vars="lon,lat,bwat,bmelt,thk"
 
 # config and geoflux arguments

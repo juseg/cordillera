@@ -15,7 +15,6 @@ t = -19000.0
 # file paths
 filepath = ('/home/juliens/pism/output/0.7.2/cordillera-narr-{res}/'
             'grip3222cool620+{conf}+till1545{gflx}/y???????-extra.nc')
-hreslist = ['10km', '5km']
 confargs = ['cgeo1+hynull'] + 5*['cgeo1']
 gflxargs = 2*[''] + ['+dav13', '+gou11comb', '+gou11simi', '+sha04']
 
@@ -28,7 +27,7 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
 cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # open reference dataset
-filename = filepath.format(res='10km', conf='cgeo1', gflx='')
+filename = filepath.format(res='5km', conf='cgeo1', gflx='')
 nc = iplt.load(filename)
 xref, yref, zref = nc._extract_xyz('bmelt', t=t)
 nc.close()
@@ -42,7 +41,7 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
     ax.set_rasterization_zorder(2.5)
 
     # open dataset
-    filename = filepath.format(res='10km', conf=conf, gflx=gflx)
+    filename = filepath.format(res='5km', conf=conf, gflx=gflx)
     nc = iplt.load(filename)
     x, y, z = nc._extract_xyz('bmelt', t=t)
     w = (3*x[0]-x[1])/2
