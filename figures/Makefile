@@ -53,10 +53,6 @@ $(PYTEX_FIGS): %.pdf : %.py util
 tab_lr.$(EXT): util/lr.py
 tab_sens.$(EXT): util/sens.py
 
-# prepare figure.zip for the journal
-figures.zip: $(ALL_FIGS)
-	zip figures.zip $(ALL_FIGS)
-
 # phony targets
 .PHONY : data clean
 

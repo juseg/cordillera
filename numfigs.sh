@@ -8,6 +8,7 @@ do
     fig=${l:16:-1}
     ii=$(printf '%02d' $i)
     cp -n figures/$fig.pdf figures/fig$ii.pdf
+    zip figures.zip figures/fig??.pdf
     sed -i "s/\includegraphics{$fig}/\includegraphics{fig$ii}/" $paper.tex
     ((++i))
 done
