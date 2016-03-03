@@ -30,8 +30,8 @@ for i, rec in enumerate(records):
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
-        nc.imshow('topg', ax=ax, t=t, cmap=ut.topo_cmap, norm=ut.topo_norm)
-        ax = ut.pl.make_geoaxes(ax)  # only one image per geoaxes
+        nc.imshow('topg', ax=ax, t=t, cmap=ut.topo_cmap, norm=ut.topo_norm,
+                  zorder=-1)
         ut.pl.draw_ne_vectors(ax)
         nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                    colors='0.25', linewidths=0.25, zorder=0)

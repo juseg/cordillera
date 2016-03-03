@@ -66,6 +66,7 @@ def make_geoaxes(ax):
     gax.set_ylim(ax.get_ylim())
     return gax
 
+
 def draw_ne_vectors(ax):
     bwu = 0.5
     scale = '50m'
@@ -78,6 +79,7 @@ def draw_ne_vectors(ax):
     ax.add_feature(cfeature.NaturalEarthFeature(
         category='physical', name='graticules_5', scale=scale,
         edgecolor='0.25', facecolor='none', lw=0.25*bwu))
+
 
 def fig_hr_maps_mis(mis):
 
@@ -108,8 +110,7 @@ def fig_hr_maps_mis(mis):
         # plot
         print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         nc.imshow('topg', ax=ax, t=t,
-                  cmap=ut.topo_cmap, norm=ut.topo_norm)
-        ax = make_geoaxes(ax)  # only one image per geoaxes
+                  cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
         ut.pl.draw_ne_vectors(ax)
         nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                    colors='0.25', linewidths=0.25, zorder=0)
