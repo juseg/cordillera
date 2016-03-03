@@ -56,7 +56,7 @@ for i, ax in enumerate(grid):
 ax.set_ylim(-0.5, 5.5)
 ax.set_xticks(range(1,6))
 ax.set_xticklabels(ut.sens.labels)
-grid[1].set_ylabel(r'log of surface velocity ($m\,yr^{-1}$)')
+grid[1].set_ylabel(r'log of surface velocity ($m\,a^{-1}$)')
 
 # save
 fig.savefig('sens_dist_vel')
