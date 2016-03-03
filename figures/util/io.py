@@ -32,7 +32,7 @@ def open_boot_file(res):
 
 
 def open_dt_file(rec, dt, period='3222'):
-    return iplt.load(pism_dir + 'input/dt/%s-%s-cool%i.nc'
+    return iplt.load(pism_dir + 'input/dt/%s%scool%04i.nc'
                      % (rec, period, round(100*dt)))
 
 
