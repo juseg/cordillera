@@ -10,7 +10,7 @@ from matplotlib.ticker import FuncFormatter
 res = '10km'
 
 # initialize snapshots figure
-figw, figh = 120.0, 102.5
+figw, figh = 135.0, 117.5
 fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
                              left=5.0, right=12.5, bottom=2.5, top=5.0,

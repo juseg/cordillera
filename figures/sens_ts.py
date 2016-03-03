@@ -24,7 +24,7 @@ res = '10km'
 rec = 'grip'
 
 # initialize time-series figure
-figw, figh = 120.0, 80.01
+figw, figh = 85.0, 80.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=1, sharex=True, sharey=True,
                              figsize=(figw, figh),
                              left=10.0, right=2.5, bottom=10.0, top=2.5,
@@ -96,7 +96,7 @@ for ax in grid:
 
     # set axes properties
     ax.set_xlim(120.0, 0.0)
-    ax.set_ylim(0.0, 10.0)
+    ax.set_ylim(0.0, 9.5)
     ax.set_ylabel('ice volume (m s.l.e.)')
     ax.yaxis.set_label_coords(-0.05, 0.5)
     ax.grid(axis='y')

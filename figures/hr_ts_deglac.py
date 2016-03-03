@@ -10,7 +10,7 @@ offsets = ut.hr.offsets
 colors = ut.hr.colors
 
 # initialize time-series figure
-figw, figh = 85.01, 80.01
+figw, figh = 85.0, 80.0
 fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,

@@ -12,12 +12,12 @@ offsets = ut.hr.offsets
 cislevs = [34.0, 28.0]
 
 # initialize figure
-figw, figh = 120.0, 100.0
+figw, figh = 85.0, 95.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             left=2.5, right=2.5, bottom=15.0, top=2.5,
                              wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
 # draw topo and coastline
 ut.pl.draw_boot_topo(grid, res)
@@ -74,6 +74,6 @@ ut.pl.add_pointer_tag(ax, 'NRM', xy=(-1600e3, 1450e3), xytext=(-1200e3, 1450e3))
 ut.pl.add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
 
 # add colorbar and save
-cb = fig.colorbar(cf, cax)
+cb = fig.colorbar(cf, cax, orientation='horizontal')
 cb.set_label('duration of ice cover (ka)')
 fig.savefig('hr_geom_duration')

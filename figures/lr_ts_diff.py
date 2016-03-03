@@ -9,7 +9,7 @@ offsets = [6.2, 6.6, 5.9, 6.0, 6.1, 5.9]
 versions = ('dev-140915-8ff7cbe', '0.7.2')
 
 # initialize time-series figure
-figw, figh = 120.0, 80.01
+figw, figh = 85.0, 80.01
 fig, ax = iplt.subplots_mm(nrows=1, ncols=1, sharex=True,
                                    figsize=(figw, figh),
                                    left=10.0, right=2.5, bottom=10.0, top=2.5,

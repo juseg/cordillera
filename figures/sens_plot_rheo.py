@@ -46,9 +46,9 @@ if __name__ == '__main__':
     T = np.linspace(253.15, 273.15, 101)
 
     # initialize figure
-    fig, grid = iplt.subplots_mm(nrows=2, ncols=1, sharex=True, figsize=(85.0, 100.0),
+    fig, grid = iplt.subplots_mm(nrows=2, ncols=1, figsize=(85.0, 80.0),
                                  left=10.0, right=2.5, bottom=10.0, top=2.5,
-                                 wspace=2.5, hspace=2.5)
+                                 wspace=2.5, hspace=2.5, sharex=True)
 
     # for each axes
     for ax in grid:

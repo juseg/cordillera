@@ -48,7 +48,7 @@ def draw(grid, datasets, labels, t, cursor):
     return im
 
 # initialize figure
-figw, figh = 120.0, 140.0
+figw, figh = 135.0, 140.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
                              left=2.5, right=20.0, bottom=42.5, top=2.5,

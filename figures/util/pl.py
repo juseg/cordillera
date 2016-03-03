@@ -89,12 +89,12 @@ def fig_hr_maps_mis(mis):
     offsets = ut.hr.offsets
 
     # initialize figure
-    figw, figh = 120.0, 100.0
+    figw, figh = 85.0, 95.0
     fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                                 figsize=(figw, figh), projection=proj,
-                                 left=2.5, right=20.0, bottom=2.5, top=2.5,
+                                 figsize=(figw, figh), projection=ut.pl.proj,
+                                 left=2.5, right=2.5, bottom=15.0, top=2.5,
                                  wspace=2.5, hspace=2.5)
-    cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+    cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
     # loop on records
     for i, rec in enumerate(records):
@@ -130,8 +130,8 @@ def fig_hr_maps_mis(mis):
     nc.close()
 
     # add colorbar and return figure
-    cb = fig.colorbar(im, cax, extend='both', format='%i',
-                      ticks=np.logspace(1, 3.5, 6))
+    cb = fig.colorbar(im, cax, extend='both', orientation='horizontal',
+                      format='%i', ticks=np.logspace(1, 3.5, 6))
     cb.set_label(r'surface velocity ($m\,yr^{-1}$)', labelpad=-2.0)
     return fig
 
@@ -143,7 +143,7 @@ def fig_hr_pf(res, rec, dt, color):
     yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
 
     # initialize figure
-    fig, grid = iplt.subplots_mm(len(yplist), figsize=(85.0, 100.0),
+    fig, grid = iplt.subplots_mm(len(yplist), figsize=(85.0, 95.0),
                                  sharex=True, sharey=True,
                                  left=10.0, bottom=10.0, right=2.5, top=2.5,
                                  hspace=2.5)

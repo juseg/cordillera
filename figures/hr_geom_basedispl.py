@@ -11,12 +11,12 @@ records = ut.hr.records
 offsets = ut.hr.offsets
 
 # initialize figure
-figw, figh = 120.0, 100.0
+figw, figh = 85.0, 95.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             left=2.5, right=2.5, bottom=15.0, top=2.5,
                              wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
 # draw topo and coastline
 ut.pl.draw_boot_topo(grid, res)
@@ -62,6 +62,6 @@ for i, rec in enumerate(records):
     nc.close()
 
 # add colorbar and save
-cb = fig.colorbar(cf, cax, format='%i')
+cb = fig.colorbar(cf, cax, orientation='horizontal', format='%i')
 cb.set_label('cumulative basal displacement (km)')
 fig.savefig('hr_geom_basedispl')

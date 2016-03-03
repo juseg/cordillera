@@ -17,7 +17,7 @@ output=etopo1.nc
 proj='+proj=lcc +lon_0=-135 +lat_0=45 +lat_1=45 +lat_2=70'
 gdalwarp -s_srs EPSG:4326 -t_srs "$proj" \
          -te -2250000 000000 2250000 3000000 \
-         -tr 2500 2500 \
+         -tr 3000 3000 \
          -wm 512 -wo SOURCE_EXTRA=1000 \
          -srcnodata -2147483648 -dstnodata -2147483648 \
          -of netcdf -overwrite \

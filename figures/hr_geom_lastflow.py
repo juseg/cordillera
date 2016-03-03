@@ -17,12 +17,12 @@ norm=Normalize(-tmax, -tmin)
 plotres=12  # in km
 
 # initialize figure
-figw, figh = 120.0, 100.0
+figw, figh = 85.0, 95.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             left=2.5, right=2.5, bottom=15.0, top=2.5,
                              wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
 # plot topographic map
 ut.pl.draw_boot_topo(grid, res)
@@ -102,6 +102,7 @@ ut.pl.add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 
 # add colorbar and save
 print 'saving...'
-cb = ColorbarBase(cax, cmap=cmap, norm=norm, ticks=range(8, 23, 2))
+cb = ColorbarBase(cax, cmap=cmap, norm=norm, orientation='horizontal',
+                  ticks=range(8, 23, 2))
 cb.set_label('age of last basal sliding (ka)')
 fig.savefig('hr_geom_lastflow')

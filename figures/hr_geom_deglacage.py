@@ -16,12 +16,12 @@ cmap = iplt.get_cmap('RdBu_r')
 cmap.set_over(ut.lr.colors[4])  # dark green
 
 # initialize figure
-figw, figh = 120.0, 100.0
+figw, figh = 85.0, 95.0
 fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             left=2.5, right=2.5, bottom=15.0, top=2.5,
                              wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
 # plot topographic map
 ut.pl.draw_boot_topo(grid, res)
@@ -91,7 +91,7 @@ ut.pl.add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250
 
 # add colorbar and save
 print 'saving deglac...'
-cb = fig.colorbar(cs, cax, ticks=ages)
+cb = fig.colorbar(cs, cax, orientation='horizontal', ticks=ages)
 cb.set_label('deglaciation age (ka)')
 fig.savefig('hr_geom_deglacage')
 nc.close()

@@ -12,12 +12,12 @@ offsets = ut.hr.offsets
 times = [-16e3, -14e3, -12e3, -10e3]
 
 # initialize figure
-figw, figh = 120.0, 97.5
+figw, figh = 135.0, 115.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=4, sharex=True, sharey=True,
                              figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=2.5, top=2.5,
+                             left=2.5, right=17.5, bottom=2.5, top=2.5,
                              wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+cax = fig.add_axes([1-15.0/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # loop on records
 for i, rec in enumerate(records):
