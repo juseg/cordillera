@@ -132,7 +132,7 @@ def fig_hr_maps_mis(mis):
     # add colorbar and return figure
     cb = fig.colorbar(im, cax, extend='both', orientation='horizontal',
                       format='%i', ticks=np.logspace(1, 3.5, 6))
-    cb.set_label(r'surface velocity ($m\,a^{-1}$)', labelpad=-2.0)
+    cb.set_label(r'surface velocity ($m\,a^{-1}$)', labelpad=-0.0)
     return fig
 
 
