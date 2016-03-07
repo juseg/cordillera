@@ -76,4 +76,6 @@ ut.pl.add_pointer_tag(ax, 'CRM', xy=(-1550e3,  650e3), xytext=(-1200e3,  650e3))
 # add colorbar and save
 cb = fig.colorbar(cf, cax, orientation='horizontal')
 cb.set_label('duration of glaciation (ka)')
+cax.get_xticklabels()[0].set_ha('left')
+cax.get_xticklabels()[-1].set_ha('right')
 fig.savefig('hr_geom_duration')
