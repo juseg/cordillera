@@ -116,7 +116,7 @@ cb.set_label(r'surface velocity ($m\,a^{-1}$)')
 # make animation
 anim = FuncAnimation(fig, draw, frames=time,
                      fargs=(grid, datasets, labels, cursor))
-anim.save('anim_cordillera_cycle', fps=25)
+anim.save('anim_cordillera_cycle.mp4', fps=25)
 
 # close datasets
 for nc in datasets:
