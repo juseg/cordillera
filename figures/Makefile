@@ -1,5 +1,6 @@
 # Figures Makefile
 
+<<<<<<< HEAD
 # default figure extension
 EXT = pdf
 
@@ -25,14 +26,22 @@ SENS_FIGS := sens_plot_ntil sens_plot_rheo sens_plot_tauc \
 SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 
 # all python figures
-PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS)
+PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) \
+          map-cordillera.pdf map-northamerica.pdf \
+          paleo-glaciation.pdf paleo-timeseries.pdf \
+          plot-atm.pdf plot-sdmap.pdf plot-sdeffect.pdf \
+          plot-snapshots.pdf
+
+# all tex figures
+TEX_FIGS = model-pdd.pdf model-siassa.pdf model-variables.pdf \
+           model-interfaces.pdf soft-workflow.pdf
 
 # all python-latex figures
 PYTEX_FIGS := tab_hr tab_lr tab_sens
 PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
 
 # all figures
-ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS)
+ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS) $(TEX_FIGS) plot-lgm.jpg
 
 # to make all figures
 all: data $(ALL_FIGS)
@@ -53,6 +62,20 @@ $(PYTEX_FIGS): %.pdf : %.py util
 tab_lr.$(EXT): util/lr.py
 tab_sens.$(EXT): util/sens.py
 
+# rules and dependencies for inkscape figures
+$(INK_FIGS): %.pdf: %.svg
+	inkscape $< --export-pdf=$@
+
+# rules and dependencies for latex figures
+$(TEX_FIGS): %.pdf : %.tex
+	latexmk -pdf -dvi- -ps- $<
+
+plot-lgm.jpg: plot-lgm.png
+	convert -quality 85 $< $@
+
+plot-lgm.png: plot-lgm.py
+	python2 $<
+
 # phony targets
 .PHONY : data clean
 
@@ -61,3 +84,4 @@ data:
 
 clean:
 	rm $(ALL_FIGS)
+	rm -f *.{aux,log,fdb_latexmk,fls}
