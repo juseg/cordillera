@@ -1,7 +1,13 @@
-PAPER = cordillera-cycle
+PAPER := cordillera-cycle
+RESPS := response-editor response-jarosch response-stumpf response-marshall
+RESPS := $(addsuffix .pdf, $(DOCS))
 
-all: $(PAPER).pdf revisions-diff.pdf figures
+all: $(DOCS)
+
+all: $(PAPER).pdf $(RESPS) revisions-diff.pdf figures
 	latexmk -pdf -dvi- -ps- $(PAPER).tex
+
+$(RESPS): response-header.tex
 
 %.pdf: %.tex
 	latexmk -pdf -dvi- -ps- $<
