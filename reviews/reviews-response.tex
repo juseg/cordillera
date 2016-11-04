@@ -1,0 +1,78 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{color}
+\usepackage{geometry}
+
+\sloppy
+\setlength{\parskip}{1.0ex}
+\setlength{\parindent}{0em}
+
+% ----------------------------------------------------------------------
+
+\begin{document}
+\textbf{Authors' response to the reviews}
+\bigskip
+
+\def\msquote#1{\begin{quote}\textit{#1}\end{quote}}
+
+Dear Frank Pattyn,
+
+We believe that we have addressed all points raised by the reviews and hereby submit our revised manuscript to The Cryosphere. Our changes are described in detail in our public responses. We list them here by order of appearance, including references to line numbers in the revised manuscript.
+
+\begin{description}
+
+\item[Throughout the manuscript:]
+  Following the comment of Referee~{\#}1, we have adopted negative values for temperature offsets in the revised text and figures.
+
+\item[Sect.~2.1, l.~122--129:]
+  We have clarified that the till friction angle parameter is not affected by elevation changes related to isostatic effects:
+
+  \msquote{It is computed once at the beginning of the run [...] Because the distribution of marine sediments is assumed constant throughout the run, the till friction angle $\phi$ is not affected by changes in bed elevation.}
+
+\item[Sect.~2.1, l.~132--137:]
+   Following the request of Referee~{\#}2, we have added a paragraph on the implementation of isostatic effects in the model:
+
+  \msquote{Sea level is lowered by 120\,m and basal topography responds to ice load following a bedrock deformation model that includes point-wise isostasy, elastic lithosphere flexure and viscous mantle deformation in a~semi-infinite half-space. It uses a lithosphere density of 3300\,kg\,m$^{-3}$, a flexural rigidity of $5 \times 10^{24}$\,N\,m and a mantle viscosity of $1 \times 10^{21}$\,Pa\,s. Due to the high mantle viscosity, there exists a time lag between ice sheet growth and isostatic bedrock response.}
+
+\item[Sect.~5.1, l.~269--276:]
+  Following a question of Referee~{\#}1, we have improved Figs.~8--11 (see below) and added a few sentences to the main text concerning the new figures:
+
+  \msquote{Because much of the disparity between reanalyses and observational temperature data is caused by topographical detail at scales unresolved in the reanalyses, we apply a lapse-rate correction prior to this comparison, using the same lapse rate of 6\,$^\circ$C\,km$^{-1}$ as in the simulations. [...] The spatial distribution of temperature differences between reanalyses and WorldClim data shows partly consistent patterns, such as positive anomalies in the northernmost part of the modelling domain. These may relate to weaknesses of WorldClim data in areas of sparse observational coverage (Fig. 9). However, significant disparity among reanalyses exists, too.}
+
+\item[Sect.~5.4, l.~352--355:]
+   Following the comment of Referee~{\#}2, we have emphasized that most of our simulations do not reach steady-state:
+
+\msquote{Most of the simulations presented in this study, and more particularly those that reproduce the LGM ice margin reconstruction more closely (Fig.~15) do not reach a steady-state. Instead, rates of growth remain high throughout the run, and bed elevation does not come close to equilibrium with the ice load.}
+
+\item[Sect.~5.5, l.~375--386:]
+  Following the request of Referee~{\#}1, we have included a discussion of potential effects of precipitation changes on model results:
+
+  \msquote{As previously discussed, potential effects of the growing ice-sheet on precipitation changes are not included in our model. These changes likely consisted of a reduction of precipitation in continental regions and in the ice sheet interior, and an increase of precipitation along part of the margin where the presence of ice imposed ascending winds. They could result in a more westerly-centred ice sheet than modelled here, with lower ice thickness in its interior. In addition, the final position of the eastern ice margin is largely controlled by its advance rate through the run. Therefore, the precipitation shadowing effects may have resulted in more similar ice-sheet configurations if they were included in the model. Although using a GCM of intermediate complexity may represent a first step towards including ice sheet feedback on climate, their spatial resolution does not allow for accurate modelling of orographic precipitation changes in a region as mountainous as the North American Cordillera.}
+
+\item[Sect.~5.5, l.~398--403:]
+  Following the request of Referee~{\#}2, we have added a discussion of isostatic effects on model response:
+
+\msquote{The bedrock deformation model uses homogeneous lithospheric properties and a semi-infinite mantle of constant viscosity. Thus, it does not represent lateral variations of crustal and mantle properties characteristic of tectonically active margins such as the American Cordillera, nor does it include the influence from the neighbouring Laurentide ice sheet. These limitations should be acknowledged when interpreting ice surface elevation and volume reconstructions presented in this study.}
+
+\item[Fig.~8:]
+  Temperature density plots now use bilinear interpolation, lapse-rate correction and a new colour scale. The caption has been updated accordingly.
+
+\item[Fig.~9:]
+  Temperature difference maps now use bilinear interpolation, lapse-rate correction and a new colour scale. The caption has been updated accordingly.
+
+\item[Fig.~10:]
+  Precipitation density plots now use bilinear interpolation and a new colour scale. The caption has been updated accordingly.
+
+\item[Fig.~11:]
+  Temperature difference maps now use bilinear interpolation. The caption has been updated accordingly.
+
+\end{description}
+
+We hope that you will consider the revised manuscript for publication in The Cryosphere and look forward to hearing from you.
+
+\flushright
+With Best Regards,\\
+J.~Seguinot~et~al.
+
+\end{document}

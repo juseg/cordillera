@@ -1,0 +1,217 @@
+\begin{thebibliography}{69}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{{\tt #1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[{Abe-Ouchi et~al.(2007)Abe-Ouchi, Segawa, and Saito}]{abeouchi-etal-2007}
+Abe-Ouchi,~A., Segawa,~T., and Saito,~F.: Climatic Conditions for modelling the Northern Hemisphere ice sheets throughout the ice age cycle, Clim. Past, 3, 423--438, \doi{10.5194/cp-3-423-2007}, 2007. % ### SELF-REFERENCE ###
+
+\bibitem[{Amante and Eakins(2009)}]{data:etopo1}
+Amante,~C. and Eakins,~B.~W.: ETOPO1 1 arc-minute global relief model: procedures, data sources and analysis, NOAA technical memorandum NESDIS NGDC-24, 2009.
+
+\bibitem[{Artemieva and Mooney(2001)}]{artemieva-mooney-2001}
+Artemieva,~I.~M. and Mooney,~W.~D.: Thermal thickness and evolution of Precambrian lithosphere: a~global study, J. Geophys. Res., 106, 16387--16414, \doi{10.1029/2000JB900439}, 2001.
+
+\bibitem[{Aschwanden and Blatter(2009)}]{aschwanden-blatter-2009}
+Aschwanden,~A. and Blatter,~H.: Mathematical modeling and numerical simulation of polythermal glaciers, J. Geophys. Res., 114, F01027, \doi{10.1029/2008JF001028}, 2009.
+
+\bibitem[{Aschwanden et~al.(2012)Aschwanden, Bueler, Khroulev, and Blatter}]{aschwanden-etal-2012}
+Aschwanden,~A., Bueler,~E., Khroulev,~C., and Blatter,~H.: An enthalpy formulation for glaciers and ice sheets, J. Glaciol., 58, 441--457, \doi{10.3189/2012JoG11J088}, 2012.
+
+\bibitem[{Aschwanden et~al.(2013)Aschwanden, A{\dh}algeirsd\'{o}ttir, and Khroulev}]{aschwanden-etal-2013}
+Aschwanden,~A., A{\dh}algeirsd\'{o}ttir,~G., and Khroulev,~C.: Hindcasting to measure ice sheet model sensitivity to initial states, The Cryosphere, 7, 1083--1093, \doi{10.5194/tc-7-1083-2013}, 2013. % ### SELF-REFERENCE ###
+
+\bibitem[{Bengtsson et~al.(2007)Bengtsson, Haines, Hodges, Arkin, Berrisford, Bougeault, Kallberg, Simmons, Uppala, Folland, Gordon, Rayner, Thorne, Jones, Stammer, and Vose}]{bengtsson-etal-2007}
+Bengtsson,~L., Haines,~K., Hodges,~K.~I., Arkin,~P., Berrisford,~P., Bougeault,~P., Kallberg,~P., Simmons,~A.~J., Uppala,~S., Folland,~C.~K., Gordon,~C., Rayner,~N., Thorne,~P.~W., Jones,~P., Stammer,~D., and Vose,~R.~S.: The need for a~dynamical climate reanalysis, B. Am. Meteorol. Soc., 88, 495--501, \doi{10.1175/BAMS-88-4-495}, 2007.
+
+\bibitem[{Bintanja et~al.(2005)Bintanja, van~de Wal, and Oerlemans}]{bintanja-etal-2005}
+Bintanja,~R., van~de Wal,~R.~S.~W., and Oerlemans,~J.: A~new method to estimate ice age temperatures, Clim. Dynam., 24, 197--211, \doi{10.1007/s00382-004-0486-x}, 2005.
+
+\bibitem[{Blackwell and Richards(2004)}]{blackwell-richards-2004}
+Blackwell,~D.~D. and Richards,~M.: Geothermal Map of North America, American Association of Petroleum Geologists (AAPG), 1 sheet, scale $1:6\,500\,000$, 2004.
+
+\bibitem[{Bueler and Brown(2009)}]{bueler-brown-2009}
+Bueler,~E. and Brown,~J.: Shallow shelf approximation as a ``sliding law'' in a~thermodynamically coupled ice sheet model, J. Geophys. Res., 114, F03008, \doi{10.1029/2008JF001179}, 2009.
+
+\bibitem[{Bueler et~al.(2007)}]{bueler-etal-2007}
+Bueler,~E. and Lingle,~C.~S. and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105, \doi{10.3189/172756407782871567}, 2007
+
+\bibitem[{Calov and Greve(2005)}]{calov-greve-2005}
+Calov,~R. and Greve,~R.: A~semi-analytical solution for the positive degree-day model with stochastic temperature variations, J. Glaciol., 51, 173--175, \doi{10.3189/172756505781829601}, 2005.
+
+\bibitem[{Calov et~al.(2002)Calov, Ganopolski, Petoukhov, Claussen, and Greve}]{calov-etal-2002}
+Calov,~R., Ganopolski,~A., Petoukhov,~V., Claussen,~M., and Greve,~R.: Large-scale instabilities of the Laurentide ice sheet simulated in a~fully coupled climate-system model, Geophys. Res. Lett., 29, 2216, \doi{10.1029/2002GL016078}, 2002.
+
+\bibitem[{Charbit et~al.(2002)Charbit, Ritz, and Ramstein}]{charbit-etal-2002}
+Charbit,~S., Ritz,~C., and Ramstein,~G.: Simulations of Northern Hemisphere ice-sheet retreat: sensitivity to physical mechanisms involved during the Last Deglaciation, Quaternary Sci. Rev., 21, 243--265, \doi{10.1016/S0277-3791(01)00093-2}, 2002.
+
+\bibitem[{Charbit et~al.(2007)Charbit, Ritz, Philippon, Peyaud, and Kageyama}]{charbit-etal-2007}
+Charbit,~S., Ritz,~C., Philippon,~G., Peyaud,~V., and Kageyama,~M.: Numerical reconstructions of the Northern Hemisphere ice sheets through the last glacial-interglacial cycle, Clim. Past, 3, 15--37, \doi{10.5194/cp-3-15-2007}, 2007. % ### SELF-REFERENCE ###
+
+\bibitem[{Charbit et~al.(2013)Charbit, Dumas, Kageyama, Roche, and Ritz}]{charbit-etal-2013}
+Charbit,~S., Dumas,~C., Kageyama,~M., Roche,~D.~M., and Ritz,~C.: Influence of ablation-related processes in the build-up of simulated Northern Hemisphere ice sheets during the last glacial cycle, The Cryosphere, 7, 681--698, \doi{10.5194/tc-7-681-2013}, 2013. % ### SELF-REFERENCE ###
+
+\bibitem[{Clague(1989)}]{clague-1989}
+Clague,~J.~J.: Quaternary geology of the Canadian Cordillera, in: Quaternary Geology of Canada and Greenland, edited by: Fulton,~R.~J., Geological Society of America, Boulder, CO, 15--95, 1989.
+
+\bibitem[{Dee et~al.(2011)Dee, Uppala, Simmons, Berrisford, Poli, Kobayashi, Andrae, Balmaseda, Balsamo, Bauer, Bechtold, Beljaars, van~de Berg, Bidlot, Bormann, Delsol, Dragani, Fuentes, Geer, Haimberger, Healy, Hersbach, H\'{o}lm, Isaksen, K{\aa}llberg, K\"{o}hler, Matricardi, McNally, Monge-Sanz, Morcrette, Park, Peubey, de~Rosnay, Tavolato, Th\'{e}paut, and Vitart}]{data:erai}
+Dee,~D.~P., Uppala,~S.~M., Simmons,~A.~J., Berrisford,~P., Poli,~P., Kobayashi,~S., Andrae,~U., Balmaseda,~M.~A., Balsamo,~G., Bauer,~P., Bechtold,~P., Beljaars,~A.~C.~M., van~de Berg,~L., Bidlot,~J., Bormann,~N., Delsol,~C., Dragani,~R., Fuentes,~M., Geer,~A.~J., Haimberger,~L., Healy,~S.~B., Hersbach,~H., H\'{o}lm,~E.~V., Isaksen,~L., K{\aa}llberg,~P., K\"{o}hler,~M., Matricardi,~M., McNally,~A.~P., Monge-Sanz,~B.~M., Morcrette,~J.-J., Park,~B.-K., Peubey,~C., de~Rosnay,~P., Tavolato,~C., Th\'{e}paut,~J.-N., and Vitart,~F.: The ERA-Interim reanalysis: configuration and performance of the data assimilation system, Q. J. Roy. Meteor. Soc., 137, 553--597, \doi{10.1002/qj.828}, 2011.
+
+\bibitem[{Duk-Rodkin(1999)}]{dukrodkin-1999}
+Duk-Rodkin,~A.: Glacial limits map of Yukon Territory, Geol. Surv. of Can., Ottawa, Ont., Open File 3694, \doi{10.4095/210739}, 1999.
+
+\bibitem[{Dyke(2004)}]{dyke-2004}
+Dyke,~A.~S.: An outline of North American deglaciation with emphasis on central and northern Canada, in: Quaternary Glaciations -- Extent and Chronology, Part II, edited by: Ehlers,~J. and Gibbard,~P.~L., Elsevier, 373--424, \doi{10.1016/S1571-0866(04)80209-4}, 2004.
+
+\bibitem[{Fausto et~al.(2009{\natexlab{a}})Fausto, Ahlstr{\o}m, Van~As, B{\o}ggild, and Johnsen}]{fausto-etal-2009a}
+Fausto,~R.~S., Ahlstr{\o}m,~A.~P., Van~As,~D., B{\o}ggild,~C.~E., and Johnsen,~S.~J.: A~new present-day temperature parameterization for Greenland, J. Glaciol., 55, 95--105, \doi{10.3189/002214309788608985}, 2009{\natexlab{a}}.
+
+\bibitem[{Fausto et~al.(2009{\natexlab{b}})Fausto, Ahlstr{\o}m, Van~As, Johnsen, Langen, and Steffen}]{fausto-etal-2009b}
+Fausto,~R.~S., Ahlstr{\o}m,~A.~P., Van~As,~D., Johnsen,~S.~J., Langen,~P.~L., and Steffen,~K.: Improving surface boundary conditions with focus on coupling snow densification and meltwater retention in large-scale ice-sheet models of Greenland, J. Glaciol., 55, 869--878, \doi{10.3189/002214309790152537}, 2009{\natexlab{b}}.
+
+\bibitem[{Gesch et~al.(1999)Gesch, Verdin, and Greenlee}]{data:gtopo30}
+Gesch,~D.~B., Verdin,~K.~L., and Greenlee,~S.~K.: New land surface digital elevation model covers the Earth, Eos, Transactions American Geophysical Union, 80, 69--70, \doi{10.1029/99EO00050}, 1999.
+
+\bibitem[{Gregoire et~al.(2012)Gregoire, Payne, and Valdes}]{gregoire-etal-2012}
+Gregoire,~L.~J., Payne,~A.~J., and Valdes,~P.~J.: Deglacial rapid sea level rises caused by ice-sheet saddle collapses, Nature, 487, 219--222, \doi{10.1038/nature11257}, 2012.
+
+\bibitem[{Greve et~al.(1999)Greve, Wyrwoll, and Eisenhauer}]{greve-etal-1999}
+Greve,~R., Wyrwoll,~K.-H., and Eisenhauer,~A.: Deglaciation of the Northern Hemisphere at the onset of the Eemian and Holocene, Ann. Glaciol., 28, 1--8, \doi{10.3189/172756499781821643}, 1999.
+
+\bibitem[{Hebeler et~al.(2008)Hebeler, Purves, and Jamieson}]{hebeler-etal-2008}
+Hebeler,~F., Purves,~R.~S., and Jamieson,~S.~S.: The impact of parametric uncertainty and topographic error in ice-sheet modelling, J. Glaciol., 54, 899--919, \doi{10.3189/002214308787779852}, 2008.
+
+\bibitem[{Hijmans et~al.(2005)Hijmans, Cameron, Parra, Jones, and Jarvis}]{data:worldclim}
+Hijmans,~R.~J., Cameron,~S.~E., Parra,~J.~L., Jones,~P.~G., and Jarvis,~A.: Very high resolution interpolated climate surfaces for global land areas, Int. J. Climatol., 25, 1965--1978, \doi{10.1002/joc.1276}, 2005.
+
+\bibitem[{Hock(2003)}]{hock-2003}
+Hock,~R.: Temperature index melt modelling in mountain areas, J. Hydrol., 282, 104--115, \doi{10.1016/S0022-1694(03)00257-9}, 2003.
+
+\bibitem[{Hunter(2007)}]{soft:mpl}
+Hunter,~J.~D.: Matplotlib: a~2-D graphics environment, Comput. Sci. Eng., 9, 90--95, \doi{10.1109/MCSE.2007.55}, 2007.
+
+\bibitem[{Huybrechts and T'siobbel(1996)}]{huybrechts-tsiobbel-1996}
+Huybrechts,~P. and T'siobbel,~S.: A~three-dimensional climate-ice-sheet model applied to the Last Glacial Maximum, Ann. Glaciol., 25, 333--339, \doi{10013/epic.12066}, 1996.
+
+\bibitem[{Jackson and Clague(1991)}]{jackson-clague-1991}
+Jackson,~L.~E. and Clague,~J.~J.: The Cordilleran ice sheet: one hundred and fifty years of exploration and discovery, G\'{e}ogr. phys. Quatern., 45, 269--280, \doi{10.7202/032874ar}, 1991.
+
+\bibitem[{Janssens and Huybrechts(2000)}]{janssens-huybrechts-2000}
+Janssens,~I. and Huybrechts,~P.: The treatment of meltwater retention in mass-balance parameterizations of the Greenland ice sheet, Ann. Glaciol., 31, 133--140, \doi{10.3189/172756400781819941}, 2000.
+
+\bibitem[{Jarvis et~al.(2005)Jarvis, Reuter, Nelson, and Guevara}]{data:srtm}
+Jarvis,~A., Reuter,~H., Nelson,~A., and Guevara,~E.: Hole-filled Seamless SRTM Data V4. International Centre for Tropical Agriculture, available at: \url{http://srtm.csi.cgiar.org}, 2005.
+
+\bibitem[{Johnson and Fastook(2002)}]{johnson-fastook-2002}
+Johnson,~J. and Fastook,~J.~L.: Northern Hemisphere glaciation and its sensitivity to basal melt water, Quaternary Int., 95--96, 65--74, \doi{10.1016/S1040-6182(02)00028-9}, 2002.
+
+\bibitem[{Joussaume and Taylor(1995)}]{joussaume-taylor-1995}
+Joussaume,~S. and Taylor,~K.: Status of the Paleoclimate Modeling Intercomparison Project (PMIP), in: First International AMIP Conference, Proceedings of the first international AMIP Conference, edited by: Gates,~W.~L., World. Meteorol. Organ., Geneva, 425--430, 1995.
+
+\bibitem[{Kalnay et~al.(1996)Kalnay, Kanamitsu, Kistler, Collins, Deaven, Gandin, Iredell, Saha, White, Woollen et~al.}]{data:ncar}
+Kalnay,~E., Kanamitsu,~M., Kistler,~R., Collins,~W., Deaven,~D., Gandin,~L., Iredell,~M., Saha,~S., White,~G., Woollen,~J., Zhu,~Y., Leetmaa,~A., Reynolds,~R., Chelliah,~M., Ebisuzaki,~W., Higgins,~W., Janowiak,~J., Mo,~K.~C., Ropelewski,~C., Wang,~J., Jenne,~R., and Joseph,~D.: The NCEP/NCAR 40-year reanalysis project, B. Am. Meteorol. Soc., 77, 437--471, \doi{10.1175/1520-0477(1996)077<0437:TNYRP>2.0.CO;2}, 1996.
+
+\bibitem[{Kaufman and Manley(2004)}]{kaufman-manley-2004}
+Kaufman,~D.~S. and Manley,~W.~F.: Pleistocene Maximum and Late Wisconsinan glacier extents across Alaska, {USA}, in: Quaternary Glaciations -- Extent and Chronology, Part II, edited by: Ehlers,~J. and Gibbard,~P.~L., Elsevier, 9--27, \doi{10.1016/S1571-0866(04)80182-9}, 2004.
+
+\bibitem[{Kleman et~al.(2010)Kleman, Jansson, De~Angelis, Stroeven, H\"{a}ttestrand, Alm, and Glasser}]{kleman-etal-2010}
+Kleman,~J., Jansson,~K., De~Angelis,~H., Stroeven,~A., H\"{a}ttestrand,~C., Alm,~G., and Glasser,~N.: North American ice sheet build-up during the last glacial cycle, 115--21\,\unit{kyr}, Quaternary Sci. Rev., 29, 2036--2051, \doi{10.1016/j.quascirev.2010.04.021}, 2010.
+
+\bibitem[{Langen et~al.(2012)Langen, Solgaard, and Hvidberg}]{langen-etal-2012}
+Langen,~P.~L., Solgaard,~A.~M., and Hvidberg,~C.~S.: Self-inhibiting growth of the Greenland ice sheet, Geophys. Res. Lett., 39, L12502, \doi{10.1029/2012GL051810}, 2012.
+
+\bibitem[{Lingle and Clark(1985)}]{lingle-clark-1985}
+Lingle,~C.~S. and Clark,~J.~A.: A~numerical model of interactions between a~marine ice sheet and the solid Earth: application to a~West Antarctic ice stream, J. Geophys. Res., 90, 1100--1114, \doi{10.1029/JC090iC01p01100}, 1985.
+
+\bibitem[{Margold et~al.(2011)Margold, Jansson, Kleman, and Stroeven}]{margold-etal-2011}
+Margold,~M., Jansson,~K.~N., Kleman,~J., and Stroeven,~A.~P.: Glacial meltwater landforms of central British Columbia, J. Maps, 7, 486--506, \doi{10.4113/jom.2011.1205}, 2011.
+
+\bibitem[{Marshall and Clarke(1999)}]{marshall-clarke-1999}
+Marshall,~S.~J. and Clarke,~G.~K.~C.: Modeling North American freshwater runoff through the Last Glacial Cycle, Quaternary Res., 52, 300--315, \doi{10.1006/qres.1999.2079}, 1999.
+
+\bibitem[{Martin et~al.(2011)Martin, Winkelmann, Haseloff, Albrecht, Bueler, Khroulev, and Levermann}]{martin-etal-2011}
+Martin,~M.~A., Winkelmann,~R., Haseloff,~M., Albrecht,~T., Bueler,~E., Khroulev,~C., and Levermann,~A.: The Potsdam Parallel Ice Sheet Model (PISM-PIK) -- Part 2: Dynamic equilibrium simulation of the Antarctic ice sheet, The Cryosphere, 5, 727--740, \doi{10.5194/tc-5-727-2011}, 2011. % ### SELF-REFERENCE ###
+
+\bibitem[{Mesinger et~al.(2006)Mesinger, DiMego, Kalnay, Mitchell, Shafran, Ebisuzaki, Jovi\'{c}, Woollen, Rogers, Berbery et~al.}]{data:narr}
+Mesinger,~F., DiMego,~G., Kalnay,~E., Mitchell,~K., Shafran,~P.~C., Ebisuzaki,~W., Jovi\'{c},~D., Woollen,~J., Rogers,~E., Berbery,~E.~H., Ek,~M.~B., Fan,~Y., Grumbine,~R., Higgins,~W., Li,~H., Lin,~Y., Manikin,~G., Parrish,~D., and Shi,~W.: North American regional reanalysis, B. Am. Meteorol. Soc., 87, 343--360, \doi{10.1175/BAMS-87-3-343}, 2006.
+
+\bibitem[{NaturalEarth(accessed in 2010)}]{data:naturalearth}
+NaturalEarth: Free vector and raster map data, available at: \url{http://naturalearthdata.com}, 2010.
+
+\bibitem[{{netcdf4-python}(2013)}]{web:nc4py}
+{netcdf4-python}: Python/numpy interface to netCDF, available at: \url{http://netcdf4-python.googlecode.com/}, 2013.
+
+\bibitem[{Neteler et~al.(2011)Neteler, Bowman, Landa, and Metz}]{soft:grass}
+Neteler,~M., Bowman,~M., Landa,~M., and Metz,~M.: GRASS GIS: a~multi-purpose Open Source GIS, Environ. Modell. Softw., 31, 124--130, \doi{10.1016/j.envsoft.2011.11.014}, 2011.
+
+\bibitem[{{NOAA/OAR/ESRL Physical Sciences Division}(2013)}]{web:psd}
+{NOAA/OAR/ESRL Physical Sciences Division}: \url{http://www.esrl.noaa.gov/psd/}, 2013.
+
+\bibitem[{Oliphant(2007)}]{soft:scipy}
+Oliphant,~T.~E.: Python for Scientific Computing, Comput. Sci. Eng., 9, 10--20, \doi{10.1109/MCSE.2007.58}, 2007.
+
+\bibitem[{Pattyn(2010)}]{pattyn-2010}
+Pattyn,~F.: Antarctic subglacial conditions inferred from a~hybrid ice sheet/ice stream model, Earth Planet. Sc. Lett., 295, 451--461, \doi{10.1016/j.epsl.2010.04.025}, 2010.
+
+\bibitem[{Peltier(1994)}]{peltier-1994}
+Peltier,~W.~R.: Ice Age paleotopography, Sience, 265, 195--201, \doi{10.1126/science.265.5169.195}, 1994.
+
+\bibitem[{Porter and Swanson(1998)}]{porter-swanson-1998}
+Porter,~S.~C. and Swanson,~T.~W.: Radiocarbon age constraints on rates of advance and retreat of the {P}uget {L}obe of the {C}ordilleran {I}ce {S}heet during the last glaciation, Quaternary Res., 50, 205--213, \doi{10.1006/qres.1998.2004}, 1998.
+
+\bibitem[{Quiquet et~al.(2012)Quiquet, Punge, Ritz, Fettweis, Gall\'{e}e, Kageyama, Krinner, Salas~y M\'{e}lia, and Sjolte}]{quiquet-etal-2012}
+Quiquet,~A., Punge,~H.~J., Ritz,~C., Fettweis,~X., Gall\'{e}e,~H., Kageyama,~M., Krinner,~G., Salas~y~M\'{e}lia,~D., and Sjolte,~J.: Sensitivity of a Greenland ice sheet model to atmospheric forcing fields, The Cryosphere, 6, 999--1018, \doi{10.5194/tc-6-999-2012}, 2012. % ### SELF-REFERENCE ###
+
+\bibitem[{Rau and Rogozhina(2014)}]{rogozhina-rau-2014}
+Rogozhina,~I. and Rau,~D.: Vital role of daily temperature variability in surface mass balance parameterizations of the Greenland Ice Sheet, The Cryosphere, 8, 575--585, \doi{10.5194/tc-8-575-2014}, 2014. % ### SELF-REFERENCE ###
+
+\bibitem[{Reijmer et~al.(2012)Reijmer, van~den Broeke, Fettweis, Ettema, and Stap}]{reijmer-etal-2012}
+Reijmer,~C.~H., van~den~Broeke,~M.~R., Fettweis,~X., Ettema,~J., and Stap,~L.~B.: Refreezing on the Greenland ice sheet: a comparison of parameterizations, The Cryosphere, 6, 743--762, \doi{10.5194/tc-6-743-2012}, 2012. % ### SELF-REFERENCE ###
+
+\bibitem[{Robert(1991)}]{robert-1991}
+Robert,~B.~L.: Modeling the Cordilleran ice sheet, G\'{e}ogr. phys. Quatern., 45, 287--299, \doi{10.7202/032876ar}, 1991.
+
+\bibitem[{Rodgers et~al.(2004)Rodgers, Charbit, Kageyama, Philippon, Ramstein, Ritz, Yin, Lohmann, Lorenz, and Khodri}]{rodgers-etal-2004}
+Rodgers,~K.~B., Charbit,~S., Kageyama,~M., Philippon,~G., Ramstein,~G., Ritz,~C., Yin,~J., Lohmann,~G., Lorenz,~S.~J., and Khodri,~M.: Sensitivity of Northern Hemispheric continental ice sheets to tropical SST during deglaciation, Geophys. Res. Lett., 31, L02206, \doi{10.1029/2003GL018375}, 2004.
+
+\bibitem[{Rogozhina et~al.(2012)Rogozhina, Hagedoorn, Martinec, Fleming, Soucek, Greve, and Thomas}]{rogozhina-etal-2012}
+Rogozhina,~I., Hagedoorn,~J.~M., Martinec,~Z., Fleming,~K., Soucek,~O., Greve,~R., and Thomas,~M.: Effects of uncertainties in the geothermal heat flux distribution on the Greenland ice sheet: an assessment of existing heat flow models, J. Geophys. Res., 117, F02025, \doi{10.1029/2011JF002098}, 2012.
+
+\bibitem[{Saha et~al.(2010)Saha, Moorthi, Pan, Wu, Wang, Nadiga, Tripp, Kistler, Woollen, Behringer, Liu, Stokes, Grumbine, Gayno, Wang, Hou, Chuang, Juang, Sela, Iredell, Treadon, Kleist, Delst, Keyser, Derber, Ek, Meng, Wei, Yang, Lord, van den Dool, Kumar, Wang, Long, Chelliah, Xue, Huang, Schemm, Ebisuzaki, Lin, Xie, Chen, Zhou, Higgins, Zou, Liu, Chen, Han, Cucurull, Reynolds, Rutledge, and Goldberg}]{data:cfsr}
+Saha,~S., Moorthi,~S., Pan,~H.-L., Wu,~X., Wang,~J., Nadiga,~S., Tripp,~P., Kistler,~R., Woollen,~J., Behringer,~D., Liu,~H., Stokes,~D., Grumbine,~R., Gayno,~G., Wang,~J., Hou,~Y.-T., Chuang,~H.-Y., Juang,~H.-M.~H., Sela,~J., Iredell,~M., Treadon,~R., Kleist,~D., Delst,~P.~V., Keyser,~D., Derber,~J., Ek,~M., Meng,~J., Wei,~H., Yang,~R., Lord,~S., van~den~Dool,~H., Kumar,~A., Wang,~W., Long,~C., Chelliah,~M., Xue,~Y., Huang,~B., Schemm,~J.-K., Ebisuzaki,~W., Lin,~R., Xie,~P., Chen,~M., Zhou,~S., Higgins,~W., Zou,~C.-Z., Liu,~Q., Chen,~Y., Han,~Y., Cucurull,~L., Reynolds,~R.~W., Rutledge,~G., and Goldberg,~M.: The NCEP climate forecast system reanalysis, B. Am. Meteorol. Soc., 91, 1015--1057, \doi{10.1175/2010BAMS3001.1}, 2010.
+
+\bibitem[{Seguinot(2013)}]{seguinot-2013}
+Seguinot,~J.: Spatial and seasonal effects of temperature variability in a~positive degree day surface melt model, J. Glaciol., 59, 1202--1204, \doi{10.3189/2013JoG13J081}, 2013.
+
+\bibitem[{Shea et~al.(2009)Shea, Moore, and Stahl}]{shea-etal-2009}
+Shea,~J.~M., Moore,~R.~D., and Stahl,~K.: Derivation of melt factors from glacier mass-balance records in western Canada, J. Glaciol., 55, 123--130, \doi{10.3189/002214309788608886}, 2009.
+
+\bibitem[{Stroeven et~al.(2010)Stroeven, Fabel, Codilean, Kleman, Clague, Miguens-Rodriguez, and Xu}]{stroeven-etal-2010}
+Stroeven,~A.~P., Fabel,~D., Codilean,~A.~T., Kleman,~J., Clague,~J.~J., Miguens-Rodriguez,~M., and Xu,~S.: Investigating the glacial history of the northern sector of the Cordilleran ice sheet with cosmogenic \chem{^{10}Be} concentrations in quartz, Quaternary Sci. Rev., 29, 3630--3643, \doi{10.1016/j.quascirev.2010.07.010}, 2010.
+
+\bibitem[{Stroeven et~al.(2014)Stroeven, Fabel, Margold, Clague, and Xu}]{stroeven-etal-inpress}
+Stroeven,~A.~P., Fabel,~D., Margold,~M., Clague,~J.~J., and Xu,~S.: Investigating absolute chronologies of glacial advances in the {NW} sector of the Cordilleran ice sheet with terrestrial in situ cosmogenic nuclides, Quaternary Sci. Rev., \doi{10.1016/j.quascirev.2013.09.026}, in press, 2014.
+
+\bibitem[{Tarasov and Peltier(1997)}]{tarasov-peltier-1997}
+Tarasov,~L. and Peltier,~W.~R.: Terminating the 100\,\unit{kyr} ice age cycle, J. Geophys. Res., 102, 21665--21693, \doi{10.1029/97JD01766}, 1997.
+
+\bibitem[{Tarasov and Peltier(2004)}]{tarasov-peltier-2004}
+Tarasov,~L. and Peltier,~W.~R.: A~geophysically constrained large ensemble analysis of the deglacial history of the North American ice-sheet complex, Quaternary Sci. Rev., 23, 359--388, \doi{10.1016/j.quascirev.2003.08.004}, 2004.
+
+\bibitem[{the PISM~authors(2013)}]{web:pism}
+the PISM~authors: {PISM}, a~{P}arallel {I}ce {S}heet {M}odel, available at: \url{http://www.pism-docs.org}, 2013.
+
+\bibitem[{Trabant and Mayo(1985)}]{trabant-mayo-1985}
+Trabant,~D.~C. and Mayo,~L.~R.: Estimation and effects of internal accumulation on five glaciers in Alaska, Ann. Glaciol., 6, 113--117, 1985.
+
+\bibitem[{Winkelmann et~al.(2011)Winkelmann, Martin, Haseloff, Albrecht, Bueler, Khroulev, and Levermann}]{winkelmann-etal-2011}
+Winkelmann,~R., Martin,~M.~A., Haseloff,~M., Albrecht,~T., Bueler,~E., Khroulev,~C., and Levermann,~A.: The Potsdam Parallel Ice Sheet Model (PISM-PIK) -- Part 1: Model description, The Cryosphere, 5, 715--726, \doi{10.5194/tc-5-715-2011}, 2011. % ### SELF-REFERENCE ###
+
+\bibitem[{Yoshimori et~al.(2001)Yoshimori, Weaver, Marshall, and Clarke}]{yoshimori-etal-2001}
+Yoshimori,~M., Weaver,~A.~J., Marshall,~S.~J., and Clarke,~G.~K.~C.: Glacial termination: sensitivity to orbital and \chem{CO_2} forcing in a~coupled climate system model, Clim. Dynam., 17, 571--588, \doi{10.1007/s003820000134}, 2001.
+
+\bibitem[{Zweck and Huybrechts(2005)}]{zweck-huybrechts-2005}
+Zweck,~C. and Huybrechts,~P.: Modeling of the Northern Hemisphere ice sheets during the last glacial cycle and glaciological sensitivity, J. Geophys. Res., 110, D07103, \doi{10.1029/2004JD005489}, 2005.
+
+\end{thebibliography}

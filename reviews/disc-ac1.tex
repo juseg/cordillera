@@ -1,0 +1,97 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+
+\sloppy
+\setlength{\parskip}{1.2ex}
+\setlength{\parindent}{0em}
+\renewcommand\familydefault{\sfdefault}
+
+\graphicspath{{../figures/}}
+\definecolor{journalname}{rgb}{0.34,0.59,0.82}
+
+\begin{document}
+\textbf{Authors' response to Referee {\#}1}
+\bigskip
+
+% ----------------------------------------------------------------------
+% Interactive comment text begins
+% ----------------------------------------------------------------------
+
+\renewcommand\thefigure{AC\arabic{figure}}
+\def\referee#1{\bigskip\textcolor{journalname}{\textit{#1}}}
+\def\msquote#1{\begin{quote}\textit{#1}\end{quote}}
+
+Dear Referee {\#}1,
+
+Thank you very much for reading our manuscript and writing this supportive review. Your comments raise valid points about presentation and interpretation of the results. Please find our response below, in which we discuss these points with support of updated figures.
+
+\referee{Section~5.1: Are the temperature climatologies compared after applying a lapse-rate correction when interpolating the reanalyses to the same present-day topography and resolution? This would be important to avoid artificial biases in temperature.}
+
+In fact, no. In Figs.~8 and~9 of the discussion paper, temperature climatologies are compared without lapse-rate correction. Due to differences in resolution of surface topography between climatological datasets used, this caused appearance of numerous topographic artefacts (Fig.~AC1). Following your comment, we produced updated figures that include a lapse-rate correction of 6\,{$^\circ$}C\,km$^{-1}$, as applied in the simulations.
+
+The implementation of a lapse-rate correction in Fig.~9 (temperature difference maps) results in smoother maps, where effective temperature discrepancies are no longer overshadowed by local topographic anomalies (Fig.~AC2). Because temperature differences in this new map are much reduced, we adjusted colour scaling to emphasize smaller values.
+
+Also, the new Fig.~8 (temperature density maps) now uses bilinearly-interpolated temperature maps, rather than the original data (as presented in Figs.~2--4). This results in smoother density plots than those presented in the discussion paper (Fig.~AC3). In a second step, we apply a lapse-rate correction to project all reanalysis data onto the WorldClim (higher resolution) topography (Fig.~AC4). It now becomes clear that much of the discrepancies observed were due to lapse-rate effects.
+
+For consistency, Fig.~10 (precipitation density maps) was also updated using bilinearly-interpolated data (Fig.~AC5). Note that for all density maps, colour scales were changed to allow for a higher level of detail.
+
+These new figures present an altered version of climate forcing data used in our study, and they now more closely reflect how this data is read in by the ice sheet model, which seems appropriate for the discussion section. Moreover, the new maps reveal more clearly the strengths and weakness of different datasets, and support more strongly our interpretation of the ``hybrid'' climate forcing experiments presented in Sect.~5.2. These new figures are now included in the revised manuscript, and caption and body text was reworked accordingly. Thank you very much for this constructive comment.
+
+\referee{Discussion PaperPage 6184, line 2: ``despite of'' $=>$ ``despite''}
+
+We have corrected this.
+
+\referee{Page 6184, line 8 (and elsewhere): ``A single temperature offset of 5\,{$^\circ$} is used.'' This would be clearer with a minus sign, since it is a negative temperature offset correct? Please check throughout the manuscript.}
+
+To avoid confusion, we have adopted negative temperature offset values in the revised manuscript and figures where appropriate.
+
+\referee{Section~5.5: In this discussion, please add some sentences about the potential effect of elevation changes on the precipitation fields as the ice sheet evolves. In Section~2.3, it was mentioned that no correction was applied. However, I could imagine that as the dome of the ice sheet grows, a very distinct pattern of precipitation maximum could occur near the margins of the ice sheet. Perhaps, for example, including such a correction would actually make the ice sheets evolve to more similar states after 10ka.}
+
+We think that you raise here a valid concern. In the east, where in most of our simulations, the ice margin does not attain a steady-state configuration, its position after 10\,kyr is largely determined by its rate of advance during the simulation length, which in turn depends on the amount of precipitation received. We agree that precipitation corrections in this region could slow down the ice margin advance, resulting in more similar configuration after 10\,kyr. We have included a discussion of this effect in Sect.~5.5.
+
+\msquote{As previously discussed, potential effects of the growing ice-sheet on precipitation changes are not included in our model. These changes likely consisted of a reduction of precipitation in continental regions and in the ice sheet interior, and an increase of precipitation along part of the margin where the presence of ice imposed ascending winds. They could result in a more westerly-centred ice sheet than modelled here, with lower ice thickness in its interior. In addition, the final position of the eastern ice margin is largely controlled by its advance rate through the run. Therefore, the precipitation shadowing effects may have resulted in more similar ice-sheet configurations if they were included in the model. Although using a GCM of intermediate complexity may represent a first step towards including ice sheet feedback on climate, their spatial resolution do not allow for accurate modelling of orographic precipitation changes in a region as mountainous as the North American Cordillera.}
+
+A more detailed discussion of potential effects of the growing ice-sheet on regional climate is given in Sect.~5.3 of the discussion paper, in the context of comparison of simulation results to the field evidence of the last glacial maximum ice margin.
+
+Thank you again for your positive comments and constructive input.
+
+% ----------------------------------------------------------------------
+% Interactive comment text ends
+% ----------------------------------------------------------------------
+
+\clearpage
+
+\begin{figure}
+    \centering
+    \includegraphics[width=70mm]{cordillera-climate-tempdiff+nolr}
+    \caption{Summer temperature difference maps, as in paper Fig. 9, with a new colour scale.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=70mm]{cordillera-climate-tempdiff}
+    \caption{Summer temperature difference maps, after applying a lapse-rate correction.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=70mm]{cordillera-climate-tempheatmap+nolr}
+    \caption{Summer temperature density maps, after bilinear interpolation.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=70mm]{cordillera-climate-tempheatmap}
+    \caption{Summer temperature density maps, after bilinear interpolation and lapse-rate correction.}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=70mm]{cordillera-climate-precheatmap}
+    \caption{Winter precipitation density maps, after bilinear interpolation.}
+\end{figure}
+
+\end{document}

@@ -1,0 +1,107 @@
+\documentclass{letter}
+
+\signature{Julien Seguinot}
+\address{
+  julien.seguinot@natgeo.su.se\\\\
+  Stockholm University\\
+  SE-106 91 Stockholm\\
+  SWEDEN}
+
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{graphicx}
+%\usepackage{enumitem}
+%\usepackage{letterbib}
+\graphicspath{{../figures/}}
+
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\degree}[0]{\ensuremath{^{\circ}}}
+\newcommand{\rev}[0]{\color{blue!50!black}\it}
+\newcommand{\textrev}[1]{{\rev``#1''}}
+\newcommand{\revpoint}[1]{{\rev\item``#1''}}
+\newcommand{\todo}[1]{\textcolor{red!50!black}{Todo: #1}}
+\newcommand{\done}[1]{\textcolor{green!50!black}{Done: #1}}
+
+% ----------------------------------------------------------------------
+
+\begin{document}
+\begin{letter}{Reply to Editor Initial Decision}
+
+\opening{Dear Frank Pattyn,}
+
+
+Many thanks for accepting our paper for publication in TCD. We address your comments in the updated manuscript and detail the changes made below.
+
+% ----------------------------------------------------------------------
+\begin{itemize}
+
+\revpoint{Line 43: please rephrase this sentence: 'other side of the coin' and 'hand-in-hand' into something of higher scientific value.}
+
+This sentence was rephrased to: 'However, avoiding this circular dependence requires simplifying assumptions regarding Earth's past climate.'
+
+\revpoint{Line 47: idem: Standing on middle ground is not a good beginning of the sentence. What is actually meant by this. Be more precise.}
+
+Rephrased to 'Alternatively.'
+
+\revpoint{Line 59-60: remove 'In our study'. just start sentence by: 'To limit the degrees of freedom ...'}
+
+Rephrased accordingly.
+
+\revpoint{Line 85: remove 'Thereby'. Just start with 'We aim to determine ...'}
+
+Rephrased accordingly.
+
+\revpoint{Line 87-88: Remove this sentence. It may be the first study to focus on the Cordilleran ice sheet since Robert (1991), but isn't that at the same time a weakness, since the model is not taking into account the buttressing effect of the Laurentide, which is done in other model studies that take into account the whole North American continent?}
+
+This sentence was removed.
+
+\revpoint{Line 113-116: Is this realistic to take a constant value of 70 $mW/m^2$? Aren't there direct measurements in the region to support this. Since it is an active margin, there could well be quite some spatial variability. Especially since one of the co-authors (I. Roghozina) is specialized in geothermal heat flow underneath ice sheets. Some evidence as to the choice of this value should be given as well as the eventual consequences of this choice.}
+
+Thank you for raising this point. A justification was added in the manuscript. In this study, we focus mainly on glacier extent, on which geothermal heat flux is not the major control. However we are currently working on an improved geothermal forcing which will be included in transient simulations of the Cordilleran Ice Sheet in the future.
+
+\revpoint{Line 199-200: 'Summer temperature and winter precipitation are most relevant to the glacier model as they drive summer melt and winter accumulation, respectively'.}
+
+Moved 'respectively' to the end of the sentence.
+
+\revpoint{Line 206: 're-projected to the Canadian ...'}
+
+Added 'the'.
+
+\revpoint{Line 216: spatially-smoothed}
+
+Added a dash.
+
+\revpoint{Line 276: However,}
+
+Added a comma.
+
+\revpoint{Line 284: to allow for comparison}
+
+Added 'for'.
+
+\revpoint{Line 294: compare modelled ice sheet ...}
+
+Removed 'numerically.'
+
+\revpoint{Line 362-367: This is a simple parameterization in Janssens and Huybrechts. If it would make such a difference, what is the rationale behind the fact that this has not been done? Please state.}
+
+There exist different refreezing parametrizations in the literature. We developed this point in the manuscript. As we have not assessed which parametrization scheme, if any, would be appropriate for our set-up, we preferred to disregard refreezing rather than adding a new source of uncertainty in our model.
+
+\revpoint{Figures: would it be possible to draw the limits of the Cordilleran ice sheets (as shown in Fig.~1) to the figures that show the simulated ice extents? It would make visual inspection easier.}
+
+The LGM ice margin reconstruction visible on Figs.~1 and~15 was added to Fig.~6, which shows the extent of modelled ice cover for each climate forcing used. However we did not add it to Figs.~7 and 13 as we felt that the resulting figures contained too much information (Fig.~a).
+
+\end{itemize}
+
+\begin{center}
+	\includegraphics{cordillera-climate-cool05+lgm.pdf}\\
+	\textbf{Fig. a.} Paper figure~7 with added LGM ice margin, not included in the new version.
+\end{center}
+
+% ----------------------------------------------------------------------
+
+\closing{Best regards,}
+
+\end{letter}
+\end{document}

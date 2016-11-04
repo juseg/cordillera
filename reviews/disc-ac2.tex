@@ -1,0 +1,81 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{color}
+\usepackage[colorlinks,citecolor=blue]{hyperref}
+\usepackage{natbib}
+
+\sloppy
+\setlength{\parskip}{1.2ex}
+\setlength{\parindent}{0em}
+\renewcommand\familydefault{\sfdefault}
+
+\graphicspath{{../figures/}}
+\definecolor{journalname}{rgb}{0.34,0.59,0.82}
+
+\begin{document}
+
+\textbf{Authors' response to Referee {\#}2}
+\bigskip
+
+% ----------------------------------------------------------------------
+% Interactive comment text begins
+% ----------------------------------------------------------------------
+
+\def\doi#1{doi:\allowbreak\href{http://dx.doi.org/#1}{#1}}
+\def\referee#1{\bigskip\textcolor{journalname}{\textit{#1}}}
+\def\msquote#1{\begin{quote}\textit{#1}\end{quote}}
+
+Dear Referee {\#}2,
+
+Thank you very much for reading our manuscript and positively commenting on it. We apologize for the lack of detail regarding isostatic issues, which we discuss below.
+
+\referee{Before publication, I do have one scientific concern about the way the experiments were carried out. The model setup (Section 2) includes only brief mention of isostatic effects. These are really significant in a run of this sort because the elevation of the ice surface could be as much as $\sim$1800 m too high without the effect. Given that lapse rates are used to re-scale the climate data to elevations that are altered by the presence of the ice sheet, and that the sliding relation is strongly controlled by bedrock elevation, I think a more detailed discussion of isostacy is warranted. Specifically, given that the goal is an LGM configuration, I'd like assurance that the bedrock elevation has come close to equilibrium at the 10ka point that is reported on. This assurance should be simple to provide with minor modifications to the model setup section.}
+
+The bedrock deformation model used in our study describes the flexure of an elastic lithosphere on top of an infinite half-space viscous mantle \citep{lingle-clark-1985}. It can be described by a single differential equation of the bed elevation $u(x, y, t)$,
+
+\begin{equation}
+    2 \nu |\nabla| \frac{\partial u}{\partial t}
+    + \rho_r g u
+    + D \nabla^4 u
+    = \sigma_{zz},
+\end{equation}
+
+where $\nu=1\times10^{21}$\,Pa\,s is mantle viscosity, $\rho_r = 3300$\,kg\,m$^{-3}$ is lithosphere density, $D=5\times10^{24}$\,N\,m is the lithosphere's flexural rigidity, and $\sigma_{zz}$ corresponds to the ice load \citet{bueler-etal-2007}. In the left-hand part of this equation, the first term accounts for mantle relaxation, the second for point-wise isostasy, and the third for elastic flexure. Please refer to \citet{bueler-etal-2007} for a definition of the pseudo-differential operator $|\nabla|$. Due to high mantle viscosity $\nu$, there exists a time lag between the ice sheet growth and the isostatic bedrock response.
+
+We would like to emphasize that most of our simulations do not reach a climatic equilibrium. In fact, simulations ran to climatic equilibrium (not shown in the paper) produce excessive ice cover in continental regions regardless of the forcing climatology used. Moreover, geomorphological and palaeoclimatic records give support for a short-lived Cordilleran ice sheet. Because the modelled ice sheet is in constant expansion, and because of the first term in the above equation, bedrock elevation does not come to equilibrium with the ice sheet configuration in our runs.
+
+To clarify our methods, we have reworked the last sentence of Sect.~2.1 into the following short paragraph:
+
+\msquote{Sea level is lowered by 120\,m and basal topography responds to ice load following a bedrock deformation model that includes point-wise isostasy, elastic lithosphere flexure and viscous mantle deformation in a~semi-infinite half-space \citep{lingle-clark-1985,bueler-etal-2007}. It uses a lithosphere density of 3300\,kg\,m$^{-3}$, a flexural rigidity of $5 \times 10^{24}$\,N\,m and a mantle viscosity of $1 \times 10^{21}$\,Pa\,s. Due to the high mantle viscosity, there exists a time lag between ice sheet growth and isostatic bedrock response.}
+
+We have emphasized the fact that bed elevation does not reach equilibrium at the beginning of Sect.~5.4.
+
+\msquote{Most of the simulations presented in this study, and more particularly those that reproduce the LGM ice margin reconstruction more closely (Fig.~15) do not reach a steady-state. Instead, rates of growth remain high throughout the run, and bed elevation does not come close to equilibrium with the ice load.}
+
+Although we do not believe that bedrock elevation must have been in equilibrium with the ice sheet configuration at the LGM, we recognize that through our simplistic palaeoclimatic approach, isostatic effects are another significant source of error on modelled ice surface elevation, as stated in a new paragraph of Sect.~5.5.
+
+\msquote{The bedrock deformation model uses homogeneous lithospheric properties and a semi-infinite mantle of constant viscosity. Thus, it does not represent lateral variations of crustal and mantle properties characteristic of tectonically active margins such as the American Cordillera, nor does it include the influence from the neighbouring Laurentide ice sheet. These limitations should be acknowledged when interpreting ice surface elevation and volume reconstructions presented in this study.}
+
+\referee{The only writing problem I found was in figure 5, `logarythmic' should be `logarithmic'. Many thanks to the authors for getting the wording right the first time.}
+
+Thank you for noticing this mistake. We have corrected it (in Figs.~8 and~10).
+
+In general, thank you again for this supportive and constructive review.
+
+\begin{thebibliography}{69}
+
+\bibitem[{Lingle and Clark(1985)}]{lingle-clark-1985}
+Lingle,~C.~S. and Clark,~J.~A.: A~numerical model of interactions between a~marine ice sheet and the solid Earth: application to a~West Antarctic ice stream, J. Geophys. Res., 90, 1100--1114, \doi{10.1029/JC090iC01p01100}, 1985.
+
+\bibitem[{Bueler et~al.(2007)}]{bueler-etal-2007}
+Bueler,~E. and Lingle,~C.~S. and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105, \doi{10.3189/172756407782871567}, 2007
+
+\end{thebibliography}
+
+% ----------------------------------------------------------------------
+% Interactive comment text ends
+% ----------------------------------------------------------------------
+
+\end{document}

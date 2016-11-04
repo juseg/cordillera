@@ -1,0 +1,20 @@
+# Files produces by latex
+*.aux
+*.blg
+*.fff
+*.log
+*.out
+*.pdf
+*.ttt
+*.rtf
+
+# Data and figures
+*.nc
+*.pyc
+*.png
+
+# Older versions
+/versions
+
+# Statistics
+stats/count.csv
