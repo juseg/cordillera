@@ -1,0 +1,2141 @@
+\documentclass[tc, manuscript]{copernicus}
+\graphicspath{{figures/}}
+
+\begin{document}\hack{\sloppy}
+
+
+\title{Numerical simulations of the Cordilleran ice sheet
+       through the last glacial cycle}
+
+\Author[1,2,3]{J.}{Seguinot}
+\Author[3]{I.}{Rogozhina}
+\Author[2]{A.~P.}{Stroeven}
+\Author[2]{M.}{Margold}
+\Author[2]{J.}{Kleman}
+
+\runningauthor{J.~Seguinot et~al.}
+
+\correspondence{J.~Seguinot (seguinot@vaw.baug.ethz.ch)}
+
+\runningtitle{Numerical simulations of the Cordilleran ice sheet
+              through the last glacial cycle}
+
+\affil[1]{Laboratory of Hydraulics, Hydrology and Glaciology, ETH Z\"{u}rich, Z\"{u}rich, Switzerland}
+\affil[2]{Department of Physical Geography and the Bolin Centre for Climate Research, Stockholm University, Stockholm, Sweden}
+\affil[3]{Helmholtz Centre Potsdam, GFZ German Research Centre for Geosciences, Potsdam,~Germany}
+
+
+\hack{\allowdisplaybreaks}
+
+\received{21~June 2015}
+\accepted{25~June 2015}
+\published{}
+
+\firstpage{1}
+
+\maketitle
+
+
+\begin{abstract}
+Despite more than a century of geological observations, the
+Cordilleran ice sheet of North America remains poorly understood in
+terms of its former extent, volume and dynamics. Although
+geomorphological evidence is abundant, its complexity is such that
+whole ice-sheet reconstructions of advance and retreat patterns are
+lacking. Here we use a numerical ice sheet model calibrated against
+field-based evidence to attempt a quantitative reconstruction of the
+Cordilleran ice sheet history through the last glacial
+cycle. A series of simulations is driven by time-dependent
+temperature offsets from six proxy records located around the
+globe. Although this approach reveals large variations in model
+response to evolving climate forcing, all simulations produce two
+major glaciations during marine oxygen isotope stages 4
+(61.9--56.5\,\unit{ka}) and 2 (23.2--16.8\,\unit{ka}). The timing of
+glaciation is better reproduced using temperature reconstructions
+from Greenland and Antarctic ice cores than from regional oceanic
+sediment cores. During most of the last glacial cycle, the modelled
+ice cover is discontinuous and restricted to high mountain
+areas. However, widespread precipitation over the Skeena Mountains
+favours the persistence of a central ice dome throughout the glacial
+cycle. It acts as a nucleation centre before the Last Glacial
+Maximum and hosts the last remains of Cordilleran ice until the
+middle Holocene (6.6--6.2\,ka).
+\end{abstract}
+
+
+
+\introduction
+\label{sec:intro}
+
+      During the last glacial cycle, glaciers and ice caps of the North
+      American Cordillera have been more extensive than today. At the Last
+      Glacial Maximum (LGM), a~continuous blanket of ice, the Cordilleran
+      ice sheet \citep{Dawson.1888}, stretched from the Alaska Range in the
+      north to the North Cascades in the south (Fig.~\ref{fig:locmap}). In
+      addition, it extended offshore, where it calved into the Pacific
+      Ocean, and merged with the western margin of its much larger
+      neighbour, the Laurentide ice sheet, east of the Rocky Mountains.
+
+      More than a~century of exploration and geological investigation of the
+      Cordilleran mountains have led to many observations in support of the
+      former ice sheet \citep{Jackson.Clague.1991}. Despite the lack of
+      documented end moraines offshore, in the zone of confluence with the
+      Laurentide ice sheet, and in areas swept by the Missoula floods
+      \citep{Carrara.etal.1996}, moraines that demarcate the northern and
+      south-western margins provide key constraints that allow reasonable
+      reconstructions of maximum ice sheet extents
+      (\citealp{Prest.etal.1968}; \citealp[Fig.~1.12]{Clague.1989};
+      \citealp{Duk-Rodkin.1999}; \citealp{Booth.etal.2003};
+      \citealp{Dyke.2004}). As indicated by field evidence from radiocarbon
+      dating \citep{Clague.etal.1980, Clague.1985, Clague.1986,
+      Porter.Swanson.1998, Menounos.etal.2008}, cosmogenic exposure dating
+      \citep{Stroeven.etal.2010, Stroeven.etal.2014, Margold.etal.2014},
+      bedrock deformation in response to former ice loads
+      \citep{Clague.James.2002, Clague.etal.2005}, and offshore sedimentary
+      records \citep{Cosma.etal.2008, Davies.etal.2011}, the LGM Cordilleran
+      ice sheet extent was short-lived. However, former ice thicknesses and,
+      therefore, the ice sheet's contribution to the LGM sea level lowstand
+      \citep{Carlson.Clark.2012, Clark.Mix.2002} remain uncertain.
+
+      Our understanding of the Cordilleran glaciation history prior to the
+      LGM is even more fragmentary \citep{Barendregt.Irving.1998,
+      Kleman.etal.2010, Rutter.etal.2012}, although it is clear that the
+      Pleistocene maximum extent of the Cordilleran ice sheet predates the
+      last glacial cycle \citep{Hidy.etal.2013}. In parts of the Yukon
+      Territory and Alaska, and in the Puget Lowland, the distribution of
+      tills \citep{Turner.etal.2013, Troost.2014} and dated glacial erratics
+      \citep{Ward.etal.2007, Ward.etal.2008, Briner.Kaufman.2008,
+      Stroeven.etal.2010, Stroeven.etal.2014} indicate an extensive Marine
+      Oxygen Isotope Stage (MIS)~4 glaciation. Landforms in the interior
+      regions include flow sets that are likely older than the LGM
+      \citep[Fig.~2]{Kleman.etal.2010}, but their absolute age remains
+      uncertain.
+
+      In contrast, evidence for the deglaciation history of the Cordilleran
+      ice sheet since the LGM is considerable, albeit mostly at a~regional
+      scale. Geomorphological evidence from south-central British Columbia
+      indicates a~rapid deglaciation, including an early emergence of
+      elevated areas while thin, stagnant ice still covered the surrounding
+      lowlands \citep{Fulton.1967, Fulton.1991, Margold.etal.2011,
+      Margold.etal.2013a}. This model, although credible, may not apply in
+      all areas of the Cordilleran ice sheet \citep{Margold.etal.2013}.
+      Although solid evidence for late-glacial glacier re-advances have been
+      found in the Coast, Columbia and Rocky mountains
+      \citep{Clague.etal.1997, Friele.Clague.2002, Friele.Clague.2002a,
+      Kovanen.2002, Kovanen.Easterbrook.2002, Lakeman.etal.2008,
+      Menounos.etal.2008}, it appears to be sparser than for formerly
+      glaciated regions surrounding the North Atlantic
+      \citep[e.g.,][]{Sissons.1979, Lundqvist.1987, Ivy-Ochs.etal.1999,
+      Stea.etal.2011}. Nevertheless, recent oxygen isotope measurements from
+      Gulf of Alaska sediments reveal a~climatic evolution highly correlated
+      to that of Greenland during this period, including a~distinct Late
+      Glacial cold reversal between 14.1 and 11.7\,\unit{ka}
+      \citep{Praetorius.Mix.2014}.
+
+      In general, the topographic complexity of the North American
+      Cordillera and its effect on glacial history have inhibited the
+      reconstruction of ice sheet-wide glacial advance and retreat patterns
+      such as those available for the Fennoscandian and Laurentide ice
+      sheets \citep{Boulton.etal.2001, Dyke.Prest.1987, Dyke.etal.2003,
+      Kleman.etal.1997, Kleman.etal.2010, Stroeven.etal.inreview}. Here, we
+      use a~numerical ice sheet model \citep{PISM-authors.2015}, calibrated
+      against field-based evidence, to perform a~quantitative reconstruction
+      of the Cordilleran ice sheet evolution through the last glacial cycle,
+      and analyse some of the long-standing questions related to its
+      evolution:
+\begin{itemize}
+  \item How much ice was locked in the Cordilleran ice sheet during the LGM?
+  \item What was the scale of glaciation prior to the LGM?
+  \item Which were the primary dispersal centres? Do they reflect stable or
+    ephemeral configurations?
+  \item How rapid was the last deglaciation? Did it include Late Glacial
+    standstills or readvances?
+\end{itemize}
+      Although numerical ice sheet modelling has been established as
+      a~useful tool to improve our understanding of the Cordilleran ice
+      sheet (\citealp[p.~227]{Jackson.Clague.1991}; \citealp{Robert.1991};
+      \citealp{Marshall.etal.2000}), the ubiquitously mountainous topography
+      of the region has presented two major challenges to its application.
+      First, only recent developments in numerical ice sheet models and
+      underlying scientific computing tools \citep{Bueler.Brown.2009,
+      Balay.etal.2015} have allowed for high-resolution numerical modelling
+      of glaciers and ice sheets on mountainous terrain over millennial time
+      scales \citep[e.g.,][]{Golledge.etal.2012}. Second, the complex
+      topography of the North American Cordillera also induces strong
+      geographic variations in temperature and precipitation, thus requiring
+      the use of high-resolution climate forcing fields as an input to an
+      ice sheet model \citep{Seguinot.etal.2014}. However, evolving climate
+      conditions over the last glacial cycle are subject to considerable
+      uncertainty and still lie beyond the computational reach of atmosphere
+      circulation models.
+
+      Our palaeo-climate forcing therefore includes spatial temperature and
+      precipitation grids derived from a~present-day atmospheric reanalysis
+      \citep{Mesinger.etal.2006} that includes the steep precipitation
+      gradients previously identified as necessary to model the LGM extent
+      of the Cordilleran ice sheet in agreement with its geological imprint
+      \citep{Seguinot.etal.2014}. To mimic climate evolution through the
+      last glacial cycle, these grids are simply supplemented by lapse-rate
+      corrections and temperature offset time series. The latter are
+      obtained by scaling six different palaeo-temperature reconstructions
+      from proxy records around the globe, including two oxygen isotope
+      records from Greenland ice cores \citep{Dansgaard.etal.1993,
+      Andersen.etal.2004}, two oxygen isotope records from Antarctic ice
+      cores \citep{Petit.etal.1999,Jouzel.etal.2007}, and two alkenone
+      unsaturation index records from Northwest Pacific ocean sediment cores
+      \citep{Herbert.etal.2001}. We then proceed to compare the model output
+      to geological evidence and discuss the timing and extent of glaciation
+      and the patterns of deglaciation, based on which we use the
+      applicability of different records to modelling the history of the
+      Cordilleran ice sheet.
+
+
+\section{Model setup}
+\label{sec:model}
+
+\subsection{Overview}
+\label{sec:overview}%
+
+      The simulations presented here were run using the Parallel Ice Sheet
+      Model (PISM, development version~8ff7cbe), an open source, finite
+      difference, shallow ice sheet model \citep{PISM-authors.2015}. The
+      model requires input on basal topography, sea level, geothermal heat
+      flux and climate forcing. It computes the evolution of ice extent and
+      thickness over time, the thermal and dynamic states of the ice sheet,
+      and the associated lithospheric response.
+
+      Basal topography is derived from the ETOPO1 combined topography and
+      bathymetry dataset with a~resolution of 1\,arc-min
+      \citep{Amante.Eakins.2009}. Sea level is lowered as a~function of time
+      based on the Spectral Mapping Project
+      \citep[SPECMAP,][]{Imbrie.etal.1989} time scale. Geothermal heat flux
+      is applied as a~constant value of 70\,\unit{mW\,m^{-2}} at
+      3\,\unit{km} depth (Sect.~\ref{sec:icedyn}). Surface mass balance is
+      computed using a~positive degree-day (PDD) model
+      (Sect.~\ref{sec:surface}). Climate forcing is provided by a~monthly
+      climatology averaged from 1979 to 2000 from the North American
+      Regional Reanalysis \citep[NARR,][]{Mesinger.etal.2006}, perturbated
+      by time-dependent offsets and lapse-rate temperature corrections
+      (Sect.~\ref{sec:atm}).
+
+      Each simulation starts from assumed ice-free conditions at
+      12\,0000\,\unit{years} ago (120\,\unit{ka}), and runs to the
+      present. Our modelling domain of 1500 by 3000\,\unit{km} encompasses
+      the entire area covered by the Cordilleran ice sheet at the LGM
+      (Fig.~\ref{fig:locmap}). The simulations were run on two distinct
+      grids, using a~lower horizontal resolution of 10\,\unit{km}, and
+      a~higher horizontal resolution of 5\,\unit{km}. These computations
+      were performed on 16 to 128 computing cores at the Swedish National
+      Supercomputing Centre.
+
+\subsection{Ice thermodynamics}
+\label{sec:icedyn}
+
+      Ice sheet dynamics are typically modelled using a~combination of
+      internal deformation and basal sliding. PISM is a~shallow ice sheet
+      model, which implies that the balance of stresses is approximated
+      based on their predominant components. The Shallow Shelf Approximation
+      (SSA) is used as a ``sliding law'' for the Shallow Ice Approximation
+      (SIA) by adding velocity solutions of the two approximations
+      \citep[Eqs.~7--9 and 15]{Bueler.Brown.2009, Winkelmann.etal.2011}.
+
+      Ice rheology depends on temperature and water content through an
+      enthalpy formulation \citep{Aschwanden.etal.2012}. Surface air
+      temperature derived from the climate forcing (Sect.~\ref{sec:atm})
+      provides the upper boundary condition to the ice enthalpy
+      model. Temperature is computed subglacially to a~depth of
+      3\,\unit{km}, where it is conditioned by a~lower boundary geothermal
+      heat flux of 70\,\unit{mW\,m^{-2}}. Although this uniform value does
+      not account for the high spatial geothermal variability in the region
+      \citep{Blackwell.Richards.2004}, it is, on average, representative of
+      available heat flow measurements. In the low-resolution simulations,
+      the vertical grid consists of 31~temperature layers in the bedrock and
+      up to 51~enthalpy layers in the ice sheet, corresponding to a~vertical
+      resolution of 100\,\unit{m}. The high-resolution simulations
+      61~bedrock layers and up to 101~ice layers with a~vertical resolution
+      of 50\,\unit{m}.
+
+      A~pseudo-plastic sliding law,
+\begin{align}
+&\label{eqn:pseudoplastic}
+    \vec{\tau}_{\mathrm{b}} = -\tau_{\mathrm{c}} \frac{\vec{v}_{\mathrm{b}}}{{v_{\text{th}}}^q\,|\vec{v}_{\mathrm{b}}|^{1-q}} \,,
+\end{align}
+      relates the bed-parallel shear stresses, $\vec{\tau}_{\mathrm{b}}$, to
+      the sliding velocity, $\vec{v}_{\mathrm{b}}$ (Table~\ref{tab:params}).
+      The yield stress, $\tau_{\mathrm{c}}$, is modelled using the
+      Mohr--Coulomb criterion,
+\begin{align}
+&\tau_{\mathrm{c}} = c_0 + N\,\tan{\phi} \,,
+\end{align}
+      where cohesion, $c_0$, is assumed to be zero. The friction angle,
+      $\phi$, varies from 15 to 45\unit{\degree} as a~piecewise-linear
+      function of modern bed elevation, with the lowest value occuring below
+      modern sea level (0\,\unit{m\,a.s.l.}) and
+      the highest value occuring above the generalised elevation of the
+      highest shorelines
+      \citep[200\,\unit{m\,a.s.l.},][Fig.~5]{Clague.1981}, thus accounting
+      for a~weakening of till associated with the presence of marine
+      sediments (cf. \citealp{Martin.etal.2011};
+      \citealp[Supplement]{Aschwanden.etal.2013};
+      \citealp{PISM-authors.2015}). Effective pressure, $N$, is related to
+      the ice overburden stress, $\rho gh$, and the modelled amount of
+      subglacial water, using a~formula derived from laboratory experiments
+      with till extracted from the base of Ice Stream B in West Antarctica
+      \citep{Tulaczyk.etal.2000, Bueler.Pelt.2015},
+\begin{align}
+&N = \delta \rho gh \, 10^{(e_0/C_{\mathrm{c}}) (1 - (W/W_{\text{max}}))} \,,
+\end{align}
+      where $\delta$ is chosen as 0.02, $e_0$ is a~measured reference void
+      ratio and $C_{\mathrm{c}}$ is a~measured compressibility coefficient
+      (Table~\ref{tab:params}). The amount of water at the base, $W$, varies
+      from zero to $W_{\text{max}}=2$\,\unit{m}, a~threshold above which
+      additional melt water is assumed to drain off instantaneously.
+      Finally, the bedrock topography responds to ice load following
+      a~bedrock deformation model that includes local isostasy, elastic
+      lithosphere flexure and viscous astenosphere deformation in an
+      infinite half-space \citep{Lingle.Clark.1985,Bueler.etal.2007}.
+      A~relatively low viscosity value of $\nu_{m} =
+      1\times10^{19}$\,\unit{Pa\,s} is used for the astenosphere
+      (Table~\ref{tab:params}) in accordance with the results from regional
+      glacial isostatic adjustment modelling at the northern Cascadia
+      subduction zone \citep{James.etal.2009}.
+
+      Ice shelf calving is computed using a~double criterion. First,
+      a~physically-realistic calving flux is computed based on eigenvalues
+      of the horizontal strain rate tensor \citep{Winkelmann.etal.2011,
+      Levermann.etal.2012}. This allows floating ice to advance in confined
+      embayments, but prevents the formation of extensive ice shelves in the
+      open ocean. Second, floating ice thinner than 50\,\unit{m} is
+      systematically calved off. A~subgrid scheme by
+      \citet{Albrecht.etal.2011} allows for a~continuous migration of the
+      calving front. This formulation of calving has been applied to the
+      Antarctic ice sheet and has shown to produce a~realistic calving front
+      positon for many of the present-day ice shelves
+      \citep{Martin.etal.2011}.
+
+\subsection{Surface mass balance}
+\label{sec:surface}
+
+      Ice surface accumulation and ablation are computed from monthly mean
+      near-surface air temperature, $T_{\mathrm{m}}$, monthly standard
+      deviation of near-surface air temperature, $\sigma$, and monthly
+      precipitation, $P_{\mathrm{m}}$, using a~temperature-index model
+      \citep[e.g.,][]{Hock.2003}. Accumulation is equal to precipitation
+      when air temperatures are below 0\,\unit{{\degree}C}, and decreases to
+      zero linearly with temperatures between 0 and 2\,\unit{{\degree}C}.
+      Ablation is computed from PDD, defined as an integral of temperatures
+      above 0\,\unit{{\degree}C} in one year.
+
+      The PDD computation accounts for stochastic temperature variations by
+      assuming a~normal temperature distribution of standard deviation
+      $\sigma$ aroung the expected value $T_{\mathrm{m}}$. It is expressed
+      by an error-function formulation \citep{Calov.Greve.2005},
+\begin{align}
+&\label{eqn:calovgreve}
+    {\text{PDD}} = \int_{t_1}^{t_2} \mathrm{d}t
+        \left[\frac{\sigma}{\sqrt{2\pi}}
+                \exp\left({-\frac{T_{\mathrm{m}}^2}{2\sigma^2}}\right)
+              + \frac{T_{\mathrm{m}}}{2} \, {\text{erfc}}
+                \left(-\frac{T_{\mathrm{m}}}{\sqrt{2}\sigma}\right)\right] \,,
+\end{align}
+      which is numerically approximated using week-long sub-intervals. In
+      order to account for the effects of spatial and seasonal variations of
+      temperature variability \citep{Seguinot.2013}, $\sigma$ is computed
+      from NARR daily temperature values from 1979 to 2000
+      \citep{Mesinger.etal.2006}, including variability associated with the
+      seasonal cycle (Fig.~\ref{fig:atm}). Degree-day factors for snow and
+      ice melt are derived from mass-balance measurements on contemporary
+      glaciers from the Coast Mountains and Rocky Mountains in British
+      Columbia \citep[Table~\ref{tab:params};][]{Shea.etal.2009}.
+
+\subsection{Climate forcing}
+\label{sec:atm}%
+
+      Climate forcing driving ice sheet simulations consists of
+      a~present-day monthly climatology, $\{T_{\mathrm{m}0},
+      P_{\mathrm{m}0}\}$, where temperatures are modified by offset time
+      series, ${\Delta}T_{\text{TS}}$, and lapse-rate corrections,
+      ${\Delta}T_{\text{LR}}$:
+\begin{align}
+&T_{\mathrm{m}}(t, x, y) = T_{\mathrm{m}0}(x, y) + {\Delta}T_{\text{TS}}(t)
+                    + {\Delta}T_{\text{LR}}(t, x, y) \,, \\
+&    P_{\mathrm{m}}(t, x, y) = P_{\mathrm{m}0}(x, y) \,.
+\end{align}
+      The present-day monthly climatology was computed from near-surface air
+      temperature and precipitation rate fields from the NARR, averaged from
+      1979 to 2000. Modern climate of the North American Cordillera is
+      characterised by strong geographic variations in temperature
+      seasonality, timing of the maximum annual precipitation, and daily
+      temperature variability (Fig.~\ref{fig:atm}). The use of NARR is
+      motivated by the need for an accurate, high-resolution precipitation
+      forcing, as identified in a~previous sensitivity study
+      \citep{Seguinot.etal.2014}.
+
+      Temperature offset time-series, ${\Delta}T_{\text{TS}}$, are derived
+      from palaeo-temperature proxy records from the Greenland Ice Core
+      Project \citep[GRIP,][]{Dansgaard.etal.1993}, the North Greenland Ice
+      Core Project \citep[NGRIP,][]{Andersen.etal.2004}, the European
+      Project for Ice Coring in Antarctica \citep[EPICA,][]
+      {Jouzel.etal.2007}, the Vostok ice core \citep{Petit.etal.1999}, and
+      Ocean Drilling Program (ODP) sites 1012 and 1020, both located off the
+      coast of California \citep{Herbert.etal.2001}. Palaeo-temperature
+      anomalies from the GRIP and NGRIP records were calculated from oxygen
+      isotope (\chem{\delta^{18}O}) measurements using a~quadratic equation
+      \citep{Johnsen.etal.1995},
+\begin{align}
+{\Delta}T_{\text{TS}}(t) ={~}&-11.88 [\chem{\delta^{18}O}(t)
+                                -\chem{\delta^{18}O}(0)] \nonumber \\
+                        &-0.1925[\chem{\delta^{18}O}(t)^2
+                                 -\chem{\delta^{18}O}(0)^2] \,,
+\end{align}
+      while temperature reconstructions from Antarctic and oceanic cores
+      were provided as such. All records were scaled linearly
+      (Table~\ref{tab:records}) in order to simulate comparable ice extents
+      at the LGM (Table~\ref{tab:extrema}) and realistic outlines
+      (Fig.~\ref{fig:lr_maps}).
+
+      Finally, lapse-rate corrections, ${\Delta}T_{\text{LR}}$, are computed
+      as a~function of ice surface elevation, $s$, using the NARR surface
+      geopotential height invariant field as a~reference topography,
+      $b_{\text{ref}}$:
+\begin{align}
+{\Delta}T_{\text{LR}}(t, x, y) &= -\gamma [s(t, x, y)-b_{\text{ref}}] \\
+                            &= -\gamma [h(t, x, y)+b(t, x, y)-b_{\text{ref}}],
+\end{align}
+      thus accounting for the evolution of ice thickness, ${h=s-b}$, on the
+      one hand, and for differences between the basal topography of the ice
+      flow model, $b$, and the NARR reference topography, $b_{\text{ref}}$,
+      on the other hand. All simulations use an annual temperature lapse
+      rate of $\gamma = 6\,\unit{K\,km^{-1}}$. In the rest of this paper, we
+      refer to different model runs by the name of the proxy record used for
+      the palaeo-temperature forcing.
+
+\section{Sensitivity to climate forcing time-series}
+\label{sec:results}
+
+\subsection{Evolution of ice volume}
+
+
+%%%
+
+      Despite large differences in the input climate forcing
+      (Fig.~\ref{fig:lr_ts}, upper panel), model output presents consistent
+      features that can be observed across the range of forcing data used.
+      In all simulations, modelled ice volumes remain relatively low during
+      most of the glacial cycle, except during two major glacial events
+      which occur between 61.9 and 56.5\,\unit{ka} during MIS~4, and between
+      23.2 and 16.8\,\unit{ka} during MIS~2 (Fig.~\ref{fig:lr_ts}, lower
+      panel). An ice volume minimum is consistently reached between 53.0 and
+      41.3\,\unit{ka} during MIS~3. However, the magnitude and precise
+      timing of these three events depend significantly on the choice of
+      proxy record used to derive a~time-dependent climate forcing
+      (Table~\ref{tab:extrema}).
+
+      Simulations forced by the Greenland ice core palaeo-temperature
+      records (GRIP, NGRIP) produce the highest variability in modelled ice
+      volume throughout the last glacial cycle. In contrast, simulations
+      driven by oceanic (ODP~1012, ODP~1020) and Antarctic (EPICA, Vostok)
+      palaeo-temperature records generally result in lower ice volume
+      variability throughout the simulation length, resulting in lower
+      modelled ice volumes during MIS~4 and larger ice volumes during MIS~3.
+      The NGRIP climate forcing is the only one that results in a~larger ice
+      volume during MIS~4 than during MIS~2.
+
+      While simulations driven by the GRIP and the two Antarctic
+      palaeo-temperature records attain a~last ice volume maximum between
+      19.1 and 16.8\,\unit{ka}, those informed by the NGRIP and the two
+      oceanic palaeo-temperature records attain their maximum ice volumes
+      thousands of years earlier. Moreover, the ODP~1012 run yields a~rapid
+      deglaciation of the modelled area prior to 17\,\unit{ka}. The ODP~1020
+      simulation predicts an early maximum in ice volume at 23.2\,\unit{ka},
+      followed by slower deglaciation than modelled using the other
+      palaeo-temperature records. Finally, whereas model runs forced by the
+      Antarctic palaeo-temperature records result in a~rapid and
+      uninterrupted deglaciation after the LGM, the simulation driven by the
+      GRIP palaeo-temperature record also results in a~rapid deglaciation
+      but in three steps, separated by two periods of ice sheet regrowth
+      (Fig.~\ref{fig:lr_ts}).
+
+\subsection{Extreme configurations}
+
+      Despite large differences in the timing of attained volume extrema
+      (Table~\ref{tab:extrema}), all model runs show relatively consistent
+      patterns of glaciation. During MIS~4, all simulations produce an
+      extensive ice sheet, covering an area of at least half of that
+      attained during MIS~2 (Table~\ref{tab:extrema};
+      Fig.~\ref{fig:lr_maps}, upper panels). Corresponding maximum ice
+      volumes also differ significantly between model runs, and vary between
+      3.84 and~8.84\,\unit{m} sea level equivalents (m\,s.l.e.;
+      Table~\ref{tab:extrema}).
+
+      In the MIS~3 ice volume minimum reconstructions, a~central ice cap
+      persists over the Skeena Mountains (Fig.~\ref{fig:lr_maps}, middle
+      panels). Although this ice cap is present in all simulations, its
+      dimensions depend sensitively on the choice of the applied
+      palaeo-temperature record. Modelled ice volume minima spread over
+      a~wide range between 1.69 and 2.88\,\unit{m}\,s.l.e.
+      (Table~\ref{tab:extrema}).
+
+      Modelled ice sheet geometries during the LGM (MIS~2;
+      Fig.~\ref{fig:lr_maps}, lower panels) invariably include a~ca.
+      1500\,\unit{km}-long central divide above 3000\,\unit{m\,a.s.l.}
+      located along the spine of the Rocky Mountains. Although the
+      similarity of modelled ice extents is a~direct result of the choice of
+      scaling factors applied to different palaeo-temperature proxy records
+      (Table~\ref{tab:records}), it is interesting to note that modelled
+      maximum ice volumes also fall within a~tight range of 8.40 to
+      8.91\,\unit{m}\,s.l.e. (Table~\ref{tab:extrema}).
+
+
+\section{Comparison with the geologic record}
+\label{sec:discussion}
+
+      Large variations in the model responses to evolving climate forcing
+      reveal its sensitivity to the choice of palaeo-temperature proxy
+      record. To distinguish between different records, geological evidence
+      of former glaciations provide a~basis for validation of our runs,
+      while the results from numerical modelling can perhaps help to analyse
+      some of the complexity of this evidence. In this section, we compare
+      model outputs to the geologic record, in terms of timing and
+      configuration of the maximum stages, location and lifetime of major
+      nucleation centres, and patterns of ice retreat during the last
+      deglaciation.
+
+\subsection{Glacial maxima}
+
+\subsubsection{Timing of glaciation}
+\label{sec:timing}
+
+      Independently of the palaeo-temperature records used to force the ice
+      sheet model, our simulations consistently produce two glacial maxima
+      during the last glacial cycle. The first maximum configuration is
+      obtained during MIS~4 (61.9--56.5\,\unit{ka}) and the second during
+      MIS~2 (23.2--16.8\,\unit{ka}; Figs.~\ref{fig:lr_ts},
+      \ref{fig:lr_maps}; Table~\ref{tab:extrema}). These events broadly
+      correspond in timing to the Gladstone (MIS~4) and McConnell (MIS~2)
+      glaciations documented by geological evidence for the northern sector
+      of the Cordilleran ice sheet \citep{Duk-Rodkin.etal.1996,
+      Ward.etal.2007, Stroeven.etal.2010, Stroeven.etal.2014}, and to the
+      Fraser Glaciation (MIS~2) documented for its southern sector
+      \citep{Porter.Swanson.1998, Margold.etal.2014}. There is
+      stratigraphical evidence for an MIS~4 glaciation in British Columbia
+      \citep{Clague.Ward.2011} and in the Puget Lowland \citep{Troost.2014},
+      but their extent and timing are still highly conjectural
+      \citep[perhaps MIS~4 or early MIS~3; e.g.,][]{Cosma.etal.2008}.
+
+      The exact timing of modelled MIS~2 maximum ice volume depends strongly
+      on the choice of applied palaeo-temperature record, which allows for
+      a~more in-depth comparison with geological evidence for the timing of
+      maximum Cordilleran ice sheet extent. In the Puget Lowland
+      (Fig.~\ref{fig:locmap}), the LGM advance of the southern Cordilleran
+      ice sheet margin has been constrained by radiocarbon dating on wood
+      between 17.4 and 16.4\,\unit{\chem{^{14}C}\,cal\,ka}
+      \citep{Porter.Swanson.1998}. These dates are consistent with
+      radiocarbon dates from the offshore sedimentary record, which reveals
+      an increase of glaciomarine sedimentation between 19.5 and
+      16.2\,\unit{\chem{^{14}C}\,cal\,ka} \citep{Cosma.etal.2008,
+      Taylor.etal.2014}. Radiocarbon dating of the northern Cordilleran ice
+      sheet margin is much less constrained but straddles presented
+      constraints from the southern margin. However, cosmogenic exposure
+      dating places the timing of maximum CIS extent during the McConnell
+      glaciation close to 17\,\unit{\chem{^{10}Be}\,ka}
+      \citep{Stroeven.etal.2010, Stroeven.etal.2014}. A~sharp transition in
+      the sediment record of the Gulf of Alaska indicates a~retreat of
+      regional outlet glaciers onto land at
+      14.8\,\unit{\chem{^{14}C}\,cal\,ka} \citep{Davies.etal.2011}.
+
+      Among the simulations presented here, only those forced with the GRIP,
+      EPICA and Vostok palaeo-temperature records yield Cordilleran ice
+      sheet maximum extents that may be compatible with these field
+      constraints (Fig.~\ref{fig:lr_ts}, lower panel;
+      Table~\ref{tab:extrema}). Simulations driven by the NGRIP, ODP~1012
+      and ODP~1020 palaeo-temperature records, on the contrary, yield MIS~2
+      maximum Cordilleran ice sheet volumes that pre-date field-based
+      constraints by several thousands of years (about 6, 6 and 4\,\unit{ka}
+      respectively). Concerning the simulations driven by oceanic records,
+      this early deglaciation is caused by an early warming present in the
+      alkenone palaeo-temperature reconstructions (Fig.~\ref{fig:lr_ts},
+      upper panel; \citealp[Fig.~3]{Herbert.etal.2001}). However, this early
+      warming is a~local effect, corresponding to a~weakening of the
+      California current \citep{Herbert.etal.2001}. The California current,
+      driving cold waters southwards along the south-western coast of North
+      America, has been shown to have weakened during each peak of global
+      glaciation (in SPECMAP) during the past 550\,\unit{ka}, including the
+      LGM, resulting in paradoxically warmer sea-surface temperatures at the
+      locations of the ODP~1012 and ODP~1020 sites
+      \citep{Herbert.etal.2001}.
+
+      Because most of the marine margin of the Cordilleran ice sheet
+      terminated in a~sector of the Pacific Ocean unaffected by variations
+      in the California current, it probably remained insensitive to this
+      local phenomenum. However, the above paradox illustrates the
+      complexity of ice-sheet feedbacks on regional climate, and
+      demonstrates that, although located in the neighbourhood of the
+      modelling domain, the ODP~1012 and ODP~1020 palaeo-temperature records
+      cannot be used as a~realistic forcing to model the Cordilleran ice
+      sheet through the last glacial cycle. Similarly, the simulation using
+      the NGRIP palaeo-temperature record depicts an early onset of
+      deglaciation (Fig.~\ref{fig:lr_ts}) following its last glacial volume
+      maximum (22.9\,\unit{ka}, Table~\ref{tab:extrema}) attained about
+      6\,\unit{ka} earlier than dated evidence of the LGM advance. There is
+      a~fair agreement between the EPICA and Vostok palaeo-temperature
+      records, resulting in only small differences between the simulations
+      driven by those records. These differences are not subject to further
+      analysis further; instead we focus on simulations forced by
+      palaeo-temperature records from the GRIP and EPICA ice cores that
+      appear to produce the most realistic reconstructions of regional
+      glaciation history, yet bearing significant disparities in model
+      output. To allow for a~more detailed comparison against the geological
+      record, these two simulations were re-run using a~higher-resolution
+      grid (Sect.~\ref{sec:model}; Fig.~\ref{fig:lr_ts}, lower panel, dotted
+      lines).
+
+
+\subsubsection{Ice configuration during MIS~2}
+\label{sec:mis2}
+
+      During maximum glaciation, both simulations position the main
+      meridional ice divide over the western flank of the Rocky Mountains
+      (Figs.~\ref{fig:lr_maps}, lower panels and \ref{fig:hr_maps_mis2}).
+      This result appears to contrast with palaeoglaciological
+      reconstructions for central and southern British Columbia with ice
+      divides in a~more westerly position, over the western margin of the
+      Interior Plateau \citep{Ryder.etal.1991, Stumpf.etal.2000,
+      Kleman.etal.2010, Clague.Ward.2011, Margold.etal.2013a}. These
+      indicate that a~latitudinal saddle connected ice dispersal centres in
+      the Columbia Mountains with the main ice divide
+      \citep{Ryder.etal.1991, Kleman.etal.2010, Clague.Ward.2011,
+      Margold.etal.2013a}. A~latitudinal saddle does indeed feature in our
+      modelling results, however, in an inverse configuration between the
+      main ice divide over the Columbia Mountains and a~secondary divide
+      over the southern Coast Mountains (Fig.~\ref{fig:hr_maps_mis2}).
+
+      Such deviation from the geological inferences could reflect the fact
+      that our model does not include feedback mechanisms between ice sheet
+      topography and the regional climate. Firstly, during the build-up
+      phase preceding the LGM, rapid accumulation over the Coast Mountains
+      enhanced the topographic barrier formed by these mountain ranges,
+      which likely resulted in a~decrease of precipitation and, therefore,
+      a~decrease of accumulation in the interior. Secondly, latent warming
+      of the moisture-depleted air parcels flowing over this enhanced
+      topography could have resulted in an inflow of potentially warmer air
+      over the eastern flank of the ice sheet, increasing melt along the
+      advancing margin \citep[cf.][]{Langen.etal.2012}. Because these two
+      processes, both with a~tendency to limit ice-sheet growth, are absent
+      from our model, the eastern margin of the ice sheet and the position
+      of the main meridional ice divide are certainly biased towards the
+      east in our simulations \citep{Seguinot.etal.2014}.
+
+      However, field-based palaeoglaciological reconstructions have
+      struggled to reconcile the more westerly-centred ice divide in
+      south-central British Columbia with evidence in the Rocky Mountains
+      and beyond, that the Cordilleran ice sheet invaded the western
+      Interior Plains, where it merged with the southwestern margin of the
+      Laurentide ice sheet and was deflected to the south
+      \citep{Jackson.etal.1997, Bednarski.Smith.2007, Kleman.etal.2010,
+      Margold.etal.2013, Margold.etal.2013a}. Ice geometries from our model
+      runs do not have this problem, because the position and elevation of
+      the ice divide ensure significant ice drainage across the Rocky
+      Mountains at the LGM (Fig.~\ref{fig:hr_maps_mis2}).
+
+      During MIS~2, the modelled total ice volume peaks at
+      8.01\,\unit{m}\,s.l.e. (19.1\,\unit{ka}) in the GRIP simulation and at
+      8.77\,\unit{m}\,s.l.e. (17.2\,\unit{ka}) in the EPICA simulation.
+
+\subsubsection{Ice configuration during MIS~4}
+\label{sec:mis4}
+
+      The modelled ice sheet configurations corresponding to ice volume
+      maxima during MIS~4 are more sensitive to the choice of atmospheric
+      forcing than those corresponding to ice volume maxima during MIS~2
+      (Figs.~\ref{fig:lr_maps}, upper panels and \ref{fig:hr_maps_mis4}).
+      The GRIP simulation (Fig.~\ref{fig:hr_maps_mis4}, left panel) results
+      in a~modelled maximum ice sheet extent that closely resembles that
+      obtained during MIS~2, with the only major difference of being
+      slightly less extensive across northern and eastern sectors. In
+      contrast, the EPICA simulation produces a~lower ice volume maximum
+      (Fig.~\ref{fig:lr_ts}), which translates in the modelled ice sheet
+      geometry into a~significantly reduced southern sector, more restricted
+      ice cover in northern and eastern sectors, and generally lower ice
+      surface elevations in the interior (Fig.~\ref{fig:hr_maps_mis4}, right
+      panel). Thus, only the GRIP simulation can explain the presence of
+      MIS~4 glacial deposits in the Puget Lowland \citep{Troost.2014} and
+      that of ice-rafted debris in the marine sediment record offshore
+      Vancouver Island at ca.~47\,\unit{\chem{^{14}C}\,cal\,ka}
+      \citep{Cosma.etal.2008}.
+
+      During MIS~4, the modelled total ice volume peaks at
+      7.19\,\unit{m}\,s.l.e. (57.3\,\unit{ka}) in the GRIP simulation and at
+      5.04\,\unit{m}\,s.l.e. (61.9\,\unit{ka}) in the EPICA simulation,
+      corresponding to respectively 90 and 57\,\unit{\%} of modelled MIS~2
+      ice volumes.
+
+\subsection{Nucleation centres}
+
+\subsubsection{Transient ice sheet states}
+
+      Palaeo-glaciological reconstructions are generally more robust for
+      maximum ice sheet extents and late ice sheet configurations than for
+      intermediate or minimum ice sheet extents and older ice sheet
+      configurations \citep{Kleman.etal.2010}. However, these maximum stages
+      are, by nature, extreme configurations, which do not necessarily
+      represent the dominant patterns of glaciation throughout the period of
+      ice cover \citep{Porter.1989, Kleman.Stroeven.1997, Kleman.etal.2008,
+      Kleman.etal.2010}.
+
+      For the Cordilleran ice sheet, geological evidence from radiocarbon
+      dating \citep{Clague.etal.1980, Clague.1985, Clague.1986,
+      Porter.Swanson.1998, Menounos.etal.2008}, cosmogenic exposure dating
+      \citep{Stroeven.etal.2010, Stroeven.etal.2014, Margold.etal.2014},
+      bedrock deformation in response to former ice loads
+      \citep{Clague.James.2002, Clague.etal.2005}, and offshore sedimentary
+      records \citep{Cosma.etal.2008, Davies.etal.2011} indicate that the
+      LGM maximum extent was short-lived. To compare this finding to our
+      simulations, we use numerical modelling output to compute durations of
+      ice cover throughout the last glacial cycle
+      (Fig.~\ref{fig:hr_geom_duration}).
+
+      The resulting maps show that, during most of the glacial cycle,
+      modelled ice cover is restricted to disjoint ice caps centred on major
+      mountain ranges of the North American Cordillera
+      (Fig.~\ref{fig:hr_geom_duration}, blue areas). A~2500\,\unit{km}-long
+      continuous expanse of ice, extending from the Alaska Range in the
+      northeast to the Rocky Mountains in the southwest, is only in
+      operation for at most 32\,\unit{ka}, which is about a~third of the
+      timespan of the last glacial cycle (Fig.~\ref{fig:hr_geom_duration},
+      hatched areas). However, except for its margins in the Pacific Ocean
+      and in the northern foothills of the Alaska Range, the maximum extent
+      of the ice sheet is attained for a~much shorter period of time of only
+      few thousand years (Fig.~\ref{fig:hr_geom_duration}, red areas). This
+      result illustrates that the maximum extents of the modelled ice sheet
+      during MIS~4 and MIS~2 were both short-lived and therefore out of
+      balance with contemporary climate.
+
+      A~notable exception to the transient character of the maximum extent
+      of Cordilleran ice sheet is the northern slope of the Alaska Range,
+      where modelled glaciers are confined to its foothills during the
+      entire simulation period (Fig.~\ref{fig:hr_geom_duration}, AR). This
+      apparent insensitivity of modelled glacial extent to temperature
+      fluctuations results from a~combination of low precipitation, high
+      summer temperature and large temperature standard deviation (PDD SD)
+      in the plains of the Alaska Interior (Fig.~\ref{fig:atm}) which
+      confines glaciation to the foothills of the mountains. This result
+      could potentially explain the local distribution of glacial deposits,
+      which indicates that glaciers flowing on the northern slope of the
+      Alaska Range have remained small throughout the Pleistocene
+      \citep{Kaufman.Manley.2004}.
+
+\subsubsection{Major ice-dispersal centres}
+
+      It is generally believed that the Cordilleran ice sheet formed by the
+      coalescence of several mountain-centred ice caps
+      \citep{Davis.Mathews.1944}. In our simulations, major ice-dispersal
+      centres, visible on the modelled ice cover duration maps
+      (Fig.~\ref{fig:hr_geom_duration}), are located over the Coast
+      Mountains (CM), the Columbia and Rocky mountains (CRM), the Skeena
+      Mountains (SM), and the Selwyn and Mackenzie mountains (SMKM). The
+      Wrangell and Saint Elias mountains, heavily glacierized at present,
+      host an ice cap for the entire length of both simulations, but that
+      ice cap does not appear to be a~major feed to the Cordilleran ice
+      sheet (Fig.~\ref{fig:hr_geom_duration}, WSEM). Although the Coast,
+      Skeena and Columbia and Rocky mountains (CM, SM, CRM) are covered by
+      mountain glaciers for most of the last glacial cycle, providing
+      durable nucleation centres for an ice sheet, this is not the case for
+      the Selwyn and Mackenzie mountains (SMKM), where ice cover on the
+      highest peaks is limited to a~small fraction of the last glacial
+      cycle. In other words, the Selwyn and Mackenzie mountains only appear
+      as a~secondary ice-dispersal centre during the coldest periods of the
+      last glacial cycle. The Northern Rocky Mountains
+      (Fig.~\ref{fig:hr_geom_duration}, NRM) do not act as a~nucleation
+      centre, but rather as a~pinning point for the Cordilleran ice sheet
+      margin coming from the west.
+
+      Perhaps the most striking feature displayed by the distributions of
+      modelled ice cover is the persistence of the Skeena Mountains ice cap
+      throughout the entire last glacial period (ca.~100--10\,\unit{ka}) and
+      its predominance over the other ice-dispersal centres
+      (Figs.~\ref{fig:lr_maps} and~\ref{fig:hr_geom_duration}, SM).
+      Regardless of the applied forcing, this ice cap appears to survive
+      MIS~3 (Fig.~\ref{fig:lr_maps}, middle panels), and serves as
+      a~nucleation centre at the onset of the glacial readvance towards the
+      LGM (MIS~2). This situation appear similar to the neighbouring
+      Laurentide ice sheet, for which the importance of residual ice for the
+      glacial history leading up to the LGM has been illustrated by the
+      MIS~3 residual ice bodies in northern and eastern Canada as nucleation
+      centres for a~much more extensive MIS~2 configuration
+      \citep{Kleman.etal.2010}.
+
+      The presence of a~Skeena Mountains ice cap during most of the last
+      glacial cycle can be explained by meteorological conditions more
+      favourable for ice growth there than elsewhere. In fact, reanalysed
+      atmospheric fields used to force the surface mass balance model show
+      that high winter precipitations are mainly confined to the western
+      slope of the Coast Mountains, except in the centre of the modelling
+      domain where they also occur further inland than along other east-west
+      transects (Fig.~\ref{fig:atm}). In fact, along most of the
+      north-western coast of North America, coastal mountain ranges form
+      a~pronounced topographic barrier for westerly winds, capturing
+      atmospheric moisture in the form of orographic precipitation, and
+      resulting in arid interior lowlands. However, near the centre of our
+      modelling domain, this barrier is less pronounced than elsewhere,
+      allowing westerly winds to carry moisture further inland, until it is
+      captured by the extensive Skeena Mountains in north-central British
+      Columbia, thus resulting in a~more widespread distribution of winter
+      precipitation (Fig.~\ref{fig:atm}).
+
+      The modelled total ice volume corresponding to these persistent
+      ice-dispersal centres attains a~minimum of 1.52\,\unit{m}\,s.l.e.
+      (42.9\,\unit{ka}) in the GRIP simulation and of 2.68\,\unit{m}\,s.l.e.
+      (51.8\,\unit{ka}) in the EPICA simulation, corresponding to
+      respectively 19 and 31\,\unit{\%} of the MIS~2 ice volumes.
+
+\subsubsection{Erosional imprint on the landscape}
+
+      A~correlation is observed between the modelled duration of warm based
+      ice cover (Fig.~\ref{fig:hr_geom_warmbase}) and the degree of glacial
+      modification of the landscape (mainly in terms of the development of
+      deep glacial valleys and troughs). We find evidence for this on the
+      slopes of the Coast Mountains, the the Columbia and Rocky mountains,
+      the Wrangell and Saint Elias mountains, and radiating off the Skeena
+      Mountains (Figs.~\ref{fig:hr_geom_duration} and
+      \ref{fig:hr_geom_warmbase}; \citealp[Fig.~2]{Kleman.etal.2010}). The
+      Skeena Mountains, for example, indeed bear a~strong glacial imprint
+      that indicates ice drainage in a~system of distinct glacial troughs
+      emanating in a~radial pattern from the centre of the mountain range
+      \citep[Fig.~2]{Kleman.etal.2010}. We suggest that persistent ice cover
+      (Fig.~\ref{fig:hr_geom_duration}) associated with basal ice
+      temperatures at the pressure melting point
+      (Figs.~\ref{fig:hr_geom_warmbase} and~\ref{fig:hr_geom_warmfrac})
+      explains the large-scale glacial erosional imprint on the landscape.
+      A~well-developed network of glacial valleys running to the north-west
+      on the west slope of the Selwyn and Mackenzie Mountains
+      (\citealp[Fig.~2]{Kleman.etal.2010}; \citealp[Fig.~8]
+      {Stroeven.etal.2010}) is modelled to have hosted predominantly
+      warm-based ice (Fig.~\ref{fig:hr_geom_warmfrac}). However, because it
+      is only glaciated for a~short fraction of the last glacial cycle in
+      our simulations (Fig.~\ref{fig:hr_geom_duration}), this perhaps
+      indicates that the observed landscape pattern originates from multiple
+      glacial cycles and witnesses an increased relative importance of the
+      Selwyn and Mackenzie mountains ice dispersal centre
+      (Fig.~\ref{fig:hr_geom_duration}, SMKM), prior to the Late Pleistocene
+      \citep[cf.][]{Ward.etal.2008, Demuro.etal.2012}.
+
+      The modelled distribution of warm-based ice cover
+      (Figs.~\ref{fig:hr_geom_warmbase} and~\ref{fig:hr_geom_warmfrac}) is
+      inevitably affected by our assumption of a~constant,
+      70\,\unit{mW\,m^{-2}} geothermal heat flux at 3\,\unit{km} depth
+      (Sect.~\ref{sec:icedyn}). However, the Skeena Mountains and the area
+      west of the Mackenzie Mountains experience higher-than-average
+      geothermal heat flux with measured values of ca.~80 and
+      ca.~100\,\unit{mW\,m^{-2}} \citep{Blackwell.Richards.2004}. We can
+      therefore expect even longer durations of warm-based ice cover for
+      these areas if we were to include spatially variable geothermal
+      forcing in our Cordilleran ice sheet simulations.
+
+
+\subsection{The last deglaciation}
+
+\subsubsection{Pace and patterns of deglaciation}
+
+      Similarly to other glaciated regions, most glacial traces in the North
+      American Cordillera relate to the last few millennia of glaciation,
+      because most of the older evidence has been overprinted by warm-based
+      ice retreat during the last deglaciation \citep{Kleman.1994,
+      Kleman.etal.2010}. From a~numerical modelling perspective, phases of
+      glacier retreat are more challenging than phases of growth, because
+      they involve more rapid fluctuations of the ice margin, increased flow
+      velocities and longitudinal stress gradients, and poorly understood
+      hydrological processes. The latter are typically included in the
+      models through simple parametrisations
+      \citep[e.g.][]{Clason.etal.2012, Clason.etal.2014, Bueler.Pelt.2015},
+      if included at all. However, next after the mapping of maximum ice
+      sheet extents during MIS~2 and MIS~4 (Sects.~\ref{sec:mis2}
+      and~\ref{sec:mis4}), geomorphologically-based reconstructions of
+      patterns of ice sheet retreat during the last deglaciation provide the
+      second best source of evidence for the validation of our simulations.
+
+
+      In the North American Cordillera, the presence of lateral meltwater
+      channels at high elevation \citep{Margold.etal.2011,
+      Margold.etal.2013a, Margold.etal.2014}, and abundant esker systems at
+      low elevation \citep{Burke.etal.2012, Burke.etal.2012a,
+      Perkins.etal.2013, Margold.etal.2013} indicate that meltwater was
+      produced over large portions of the ice sheet surface during
+      deglaciation. The southern and northern margins of the Cordilleran ice
+      sheet reached their last glacial maximum extent around 17\,\unit{ka}
+      \citep[Sect.~\ref{sec:timing};][]{Porter.Swanson.1998,
+      Cosma.etal.2008, Stroeven.etal.2010, Stroeven.etal.2014}, which we
+      take as a~limiting age for the onset of ice retreat. The timing of
+      final deglaciation is less well constrained, but recent cosmogenic
+      dates from north-central British Columbia indicate that a~seizable ice
+      cap emanating from the central Coast Mountains or the Skeena Mountains
+      persisted into the Younger Dryas chronozone, at least until
+      12.4\,\unit{ka} \citep{Margold.etal.2014}.
+
+      In our simulations, the timing of peak ice volume during the LGM and
+      the pacing of deglaciation depend critically on the choice of climate
+      forcing (Table~\ref{tab:extrema}; Figs.~\ref{fig:lr_ts}
+      and~\ref{fig:hr_ts_deglac}). Adopting the EPICA climate forcing yields
+      peak ice volume at 17.2\,\unit{ka} and an uninterrupted deglaciation
+      until about 9\,\unit{ka} (Fig.~\ref{fig:hr_ts_deglac}, lower panel,
+      red curves). On the contrary, the simulation driven by the GRIP
+      palaeo-temperature record yields peak ice volume at 19.3\,\unit{ka}
+      and a~deglaciation interrupted by two phases of regrowth until about
+      8\,\unit{ka}. The first interruption occurs between 16.6 and
+      14.5\,\unit{ka}, and the second between 13.1 and 11.6\,\unit{ka}
+      (Fig.~\ref{fig:hr_ts_deglac}, lower panel, blue curve).
+
+      Hence, the two model runs, while similar in overall timing compared to
+      the runs with other climate drivers, differ in detail. On the one
+      hand, the EPICA run depicts peak glaciation about 2\,\unit{ka} later
+      than the GRIP run, in closer agreement with dated maximum extents, and
+      shows a~faster, uninterrupted deglaciation which yields sporadic ice
+      cover more than 1\,\unit{ka} earlier. On the other hand, the GRIP run
+      yields a~deglaciation in three steps, compatible with marine sediment
+      sequences offshore Vancouver Island, where the distribution of
+      ice-rafted debris indicates an ice margin retreat from the Georgia
+      Strait in two phases that are contemporary with warming oceanic
+      temperatures from 17.2 to 16.5 and from 15.5 to
+      14.0\,\unit{\chem{^{14}C}\,cal\,ka} \citep{Taylor.etal.2014}.
+
+      Modelled patterns of ice sheet retreat are relatively consistent
+      between the two simulations (Figs.~\ref{fig:hr_maps_deglac}
+      and~\ref{fig:hr_geom_deglacage}). The southern sector of the modelling
+      domain, including the Puget Lowland, the Coast Mountains, the Columbia
+      and and Rocky mountains, and the Interior Plateau of British Columbia,
+      becomes completely deglaciated by 10\,\unit{ka}, whereas a~significant
+      ice cover remains over the Skeena, the Selwyn and Mackenzie, and the
+      Wrangell and Saint Elias mountains in the northern sector of the
+      modelling domain. After 10\,\unit{ka}, deglaciation continues to
+      proceed across the Liard Lowland with a~radial ice margin retreat
+      towards the surrounding mountain ranges, consistent with the regional
+      melt water record of the last deglaciation \citep{Margold.etal.2013}.
+      Remaining ice continues to decay by retreating towards the Selwyn and
+      MacKenzie, and Skeena mountains. The last remnants of the Cordilleran
+      ice sheet finally disappear from the Skeena Mountains at
+      6.5\,\unit{ka} (GRIP) and 6.1\,\unit{ka} (EPICA).
+
+\subsubsection{Late-glacial readvance}
+
+      The possibility of late glacial readvances in the North American
+      Cordillera has been debated for some time \citep{Osborn.Gerloff.1997},
+      and locally these have been reconstructed and dated. Radiocarbon-dated
+      end moraines in the Fraser and Squamish valleys, off the southern tip
+      of the Coast Mountains, indicate consecutive glacier maxima, or
+      standstills while in overall retreat, one of which corresponds to the
+      Younger Dryas chronozone \citep{Clague.etal.1997, Friele.Clague.2002,
+      Friele.Clague.2002a, Kovanen.2002, Kovanen.Easterbrook.2002}. Although
+      most of these moraines characterise independent valley glaciers, that
+      may have been disconnected from the waning Cordilleran ice sheet, the
+      Finlay River area in the Omenica Mountains
+      (Fig.~\ref{fig:hr_geom_deglacage}, OM) presents a~different kind of
+      evidence. There, sharp-crested moraines indicate a~late-glacial
+      readvance of local alpine glaciers and, more importantly, their
+      interaction with larger, lingering remnants of the main body of the
+      Cordilleran ice sheet in the valleys \citep{Lakeman.etal.2008}.
+      Additional evidence for late-glacial alpine glacier readvances
+      includes moraines in the eastern Coast Mountains, and the Columbia and
+      Rocky mountains \citep{Osborn.Gerloff.1997, Menounos.etal.2008}.
+
+      Although further work is needed to constrain the timing of the
+      late-glacial readvance, to assess its extents and geographical
+      distribution, and to identify the potential climatic triggers
+      \citep{Menounos.etal.2008}, it is interesting to note that the
+      simulation driven by the GRIP record produces a~late-glacial readvance
+      in the Coast Mountains and in the Columbia and Rocky Mountains
+      (Fig.~\ref{fig:hr_geom_deglacage}, left panel). In addition to
+      matching the location of some local readvances, the GRIP-driven
+      simulation shows that a~large remnant of the decaying ice sheet may
+      still have existed at the time of this late-glacial readvance. In
+      contrast, the EPICA-driven simulation produces a~nearly-continuous
+      deglaciation with only a~tightly restricted late-glacial readvance on
+      the western slopes of the Saint Elias and the Coast mountains
+      (Fig.~\ref{fig:hr_geom_deglacage}, right panel).
+
+
+\subsubsection{Deglacial flow directions}
+
+      Because a~general tenant in glacial geomorphology is that the majority
+      of landforms (lineations and eskers) are part of the deglacial
+      envelope \citep[terminology from][]{Kleman.etal.2006}, having been
+      formed close inside the retreating margin of ice sheets
+      \citep{Boulton.Clark.1990, Kleman.etal.1997, Kleman.etal.2010}, we
+      present maps of basal flow directions immediately preceding
+      deglaciation or at the time of cessation of sliding inside
+      a~cold-based retreating margin (Fig.~\ref{fig:hr_geom_lastflow}). The
+      modelled deglacial flow patterns are mostly consistent between the
+      GRIP and EPICA simulations. They depict an active ice sheet retreat in
+      the peripheral areas, followed by stagnant ice decay in some of the
+      interior regions. Several parts of the modelling domain do not
+      experience any basal sliding throughout the deglaciation phase
+      (Fig.~\ref{fig:hr_geom_lastflow}, hatched areas). This notably
+      includes parts of the Interior Plateau in British Columbia, major
+      portions of the Alaskan sector of the ice sheet, and a~tortuous ribbon
+      running from the Northern Rocky Mountains over the Skeena and Selwyn
+      Mountains and into the Mackenzie Mountains.
+
+      Patterns of glacial lineations formed in the northern and southern
+      sectors of the Cordilleran ice sheet (\citealp{Prest.etal.1968};
+      \citealp[Fig.~1.12]{Clague.1989}; \citealp[Fig.~2]{Kleman.etal.2010})
+      show similarities with the patterns of deglacial ice flow from
+      numerical modelling (Fig.~\ref{fig:hr_geom_lastflow}). In the northern
+      half of the modelling domain, modelled deglacial flow directions
+      depict an active downhill flow as the last remnants of the ice sheet
+      retreat towards mountain ranges. Converging deglacial flow patterns in
+      the Liard Lowland, for instance (Fig.~\ref{fig:hr_geom_lastflow}),
+      closely resemble the pattern indicated by glacial lineations
+      \citep[Fig.~2]{Margold.etal.2013}.
+
+      On the Interior Plateau of south-central British Columbia, both
+      simulations produce a~retreat of the ice margin towards the north-east
+      (Fig.~\ref{fig:hr_geom_deglacage}), a~pattern which is validated by
+      the geomorphological and stratigraphical record for ancient
+      pro-glacial lakes dammed by the retreating ice sheet
+      \citep{Perkins.Brennand.2014}. However, the two simulations differ in
+      the mode of retreat. The GRIP simulation yields an active retreat with
+      basal sliding towards the ice margin to the south, whereas the EPICA
+      simulation produces negligible basal sliding on the plateau during
+      deglaciation (Fig.~\ref{fig:hr_geom_lastflow}). Yet, the Interior
+      Plateau also hosts an impressive set of glacial lineations which
+      indicate a~substantial eastwards flow component of the Cordilleran ice
+      sheet \citep{Prest.etal.1968, Kleman.etal.2010}. This Interior Plateau
+      lineation set could therefore present a~smoking gun for the
+      reliability of the presented model results. One explanation for the
+      incongruent results could be that the missing feedback mechanisms
+      between ice sheet topography and regional climate resulted in
+      a~modelled ice divide of the LGM ice sheet beingtoo far to the east
+      (Sect.~\ref{sec:mis2}; Fig.~\ref{fig:hr_maps_mis2};
+      \citealp{Seguinot.etal.2014}). A~more westerly-located LGM ice divide
+      would certainly result in a~different deglacial flow pattern over the
+      Interior Plateau. However, a~more westerly-positioned LGM ice divide
+      would certainly be associated with a~thinner ice sheet than that
+      modelled here. Decreased ice thickness would not promote warm-based
+      conditions but, on the contrary, enlarge the region of negligible
+      basal sliding (Fig.~\ref{fig:hr_geom_lastflow}). Thus, a~second
+      explanation for the incongruent results could be that the Interior
+      Plateau lineation system predates deglaciation ice flow, as perhaps
+      indicated by some eskers that appear incompatible with these glacial
+      lineations \citep[Fig.~9]{Margold.etal.2013a}. Finally, a~third
+      explanation could be that local geothermal heat associated with
+      volcanic activity on the Interior Plateau could have triggered the
+      basal sliding \citep[cf. Greenland ice
+      sheet;][]{Fahnestock.etal.2001}.
+
+      The modelled deglaciation of the Interior Plateau of British Columbia
+      consists of a~rapid northwards retreat
+      (Fig.~\ref{fig:hr_geom_deglacage}) of southwards-flowing non-sliding
+      ice lobes (Fig.~\ref{fig:hr_geom_lastflow}) positioned in-between
+      deglaciated mountain ranges (Figs.~\ref{fig:hr_pf_grip}
+      and~\ref{fig:hr_pf_epica}). This result appears compatible with the
+      prevailing conceptual model of deglaciation of central British
+      Columbia, in which mountain ranges emerge from the ice before the
+      plateau \citep[Fig.~7]{Fulton.1991}. However, due to different
+      topographic and climatic conditions, our simulations produce different
+      deglaciation patterns in the northern half of the model domain,
+      indicating that this conceptual model may not be applied to the entire
+      area formerly covered by the Cordilleran ice sheet.
+
+
+\conclusions
+\label{sec:concl}
+
+      Numerical simulations of the Cordilleran ice sheet through the last
+      glacial cycle presented in this study consistently produce two glacial
+      maxima during MIS~4 (61.9--56.5\,\unit{ka},
+      3.8--8.8\,\unit{m}\,s.l.e.) and MIS~2 (23.2--16.8\,\unit{ka},
+      8.40--8.91\,\unit{m}\,s.l.e.), two periods corresponding to documented
+      extensive glaciations. This result is independent of the
+      palaeo-temperature record used among the six selected for this study,
+      and thus can be regarded as a~robust model output, which broadly
+      matches geological evidence. However, the timing of the two glaciation
+      peaks depends sensitively on which climate record is used to drive the
+      model. The timing of the LGM is best reproduced by the EPICA and
+      Vostok Antarctic ice core records. It occurs about 2\,\unit{ka} too
+      early in the simulation forced by the GRIP ice core record, and occurs
+      even earlier in all other simulations. The mismatch is largest for the
+      two Northwest Pacific ODP palaeo-temperature records, which are
+      affected by the weakening of the California current during the LGM.
+
+      In all simulations presented here, ice cover is limited to disjoint
+      mountain ice caps during most of the glacial cycle. The most
+      persistent nucleation centres are located in the Coast Mountains, the
+      Columbia and Rocky mountains, the Selwyn and Mackenzie mountains, and
+      most importantly, in the Skeena Mountains. Throughout the modelled
+      last glacial cycle, the Skeena Mountains host an ice cap which appears
+      to be fed by the moisture intruding inland from the west through
+      a~topographic breach in the Coast Mountains. The Skeena ice cap acts
+      as the main nucleation centre for the glacial reavance towards the LGM
+      configuration. As indicated by persistent, warm-based ice in the
+      model, this ice cap perhaps explains the distinct glacial erosional
+      imprint observed on the landscape of the Skeena Mountains.
+
+      During deglaciation, none of the climate records used can be selected
+      as producing an optimal agreement between the model results and the
+      geological evidence. Although the EPICA-driven simulation yields the
+      most realistic timing of the LGM and, therefore, start of
+      deglaciation, only the GRIP-driven simulation produces late glacial
+      readvances in areas where these have been documented. Nonetheless, the
+      patterns of ice sheet retreat are consistent between the two
+      simulations, and show a~rapid deglaciation of the southern sector of
+      the ice sheet, including a~rapid northwards retreat across the
+      Interior Plateau of central British Columbia. The GRIP-driven
+      simulation then produces a~late-glacial readvance of local ice caps
+      and of the main body of the decaying Cordilleran ice sheet primarily
+      in the Coast and the Columbia and Rocky Mountains. In both
+      simulations, this is followed by an opening of the Liard Lowland, and
+      a~final retreat of the remaining ice caps towards the Selwyn and,
+      finally, the Skeena mountains, which hosts the last remnant of the ice
+      sheet during the middle Holocene (6.6--6.2\,\unit{ka}). Our results
+      identify the Skeena Mountains as a~key area to understanding glacial
+      dynamics of the Cordilleran ice sheet, highlighting the need for
+      further geological investigation of this region.
+
+\Supplementary{zip}
+
+\authorcontribution{%
+      J.~Seguinot ran the simulations; I.~Rogozhina guided experiment
+      design; A.~P.~Stroeven, M.~Margold and J.~Kleman took part in the
+      interpretation and comparison of model results against geological
+      evidence. All authors contributed to the text.}
+
+
+
+
+
+\begin{acknowledgements}
+      Foremost, we would like to thank Shawn Marshall for providing
+      a~detailed, constructive analysis of this study during J.~Seguinot's
+      PhD defence (September 2014). His comments were used to improve the
+      model set-up. We are very thankful to Constantine Khroulev, Ed Bueler,
+      and Andy Aschwanden for providing constant help and development with
+      PISM. This work was supported by the Swedish Research Council~(VR)
+      grant no.~2008-3449 to A.~P.~Stroeven and by the German Academic
+      Exchange Service~(DAAD) grant no.~50015537 and a~Knut and Alice
+      Wallenberg Foundation grant to J.~Seguinot. Computer resources were
+      provided by the Swedish National Infrastructure for Computing (SNIC)
+      allocation no.~2013/1-159 and~2014/1-159 to A.~P.~Stroeven at the
+      National Supercomputing Center (NSC).
+\end{acknowledgements}
+
+
+\begin{thebibliography}{114}
+
+\bibitem[{Albrecht et~al.(2011)Albrecht, Martin, Haseloff, Winkelmann, and
+  Levermann}]{Albrecht.etal.2011}
+ Albrecht,~T., Martin,~M., Haseloff,~M., Winkelmann,~R., and Levermann,~A.: Parameterization for subgrid-scale motion of ice-shelf calving fronts, The Cryosphere, 5, 35--44,
+doi:\href{http://dx.doi.org/10.5194/tc-5-35-2011}{10.5194/tc-5-35-2011}, 2011.
+
+
+
+\bibitem[{Amante and Eakins(2009)}]{Amante.Eakins.2009}
+Amante,~C. and Eakins,~B.~W.: ETOPO1 1 arc-minute global relief model: procedures, data sources and analysis, NOAA technical memorandum NESDIS NGDC-24, Natl. Geophys. Data Center, NOAA, Boulder, CO,
+doi:\href{http://dx.doi.org/10.7289/V5C8276M}{10.7289/V5C8276M}, 2009.
+
+
+\bibitem[{Andersen et~al.(2004)Andersen, Azuma, Barnola, Bigler, Biscaye, Caillon, Chappellaz, Clausen, Dahl-Jensen, Fischer, Fl\"uckiger, Fritzsche, Fujii, Goto-Azuma, Gr{\o}nvold, Gundestrup, Hansson, Huber, Hvidberg, Johnsen, Jonsell, Jouzel, Kipfstuhl, Landais, Leuenberger, Lorrain, Masson-Delmotte, Miller, Motoyama, Narita, Popp, Rasmussen, Raynaud, Rothlisberger, Ruth, Samyn, Schwander, Shoji, Siggard-Andersen, Steffensen, Stocker, Sveinbj\"ornsd\'ottir, Svensson, Takata, Tison, Thorsteinsson, Watanabe, Wilhelms, and White}]{Andersen.etal.2004}
+Andersen,~K.~K., Azuma,~N., Barnola,~J.-M., Bigler,~M., Biscaye,~P., Caillon,~N., Chappellaz,~J., Clausen,~H.~B., Dahl-Jensen,~D., Fischer,~H., Fl\"uckiger,~J., Fritzsche,~D., Fujii,~Y., Goto-Azuma,~K., Gr{\o}nvold,~K., Gundestrup,~N.~S., Hansson,~M., Huber,~C., Hvidberg,~C.~S., Johnsen,~S.~J., Jonsell,~U., Jouzel,~J., Kipfstuhl,~S., Landais,~A., Leuenberger,~M., Lorrain,~R., Masson-Delmotte,~V., Miller,~H., Motoyama,~H., Narita,~H., Popp,~T., Rasmussen,~S.~O., Raynaud,~D., Rothlisberger,~R., Ruth,~U., Samyn,~D., Schwander,~J., Shoji,~H., Siggard-Andersen,~M.-L., Steffensen,~J.~P., Stocker,~T., Sveinbj\"ornsd\'ottir,~A.~E., Svensson,~A., Takata,~M., Tison,~J.-L., Thorsteinsson,~T., Watanabe,~O., Wilhelms,~F., and White,~J.~W.~C.: High-resolution record of Northern Hemisphere climate extending into the last interglacial period, Nature, 431, 147--151,
+doi:\href{http://dx.doi.org/10.1038/nature02805}{10.1038/nature02805}, data archived at the World Data Center for Paleoclimatology, Boulder, Colorado, USA, 2004.
+
+
+\bibitem[{Aschwanden et~al.(2012)Aschwanden, Bueler, Khroulev, and Blatter}]{Aschwanden.etal.2012}
+Aschwanden,~A., Bueler,~E., Khroulev,~C., and Blatter,~H.: An enthalpy formulation for glaciers and ice sheets,~J. Glaciol., 58, 441--457,
+doi:\href{http://dx.doi.org/10.3189/2012JoG11J088}{10.3189/2012JoG11J088}, 2012.
+
+
+\bibitem[{Aschwanden et~al.(2013)Aschwanden, A{\dh}algeirsd\'{o}ttir, and Khroulev}]{Aschwanden.etal.2013}
+ Aschwanden,~A., A{\dh}algeirsd\'{o}ttir,~G., and Khroulev,~C.: Hindcasting to measure ice sheet model sensitivity to   initial states, The Cryosphere, 7, 1083--1093,
+doi:\href{http://dx.doi.org/10.5194/tc-7-1083-2013}{10.5194/tc-7-1083-2013}, 2013.
+
+
+
+\bibitem[{Balay et~al.(2015)Balay, Abhyankar, Adams, Brown, Brune, Buschelman, Eijkhout, Gropp, Kaushik, Knepley, McInnes, Rupp, Smith, and Zhang}]{Balay.etal.2015}
+Balay,~S., Abhyankar,~S., Adams,~M.~F., Brown,~J., Brune,~P., Buschelman,~K.,
+Eijkhout,~V., Gropp,~W.~D., Kaushik,~D., Knepley,~M.~G., McInnes,~L.~C.,
+Rupp,~K., Smith,~B.~F., and Zhang,~H.: {PETS}c {W}eb page, available at:
+\url{http://www.mcs.anl.gov/petsc} (last access: 2015), 2015.
+
+
+\bibitem[{Barendregt and Irving(1998)}]{Barendregt.Irving.1998}
+Barendregt,~R.~W. and Irving,~E.: Changes in the extent of North American ice sheets during the late Cenozoic, Can.~J. Earth Sci., 35, 504--509,
+doi:\href{http://dx.doi.org/10.1139/e97-126}{10.1139/e97-126}, 1998.
+
+
+\bibitem[{Bednarski and Smith(2007)}]{Bednarski.Smith.2007}
+Bednarski,~J.~M. and Smith,~I.~R.: Laurentide and montane glaciation along the Rocky Mountain Foothills of northeastern British Columbia, Can.~J. Earth Sci., 44, 445--457,
+doi:\href{http://dx.doi.org/10.1139/e06-095}{10.1139/e06-095}, 2007.
+
+
+\bibitem[{Blackwell and Richards(2004)}]{Blackwell.Richards.2004}
+Blackwell,~D.~D. and Richards,~M.: Geothermal Map of North America, Am. Assoc. Petr. Geol., Tulsa, OK, 2004.
+
+
+\bibitem[{Booth et~al.(2003)Booth, Troost, Clague, and Waitt}]{Booth.etal.2003}
+Booth,~D.~B., Troost,~K.~G., Clague,~J.~J., and Waitt,~R.~B.: The Cordilleran ice sheet, in: The Quaternary Period in the United States, edited by: Gillespie,~A., Porter,~S., and Atwater,~B., vol.~1 of Dev. Quaternary Sci., Elsevier, Amsterdam, 17--43,
+doi:\href{http://dx.doi.org/10.1016/s1571-0866(03)01002-9}{10.1016/s1571-0866(03)01002-9}, 2003.
+
+
+\bibitem[{Boulton and Clark(1990)}]{Boulton.Clark.1990}
+Boulton,~G.~S. and Clark,~C.~D.: A highly mobile Laurentide ice sheet revealed by satellite images of glacial lineations, Nature, 346, 813--817,
+doi:\href{http://dx.doi.org/10.1038/346813a0}{10.1038/346813a0}, 1990.
+
+
+\bibitem[{Boulton et~al.(2001)Boulton, Dongelmans, Punkari, and Broadgate}]{Boulton.etal.2001}
+Boulton,~G.~S., Dongelmans,~P., Punkari,~M., and Broadgate,~M.: Palaeoglaciology of an ice sheet through a glacial cycle: the European ice sheet through the Weichselian, Quaternary Res., 20, 591--625,
+doi:\href{http://dx.doi.org/10.1016/s0277-3791(00)00160-8}{10.1016/s0277-3791(00)00160-8}, 2001.
+
+
+\bibitem[{Briner and Kaufman(2008)}]{Briner.Kaufman.2008}
+Briner,~J.~P. and Kaufman,~D.~S.: Late Pleistocene mountain glaciation in Alaska: key chronologies,~J. Quaternary Sci., 23, 659--670,
+doi:\href{http://dx.doi.org/10.1002/jqs.1196}{10.1002/jqs.1196}, 2008.
+
+
+\bibitem[{Bueler and Brown(2009)}]{Bueler.Brown.2009}
+Bueler,~E. and Brown,~J.: Shallow shelf approximation as a ``sliding law'' in a~thermodynamically coupled ice sheet model,~J. Geophys. Res., 114, F03008,
+doi:\href{http://dx.doi.org/10.1029/2008JF001179}{10.1029/2008JF001179}, 2009.
+
+
+\bibitem[{Bueler and van Pelt(2015)}]{Bueler.Pelt.2015}
+ Bueler,~E. and van~Pelt,~W.: Mass-conserving subglacial hydrology in the Parallel Ice Sheet Model version 0.6, Geosci. Model Dev., 8, 1613--1635,
+doi:\href{http://dx.doi.org/10.5194/gmd-8-1613-2015}{10.5194/gmd-8-1613-2015}, 2015.
+
+
+
+\bibitem[{Bueler et~al.(2007)Bueler, Lingle, and Brown}]{Bueler.etal.2007}
+Bueler,~E., Lingle,~C.~S., and Brown,~J.: Fast computation of a viscoelastic deformable Earth model for ice-sheet simulations, Ann. Glaciol., 46, 97--105,
+doi:\href{http://dx.doi.org/10.3189/172756407782871567}{10.3189/172756407782871567}, 2007.
+
+
+\bibitem[{Burke et~al.(2012{\natexlab{a}})Burke, Brennand, and Perkins}]{Burke.etal.2012}
+Burke,~M.~J., Brennand,~T.~A., and Perkins,~A.~J.: Transient subglacial hydrology of a thin ice sheet: insights from the Chasm esker, British Columbia, Canada, Quaternary Res., 58, 30--55,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2012.09.004}{10.1016/j.quascirev.2012.09.004}, 2012{\natexlab{a}}.
+
+
+\bibitem[{Burke et~al.(2012{\natexlab{b}})Burke, Brennand, and Perkins}]{Burke.etal.2012a}
+Burke,~M.~J., Brennand,~T.~A., and Perkins,~A.~J.: Evolution of the subglacial hydrologic system beneath the rapidly decaying Cordilleran Ice Sheet caused by ice-dammed lake drainage: implications for meltwater-induced ice acceleration, Quaternary Res., 50, 125--140,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2012.07.005}{10.1016/j.quascirev.2012.07.005}, 2012{\natexlab{b}}.
+
+
+\bibitem[{Calov and Greve(2005)}]{Calov.Greve.2005}
+Calov,~R. and Greve,~R.: A~semi-analytical solution for the positive degree-day model with stochastic temperature variations,~J. Glaciol., 51, 173--175,
+doi:\href{http://dx.doi.org/10.3189/172756505781829601}{10.3189/172756505781829601}, 2005.
+
+
+\bibitem[{Carlson and Clark(2012)}]{Carlson.Clark.2012}
+Carlson,~A.~E. and Clark,~P.~U.: Ice sheet sources of sea level rise and
+freshwater discharge during the last deglaciation, Rev. Geophys., 50, RG4007,
+doi:\href{http://dx.doi.org/10.1029/2011rg000371}{10.1029/2011rg000371},
+2012.
+
+
+\bibitem[{Carrara et~al.(1996)Carrara, Kiver, and Stradling}]{Carrara.etal.1996}
+Carrara,~P.~E., Kiver,~E.~P., and Stradling,~D.~F.: The southern limit of Cordilleran ice in the Colville and Pend Oreille valleys of northeastern Washington during the Late Wisconsin glaciation, Can.~J. Earth Sci., 33, 769--778,
+doi:\href{http://dx.doi.org/10.1139/e96-059}{10.1139/e96-059}, 1996.
+
+
+\bibitem[{Clague et~al.(1980)Clague, Armstrong, and Mathews}]{Clague.etal.1980}
+Clague,~J., Armstrong,~J., and Mathews,~W.: Advance of the late Wisconsin Cordilleran Ice Sheet in southern British Columbia since 22\,000~yr~BP, Quaternary Res., 13, 322--326,
+doi:\href{http://dx.doi.org/10.1016/0033-5894(80)90060-5}{10.1016/0033-5894(80)90060-5}, 1980.
+
+
+\bibitem[{Clague(1981)}]{Clague.1981}
+Clague,~J.~J.: Late Quaternary Geology and Geochronology of British Columbia Part 2: Summary and Discussion of Radiocarbon-Dated Quaternary History, Geol. Surv. of Can., Ottawa, ON, Paper 80-35,
+doi:\href{http://dx.doi.org/10.4095/119439}{10.4095/119439}, 1981.
+
+
+\bibitem[{Clague(1985)}]{Clague.1985}
+Clague,~J.~J.: Delaciation of the Prince Rupert -- Kitimat area, British Columbia, Can.~J. Earth Sci., 22, 256--265,
+doi:\href{http://dx.doi.org/10.1139/e85-022}{10.1139/e85-022}, 1985.
+
+
+\bibitem[{Clague(1986)}]{Clague.1986}
+Clague,~J.~J.: The Quaternary stratigraphic record of British Columbia --- evidence for episodic sedimentation and erosion controlled by glaciation, Can.~J. Earth Sci., 23, 885--894,
+doi:\href{http://dx.doi.org/10.1139/e86-090}{10.1139/e86-090}, 1986.
+
+
+\bibitem[{Clague(1989)}]{Clague.1989}
+Clague,~J.~J.: Character and distribution of Quaternary deposits (Canadian Cordillera), in: Quaternary Geology of Canada and Greenland, edited by: Fulton,~R.~J., vol.~1 of Geology of Canada, Geol. Surv. of Can., Ottawa, ON, 34--48,
+doi:\href{http://dx.doi.org/10.4095/127905}{10.4095/127905}, 1989.
+
+
+\bibitem[{Clague and James(2002)}]{Clague.James.2002}
+Clague,~J.~J. and James,~T.~S.: History and isostatic effects of the last ice sheet in southern British Columbia, Quaternary Res., 21, 71--87,
+doi:\href{http://dx.doi.org/10.1016/s0277-3791(01)00070-1}{10.1016/s0277-3791(01)00070-1}, 2002.
+
+
+\bibitem[{Clague and Ward(2011)}]{Clague.Ward.2011}
+Clague,~J.~J. and Ward,~B.: Pleistocene Glaciation of British
+Columbia, in:   Dev. Quaternary Sci., vol.~15, edited by: Ehlers,~J., Gibbard,~P.~L., and Hughes,~P.~D., Elsevier, Amsterdam, 563--573,
+doi:\href{http://dx.doi.org/10.1016/b978-0-444-53447-7.00044-1}{10.1016/b978-0-444-53447-7.00044-1}, 2011.
+
+
+\bibitem[{Clague et~al.(1997)Clague, Mathewes, Guilbault, Hutchinson, and Ricketts}]{Clague.etal.1997}
+Clague,~J.~J., Mathewes,~R.~W., Guilbault,~J.-P., Hutchinson,~I., and Ricketts,~B.~D.: Pre-Younger Dryas resurgence of the southwestern margin of the Cordilleran ice sheet, British Columbia, Canada, Boreas, 26, 261--278,
+doi:\href{http://dx.doi.org/10.1111/j.1502-3885.1997.tb00855.x}{10.1111/j.1502-3885.1997.tb00855.x}, 1997.
+
+
+\bibitem[{Clague et~al.(2005)Clague, Froese, Hutchinson, James, and Simon}]{Clague.etal.2005}
+Clague,~J.~J., Froese,~D., Hutchinson,~I., James,~T.~S., and Simon,~K.~M.: Early growth of the last Cordilleran ice sheet deduced from glacio-isostatic depression in southwest British Columbia, Canada, Quaternary Res., 63, 53--59,
+doi:\href{http://dx.doi.org/10.1016/j.yqres.2004.09.007}{10.1016/j.yqres.2004.09.007}, 2005.
+
+
+\bibitem[{Clark and Mix(2002)}]{Clark.Mix.2002}
+Clark,~P.~U. and Mix,~A.~C.: Ice sheets and sea level of the Last Glacial Maximum, Quaternary Res., 21, 1--7,
+doi:\href{http://dx.doi.org/10.1016/s0277-3791(01)00118-4}{10.1016/s0277-3791(01)00118-4}, 2002.
+
+
+\bibitem[{Clason et~al.(2012)Clason, Mair, Burgess, and Nienow}]{Clason.etal.2012}
+Clason,~C., Mair,~D.~W., Burgess,~D.~O., and Nienow,~P.~W.: Modelling the delivery of supraglacial meltwater to the ice/bed interface: application to southwest Devon Ice Cap, Nunavut, Canada,~J. Glaciol., 58, 361--374,
+doi:\href{http://dx.doi.org/10.3189/2012jog11j129}{10.3189/2012jog11j129}, 2012.
+
+
+\bibitem[{Clason et~al.(2014)Clason, Applegate, and Holmlund}]{Clason.etal.2014}
+Clason,~C., Applegate,~P., and Holmlund,~P.: Modelling Late Weichselian evolution of the Eurasian ice sheets forced by surface meltwater-enhanced basal sliding,~J. Glaciol., 60, 29--40,
+doi:\href{http://dx.doi.org/10.3189/2014jog13j037}{10.3189/2014jog13j037}, 2014.
+
+
+\bibitem[{Cosma et~al.(2008)Cosma, Hendy, and Chang}]{Cosma.etal.2008}
+Cosma,~T., Hendy,~I., and Chang,~A.: Chronological constraints on Cordilleran Ice Sheet glaciomarine sedimentation from core MD02-2496 off Vancouver Island (western Canada), Quaternary Sci. Rev., 27, 941--955,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2008.01.013}{10.1016/j.quascirev.2008.01.013}, 2008.
+
+
+\bibitem[{Dansgaard et~al.(1993)Dansgaard, Johnsen, Clausen, Dahl-Jensen, Gundestrup, Hammer, Hvidberg, Steffensen, Sveinbj\"ornsdottir, Jouzel, and Bond}]{Dansgaard.etal.1993}
+Dansgaard,~W., Johnsen,~S.~J., Clausen,~H.~B., Dahl-Jensen,~D., Gundestrup,~N.~S., Hammer,~C.~U., Hvidberg,~C.~S., Steffensen,~J.~P., Sveinbj\"ornsdottir,~A.~E., Jouzel,~J., and Bond,~G.: Evidence for general instability of past climate from a 250-kyr ice-core record, Nature, 364, 218--220,
+doi:\href{http://dx.doi.org/10.1038/364218a0}{10.1038/364218a0}, data archived at the World Data Center for Paleoclimatology, Boulder, Colorado, USA., 1993.
+
+
+\bibitem[{Davies et~al.(2011)Davies, Mix, Stoner, Addison, Jaeger, Finney, and Wiest}]{Davies.etal.2011}
+Davies,~M.~H., Mix,~A.~C., Stoner,~J.~S., Addison,~J.~A., Jaeger,~J., Finney,~B., and Wiest,~J.: The deglacial transition on the southeastern Alaska Margin: Meltwater input, sea level rise, marine productivity, and sedimentary anoxia, Paleoceanography, 26, PA2223,
+doi:\href{http://dx.doi.org/10.1029/2010pa002051}{10.1029/2010pa002051}, 2011.
+
+
+\bibitem[{Davis and Mathews(1944)}]{Davis.Mathews.1944}
+Davis,~N.~F.~G. and Mathews,~W.~H.: Four phases of glaciation with illustrations from Southwestern British Columbia,~J. Geol., 52, 403--413,
+doi:\href{http://dx.doi.org/10.1086/625236}{10.1086/625236}, 1944.
+
+
+\bibitem[{Dawson(1888)}]{Dawson.1888}
+Dawson,~G.~M.: III. -- Recent observations on the glaciation of British Columbia and adjacent regions, Geol. Mag., 5, 347--350,
+doi:\href{http://dx.doi.org/10.1017/s0016756800182159}{10.1017/s0016756800182159}, 1888.
+
+
+\bibitem[{Demuro et~al.(2012)Demuro, Froese, Arnold, and Roberts}]{Demuro.etal.2012}
+Demuro,~M., Froese,~D.~G., Arnold,~L.~J., and Roberts,~R.~G.: Single-grain OSL dating of glaciofluvial quartz constrains Reid glaciation in NW Canada to MIS 6, Quaternary Res., 77, 305--316,
+doi:\href{http://dx.doi.org/10.1016/j.yqres.2011.11.009}{10.1016/j.yqres.2011.11.009}, 2012.
+
+
+\bibitem[{Duk-Rodkin(1999)}]{Duk-Rodkin.1999}
+Duk-Rodkin,~A.: Glacial limits map of Yukon Territory, Open File 3694, Geol. Surv. of Can., Ottawa, ON,
+doi:\href{http://dx.doi.org/10.4095/210739}{10.4095/210739}, 1999.
+
+
+\bibitem[{Duk-Rodkin et~al.(1996)Duk-Rodkin, Barendregt, Tarnocai, and Phillips}]{Duk-Rodkin.etal.1996}
+Duk-Rodkin,~A., Barendregt,~R.~W., Tarnocai,~C., and Phillips,~F.~M.: Late Tertiary to late Quaternary record in the Mackenzie Mountains, Northwest Territories, Canada: stratigraphy, paleosols, paleomagnetism, and chlorine-36, Can.~J. Earth Sci., 33, 875--895,
+doi:\href{http://dx.doi.org/10.1139/e96-066}{10.1139/e96-066}, 1996.
+
+
+\bibitem[{Dyke(2004)}]{Dyke.2004}
+Dyke,~A.~S.: An outline of North American deglaciation with emphasis
+on central and northern Canada, in: Dev. Quaternary Sci., vol.~2,
+edited by: Ehlers,~J. and Gibbard,~P.~L., Elsevier, Amsterdam, 373--424,
+doi:\href{http://dx.doi.org/10.1016/S1571-0866(04)80209-4}{10.1016/S1571-0866(04)80209-4}, 2004.
+
+
+\bibitem[{Dyke and Prest(1987)}]{Dyke.Prest.1987}
+Dyke,~A.~S. and Prest,~V.~K.: Late wisconsinan and holocene history of the laurentide ice sheet, G{e}ogr. Phys. Quatern., 41, 237--263,
+doi:\href{http://dx.doi.org/10.7202/032681ar}{10.7202/032681ar}, 1987.
+
+
+\bibitem[{Dyke et~al.(2003)Dyke, Moore, and Robertson}]{Dyke.etal.2003}
+Dyke,~A.~S., Moore,~A., and Robertson,~L.: Deglaciation of North America, Open File 1547, Geol. Surv. of Can., Ottawa, ON, 2003.
+
+
+\bibitem[{Ehlers and Gibbard(2004)}]{Ehlers.Gibbard.2004}
+Ehlers,~J. and Gibbard,~P.~L. (Eds.): Dev. Quaternary Sci., vol.~2, Elsevier, Amsterdam, 2004.
+
+
+\bibitem[{Ehlers et~al.(2011)Ehlers, Gibbard, and Hughes}]{Ehlers.etal.2011}
+Ehlers,~J., Gibbard,~P.~L., and Hughes,~P.~D. (Eds.):  Dev. Quaternary
+Sci., vol.~15, Elsevier, Amsterdam, 2011.
+
+
+\bibitem[{Fahnestock et~al.(2001)Fahnestock, Abdalati, Joughin, Brozena, and Gogineni}]{Fahnestock.etal.2001}
+Fahnestock,~M., Abdalati,~W., Joughin,~I., Brozena,~J., and Gogineni,~P.: High geothermal heat flow, basal melt, and the origin of rapid ice flow in central greenland, Sience, 294, 2338--2342,
+doi:\href{http://dx.doi.org/10.1126/science.1065370}{10.1126/science.1065370}, 2001.
+
+
+\bibitem[{Friele and Clague(2002{\natexlab{a}})}]{Friele.Clague.2002}
+Friele,~P.~A. and Clague,~J.~J.: Readvance of glaciers in the British Columbia Coast Mountains at the end of the last glaciation, Quatern. Int., 87, 45--58,
+doi:\href{http://dx.doi.org/10.1016/s1040-6182(01)00061-1}{10.1016/s1040-6182(01)00061-1}, 2002{\natexlab{a}}.
+
+
+\bibitem[{Friele and Clague(2002{\natexlab{b}})}]{Friele.Clague.2002a}
+Friele,~P.~A. and Clague,~J.~J.: Younger Dryas readvance in Squamish river valley, southern Coast mountains, British Columbia, Quaternary Res., 21, 1925--1933,
+doi:\href{http://dx.doi.org/10.1016/s0277-3791(02)00081-1}{10.1016/s0277-3791(02)00081-1}, 2002{\natexlab{b}}.
+
+
+\bibitem[{Fulton(1967)}]{Fulton.1967}
+Fulton,~R.~J.: Deglaciation studies in Kamloops region, an area of moderate relief, British Columbia, vol. 154 of Bull., Geol. Surv. of Can., Ottawa, ON,
+doi:\href{http://dx.doi.org/10.4095/101467}{10.4095/101467}, 1967.
+
+
+\bibitem[{Fulton(1991)}]{Fulton.1991}
+Fulton,~R.~J.: A Conceptual model for growth and decay of the Cordilleran Ice Sheet, G{e}ogr. Phys. Quatern., 45, 281--286,
+doi:\href{http://dx.doi.org/10.7202/032875ar}{10.7202/032875ar}, 1991.
+
+
+\bibitem[{Golledge et~al.(2012)Golledge, Mackintosh, Anderson, Buckley, Doughty, Barrell, Denton, Vandergoes, Andersen, and Schaefer}]{Golledge.etal.2012}
+Golledge,~N.~R., Mackintosh,~A.~N., Anderson,~B.~M., Buckley,~K.~M., Doughty,~A.~M., Barrell,~D.~J., Denton,~G.~H., Vandergoes,~M.~J., Andersen,~B.~G., and Schaefer,~J.~M.: Last Glacial Maximum climate in {N}ew {Z}ealand inferred from a modelled {S}outhern {A}lps icefield, Quaternary Res., 46, 30--45,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2012.05.004}{10.1016/j.quascirev.2012.05.004}, 2012.
+
+
+\bibitem[{Herbert et~al.(2001)Herbert, Schuffert, Andreasen, Heusser, Lyle, Mix, Ravelo, Stott, and Herguera}]{Herbert.etal.2001}
+Herbert,~T.~D., Schuffert,~J.~D., Andreasen,~D., Heusser,~L., Lyle,~M., Mix,~A., Ravelo,~A.~C., Stott,~L.~D., and Herguera,~J.~C.: Collapse of the California current during glacial maxima linked to climate change on land, Sience, 293, 71--76,
+doi:\href{http://dx.doi.org/10.1126/science.1059209}{10.1126/science.1059209}, data archived at the World Data Center for Paleoclimatology, Boulder, Colorado, USA, 2001.
+
+
+\bibitem[{Hidy et~al.(2013)Hidy, Gosse, Froese, Bond, and Rood}]{Hidy.etal.2013}
+Hidy,~A.~J., Gosse,~J.~C., Froese,~D.~G., Bond,~J.~D., and Rood,~D.~H.: A latest Pliocene age for the earliest and most extensive Cordilleran Ice Sheet in northwestern Canada, Quaternary Res., 61, 77--84,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2012.11.009}{10.1016/j.quascirev.2012.11.009}, 2013.
+
+
+\bibitem[{Hock(2003)}]{Hock.2003}
+Hock,~R.: Temperature index melt modelling in mountain areas,~J. Hydrol., 282, 104--115,
+doi:\href{http://dx.doi.org/10.1016/S0022-1694(03)00257-9}{10.1016/S0022-1694(03)00257-9}, 2003.
+
+
+\bibitem[{Imbrie et~al.(1989)Imbrie, McIntyre, and Mix}]{Imbrie.etal.1989}
+Imbrie,~J., McIntyre,~A., and Mix,~A.: Oceanic response to orbital forcing in the late quaternary: observational and experimental strategies, in: Climate and Geo-Sciences, edited by: Berger,~A., Schneider,~S., and Duplessy,~J., vol. 285 of NATO ASI Series C, Kluwer, Norwell, MA, 121--164,
+doi:\href{http://dx.doi.org/10.1007/978-94-009-2446-8_7}{10.1007/978-94-009-2446-8\_7}, 1989.
+
+
+\bibitem[{Ivy-Ochs et~al.(1999)Ivy-Ochs, Schluchter, Kubik, and Denton}]{Ivy-Ochs.etal.1999}
+Ivy-Ochs,~S., Schluchter,~C., Kubik,~P.~W., and Denton,~G.~H.: Moraine
+exposure dates imply synchronous Younger Dryas Glacier advances in the
+European Alps and in the Southern Alps of New Zealand, Geogr. Ann. A, 81,
+313--323,
+doi:\href{http://dx.doi.org/10.1111/1468-0459.00060}{10.1111/1468-0459.00060},
+1999.
+
+
+\bibitem[{Jackson and Clague(1991)}]{Jackson.Clague.1991}
+Jackson,~L.~E. and Clague,~J.~J.: The Cordilleran ice sheet: one hundred and fifty years of exploration and discovery, G{e}ogr. Phys. Quatern., 45, 269--280,
+doi:\href{http://dx.doi.org/10.7202/032874ar}{10.7202/032874ar}, 1991.
+
+
+\bibitem[{Jackson et~al.(1997)Jackson, Phillips, Shimamura, and Little}]{Jackson.etal.1997}
+Jackson,~L.~E., Phillips,~F.~M., Shimamura,~K., and Little,~E.~C.: Cosmogenic $^{36}$Cl dating of the Foothills erratics train, Alberta, Canada, Geology, 25, 195,
+doi:\href{http://dx.doi.org/10.1130/0091-7613(1997)025<0195:ccdotf>2.3.co;2}{10.1130/0091-7613(1997)025\textless0195:ccdotf\textgreater2.3.co;2}, 1997.
+
+
+\bibitem[{James et~al.(2009)James, Gowan, Wada, and Wang}]{James.etal.2009}
+James,~T.~S., Gowan,~E.~J., Wada,~I., and Wang,~K.: Viscosity of the
+asthenosphere from glacial isostatic adjustment and subduction dynamics at
+the northern Cascadia subduction zone, British Columbia, Canada,~J. Geophys.
+Res., 114, B04405,
+doi:\href{http://dx.doi.org/10.1029/2008jb006077}{10.1029/2008jb006077},
+2009.
+
+
+\bibitem[{Johnsen et~al.(1995)Johnsen, Dahl-Jensen, Dansgaard, and Gundestrup}]{Johnsen.etal.1995}
+Johnsen,~S.~J., Dahl-Jensen,~D., Dansgaard,~W., and Gundestrup,~N.: Greenland palaeotemperatures derived from GRIP bore hole temperature and ice core isotope profiles, Tellus B, 47, 624--629,
+doi:\href{http://dx.doi.org/10.1034/j.1600-0889.47.issue5.9.x}{10.1034/j.1600-0889.47.issue5.9.x}, 1995.
+
+
+\bibitem[{Jouzel et~al.(2007)Jouzel, Masson-Delmotte, Cattani, Dreyfus, Falourd, Hoffmann, Minster, Nouet, Barnola, Chappellaz, Fischer, Gallet, Johnsen, Leuenberger, Loulergue, Luethi, Oerter, Parrenin, Raisbeck, Raynaud, Schilt, Schwander, Selmo, Souchez, Spahni, Stauffer, Steffensen, Stenni, Stocker, Tison, Werner, and Wolff}]{Jouzel.etal.2007}
+Jouzel,~J., Masson-Delmotte,~V., Cattani,~O., Dreyfus,~G., Falourd,~S., Hoffmann,~G., Minster,~B., Nouet,~J., Barnola,~J.~M., Chappellaz,~J., Fischer,~H., Gallet,~J.~C., Johnsen,~S., Leuenberger,~M., Loulergue,~L., Luethi,~D., Oerter,~H., Parrenin,~F., Raisbeck,~G., Raynaud,~D., Schilt,~A., Schwander,~J., Selmo,~E., Souchez,~R., Spahni,~R., Stauffer,~B., Steffensen,~J.~P., Stenni,~B., Stocker,~T.~F., Tison,~J.~L., Werner,~M., and Wolff,~E.~W.: Orbital and millennial antarctic climate variability over the past 800\,000~years, Sience, 317, 793--796,
+doi:\href{http://dx.doi.org/10.1126/science.1141038}{10.1126/science.1141038}, data archived at the World Data Center for Paleoclimatology, Boulder, Colorado, USA., 2007.
+
+
+\bibitem[{Kaufman and Manley(2004)}]{Kaufman.Manley.2004}
+Kaufman,~D.~S. and Manley,~W.~F.: Pleistocene maximum and late wisconsinan glacier extents across Alaska, {USA}, in: Dev. Quaternary Sci., vol.~2,
+edited by: Ehlers,~J. and Gibbard,~P.~L., Elsevier, Amsterdam, 9--27,
+doi:\href{http://dx.doi.org/10.1016/S1571-0866(04)80182-9}{10.1016/S1571-0866(04)80182-9}, 2004.
+
+
+\bibitem[{Kleman(1994)}]{Kleman.1994}
+Kleman,~J.: Preservation of landforms under ice sheets and ice caps, Geomorphology, 9, 19--32,
+doi:\href{http://dx.doi.org/10.1016/0169-555x(94)90028-0}{10.1016/0169-555x(94)90028-0}, 1994.
+
+
+\bibitem[{Kleman and Stroeven(1997)}]{Kleman.Stroeven.1997}
+Kleman,~J. and Stroeven,~A.~P.: Preglacial surface remnants and Quaternary glacial regimes in northwestern Sweden, Geomorphology, 19, 35--54,
+doi:\href{http://dx.doi.org/10.1016/s0169-555x(96)00046-3}{10.1016/s0169-555x(96)00046-3}, 1997.
+
+
+\bibitem[{Kleman et~al.(1997)Kleman, H{\"a}ttestrand, Borgstr{\"o}m, and Stroeven}]{Kleman.etal.1997}
+Kleman,~J., H{\"a}ttestrand,~C., Borgstr{\"o}m,~I., and Stroeven,~A.: Fennoscandian paleoglaciology reconstructed using a glacial geological inversion model,~J. Glaciol., 43, 283--299, 1997.
+
+
+\bibitem[{Kleman et~al.(2006)Kleman, H{\"a}ttestrand, Stroeven, Jansson, De~Angelis, and Borgstr{\"o}m}]{Kleman.etal.2006}
+Kleman,~J., H{\"a}ttestrand,~C., Stroeven,~A.~P., Jansson,~K.~N., De~Angelis,~H., and Borgstr{\"o}m,~I.: Reconstruction of palaeo-ice sheets -- inversion of their glacial geomorphological record, in: Glacier Science and Environmental Change, edited by: Knight,~P.~G., Blackwell, Malden, MA, 192--198,
+doi:\href{http://dx.doi.org/10.1002/9780470750636.ch38}{10.1002/9780470750636.ch38}, 2006.
+
+
+\bibitem[{Kleman et~al.(2008)Kleman, Stroeven, and Lundqvist}]{Kleman.etal.2008}
+Kleman,~J., Stroeven,~A.~P., and Lundqvist,~J.: Patterns of quaternary ice sheet erosion and deposition in Fennoscandia and a theoretical framework for explanation, Geomorphology, 97, 73--90,
+doi:\href{http://dx.doi.org/10.1016/j.geomorph.2007.02.049}{10.1016/j.geomorph.2007.02.049}, 2008.
+
+
+\bibitem[{Kleman et~al.(2010)Kleman, Jansson, De~Angelis, Stroeven, H\"{a}ttestrand, Alm, and Glasser}]{Kleman.etal.2010}
+Kleman,~J., Jansson,~K., De~Angelis,~H., Stroeven,~A., H\"{a}ttestrand,~C., Alm,~G., and Glasser,~N.: North American ice sheet build-up during the last glacial cycle, 115--21\,kyr, Quaternary Sci. Rev., 29, 2036--2051,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2010.04.021}{10.1016/j.quascirev.2010.04.021}, 2010.
+
+
+\bibitem[{Kovanen(2002)}]{Kovanen.2002}
+Kovanen,~D.~J.: Morphologic and stratigraphic evidence for Aller{\o}d and Younger Dryas age glacier fluctuations of the Cordilleran Ice Sheet, British Columbia, Canada and Northwest Washington,~USA, Boreas, 31, 163--184,
+doi:\href{http://dx.doi.org/10.1111/j.1502-3885.2002.tb01064.x}{10.1111/j.1502-3885.2002.tb01064.x}, 2002.
+
+
+\bibitem[{Kovanen and Easterbrook(2002)}]{Kovanen.Easterbrook.2002}
+Kovanen,~D.~J. and Easterbrook,~D.~J.: Timing and extent of Aller{\o}d and Younger Dryas age (ca. 12\,500--10\,000 $^{14}$C~yr~BP) oscillations of the Cordilleran Ice Sheet in the Fraser Lowland, Western North America, Quaternary Res., 57, 208--224,
+doi:\href{http://dx.doi.org/10.1006/qres.2001.2307}{10.1006/qres.2001.2307}, 2002.
+
+
+\bibitem[{Lakeman et~al.(2008)Lakeman, Clague, and Menounos}]{Lakeman.etal.2008}
+Lakeman,~T.~R., Clague,~J.~J., and Menounos,~B.: Advance of alpine glaciers during final retreat of the Cordilleran ice sheet in the Finlay River area, northern British Columbia, Canada, Quaternary Res., 69, 188--200,
+doi:\href{http://dx.doi.org/10.1016/j.yqres.2008.01.002}{10.1016/j.yqres.2008.01.002}, 2008.
+
+
+\bibitem[{Langen et~al.(2012)Langen, Solgaard, and Hvidberg}]{Langen.etal.2012}
+Langen,~P.~L., Solgaard,~A.~M., and Hvidberg,~C.~S.: Self-inhibiting growth of the Greenland ice sheet, Geophys. Res. Lett., 39, L12502,
+doi:\href{http://dx.doi.org/10.1029/2012GL051810}{10.1029/2012GL051810}, 2012.
+
+
+\bibitem[{Levermann et~al.(2012)Levermann, Albrecht, Winkelmann, Martin, Haseloff, and Joughin}]{Levermann.etal.2012}
+ Levermann,~A., Albrecht,~T., Winkelmann,~R., Martin,~M.~A., Haseloff,~M., and Joughin,~I.: Kinematic first-order calving law implies potential for  abrupt ice-shelf retreat, The Cryosphere, 6, 273--286,
+doi:\href{http://dx.doi.org/10.5194/tc-6-273-2012}{10.5194/tc-6-273-2012}, 2012.
+
+
+\bibitem[{Lingle and Clark(1985)}]{Lingle.Clark.1985}
+Lingle,~C.~S. and Clark,~J.~A.: A~numerical model of interactions between a~marine ice sheet and the Solid Earth: application to a~West Antarctic ice stream,~J. Geophys. Res., 90, 1100--1114,
+doi:\href{http://dx.doi.org/10.1029/JC090iC01p01100}{10.1029/JC090iC01p01100}, 1985.
+
+
+\bibitem[{Lisiecki and Raymo(2005)}]{Lisiecki.Raymo.2005}
+Lisiecki,~L.~E. and Raymo,~M.~E.: A Pliocene-Pleistocene stack of 57 globally distributed benthic $\delta^{18}$O records, Paleoceanography, 20, PA1003,
+doi:\href{http://dx.doi.org/10.1029/2004pa001071}{10.1029/2004pa001071}, 2005.
+
+
+\bibitem[{Lundqvist(1987)}]{Lundqvist.1987}
+Lundqvist,~J.: Glaciodynamics of the Younger Dryas Marginal zone in Scandinavia: implications of a revised glaciation model, Geogr. Ann. A, 69, 305,
+doi:\href{http://dx.doi.org/10.2307/521191}{10.2307/521191}, 1987.
+
+
+\bibitem[{Margold et~al.(2011)Margold, Jansson, Kleman, and Stroeven}]{Margold.etal.2011}
+Margold,~M., Jansson,~K.~N., Kleman,~J., and Stroeven,~A.~P.: Glacial meltwater landforms of central British Columbia,~J. Maps, 7, 486--506,
+doi:\href{http://dx.doi.org/10.4113/jom.2011.1205}{10.4113/jom.2011.1205}, 2011.
+
+
+\bibitem[{Margold et~al.(2013{\natexlab{a}})Margold, Jansson, Kleman, and Stroeven}]{Margold.etal.2013}
+Margold,~M., Jansson,~K.~N., Kleman,~J., and Stroeven,~A.~P.: Lateglacial ice dynamics of the Cordilleran Ice Sheet in northern British Columbia and southern Yukon Territory: retreat pattern of the Liard Lobe reconstructed from the glacial landform record,~J. Quaternary Sci., 28, 180--188,
+doi:\href{http://dx.doi.org/10.1002/jqs.2604}{10.1002/jqs.2604}, 2013{\natexlab{a}}.
+
+
+\bibitem[{Margold et~al.(2013{\natexlab{b}})Margold, Jansson, Kleman, Stroeven, and Clague}]{Margold.etal.2013a}
+Margold,~M., Jansson,~K.~N., Kleman,~J., Stroeven,~A.~P., and Clague,~J.~J.: Retreat pattern of the Cordilleran Ice Sheet in central British Columbia at the end of the last glaciation reconstructed from glacial meltwater landforms, Boreas, 42, 830--847,
+doi:\href{http://dx.doi.org/10.1111/bor.12007}{10.1111/bor.12007}, 2013{\natexlab{b}}.
+
+
+\bibitem[{Margold et~al.(2014)Margold, Stroeven, Clague, and Heyman}]{Margold.etal.2014}
+Margold,~M., Stroeven,~A.~P., Clague,~J.~J., and Heyman,~J.: Timing of terminal Pleistocene deglaciation at high elevations in southern and central British Columbia constrained by $^{10}$Be exposure dating, Quaternary Res., 99, 193--202,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2014.06.027}{10.1016/j.quascirev.2014.06.027}, 2014.
+
+
+\bibitem[{Marshall et~al.(2000)Marshall, Tarasov, Clarke, and Peltier}]{Marshall.etal.2000}
+Marshall,~S.~J., Tarasov,~L., Clarke,~G.~K., and Peltier,~W.~R.: Glaciological reconstruction of the Laurentide Ice Sheet: physical processes and modelling challenges, Can.~J. Earth Sci., 37, 769--793,
+doi:\href{http://dx.doi.org/10.1139/e99-113}{10.1139/e99-113}, 2000.
+
+
+\bibitem[{Martin et~al.(2011)Martin, Winkelmann, Haseloff, Albrecht, Bueler, Khroulev, and Levermann}]{Martin.etal.2011}
+ Martin,~M.~A., Winkelmann,~R., Haseloff,~M., Albrecht,~T., Bueler,~E., Khroulev,~C., and Levermann,~A.: The Potsdam Parallel Ice Sheet Model (PISM-PIK) -- Part 2: Dynamic equilibrium simulation of the Antarctic ice sheet, The Cryosphere, 5, 727--740,
+doi:\href{http://dx.doi.org/10.5194/tc-5-727-2011}{10.5194/tc-5-727-2011}, 2011.
+
+
+
+\bibitem[{Menounos et~al.(2008)Menounos, Osborn, Clague, and Luckman}]{Menounos.etal.2008}
+Menounos,~B., Osborn,~G., Clague,~J.~J., and Luckman,~B.~H.: Latest Pleistocene and Holocene glacier fluctuations in western Canada, Quaternary Sci. Rev., 28, 2049--2074,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2008.10.018}{10.1016/j.quascirev.2008.10.018}, 2008.
+
+
+\bibitem[{Mesinger et~al.(2006)Mesinger, DiMego, Kalnay, Mitchell, Shafran, Ebisuzaki, Jovi\'{c}, Woollen, Rogers, Berbery, Ek, Fan, Grumbine, Higgins, Li, Lin, Manikin, Parrish, and Shi}]{Mesinger.etal.2006}
+Mesinger,~F., DiMego,~G., Kalnay,~E., Mitchell,~K., Shafran,~P.~C., Ebisuzaki,~W., Jovi\'{c},~D., Woollen,~J., Rogers,~E., Berbery,~E.~H., Ek,~M.~B., Fan,~Y., Grumbine,~R., Higgins,~W., Li,~H., Lin,~Y., Manikin,~G., Parrish,~D., and Shi,~W.: North American regional reanalysis,~B. Am. Meteorol. Soc., 87, 343--360,
+doi:\href{http://dx.doi.org/10.1175/BAMS-87-3-343}{10.1175/BAMS-87-3-343}, 2006.
+
+
+\bibitem[{Osborn and Gerloff(1997)}]{Osborn.Gerloff.1997}
+Osborn,~G. and Gerloff,~L.: Latest pleistocene and early Holocene fluctuations of glaciers in the Canadian and northern American Rockies, Quatern. Int., 38--39, 7--19,
+doi:\href{http://dx.doi.org/10.1016/s1040-6182(96)00026-2}{10.1016/s1040-6182(96)00026-2}, 1997.
+
+
+\bibitem[{Patterson and Kelso(2015)}]{Patterson.Kelso.2015}
+Patterson,~T. and Kelso,~N.~V.: {N}atural {E}arth, {F}ree vector and raster
+map data, available at: \url{http://naturalearthdata.com} (last access:
+2015), 2015.
+
+
+\bibitem[{Perkins and Brennand(2014)}]{Perkins.Brennand.2014}
+Perkins,~A.~J. and Brennand,~T.~A.: Refining the pattern and style of Cordilleran Ice Sheet retreat: palaeogeography, evolution and implications of lateglacial ice-dammed lake systems on the southern Fraser Plateau, British Columbia, Canada, Boreas, 44, 319--342,
+doi:\href{http://dx.doi.org/10.1111/bor.12100}{10.1111/bor.12100}, 2014.
+
+
+\bibitem[{Perkins et~al.(2013)Perkins, Brennand, and Burke}]{Perkins.etal.2013}
+Perkins,~A.~J., Brennand,~T.~A., and Burke,~M.~J.: Genesis of an esker-like ridge over the southern Fraser Plateau, British Columbia: implications for paleo-ice sheet reconstruction based on geomorphic inversion, Geomorphology, 190, 27--39,
+doi:\href{http://dx.doi.org/10.1016/j.geomorph.2013.02.005}{10.1016/j.geomorph.2013.02.005}, 2013.
+
+
+\bibitem[{Petit et~al.(1999)Petit, Jouzel, Raynaud, Barkov, Barnola, Basile, Bender, Chappellaz, Davis, Delaygue, Delmotte, Kotlyakov, Legrand, Lipenkov, Lorius, P{\'e}pin, Ritz, Saltzman, and Stievenard}]{Petit.etal.1999}
+Petit,~J.~R., Jouzel,~J., Raynaud,~D., Barkov,~N.~I., Barnola,~J.-M., Basile,~I., Bender,~M., Chappellaz,~J., Davis,~M., Delaygue,~G., Delmotte,~M., Kotlyakov,~V.~M., Legrand,~M., Lipenkov,~V.~Y., Lorius,~C., P{\'e}pin,~L., Ritz,~C., Saltzman,~E., and Stievenard,~M.: Climate and atmospheric history of the past 420,000 years from the Vostok ice core, Antarctica, Nature, 399, 429--436,
+doi:\href{http://dx.doi.org/10.1038/20859}{10.1038/20859}, data archived at the World Data Center for Paleoclimatology, Boulder, Colorado, USA., 1999.
+
+
+\bibitem[{Porter(1989)}]{Porter.1989}
+Porter,~S.~C.: Some geological implications of average Quaternary glacial conditions, Quaternary Res., 32, 245--261,
+doi:\href{http://dx.doi.org/10.1016/0033-5894(89)90092-6}{10.1016/0033-5894(89)90092-6}, 1989.
+
+
+\bibitem[{Porter and Swanson(1998)}]{Porter.Swanson.1998}
+Porter,~S.~C. and Swanson,~T.~W.: Radiocarbon age constraints on rates of advance and retreat of the {P}uget {L}obe of the {C}ordilleran {I}ce {S}heet during the last glaciation, Quaternary Res., 50, 205--213,
+doi:\href{http://dx.doi.org/10.1006/qres.1998.2004}{10.1006/qres.1998.2004}, 1998.
+
+
+\bibitem[{Praetorius and Mix(2014)}]{Praetorius.Mix.2014}
+Praetorius,~S.~K. and Mix,~A.~C.: Synchronization of North Pacific and Greenland climates preceded abrupt deglacial warming, Sience, 345, 444--448,
+doi:\href{http://dx.doi.org/10.1126/science.1252000}{10.1126/science.1252000}, 2014.
+
+
+\bibitem[{Prest et~al.(1968)Prest, Grant, and Rampton}]{Prest.etal.1968}
+Prest,~V.~K., Grant,~D.~R., and Rampton,~V.~N.: Glacial map of Canada, ``A'' Series Map 1253A, Geol. Surv. of Can., Ottawa, ON,
+doi:\href{http://dx.doi.org/10.4095/108979}{10.4095/108979}, 1968.
+
+
+\bibitem[{Robert(1991)}]{Robert.1991}
+Robert,~B.~L.: Modeling the Cordilleran ice sheet, G{e}ogr. Phys. Quatern., 45, 287--299,
+doi:\href{http://dx.doi.org/10.7202/032876ar}{10.7202/032876ar}, 1991.
+
+
+\bibitem[{Rutter et~al.(2012)Rutter, Coronato, Helmens, Rabassa, and Z{\'a}rate}]{Rutter.etal.2012}
+Rutter,~N., Coronato,~A., Helmens,~K., Rabassa,~J., and Z{\'a}rate,~M.: Glaciations in North and South America from the Miocene to the Last Glacial Maximum: Comparisons, Linkages and Uncertainties, Springer Briefs in Earth System Sciences, Springer, Dordrecht,
+doi:\href{http://dx.doi.org/10.1007/978-94-007-4399-1}{10.1007/978-94-007-4399-1}, 2012.
+
+
+\bibitem[{Ryder et~al.(1991)Ryder, Fulton, and Clague}]{Ryder.etal.1991}
+Ryder,~J.~M., Fulton,~R.~J., and Clague,~J.~J.: The Cordilleran ice sheet and the glacial geomorphology of southern and central British Colombia, G{e}ogr. Phys. Quatern., 45, 365--377,
+doi:\href{http://dx.doi.org/10.7202/032882ar}{10.7202/032882ar}, 1991.
+
+
+\bibitem[{Seguinot(2013)}]{Seguinot.2013}
+Seguinot,~J.: Spatial and seasonal effects of temperature variability in a positive degree-day glacier surface mass-balance model,~J. Glaciol., 59, 1202--1204,
+doi:\href{http://dx.doi.org/10.3189/2013JoG13J081}{10.3189/2013JoG13J081}, 2013.
+
+
+\bibitem[{Seguinot et~al.(2014)Seguinot, Khroulev, Rogozhina, Stroeven, and Zhang}]{Seguinot.etal.2014}
+ Seguinot,~J., Khroulev,~C., Rogozhina,~I., Stroeven,~A.~P., and Zhang,~Q.: The effect of climate forcing on numerical simulations of the Cordilleran ice sheet at the Last Glacial Maximum, The Cryosphere, 8, 1087--1103,
+doi:\href{http://dx.doi.org/10.5194/tc-8-1087-2014}{10.5194/tc-8-1087-2014}, 2014.
+
+
+
+\bibitem[{Shea et~al.(2009)Shea, Moore, and Stahl}]{Shea.etal.2009}
+Shea,~J.~M., Moore,~R.~D., and Stahl,~K.: Derivation of melt factors from glacier mass-balance records in western Canada,~J. Glaciol., 55, 123--130,
+doi:\href{http://dx.doi.org/10.3189/002214309788608886}{10.3189/002214309788608886}, 2009.
+
+
+\bibitem[{Sissons(1979)}]{Sissons.1979}
+Sissons,~J.~B.: The Loch Lomond Stadial in the British Isles, Nature, 280, 199--203,
+doi:\href{http://dx.doi.org/10.1038/280199a0}{10.1038/280199a0}, 1979.
+
+
+\bibitem[{Stea et~al.(2011)Stea, Seaman, Pronk, Parkhill, Allard, and Utting}]{Stea.etal.2011}
+Stea,~R.~R., Seaman,~A.~A., Pronk,~T., Parkhill,~M.~A., Allard,~S., and Utting,~D.: The Appalachian Glacier Complex in Maritime Canada, in:   Dev. Quaternary Sci., vol.~15, edited by: Ehlers,~J., Gibbard,~P.~L., and Hughes,~P.~D., Elsevier, Amsterdam, 631--659,
+doi:\href{http://dx.doi.org/10.1016/b978-0-444-53447-7.00048-9}{10.1016/b978-0-444-53447-7.00048-9}, 2011.
+
+
+\bibitem[{Stroeven et~al.(2010)Stroeven, Fabel, Codilean, Kleman, Clague, Miguens-Rodriguez, and Xu}]{Stroeven.etal.2010}
+Stroeven,~A.~P., Fabel,~D., Codilean,~A.~T., Kleman,~J., Clague,~J.~J., Miguens-Rodriguez,~M., and Xu,~S.: Investigating the glacial history of the northern sector of the Cordilleran ice sheet with cosmogenic $^{10}$Be concentrations in quartz, Quaternary Sci. Rev., 29, 3630--3643,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2010.07.010}{10.1016/j.quascirev.2010.07.010}, 2010.
+
+
+\bibitem[{Stroeven et~al.(2014)Stroeven, Fabel, Margold, Clague, and Xu}]{Stroeven.etal.2014}
+Stroeven,~A.~P., Fabel,~D., Margold,~M., Clague,~J.~J., and Xu,~S.: Investigating absolute chronologies of glacial advances in the {NW} sector of the Cordilleran ice sheet with terrestrial in situ cosmogenic nuclides, Quaternary Sci. Rev., 92, 429--443,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2013.09.026}{10.1016/j.quascirev.2013.09.026}, 2014.
+
+
+\bibitem[{Stroeven et~al.(2015)Stroeven, H{\"a}ttestrand, Kleman, Heyman, Fabel, Fredin, Goodfellow, Harbor, Jansen, Olsen, Caffee, Fink, Lundqvist, Rosqvist, Str\"omberg, and Jansson}]{Stroeven.etal.inreview}
+Stroeven,~A.~P., H{\"a}ttestrand,~C., Kleman,~J., Heyman,~J., Fabel,~D.,
+Fredin,~O., Goodfellow,~B.~W., Harbor,~J.~M., Jansen,~J.~D., Olsen,~L.,
+Caffee,~M.~W., Fink,~D., Lundqvist,~J., Rosqvist,~G.~C., Str\"omberg,~B., and
+Jansson,~K.~N.: Deglaciation of Fennoscandia, Quaternary Sci. Rev., in
+review, 2015.
+
+
+\bibitem[{Stumpf et~al.(2000)Stumpf, Broster, and Levson}]{Stumpf.etal.2000}
+Stumpf,~A.~J., Broster,~B.~E., and Levson,~V.~M.: Multiphase flow of the late Wisconsinan Cordilleran ice sheet in western Canada, Geol. Soc. Am. Bull., 112, 1850--1863,
+doi:\href{http://dx.doi.org/10.1130/0016-7606(2000)112<1850:mfotlw>2.0.co;2}{10.1130/0016-7606(2000)112\textless1850:mfotlw\textgreater2.0.co;2}, 2000.
+
+
+\bibitem[{Taylor et~al.(2014)Taylor, Hendy, and Pak}]{Taylor.etal.2014}
+Taylor,~M., Hendy,~I., and Pak,~D.: Deglacial ocean warming and marine margin retreat of the Cordilleran Ice Sheet in the North Pacific Ocean, Earth Planet. Sc. Lett., 403, 89--98,
+doi:\href{http://dx.doi.org/10.1016/j.epsl.2014.06.026}{10.1016/j.epsl.2014.06.026}, 2014.
+
+
+\bibitem[{the PISM~authors(2015)}]{PISM-authors.2015}
+the PISM~authors: {PISM}, a~{P}arallel {I}ce {S}heet {M}odel, available at:
+\url{http://www.pism-docs.org} (last access: 2015), 2015.
+
+
+\bibitem[{Troost(2014)}]{Troost.2014}
+Troost,~K.~G.: The penultimate glaciation and mid-to late-pleistocene
+stratigraphy in the Central Puget Lowland, Washington, in: 2014 GSA Annual
+Meeting, Vancouver, 19--22 October 2014, abstract no. 138-9, 2014.
+
+
+
+\bibitem[{Tulaczyk et~al.(2000)Tulaczyk, Kamb, and Engelhardt}]{Tulaczyk.etal.2000}
+Tulaczyk,~S., Kamb,~W.~B., and Engelhardt,~H.~F.: Basal mechanics of Ice Stream B, west Antarctica: 1. Till mechanics,~J. Geophys. Res., 105, 463,
+doi:\href{http://dx.doi.org/10.1029/1999jb900329}{10.1029/1999jb900329}, 2000.
+
+
+\bibitem[{Turner et~al.(2013)Turner, Ward, Bond, Jensen, Froese, Telka, Zazula, and Bigelow}]{Turner.etal.2013}
+Turner,~D.~G., Ward,~B.~C., Bond,~J.~D., Jensen,~B.~J., Froese,~D.~G., Telka,~A.~M., Zazula,~G.~D., and Bigelow,~N.~H.: Middle to Late Pleistocene ice extents, tephrochronology and paleoenvironments of the White River area, southwest Yukon, Quaternary Res., 75, 59--77,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2013.05.011}{10.1016/j.quascirev.2013.05.011}, 2013.
+
+
+\bibitem[{Ward et~al.(2007)Ward, Bond, and Gosse}]{Ward.etal.2007}
+Ward,~B.~C., Bond,~J.~D., and Gosse,~J.~C.: Evidence for a 55--50 ka (early Wisconsin) glaciation of the Cordilleran ice sheet, Yukon Territory, Canada, Quaternary Res., 68, 141--150,
+doi:\href{http://dx.doi.org/10.1016/j.yqres.2007.04.002}{10.1016/j.yqres.2007.04.002}, 2007.
+
+
+\bibitem[{Ward et~al.(2008)Ward, Bond, Froese, and Jensen}]{Ward.etal.2008}
+Ward,~B.~C., Bond,~J.~D., Froese,~D., and Jensen,~B.: Old Crow tephra ($140\pm10$\,ka) constrains penultimate Reid glaciation in central Yukon Territory, Quaternary Res., 27, 1909--1915,
+doi:\href{http://dx.doi.org/10.1016/j.quascirev.2008.07.012}{10.1016/j.quascirev.2008.07.012}, 2008.
+
+
+\bibitem[{Winkelmann et~al.(2011)Winkelmann, Martin, Haseloff, Albrecht, Bueler, Khroulev, and Levermann}]{Winkelmann.etal.2011}
+ Winkelmann,~R., Martin,~M.~A., Haseloff,~M., Albrecht,~T., Bueler,~E., Khroulev,~C., and Levermann,~A.: The Potsdam Parallel Ice Sheet Model (PISM-PIK) -- Part 1: Model description, The Cryosphere, 5, 715--726,
+doi:\href{http://dx.doi.org/10.5194/tc-5-715-2011}{10.5194/tc-5-715-2011}, 2011.
+
+
+
+\end{thebibliography}
+
+
+\begin{table}[t]
+\caption{%
+      Parameter values used in the ice sheet model.}
+\scalebox{.75}[.75]
+{\begin{tabular}{llcc}
+    \tophline
+    Not.    & Name & Value & Unit \\
+    \middlehline
+    $\rho$  & Ice density
+            & 910
+            & \unit{kg\,m^{-3}} \\
+
+    $g$     & Standard gravity
+            & 9.81
+            & \unit{m\,s^{-2}} \\
+    \cline{1-4}
+    \multicolumn{2}{l}{{Basal sliding}} \\
+    \cline{1-4}
+    $q$     & Pseudo-plastic sliding exponent
+            & 0.25
+            & -- \\
+
+    $v_{\text{th}}$& Pseudo-plastic threshold velocity
+            & 100.0
+            & \unit{m\,yr^{-1}} \\
+
+    $c_0$   & Till cohesion
+            & 0.0
+            & Pa \\
+
+    $e_0$   & Till reference void ratio
+            & 0.69
+            & -- \\
+
+    $C_{\mathrm{c}}$   & Till compressibility coefficient
+            & 0.12
+            & -- \\
+
+    $\delta$& Effective pressure coefficient
+            & 0.02
+            & -- \\
+
+    $W_{\text{max}}$ & Maximal till water thickness
+            & 2.0
+            & m \\
+    \cline{1-4}
+    \multicolumn{2}{l}{{Bedrock and lithosphere}} \\
+    \cline{1-4}
+    $\rho_{\mathrm{b}}$& Bedrock density
+            & 3300
+            & \unit{kg\,m^{-3}} \\
+
+    $c_{\mathrm{b}}$   & Bedrock specific heat capacity
+            & 1000
+            & \unit{J\,kg^{-1}\,K^{-1}} \\
+
+    $k_{\mathrm{b}}$   & Bedrock thermal conductivity
+            & 3.0
+            & \unit{J\,m^{-1}\,K^{-1}\,s^{-1}} \\
+
+    $\nu_m$ & Astenosphere viscosity
+            & $1\times10^{19}$
+            & \unit{Pa\,s} \\
+
+    $\rho_l$& Lithosphere density
+            & 3300
+            & \unit{kg\,m^{-3}} \\
+
+    $D$     & Lithosphere flexural rigidity
+            & $5.0\times10^{24}$
+            & \unit{N} \\
+    \cline{1-4}
+    \multicolumn{2}{l}{{Surface and atmosphere}} \\
+    \cline{1-4}
+    $T_{\mathrm{s}}$   & Temperature of snow precipitation
+            & 273.15
+            & \unit{K} \\
+
+    $T_{\mathrm{r}}$   & Temperature of rain precipitation
+            & 275.15
+            & \unit{K} \\
+
+    $F_{\mathrm{s}}$   & Degree-day factor for snow
+            & $3.04\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}} \\
+
+    $F_{\mathrm{i}}$   & Degree-day factor for ice
+            & $4.59\times10^{-3}$
+            & \unit{m\,K^{-1}\,day^{-1}} \\
+
+    $\gamma$& Air temperature lapse rate
+            & $6\times10^{-3}$
+            & \unit{K\,m^{-1}} \\
+    \bottomhline
+\end{tabular}}
+%\hack{
+%\setlength\tabularwidth{0.9\tabularwidth}
+%}
+%\scalebox{.7}[.7]{
+\belowtable{%
+%\hack{\vspace*{2mm}}
+}\label{tab:params}
+%}
+\end{table}
+
+
+
+
+
+
+\begin{table}[t]
+\caption{%
+      Palaeo-temperature proxy records and scaling parameters yielding
+      temperature offset time-series used to force the ice sheet model
+      through the last glacial cycle (Fig.~\ref{fig:lr_ts}). $f$ corresponds
+      to the scaling factor adopted to yield last glacial maximum ice limits
+      in the vicinity of mapped end moraines, and $T_{[32, 22]}$ refers to
+      the resulting mean temperature anomaly during the period $-$32
+      to~$-$22\,\unit{ka} after scaling.}
+\label{tab:records}
+  {
+\scalebox{.850}[.850]
+{\begin{tabular}{lccccccl}
+\tophline
+    Record & Latitude & Longitude & Elev. & Proxy & $f$ & $T_{[32, 22]}$
+           & Reference\\
+    & & & (\unit{m\,a.s.l.}) & & & (K) & \\
+    \middlehline
+    GRIP     &  72{\degree}35$^{\prime}$\,N   % 72.58 (decimal)
+             &  37{\degree}38$^{\prime}$\,W   % 37.64 (decimal)
+             & 3238
+             & \chem{\delta^{18}O}
+             & 0.37 & $-$5.8  % $-$16.4126 (before scaling)
+             & \citet{Dansgaard.etal.1993} \\
+
+    NGRIP    &  75{\degree}06$^{\prime}$\,N   % 75.10
+             &  42{\degree}19$^{\prime}$\,W   % 42.32
+             & 2917
+             & \chem{\delta^{18}O}
+             & 0.24 & $-$6.5  % $-$26.7098
+             & \citet{Andersen.etal.2004} \\
+
+    EPICA    &  75{\degree}06$^{\prime}$\,S   % 75.1
+             & 123{\degree}21$^{\prime}$\,E   % 123.35
+             & 3233
+             & \chem{\delta^{18}O}
+             & 0.64 & $-$5.9  % $-$9.2055
+             & \citet{Jouzel.etal.2007} \\
+
+    Vostok   &  78{\degree}28$^{\prime}$\,S   % 78.8
+             & 106{\degree}50$^{\prime}$\,E   % 106.8
+             & 3488
+             & \chem{\delta^{18}O}
+             & 0.74 & $-$5.9  % $-$7.9550
+             & \citet{Petit.etal.1999} \\
+
+    ODP~1012 &  32{\degree}17$^{\prime}$\,N
+             & 118{\degree}23$^{\prime}$\,W
+             & $-$1772
+             & \chem{U^{K'}_{37}}
+             & 1.61 & $-$6.1  % $-$3.7889
+             & \citet{Herbert.etal.2001} \\
+
+    ODP~1020 &  41{\degree}00$^{\prime}$\,N
+             & 126{\degree}26$^{\prime}$\,W
+             & $-$3038
+             & \chem{U^{K'}_{37}}
+             & 1.20 & $-$6.0 % $-$5.0000
+             & \citet{Herbert.etal.2001} \\
+    \bottomhline
+\end{tabular}}}
+\end{table}
+
+\begin{table}
+\caption{%
+      Extremes in Cordilleran ice sheet volume and extent corresponding to
+      MIS~4, 3 and 2 for each of the six low-resolution simulations
+      (Fig.~\ref{fig:lr_ts}).}
+\label{tab:extrema}
+  {
+%\scalebox{.50}[.50]
+{\begin{tabular}{l|ccc|ccc|ccc}
+    \tophline
+             & \multicolumn{3}{c|}{Age (ka)}
+             & \multicolumn{3}{c|}{Ice extent (\unit{10^6\,km^2})}
+             & \multicolumn{3}{c}{Ice volume (m\,s.l.e.)} \\
+    Record   &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2
+             &  MIS~4 &  MIS~3 &  MIS~2 \\
+    \middlehline
+    GRIP     &  57.45 &  42.93 &  19.14
+             &   1.87 &   0.69 &   2.07
+             &   7.35 &   1.69 &   8.71 \\
+    NGRIP    &  60.25 &  45.86 &  22.85
+             &   2.11 &   0.74 &   2.10
+             &   8.84 &   1.82 &   8.76 \\
+    EPICA    &  61.89 &  45.30 &  17.23
+             &   1.51 &   1.01 &   2.09
+             &   5.11 &   2.74 &   8.91 \\
+    Vostok   &  60.86 &  41.25 &  16.84
+             &   1.51 &   1.03 &   2.01
+             &   5.15 &   2.88 &   8.40 \\
+    ODP 1012 &  56.46 &  47.39 &  23.19
+             &   1.38 &   0.90 &   2.07
+             &   4.39 &   2.35 &   8.62 \\
+    ODP 1020 &  60.23 &  52.97 &  20.56
+             &   1.25 &   0.72 &   2.09
+             &   3.84 &   1.75 &   8.81 \\
+    \cline{1-10}
+    Minimum  &  61.89 &  52.97 &  23.19
+             &   1.25 &   0.69 &   2.01
+             &   3.84 &   1.69 &   8.40 \\
+    Maximum  &  56.46 &  41.25 &  16.84
+             &   2.11 &   1.03 &   2.10
+             &   8.84 &   2.88 &   8.91 \\
+    \bottomhline
+\end{tabular}}}
+\end{table}
+
+
+\begin{figure}%
+\includegraphics{locmap}
+\caption{%
+      Relief map of northern North America showing a~reconstruction of the
+      areas once covered by the Cordilleran (CIS), Laurentide (LIS),
+      Innuitian (IIS), and Greenland (GIS) ice sheets during the last
+      18\,\unit{\chem{^{14}C}\,ka} \citep[21.4\,cal\,ka,][]{Dyke.2004}. The
+      rectangular box denotes the location of the modelling domain used in
+      this study. Major mountain ranges covered by the ice sheet include the
+      Alaska Range (AR), the Wrangell and Saint Elias mountains (WSEM), the
+      Selwyn and Mackenzie mountains (SMKM), the Skeena Mountains (SM), the
+      Coast Mountains (CM), the Columbia and Rocky Mountains (CRM), and the
+      North Cascades (NC). Major depressions include the Liard Lowland (LL),
+      the Interior Plateau of British Columbia (IP), and the Puget Lowland
+      (PL). The background map consists of ETOPO1 \citep{Amante.Eakins.2009}
+      and Natural Earth Data \citep{Patterson.Kelso.2015}.}
+\label{fig:locmap}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{atm}
+\caption{%
+      Monthly mean near-surface air temperature, precipitation, and standard
+      deviation of daily mean temperature (PDD SD) for January and July from
+      the North American Regional Reanalysis
+      \citep[NARR;][]{Mesinger.etal.2006}, used to force the surface mass
+      balance (PDD) component of the ice sheet model. Note the strong
+      contrasts in seasonality, timing of the precipitation peak, and
+      temperature variability over the model domain, notably between coastal
+      and inland regions.}
+\label{fig:atm}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{lr_ts}
+\caption{%
+      Temperature offset time-series from ice core and ocean records
+      (Table~\ref{tab:records}) used as palaeo-climate forcing for the ice
+      sheet model (top panel), and modelled ice volume (bottom panel)
+      through the last 120\,\unit{ka}. Ice volumes are expressed in meters
+      of sea level equivalent (m\,s.l.e.). Gray fields indicate Marine
+      Oxygen Isotope Stage (MIS) boundaries for MIS~2 and MIS~4 according to
+      a~global compilation of benthic \chem{\delta^{18}O} records
+      \citep{Lisiecki.Raymo.2005}. Hatched rectangles highlight the
+      time-volume span for ice volume extremes corresponding to MIS~4
+      (61.9--56.5\,\unit{ka}), MIS~3 (53.0--41.3\,\unit{ka}), and MIS~2
+      (LGM, 23.2--16.8\,\unit{ka}). Dotted lines correspond to GRIP- and
+      EPICA-driven 5\,\unit{km}-resolution runs.}
+\label{fig:lr_ts}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{lr_maps}
+\caption{%
+      Snapshots of modelled surface topography (500\,\unit{m} contours)
+      corresponding to the ice volume extremes indicated on
+      Fig.~\ref{fig:lr_ts}. An ice cap persists over the Skeena Mountains
+      (SM) during MIS~3. Note the occurence of spatial similarities despite
+      large differences in timing.}
+\label{fig:lr_maps}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_maps_mis2}
+\caption{%
+      Modelled surface topography (200\,\unit{m} contours) and surface
+      velocity (colour mapping) corresponding to the maximum ice volume
+      during MIS~2 in the GRIP and EPICA high-resolution simulations.}
+\label{fig:hr_maps_mis2}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_maps_mis4}
+\caption{%
+      Modelled surface topography (200\,\unit{m} contours) and surface
+      velocity (colour mapping) corresponding to the maximum ice volume
+      during MIS~4 in the GRIP and EPICA high-resolution simulations.}
+\label{fig:hr_maps_mis4}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_geom_duration}
+\caption{%
+      Modelled duration of ice cover during the last 120\,\unit{ka} using
+      GRIP and EPICA climate forcing. Note the irregular colour scale.
+      A~continuous ice cover spanning from the Alaska Range (AR) to the
+      Coast Mountains (CM) and the Columbia and Rocky mountains (CRM) exists
+      for about 32\,\unit{ka} in the GRIP simulation and 26\,\unit{ka} in
+      the EPICA simulation. The maximum extent of the ice sheet generally
+      corresponds to relatively short durations of ice cover, but ice cover
+      persists over the Skeena Mountains (SM) during most of the simulation.
+      See Fig.~\ref{fig:locmap} for a~list of abbreviations.}
+\label{fig:hr_geom_duration}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_geom_warmbase}
+\caption{%
+      Modelled duration of warm-based ice cover during the last
+      120\,\unit{ka}. Long ice cover durations combined with basal
+      temperatures at the pressure melting point may explain the strong
+      glacial erosional imprint of the Skeena Mountains (SM) landscape.
+      Hatches indicate areas that were covered by cold ice only.}
+\label{fig:hr_geom_warmbase}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_geom_warmfrac}
+\caption{%
+      Modelled fraction of warm-based ice cover during the ice-covered
+      period. Note the dominance of warm-based conditions on the continental
+      shelf and major glacial troughs of the coastal ranges. Hatches
+      indicate areas that were covered by cold ice only.}
+\label{fig:hr_geom_warmfrac}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_ts_deglac}
+\caption{%
+      Temperature offset time-series from the GRIP and EPICA ice core
+      records (Table~\ref{tab:records}) (top panel), and modelled ice volume
+      during the deglaciation, expressed in meters of sea-level equivalent
+      (bottom panel).}
+\label{fig:hr_ts_deglac}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_maps_deglac}
+\caption{%
+      Snapshots of modelled surface topography (200\,\unit{m} contours) and
+      surface velocity (colour mapping) during the last deglaciation from
+      the GRIP (top panels) and EPICA (bottom panels) 5\,\unit{km}
+      simulations. Dashed segments \textbf{(A--D)} indicate the location of
+      profiles used in Figs.~\ref{fig:hr_pf_grip}
+      and~\ref{fig:hr_pf_epica}.}
+\label{fig:hr_maps_deglac}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_geom_deglacage}
+\caption{%
+      Modelled age of the last deglaciation. Areas that have been covered
+      only before the last glacial maximum are marked in green. Hatches
+      denote re-advance of mountain-centred ice caps and the decaying ice
+      sheet between 14 and 10\,\unit{ka}. Dashed segments \textbf{(A--D)}
+      indicate the location of profiles used in Figs.~\ref{fig:hr_pf_grip}
+      and~\ref{fig:hr_pf_epica}.}
+\label{fig:hr_geom_deglacage}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_geom_lastflow}
+\caption{%
+      Modelled deglacial basal ice velocities. Hatches indicate areas that
+      remain non-sliding throughout deglaciation (22.0--8.0\,\unit{ka}),
+      notably including parts of the Interior Plateau (IP). Note the
+      concentric patterns of deglacial flow in the Liard Lowland (LL).
+      Sliding grid cells were distinguished from non-sliding grid cells
+      using a~basal velocity threshold of 1\,\unit{m\,yr^{-1}}.}
+\label{fig:hr_geom_lastflow}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_pf_grip}
+\caption{%
+      Modelled bedrock (black) and ice surface (blue) topography profiles
+      during deglaciation (22.0--8.0\,\unit{ka}) in the GRIP 5\,\unit{km}
+      simulation, corresponding to the four transects indicated in
+      Figs.~\ref{fig:hr_maps_deglac}
+      and~\ref{fig:hr_geom_deglacage}.}
+\label{fig:hr_pf_grip}%
+\end{figure}%
+
+
+\begin{figure}%
+\includegraphics{hr_pf_epica}
+\caption{%
+      Modelled bedrock (black) and ice surface (red) topography profiles
+      during deglaciation (22.0--8.0\,\unit{ka}) in the EPICA 5\,\unit{km}
+      simulation, corresponding to the four transects indicated in
+      Figs.~\ref{fig:hr_maps_deglac}
+      and~\ref{fig:hr_geom_deglacage}.}
+\label{fig:hr_pf_epica}%
+\end{figure}
+
+
+\end{document}
+\endinput%%%%%%

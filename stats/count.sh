@@ -1,14 +1,24 @@
 #!/bin/bash
 
-f=cordillera-climate.tex
+filename=cordillera-cycle.tex
+errcount=0
 
-cd ..
+echo "Looping back through all commits."
+echo "date,words" | tee count.csv
 
-printf "date,words\n"
 for c in $(git rev-list master); do
 	git checkout -q $c
-	printf "$(git log -1  --date=iso --pretty=format:%ad $commit),"
-	printf "$(texcount -merge -nosub -template="{SUM}" $f)\n"
+  date=$(git log -1  --date=iso --pretty=format:%ad $commit)
+  words=$(texcount -template="{SUM}" ../$filename)
+	if [[ $words =~ ^[0-9]+$ ]]
+  then
+    echo "$date,$words" | tee -a count.csv
+  else
+    echo "$date,ERROR"
+    errcount=$((errcount+1))
+  fi
 done
+
+echo "Done, $errcount erroneous commits ignored."
 
 git checkout master

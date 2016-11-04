@@ -1,0 +1,46 @@
+% copernicus_rtf.tex
+% ------------------
+% For use with: latex2rtf -E0 -f0 -M4
+
+% Base class and packages
+\documentclass{article}
+\usepackage{array}
+\usepackage{color}
+\usepackage[colorlinks]{hyperref}
+\usepackage{natbib}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{amsmath}
+\onehalfspacing
+
+% Replacements for Copernicus commands
+\newcommand{\runningauthor}[1]{\author{#1}}
+\newcommand{\introduction}[0]{\section{Introduction}}
+\newcommand{\conclusions}[0]{\section{Conclusions}}
+\newenvironment{acknowledgements}
+    {\bigskip \textit{Acknowledgements}}
+    {}
+\newcommand{\tophline}{\hline\noalign{\vspace{1mm}}}
+\newcommand{\middlehline}{\noalign{\vspace{1mm}}\hline\noalign{\vspace{1mm}}}
+\newcommand{\bottomhline}{\noalign{\vspace{1mm}}\hline}
+\newcommand{\unit}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\chem}[1]{\ensuremath{\mathrm{#1}}}
+\newcommand{\degree}[0]{\ensuremath{^{\circ}}}
+\newcommand{\doi}[1]{doi:~#1}
+
+% Ignore other Copernicus commands
+\renewcommand{\author}[2][default]{}
+\newcommand{\Author}[3][default]{}
+\newcommand{\affil}[2][default]{}
+\newcommand{\runningtitle}[1]{}
+\newcommand{\received}[1]{}
+\newcommand{\correspondence}[1]{}
+\newcommand{\pubdiscuss}[1]{}
+\newcommand{\revised}[1]{}
+\newcommand{\accepted}[1]{}
+\newcommand{\published}[1]{}
+\newcommand{\hack}[0]{}
+\newcommand{\linenumbers}[0]{}
+\newcommand{\firstpage}[1]{}
+\newcommand{\belowtable}[0]{}

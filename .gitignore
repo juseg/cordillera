@@ -1,20 +1,47 @@
-# Files produces by latex
+# Temporary files
+*~
+
+# Latex
 *.aux
+*.bbl
 *.blg
-*.fff
+*.fdb_latexmk
+*.fls
 *.log
 *.out
 *.pdf
-*.ttt
 *.rtf
 
-# Data and figures
-*.nc
+# Endfloat
+*.fff
+*.lof
+*.lot
+*.ttt
+
+# Latexdiff
+*.cb
+*.cb2
+*-diff.tex
+
+# Python
 *.pyc
 *.png
 
-# Older versions
-/versions
+# Data
+*.dbf
+*.nc
+*.shp
+*.shx
+*.tif
+*.zip
+
+# Figures
+figures/*.tex
+
+# Animations
+*.mp4
+*.ogg
 
 # Statistics
 stats/count.csv
+stats/progress.pdf

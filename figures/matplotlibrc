@@ -1,0 +1,36 @@
+# matplotlib configuration parameters
+
+### LINES
+lines.markeredgewidth   : 0.25      # the line width around the marker symbol
+lines.markersize        : 4         # markersize, in points
+
+### FONT
+font.size               : 6
+font.family             : sans-serif
+
+### TEXT
+mathtext.default        : regular
+
+### AXES
+axes.grid               : False     # display grid or not
+
+### GRIDS
+grid.color              :   0.5     # grid color
+grid.linestyle          :   -       # dotted
+grid.linewidth          :   0.1     # in points
+grid.alpha              :   1.0     # transparency, between 0.0 and 1.0
+
+### IMAGES
+image.interpolation     : nearest
+image.origin            : lower
+image.composite_image   : False
+
+### SAVING FIGURES
+savefig.dpi             : 254       # figure dots per inch
+savefig.format          : pdf       # png, ps, pdf, svg
+
+### ANIMATION
+animation.writer        : ffmpeg    # MovieWriter 'backend' to use
+animation.codec         : h264      # Codec to use for writing movie
+animation.bitrate       : 4096      # Bitrate, -1 to auto-determine
+animation.ffmpeg_args   : -pix_fmt, yuv420p  # Compatibility with old players

@@ -1,0 +1,6 @@
+[submodule "refs"]
+	path = refs
+	url = git@git.framasoft.org:jsegu/paper-references.git
+[submodule "figures/iceplotlib"]
+	path = figures/iceplotlib
+	url = git@github.com:jsegu/iceplotlib.git
