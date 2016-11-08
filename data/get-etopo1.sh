@@ -1,7 +1,7 @@
 #!/bin/bash
 
 url="http://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/bedrock/\
-grid_registered/georeferenced_tiff/ETOPO1_Bed_c_geotiff.zip"
+cell_registered/georeferenced_tiff/ETOPO1_Bed_c_geotiff.zip"
 archive=$(basename $url)
 input=${archive%.zip}.tif
 output=etopo1.nc

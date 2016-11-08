@@ -1,6 +1,6 @@
 #!/bin/bash
 
-url='http://ftp2.cits.rncan.gc.ca/pub/geott/ess_pubs/214/214399/of_1574.zip'
+url='http://ftp.geogratis.gc.ca/pub/nrcan_rncan/publications/ess_sst/214/214399/of_1574.zip'
 archive=$(basename $url)
 
 [ -f $archive ] || wget $url

@@ -30,6 +30,9 @@
 # Data
 *.dbf
 *.nc
+*.prj
+*.sbn
+*.sbx
 *.shp
 *.shx
 *.tif
