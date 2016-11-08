@@ -7,14 +7,13 @@ from matplotlib import pyplot as plt
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-import iris
-import iris.plot as iplt
 
 # projections
+ll = ccrs.PlateCarree()
 cal = ccrs.LambertConformal(
     central_longitude=-95.0, central_latitude=49.0,
     false_easting=0.0, false_northing=0.0,
-    secant_latitudes=(49.0, 77.0), globe=None, cutoff=0)
+    standard_parallels=(49.0, 77.0), globe=None, cutoff=0)
 proj = ccrs.NorthPolarStereo(central_longitude=-90.0)
 
 # initialize figure
@@ -27,16 +26,18 @@ ax.set_ylim(-5950e3, 3950e3)  # 90*55 = 4950
 ax.set_rasterization_zorder(2.5)
 
 # read SD data, select July North hemisphere
-sd = iris.load_cube('data/era40.sat.day.5801.dev.monstd.nc')
-sd = sd[6]
-sd = sd[:180,:]
+nc = Dataset('../data/era40.sat.mon.5801.std.nc')
+lon = nc['longitude'][:]
+lat = nc['latitude'][:180]
+sd = nc['t2m'][6, :180, :]
+nc.close()
 
 # plot
-sdmax = sd.data.max()
+sdmax = sd.max()
 levs = np.arange(0, sdmax, 0.5)
 levs = np.append(levs, sdmax)
-cs = iplt.contourf(sd, levels=levs, cmap='Purples')  #, alpha=0.75)
-iplt.contour(sd, levels=levs, colors='k', linewidths=0.1)
+cs = ax.contourf(lon, lat, sd, levels=levs, cmap='Purples', transform=ll)
+ax.contour(lon, lat, sd, levels=levs, colors='k', linewidths=0.1, transform=ll)
 
 # add Natural Earth elements
 ax.coastlines(edgecolor='k', lw=0.25, resolution='50m')
