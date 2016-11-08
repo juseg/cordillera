@@ -9,7 +9,7 @@ etopo1-northamerica.nc etopo1-cordillera.nc: get-etopo1.sh
 ice14k.shp: get-dykeshp.sh
 	bash $<
 
-lgm_simple.shp: get_quatglac.sh
+lgm_simple.shp: get-quatglac.sh
 	bash $<
 
 era40.sat.day.5801.dev.monstd.nc:
