@@ -39,7 +39,7 @@ PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) $(GHF_FIGS) \
           map-cordillera.pdf map-northamerica.pdf \
           paleo-glaciation.pdf paleo-timeseries.pdf \
           plot-atm.pdf plot-cover.pdf plot-erosion.pdf plot-lastflow.pdf \
-          plot-sdmap.pdf plot-snapshots.pdf  # broken: plot-sdeffect
+          plot-lgm.pdf plot-sdmap.pdf plot-snapshots.pdf  # broken: plot-sdeffect
 
 # all tex figures
 TEX_FIGS = model-pdd.pdf model-siassa.pdf model-variables.pdf \
@@ -50,7 +50,7 @@ PYTEX_FIGS := tab_hr tab_lr tab_sens
 PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
 
 # all figures
-ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS) $(TEX_FIGS) plot-lgm.jpg
+ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS) $(TEX_FIGS)
 
 
 # Rules
@@ -82,12 +82,6 @@ $(INK_FIGS): %.pdf: %.svg
 # rules and dependencies for latex figures
 $(TEX_FIGS): %.pdf : %.tex
 	latexmk -pdf -dvi- -ps- $<
-
-plot-lgm.jpg: plot-lgm.png
-	convert -quality 85 $< $@
-
-plot-lgm.png: plot-lgm.py
-	python2 $<
 
 # phony targets
 .PHONY : data clean
