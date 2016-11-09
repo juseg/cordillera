@@ -37,6 +37,7 @@
 *.shx
 *.tif
 *.zip
+*.txt
 
 # Figures
 figures/*.tex

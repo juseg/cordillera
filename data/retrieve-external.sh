@@ -50,6 +50,18 @@ gdalwarp -s_srs EPSG:4326 -t_srs "$proj" -r bilinear \
          -wm 512 -wo SOURCE_EXTRA=100 -of netcdf -overwrite \
          etopo1-world.tif etopo1-cordillera.nc
 
+# Paleoclimate time series
+root=ftp://ftp.ncdc.noaa.gov/pub/data/paleo/
+orig=$root/icecore/antarctica/epica_domec/edc3deuttemp2007.txt
+dest=epica.txt
+[ -f "$dest" ] || wget $orig -O $dest
+orig=$root/contributions_by_author/lisiecki2005/lisiecki2005.txt
+dest=lr04.txt
+[ -f "$dest" ] || wget $orig -O $dest
+# additional sea-level data sources
+# orig=$root/contributions_by_author/lea2002/lea2002.txt
+# orig=$root/contributions_by_author/siddall2003/siddall2003.txt
+
 # ERA40 temperature standard deviation
 geodata=ogive:/scratch_net/ogive_second/juliens/geodata
 orig=$geodata/reanalysis/era40/era40.sat.mon.5801.std.nc
