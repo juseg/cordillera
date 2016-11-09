@@ -21,7 +21,7 @@ for rec, dt in zip(records, offsets):
     ifilename = (pismdir + 'output/0.7.2/cordillera-narr-5km/'
                  '%s3222cool%i+ccyc4+till1545/y0??0000-extra.nc'
                  % (rec, round(100*dt)))
-    ofilename = 'processed/deglacage-%s.tif' % rec
+    ofilename = 'processed/cordillera-cycle-%s-deglacage.tif' % rec
 
     # read extra output
     print 'processing %s extra output...' % rec
