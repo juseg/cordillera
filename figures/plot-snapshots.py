@@ -3,17 +3,17 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
+import os
 import numpy as np
-from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
 from matplotlib.gridspec import GridSpec
 from matplotlib.transforms import blended_transform_factory
 from matplotlib.patches import Polygon
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
-from iceplot import plot as iplt
+from iceplotlib import plot as iplt
 
 s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
@@ -26,12 +26,12 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 # file path
-run_path = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-           'grip3222cool580+ccyc+till1545/y0120000'
+run_path = (os.environ['HOME'] + '/pism/output/0.7.2/cordillera-narr-5km/'
+            'grip3222cool620+ccyc4+till1545/y???????')
 
 # read output time series
 print 'reading time series...'
-nc = Dataset(run_path + '-ts.nc')
+nc = iplt.load(run_path + '-ts.nc')
 time = nc.variables['time'][:]*s2ka
 ivol = nc.variables['slvol'][:]
 nc.close()
@@ -82,7 +82,7 @@ for tka in tkalist:
 
 # read extra output
 print 'reading extra output...'
-nc = Dataset(run_path + '-extra.nc')
+nc = iplt.load(run_path + '-extra.nc')
 time = nc.variables['time'][:]*s2ka
 
 # plot snapshots
@@ -97,19 +97,19 @@ for i, tka in enumerate(tkalist):
     t = (np.abs(time[:]-tka)).argmin()
 
     # bed topography
-    im = iplt.imshow(nc, 'topg', t, ax)
-    iplt.shading(nc, 'topg', t, ax)
+    im = iplt.imshow(nc, 'topg', ax, t)
+    iplt.shading(nc, 'topg', ax, t)
 
     # surface velocity
-    im = iplt.imshow(nc, 'velsurf_mag', t, ax,
+    im = iplt.imshow(nc, 'velsurf_mag', ax, t,
                      cmap='Blues', norm=LogNorm(1e1, 1e4), alpha=0.75)
 
     # surface topography
-    cs = iplt.contour(nc, 'usurf', t, ax, levels=range(1000, 6000, 1000),
+    cs = iplt.contour(nc, 'usurf', ax, t, levels=range(1000, 6000, 1000),
                       cmap=None, colors='k', linewidths=0.1)
 
     # ice margin
-    cs = iplt.icemargin(nc, t, ax, linewidths=0.5)
+    cs = iplt.icemargin(nc, ax, t, linewidths=0.5)
 
     # annotate time
     ax.text(0.9, 0.95, '%s ka' % tka, ha='right', va='top',

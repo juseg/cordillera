@@ -5,14 +5,15 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
+import os
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
-from iceplot import plot as iplt
+from iceplotlib import plot as iplt
 
 # initialize figure
 figw, figh = 170.0, 95.0
@@ -32,8 +33,8 @@ zlist = []
 for i, s in enumerate(sdargs):
 
     # plot
-    nc = Dataset('/home/julien/pism/output/cordillera-narr-10km-bl/'
-                   'stepcool07sll120+ccyc+till1545%s/y0010000.nc' % s)
+    nc = Dataset('~/pism/output/0.5.12/cordillera-narr-10km-bl/'
+                 'stepcool07sll120+ccyc+till1545%s/y0010000.nc' % s)
     ax = grid[i]
     topo = iplt.imshow(nc, 'topg', 0, ax)
     iplt.shading(nc, 'topg', 0, ax)

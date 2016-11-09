@@ -3,21 +3,22 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
+import os
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colorbar import ColorbarBase
 from matplotlib.colors import Normalize
-from iceplot import plot as iplt
-from iceplot.colors import default_cmaps, default_norms
+from iceplotlib import plot as iplt
+from iceplotlib.colors import default_cmaps, default_norms
 
 s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 # file path
-filename = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-           'grip3222cool580+ccyc+till1545/y0120000-extra.nc'
+filename = (os.environ['HOME'] + '/pism/output/0.7.2/cordillera-narr-5km/'
+            'grip3222cool620+ccyc4+till1545/y???????-extra.nc')
 
 # index bounds
 imin, imax = 75, 150
@@ -25,12 +26,15 @@ jmin, jmax = 100, 175
 kmin, kmax = 899, 1120
 
 # initialize figure
-fig = iplt.simplefigure((60.0, 60.0), cbar_mode='single')
-ax = fig.grid[0]
+figw, figh = 85.0, 60.0
+fig, ax = iplt.subplots_mm(figsize=(figw, figh),
+                           left=2.5, right=20.0, bottom=2.5, top=2.5)
+cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
+ax.axis('off')
 
 # read extra output
 print 'reading extra output...'
-nc = Dataset(filename)
+nc = iplt.load(filename)
 x = nc.variables['x'][imin:imax]
 y = nc.variables['y'][jmin:jmax]
 time = nc.variables['time'][kmin:kmax]*s2ka
@@ -100,7 +104,7 @@ ax.contour(x[:], y[:], glaciated, levels=[0.5],
 
 # add colorbar and save
 print 'saving...'
-cb = ColorbarBase(ax.cax, cmap=cmap, norm=norm) #, ticks=range(8, 23, 2))
+cb = ColorbarBase(cax, cmap=cmap, norm=norm) #, ticks=range(8, 23, 2))
 cb.set_label('Age of last basal sliding (kyr)')
 ax.set_xlim(w, e)
 ax.set_ylim(s, n)

@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import iceplotlib.plot as iplt
 
 # file paths
-filepath = ('processed/grip3222cool620+{conf}+till1545{gflx}.avg.nc')
+filepath = ('../data/processed/grip3222cool620+{conf}+till1545{gflx}.avg.nc')
 confargs = ['cgeo1+hynull'] + 5*['cgeo1']
 gflxargs = 2*[''] + ['+dav13', '+gou11comb', '+gou11simi', '+sha04']
 

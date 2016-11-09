@@ -1,6 +1,10 @@
 # Figures Makefile
+# ================
 
-<<<<<<< HEAD
+
+# Variables
+# ---------
+
 # default figure extension
 EXT = pdf
 
@@ -9,7 +13,7 @@ BASE_FIGS := atm locmap
 BASE_FIGS := $(addsuffix .$(EXT), $(BASE_FIGS))
 
 # lo-res runs figures
-LR_FIGS := lr_maps lr_misareas lr_ts lr_ts_diff lr_ts_scaling lr_violins
+LR_FIGS := lr_maps lr_misareas lr_ts lr_violins  # broken: lr_ts_diff lr_ts_scaling
 LR_FIGS := $(addsuffix .$(EXT), $(LR_FIGS))
 
 # hi-res runs figures
@@ -25,12 +29,17 @@ SENS_FIGS := sens_plot_ntil sens_plot_rheo sens_plot_tauc \
              sens_dist_vel sens_maps sens_misareas sens_ts
 SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 
+# geothermal heat flux figures
+GFLX_FIGS := cumu_bmelt cumu_bwat diff_bmelt diff_bwat \
+             maps_bmelt maps_bwat maps_bwatvel maps_gflx
+GFLX_FIGS := $(addsuffix .$(EXT), $(GFLX_FIGS))
+
 # all python figures
-PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) \
+PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) $(GFLX_FIGS) \
           map-cordillera.pdf map-northamerica.pdf \
           paleo-glaciation.pdf paleo-timeseries.pdf \
-          plot-atm.pdf plot-sdmap.pdf plot-sdeffect.pdf \
-          plot-snapshots.pdf
+          plot-atm.pdf plot-cover.pdf plot-erosion.pdf plot-lastflow.pdf \
+          plot-sdmap.pdf plot-snapshots.pdf  # broken: plot-sdeffect
 
 # all tex figures
 TEX_FIGS = model-pdd.pdf model-siassa.pdf model-variables.pdf \
@@ -43,8 +52,12 @@ PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
 # all figures
 ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS) $(TEX_FIGS) plot-lgm.jpg
 
-# to make all figures
-all: data $(ALL_FIGS)
+
+# Rules
+# -----
+
+# default rule
+all: $(ALL_FIGS)
 
 # rules and dependencies for python figures
 $(PY_FIGS): %.pdf : %.py matplotlibrc util/__init__.py util/io.py util/pl.py
@@ -79,9 +92,7 @@ plot-lgm.png: plot-lgm.py
 # phony targets
 .PHONY : data clean
 
-data:
-	cd data && $(MAKE)
-
+# clean figures
 clean:
 	rm $(ALL_FIGS)
 	rm -f *.{aux,log,fdb_latexmk,fls}

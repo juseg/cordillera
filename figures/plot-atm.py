@@ -3,28 +3,31 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
+import os
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
 from matplotlib.colors import BoundaryNorm, Normalize
 from mpl_toolkits.axes_grid1.axes_grid import ImageGrid
-from iceplot import plot as iplt
+from iceplotlib import plot as iplt
 
 # file paths
 res = '10km'
-pism_dir = '/home/julien/pism/'
-atm_file = pism_dir + 'input/atm/cordillera-narr-%s-nn.nc' % res
+pism_dir = os.environ['HOME'] + '/pism/'
+sd_file = pism_dir + 'input/sd/cordillera-narr-%s.nc' % res
+atm_file = pism_dir + 'input/atm/cordillera-narr-%s.nc' % res
 boot_file = pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc' % res
 
 # read atmosphere file
 nc = Dataset(atm_file)
+sd = Dataset(sd_file)
 x = nc.variables['x']
 y = nc.variables['y']
 temp = nc.variables['air_temp']
 prec = nc.variables['precipitation']
-stdv = nc.variables['air_temp_sd']
+stdv = sd.variables['air_temp_sd']
 
 # initialize figure
 figw, figh = 170.0, 100.0
@@ -77,14 +80,15 @@ cb.ax.set_xticklabels(['DJF', 'MAM', 'JJA', 'SON'])
 
 # close
 nc.close()
+sd.close()
 
 # draw topo and coastline
-nc = Dataset(boot_file)
+nc = iplt.load(boot_file)
 for ax in grid:
     mplt.sca(ax)
-    im = iplt.imshow(nc, 'topg',
+    im = nc.imshow('topg',
                      cmap='Greys', norm=Normalize(-3000, 6000))
-    cs = iplt.contour(nc, 'topg', levels=[0.0],
+    cs = nc.contour('topg', levels=[0.0],
                       cmap=None, colors='k', linewidths=0.5)
 # close
 nc.close()

@@ -26,7 +26,7 @@ ax.set_ylim(-5950e3, 3950e3)  # 90*55 = 4950
 ax.set_rasterization_zorder(2.5)
 
 # read SD data, select July North hemisphere
-nc = Dataset('../data/era40.sat.mon.5801.std.nc')
+nc = Dataset('../data/external/era40.sat.mon.5801.std.nc')
 lon = nc['longitude'][:]
 lat = nc['latitude'][:180]
 sd = nc['t2m'][6, :180, :]

@@ -3,29 +3,27 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
+import os
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
-from iceplot import plot as iplt
+from iceplotlib import plot as iplt
 
 # file path
-filename = '/home/julien/pism/output/cordillera-narr-6km-bl/' \
-           'epica3222cool560+ccyc+till1545/y0120000-extra.nc'
+filename = (os.environ['HOME'] + '/pism/output/0.7.2/cordillera-narr-5km/'
+            'grip3222cool620+ccyc4+till1545/y???????-extra.nc')
 
 # initialize figure
-#figw, figh = 80.0, 160.0
-#fig = plt.figure(0, (figw/25.4, figh/25.4))
-#ax  = fig.add_axes([0, 0, 1, 1])
-#ax.axis('off')
-fig = iplt.simplefigure((57.5, 115.0), axes_pad=0.1/25.4,
-                        cbar_pad=2.5/25.4, cbar_mode='single')
-ax = fig.grid[0]
+figw, figh = 80.0, 160.0
+fig = plt.figure(0, (figw/25.4, figh/25.4))
+ax  = fig.add_axes([0, 0, 1, 1])
+ax.axis('off')
 
 # load extra output
-nc = Dataset(filename)
+nc = iplt.load(filename)
 mask = nc.variables['mask']
 x = nc.variables['x']
 y = nc.variables['y']
@@ -51,8 +49,7 @@ ax.contour(x[:], y[:], dist.mask, [0.5], colors='k', linewidths=0.5)
 nc.close()
 
 # add colorbar and save
-#cax = fig.add_axes([1-45/figw, 5/figh, 40/figw, 2.5/figh])
-cax = ax.cax
-cb = fig.colorbar(cf, cax, format='%i')  #, orientation='horizontal')
+cax = fig.add_axes([1-45/figw, 5/figh, 40/figw, 2.5/figh])
+cb = fig.colorbar(cf, cax, format='%i', orientation='horizontal')
 cb.set_label('Cumulative basal displacement (km)')
 fig.savefig('plot-erosion')

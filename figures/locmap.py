@@ -30,7 +30,7 @@ proj = ccrs.LambertConformal(
 # ETOPO1 background topo
 def draw_etopo1(**kwargs):
     """Draw ETOPO1 background and coastline"""
-    nc = Dataset('data/etopo1.nc')
+    nc = Dataset('../data/external/etopo1-cordillera.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     z = nc.variables['Band1']
@@ -55,7 +55,7 @@ def draw_lgm():
     cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  #, 15.6, 14.1, 13.0, 11.45]
     union = None
     for age in raw_ages:
-        filename = 'data/ice%ik.shp' % age
+        filename = '../data/external/ice%ik.shp' % age
         print 'reading %s ...' % filename
         for rec in shpreader.Reader(filename).records():
             if rec.attributes['SYMB'] == 'ICE':

@@ -37,7 +37,7 @@ grid[0].add_feature(cfeature.NaturalEarthFeature(
 # add Ehlers & Gibbard 2003 LGM outline
 # try to identify duplicates using centroids
 centroids = []
-shp = shpreader.Reader('data/lgm_simple.shp')
+shp = shpreader.Reader('../data/external/lgm_simple.shp')
 for i, geom in enumerate(shp.geometries()):
     x, y = geom.centroid.xy
     x, y = x[0], y[0]

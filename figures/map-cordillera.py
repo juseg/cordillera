@@ -3,7 +3,7 @@
 
 import sys
 
-sys.path.append('iceplot')
+sys.path.append('iceplotlib')
 
 import numpy as np
 from netCDF4 import Dataset
@@ -12,7 +12,7 @@ from matplotlib.colors import Normalize
 import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
 import cartopy.feature as cfeature
-from iceplot import cm as icm
+from iceplotlib import cm as icm
 
 bwu = 0.5  # base width unit
 scale = '50m'
@@ -26,12 +26,12 @@ cal = ccrs.LambertConformal(
 proj = ccrs.LambertConformal(
     central_longitude=-135.0, central_latitude=45.0,
     false_easting=0.0, false_northing=0.0,
-    secant_latitudes=(45.0, 70.0), globe=None, cutoff=0)
+    standard_parallels=(45.0, 70.0), globe=None, cutoff=0)
 
 # ETOPO1 background topo
 def draw_etopo1(**kwargs):
     """Draw ETOPO1 background and coastline"""
-    nc = Dataset('data/etopo1-cordillera.nc')
+    nc = Dataset('../data/external/etopo1-cordillera.nc')
     x = nc.variables['x']
     y = nc.variables['y']
     z = nc.variables['Band1']
@@ -56,7 +56,7 @@ def draw_lgm():
     cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  #, 15.6, 14.1, 13.0, 11.45]
     union = None
     for age in raw_ages:
-        filename = 'data/ice%ik.shp' % age
+        filename = '../data/external/ice%ik.shp' % age
         print 'reading %s ...' % filename
         for rec in shpreader.Reader(filename).records():
             if rec.attributes['SYMB'] == 'ICE':
