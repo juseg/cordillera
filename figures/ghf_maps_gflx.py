@@ -48,4 +48,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax, extend='both')
 cb.set_label(r'geothermal heat flux ($mW\,m^{-2}$)')
-fig.savefig('maps_gflx')
+fig.savefig('ghf_maps_gflx')

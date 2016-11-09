@@ -68,4 +68,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'subglacial water velocity ($m\,a^{-1}$)')
-fig.savefig('maps_bwatvel')
+fig.savefig('ghf_maps_bwatvel')

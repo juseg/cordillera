@@ -63,4 +63,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'subglacial water height anomaly (m)')
-fig.savefig('diff_bwat')
+fig.savefig('ghf_diff_bwat')

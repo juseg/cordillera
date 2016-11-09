@@ -43,4 +43,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'average basal melt rate ($m\,yr^{-1}$)')
-fig.savefig('cumu_bmelt')
+fig.savefig('ghf_cumu_bmelt')

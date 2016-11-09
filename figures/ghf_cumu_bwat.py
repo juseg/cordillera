@@ -9,12 +9,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import iceplotlib.plot as iplt
 
-# time for plot in years
-t = -19000.0
-
 # file paths
-filepath = ('/home/juliens/pism/output/0.7.2/cordillera-narr-{res}/'
-            'grip3222cool620+{conf}+till1545{gflx}/y???????-extra.nc')
+filepath = ('../data/processed/grip3222cool620+{conf}+till1545{gflx}.avg.nc')
 confargs = ['cgeo1+hynull'] + 5*['cgeo1']
 gflxargs = 2*[''] + ['+dav13', '+gou11comb', '+gou11simi', '+sha04']
 
@@ -36,10 +32,11 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
     nc = iplt.load(filename)
 
     # plot
-    im = nc.imshow('bmelt', ax, t, cmap='Reds', vmin=0.0, vmax=0.2)
-    nc.contourf('bmelt', ax, t, levels=[-1e6, 1e-6], colors='none', hatches=['//'])
-    nc.contour('bmelt', ax, t, levels=[1e-6], colors='k', linewidths=0.25)
-    nc.icemargin(ax, t, thkth=1.0, linewidths=0.5)
+    # FIXME: time in _extract_xyz should be optional
+    # FIXME: masking in 3d does not work
+    im = nc.imshow('bwat', ax, cmap='Blues', vmin=0.0, vmax=0.1)
+    nc.contourf('bwat', ax, levels=[-1e6, 1e-6], colors='none', hatches=['//'])
+    nc.contour('bwat', ax, levels=[1e-6], colors='k', linewidths=0.25)
 
     # close file and annotate
     nc.close()
@@ -47,5 +44,5 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 
 # add colorbar and save
 cb = fig.colorbar(im, cax)
-cb.set_label(r'basal melt rate ($m\,a^{-1}$)')
-fig.savefig('maps_bmelt')
+cb.set_label(r'average subglacial water height (m)')
+fig.savefig('ghf_cumu_bwat')

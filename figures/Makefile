@@ -30,12 +30,12 @@ SENS_FIGS := sens_plot_ntil sens_plot_rheo sens_plot_tauc \
 SENS_FIGS := $(addsuffix .$(EXT), $(SENS_FIGS))
 
 # geothermal heat flux figures
-GFLX_FIGS := cumu_bmelt cumu_bwat diff_bmelt diff_bwat \
-             maps_bmelt maps_bwat maps_bwatvel maps_gflx
-GFLX_FIGS := $(addsuffix .$(EXT), $(GFLX_FIGS))
+GHF_FIGS := ghf_cumu_bmelt ghf_cumu_bwat ghf_diff_bmelt ghf_diff_bwat \
+             ghf_maps_bmelt ghf_maps_bwat ghf_maps_bwatvel ghf_maps_gflx
+GHF_FIGS := $(addsuffix .$(EXT), $(GHF_FIGS))
 
 # all python figures
-PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) $(GFLX_FIGS) \
+PY_FIGS = $(BASE_FIGS) $(LR_FIGS) $(HR_FIGS) $(SENS_FIGS) $(GHF_FIGS) \
           map-cordillera.pdf map-northamerica.pdf \
           paleo-glaciation.pdf paleo-timeseries.pdf \
           plot-atm.pdf plot-cover.pdf plot-erosion.pdf plot-lastflow.pdf \
