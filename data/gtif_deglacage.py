@@ -1,26 +1,34 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
-import util as ut
+import os
 import numpy as np
+from netCDF4 import MFDataset
 from osgeo import gdal
 from osgeo import osr
 
 # parameters
-res = '5km'
-records = ut.hr.records
-offsets = ut.hr.offsets
+pismdir = os.environ['HOME'] + '/pism/'
+records = ['grip', 'epica']
+offsets = [6.2, 5.9]
+
+# make output directory if missing
+if not os.path.exists('processed'):
+    os.makedirs('processed')
 
 # loop on records
-for i, rec in enumerate(records):
-    filename = 'processed/deglacage-%s.tif' % rec
+for rec, dt in zip(records, offsets):
+    ifilename = (pismdir + 'output/0.7.2/cordillera-narr-5km/'
+                 '%s3222cool%i+ccyc4+till1545/y0??0000-extra.nc'
+                 % (rec, round(100*dt)))
+    ofilename = 'processed/deglacage-%s.tif' % rec
 
     # read extra output
-    print 'reading %s extra output...' % rec
-    nc = ut.io.open_extra_file(res, rec, offsets[i])
+    print 'processing %s extra output...' % rec
+    nc = MFDataset(ifilename)
     x = nc.variables['x'][:]
     y = nc.variables['y'][:]
-    age = nc.variables['time'][:]*(-ut.s2ka)
+    age = -nc.variables['time'][:]/(1e3*365.0*24*60*60)
     thk = nc.variables['thk'][:]
     nc.close()
 
@@ -46,7 +54,7 @@ for i, rec in enumerate(records):
 
     # create geotiff
     driver = gdal.GetDriverByName('GTiff')
-    rast = driver.Create(filename, cols, rows, 1, gdal.GDT_Float32)
+    rast = driver.Create(ofilename, cols, rows, 1, gdal.GDT_Float32)
     rast.SetGeoTransform((x0, dx, 0, y1, 0, -dy))
     band = rast.GetRasterBand(1)
     band.WriteArray(np.flipud(deglacage.T))
