@@ -3,32 +3,32 @@
 
 import os
 import numpy as np
-from netCDF4 import MFDataset
+import zipfile
+from netCDF4 import Dataset
 from osgeo import gdal
+from osgeo import ogr
 from osgeo import osr
 
 # parameters
-pismdir = os.environ['HOME'] + '/pism/'
+outdir = os.environ['HOME'] + '/pism/output/0.7.2/'
 records = ['grip', 'epica']
 offsets = [6.2, 5.9]
 
-# make output directory if missing
-if not os.path.exists('processed'):
-    os.makedirs('processed')
-
 # loop on records
 for rec, dt in zip(records, offsets):
-    ifilename = (pismdir + 'output/0.7.2/cordillera-narr-5km/'
-                 '%s3222cool%i+ccyc4+till1545/y0??0000-extra.nc'
-                 % (rec, round(100*dt)))
-    ofilename = 'processed/cordillera-cycle-%s-deglacage.tif' % rec
+
+    # file paths
+    runname = ('cordillera-narr-5km/%s3222cool%.0f+ccyc4+till1545'
+               % (rec, dt*100))
+    varname = 'deglacage'
+    ifilepath = outdir + runname + '/extra.nc'
+    ofilepath = 'processed/%s-%s' % (runname.replace('/', '-'), varname)
 
     # read extra output
-    print 'processing %s extra output...' % rec
-    nc = MFDataset(ifilename)
+    nc = Dataset(ifilepath)
     x = nc.variables['x'][:]
     y = nc.variables['y'][:]
-    age = -nc.variables['time'][:]/(1e3*365.0*24*60*60)
+    age = -nc.variables['time'][:]/(365.0*24*60*60)
     thk = nc.variables['thk'][:]
     nc.close()
 
@@ -39,6 +39,7 @@ for rec, dt in zip(records, offsets):
     dy = y[1] - y[0]
     x0 = x[0] - dx/2
     y0 = y[0] - dy/2
+    x1 = x[-1] + dx/2
     y1 = y[-1] + dy/2
 
     # compute deglaciation age
@@ -52,28 +53,41 @@ for rec, dt in zip(records, offsets):
     deglacage[alwaysicy] = age[-1]
     deglacage[nevericy] = age[0]
 
-    # create geotiff
-    driver = gdal.GetDriverByName('GTiff')
-    rast = driver.Create(ofilename, cols, rows, 1, gdal.GDT_Float32)
-    rast.SetGeoTransform((x0, dx, 0, y1, 0, -dy))
-    band = rast.GetRasterBand(1)
-    band.WriteArray(np.flipud(deglacage.T))
-
-    # inform SRS
+    # spatial reference system
     srs = osr.SpatialReference()
     srs.ImportFromEPSG(3978)
-    rast.SetProjection(srs.ExportToWkt())
-    band.FlushCache()
-    gtif = rast = None
 
-    # compute contours
-    #driver = ogr.GetDriverByName('ESRI Shapefile')
-    #shp = driver.CreateDataSource('test')
-    #lyr = shp.CreateLayer('contour')
-    #field_defn = ogr.FieldDefn('ID', ogr.OFTInteger)
-    #lyr.CreateField(field_defn)
-    #field_defn = ogr.FieldDefn('elev', ogr.OFTReal)
-    #lyr.CreateField(field_defn)
-    #gdal.ContourGenerate(band, 10, 0, [], 0, 0, lyr, 0, 1)
-    #lyr = None
-    #shp = None
+    # generate geotiff
+    driver = gdal.GetDriverByName('GTiff')
+    rast = driver.Create(ofilepath + '.tif', cols, rows, 1, gdal.GDT_Float32)
+    rast.SetGeoTransform((x0, dx, 0, y1, 0, -dy))
+    rast.SetProjection(srs.ExportToWkt())
+    band = rast.GetRasterBand(1)
+    band.WriteArray(np.flipud(deglacage.T))
+    band.ComputeStatistics(0)
+    band.FlushCache()
+
+    # generate contours
+    #ContourGenerate(Band srcBand, double contourInterval, double contourBase,
+    #                int fixedLevelCount, int useNoData, double noDataValue,
+    #                OGRLayerShadow * dstLayer, int idField, int elevField,
+    #                GDALProgressFunc callback=0, void * callback_data=None)
+    driver = ogr.GetDriverByName('ESRI Shapefile')
+    shp = driver.CreateDataSource('.')
+    lyr = shp.CreateLayer(ofilepath, srs)
+    f0_defn = ogr.FieldDefn('id', ogr.OFTInteger)
+    f0 = lyr.CreateField(f0_defn)
+    f1_defn = ogr.FieldDefn(varname, ogr.OFTReal)
+    f1 = lyr.CreateField(f1_defn)
+    gdal.ContourGenerate(band, 0, 0, range(0, 30001, 1000), 0, 0, lyr, f0, f1)
+    lyr.SyncToDisk()
+
+    # close datasets
+    lyr = shp = None
+    band = rast = None
+
+    # create zip archive
+    with zipfile.ZipFile(ofilepath + '.zip', 'w') as zf:
+        extensions = ['dbf', 'prj', 'shp', 'shx', 'tif']
+        for f in [ofilepath + '.' + ext for ext in extensions]:
+            zf.write(f, arcname=os.path.basename(f))
