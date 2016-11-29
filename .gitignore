@@ -28,16 +28,8 @@
 *.png
 
 # Data
-*.dbf
-*.nc
-*.prj
-*.sbn
-*.sbx
-*.shp
-*.shx
-*.tif
-*.zip
-*.txt
+data/external
+data/processed
 
 # Figures
 figures/*.tex

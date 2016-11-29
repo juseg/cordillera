@@ -50,6 +50,34 @@ gdalwarp -s_srs EPSG:4326 -t_srs "$proj" -r bilinear \
          -wm 512 -wo SOURCE_EXTRA=100 -of netcdf -overwrite \
          etopo1-world.tif etopo1-cordillera.nc
 
+# Canada digital elevation data (CDED) 250k
+root=ftp://ftp.geogratis.gc.ca/pub/nrcan_rncan/elevation/geobase_cded_dnec
+for sector in 0{8..9}{2..3}
+do
+    ifile=$root/250k_dem/$sector
+    ofile=cded250k/$sector
+    [ -d $ofile ] || wget -r -nd $ifile -P $ofile
+done
+
+# CDED unzip
+for f in cded250k/*/*.zip
+do
+    unzip -n $f '*.dem' -d cded250k
+done
+
+# CDED mosaic vrt
+gdalbuildvrt cded250k.vrt cded250k/*.dem
+
+# CDED reprojection (epsg 3979 or 7254?)
+gdalwarp -t_srs EPSG:3979 -r bilinear \
+         -te -1900000 450000 -1600000 650000 -tr 100 100 \
+         -srcnodata -32767 -dstnodata -32767 \
+         -wm 512 -wo SOURCE_EXTRA=100 -overwrite \
+         cded250k.vrt cded250k.tif
+
+# CDED remove unzipped files
+rm cded250k/*.dem
+
 # Paleoclimate time series
 root=ftp://ftp.ncdc.noaa.gov/pub/data/paleo/
 orig=$root/icecore/antarctica/epica_domec/edc3deuttemp2007.txt
