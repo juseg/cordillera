@@ -1,8 +1,6 @@
 #!/bin/bash
 
 # parameters
-#reg=cordillera
-#res=1000
 method=bicubic
 
 # make directory or update modification date
@@ -10,20 +8,11 @@ mkdir -p processed
 touch processed
 cd processed
 
-# set region and resolution
-#g.region region=$reg res=$res
-g.region w=-2300000 e=-1500000 s=300000 n=900000 res=500
-
-# expand region by half a grid cell
-wesn=($(g.region -t | tr '/' ' '))
-w=${wesn[0]}
-e=${wesn[1]}
-s=${wesn[2]}
-n=${wesn[3]}
-g.region w=$((w-res/2)) e=$((e+res/2)) s=$((s-res/2)) n=$((n+res/2))
-
-# reproject high-res topo
-r.proj location=world-ll-wgs84 input=etopo1bed method=$method --q --o
+# import high-resolution topography and set region to it
+ifile="../external/cded250k.tif"
+g.remove -f type=rast name=cded250k --q
+r.in.gdal input=$ifile output=cded250k --q
+g.region rast=cded250k
 
 # import and resample boot topography
 ifile="cordillera-etopo1bed-5km-boottopo.tif"
@@ -51,7 +40,7 @@ do
         r.resamp.interp input=wattable output=wattable method=$method --q --o
 
         # compute hi-res water table
-        r.mapcalc "topodiff = etopo1bed - boottopo" --q --o
+        r.mapcalc "topodiff = cded250k - boottopo" --q --o
         r.mapcalc "wattable = wattable + 0.09*topodiff" --q --o
 
         # compute subglacial lake depths
