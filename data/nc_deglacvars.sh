@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # output dir and variables to include
-odir="$HOME/pism/output/0.7.2/cordillera-narr-5km"
-vars="lon,lat,thk,topg,usurf,temppabase,velbase_mag"
+odir=$HOME/pism/output/0.7.2/
+vars=lon,lat,thk,topg,usurf,temppabase,velbase_mag
 
 # records and offsets
 records=( grip epica )
@@ -20,8 +20,9 @@ do
     # file names
     rec=${records[i]}
     dt=${offsets[i]}
-    ifile="$odir/${rec}3222cool${dt}+ccyc4+till1545/y???????-extra.nc"
-    ofile="cordillera-cycle-${rec}-deglacvars.nc"
+    runname=cordillera-narr-5km/${rec}3222cool${dt}+ccyc4+till1545
+    ifile=$odir/$runname/extra.nc
+    ofile=${runname/"/"/-}-extravars.nc
 
     # compute sum
     echo "preparing $ofile ..."

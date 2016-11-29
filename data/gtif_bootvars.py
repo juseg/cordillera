@@ -45,27 +45,10 @@ band.WriteArray(np.flipud(z.T))
 band.ComputeStatistics(0)
 band.FlushCache()
 
-# generate contours
-#ContourGenerate(Band srcBand, double contourInterval, double contourBase,
-#                int fixedLevelCount, int useNoData, double noDataValue,
-#                OGRLayerShadow * dstLayer, int idField, int elevField,
-#                GDALProgressFunc callback=0, void * callback_data=None)
-driver = ogr.GetDriverByName('ESRI Shapefile')
-shp = driver.CreateDataSource('.')
-lyr = shp.CreateLayer(ofilepath, srs)
-f0_defn = ogr.FieldDefn('id', ogr.OFTInteger)
-f0 = lyr.CreateField(f0_defn)
-f1_defn = ogr.FieldDefn(varname, ogr.OFTReal)
-f1 = lyr.CreateField(f1_defn)
-gdal.ContourGenerate(band, 100.0, 0.0, [], 0, 0, lyr, f0, f1)
-lyr.SyncToDisk()
-
 # close datasets
-lyr = shp = None
 band = rast = None
 
 # create zip archive
 with zipfile.ZipFile(ofilepath + '.zip', 'w') as zf:
-    extensions = ['dbf', 'prj', 'shp', 'shx', 'tif']
-    for f in [ofilepath + '.' + ext for ext in extensions]:
-        zf.write(f, arcname=os.path.basename(f))
+    f = ofilepath + '.tif'
+    zf.write(ofilepath + '.tif', arcname=os.path.basename(f))

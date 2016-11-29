@@ -15,6 +15,7 @@ records = ['grip', 'epica']
 offsets = [6.2, 5.9]
 indexes = range(1039, 1100, 10)
 variables = ['thk', 'topg', 'usurf', 'temppabase', 'velbase_mag']
+validlims = {'thk': 1.0, 'temppabase': 1e-9, 'velbase_mag': 1.0}
 
 # loop on records
 for rec, dt in zip(records, offsets):
@@ -55,6 +56,10 @@ for rec, dt in zip(records, offsets):
             age = -nc.variables['time'][i]/(365.0*24*60*60)
             z = nc.variables[varname][i]
 
+            ## mask values below validity limit
+            #if varname in validlims:
+            #    z[z < zth] = 0.0
+
             # generate geotiff
             ofilepath = '%s-%s-%da.tif' % (prefix, varname, age)
             driver = gdal.GetDriverByName('GTiff')
@@ -71,7 +76,7 @@ for rec, dt in zip(records, offsets):
             ofilelist.append(ofilepath)
 
     # create zip archive
-    with zipfile.ZipFile(prefix + '.zip', 'w') as zf:
+    with zipfile.ZipFile(prefix + '-extravars.zip', 'w') as zf:
         for f in ofilelist:
             zf.write(f, arcname=os.path.basename(f))
 
