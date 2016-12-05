@@ -56,6 +56,12 @@ do
         r.mapcalc "sublakes = lakefill - wattable" --q --o
         r.mapcalc "sublakes = if(sublakes>9999, 0, sublakes)" --q --o
 
+        # mask cold-based areas
+        ifile="${prefix}-warmbase-${age}a.tif"
+        g.remove -f type=rast name=warmbase --q
+        r.in.gdal input=$ifile output=warmbase --q
+        r.mapcalc "sublakes = warmbase * sublakes" --q --o
+
         # output to geotiff
         createopt="compress=deflate"
         r.out.gdal input=sublakes output=$ofile createopt=$createopt -c --q --o

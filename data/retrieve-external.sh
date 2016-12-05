@@ -70,7 +70,7 @@ gdalbuildvrt cded250k.vrt cded250k/*.dem
 
 # CDED reprojection (epsg 3979 or 7254?)
 gdalwarp -t_srs EPSG:3979 -r bilinear \
-         -te -1900000 450000 -1600000 650000 -tr 100 100 \
+         -te -2000000 400000 -1600000 700000 -tr 250 250 \
          -srcnodata -32767 -dstnodata -32767 \
          -wm 512 -wo SOURCE_EXTRA=100 -overwrite \
          cded250k.vrt cded250k.tif

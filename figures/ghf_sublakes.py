@@ -45,7 +45,7 @@ def open_gtif(filename):
 
 
 # initialize figure
-figw, figh = 165.0, 110.0
+figw, figh = 160.0, 120.0
 fig = plt.figure(figsize=(figw/25.4, figh/25.4))
 ax = fig.add_axes([0, 0, 1, 1], projection=ut.pl.proj)
 cax = fig.add_axes([1-70/figw, 15/figh, 60/figw, 5/figh])
