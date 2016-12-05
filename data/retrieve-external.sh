@@ -57,12 +57,10 @@ do
     ifile=$root/250k_dem/$sector
     ofile=cded250k/$sector
     [ -d $ofile ] || wget -r -nd $ifile -P $ofile
-done
-
-# CDED unzip
-for f in cded250k/*/*.zip
-do
-    unzip -n $f '*.dem' -d cded250k
+    for f in cded250k/$sector/*.zip
+    do
+        unzip -n $f '*.dem' -d cded250k
+    done
 done
 
 # CDED mosaic vrt
@@ -70,7 +68,7 @@ gdalbuildvrt cded250k.vrt cded250k/*.dem
 
 # CDED reprojection (epsg 3979 or 7254?)
 gdalwarp -t_srs EPSG:3979 -r bilinear \
-         -te -2000000 400000 -1600000 700000 -tr 250 250 \
+         -te -1900000 500000 -1700000 650000 -tr 100 100 \
          -srcnodata -32767 -dstnodata -32767 \
          -wm 512 -wo SOURCE_EXTRA=100 -overwrite \
          cded250k.vrt cded250k.tif

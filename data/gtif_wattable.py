@@ -56,7 +56,6 @@ for ghf in ghfmaps:
 
         # compute hydraulic potential
         tab = rhoi/rhow*h + b + w
-        tab = np.ma.masked_where(h < 1, tab)
 
         # generate geotiff
         ofilepath = '%s-wattable-%da.tif' % (prefix, age)

@@ -20,6 +20,9 @@ g.remove -f type=rast name=boottopo --q
 r.in.gdal input=$ifile output=boottopo --q
 r.resamp.interp input=boottopo output=boottopo method=$method --q --o
 
+# compute difference
+r.mapcalc "topodiff = cded250k - boottopo" --q --o
+
 # loop on geoflux maps
 for ghf in gou11simi
 do
@@ -40,7 +43,6 @@ do
         r.resamp.interp input=wattable output=wattable method=$method --q --o
 
         # compute hi-res water table
-        r.mapcalc "topodiff = cded250k - boottopo" --q --o
         r.mapcalc "wattable = wattable + 0.09*topodiff" --q --o
 
         # fill topo until fully resolved
