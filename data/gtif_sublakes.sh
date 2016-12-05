@@ -43,12 +43,22 @@ do
         r.mapcalc "topodiff = cded250k - boottopo" --q --o
         r.mapcalc "wattable = wattable + 0.09*topodiff" --q --o
 
+        # fill topo until fully resolved
+        fillcmd="r.fill.dir output=lakefill direction=flowdirs --o"
+        fillout=$($fillcmd input=wattable 2>&1)
+        while [ "$(grep unresolved <<< "$fillout" | wc -l)" -gt "1" ]
+        do
+            grep unresolved <<< "$fillout" | tail -n 1
+            fillout=$($fillcmd input=lakefill 2>&1)
+        done
+
         # compute subglacial lake depths
-        r.fill.dir input=wattable output=lakefill direction=flowdirs --q --o
         r.mapcalc "sublakes = lakefill - wattable" --q --o
+        r.mapcalc "sublakes = if(sublakes>9999, 0, sublakes)" --q --o
 
         # output to geotiff
-        r.out.gdal input=sublakes output=$ofile createopt="COMPRESS=DEFLATE" -c --q --o
+        createopt="compress=deflate"
+        r.out.gdal input=sublakes output=$ofile createopt=$createopt -c --q --o
 
     done
 
