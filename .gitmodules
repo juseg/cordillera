@@ -1,5 +1,5 @@
 [submodule "refs"]
-	path = refs
+	path = references
 	url = ogive:git/research/references.git
 	url = git@framagit.org:jsegu/references.git
 [submodule "figures/iceplotlib"]
