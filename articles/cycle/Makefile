@@ -1,29 +1,50 @@
-PAPER := cordillera-cycle
-RESPS := response-editor response-jarosch response-stumpf response-marshall
-RESPS := $(addsuffix .pdf, $(DOCS))
+# Article Makefile
+# ================
 
-all: $(DOCS)
 
-all: $(PAPER).pdf $(RESPS) revisions-diff.pdf figures
-	latexmk -pdf -dvi- -ps- $(PAPER).tex
+# Variables
+# ---------
 
-$(RESPS): response-header.tex
+# default paper extension
+EXT = pdf
 
+# main paper
+PAPER = cordillera-cycle
+
+# responses
+RESPS = $(addprefix response-, editor jarosch stumpf marshall)
+
+# revisions diff
+REVIS = $(PAPER)-revisions
+
+# all documents
+ALL = $(addsuffix .$(EXT), $(PAPER) $(RESPS) $(REVIS))
+
+
+# Rules
+# -----
+
+# default rule
+all: $(ALL)
+
+# patterned rule for pdfs
 %.pdf: %.tex
 	latexmk -pdf -dvi- -ps- $<
 
-revisions-diff.tex: typeset.tex $(PAPER).tex
-	latexdiff $^ > revisions-diff.tex
+# additional dependence for responses
+$(RESPS): response-header.tex
 
-.PHONY : diff figures clean
+# latexdiff rule for revisions
+$(REVIS).tex: $(PAPER)-typeset.tex $(PAPER).tex
+	latexdiff $^ > $@
 
-figures:
-	cd figures && $(MAKE)
-
-rtf:
+# rich text format
+$(PAPER).rtf:
 	latex2rtf -E0 -f0 -M4 -t2 $(PAPER).tex
 
+# clean up
+.PHONY: clean
 clean:
-	cd figures && $(MAKE) clean
 	latexmk -CA
-	rm $(PAPER).rtf
+	rm -f $(REVIS).tex
+	rm -f $(PAPER).rtf
