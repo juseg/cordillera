@@ -1,12 +1,21 @@
-PAPER = kappa
+# Article Makefile
+# ================
 
-all: $(PAPER).tex figures
-	latexmk -pdf -dvi- -ps- $(PAPER).tex
 
-.PHONY : figures clean
-figures:
-	cd figures && $(MAKE)
+# Variables
+# ---------
 
+PAPER = cordillera-kappa
+
+
+# Rules
+# -----
+
+# default rule
+$(PAPER).pdf: $(PAPER).tex
+	latexmk -pdf -dvi- -ps- $<
+
+# clean up
+.PHONY: clean
 clean:
-	cd figures && $(MAKE) clean
 	latexmk -CA
