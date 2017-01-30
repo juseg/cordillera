@@ -3,22 +3,8 @@
 
 import util as ut
 import numpy as np
-
-#import sys
-
-#sys.path.append('iceplotlib')
-
 import matplotlib.pyplot as plt
 from osgeo import gdal
-#from matplotlib.colors import Normalize
-#import cartopy.crs as ccrs
-#import cartopy.io.shapereader as shpreader
-#import cartopy.feature as cfeature
-#from iceplotlib import cm as icm
-#from netCDF4 import Dataset
-
-#bwu = 0.5  # base width unit
-#scale = '50m'
 
 def open_gtif(filename):
     """Open GeoTIFF and return data and extent."""
@@ -48,7 +34,7 @@ def open_gtif(filename):
 figw, figh = 160.0, 120.0
 fig = plt.figure(figsize=(figw/25.4, figh/25.4))
 ax = fig.add_axes([0, 0, 1, 1], projection=ut.pl.proj)
-cax = fig.add_axes([1-70/figw, 15/figh, 60/figw, 5/figh])
+cax = fig.add_axes([1-70/figw, 10/figh, 60/figw, 5/figh])
 ax.set_rasterization_zorder(2.5)
 
 # plot topography
@@ -61,12 +47,14 @@ data, extent = open_gtif('../data/processed/cordillera-narr-5km-'
                          'sublakes-19100a.tif')
 levs = [1, 3, 10, 31]
 levs = [1, 2, 5, 10, 22, 46]
+levs = [0.3, 1, 3, 10, 30]
 cmap = plt.get_cmap('Blues', len(levs))
 cols = cmap(range(len(levs)))
-cs = ax.contourf(data, extent=extent, levels=levs, colors=cols, extend='max')
+cs = ax.contourf(data, extent=extent, levels=levs, colors=cols,
+                 extend='max', alpha=0.75)
 
 # add colorbar
-cb = fig.colorbar(cs, cax, orientation='horizontal')
+cb = fig.colorbar(cs, cax, orientation='horizontal', format='%g')
 cb.set_label('subglacial lake depth (m)')
 
 # set extents
