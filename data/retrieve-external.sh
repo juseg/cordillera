@@ -18,11 +18,13 @@ orig=http://static.us.elsevierhealth.com/ehlers_digital_maps/\
 digital_maps_02_all_other_files.zip
 dest=ehlers-etal-2011.zip
 [ -f "$dest" ] || wget $orig -O $dest
-unzip -jn $dest lgm.???
+unzip -jn $dest lgm.??? lgm_alpen.???
 
 # Ehlers et al. (2011) simplified
-ogr2ogr -overwrite -where "OGR_GEOM_AREA > 1e-3" -simplify 0.1 \
-        lgm_simple.shp lgm.shp
+ogr2ogr -where "OGR_GEOM_AREA > 1e-3" -simplify 0.1 \
+        -overwrite lgm_simple.shp lgm.shp
+ogr2ogr -where "OGR_GEOM_AREA > 1e-3" -simplify 0.1 \
+        -append lgm_simple.shp lgm_alpen.shp
 
 # ETOPO1 Bed original cell-registered data
 orig=http://www.ngdc.noaa.gov/mgg/global/relief/ETOPO1/data/bedrock/\

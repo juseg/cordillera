@@ -5,9 +5,10 @@
 # Rules
 # -----
 
+# default rule
 all: external processed
 
-# retrieve exteral files
+# retrieve external files
 external: retrieve-external.sh
 	bash $<
 
@@ -15,7 +16,7 @@ external: retrieve-external.sh
 processed: postprocess-output.sh
 	bash $<
 
-# clean external files
+# clean up
 .PHONY: clean
 clean:
 	rm -rf external processed
