@@ -77,7 +77,6 @@ for i in range(3):
                              fc='none', hatch='//', lw=0.25, alpha=0.75))
 
 # set axes properties and save time series
-print 'saving timeseries...'
 ax2.invert_xaxis()
 ax1.set_xlim(120.0, 0.0)
 ax1.set_ylim(-10.0, 2.0)

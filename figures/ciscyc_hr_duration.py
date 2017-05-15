@@ -25,7 +25,6 @@ ut.pl.draw_coastline(grid, res)
 
 # loop on records[i]
 for i, rec in enumerate(records):
-    print 'reading %s extra output...' % rec
     ax = grid[i]
     ax.set_rasterization_zorder(2.5)
     ut.pl.draw_ne_vectors(ax)

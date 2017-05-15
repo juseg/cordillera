@@ -39,7 +39,6 @@ for i, rec in enumerate(records):
     ylim = ax.get_ylim()
 
     # read extra output
-    print 'reading %s extra output...' % rec
     nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
@@ -50,7 +49,6 @@ for i, rec in enumerate(records):
     c = nc.variables['velbase_mag']
 
     # compute last flow velocities
-    print 'computing last flow velocities...'
     slidage = np.ones_like(thk[0])*-1.0
     glaciated = np.zeros_like(thk[0])
     lastu = np.zeros_like(u[0])
@@ -59,7 +57,6 @@ for i, rec in enumerate(records):
     if imin == imax:  # run has not reached tmin yet
         continue
     for i in range(imin, imax+1):
-        print '[ %02.1f %% ]\r' % (100.0*(i-imin)/(imax-imin)),
         icy = (thk[i] >= ut.thkth)
         sliding = icy * (c[i].data > 1.0)
         lastu = np.where(sliding, u[i], lastu)
@@ -75,7 +72,6 @@ for i, rec in enumerate(records):
     glaciated = glaciated.T
 
     # plot last velocity stream lines
-    print 'plotting...'
     ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
                          density=(60.0/plotres, 120.0/plotres),
                          cmap=cmap, norm=norm, linewidth=0.5)
@@ -101,7 +97,6 @@ ut.pl.add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))
 ut.pl.add_pointer_tag(ax, 'IP', xy=(-1850e3, 900e3), xytext=(-1100e3, 900e3))
 
 # add colorbar and save
-print 'saving...'
 cb = ColorbarBase(cax, cmap=cmap, norm=norm, orientation='horizontal',
                   ticks=range(8, 23, 2))
 cb.set_label('age of last basal sliding (ka)')

@@ -38,7 +38,6 @@ for i, conf in enumerate(ut.sens.configs):
 
             # compute grounded ice area at MIS 2
             a = ((thk >= ut.thkth)*(mask == 2)).sum()*1e-4
-            print '%-30s, %.2f : %.2f, %.2f' % (conf, dt, t*1e-3, a)
 
             # append to list
             offsets.append(dt)
@@ -66,5 +65,4 @@ ax.set_xlabel('temperature offset (K)')
 ax.set_ylabel(r'grounded ice extent at MIS 2 ($10^6\,km^2$)')
 
 # save
-print 'saving...'
 ut.pl.savefig(fig)

@@ -109,7 +109,6 @@ def fig_hr_maps_mis(mis):
         nc = ut.io.open_extra_file(res, rec, offsets[i])
 
         # plot
-        print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
         ut.pl.draw_ne_vectors(ax)
@@ -150,7 +149,6 @@ def fig_hr_pf(res, rec, dt, color):
                                  hspace=2.5)
 
     # read extra output
-    print 'reading %s extra output...' % rec
     nc = ut.io.open_extra_file(res, rec, dt)
     x = nc.variables['x']
     y = nc.variables['y']

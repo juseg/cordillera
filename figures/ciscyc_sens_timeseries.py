@@ -59,10 +59,6 @@ for i, conf in enumerate(ut.sens.configs):
     nc.close()
     mis_ivols = ts_ivol[mis_idces]
 
-    # print info in table style
-    print tabline % ( (conf,) + tuple(-mis_times/1e3) )
-    print tabline % ( ('',) + tuple(mis_iareas) )
-    print tabline % ( ('',) + tuple(mis_ivols) ) + '\\\\'
 
     # append to lists
     time_series.append(ts_time)
@@ -109,6 +105,5 @@ ax.text((29+14)/2, 0.5, 'MIS 2', ha='center')
 ax.text((14+0)/2, 8.5, 'MIS 1', ha='center')
 
 # set axes properties and save time series
-print 'saving timeseries...'
 ax.set_xlabel('model age (ka)')
 ut.pl.savefig(fig)

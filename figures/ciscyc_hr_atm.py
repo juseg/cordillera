@@ -32,7 +32,6 @@ for ax in grid.flat:
     ut.pl.draw_ne_vectors(ax)  # swap to geoaxes after that
 
 # plot temperature
-print 'plotting temperature maps...'
 levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]
 norm=BoundaryNorm(levs, 256)
 for i in range(2):
@@ -43,7 +42,6 @@ cb = fig.colorbar(im, cax, orientation='horizontal')
 cb.set_label(u'temperature (°C)')
 
 # plot precipitation
-print 'plotting precipitation maps...'
 levs = np.logspace(1/3., 3, 9).round(0)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):
@@ -62,7 +60,6 @@ y = nc.variables['y']
 stdv = nc.variables['air_temp_sd']
 
 # plot standard deviation
-print 'plotting standard deviation maps...'
 levs = np.linspace(0.0, 12.0, 9)
 norm = BoundaryNorm(levs, 256)
 for i in range(2):

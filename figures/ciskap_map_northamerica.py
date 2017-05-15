@@ -55,7 +55,6 @@ def draw_lgm():
     union = None
     for age in raw_ages:
         filename = '../data/external/ice%ik.shp' % age
-        print 'reading %s ...' % filename
         for rec in shpreader.Reader(filename).records():
             if rec.attributes['SYMB'] == 'ICE':
                 if union == None:

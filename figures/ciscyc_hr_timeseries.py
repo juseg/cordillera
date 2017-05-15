@@ -18,7 +18,6 @@ fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
 
 # loop on records[i]
 for i, rec in enumerate(records):
-    print 'plotting %s time series...' % rec
     dt = offsets[i]
 
     # plot forcing time series
@@ -39,7 +38,6 @@ for i, rec in enumerate(records):
                  label='%s %s' % (rec.upper(), res))
 
 # set axes properties and save time series
-print 'saving deglacseries...'
 ax2.invert_xaxis()
 ax1.set_xlim(25.0, 5.0)
 ax2.set_xlim(25.0, 5.0)

@@ -34,7 +34,6 @@ for i, rec in enumerate(records):
     ut.pl.draw_ne_vectors(ax)
 
     # read extra output
-    print 'reading %s extra output...' % rec
     nc = ut.io.open_extra_file(res, rec, offsets[i])
     x = nc.variables['x']
     y = nc.variables['y']
@@ -42,7 +41,6 @@ for i, rec in enumerate(records):
     thk = nc.variables['thk']
 
     # compute deglaciation age
-    print 'computing deglaciation age...'
     age = -time[:]*ut.s2ka
     icy = (thk[:] >= 1.0)
     nlastfree = icy[::-1].argmax(axis=0)  # number of last free timesteps
@@ -90,7 +88,6 @@ for i, rec in enumerate(records):
 ut.pl.add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250e3))
 
 # add colorbar and save
-print 'saving deglac...'
 cb = fig.colorbar(cs, cax, orientation='horizontal', ticks=ages)
 cb.set_label('deglaciation age (ka)')
 ut.pl.savefig(fig)

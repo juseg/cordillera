@@ -30,7 +30,7 @@ PY_FIGS = $(addprefix ciscyc_, locmap \
 PY_FIGS := $(addsuffix .$(EXT), $(PY_FIGS))
 
 # tex executable
-TEX = latexmk -pdf -dvi- -ps-
+TEX = latexmk -quiet -pdf -dvi- -ps-
 
 # all tex figures
 TEX_FIGS = $(addprefix ciskap_, \

@@ -49,7 +49,6 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
         n = (3*y[0]-y[1])/2
         s = (3*y[-1]-y[-2])/2
         c = (u**2 + v**2)**0.5
-        print c.min(), c.mean(), c.max()
         im = ax.imshow(c, extent=(w, e, n, s), cmap='Blues', norm=norm)
         ax.contourf(x, y, c, levels=[-1e3, 1e3], colors='none', hatches=['//'])
         ax.contour(x, y, c, levels=[1e3], colors='k', linewidths=0.25)

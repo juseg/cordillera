@@ -31,7 +31,6 @@ run_path = (os.environ['HOME'] + '/pism/output/0.7.2-craypetsc/cordillera-narr-5
             'grip3222cool620+ccyc4+till1545/y???????')
 
 # read output time series
-print 'reading time series...'
 nc = iplt.load(run_path + '-ts.nc')
 time = nc.variables['time'][:]*s2ka
 ivol = nc.variables['slvol'][:]
@@ -70,7 +69,6 @@ blendtrans = blended_transform_factory(tsax.transData, tsax.transAxes)
 figinvtrans = fig.transFigure.inverted()
 
 # plot time series
-print 'plotting time series...'
 ax.plot(time, ivol, color='#1f78b4')  # alt. wiki color #0978ab
 ax.set_xlabel('model time (kyr)')
 ax.set_ylabel('ice volume (m s.l.e.)')
@@ -82,13 +80,11 @@ for tka in tkalist:
 #ax.plot(tkalist, ivolist, color='#0978ab', marker='+', ls='')  # add crosses
 
 # read extra output
-print 'reading extra output...'
 nc = iplt.load(run_path + '-extra.nc')
 time = nc.variables['time'][:]*s2ka
 
 # plot snapshots
 for i, tka in enumerate(tkalist):
-    print 'plotting %s ka snapshot...' % tka
     ax = plt.subplot(gs[0, i])
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
@@ -138,5 +134,4 @@ fig.text(5/figw, 43.75/figh, '(a)', fontweight='bold')
 fig.text(5/figw, 31.75/figh, '(b)', fontweight='bold')
 
 # save
-print 'saving...'
 ut.pl.savefig(fig)

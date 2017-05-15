@@ -34,7 +34,6 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 
     # open dataset
     filename = filepath.format(res='5km', conf=conf, gflx=gflx)
-    print filename
     nc = iplt.load(filename)
 
     # plot

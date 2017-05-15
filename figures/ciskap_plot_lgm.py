@@ -18,7 +18,6 @@ import cartopy.io.shapereader as shpreader
 filename = (os.environ['HOME'] + '/pism/output/0.5.12/cordillera-narr-3km-bl/'
             'stepcool07sll120+ccli+till1030/y0010000-extra.nc')
 t = 10e3
-print filename
 
 # Canadian Atlas Lambert projection
 proj = ccrs.LambertConformal(

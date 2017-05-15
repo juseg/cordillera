@@ -17,7 +17,6 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=4, sharex=True, sharey=True,
                              wspace=2.5, hspace=2.5)
 
 # load extra output
-print 'reading extra output...'
 nc = ut.io.open_extra_file('5km', 'grip', 6.1)
 
 # loop on records[i]
@@ -44,7 +43,6 @@ for i, t in enumerate(times):
     c = (u**2 + v**2)**0.5
 
     # plot
-    print 'plotting at %s ka...' % time
     ax = grid.flat[i]
     ax.xaxis.set_visible(False)
     ax.yaxis.set_visible(False)
@@ -60,6 +58,5 @@ for i, t in enumerate(times):
     ut.pl.add_corner_tag(ax, '%s ka' % (time))
 
 # save
-print 'saving puget...'
 ut.pl.savefig(fig)
 nc.close()

@@ -29,7 +29,6 @@ for i, rec in enumerate(records):
                                  wspace=2.5, hspace=2.5)
 
     # open extra file
-    print 'reading %s extra output...' % rec
     filename = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
                 '%s3222cool%d+ccyc4+till1545/y0??0000-extra.nc'
                 % (rec, round(100*dt)))
@@ -58,7 +57,6 @@ for i, rec in enumerate(records):
         velbase = np.ma.array(velbase, mask=(-icy))
 
         # plot
-        print 'plotting at %s ka...' % age
         ax.xaxis.set_visible(False)
         ax.yaxis.set_visible(False)
         ax.set_rasterization_zorder(2.5)
@@ -76,6 +74,5 @@ for i, rec in enumerate(records):
         ut.pl.add_corner_tag(ax, '%.1f ka' % age, offset=0.0)
 
     # save
-    print 'saving %s figure...' % rec
     ut.pl.savefig(fig)
     nc.close()

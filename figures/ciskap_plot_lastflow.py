@@ -34,7 +34,6 @@ cax = fig.add_axes([1-17.5/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 ax.axis('off')
 
 # read extra output
-print 'reading extra output...'
 nc = iplt.load(filename)
 x = nc.variables['x'][imin:imax]
 y = nc.variables['y'][jmin:jmax]
@@ -52,12 +51,8 @@ e = (3*x[-1]-x[-2])/2
 s = (3*y[0]-y[1])/2
 n = (3*y[-1]-y[-2])/2
 tmin, tmax = time[[0, -1]]
-print 'WE bounds:', w, e
-print 'NS bounds:', n, s
-print 'time bounds:', tmin, tmax
 
 # compute last flow velocities
-print 'computing last flow velocities...'
 slidage = np.ones_like(mask[0])*-1.0
 glaciated = np.zeros_like(mask[0])
 lastu = np.zeros_like(u[0])
@@ -87,7 +82,6 @@ density=((e-w)/25/plotres, (n-s)/25/plotres)
 ax.imshow(topg.T, extent=(w, e, s, n),
           cmap=default_cmaps['topg'], norm=default_norms['topg'])
 # plot last velocity stream lines
-print 'plotting stream lines...'
 ax.streamplot(x[:], y[:], lastu, lastv, color=slidage,
               density=density, cmap=cmap, norm=norm, linewidth=0.5)
 
@@ -104,7 +98,6 @@ ax.contour(x[:], y[:], glaciated, levels=[0.5],
            colors='k', linewidths=0.5)
 
 # add colorbar and save
-print 'saving...'
 cb = ColorbarBase(cax, cmap=cmap, norm=norm) #, ticks=range(8, 23, 2))
 cb.set_label('Age of last basal sliding (kyr)')
 ax.set_xlim(w, e)

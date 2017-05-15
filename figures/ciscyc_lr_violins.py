@@ -38,5 +38,4 @@ ax.set_xticklabels(ut.lr.labels)
 ax.set_xlabel('record')
 
 # save
-print 'saving violins...'
 ut.pl.savefig(fig)

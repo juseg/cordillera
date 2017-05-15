@@ -67,5 +67,4 @@ for j in range(3):
     ax.text(0.5, 1.04, 'MIS %i' % (4-j), ha='center', transform=ax.transAxes)
 
 # save
-print 'saving...'
 ut.pl.savefig(fig)

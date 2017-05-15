@@ -19,7 +19,6 @@ cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]
 for i, rec in enumerate(ut.lr.records):
-    print 'reading %s extra output...' % rec
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, ut.lr.offsets[i])
@@ -29,7 +28,6 @@ for i, rec in enumerate(ut.lr.records):
 
     # plot maps
     for j, t in enumerate(mis_times):
-        print 'plotting %s at %.1f ka...' % (rec, -mis_times[j]/1e3)
         ax = grid[j, i]
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t,
@@ -72,5 +70,4 @@ ut.pl.add_pointer_tag(grid[1, 2], 'SM', xy=(-2000e3, 1450e3), xytext=(-1100e3, 1
 cb = fig.colorbar(cs, cax, ticks=levs[::2],
                   format=FuncFormatter(lambda x, pos: '%g' % (x/1000.0)))
 cb.set_label(r'surface elevation (km)')  #, labelpad=-1.5*pt2mm)
-print 'saving snapshots...'
 ut.pl.savefig(fig)

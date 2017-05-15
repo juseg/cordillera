@@ -27,7 +27,6 @@ for i, rec in enumerate(records):
 
     # plot
     for j, t in enumerate(times):
-        print 'plotting %s at %.1f ka...' % (rec, -t/1e3)
         ax = grid[i, j]
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t, cmap=ut.topo_cmap, norm=ut.topo_norm,
@@ -61,5 +60,4 @@ for i, rec in enumerate(records):
 cb = fig.colorbar(im, cax, extend='both', format='%i',
                   ticks=np.logspace(1, 3.5, 6))
 cb.set_label(r'surface velocity ($m\,a^{-1}$)', labelpad=-2.0)
-print 'saving...'
 ut.pl.savefig(fig)

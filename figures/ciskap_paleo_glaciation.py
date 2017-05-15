@@ -43,13 +43,10 @@ for i, geom in enumerate(shp.geometries()):
     x, y = geom.centroid.xy
     x, y = x[0], y[0]
     if y < 0:
-        print 'record %i in southern hemisphere' % i
         continue
     if (x, y) in centroids:
-        print 'record %i is a duplicate' % i
         continue
     else:
-        print 'adding record %i with area %f ...' % (i, geom.area)
         centroids.append((x, y))
         grid[1].add_geometries(geom, ccrs.PlateCarree(),
                   edgecolor='none', facecolor='#0978ab', alpha=0.5)

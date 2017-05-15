@@ -42,7 +42,6 @@ for ax in grid:
     ax.set_rasterization_zorder(2.5)
 
 # plot mean temperature
-print 'plotting temperature maps...'
 levs = range(-15, 16, 3)  # or [-30 ] + range(-20,21,5) + [30]
 cs = grid[0].contourf(x[:], y[:], temp[:].mean(axis=0).T-273.15,
                       levels=levs, norm=BoundaryNorm(levs, 256),
@@ -59,7 +58,6 @@ cb = fig.colorbar(cs, grid[1].cax, orientation='horizontal', ticks=levs[:-1])
 cb.set_label(u'Temperature seasonality (°C)')
 
 # plot mean precipitation
-print 'plotting precipitation maps...'
 levs = np.logspace(-1, 1, 7)
 cs = grid[2].contourf(x[:], y[:], prec[:].mean(axis=0).T,
                       levels=levs, norm=BoundaryNorm(levs, 256),

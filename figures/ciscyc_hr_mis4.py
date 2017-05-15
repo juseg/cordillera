@@ -7,5 +7,4 @@ import util as ut
 fig = ut.pl.fig_hr_maps_mis(mis=4)
 
 # save
-print('saving...')
 ut.pl.savefig(fig)

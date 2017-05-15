@@ -18,7 +18,6 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=1, sharex=True, sharey=True,
 # build velocity distributions
 vdistlists=[[], [], []]
 for i, conf in enumerate(ut.sens.configs):
-    print 'reading %s ...' % conf
     dt = ut.sens.offsets[i]
 
     # get MIS times
@@ -36,7 +35,6 @@ for i, conf in enumerate(ut.sens.configs):
         idx = (np.abs(time[:]-t*ut.a2s)).argmin()
         mask = (thk[idx] >= ut.thkth)
         vdist = v[idx][mask]
-        print 'found %05d velocity values for MIS %d' % (vdist.size, 4-j)
         vdist = np.log10(vdist)
         vdistlists[j].append(vdist)
     nc.close()

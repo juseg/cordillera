@@ -13,5 +13,4 @@ color = ut.hr.colors[0]
 fig = ut.pl.fig_hr_pf(res, rec, dt, color)
 
 # save
-print('saving...')
 ut.pl.savefig(fig)
