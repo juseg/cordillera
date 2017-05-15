@@ -5,6 +5,7 @@ import util as ut
 import numpy as np
 
 res = '10km'
+rec = 'grip'
 
 # latex header and footer
 header=r'''\documentclass[border=2.5mm]{standalone}
@@ -20,7 +21,7 @@ header=r'''\documentclass[border=2.5mm]{standalone}
              & \multicolumn{3}{c|}{Age (ka)}
              & \multicolumn{3}{c|}{Ice extent (\unit{10^6\,km^2})}
              & \multicolumn{3}{c}{Ice volume (m\,s.l.e.)} \\
-    Record   &  MIS~4 &  MIS~3 &  MIS~2
+    Config.  &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2
              &  MIS~4 &  MIS~3 &  MIS~2 \\
     \middlehline
@@ -31,30 +32,33 @@ footer=r'''    \bottomhline
 \end{document}
 '''
 
-# latex table line
+# latex table line (curly braces need to be doubled to escape)
 tabline = (' '*4 + '{title:8}' + ' &{:7.2f}'*3 + '\n'+
            ' '*12 + ' &{:7.2f}'*3 + '\n'+
            ' '*12 + ' &{:7.2f}'*3 + r' \\' + '\n')
+errline = (' '*4 + '{title:8}' + r' &{:5.0f}\,\unit{{\%}}'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\,\unit{{\%}}'*3 + '\n'+
+           ' '*12 + r' &{:5.0f}\,\unit{{\%}}'*3 + r' \\' + '\n')
 
 # initialize array
-results = np.zeros((6, 9), dtype=float)
+results = np.zeros((5, 9), dtype=float)
 
 # open latex file to write in
-with open('tab_lr.tex', 'w') as f:
+with open('ciscyc_tab_sens.tex', 'w') as f:
 
     # write header
     f.write(header)
 
     # loop on records
-    for i, rec in enumerate(ut.lr.records):
-        dt = ut.lr.offsets[i]
-        label = ut.lr.labels[i]
+    for i, conf in enumerate(ut.sens.configs):
+        dt = ut.sens.offsets[i]
+        label = ut.sens.labels[i]
 
         # get MIS times
-        mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt)
+        mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
 
         # compute area from extra file
-        nc = ut.io.open_extra_file(res, rec, dt)
+        nc = ut.io.open_extra_file(res, rec, dt, config=conf)
         ex_thk = nc.variables['thk']
         ex_time = nc.variables['time']
         ex_mask = nc.variables['mask']
@@ -64,7 +68,7 @@ with open('tab_lr.tex', 'w') as f:
         nc.close()
 
         # load output time series
-        nc = ut.io.open_ts_file(res, rec, dt)
+        nc = ut.io.open_ts_file(res, rec, dt, config=conf)
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
@@ -74,14 +78,14 @@ with open('tab_lr.tex', 'w') as f:
         results[i] = np.concatenate((-mis_times/1e3, mis_gareas, mis_slvols))
         f.write(tabline.format(title=label, *results[i]))
 
-    # compute extrema
-    minima = results.min(axis=0)
-    maxima = results.max(axis=0)
+        # compute relative errors
+        if i in (2, 4):
+            relerr = 100*np.abs(results[i]-results[i-1])/results[0]
+            f.write(errline.format(title='R. diff.', *relerr))
 
-    # write info in table
-    f.write('    \cline{1-10}\n')
-    f.write(tabline.format(title='Minimum', *minima))
-    f.write(tabline.format(title='Maximum', *maxima))
+        # add horizontal lines
+        if i in (0, 2):
+            f.write('    \cline{1-10}\n')
 
     # write footer
     f.write(footer)

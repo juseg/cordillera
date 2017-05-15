@@ -195,5 +195,5 @@ def savefig(fig=None):
     """Save figure to script filename."""
     import sys
     fig = fig or gcf()
-    res = fig.savefig(ut.io.os.path.splitext(sys.argv[0])[0])
+    res = fig.savefig(os.path.splitext(sys.argv[0])[0])
     return res
