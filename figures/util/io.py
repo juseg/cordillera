@@ -11,8 +11,14 @@ import os
 import numpy as np
 import iceplotlib.plot as iplt
 
+
+def load(filepath):
+    """Load file relative to PISM directory."""
+    filepath = os.path.join(os.environ['HOME'], 'pism', filepath)
+    return iplt.load(filepath)
+
+
 # file path default params
-pism_dir = os.environ['HOME'] + '/pism/'
 config='ccyc4+till1545'
 period='3222'
 version = '0.7.2-craypetsc'
@@ -23,35 +29,31 @@ s2a = 1/a2s
 
 # file open functions
 def open_atm_file(res):
-    return iplt.load(pism_dir + 'input/atm/cordillera-narr-%s.nc' % res)
+    return load('input/atm/cordillera-narr-%s.nc' % res)
 
 
 def open_boot_file(res):
-    return iplt.load(pism_dir + 'input/boot/cordillera-etopo1bed-%s.nc'
-                     % res)
+    return load('input/boot/cordillera-etopo1bed-%s.nc' % res)
 
 
 def open_dt_file(rec, dt, period='3222'):
-    return iplt.load(pism_dir + 'input/dt/%s%scool%04i.nc'
-                     % (rec, period, round(100*dt)))
+    return load('input/dt/%s%scool%04i.nc' % (rec, period, round(100*dt)))
 
 
 def open_sd_file(res):
-    return iplt.load(pism_dir + 'input/sd/cordillera-narr-%s.nc' % res)
+    return load('input/sd/cordillera-narr-%s.nc' % res)
 
 
 def open_ts_file(res, rec, dt,
                  config=config, period=period, version=version):
-    return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
-                     '%s%scool%i+%s/y0??0000-ts.nc'
-                     % (version, res, rec, period, round(100*dt), config))
+    return load('output/%s/cordillera-narr-%s/%s%scool%i+%s/y0??0000-ts.nc'
+                % (version, res, rec, period, round(100*dt), config))
 
 
 def open_extra_file(res, rec, dt,
                     config=config, period=period, version=version):
-    return iplt.load(pism_dir + 'output/%s/cordillera-narr-%s/'
-                     '%s%scool%i+%s/y0??0000-extra.nc'
-                     % (version, res, rec, period, round(100*dt), config))
+    return load('output/%s/cordillera-narr-%s/%s%scool%i+%s/y0??0000-extra.nc'
+                % (version, res, rec, period, round(100*dt), config))
 
 
 # analysis functions
