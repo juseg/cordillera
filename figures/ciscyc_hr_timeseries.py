@@ -21,7 +21,7 @@ for i, rec in enumerate(records):
     dt = offsets[i]
 
     # plot forcing time series
-    nc = ut.io.open_dt_file(rec, dt)
+    nc = ut.io.load('input/dt/%s3222cool%04d.nc' % (rec, round(100*dt)))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
@@ -29,7 +29,9 @@ for i, rec in enumerate(records):
 
     # plot output time series
     for res in ('10km', '5km'):
-        nc = ut.io.open_ts_file(res, rec, dt)
+        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                        '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
+                         % (rec, round(100*dt)))
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

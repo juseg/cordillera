@@ -28,7 +28,9 @@ for i, rec in enumerate(ut.lr.records):
             t = ut.io.get_mis_times(res, rec, dt)[1][2]
 
             # open extra file
-            nc = ut.io.open_extra_file(res, rec, dt)
+            nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                            '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                            % (rec, round(100*dt)))
             time = nc.variables['time']
             idx = np.abs(time[:]-t*ut.a2s).argmin()
             thk = nc.variables['thk'][idx]

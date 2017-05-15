@@ -54,7 +54,9 @@ with open('ciscyc_tab_hr.tex', 'w') as f:
         mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt)
 
         # compute area from extra file
-        nc = ut.io.open_extra_file(res, rec, dt)
+        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                        '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                        % (rec, round(100*dt)))
         ex_thk = nc.variables['thk']
         ex_time = nc.variables['time']
         ex_mask = nc.variables['mask']
@@ -64,7 +66,9 @@ with open('ciscyc_tab_hr.tex', 'w') as f:
         nc.close()
 
         # load output time series
-        nc = ut.io.open_ts_file(res, rec, dt)
+        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                        '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
+                        % (rec, round(100*dt)))
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

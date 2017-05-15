@@ -9,7 +9,7 @@ from matplotlib.colors import BoundaryNorm
 # read atmosphere file
 # FIXME: add unit conversion to iceplotlib
 res = '5km'
-nc = ut.io.open_atm_file(res)
+nc = ut.io.load('input/atm/cordillera-narr-%s.nc' % res)
 x = nc.variables['x']
 y = nc.variables['y']
 temp = nc.variables['air_temp']
@@ -23,8 +23,8 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
                              wspace=2.5, hspace=2.5, projection=ut.pl.proj)
 
 # draw topo and coastline
-ut.pl.draw_boot_topo(grid, res)
-ut.pl.draw_coastline(grid, res)
+ut.pl.draw_boot_topo(grid)
+ut.pl.draw_coastline(grid)
 
 # draw natural earth elements
 for ax in grid.flat:
@@ -54,7 +54,7 @@ nc.close()
 
 # read standard deviation file
 # FIXME: add unit conversion to iceplotlib
-nc = ut.io.open_sd_file(res)
+nc = ut.io.load('input/sd/cordillera-narr-%s.nc' % res)
 x = nc.variables['x']
 y = nc.variables['y']
 stdv = nc.variables['air_temp_sd']

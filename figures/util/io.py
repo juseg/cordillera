@@ -18,42 +18,9 @@ def load(filepath):
     return iplt.load(filepath)
 
 
-# file path default params
-config='ccyc4+till1545'
-period='3222'
-version = '0.7.2-craypetsc'
-
 # unit conversion
 a2s = 365.0 * 24 * 60 * 60
 s2a = 1/a2s
-
-# file open functions
-def open_atm_file(res):
-    return load('input/atm/cordillera-narr-%s.nc' % res)
-
-
-def open_boot_file(res):
-    return load('input/boot/cordillera-etopo1bed-%s.nc' % res)
-
-
-def open_dt_file(rec, dt, period='3222'):
-    return load('input/dt/%s%scool%04i.nc' % (rec, period, round(100*dt)))
-
-
-def open_sd_file(res):
-    return load('input/sd/cordillera-narr-%s.nc' % res)
-
-
-def open_ts_file(res, rec, dt,
-                 config=config, period=period, version=version):
-    return load('output/%s/cordillera-narr-%s/%s%scool%i+%s/y0??0000-ts.nc'
-                % (version, res, rec, period, round(100*dt), config))
-
-
-def open_extra_file(res, rec, dt,
-                    config=config, period=period, version=version):
-    return load('output/%s/cordillera-narr-%s/%s%scool%i+%s/y0??0000-extra.nc'
-                % (version, res, rec, period, round(100*dt), config))
 
 
 # analysis functions
@@ -65,13 +32,13 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 
-def get_mis_times(res, rec, dt,
-                  config=config, period=period, version=version):
+def get_mis_times(res, rec, dt, config='ccyc4+till1545'):
     """Return MIS indexes and times computed from output timeseries"""
 
     # load output time series
-    nc = open_ts_file(res, rec, dt,
-                      config=config, period=period, version=version)
+    nc = load('output/0.7.2-craypetsc/cordillera-narr-%s/'
+              '%s3222cool%03d+%s/y???????-ts.nc'
+              % (res, rec, round(100*dt), config))
     ts_time = nc.variables['time'][:]*s2a
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()

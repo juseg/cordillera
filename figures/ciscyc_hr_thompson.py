@@ -30,9 +30,11 @@ for i, rec in enumerate(records):
 
     # open extra file
     filename = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
-                '%s3222cool%d+ccyc4+till1545/y0??0000-extra.nc'
+                '%s3222cool%d+ccyc4+till1545/y???????-extra.nc'
                 % (rec, round(100*dt)))
-    nc = iplt.load(filename)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                     % (rec, round(100*dt)))
 
     for i, ax in enumerate(grid.flat):
         t = times[i]

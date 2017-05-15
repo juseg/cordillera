@@ -19,12 +19,15 @@ cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]
 for i, rec in enumerate(ut.lr.records):
+    dt = ut.lr.offsets[i]
 
     # get MIS times
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, ut.lr.offsets[i])
 
     # load extra output
-    nc = ut.io.open_extra_file(res, rec, ut.lr.offsets[i])
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                    % (rec, round(100*dt)))
 
     # plot maps
     for j, t in enumerate(mis_times):

@@ -26,13 +26,15 @@ for i, rec in enumerate(ut.lr.records):
     mis_idces[i], mis_times[i] = ut.io.get_mis_times(res, rec, dt)
 
     # load forcing time series
-    nc = ut.io.open_dt_file(rec, dt)
+    nc = ut.io.load('input/dt/%s3222cool%04d.nc' % (rec, round(100*dt)))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
 
     # load output time series
-    nc = ut.io.open_ts_file('10km', rec, dt)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
+                    % (rec, round(100*dt)))
     ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
@@ -46,7 +48,9 @@ for i, rec in enumerate(ut.lr.records):
 
     # look for a high-resolution run
     try:
-        nc = ut.io.open_ts_file('5km', rec, dt)
+        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                        '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
+                        % (rec, round(100*dt)))
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()

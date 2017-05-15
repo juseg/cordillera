@@ -14,7 +14,9 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
 data = []
 for i, rec in enumerate(ut.lr.records):
     dt = ut.lr.offsets[i]
-    nc = ut.io.open_ts_file('10km', rec, dt)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
+                    % (rec, round(100*dt)))
     slvol = nc.variables['slvol'][:]
     nc.close()
     data.append(slvol)

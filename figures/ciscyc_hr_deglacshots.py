@@ -6,7 +6,6 @@ import numpy as np
 import iceplotlib.plot as iplt
 
 # parameters
-res = '5km'
 records = ut.hr.records
 offsets = ut.hr.offsets
 times = [-16e3, -14e3, -12e3, -10e3]
@@ -21,9 +20,12 @@ cax = fig.add_axes([1-15.0/figw, 2.5/figh, 5.0/figw, 1-5.0/figh])
 
 # loop on records
 for i, rec in enumerate(records):
+    dt = offsets[i]
 
     # load extra output
-    nc = ut.io.open_extra_file(res, rec, offsets[i])
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                     % (rec, round(100*dt)))
 
     # plot
     for j, t in enumerate(times):

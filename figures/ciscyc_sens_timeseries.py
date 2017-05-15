@@ -43,7 +43,9 @@ for i, conf in enumerate(ut.sens.configs):
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
 
     # compute area from extra file
-    nc = ut.io.open_extra_file(res, rec, dt, config=conf)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    'grip3222cool%03d+%s/y???????-extra.nc'
+                    % (round(100*dt), conf))
     ex_thk = nc.variables['thk']
     ex_time = nc.variables['time']
     ex_mask = nc.variables['mask']
@@ -53,7 +55,9 @@ for i, conf in enumerate(ut.sens.configs):
     nc.close()
 
     # get ice volume from time series
-    nc = ut.io.open_ts_file(res, rec, dt, config=conf)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    'grip3222cool%03d+%s/y???????-ts.nc'
+                    % (round(100*dt), conf))
     ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()

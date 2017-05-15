@@ -24,7 +24,9 @@ for i, conf in enumerate(ut.sens.configs):
     mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
 
     # open extra file
-    nc = ut.io.open_extra_file(res, rec, dt, config=conf)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
+                    'grip3222cool%03d+%s/y???????-extra.nc'
+                    % (round(100*dt), conf))
     time = nc.variables['time']
     thk = nc.variables['thk']
     v = nc.variables['velsurf_mag']

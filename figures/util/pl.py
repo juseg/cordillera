@@ -42,16 +42,16 @@ def add_pointer_tag(ax, s, xy, xytext):
                        arrowprops=dict(arrowstyle="->"))
 
 
-def draw_boot_topo(grid, res):
-    nc = ut.io.open_boot_file(res)
+def draw_boot_topo(grid):
+    nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
     for ax in grid.flat:
         im = nc.imshow('topg', ax=ax, cmap=ut.topo_cmap, norm=ut.topo_norm,
                        zorder=-1)
     nc.close()
 
 
-def draw_coastline(grid, res):
-    nc = ut.io.open_boot_file(res)
+def draw_coastline(grid):
+    nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
     for ax in grid.flat:
         cs = nc.contour('topg', ax=ax, levels=[0.0], cmap=None,
                         colors='0.25', linewidths=0.25, zorder=0)
@@ -99,6 +99,7 @@ def fig_hr_maps_mis(mis):
 
     # loop on records
     for i, rec in enumerate(records):
+        dt = offsets[i]
         ax = grid[i]
         ax.set_rasterization_zorder(2.5)
 
@@ -106,7 +107,9 @@ def fig_hr_maps_mis(mis):
         t = ut.io.get_mis_times(res, rec, offsets[i])[-1][1-mis]
 
         # load extra output
-        nc = ut.io.open_extra_file(res, rec, offsets[i])
+        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
+                        '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
+                        % (res, rec, round(100*dt)))
 
         # plot
         nc.imshow('topg', ax=ax, t=t,
@@ -149,7 +152,9 @@ def fig_hr_pf(res, rec, dt, color):
                                  hspace=2.5)
 
     # read extra output
-    nc = ut.io.open_extra_file(res, rec, dt)
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
+                    '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
+                    % (res, rec, round(100*dt)))
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

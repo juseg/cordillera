@@ -7,7 +7,6 @@ import iceplotlib.plot as iplt
 from matplotlib.colors import BoundaryNorm
 
 # parameters
-res = '5km'
 records = ut.hr.records
 offsets = ut.hr.offsets
 ages = range(8, 23, 1)
@@ -24,17 +23,20 @@ fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
 cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
 
 # plot topographic map
-ut.pl.draw_boot_topo(grid, res)
-ut.pl.draw_coastline(grid, res)
+ut.pl.draw_boot_topo(grid)
+ut.pl.draw_coastline(grid)
 
 # loop on records
 for i, rec in enumerate(records):
+    dt = offsets[i]
     ax = grid[i]
     ax.set_rasterization_zorder(2.5)
     ut.pl.draw_ne_vectors(ax)
 
     # read extra output
-    nc = ut.io.open_extra_file(res, rec, offsets[i])
+    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                    '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                     % (rec, round(100*dt)))
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

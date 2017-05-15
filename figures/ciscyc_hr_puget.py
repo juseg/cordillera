@@ -17,7 +17,8 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=4, sharex=True, sharey=True,
                              wspace=2.5, hspace=2.5)
 
 # load extra output
-nc = ut.io.open_extra_file('5km', 'grip', 6.1)
+nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                'grip3222cool610+ccyc4+till1545/y???????-extra.nc')
 
 # loop on records[i]
 for i, t in enumerate(times):

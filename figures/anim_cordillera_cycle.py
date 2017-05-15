@@ -102,7 +102,9 @@ tsax.legend(loc='upper left')
 cursor = tsax.axvline(60.0, c='k', lw=0.25)
 
 # load extra datasets
-datasets = [ut.io.open_extra_file(res, rec, dt)
+datasets = [ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
+                       '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
+                       % (rec, round(100*dt)))
             for (rec, dt) in zip(records, offsets)]
 times = [nc.variables['time'][:]*ut.s2a for nc in datasets]
 time = np.intersect1d(*times)
