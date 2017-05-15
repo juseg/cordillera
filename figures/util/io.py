@@ -15,7 +15,7 @@ import iceplotlib.plot as iplt
 pism_dir = os.environ['HOME'] + '/pism/'
 config='ccyc4+till1545'
 period='3222'
-version = '0.7.2'
+version = '0.7.2-craypetsc'
 
 # unit conversion
 a2s = 365.0 * 24 * 60 * 60

@@ -14,7 +14,7 @@ import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
 
 # file path
-filename = (os.environ['HOME'] + '/pism/output/0.7.2/cordillera-narr-5km/'
+filename = (os.environ['HOME'] + '/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
             'grip3222cool620+ccyc4+till1545/y???????-extra.nc')
 t = -19.1e3
 thkth=1.0

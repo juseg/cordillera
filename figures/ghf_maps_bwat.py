@@ -13,7 +13,7 @@ import iceplotlib.plot as iplt
 t = -19000.0
 
 # file paths
-filepath = ('/home/juliens/pism/output/0.7.2/cordillera-narr-{res}/'
+filepath = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-{res}/'
             'grip3222cool620+{conf}+till1545{gflx}/y???????-extra.nc')
 confargs = ['cgeo1+hynull'] + 5*['cgeo1']
 gflxargs = 2*[''] + ['+dav13', '+gou11comb', '+gou11simi', '+sha04']

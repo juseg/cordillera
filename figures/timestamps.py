@@ -9,7 +9,7 @@ import netCDF4
 s2ka = 1/(365.0 * 24 * 60 * 60 * 1000)
 
 # file paths
-filepath = ('/home/juliens/pism/output/0.7.2/cordillera-narr-{res}/'
+filepath = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-{res}/'
             'grip3222cool620+{conf}+till1545{gflx}/y???????-extra.nc')
 hreslist = ['10km', '5km']
 confargs = ['cgeo1+hynull'] + 5*['cgeo1']

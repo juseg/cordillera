@@ -6,7 +6,7 @@ import numpy as np
 import iceplotlib.plot as iplt
 
 offsets = [6.2, 6.6, 5.9, 6.0, 6.1, 5.9]
-versions = ('dev-140915-8ff7cbe', '0.7.2')
+versions = ('dev-140915-8ff7cbe', '0.7.2-craypetsc')
 
 # initialize time-series figure
 figw, figh = 85.0, 80.01

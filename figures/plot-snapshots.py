@@ -26,7 +26,7 @@ def bounded_argmax(a, coord, bmin, bmax):
     return np.ma.argmax(np.ma.array(a, mask=(coord < bmin)+(bmax < coord)))
 
 # file path
-run_path = (os.environ['HOME'] + '/pism/output/0.7.2/cordillera-narr-5km/'
+run_path = (os.environ['HOME'] + '/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
             'grip3222cool620+ccyc4+till1545/y???????')
 
 # read output time series

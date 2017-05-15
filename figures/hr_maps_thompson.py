@@ -30,7 +30,7 @@ for i, rec in enumerate(records):
 
     # open extra file
     print 'reading %s extra output...' % rec
-    filename = ('/home/juliens/pism/output/0.7.2/cordillera-narr-5km/'
+    filename = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
                 '%s3222cool%d+ccyc4+till1545/y0??0000-extra.nc'
                 % (rec, round(100*dt)))
     nc = iplt.load(filename)
