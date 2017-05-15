@@ -61,4 +61,4 @@ cb.set_label('subglacial lake depth (m)')
 ax.set_extent(extent, crs=ax.projection)
 
 # save
-fig.savefig('ghf_sublakes')
+ut.pl.savefig(fig)

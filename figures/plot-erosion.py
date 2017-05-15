@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
@@ -52,4 +53,4 @@ nc.close()
 cax = fig.add_axes([1-45/figw, 5/figh, 40/figw, 2.5/figh])
 cb = fig.colorbar(cf, cax, format='%i', orientation='horizontal')
 cb.set_label('Cumulative basal displacement (km)')
-fig.savefig('plot-erosion')
+ut.pl.savefig(fig)

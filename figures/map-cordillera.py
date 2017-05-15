@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('iceplotlib')
 
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
@@ -164,4 +165,4 @@ draw_graticules()
 add_names()
 
 # save
-fig.savefig('map-cordillera')
+ut.pl.savefig(fig)

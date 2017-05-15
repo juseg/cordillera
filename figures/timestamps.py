@@ -40,4 +40,4 @@ for ax, res in zip(grid, hreslist):
 # save
 grid[0].legend(loc='best')
 grid[1].set_xlabel('model time (ka)')
-fig.savefig('timestamps')
+ut.pl.savefig(fig)

@@ -14,4 +14,4 @@ fig = ut.pl.fig_hr_pf(res, rec, dt, color)
 
 # save
 print('saving...')
-fig.savefig('hr_pf_epica')
+ut.pl.savefig(fig)

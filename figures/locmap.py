@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('iceplotlib')
 
+import util as ut
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
 import cartopy.crs as ccrs
@@ -164,4 +165,5 @@ draw_graticules()
 add_names()
 
 # save
-fig.savefig('locmap')
+import util as ut
+ut.pl.savefig(fig)

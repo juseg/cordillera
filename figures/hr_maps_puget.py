@@ -61,5 +61,5 @@ for i, t in enumerate(times):
 
 # save
 print 'saving puget...'
-fig.savefig('hr_maps_puget')
+ut.pl.savefig(fig)
 nc.close()

@@ -5,6 +5,7 @@
 import sys
 sys.path.append('iceplotlib')
 
+import util as ut
 import numpy as np
 import matplotlib.pyplot as plt
 import iceplotlib.plot as iplt
@@ -48,4 +49,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax, extend='both')
 cb.set_label(r'geothermal heat flux ($mW\,m^{-2}$)')
-fig.savefig('ghf_maps_gflx')
+ut.pl.savefig(fig)

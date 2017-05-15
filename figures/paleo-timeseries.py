@@ -2,6 +2,7 @@
 # coding: utf-8
 
 import os
+import util as ut
 import numpy as np
 from matplotlib import pyplot as plt
 
@@ -49,4 +50,4 @@ for ax in grid:
     ax.yaxis.set_label_coords(-0.08, 0.5)
 
 # save
-fig.savefig('paleo-timeseries', dpi=254)
+ut.pl.savefig(fig)

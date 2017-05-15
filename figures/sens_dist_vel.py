@@ -59,4 +59,4 @@ ax.set_xticklabels(ut.sens.labels)
 grid[1].set_ylabel(r'log of surface velocity ($m\,a^{-1}$)')
 
 # save
-fig.savefig('sens_dist_vel')
+ut.pl.savefig(fig)

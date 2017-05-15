@@ -8,6 +8,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
@@ -79,4 +80,4 @@ for i, ax in enumerate(grid):
             fontweight='bold', transform=ax.transAxes)
 
 # save
-fig.savefig('plot-sdeffect')
+ut.pl.savefig(fig)

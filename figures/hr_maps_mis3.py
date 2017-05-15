@@ -8,4 +8,4 @@ fig = ut.pl.fig_hr_maps_mis(mis=3)
 
 # save
 print('saving...')
-fig.savefig('hr_maps_mis3')
+ut.pl.savefig(fig)

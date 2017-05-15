@@ -68,4 +68,4 @@ for j in range(3):
 
 # save
 print 'saving...'
-fig.savefig('sens_maps')
+ut.pl.savefig(fig)

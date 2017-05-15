@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
@@ -58,4 +59,4 @@ cb = fig.colorbar(cs, cax=cax, orientation='horizontal',
 cb.set_label(u'July PDD standard deviation (K)')
 
 # save
-fig.savefig('plot-sdmap')
+ut.pl.savefig(fig)

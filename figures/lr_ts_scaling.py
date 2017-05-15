@@ -103,5 +103,5 @@ ax2.legend(loc='upper left', ncol=2)
 
 # save figure
 print 'saving plot...'
-fig.savefig('lr_ts_scaling')
+ut.pl.savefig(fig)
 

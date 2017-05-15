@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 # coding: utf-8
 
+import util as ut
 from matplotlib import pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.io.shapereader as shpreader
@@ -59,4 +60,4 @@ for i, ax in enumerate(grid):
             fontweight='bold', transform=ax.transAxes)
 
 # save
-fig.savefig('paleo-glaciation')
+ut.pl.savefig(fig)

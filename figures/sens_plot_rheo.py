@@ -81,4 +81,4 @@ if __name__ == '__main__':
                  va='center', rotation=90.0, transform=grid[1].transAxes)
     
     # save
-    fig.savefig('sens_plot_rheo')
+    ut.pl.savefig(fig)

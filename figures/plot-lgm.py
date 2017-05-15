@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
@@ -69,4 +70,4 @@ cb = plt.colorbar(im, cax=cax)
 cb.set_label('ice surface velocity (m/a)')
 
 # save
-fig.savefig('plot-lgm')
+ut.pl.savefig(fig)

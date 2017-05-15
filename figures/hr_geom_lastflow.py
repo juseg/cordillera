@@ -107,4 +107,4 @@ cb = ColorbarBase(cax, cmap=cmap, norm=norm, orientation='horizontal',
 cb.set_label('age of last basal sliding (ka)')
 cax.get_xticklabels()[0].set_ha('left')
 cax.get_xticklabels()[-1].set_ha('right')
-fig.savefig('hr_geom_lastflow')
+ut.pl.savefig(fig)

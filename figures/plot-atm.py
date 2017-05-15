@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as mplt
@@ -99,4 +100,4 @@ for i, ax in enumerate(grid):
             fontweight='bold', transform=ax.transAxes)
 
 # save
-fig.savefig('plot-atm')
+ut.pl.savefig(fig)

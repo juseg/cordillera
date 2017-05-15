@@ -78,4 +78,4 @@ ut.pl.add_corner_tag(grid[0, 2], 'January')
 ut.pl.add_corner_tag(grid[1, 2], 'July')
 
 # save
-fig.savefig('atm')
+ut.pl.savefig(fig)

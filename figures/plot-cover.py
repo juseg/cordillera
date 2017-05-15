@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import LogNorm
@@ -65,4 +66,4 @@ nc.close()
 #cb.set_label('ice surface velocity (m/a)')
 
 # save
-fig.savefig('plot-cover')
+ut.pl.savefig(fig)

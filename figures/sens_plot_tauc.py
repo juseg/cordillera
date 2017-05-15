@@ -54,4 +54,4 @@ if __name__ == '__main__':
     ax.legend(loc='best')
     
     # save
-    fig.savefig('sens_plot_tauc')
+    ut.pl.savefig(fig)

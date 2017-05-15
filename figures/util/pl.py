@@ -6,6 +6,7 @@
 import util as ut
 
 import os
+import sys
 import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.transforms import ScaledTranslation
@@ -188,3 +189,11 @@ def fig_hr_pf(res, rec, dt, color):
 
     # return produced figure
     return fig
+
+
+def savefig(fig=None):
+    """Save figure to script filename."""
+    import sys
+    fig = fig or gcf()
+    res = fig.savefig(ut.io.os.path.splitext(sys.argv[0])[0])
+    return res

@@ -5,6 +5,7 @@
 import sys
 sys.path.append('iceplotlib')
 
+import util as ut
 import numpy as np
 import matplotlib.pyplot as plt
 import iceplotlib.plot as iplt
@@ -45,4 +46,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'average subglacial water height (m)')
-fig.savefig('ghf_cumu_bwat')
+ut.pl.savefig(fig)

@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
@@ -108,4 +109,4 @@ cb = ColorbarBase(cax, cmap=cmap, norm=norm) #, ticks=range(8, 23, 2))
 cb.set_label('Age of last basal sliding (kyr)')
 ax.set_xlim(w, e)
 ax.set_ylim(s, n)
-fig.savefig('plot-lastflow')
+ut.pl.savefig(fig)

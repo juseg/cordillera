@@ -5,6 +5,7 @@ import sys
 
 sys.path.append('iceplotlib')
 
+import util as ut
 from netCDF4 import Dataset
 from matplotlib import pyplot as plt
 from matplotlib.colors import Normalize
@@ -150,4 +151,4 @@ draw_graticules()
 add_names()
 
 # save
-fig.savefig('map-northamerica')
+ut.pl.savefig(fig)

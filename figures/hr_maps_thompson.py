@@ -77,5 +77,5 @@ for i, rec in enumerate(records):
 
     # save
     print 'saving %s figure...' % rec
-    fig.savefig('hr_maps_thompson_%s' % rec)
+    ut.pl.savefig(fig)
     nc.close()

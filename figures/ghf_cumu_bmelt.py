@@ -5,6 +5,7 @@
 import sys
 sys.path.append('iceplotlib')
 
+import util as ut
 import numpy as np
 import matplotlib.pyplot as plt
 import iceplotlib.plot as iplt
@@ -43,4 +44,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'average basal melt rate ($m\,yr^{-1}$)')
-fig.savefig('ghf_cumu_bmelt')
+ut.pl.savefig(fig)

@@ -5,6 +5,7 @@
 import sys
 sys.path.append('iceplotlib')
 
+import util as ut
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
@@ -68,4 +69,4 @@ for i, (conf, gflx) in enumerate(zip(confargs, gflxargs)):
 # add colorbar and save
 cb = fig.colorbar(im, cax)
 cb.set_label(r'subglacial water velocity ($m\,a^{-1}$)')
-fig.savefig('ghf_maps_bwatvel')
+ut.pl.savefig(fig)

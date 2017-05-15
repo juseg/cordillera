@@ -64,4 +64,4 @@ ax.set_ylabel(r'grounded ice extent at MIS 2 ($10^6\,km^2$)')
 
 # save
 print 'saving...'
-fig.savefig('lr_misareas')
+ut.pl.savefig(fig)

@@ -6,6 +6,7 @@ import sys
 sys.path.append('iceplotlib')
 
 import os
+import util as ut
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.colors import BoundaryNorm, LogNorm, Normalize
@@ -138,4 +139,4 @@ fig.text(5/figw, 31.75/figh, '(b)', fontweight='bold')
 
 # save
 print 'saving...'
-fig.savefig('plot-snapshots')
+ut.pl.savefig(fig)

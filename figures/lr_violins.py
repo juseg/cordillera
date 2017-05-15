@@ -39,4 +39,4 @@ ax.set_xlabel('record')
 
 # save
 print 'saving violins...'
-fig.savefig('lr_violins')
+ut.pl.savefig(fig)

@@ -111,4 +111,4 @@ ax.text((14+0)/2, 8.5, 'MIS 1', ha='center')
 # set axes properties and save time series
 print 'saving timeseries...'
 ax.set_xlabel('model age (ka)')
-fig.savefig('sens_ts')
+ut.pl.savefig(fig)
