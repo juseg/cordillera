@@ -25,6 +25,18 @@ colorvals = iplt.get_cmap('Paired', 12)(range(12))
 palette = dict(zip(colorkeys, colorvals))
 
 
+# Mapping properties
+# ------------------
+
+# velocity norm
+velnorm = iplt.matplotlib.colors.LogNorm(1e1, 1e3)
+
+# contour levels
+topolevs = range(0, 4000, 200)
+inlevs = [l for l in topolevs if l % 1000 != 0]
+utlevs = [l for l in topolevs if l % 1000 == 0]
+
+
 # Geographic data
 # ---------------
 
@@ -157,52 +169,6 @@ def make_geoaxes(ax):
     gax.set_xlim(ax.get_xlim())
     gax.set_ylim(ax.get_ylim())
     return gax
-
-
-def fig_hr_maps_mis(mis):
-
-    # initialize figure
-    fig, grid, cax = ut.pl.subplots_2_cax()
-
-    # loop on records
-    for i, rec in enumerate(ut.ciscyc_hr_records):
-        dt = ut.ciscyc_hr_offsets[i]
-        ax = grid[i]
-
-        # get ice volume maximum
-        t = ut.io.get_mis_times('5km', rec, dt)[-1][1-mis]
-
-        # load extra output
-        nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
-                        '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
-                        % ('5km', rec.replace(' ', '').lower(), round(100*dt)))
-
-        # plot
-        nc.imshow('topg', ax=ax, t=t,
-                  cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
-        nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
-                   colors='0.25', linewidths=0.25, zorder=0)
-        nc.icemargin(ax=ax, t=t,
-                     linewidths=0.5)
-        nc.contour('usurf', ax=ax, t=t,
-                   levels=range(200, 5000, 200),
-                   cmap=None, colors='k', linewidths=0.1)
-        nc.contour('usurf', ax=ax, t=t,
-                   levels=range(1000, 5000, 1000),
-                   cmap=None, colors='k', linewidths=0.25)
-        im = nc.imshow('velsurf_mag', ax=ax, t=t,
-                       cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
-        ut.pl.draw_natural_earth(ax)
-        ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (rec.upper(), -t/1e3))
-
-    # close extra file
-    nc.close()
-
-    # add colorbar and return figure
-    cb = fig.colorbar(im, cax, extend='both', orientation='horizontal',
-                      format='%i', ticks=np.logspace(1, 3.5, 6))
-    cb.set_label(r'surface velocity ($m\,a^{-1}$)', labelpad=-0.0)
-    return fig
 
 
 def fig_hr_pf(res, rec, dt, color):
