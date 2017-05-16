@@ -13,17 +13,65 @@ from matplotlib.transforms import ScaledTranslation
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
+# Geographic data
+# ---------------
+
+# geographic projections
+ll = ccrs.PlateCarree()
+cal = ccrs.LambertConformal(central_longitude=-95.0, central_latitude=49.0,
+                            false_easting=0.0, false_northing=0.0,
+                            standard_parallels=(49.0, 77.0))
+proj = cal  # FIXME replace proj by cal in scripts
+
+# geographic regions
+regions = {'cordillera': (-2500e3, -1000e3, 0e3, 3000e3)}  # model domain
+
 # unit conversion
+# FIXME: use subplots_mm instead
 in2mm = 1/25.4
 pt2mm = 72*in2mm
 
-# geographic projection
-proj = ccrs.LambertConformal(
-    central_longitude=-95.0, central_latitude=49.0,
-    false_easting=0.0, false_northing=0.0,
-    standard_parallels=(49.0, 77.0), globe=None, cutoff=0)
+# Figures and axes creation
+# -------------------------
+
+def prepare_axes(grid=None, extent='cordillera', mis=True):
+    """Prepare map and timeseries axes before plotting."""
+
+    # prepare map axes
+    for i, ax in enumerate(grid):
+        ax.set_rasterization_zorder(2.5)
+        ax.set_extent(regions[extent], crs=ax.projection)
+        add_subfig_label('(%s)' % 'abcdefghijklmnopqrstuvwxyz'[i], ax=ax)
+
+    ## prepare timeseries axes
+    #if tsax is not None:
+    #    tsax.locator_params(axis='y', nbins=6)
+    #    tsax.grid(axis='y')
+    #    plot_dt(tsax)
+    #    if mis is True:
+    #        plot_mis(tsax)
+
+
+def subplots_2_cax(extent='cordillera'):
+    """Init figure with two subplots and bottom colorbar."""
+    figw, figh = 85.0, 95.0
+    fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                                 figsize=(figw, figh), projection=cal,
+                                 left=2.5, right=2.5, bottom=15.0, top=2.5,
+                                 wspace=2.5, hspace=2.5)
+    prepare_axes(grid, extent=extent)
+    cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
+    return fig, grid, cax
+
+
+# Text annotations
+# ----------------
 
 def add_corner_tag(ax, s, ha='right', va='top', offset=2.5*in2mm):
+# FIXME update to use same function as in Alps project
+#def add_corner_tag(text, ax=None, ha='right', va='top', offset=2.5/25.4):
+#    """Add text in figure corner."""
+#    return add_subfig_label(text, ax=ax, ha=ha, va=va, offset=offset)
     fig = ax.get_figure()
     x = (ha == 'right')  # 0 for left edge, 1 for right edge
     y = (va == 'top')  # 0 for bottom edge, 1 for top edge
@@ -40,6 +88,19 @@ def add_pointer_tag(ax, s, xy, xytext):
                        xycoords='data', textcoords='data',
                        bbox=dict(ec='k', fc='w', boxstyle='square'),
                        arrowprops=dict(arrowstyle="->"))
+
+
+def add_subfig_label(text, ax=None, ha='left', va='top', offset=2.5/25.4):
+    """Add figure label in bold."""
+    ax = ax or iplt.gca()
+    x = (ha == 'right')  # 0 for left edge, 1 for right edge
+    y = (va == 'top')  # 0 for bottom edge, 1 for top edge
+    xoffset = (1 - 2*x)*offset
+    yoffset = (1 - 2*y)*offset
+    offset = iplt.matplotlib.transforms.ScaledTranslation(
+        xoffset, yoffset, ax.figure.dpi_scale_trans)
+    return ax.text(x, y, text, ha=ha, va=va, fontweight='bold',
+                   transform=ax.transAxes + offset)
 
 
 def draw_boot_topo(grid):
@@ -90,18 +151,12 @@ def fig_hr_maps_mis(mis):
     offsets = ut.hr.offsets
 
     # initialize figure
-    figw, figh = 85.0, 95.0
-    fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                                 figsize=(figw, figh), projection=ut.pl.proj,
-                                 left=2.5, right=2.5, bottom=15.0, top=2.5,
-                                 wspace=2.5, hspace=2.5)
-    cax = fig.add_axes([2.5/figw, 7.5/figh, 1-5.0/figw, 5.0/figh])
+    fig, grid, cax = ut.pl.subplots_2_cax()
 
     # loop on records
     for i, rec in enumerate(records):
         dt = offsets[i]
         ax = grid[i]
-        ax.set_rasterization_zorder(2.5)
 
         # get ice volume maximum
         t = ut.io.get_mis_times(res, rec, offsets[i])[-1][1-mis]
