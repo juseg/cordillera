@@ -170,15 +170,6 @@ def draw_boot_topo(ax):
     return im
 
 
-def make_geoaxes(ax):
-    gax = ax.figure.add_axes(ax.get_position(), projection=proj)
-    gax.background_patch.set_visible(False)
-    gax.set_rasterization_zorder(2.5)
-    gax.set_xlim(ax.get_xlim())
-    gax.set_ylim(ax.get_ylim())
-    return gax
-
-
 # Saving figures
 # --------------
 
