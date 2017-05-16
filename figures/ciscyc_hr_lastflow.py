@@ -26,7 +26,6 @@ ut.pl.draw_coastline(grid)
 for i, rec in enumerate(records):
     dt = offsets[i]
     ax = grid[i]
-    ut.pl.draw_ne_vectors(ax)
 
     # backup axes limits
     xlim = ax.get_xlim()
@@ -84,9 +83,12 @@ for i, rec in enumerate(records):
     ax.set_xlim(xlim)
     ax.set_ylim(ylim)
 
-    # annotate
-    ut.pl.add_corner_tag(ax, rec.upper())
+    # close extra file
     nc.close()
+
+    # add map elements
+    ut.pl.draw_natural_earth(ax)
+    ut.pl.add_corner_tag(ax, rec.upper())
 
 # locate Liard Lowland and Fraser Plateau
 ut.pl.add_pointer_tag(ax, 'LL', xy=(-1700e3, 1600e3), xytext=(-1100e3, 1600e3))

@@ -29,7 +29,7 @@ ut.pl.draw_coastline(grid)
 # draw natural earth elements
 for ax in grid.flat:
     ax.set_rasterization_zorder(2.5)
-    ut.pl.draw_ne_vectors(ax)  # swap to geoaxes after that
+    ut.pl.draw_natural_earth(ax)
 
 # plot temperature
 levs = range(-30, 31, 6)  # or [-30 ] + range(-20,21,5) + [30]

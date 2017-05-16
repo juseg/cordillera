@@ -25,7 +25,6 @@ ut.pl.draw_coastline(grid)
 for i, rec in enumerate(records):
     dt = offsets[i]
     ax = grid[i]
-    ut.pl.draw_ne_vectors(ax)
 
     # read extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
@@ -71,7 +70,11 @@ for i, rec in enumerate(records):
     ax.contour(x[:], y[:], deglacage.mask, levels=[0.5],
                       colors='k', linestyles='solid', linewidths=0.5)
 
-    # annotate
+    # close extra file
+    nc.close()
+
+    # add map elements
+    ut.pl.draw_natural_earth(ax)
     ut.pl.add_corner_tag(ax, rec.upper())
 
     # add profile lines
@@ -87,4 +90,3 @@ ut.pl.add_pointer_tag(grid[0], 'OM', xy=(-1800e3, 1400e3), xytext=(-1300e3, 1250
 cb = fig.colorbar(cs, cax, orientation='horizontal', ticks=ages)
 cb.set_label('deglaciation age (ka)')
 ut.pl.savefig(fig)
-nc.close()

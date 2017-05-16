@@ -35,7 +35,6 @@ for i, rec in enumerate(ut.lr.records):
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
-        ut.pl.draw_ne_vectors(ax)
         nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                    colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t,
@@ -50,6 +49,7 @@ for i, rec in enumerate(ut.lr.records):
         nc.contour('usurf', ax=ax, t=t,
                    levels=range(1000, 5000, 1000),
                    cmap=None, colors='k', linewidths=0.25)
+        ut.pl.draw_natural_earth(ax)
         ut.pl.add_corner_tag(ax, '%.1f ka' % (-mis_times[j]/1e3))
 
     # close extra file

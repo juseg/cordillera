@@ -40,10 +40,10 @@ for i, conf in enumerate(ut.sens.configs):
             for ax in grid[:, j]:
                 nc.imshow('topg', ax=ax, t=t,
                           cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
-                ut.pl.draw_ne_vectors(ax)
                 nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                            colors='0.25', linewidths=0.25, zorder=0)
                 nc.icemargin(ax=ax, t=t, colors=ut.sens.colors[i], zorder=3)
+                ut.pl.draw_natural_earth(ax)
 
     # close
     nc.close()

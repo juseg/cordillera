@@ -21,7 +21,6 @@ ut.pl.draw_coastline(grid)
 for i, rec in enumerate(records):
     dt = offsets[i]
     ax = grid[i]
-    ut.pl.draw_ne_vectors(ax)
 
     # load extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
@@ -56,6 +55,9 @@ for i, rec in enumerate(records):
 
     # close extra file
     nc.close()
+
+    # add map elements
+    ut.pl.draw_natural_earth(ax)
     ut.pl.add_corner_tag(ax, rec.upper())
 
 # locate major mountain ranges

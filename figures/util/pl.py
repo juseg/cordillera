@@ -26,6 +26,20 @@ proj = cal  # FIXME replace proj by cal in scripts
 # geographic regions
 regions = {'cordillera': (-2500e3, -1000e3, 0e3, 3000e3)}  # model domain
 
+# cartopy features
+rivers = cfeature.NaturalEarthFeature(
+    category='physical', name='rivers_lake_centerlines', scale='50m',
+    edgecolor='0.25', facecolor='none', lw=0.5)
+lakes = cfeature.NaturalEarthFeature(
+    category='physical', name='lakes', scale='50m',
+    edgecolor='0.25', facecolor='0.85', lw=0.25)
+coastline = cfeature.NaturalEarthFeature(
+    category='physical', name='coastline', scale='50m',
+    edgecolor='0.25', facecolor='none', lw=0.25)
+graticules = cfeature.NaturalEarthFeature(
+    category='physical', name='graticules_5', scale='50m',
+    edgecolor='0.25', facecolor='none', lw=0.1)
+
 # unit conversion
 # FIXME: use subplots_mm instead
 in2mm = 1/25.4
@@ -103,6 +117,18 @@ def add_subfig_label(text, ax=None, ha='left', va='top', offset=2.5/25.4):
                    transform=ax.transAxes + offset)
 
 
+# Map elements
+# ------------
+
+def draw_natural_earth(ax=None):
+    """Add Natural Earth geographic data vectors."""
+    ax = ax or iplt.gca()
+    ax.add_feature(rivers, zorder=0)
+    ax.add_feature(lakes, zorder=0)
+    ax.add_feature(coastline, zorder=0)
+    ax.add_feature(graticules)
+
+
 def draw_boot_topo(grid):
     nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
     for ax in grid.flat:
@@ -127,20 +153,6 @@ def make_geoaxes(ax):
     gax.set_xlim(ax.get_xlim())
     gax.set_ylim(ax.get_ylim())
     return gax
-
-
-def draw_ne_vectors(ax):
-    bwu = 0.5
-    scale = '50m'
-    ax.add_feature(cfeature.NaturalEarthFeature(
-        category='physical', name='rivers_lake_centerlines', scale=scale,
-        edgecolor='0.25', facecolor='none', lw=1.0*bwu), zorder=0)
-    ax.add_feature(cfeature.NaturalEarthFeature(
-        category='physical', name='lakes', scale=scale,
-        edgecolor='0.25', facecolor='0.85', lw=0.5*bwu), zorder=0)
-    ax.add_feature(cfeature.NaturalEarthFeature(
-        category='physical', name='graticules_5', scale=scale,
-        edgecolor='0.25', facecolor='none', lw=0.25*bwu))
 
 
 def fig_hr_maps_mis(mis):
@@ -169,7 +181,6 @@ def fig_hr_maps_mis(mis):
         # plot
         nc.imshow('topg', ax=ax, t=t,
                   cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
-        ut.pl.draw_ne_vectors(ax)
         nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                    colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t,
@@ -182,6 +193,7 @@ def fig_hr_maps_mis(mis):
                    cmap=None, colors='k', linewidths=0.25)
         im = nc.imshow('velsurf_mag', ax=ax, t=t,
                        cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
+        ut.pl.draw_natural_earth(ax)
         ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (rec.upper(), -t/1e3))
 
     # close extra file

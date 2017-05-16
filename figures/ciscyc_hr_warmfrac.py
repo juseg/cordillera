@@ -20,7 +20,6 @@ ut.pl.draw_boot_topo(grid)
 for i, rec in enumerate(records):
     dt = offsets[i]
     ax = grid[i]
-    ut.pl.draw_ne_vectors(ax)
 
     # read extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
@@ -54,8 +53,11 @@ for i, rec in enumerate(records):
                       colors='k', linewidths=0.5)
 
     # close extra file
-    ut.pl.add_corner_tag(ax, rec.upper())
     nc.close()
+
+    # add map elements
+    ut.pl.draw_natural_earth(ax)
+    ut.pl.add_corner_tag(ax, rec.upper())
 
 # locate Skeena Mountains
 ut.pl.add_pointer_tag(ax, 'SM', xy=(-2000e3, 1450e3), xytext=(-2350e3, 1450e3))

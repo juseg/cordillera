@@ -33,7 +33,6 @@ for i, rec in enumerate(records):
         ax.set_rasterization_zorder(2.5)
         nc.imshow('topg', ax=ax, t=t, cmap=ut.topo_cmap, norm=ut.topo_norm,
                   zorder=-1)
-        ut.pl.draw_ne_vectors(ax)
         nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                    colors='0.25', linewidths=0.25, zorder=0)
         nc.icemargin(ax=ax, t=t, linewidths=0.5)
@@ -43,6 +42,7 @@ for i, rec in enumerate(records):
                    cmap=None, colors='k', linewidths=0.25)
         im = nc.imshow('velsurf_mag', ax=ax, t=t,
                        cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
+        ut.pl.draw_natural_earth(ax)
         ut.pl.add_corner_tag(ax, '%s ka' % (-t/1e3))
 
         # add profile lines
