@@ -6,8 +6,6 @@ import numpy as np
 import iceplotlib.plot as iplt
 from matplotlib.patches import Rectangle
 
-res = '10km'
-
 # initialize time-series figure
 figw, figh = 135.0, 80.0
 fig, (ax1, ax2) = iplt.subplots_mm(nrows=2, ncols=1, sharex=True,
@@ -19,14 +17,17 @@ mis_times = np.zeros((6, 3), dtype=float)
 mis_ivols = np.zeros((6, 3), dtype=float)
 
 # loop on records
-for i, rec in enumerate(ut.lr.records):
-    dt = ut.lr.offsets[i]
+for i, rec in enumerate(ut.ciscyc_lr_records):
+    dt = ut.ciscyc_lr_offsets[i]
+    m = ut.ciscyc_lr_markers[i]
+    c = ut.ciscyc_lr_colours[i]
 
     # get MIS times
-    mis_idces[i], mis_times[i] = ut.io.get_mis_times(res, rec, dt)
+    mis_idces[i], mis_times[i] = ut.io.get_mis_times('10km', rec, dt)
 
     # load forcing time series
-    nc = ut.io.load('input/dt/%s3222cool%04d.nc' % (rec, round(100*dt)))
+    nc = ut.io.load('input/dt/%s3222cool%04d.nc'
+                    % (rec.replace(' ', '').lower(), round(100*dt)))
     dt_time = nc.variables['time'][:]*1e-3
     dt_temp = nc.variables['delta_T'][:]
     nc.close()
@@ -34,27 +35,27 @@ for i, rec in enumerate(ut.lr.records):
     # load output time series
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
                     '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
-                    % (rec, round(100*dt)))
+                    % (rec.replace(' ', '').lower(), round(100*dt)))
     ts_time = nc.variables['time'][:]*ut.s2ka
     ts_ivol = nc.variables['slvol'][:]
     nc.close()
     mis_ivols[i] = ts_ivol[mis_idces[i]]
 
     # plot time series
-    ax1.plot(-dt_time, dt_temp, color=ut.lr.colors[i])
-    ax2.plot(-ts_time, ts_ivol, color=ut.lr.colors[i])
+    ax1.plot(-dt_time, dt_temp, color=c)
+    ax2.plot(-ts_time, ts_ivol, color=c)
     ax2.plot(-mis_times[i]/1e3, ts_ivol[mis_idces[i]], ls=' ',
-             color=ut.lr.colors[i], marker=ut.lr.markers[i], label=ut.lr.labels[i])
+             color=c, marker=m, label=rec)
 
     # look for a high-resolution run
     try:
         nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                         '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
-                        % (rec, round(100*dt)))
+                        % (rec.replace(' ', '').lower(), round(100*dt)))
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
-        ax2.plot(-ts_time, ts_ivol, color=ut.lr.colors[i], dashes=(1, 1))
+        ax2.plot(-ts_time, ts_ivol, color=c, dashes=(1, 1))
     except RuntimeError:
         pass
 

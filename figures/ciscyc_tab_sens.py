@@ -4,9 +4,6 @@
 import util as ut
 import numpy as np
 
-res = '10km'
-rec = 'grip'
-
 # latex header and footer
 header=r'''\documentclass[border=2.5mm]{standalone}
 \newcommand\tophline{\hline\noalign{\vspace{1mm}}}
@@ -50,12 +47,12 @@ with open('ciscyc_tab_sens.tex', 'w') as f:
     f.write(header)
 
     # loop on records
-    for i, conf in enumerate(ut.sens.configs):
-        dt = ut.sens.offsets[i]
-        label = ut.sens.labels[i]
+    for i, conf in enumerate(ut.ciscyc_sens_configs):
+        dt = ut.ciscyc_sens_offsets[i]
+        label = ut.ciscyc_sens_clabels[i]
 
         # get MIS times
-        mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
+        mis_idces, mis_times = ut.io.get_mis_times('10km', 'grip', dt, config=conf)
 
         # compute area from extra file
         nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'

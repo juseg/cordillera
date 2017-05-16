@@ -13,6 +13,18 @@ from matplotlib.transforms import ScaledTranslation
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
+
+# Color palette
+# -------------
+
+# color brewer Paired palette
+colorkeys = [tone+hue
+             for hue in ('blue', 'green', 'red', 'orange', 'purple', 'brown')
+             for tone in ('light', 'dark')]
+colorvals = iplt.get_cmap('Paired', 12)(range(12))
+palette = dict(zip(colorkeys, colorvals))
+
+
 # Geographic data
 # ---------------
 
@@ -157,26 +169,21 @@ def make_geoaxes(ax):
 
 def fig_hr_maps_mis(mis):
 
-    # parameters
-    res = '5km'
-    records = ut.hr.records
-    offsets = ut.hr.offsets
-
     # initialize figure
     fig, grid, cax = ut.pl.subplots_2_cax()
 
     # loop on records
-    for i, rec in enumerate(records):
-        dt = offsets[i]
+    for i, rec in enumerate(ut.ciscyc_hr_records):
+        dt = ut.ciscyc_hr_offsets[i]
         ax = grid[i]
 
         # get ice volume maximum
-        t = ut.io.get_mis_times(res, rec, offsets[i])[-1][1-mis]
+        t = ut.io.get_mis_times('5km', rec, dt)[-1][1-mis]
 
         # load extra output
         nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
                         '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
-                        % (res, rec, round(100*dt)))
+                        % ('5km', rec.replace(' ', '').lower(), round(100*dt)))
 
         # plot
         nc.imshow('topg', ax=ax, t=t,
@@ -221,7 +228,7 @@ def fig_hr_pf(res, rec, dt, color):
     # read extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
                     '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
-                    % (res, rec, round(100*dt)))
+                    % (res, rec.replace(' ', '').lower(), round(100*dt)))
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

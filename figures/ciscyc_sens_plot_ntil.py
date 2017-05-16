@@ -71,11 +71,14 @@ if __name__ == '__main__':
 
         # plot
         plot_Ntil(W, ax=ax, delta=0.02, Wmax=2.0, annotate=True,
-                  color=ut.sens.colors[0], label=ut.sens.labels[0])
+                  color=ut.ciscyc_sens_colours[0],
+                  label=ut.ciscyc_sens_clabels[0])
         plot_Ntil(W, ax=ax, delta=0.01, Wmax=1.0,
-                  color=ut.sens.colors[3], label=ut.sens.labels[3])
+                  color=ut.ciscyc_sens_colours[3],
+                  label=ut.ciscyc_sens_clabels[3])
         plot_Ntil(W, ax=ax, delta=0.05, Wmax=5.0,
-                  color=ut.sens.colors[4], label=ut.sens.labels[4])
+                  color=ut.ciscyc_sens_colours[4],
+                  label=ut.ciscyc_sens_clabels[4])
 
         # set axes properties
         ax.set_ylabel('effective pressure N (bar)')

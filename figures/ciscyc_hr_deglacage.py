@@ -7,12 +7,10 @@ import iceplotlib.plot as iplt
 from matplotlib.colors import BoundaryNorm
 
 # parameters
-records = ut.hr.records
-offsets = ut.hr.offsets
 ages = range(8, 23, 1)
 levs = [-0.5] + ages
 cmap = iplt.get_cmap('RdBu_r')
-cmap.set_over(ut.lr.colors[4])  # dark green
+cmap.set_over(ut.pl.palette['darkgreen'])
 
 # initialize figure
 fig, grid, cax = ut.pl.subplots_2_cax()
@@ -22,14 +20,14 @@ ut.pl.draw_boot_topo(grid)
 ut.pl.draw_coastline(grid)
 
 # loop on records
-for i, rec in enumerate(records):
-    dt = offsets[i]
+for i, rec in enumerate(ut.ciscyc_hr_records):
+    dt = ut.ciscyc_hr_offsets[i]
     ax = grid[i]
 
     # read extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                     '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                     % (rec, round(100*dt)))
+                     % (rec.replace(' ', '').lower(), round(100*dt)))
     x = nc.variables['x']
     y = nc.variables['y']
     time = nc.variables['time']

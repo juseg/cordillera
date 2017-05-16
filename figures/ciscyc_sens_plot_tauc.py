@@ -43,9 +43,11 @@ if __name__ == '__main__':
 
     # plot with different delta
     ax.plot(b, tauc_min(tillphi(b), delta=0.05)*1e-5,
-            c=ut.sens.colors[3], label=ut.sens.labels[3])
+            color=ut.ciscyc_sens_colours[3],
+            label=ut.ciscyc_sens_clabels[3])
     ax.plot(b, tauc_min(tillphi(b), delta=0.01)*1e-5,
-            c=ut.sens.colors[4], label=ut.sens.labels[4])
+            color=ut.ciscyc_sens_colours[4],
+            label=ut.ciscyc_sens_clabels[4])
 
     # set axes properties
     ax.set_xlabel('b (m)')

@@ -9,16 +9,14 @@ from matplotlib.transforms import ScaledTranslation
 
 # simulations used
 res = '5km'
-records = ut.hr.records
-offsets = ut.hr.offsets
 
 # cropping window
 imin, imax = 120, 180
 jmin, jmax = 80, 140
 
 # loop on records
-for i, rec in enumerate(records):
-    dt = offsets[i]
+for i, rec in enumerate(ut.ciscyc_hr_records):
+    dt = ut.ciscyc_hr_offsets[i]
 
     # initialize figure
     times = np.arange(-15.0, 0.0, 0.25)
@@ -29,12 +27,9 @@ for i, rec in enumerate(records):
                                  wspace=2.5, hspace=2.5)
 
     # open extra file
-    filename = ('/home/juliens/pism/output/0.7.2-craypetsc/cordillera-narr-5km/'
-                '%s3222cool%d+ccyc4+till1545/y???????-extra.nc'
-                % (rec, round(100*dt)))
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                     '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                     % (rec, round(100*dt)))
+                     % (rec.replace(' ', '').lower(), round(100*dt)))
 
     for i, ax in enumerate(grid.flat):
         t = times[i]

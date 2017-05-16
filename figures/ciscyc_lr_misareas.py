@@ -5,7 +5,7 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
-res = '10km'
+# target area in 1e6 km2
 target = 2.1
 
 # initialize figure
@@ -14,7 +14,8 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
                            wspace=2.5, hspace=2.5)
 
 # for each record
-for i, rec in enumerate(ut.lr.records):
+for i, rec in enumerate(ut.ciscyc_lr_records):
+    c = ut.ciscyc_lr_colours[i]
     offsets = []
     misareas = []
 
@@ -25,12 +26,12 @@ for i, rec in enumerate(ut.lr.records):
         try:
 
             # get MIS2 time
-            t = ut.io.get_mis_times(res, rec, dt)[1][2]
+            t = ut.io.get_mis_times('10km', rec, dt)[1][2]
 
             # open extra file
             nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
                             '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                            % (rec, round(100*dt)))
+                            % (rec.replace(' ', '').lower(), round(100*dt)))
             time = nc.variables['time']
             idx = np.abs(time[:]-t*ut.a2s).argmin()
             thk = nc.variables['thk'][idx]
@@ -47,7 +48,6 @@ for i, rec in enumerate(ut.lr.records):
             pass
 
     # plot
-    c = ut.lr.colors[i]
     argmin = np.argmin(np.abs(np.array(misareas)-target))
     ax.plot(offsets, misareas, c=c, marker='o')
     ax.plot(offsets[argmin], misareas[argmin], c=c, marker='D')

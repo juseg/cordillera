@@ -6,9 +6,6 @@ import iceplotlib.plot as iplt
 from matplotlib.colors import BoundaryNorm
 from matplotlib.ticker import FuncFormatter
 
-# parameters
-res = '10km'
-
 # initialize snapshots figure
 figw, figh = 135.0, 117.5
 fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
@@ -18,16 +15,16 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=6, sharex=True, sharey=True,
 cax = fig.add_axes([1-10.0/figw, 2.5/figh, 2.5/figw, 1-7.5/figh])
 
 # loop on records[i]
-for i, rec in enumerate(ut.lr.records):
-    dt = ut.lr.offsets[i]
+for i, rec in enumerate(ut.ciscyc_lr_records):
+    dt = ut.ciscyc_lr_offsets[i]
 
     # get MIS times
-    mis_idces, mis_times = ut.io.get_mis_times(res, rec, ut.lr.offsets[i])
+    mis_idces, mis_times = ut.io.get_mis_times('10km', rec, dt)
 
     # load extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
                     '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                    % (rec, round(100*dt)))
+                    % (rec.replace(' ', '').lower(), round(100*dt)))
 
     # plot maps
     for j, t in enumerate(mis_times):
@@ -56,7 +53,7 @@ for i, rec in enumerate(ut.lr.records):
     nc.close()
 
 # add labels
-for i, label in enumerate(ut.lr.labels):
+for i, label in enumerate(ut.ciscyc_lr_records):
     ax = grid[0, i]
     ax.text(0.5, 1.05, label, ha='center',
             transform=ax.transAxes)

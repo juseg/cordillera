@@ -5,10 +5,6 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
-# parameters
-res = '10km'
-rec = 'grip'
-
 # initialize figure
 fig, grid = iplt.subplots_mm(nrows=3, ncols=1, sharex=True, sharey=True,
                              figsize=(120.0, 100.0),
@@ -17,11 +13,11 @@ fig, grid = iplt.subplots_mm(nrows=3, ncols=1, sharex=True, sharey=True,
 
 # build velocity distributions
 vdistlists=[[], [], []]
-for i, conf in enumerate(ut.sens.configs):
-    dt = ut.sens.offsets[i]
+for i, conf in enumerate(ut.ciscyc_sens_configs):
+    dt = ut.ciscyc_sens_offsets[i]
 
     # get MIS times
-    mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
+    mis_idces, mis_times = ut.io.get_mis_times('10km', 'grip', dt, config=conf)
 
     # open extra file
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
@@ -44,7 +40,7 @@ for i, conf in enumerate(ut.sens.configs):
 # plot
 for i, ax in enumerate(grid):
     violins = ax.violinplot(vdistlists[i])
-    for p, c in zip(violins['bodies'], ut.sens.colors):
+    for p, c in zip(violins['bodies'], ut.ciscyc_sens_colours):
         p.set_color(c)
     violins['cbars'].set_color('0.5')
     violins['cmins'].set_color('0.5')
@@ -55,7 +51,7 @@ for i, ax in enumerate(grid):
 # set axes properties
 ax.set_ylim(-0.5, 5.5)
 ax.set_xticks(range(1,6))
-ax.set_xticklabels(ut.sens.labels)
+ax.set_xticklabels(ut.ciscyc_sens_clabels)
 grid[1].set_ylabel(r'log of surface velocity ($m\,a^{-1}$)')
 
 # save

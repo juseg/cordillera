@@ -5,10 +5,6 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
-# parameters
-res = '10km'
-rec = 'grip'
-
 # initialize figure
 figw, figh = 85.0, 110.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
@@ -18,11 +14,12 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
 
 # compute ice masks
 icemasks=[[], [], []]
-for i, conf in enumerate(ut.sens.configs):
-    dt = ut.sens.offsets[i]
+for i, conf in enumerate(ut.ciscyc_sens_configs):
+    dt = ut.ciscyc_sens_offsets[i]
+    c = ut.ciscyc_sens_colours[i]
 
     # get MIS times
-    mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
+    mis_idces, mis_times = ut.io.get_mis_times('10km', 'grip', dt, config=conf)
 
     # load extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
@@ -42,7 +39,7 @@ for i, conf in enumerate(ut.sens.configs):
                           cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
                 nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
                            colors='0.25', linewidths=0.25, zorder=0)
-                nc.icemargin(ax=ax, t=t, colors=ut.sens.colors[i], zorder=3)
+                nc.icemargin(ax=ax, t=t, colors=c, zorder=3)
                 ut.pl.draw_natural_earth(ax)
 
     # close
@@ -53,15 +50,17 @@ for j in range(3):
 
     # plot sensitivity to rheologic parameters
     mask = icemasks[j][2]-icemasks[j][1]
-    grid[0][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens.colors[1],
-                        alpha=0.75)
-    grid[0][j].contour(x, y, mask, levels=[0.5], colors=ut.sens.colors[2])
+    grid[0][j].contourf(x, y, mask, levels=[0.5, 1.5], alpha=0.75,
+                        colors=ut.ciscyc_sens_colours[1])
+    grid[0][j].contour(x, y, mask, levels=[0.5],
+                       colors=ut.ciscyc_sens_colours[2])
 
     # plot sensitivity to sliding parameters
     mask = icemasks[j][4]-icemasks[j][3]
-    grid[1][j].contourf(x, y, mask, levels=[0.5, 1.5], colors=ut.sens.colors[3],
-                        alpha=0.75)
-    grid[1][j].contour(x, y, mask, levels=[0.5], colors=ut.sens.colors[4])
+    grid[1][j].contourf(x, y, mask, levels=[0.5, 1.5], alpha=0.75,
+                        colors=ut.ciscyc_sens_colours[3])
+    grid[1][j].contour(x, y, mask, levels=[0.5],
+                       colors=ut.ciscyc_sens_colours[4])
 
 # add labels
 for j in range(3):

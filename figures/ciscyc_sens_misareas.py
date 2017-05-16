@@ -5,8 +5,7 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
-res = '10km'
-rec = 'grip'
+# target area in 1e6 km2
 target = 2.1
 
 # initialize figure
@@ -15,7 +14,8 @@ fig, ax = iplt.subplots_mm(nrows=1, ncols=1, figsize=(85.0, 60.0),
                            wspace=2.5, hspace=2.5)
 
 # for each configuration
-for i, conf in enumerate(ut.sens.configs):
+for i, conf in enumerate(ut.ciscyc_sens_configs):
+    c = ut.ciscyc_sens_colours[i]
     offsets = []
     misareas = []
 
@@ -26,7 +26,7 @@ for i, conf in enumerate(ut.sens.configs):
         try:
 
             # get MIS2 time
-            t = ut.io.get_mis_times(res, rec, dt, config=conf)[1][2]
+            t = ut.io.get_mis_times('10km', 'grip', dt, config=conf)[1][2]
 
             # open extra file
             nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
@@ -50,7 +50,6 @@ for i, conf in enumerate(ut.sens.configs):
             pass
 
     # plot
-    c = ut.sens.colors[i]
     argmin = np.argmin(np.abs(np.array(misareas)-target))
     ax.plot(offsets, misareas, c=c, marker='o')
     ax.plot(offsets[argmin], misareas[argmin], c=c, marker='D')

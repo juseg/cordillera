@@ -5,26 +5,21 @@ import util as ut
 import numpy as np
 import iceplotlib.plot as iplt
 
-# simulations used
-res = '5km'
-records = ut.hr.records
-offsets = ut.hr.offsets
-
 # initialize figure
 fig, grid, cax = ut.pl.subplots_2_cax()
 
 # draw topo and coastline
 ut.pl.draw_boot_topo(grid)
 
-# loop on records[i]
-for i, rec in enumerate(records):
-    dt = offsets[i]
+# loop on records
+for i, rec in enumerate(ut.ciscyc_hr_records):
+    dt = ut.ciscyc_hr_offsets[i]
     ax = grid[i]
 
     # read extra output
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                     '%s3222cool%02d+ccyc4+till1545/y???????-extra.nc'
-                     % (rec, round(100*dt)))
+                     % (rec.replace(' ', '').lower(), round(100*dt)))
     x = nc.variables['x']
     y = nc.variables['y']
     w = (3*x[0]-x[1])/2

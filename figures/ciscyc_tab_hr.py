@@ -4,8 +4,6 @@
 import util as ut
 import numpy as np
 
-res = '10km'
-
 # latex header and footer
 header=r'''\documentclass[border=2.5mm]{standalone}
 \newcommand\tophline{\hline\noalign{\vspace{1mm}}}
@@ -46,17 +44,16 @@ with open('ciscyc_tab_hr.tex', 'w') as f:
     f.write(header)
 
     # loop on records
-    for i, rec in enumerate(ut.hr.records):
-        dt = ut.hr.offsets[i]
-        label = ut.hr.labels[i]
+    for i, rec in enumerate(ut.ciscyc_hr_records):
+        dt = ut.ciscyc_hr_offsets[i]
 
         # get MIS times
-        mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt)
+        mis_idces, mis_times = ut.io.get_mis_times('5km', rec, dt)
 
         # compute area from extra file
         nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                         '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                        % (rec, round(100*dt)))
+                        % (rec.replace(' ', '').lower(), round(100*dt)))
         ex_thk = nc.variables['thk']
         ex_time = nc.variables['time']
         ex_mask = nc.variables['mask']
@@ -68,7 +65,7 @@ with open('ciscyc_tab_hr.tex', 'w') as f:
         # load output time series
         nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
                         '%s3222cool%03d+ccyc4+till1545/y???????-ts.nc'
-                        % (rec, round(100*dt)))
+                        % (rec.replace(' ', '').lower(), round(100*dt)))
         ts_time = nc.variables['time'][:]*ut.s2ka
         ts_ivol = nc.variables['slvol'][:]
         nc.close()
@@ -76,7 +73,7 @@ with open('ciscyc_tab_hr.tex', 'w') as f:
 
         # write info in table
         results[i] = np.concatenate((-mis_times/1e3, mis_gareas, mis_slvols))
-        f.write(tabline.format(title=label, *results[i]))
+        f.write(tabline.format(title=rec, *results[i]))
 
     # write footer
     f.write(footer)

@@ -55,12 +55,18 @@ if __name__ == '__main__':
 
         # plot softness as in Paterson and Budd, 1982
         A = A_bb09(T)
-        ax.plot(T-273.15, A, c=ut.sens.colors[0], label=ut.sens.labels[0])
+        ax.plot(T-273.15, A,
+                color=ut.ciscyc_sens_colours[0],
+                label=ut.ciscyc_sens_clabels[0])
 
         # plot softness as in Cuffey and Paterson, 2010
         A = A_cp10(T)
-        ax.plot(T-273.15, 5*A, c=ut.sens.colors[1], label=ut.sens.labels[1])
-        ax.plot(T-273.15, A, c=ut.sens.colors[2], label=ut.sens.labels[2])
+        ax.plot(T-273.15, 5*A,
+                color=ut.ciscyc_sens_colours[1],
+                label=ut.ciscyc_sens_clabels[1])
+        ax.plot(T-273.15, A,
+                color=ut.ciscyc_sens_colours[2],
+                label=ut.ciscyc_sens_clabels[2])
 
         # set axes properties
         ax.grid()

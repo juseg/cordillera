@@ -19,10 +19,6 @@ def fill_between_safe(x, y1, y2, ax=None, **kwargs):
     return ax.fill_between(x, y1, y2, **kwargs)
 
 
-# parameters
-res = '10km'
-rec = 'grip'
-
 # initialize time-series figure
 figw, figh = 85.0, 80.0
 fig, grid = iplt.subplots_mm(nrows=2, ncols=1, sharex=True, sharey=True,
@@ -36,11 +32,11 @@ ivol_series = []
 
 # loop on records
 tabline = ' '*4 + '%-30s '+ '& %6.2f '*3
-for i, conf in enumerate(ut.sens.configs):
-    dt = ut.sens.offsets[i]
+for i, conf in enumerate(ut.ciscyc_sens_configs):
+    dt = ut.ciscyc_sens_offsets[i]
 
     # get MIS times
-    mis_idces, mis_times = ut.io.get_mis_times(res, rec, dt, config=conf)
+    mis_idces, mis_times = ut.io.get_mis_times('10km', 'grip', dt, config=conf)
 
     # compute area from extra file
     nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-10km/'
@@ -71,19 +67,23 @@ for i, conf in enumerate(ut.sens.configs):
 # plot sensitivity to rheologic parameters
 ax = grid[0]
 fill_between_safe(-time_series[1], ivol_series[1], ivol_series[2], ax=ax,
-                  edgecolor='none', facecolor=ut.sens.colors[1], alpha=0.25)
+                  edgecolor='none', facecolor=ut.ciscyc_sens_colours[1],
+                  alpha=0.25)
 for i in [0, 1, 2]:
-    l = ax.plot(-time_series[i], ivol_series[i], color=ut.sens.colors[i],
-            label=ut.sens.labels[i])
+    l = ax.plot(-time_series[i], ivol_series[i],
+                color=ut.ciscyc_sens_colours[i],
+                label=ut.ciscyc_sens_clabels[i])
 ax.legend(loc='upper left')
 
 # plot sensitivity to sliding parameters
 ax = grid[1]
 fill_between_safe(-time_series[3], ivol_series[3], ivol_series[4], ax=ax,
-                  edgecolor='none', facecolor=ut.sens.colors[3], alpha=0.25)
+                  edgecolor='none', facecolor=ut.ciscyc_sens_colours[3],
+                  alpha=0.25)
 for i in [0, 3, 4]:
-    ax.plot(-time_series[i], ivol_series[i], color=ut.sens.colors[i],
-            label=ut.sens.labels[i])
+    ax.plot(-time_series[i], ivol_series[i],
+            color=ut.ciscyc_sens_colours[i],
+            label=ut.ciscyc_sens_clabels[i])
 ax.legend(loc='upper left')
 
 # set axes properties

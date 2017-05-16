@@ -34,11 +34,12 @@ def bounded_argmax(a, coord, bmin, bmax):
 
 def get_mis_times(res, rec, dt, config='ccyc4+till1545'):
     """Return MIS indexes and times computed from output timeseries"""
+# FIXME: convert this to a function applied directly on the dt file.
 
     # load output time series
     nc = load('output/0.7.2-craypetsc/cordillera-narr-%s/'
               '%s3222cool%03d+%s/y???????-ts.nc'
-              % (res, rec, round(100*dt), config))
+              % (res, rec.replace(' ', '').lower(), round(100*dt), config))
     ts_time = nc.variables['time'][:]*s2a
     ts_ivol = nc.variables['ivol'][:]*1e-15
     nc.close()
