@@ -69,6 +69,14 @@ graticules = cfeature.NaturalEarthFeature(
 in2mm = 1/25.4
 pt2mm = 72*in2mm
 
+# Iceplotlib functions
+# --------------------
+
+figure = iplt.figure
+subplots_mm = iplt.subplots_mm
+get_cmap = iplt.get_cmap
+
+
 # Figures and axes creation
 # -------------------------
 
@@ -171,60 +179,8 @@ def make_geoaxes(ax):
     return gax
 
 
-def fig_hr_pf(res, rec, dt, color):
-
-    # parameters
-    tmin, tmax = -22.0, -8.0
-    yplist = [1.7e6, 1.4e6, 1.1e6, 0.8e6]
-
-    # initialize figure
-    fig, grid = iplt.subplots_mm(len(yplist), figsize=(85.0, 95.0),
-                                 sharex=True, sharey=True,
-                                 left=10.0, bottom=10.0, right=2.5, top=2.5,
-                                 hspace=2.5)
-
-    # read extra output
-    nc = ut.io.load('output/0.7.2-craypetsc/cordillera-narr-%s/'
-                    '%s3222cool%03d+ccyc4+till1545/y0??0000-extra.nc'
-                    % (res, rec.replace(' ', '').lower(), round(100*dt)))
-    x = nc.variables['x']
-    y = nc.variables['y']
-    time = nc.variables['time']
-    thk = nc.variables['thk']
-    topg = nc.variables['topg']
-    usurf = nc.variables['usurf']
-
-    # plot
-    kmin, kmax = [np.argmin(np.abs(time[:]*ut.s2ka-t)) for t in (tmin, tmax)]
-    if kmin == kmax:  # run has not reached tmin yet
-        return fig
-    for i, yp in enumerate(yplist):
-        ax = grid[i]
-        ax.set_rasterization_zorder(2.5)
-        j = np.argmin(np.abs(y[:]-yp))
-        xpf = x[:]*1e-3
-        maskpf = thk[kmin:kmax, :, j] < ut.thkth
-        topgpf = topg[kmin:kmax, :, j]*1e-3
-        surfpf = usurf[kmin:kmax, :, j]*1e-3
-        surfpf = np.where(maskpf, topgpf, surfpf)  # apply topg where ice-free
-        maskpf = np.roll(maskpf, -1) * np.roll(maskpf, 1)  # shrink mask by 1 cell
-        surfpf = np.ma.masked_where(maskpf, surfpf)  # apply mask
-        ax.grid(axis='y')
-        ax.plot(xpf, surfpf.T, c=color, lw=0.1)
-        ax.plot(xpf, topgpf.T, c='k', lw=0.1)
-        ax.text(0.04, 0.84, chr(65+i), transform=ax.transAxes)
-    nc.close()
-
-    # set axes properties
-    grid[0].set_xlim(-2.35e3, -1.3e3)  # shared
-    grid[0].set_ylim(-1, 4)  # shared
-    grid[0].set_yticks(range(4))  # shared
-    grid[2].set_ylabel('elevation (km)')
-    grid[-1].set_xlabel('projection x-coordinate (km)')
-
-    # return produced figure
-    return fig
-
+# Saving figures
+# --------------
 
 def savefig(fig=None):
     """Save figure to script filename."""
