@@ -16,10 +16,6 @@ plotres=12  # in km
 # initialize figure
 fig, grid, cax = ut.pl.subplots_2_cax()
 
-# plot topographic map
-ut.pl.draw_boot_topo(grid)
-ut.pl.draw_coastline(grid)
-
 # loop on records
 for i, rec in enumerate(ut.ciscyc_hr_records):
     dt = ut.ciscyc_hr_offsets[i]
@@ -85,6 +81,7 @@ for i, rec in enumerate(ut.ciscyc_hr_records):
     nc.close()
 
     # add map elements
+    ut.pl.draw_boot_topo(ax)
     ut.pl.draw_natural_earth(ax)
     ut.pl.add_corner_tag(ax, rec.upper())
 

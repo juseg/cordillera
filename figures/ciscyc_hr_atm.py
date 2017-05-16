@@ -22,13 +22,10 @@ fig, grid = iplt.subplots_mm(nrows=2, ncols=3, sharex=True, sharey=True,
                              left=2.5, right=2.5, bottom=15.0, top=2.5,
                              wspace=2.5, hspace=2.5, projection=ut.pl.proj)
 
-# draw topo and coastline
-ut.pl.draw_boot_topo(grid)
-ut.pl.draw_coastline(grid)
-
 # draw natural earth elements
 for ax in grid.flat:
     ax.set_rasterization_zorder(2.5)
+    ut.pl.draw_boot_topo(ax)
     ut.pl.draw_natural_earth(ax)
 
 # plot temperature

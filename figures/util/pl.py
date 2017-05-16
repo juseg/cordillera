@@ -141,21 +141,13 @@ def draw_natural_earth(ax=None):
     ax.add_feature(graticules)
 
 
-def draw_boot_topo(grid):
+def draw_boot_topo(ax):
     nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
-    for ax in grid.flat:
-        im = nc.imshow('topg', ax=ax, cmap=ut.topo_cmap, norm=ut.topo_norm,
-                       zorder=-1)
+    im = nc.imshow('topg', ax=ax, cmap='Greys', vmin=-3e6, vmax=6e6, zorder=-1)
+    cs = nc.contour('topg', ax=ax, levels=[0.0], colors='0.25',
+                    linewidths=0.25, zorder=0)
     nc.close()
-
-
-def draw_coastline(grid):
-    nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
-    for ax in grid.flat:
-        cs = nc.contour('topg', ax=ax, levels=[0.0], cmap=None,
-                        colors='0.25', linewidths=0.25, zorder=0)
-    nc.close()
-    return cs
+    return im
 
 
 def make_geoaxes(ax):
