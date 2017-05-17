@@ -119,6 +119,24 @@ def subplots_2_cax(extent='cordillera'):
     return fig, grid, cax
 
 
+def subplots_2_cax_ts_anim(extent='cordillera'):
+    """Init figure with two subplots, bottom colorbar and timeseries."""
+    figw, figh = 180.0, 120.0
+    fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
+                                 figsize=(figw, figh), projection=ut.pl.proj,
+                                 left=0.0, right=60.0, bottom=0.0, top=0.0,
+                                 wspace=0.0, hspace=0.0)
+    prepare_axes(grid, extent=extent)
+    cax = fig.add_axes([1-50.0/figw, 15.0/figh, 40.0/figw, 5.0/figh])
+    tsax = fig.add_axes([1-50.0/figw, 30.0/figh, 40.0/figw, 80.0/figh])
+    for ax in grid:
+        ax.outline_patch.set_ec('none')
+    for x in [1/3., 2/3.]:
+        tsax.plot([x, x], [0.0, 1.0], color='k', clip_on=False,
+                  transform=fig.transFigure, zorder=3)
+    return fig, grid, cax, tsax
+
+
 # Text annotations
 # ----------------
 
