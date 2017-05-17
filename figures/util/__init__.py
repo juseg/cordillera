@@ -28,6 +28,16 @@ vel_norm = LogNorm(1e1, 1e3)
 thkth = 1.0
 
 
+# Cordillera bedrock parameters
+# -----------------------------
+
+# low (10km) resolution runs
+cisbed_records = ['GRIP', 'EPICA']
+cisbed_offsets = [6.2, 6.0]
+cisbed_markers = ['s', 'o']
+cisbed_colours = [pl.palette['dark'+hue] for hue in ['blue', 'red']]
+
+
 # Cordillera cycle parameters
 # ---------------------------
 

@@ -12,7 +12,9 @@ EXT = pdf
 PY = PYTHONPATH=iceplotlib python2
 
 # all python figures (broken: ciscyc_lr_ts_diff ciscyc_lr_ts_scaling ciskap_plot_sdeffect)
-PY_FIGS = $(addprefix ciscyc_, locmap \
+PY_FIGS = $(addprefix cisbed_,  \
+            $(addprefix lr_, glacareas)) \
+          $(addprefix ciscyc_, locmap \
             $(addprefix hr_, atm basedispl deglacage deglacshots duration \
                              lastflow mis2 mis3 mis4 pfepica pfgrip puget \
                              thompson timeseries warmbase warmfrac) \
