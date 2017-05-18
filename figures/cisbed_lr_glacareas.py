@@ -29,13 +29,14 @@ for i, rec in enumerate(ut.cisbed_records):
             x = nc.variables['x'][:]
             y = nc.variables['y'][:]
             thk = nc.variables['thk'][909:1059]  # 29 to 14 ka
+            mask = nc.variables['mask'][909:1059]  # 29 to 14 ka
             nc.close()
 
             # compute footprint area in 1e6 km2
             dx = x[1] - x[0]
             dy = y[1] - y[0]
-            footprint = 1 - (thk < 1.0).prod(axis=0)
-            a = footprint.sum()*dx*dy*1e-12
+            landprint = 1 - ((thk < 1.0) + (mask != 2)).prod(axis=0)
+            a = landprint.sum()*dx*dy*1e-12
 
             # append to lists
             offsets.append(dt)
@@ -63,7 +64,7 @@ for i, rec in enumerate(ut.cisbed_records):
 ax.axhline(target, lw=0.1, c='0.5')
 ax.legend(loc='best')
 ax.set_xlabel('temperature offset (K)')
-ax.set_ylabel(r'glaciated area ($10^3\,km^2$)')
+ax.set_ylabel(r'glaciated area on land ($10^3\,km^2$)')
 
 # save
 ut.pl.savefig(fig)
