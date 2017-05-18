@@ -132,8 +132,8 @@ def subplots_2_cax_ts_anim(extent='cordillera'):
     for ax in grid:
         ax.outline_patch.set_ec('none')
     for x in [1/3., 2/3.]:
-        tsax.plot([x, x], [0.0, 1.0], color='k', clip_on=False,
-                  transform=fig.transFigure, zorder=3)
+        cax.plot([x, x], [0.0, 1.0], color='k', clip_on=False,
+                 transform=fig.transFigure, zorder=3)
     return fig, grid, cax, tsax
 
 
@@ -184,7 +184,6 @@ def draw_natural_earth(ax=None):
     ax = ax or iplt.gca()
     ax.add_feature(rivers, zorder=0)
     ax.add_feature(lakes, zorder=0)
-    ax.add_feature(coastline, zorder=0)
     ax.add_feature(graticules)
 
 
