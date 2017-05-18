@@ -34,7 +34,7 @@ def draw(t, grid, tsax, twax):
         nc.close()
 
         # plot ice volume time series
-        tsax.plot(vol[age>=a], age[age>=a], color='0.25')
+        tsax.plot(vol[age>=a], age[age>=a], color=c, alpha=0.25)
 
         # load bedrock topography
         nc = ut.io.load(run_dir + '/y???????-extra.nc')
@@ -76,10 +76,11 @@ def draw(t, grid, tsax, twax):
     # set time series axes properties
     tsax.set_ylim(120.0, 0.0)
     tsax.set_xlim(9.5, -0.5)
-    tsax.set_ylabel('age (ka)')
-    tsax.set_xlabel('ice volume (m s.l.e.)', color='0.25')
+    tsax.set_ylabel('model age (ka)')
+    tsax.set_xlabel('ice volume (m s.l.e.)', color='0.75')
     tsax.yaxis.tick_right()
     tsax.yaxis.set_label_position('right')
+    tsax.tick_params(axis='x', colors='0.75')
     tsax.grid(axis='x')
 
     # set twin axes properties

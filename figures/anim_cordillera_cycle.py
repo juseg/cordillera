@@ -3,123 +3,103 @@
 
 import util as ut
 import numpy as np
-import iceplotlib.plot as iplt
-import cartopy.feature as cfeature
 from matplotlib.animation import FuncAnimation
 
-# parameters
-res = '5km'
-records = ut.hr.records
-offsets = ut.hr.offsets
-colors = ut.hr.colors
-labels = ut.hr.labels
+# drawing function
+def draw(t, grid, tsax, twax):
+    """What to draw at each animation step."""
+    a = -t/1e3
+    print 'plotting at %.1f ka...' % a
 
-# cartopy features
-rivers = cfeature.NaturalEarthFeature(
-    category='physical', name='rivers_lake_centerlines', scale='50m',
-    edgecolor='0.25', facecolor='none', lw=0.5)
-lakes = cfeature.NaturalEarthFeature(
-    category='physical', name='lakes', scale='50m',
-    edgecolor='0.25', facecolor='0.85', lw=0.25)
-graticules = cfeature.NaturalEarthFeature(
-    category='physical', name='graticules_5', scale='10m',
-    edgecolor='0.25', facecolor='none', lw=0.1)
+    # clear time series axes
+    tsax.cla()
+    twax.cla()
 
-# drawing function for animations
-def draw(t, grid, datasets, labels, cursor):
-    age = -t/1e3
-    print 'plotting frame at %.1f ka...' % age
+    # for each record
+    for i, rec in enumerate(ut.cisbed_records):
+        c = ut.cisbed_colours[i]
+        dt = ut.cisbed_offsets[i]
+        dt_file = '%s3222cool%04d' % (rec.lower(), round(dt*100))
+        run_dir = 'output/e9d2d1f/cordillera-narr-10km/%s+cisbed1+till1545' % dt_file
 
-    # clear axes
-    for ax in grid:
-        ax.cla()
+        # load temperature forcing
+        nc = ut.io.load('input/dt/%s.nc' % dt_file)
+        age = -nc.variables['time'][:]/1e3
+        dt = nc.variables['delta_T'][:]
+        nc.close()
 
-    # loop on datasets
-    for i, nc in enumerate(datasets):
+        # plot temperature forcing
+        tsax.plot(dt[age>=a], age[age>=a], color=c, alpha=0.25)
+
+        # load ice volume time series
+        nc = ut.io.load(run_dir + '/y???????-ts.nc')
+        age = -nc.variables['time'][:]/(1e3*365*24*60*60)
+        vol = nc.variables['slvol'][:]
+        nc.close()
+
+        # plot ice volume time series
+        twax.plot(vol[age>=a], age[age>=a], color=c)
+
+        # clear map axes
         ax = grid[i]
-        label = labels[i]
+        ax.cla()
+        ax.outline_patch.set_ec('none')
+        ax.set_extent(ut.pl.regions['cordillera'], crs=ax.projection)
 
-        # plot maps
-        nc.imshow('topg', ax=ax, t=t,
-                  cmap=ut.topo_cmap, norm=ut.topo_norm, zorder=-1)
-        nc.contour('topg', ax=ax, t=t, levels=[0.0], cmap=None,
-                   colors='0.25', linewidths=0.25, zorder=0)
-        nc.icemargin(ax=ax, t=t, linewidths=0.5)
-        nc.contour('usurf', ax=ax, t=t, levels=range(200, 5000, 200),
-                   cmap=None, colors='k', linewidths=0.1)
-        nc.contour('usurf', ax=ax, t=t, levels=range(1000, 5000, 1000),
-                   cmap=None, colors='k', linewidths=0.25)
-        im = nc.imshow('velsurf_mag', ax=ax, t=t,
-                       cmap=ut.vel_cmap, norm=ut.vel_norm, alpha=0.75)
-        ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (label, age))
+        # plot uplift map
+        nc = ut.io.load(run_dir + '/y???????-extra.nc')
+        im = nc.imshow('topg', ax, t, vmin=0.0, vmax=3e3, cmap='Greys', zorder=-1)
+        cs = nc.contour('topg', ax, t, levels=[0.0], colors='0.25',
+                        linewidths=0.25, zorder=0)
+        im = nc.imshow('velsurf_mag', ax, t, norm=ut.pl.velnorm, cmap='Blues',
+                       alpha=0.75)
+        cs = nc.contour('usurf', ax, t, levels=ut.pl.inlevs,
+                        colors='0.25', linewidths=0.1)
+        cs = nc.contour('usurf', ax, t, levels=ut.pl.utlevs,
+                        colors='0.25', linewidths=0.25)
+        cs = nc.icemargin(ax, t, colors='k', linewidths=0.25)
+        nc.close()
 
-        # add cartopy vectors
-        ax.add_feature(rivers, zorder=0)
-        ax.add_feature(lakes, zorder=0)
-        ax.add_feature(graticules)
+        # add map elements
+        ut.pl.draw_natural_earth(ax)
+        ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (rec, a))
 
-        # update cursor
-        cursor.set_data([age, age], [0, 1])
+    # set time series axes properties
+    tsax.set_ylabel('model age (ka)')
+    tsax.set_xlabel('temperature offset (K)', color='0.75')
+    tsax.set_ylim(120.0, 0.0)
+    tsax.set_xlim(-9.5, 0.5)
+    tsax.yaxis.tick_right()
+    tsax.yaxis.set_label_position('right')
+    tsax.tick_params(axis='x', colors='0.75')
+    tsax.grid(axis='x')
+
+    # set twin axes properties
+    twax.set_xlim(9.5, -0.5)
+    twax.set_xlabel('ice volume (m s.l.e.)')
 
     # return mappable for colorbar
     return im
 
 # initialize figure
-figw, figh = 135.0, 155.0
-fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
-                             figsize=(figw, figh), projection=ut.pl.proj,
-                             left=2.5, right=20.0, bottom=42.5, top=2.5,
-                             wspace=2.5, hspace=2.5)
-cax = fig.add_axes([1-17.5/figw, 42.5/figh, 5.0/figw, 1-45.0/figh])
-tsax = fig.add_axes([10.0/figw, 10.0/figh, 1-12.5/figw, 30.0/figh])
+fig, grid, cax, tsax = ut.pl.subplots_2_cax_ts_anim()
+twax = tsax.twiny()
 
 # add signature
-fig.text(1-2.5/figw, 2.5/figh, 'J. Seguinot et al. (2016)',
+figw, figh = [dim*25.4 for dim in fig.get_size_inches()]
+fig.text(1-2.5/figw, 2.5/figh, 'J. Seguinot et al. (in prep.)',
          ha='right', va='bottom')
 
-# plot time series
-for i, rec in enumerate(records):
-    dt = ut.hr.offsets[i]
-
-    # load output time series
-    nc = ut.io.open_ts_file('10km', rec, dt)
-    ts_time = nc.variables['time'][:]*ut.s2ka
-    ts_ivol = nc.variables['slvol'][:]
-    nc.close()
-
-    # plot time series
-    tsax.plot(-ts_time, ts_ivol, color=colors[i], label=labels[i])
-
-# set axes properties
-tsax.invert_xaxis()
-tsax.set_xlabel('model age (ka)')
-tsax.set_ylim(0.0, 9.5)
-tsax.set_ylabel('ice volume (m s.l.e.)')
-tsax.grid(axis='y')
-tsax.legend(loc='upper left')
-
-# init moving vertical line
-cursor = tsax.axvline(60.0, c='k', lw=0.25)
-
-# load extra datasets
-datasets = [ut.io.load('output/0.7.2-craypetsc/cordillera-narr-5km/'
-                       '%s3222cool%03d+ccyc4+till1545/y???????-extra.nc'
-                       % (rec, round(100*dt)))
-            for (rec, dt) in zip(records, offsets)]
-times = [nc.variables['time'][:]*ut.s2a for nc in datasets]
-time = np.intersect1d(*times)
-
 # draw first frame and colorbar
-im = draw(time[0], grid, datasets, labels, cursor)
-cb = fig.colorbar(im, cax, extend='both', format='%i',
-                  ticks=np.logspace(1, 3.5, 6))
+im = draw(-60e3, grid, tsax, twax)
+cb = fig.colorbar(im, cax, extend='both', orientation='horizontal')
 cb.set_label(r'surface velocity ($m\,a^{-1}$)')
 
-# make animation
-anim = FuncAnimation(fig, draw, frames=time,
-                     fargs=(grid, datasets, labels, cursor))
-anim.save('anim_cordillera_cycle.mp4', fps=25)
+# save preview
+ut.pl.savefig(fig)
 
-# close datasets
-for nc in datasets:
-    nc.close()
+# make animation
+frames = -np.arange(0e3, 120e3, 100.0)[::-1]
+anim = FuncAnimation(fig, draw, frames=frames, fargs=(grid, tsax, twax))
+anim.save('anim_cordillera_cycle.mp4', fps=25, codec='h264')
+anim.save('anim_cordillera_cycle.ogg', fps=25, codec='theora')
