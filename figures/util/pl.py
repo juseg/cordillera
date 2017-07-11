@@ -12,6 +12,8 @@ import iceplotlib.plot as iplt
 from matplotlib.transforms import ScaledTranslation
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
+import cartopy.io.shapereader as cshp
+
 
 
 # Color palette
@@ -178,6 +180,28 @@ def add_subfig_label(text, ax=None, ha='left', va='top', offset=2.5/25.4):
 
 # Map elements
 # ------------
+
+def draw_lgm_outline(ax=None, c='#e31a1c'):
+    """Draw LGM extent from Dyke (2004) deglacial outlines union"""
+    # FIXME: compute union in preprocessing
+    # available ages: 18.0, 17.5, 17.0, 16.5, 16.0, 15.5, 15.0, 14.5, 14.0,
+    #                 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 10.5, 10.25, 10.0
+    # calibrate ages: 21.4, 20.8, 20.2, 19.65, 19.1, 18.5, 17.9, 17.35, 16.8,
+    #                 16.2, 15.6, 14.8, 14.1, 13.45, 13.0, 12.7, 12.0, 11.45
+    raw_ages = [18.0, 17.0, 16.0, 15.0, 14.0]  #, 13.0, 12.0, 11.0, 10.0]
+    cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  #, 15.6, 14.1, 13.0, 11.45]
+    union = None
+    for age in raw_ages:
+        filename = '../data/external/ice%ik.shp' % age
+        for rec in cshp.Reader(filename).records():
+            if rec.attributes['SYMB'] == 'ICE':
+                if union == None:
+                    union = rec.geometry
+                else:
+                    union = union.union(rec.geometry)
+    ax.add_geometries(union, cal, edgecolor=c, facecolor='none',
+                      lw=0.5, alpha=0.75, zorder=0)
+
 
 def draw_natural_earth(ax=None):
     """Add Natural Earth geographic data vectors."""
