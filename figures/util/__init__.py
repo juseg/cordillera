@@ -33,7 +33,7 @@ thkth = 1.0
 
 # low (10km) resolution runs
 cisbed_records = ['GRIP', 'EPICA']
-cisbed_offsets = [6.2, 6.0]
+cisbed_offsets = [6.2, 5.9]
 cisbed_markers = ['s', 'o']
 cisbed_colours = [pl.palette['dark'+hue] for hue in ['blue', 'red']]
 

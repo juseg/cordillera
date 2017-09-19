@@ -5,7 +5,7 @@ import util as ut
 import numpy as np
 
 # parameters
-target = 2.25  # 1e6 km2
+target = 2.1  # 1e6 km2
 
 # initialize figure
 fig, ax = ut.pl.subplots_ts()
