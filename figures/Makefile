@@ -12,7 +12,7 @@ EXT = pdf
 PY = PYTHONPATH=iceplotlib python2
 
 # all python figures (broken: ciscyc_lr_ts_diff ciscyc_lr_ts_scaling ciskap_plot_sdeffect)
-PY_FIGS = $(addprefix cisbed_, relaxtime \
+PY_FIGS = $(addprefix cisbed_, relaxtime timeseries \
             $(addprefix lr_, glacareas)) \
           $(addprefix ciscyc_, locmap \
             $(addprefix hr_, atm basedispl deglacage deglacshots duration \
