@@ -1,12 +1,13 @@
-#!/usr/bin/env python2
-# coding: utf-8
+# Copyright (c) 2014--2019, Julien Seguinot <seguinot@vaw.baug.ethz.ch>
+# Creative Commons Attribution-ShareAlike 4.0 International License
+# (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
-"""Utils and parameters for this project."""
+"""Utils and parameters for the Cordillera project."""
 
 
 from matplotlib.colors import LogNorm, Normalize
-import io
-import pl
+import util.io  # input and output
+import util.pl  # plotting tools
 
 # unit conversion
 # FIXME: use iplt.subplots_mm instead
@@ -35,7 +36,7 @@ thkth = 1.0
 cisbed_records = ['GRIP', 'EPICA']
 cisbed_offsets = [6.2, 5.9]
 cisbed_markers = ['s', 'o']
-cisbed_colours = [pl.palette['dark'+hue] for hue in ['blue', 'red']]
+cisbed_colours = ['C1', 'C5']  # darkblue, darkred
 
 
 # Cordillera cycle parameters
@@ -45,8 +46,7 @@ cisbed_colours = [pl.palette['dark'+hue] for hue in ['blue', 'red']]
 ciscyc_lr_records = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
 ciscyc_lr_offsets = [6.2, 6.6, 5.9, 5.95, 6.15, 6.05]
 ciscyc_lr_markers = ['s', 'D', 'o', 'h', 'v', '^']
-ciscyc_lr_colours = [pl.palette[tone+hue] for hue in ['blue', 'red', 'green']
-                                          for tone in ['dark', 'light']]
+ciscyc_lr_colours = ['C1', 'C0', 'C5', 'C4', 'C3', 'C2']  # db lb dr lr dg lg
 
 # high (5km) resolution runs
 ciscyc_hr_records = ciscyc_lr_records[0:3:2]

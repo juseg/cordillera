@@ -1,5 +1,6 @@
-#!/usr/bin/env python2
-# coding: utf-8
+# Copyright (c) 2014--2019, Julien Seguinot <seguinot@vaw.baug.ethz.ch>
+# Creative Commons Attribution-ShareAlike 4.0 International License
+# (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
 """Plotting tools."""
 
@@ -8,8 +9,8 @@ import util as ut
 import os
 import sys
 import numpy as np
-import iceplotlib.plot as iplt
-from matplotlib.transforms import ScaledTranslation
+import matplotlib as mpl
+import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import cartopy.io.shapereader as cshp
@@ -19,19 +20,15 @@ import cartopy.io.shapereader as cshp
 # Color palette
 # -------------
 
-# color brewer Paired palette
-colorkeys = [tone+hue
-             for hue in ('blue', 'green', 'red', 'orange', 'purple', 'brown')
-             for tone in ('light', 'dark')]
-colorvals = iplt.get_cmap('Paired', 12)(range(12))
-palette = dict(zip(colorkeys, colorvals))
+# set color cycle to Colorbrewer Paired palette (l/d b/g/r/or/pu/br)
+plt.rc('axes', prop_cycle=plt.cycler(color=plt.get_cmap('Paired').colors))
 
 
 # Mapping properties
 # ------------------
 
 # velocity norm
-velnorm = iplt.matplotlib.colors.LogNorm(1e1, 1e3)
+velnorm = mpl.colors.LogNorm(1e1, 1e3)
 
 # contour levels
 topolevs = range(0, 4000, 200)
@@ -67,16 +64,17 @@ graticules = cfeature.NaturalEarthFeature(
     edgecolor='0.25', facecolor='none', lw=0.1)
 
 # unit conversion
-# FIXME: use subplots_mm instead
+# FIXME use absplots
 in2mm = 1/25.4
 pt2mm = 72*in2mm
 
 # Iceplotlib functions
 # --------------------
 
-figure = iplt.figure
-subplots_mm = iplt.subplots_mm
-get_cmap = iplt.get_cmap
+# FIXME use absplots instead of iceplotlib
+# figure = iplt.figure
+# subplots_mm = iplt.subplots_mm
+# get_cmap = iplt.get_cmap
 
 
 # Figures and axes creation
@@ -102,6 +100,7 @@ def prepare_axes(grid=None, extent='cordillera', mis=True):
 
 def subplots_ts(nrows=1, ncols=1, figw=85.0):
     """Init figure with margins adapted for simple timeseries."""
+    # FIXME use absplots
     figh = 30.0 + nrows*30.0
     return iplt.subplots_mm(nrows=nrows, ncols=ncols, figsize=(figw, figh),
                             sharex=True, sharey=False,
@@ -112,6 +111,7 @@ def subplots_ts(nrows=1, ncols=1, figw=85.0):
 def subplots_2_cax(extent='cordillera'):
     """Init figure with two subplots and bottom colorbar."""
     figw, figh = 85.0, 95.0
+    # FIXME use absplots
     fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                                  figsize=(figw, figh), projection=cal,
                                  left=2.5, right=2.5, bottom=15.0, top=2.5,
@@ -124,6 +124,7 @@ def subplots_2_cax(extent='cordillera'):
 def subplots_2_cax_ts_anim(extent='cordillera'):
     """Init figure with two subplots, bottom colorbar and timeseries."""
     figw, figh = 180.0, 120.0
+    # FIXME use absplots
     fig, grid = iplt.subplots_mm(nrows=1, ncols=2, sharex=True, sharey=True,
                                  figsize=(figw, figh), projection=ut.pl.proj,
                                  left=0.0, right=60.0, bottom=0.0, top=0.0,
@@ -152,7 +153,7 @@ def add_corner_tag(ax, s, ha='right', va='top', offset=2.5*in2mm):
     y = (va == 'top')  # 0 for bottom edge, 1 for top edge
     xoffset = (1 - 2*x)*offset
     yoffset = (1 - 2*y)*offset
-    offset = ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
+    offset = mpl.transforms.ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
     return ax.text(x, y, s, ha=ha, va=va,
                    bbox=dict(ec='k', fc='w', pad=1.25*pt2mm),
                    transform=ax.transAxes + offset)
@@ -167,12 +168,12 @@ def add_pointer_tag(ax, s, xy, xytext):
 
 def add_subfig_label(text, ax=None, ha='left', va='top', offset=2.5/25.4):
     """Add figure label in bold."""
-    ax = ax or iplt.gca()
+    ax = ax or plt.gca()
     x = (ha == 'right')  # 0 for left edge, 1 for right edge
     y = (va == 'top')  # 0 for bottom edge, 1 for top edge
     xoffset = (1 - 2*x)*offset
     yoffset = (1 - 2*y)*offset
-    offset = iplt.matplotlib.transforms.ScaledTranslation(
+    offset = mpl.transforms.ScaledTranslation(
         xoffset, yoffset, ax.figure.dpi_scale_trans)
     return ax.text(x, y, text, ha=ha, va=va, fontweight='bold',
                    transform=ax.transAxes + offset)
@@ -205,7 +206,7 @@ def draw_lgm_outline(ax=None, c='#e31a1c'):
 
 def draw_natural_earth(ax=None):
     """Add Natural Earth geographic data vectors."""
-    ax = ax or iplt.gca()
+    ax = ax or plt.gca()
     ax.add_feature(rivers, zorder=0)
     ax.add_feature(lakes, zorder=0)
     ax.add_feature(graticules)
@@ -226,6 +227,6 @@ def draw_boot_topo(ax):
 def savefig(fig=None):
     """Save figure to script filename."""
     import sys
-    fig = fig or gcf()
+    fig = fig or plt.gcf()
     res = fig.savefig(os.path.splitext(sys.argv[0])[0])
     return res
