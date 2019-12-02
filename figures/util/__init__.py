@@ -43,7 +43,8 @@ cisbed_colours = ['C1', 'C5']  # darkblue, darkred
 # ---------------------------
 
 # low (10km) resolution runs
-ciscyc_lr_records = ['GRIP', 'NGRIP', 'EPICA', 'Vostok', 'ODP 1012', 'ODP 1020']
+ciscyc_lr_records = ['GRIP', 'NGRIP', 'EPICA', 'Vostok',
+                     'ODP 1012', 'ODP 1020']
 ciscyc_lr_offsets = [6.2, 6.6, 5.9, 5.95, 6.15, 6.05]
 ciscyc_lr_markers = ['s', 'D', 'o', 'h', 'v', '^']
 ciscyc_lr_colours = ['C1', 'C0', 'C5', 'C4', 'C3', 'C2']  # db lb dr lr dg lg
@@ -59,5 +60,6 @@ ciscyc_sens_configs = ['ccyc4%s+till1545' % c
                        for c in ['', '+rheocp10+esia5', '+rheocp10',
                                  '+d010+wmax01m', '+d050+wmax05m']]
 ciscyc_sens_offsets = [6.2, 6.65, 5.95, 6.55, 5.85]
-ciscyc_sens_clabels = ['Default', 'Soft ice', 'Hard ice', 'Soft bed', 'Hard bed']
+ciscyc_sens_clabels = ['Default', 'Soft ice', 'Hard ice',
+                       'Soft bed', 'Hard bed']
 ciscyc_sens_colours = ['0.25', '#cab2d6', '#6a3d9a', '#fdbf6f', '#ff7f00']

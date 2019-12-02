@@ -30,7 +30,7 @@ def bounded_argmax(a, coord, bmin, bmax):
 
 def get_mis_times(res, rec, dt, config='ccyc4+till1545'):
     """Return MIS indexes and times computed from output timeseries"""
-# FIXME: convert this to a function applied directly on the dt file.
+    # FIXME: convert this to a function applied directly on the dt file.
 
     # load output time series
     nc = load('output/0.7.2-craypetsc/cordillera-narr-%s/'
@@ -48,4 +48,3 @@ def get_mis_times(res, rec, dt, config='ccyc4+till1545'):
 
     # return indices and time values
     return mis, ts_time[mis]
-

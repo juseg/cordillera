@@ -7,14 +7,11 @@
 import util as ut
 
 import os
-import sys
-import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 import cartopy.io.shapereader as cshp
-
 
 
 # Color palette
@@ -89,13 +86,13 @@ def prepare_axes(grid=None, extent='cordillera', mis=True):
         ax.set_extent(regions[extent], crs=ax.projection)
         add_subfig_label('(%s)' % 'abcdefghijklmnopqrstuvwxyz'[i], ax=ax)
 
-    ## prepare timeseries axes
-    #if tsax is not None:
-    #    tsax.locator_params(axis='y', nbins=6)
-    #    tsax.grid(axis='y')
-    #    plot_dt(tsax)
-    #    if mis is True:
-    #        plot_mis(tsax)
+    # prepare timeseries axes
+    # if tsax is not None:
+    #     tsax.locator_params(axis='y', nbins=6)
+    #     tsax.grid(axis='y')
+    #     plot_dt(tsax)
+    #     if mis is True:
+    #         plot_mis(tsax)
 
 
 def subplots_ts(nrows=1, ncols=1, figw=85.0):
@@ -144,16 +141,17 @@ def subplots_2_cax_ts_anim(extent='cordillera'):
 # ----------------
 
 def add_corner_tag(ax, s, ha='right', va='top', offset=2.5*in2mm):
-# FIXME update to use same function as in Alps project
-#def add_corner_tag(text, ax=None, ha='right', va='top', offset=2.5/25.4):
-#    """Add text in figure corner."""
-#    return add_subfig_label(text, ax=ax, ha=ha, va=va, offset=offset)
+    # FIXME update to use same function as in Alps project
+    # def add_corner_tag(text, ax=None, ha='right', va='top', offset=2.5/25.4):
+    #     """Add text in figure corner."""
+    #     return add_subfig_label(text, ax=ax, ha=ha, va=va, offset=offset)
     fig = ax.get_figure()
     x = (ha == 'right')  # 0 for left edge, 1 for right edge
     y = (va == 'top')  # 0 for bottom edge, 1 for top edge
     xoffset = (1 - 2*x)*offset
     yoffset = (1 - 2*y)*offset
-    offset = mpl.transforms.ScaledTranslation(xoffset, yoffset, fig.dpi_scale_trans)
+    offset = mpl.transforms.ScaledTranslation(
+        xoffset, yoffset, fig.dpi_scale_trans)
     return ax.text(x, y, s, ha=ha, va=va,
                    bbox=dict(ec='k', fc='w', pad=1.25*pt2mm),
                    transform=ax.transAxes + offset)
@@ -189,14 +187,14 @@ def draw_lgm_outline(ax=None, c='#e31a1c'):
     #                 13.5, 13.0, 12.5, 12.0, 11.5, 11.0, 10.5, 10.25, 10.0
     # calibrate ages: 21.4, 20.8, 20.2, 19.65, 19.1, 18.5, 17.9, 17.35, 16.8,
     #                 16.2, 15.6, 14.8, 14.1, 13.45, 13.0, 12.7, 12.0, 11.45
-    raw_ages = [18.0, 17.0, 16.0, 15.0, 14.0]  #, 13.0, 12.0, 11.0, 10.0]
-    cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  #, 15.6, 14.1, 13.0, 11.45]
+    raw_ages = [18.0, 17.0, 16.0, 15.0, 14.0]  # , 13.0, 12.0, 11.0, 10.0]
+    # cal_ages = [21.4, 20.2, 19.1, 17.9, 16.8]  # , 15.6, 14.1, 13.0, 11.45]
     union = None
     for age in raw_ages:
         filename = '../data/external/ice%ik.shp' % age
         for rec in cshp.Reader(filename).records():
             if rec.attributes['SYMB'] == 'ICE':
-                if union == None:
+                if union is None:
                     union = rec.geometry
                 else:
                     union = union.union(rec.geometry)
@@ -215,8 +213,8 @@ def draw_natural_earth(ax=None):
 def draw_boot_topo(ax):
     nc = ut.io.load('input/boot/cordillera-etopo1bed-10km.nc')
     im = nc.imshow('topg', ax=ax, cmap='Greys', vmin=-3e6, vmax=6e6, zorder=-1)
-    cs = nc.contour('topg', ax=ax, levels=[0.0], colors='0.25',
-                    linewidths=0.25, zorder=0)
+    nc.contour('topg', ax=ax, levels=[0.0], colors='0.25',
+               linewidths=0.25, zorder=0)
     nc.close()
     return im
 
