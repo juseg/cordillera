@@ -20,8 +20,8 @@ def postprocess_extra(run):
     nomask_vars = ['lon', 'lat', 'mapping', 'pism_config', 'topg']
 
     # global attributes
-    prefix = os.path.basename(run)
-    _, res, rec, _ = prefix.split('.')
+    _, res, rec, _ = os.path.basename(run).split('.')
+    prefix = 'ciscyc.{}.{}'.format(res, rec)
     attributes = {
         'author':       'Julien Seguinot',
         'title':        'Cordilleran ice sheet glacial cycle simulations',
