@@ -74,7 +74,7 @@ Basic information [required]
         - *ex.1ka*: spatial diagnostics every thousand years
         - *ts.10a*: scalar time-series every ten years
 
-      **Data format**
+      **Data format**:
 
       The data use compressed netCDF format. For quick inspection I recommend
       ncview. Spatial diagnostics (*\*.ex.1ka.nc*) can be converted to
@@ -116,7 +116,7 @@ Funding [recommended]
 
 Related/alternate identifiers [recommended]
    https://doi.org/10.5194/tc-10-639-2016 is supplemented by this upload
-   https://doi.org/10.5281/zenodo.1423160 is referenced by this upload
+
 
 Contributors [optional]
    Rogozhina, Irina
@@ -133,7 +133,7 @@ References [optional]
 
    * Andersen, K. K., Azuma, N., Barnola, J.-M., Bigler, M., Biscaye, P.,
      Caillon, N., Chappellaz, J., Clausen, H. B., Dahl-Jensen, D., Fischer, H.,
-     Fl\"uckiger, J., Fritzsche, D., Fujii, Y., Goto-Azuma, K., Grønvold,
+     Flückiger, J., Fritzsche, D., Fujii, Y., Goto-Azuma, K., Grønvold,
      K., Gundestrup, N. S., Hansson, M., Huber, C., Hvidberg, C. S., Johnsen,
      S. J., Jonsell, U., Jouzel, J., Kipfstuhl, S., Landais, A., Leuenberger,
      M., Lorrain, R., Masson-Delmotte, V., Miller, H., Motoyama, H., Narita,
