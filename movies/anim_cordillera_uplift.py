@@ -2,13 +2,13 @@
 # coding: utf-8
 
 import os
-import util as ut
+import utils as ut
 import multiprocessing as mp
 import matplotlib.pyplot as plt
 
 # uplift contour levels and colors
 levs = [-600.0, -400.0, -200.0, 0.0, 10.0, 20.0, 30.0]
-cmap = ut.pl.get_cmap('RdBu_r', len(levs)+1)
+cmap = plt.get_cmap('RdBu_r', len(levs)+1)
 cols = cmap(range(len(levs)+1))
 
 
@@ -56,7 +56,7 @@ def draw(t):
     """Plot complete figure for given time."""
 
     # initialize figure
-    fig, grid, cax, tsax = ut.pl.subplots_2_cax_ts_anim()
+    fig, grid, cax, tsax = ut.subplots_2_cax_ts_anim()
     twax = tsax.twiny()
 
     # add signature #FIXME move to util
