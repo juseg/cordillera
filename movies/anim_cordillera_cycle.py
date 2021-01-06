@@ -106,31 +106,29 @@ def draw(t):
     return fig
 
 
-def saveframe(years):
-    """Independently plot one frame."""
+def main():
+    """Main program for command-line execution."""
 
-    # check if file exists
-    framename = '{:06d}.png'.format(years)
-    framepath = '/scratch_net/iceberg/juliens/anim/anim_cordillera_cycle/' + framename
-    if os.path.isfile(framepath):
-        return
+    # set default font size for uplift tag and colorbars
+    # plt.rc('font', size=12)  # from alps
 
-    # plot
-    t = years - 120e3
-    print('plotting at %.1f ka...' % (0.0-t/1e3))
-    fig = draw(t)
+    # start and end of animation
+    t0, t1, dt = -120000, -0, 100
 
-    # save
-    fig.savefig(framepath)
-    plt.close(fig)
+    # output frame directories
+    outdir = os.path.join(os.environ['HOME'], 'anim', 'anim_cordillera_cycle')
+
+    # iterable arguments to save animation frames
+    iter_args = [(draw, outdir, t) for t in range(t0+dt, t1+1, dt)]
+
+    # create frame directory if missing
+    if not os.path.isdir(outdir):
+        os.mkdir(outdir)
+
+    # plot all frames in parallel
+    with mp.Pool(processes=4) as pool:
+        pool.starmap(utils.save_animation_frame, iter_args)
 
 
 if __name__ == '__main__':
-    """Plot individual frames in parallel."""
-
-    # plot in parallel
-    dt = 100
-    pool = mp.Pool(processes=12)
-    pool.map(saveframe, range(dt, 120001, dt))
-    pool.close()
-    pool.join()
+    main()

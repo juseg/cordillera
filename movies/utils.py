@@ -4,7 +4,7 @@
 
 """Cordillera animation tools."""
 
-import matplotlib as mpl
+import os
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import absplots as apl
@@ -39,3 +39,20 @@ def subplots():
                 transform=ax.transAxes, zorder=3)
 
     return fig, grid, cax, tsax
+
+
+# Figure saving
+# -------------
+
+def save_animation_frame(func, outdir, t, *args, **kwargs):
+    """Save figure produced by func as animation frame if missing."""
+
+    # check if file exists
+    fname = os.path.join(outdir, '{:06d}.png').format(t+120000)
+    if not os.path.isfile(fname):
+
+        # assemble figure and save
+        print('plotting {:s} ...'.format(fname))
+        fig = func(t, *args, **kwargs)
+        fig.savefig(fname)
+        plt.close(fig)
