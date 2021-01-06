@@ -8,6 +8,7 @@
 import os
 import multiprocessing as mp
 import matplotlib.pyplot as plt
+import cartowik.decorations as cde
 import utils
 
 # uplift contour levels and colors
@@ -35,7 +36,7 @@ def draw(t):
     nc.close()
 
     # for each record
-    for i, rec in enumerate(ut.cisbed_records):
+    for i, rec in enumerate(['GRIP', 'EPICA']):
         ax = grid[i]
         c = ut.cisbed_colours[i]
         dt = ut.cisbed_offsets[i]
@@ -61,8 +62,9 @@ def draw(t):
         nc.close()
 
         # add map elements
-        ut.pl.draw_natural_earth(ax)
-        ut.pl.add_corner_tag(ax, '%s, %.1f ka' % (rec, 0.0-t/1e3))
+        utils.draw_natural_earth(ax, scale='50m')
+        cde.add_subfig_label(rec, ax=ax, loc='nw')
+        cde.add_subfig_label('{:.1f} ka'.format(-t/1e3), ax=ax, loc='ne')
 
         # load temperature forcing
         nc = ut.io.load('input/dt/%s.nc' % dt_file)

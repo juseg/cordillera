@@ -7,6 +7,7 @@
 import os
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
+import cartowik.naturalearth as cne
 import absplots as apl
 
 
@@ -39,6 +40,20 @@ def subplots():
                 transform=ax.transAxes, zorder=3)
 
     return fig, grid, cax, tsax
+
+
+# Map elements
+# ------------
+
+def draw_natural_earth(ax=None, mode='gs', **kwargs):
+    """Add Natural Earth geographic data vectors."""
+    ax = ax or plt.gca()
+    edgecolor = '#0978ab' if mode == 'co' else '0.25'
+    facecolor = '#c6ecff' if mode == 'co' else '0.95'
+    cne.add_rivers(ax=ax, edgecolor=edgecolor, zorder=0, **kwargs)
+    cne.add_lakes(ax=ax, edgecolor=edgecolor, facecolor=facecolor, zorder=0,
+                  **kwargs)
+    cne.add_coastline(ax=ax, edgecolor=edgecolor, zorder=0, **kwargs)
 
 
 # Figure saving
