@@ -1,5 +1,9 @@
-#!/usr/bin/env python2
-# coding: utf-8
+#!/usr/bin/env python
+# Copyright (c) 2017-2021, Julien Seguinot (juseg.github.io)
+# Creative Commons Attribution-ShareAlike 4.0 International License
+# (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
+
+"""Cordillera glacial cycle animation."""
 
 import os
 import utils as ut
@@ -160,7 +164,7 @@ def saveframe(years):
 
     # plot
     t = years - 120e3
-    print 'plotting at %.1f ka...' % (0.0-t/1e3)
+    print('plotting at %.1f ka...' % (0.0-t/1e3))
     fig = draw(t)
 
     # save
@@ -172,12 +176,12 @@ if __name__ == '__main__':
     """Plot individual frames in parallel."""
 
     # compute depression time-series
-    print 'computing depression time-series...'
+    print('computing depression time-series...')
     exage, exdep = get_depression_ts()
 
     # plot in parallel
     dt = 100
     pool = mp.Pool(processes=12)
-    pool.map(saveframe, xrange(dt, 120001, dt))
+    pool.map(saveframe, range(dt, 120001, dt))
     pool.close()
     pool.join()
