@@ -61,8 +61,7 @@ def draw(time):
     for i, ax in enumerate(grid):
         ax.set_extent([-2500e3, -1000e3, 150e3, 2850e3], crs=ax.projection)
         ax.spines['geo'].set_ec('none')
-        fig.lines.append(plt.Line2D(
-            [1, 1], [0, 1], transform=ax.transAxes))
+        fig.lines.append(plt.Line2D([1, 1], [0, 1], transform=ax.transAxes))
 
     # for each record
     for i, rec in enumerate(['GRIP', 'EPICA']):
@@ -108,21 +107,20 @@ def draw(time):
         with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
             data = ds.delta_T[ds.time <= time]
             tsax.plot(data, data.age, color=color, alpha=0.25)
-            tsax.text(
-                data[-1], -time/1e3, '  {:.1f}°C'.format(float(data[-1])),
-                ha='left', va='center', clip_on=True, color=color)
+            tsax.text(data[-1], -time/1e3, '{:.1f}°C'.format(float(data[-1])),
+                      ha='center', va='bottom', clip_on=True, color=color,
+                      alpha=0.25)
 
         # plot ice volume time series
         with pismx.open.mfdataset(rundir+'/ts.???????.nc') as ds:
             data = ds.slvol[ds.age >= -time/1e3]
             twax.plot(data, data.age, color=color)
-            twax.text(
-                data[-1], -time/1e3, '  {:.1f} m'.format(float(data[-1])),
-                ha='left', va='center', clip_on=True, color=color)
+            twax.text(data[-1], -time/1e3, '{:.1f} m'.format(float(data[-1])),
+                      ha='center', va='bottom', clip_on=True, color=color)
 
     # set time series axes properties
     tsax.set_ylim(120.0, 0.0)
-    tsax.set_xlim(-9.5, 0.5)
+    tsax.set_xlim(-9.5, 1.5)
     tsax.set_ylabel('model age (ka)')
     tsax.set_xlabel('temperature offset (K)', color='0.75')
     tsax.yaxis.tick_right()
@@ -131,7 +129,7 @@ def draw(time):
     tsax.grid(axis='x')
 
     # set twin axes properties
-    twax.set_xlim(9.5, -0.5)
+    twax.set_xlim(-1.5, 9.5)
     twax.set_xlabel('ice volume (m s.l.e.)')
 
     # return figure
