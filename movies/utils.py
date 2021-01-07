@@ -28,17 +28,17 @@ def subplots():
     proj = ccrs.LambertConformal(central_longitude=-95, central_latitude=49,
                                  standard_parallels=(49, 77))
 
-    # initialize figure
+    # initialize figure (108*1500/2700=60)
     fig, grid = apl.subplots_mm(
         ncols=2, nrows=1, sharex=True, sharey=True, figsize=(192, 108),
         subplot_kw=dict(projection=proj), gridspec_kw=dict(
-            left=0, right=192-108, bottom=0, top=0, wspace=0))
-    tsax = fig.add_axes_mm([108+10, 30, 192-108-20, 108-40])
-    cax = fig.add_axes_mm([108+10, 15, 192-108-20, 5])
+            left=0, right=192-120, bottom=0, top=0, wspace=0))
+    tsax = fig.add_axes_mm([120+10, 30, 192-120-20, 108-40])
+    cax = fig.add_axes_mm([120+10, 15, 192-120-20, 5])
 
     # prepare map axes
     for i, ax in enumerate(grid):
-        ax.set_extent([-2500e3, -1000e3, 0e3, 3000e3], crs=ax.projection)
+        ax.set_extent([-2500e3, -1000e3, 150e3, 2850e3], crs=ax.projection)
         ax.outline_patch.set_ec('none')
 
     # add delimitors on last axes
