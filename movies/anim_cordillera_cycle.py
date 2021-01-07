@@ -7,14 +7,10 @@
 
 import os
 import multiprocessing as mp
-import matplotlib.pyplot as plt
+import matplotlib.colors as mcolors
 import cartowik.decorations as cde
+import pismx.open
 import utils
-
-# uplift contour levels and colors
-levs = [-600.0, -400.0, -200.0, 0.0, 10.0, 20.0, 30.0]
-cmap = plt.get_cmap('RdBu_r', len(levs)+1)
-cols = cmap(range(len(levs)+1))
 
 
 def draw(t):
@@ -24,64 +20,59 @@ def draw(t):
     fig, grid, cax, tsax = utils.subplots()
     twax = tsax.twiny()
 
+    # contour levels
+    levels = range(0, 5000, 200)
+    majors = [lev for lev in levels if lev % 1000 == 0]
+    minors = [lev for lev in levels if lev % 1000 != 0]
+
     # for each record
     for i, rec in enumerate(['GRIP', 'EPICA']):
         ax = grid[i]
+        color = ['C1', 'C5'][i]
+        offset = [6.2, 5.9][i]
+        dtfile = '{:s}.3222.{:04d}'.format(rec.lower(), round(offset*100))
+        rundir = '~/pism/output/0.7.2-craypetsc/ciscyc4.5km.{:s}.{:04d}/'
+        rundir = rundir.format(rec.lower(), round(offset*100))
 
-# FIXME use pismx and fix file paths
-#        c = ut.cisbed_colours[i]
-#        dt = ut.cisbed_offsets[i]
-#        dt_file = '%s3222cool%04d' % (rec.lower(), round(dt*100))
-#        run_dir = 'output/e9d2d1f/cordillera-narr-5km/%s+cisbed2+till1545' % dt_file
-#
-#        # load extra data
-#        nc = ut.io.load(run_dir + '/y???????-extra.nc')
-#
-#        # plot
-#        im = nc.imshow('topg', ax, t, vmin=0.0, vmax=3e3, cmap='Greys', zorder=-1)
-#        cs = nc.contour('topg', ax, t, levels=[0.0], colors='0.25',
-#                        linewidths=0.25, zorder=0)
-#        im = nc.imshow('velsurf_mag', ax, t, norm=ut.pl.velnorm, cmap='Blues',
-#                       alpha=0.75)
-#        cs = nc.contour('usurf', ax, t, levels=ut.pl.inlevs,
-#                        colors='0.25', linewidths=0.1)
-#        cs = nc.contour('usurf', ax, t, levels=ut.pl.utlevs,
-#                        colors='0.25', linewidths=0.25)
-#        cs = nc.icemargin(ax, t, colors='k', linewidths=0.25)
-#
-#        # close extra data
-#        nc.close()
-
+        # plot extra data
+        # FIXME port alps util open_subdataset
+        # FIXME port alps util shaded_relief
+        with pismx.open.mfdataset(rundir+'ex.???????.nc') as ds:
+            ds = ds.sel(age=-t/1e3)
+            ds = ds.transpose(..., 'x')  # FIXME in pismx?
+            ds.topg.plot.imshow(
+                ax=ax, cmap='Greys', vmin=0e3, vmax=3e3, add_colorbar=False,
+                zorder=-1)
+            ds.usurf.where(ds.thk >= 1.0).plot.contour(
+                ax=ax, colors=['0.25'], levels=majors, linewidths=0.25)
+            ds.usurf.where(ds.thk >= 1.0).plot.contour(
+                ax=ax, colors=['0.25'], levels=minors, linewidths=0.1)
+            ds.thk.plot.contour(
+                ax=ax, colors=['0.25'], levels=[1.0], linewidths=0.25)
+            ds.velsurf_mag.where(ds.thk >= 1.0).plot.imshow(
+                ax=ax, cmap='Blues', norm=mcolors.LogNorm(1e1, 1e3),
+                alpha=0.75, cbar_ax=cax, cbar_kwargs=dict(
+                    orientation='horizontal',
+                    label=r'surface velocity ($m\,a^{-1}$)'))
 
         # add map elements
         utils.draw_natural_earth(ax, scale='50m')
         cde.add_subfig_label(rec, ax=ax, loc='nw')
         cde.add_subfig_label('{:.1f} ka'.format(-t/1e3), ax=ax, loc='ne')
 
-# FIXME use pismx and fix file paths
-#        # load temperature forcing
-#        nc = ut.io.load('input/dt/%s.nc' % dt_file)
-#        age = -nc.variables['time'][:]/1e3
-#        dt = nc.variables['delta_T'][:]
-#        nc.close()
-#
-#        # plot temperature forcing
-#        mask = age>=-t/1e3
-#        tsax.plot(dt[mask], age[mask], color=c, alpha=0.25)
-#
-#        # load time series data
-#        nc = ut.io.load(run_dir + '/y???????-ts.nc')
-#        age = -nc.variables['time'][:]/(1e3*365*24*60*60)
-#        vol = nc.variables['slvol'][:]
-#        nc.close()
-#
-#        # plot ice volume time series
-#        mask = age>=-t/1e3
-#        twax.plot(vol[mask], age[mask], color=c)
-#
-#    # add colorbar
-#    cb = fig.colorbar(im, cax, extend='both', orientation='horizontal')
-#    cb.set_label(r'surface velocity ($m\,a^{-1}$)')
+        # plot temperature forcing
+        with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
+            data = ds.delta_T[ds.time <= t]
+            tsax.plot(data, data.age, color=color, alpha=0.25)
+            tsax.text(data[-1], -t/1e3, '  {:.1f}°C'.format(float(data[-1])),
+                      ha='left', va='center', clip_on=True, color=color)
+
+        # plot ice volume time series
+        with pismx.open.mfdataset(rundir+'/ts.???????.nc') as ds:
+            data = ds.slvol[ds.age >= -t/1e3]
+            twax.plot(data, data.age, color=color)
+            twax.text(data[-1], -t/1e3, '  {:.1f} m'.format(float(data[-1])),
+                      ha='left', va='center', clip_on=True, color=color)
 
     # set time series axes properties
     tsax.set_ylim(120.0, 0.0)
