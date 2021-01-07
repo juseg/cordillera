@@ -11,6 +11,13 @@ import cartowik.naturalearth as cne
 import absplots as apl
 
 
+# Color palette
+# -------------
+
+# set color cycle to colorbrewer Paired palette
+plt.rc('axes', prop_cycle=plt.cycler(color=plt.get_cmap('Paired').colors))
+
+
 # Figure creation
 # ---------------
 

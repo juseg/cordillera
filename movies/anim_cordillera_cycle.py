@@ -95,9 +95,6 @@ def draw(t):
 def main():
     """Main program for command-line execution."""
 
-    # set default font size for uplift tag and colorbars
-    # plt.rc('font', size=12)  # from alps
-
     # start and end of animation
     t0, t1, dt = -120000, -0, 100
 
