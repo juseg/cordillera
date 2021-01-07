@@ -53,8 +53,8 @@ def draw(time):
         subplot_kw=dict(projection=ccrs.LambertConformal(
             central_longitude=-95, central_latitude=49,
             standard_parallels=(49, 77))))
-    cax = fig.add_axes_mm([120+10, 15, 192-120-20, 5])
-    tsax = fig.add_axes_mm([120+10, 30, 192-120-20, 108-40])
+    cax = fig.add_axes_mm([120+5, 15, 192-120-20, 5])
+    tsax = fig.add_axes_mm([120+5, 30, 192-120-20, 108-40])
     twax = tsax.twiny()
 
     # prepare map axes
@@ -101,7 +101,6 @@ def draw(time):
                       scale='50m')
         cne.add_coastline(ax=ax, edgecolor='0.25', zorder=0, scale='50m')
         cde.add_subfig_label(rec, ax=ax, loc='nw')
-        cde.add_subfig_label('{:.1f} ka'.format(-time/1e3), ax=ax, loc='ne')
 
         # plot temperature forcing
         with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
@@ -121,8 +120,7 @@ def draw(time):
     # set time series axes properties
     tsax.set_ylim(120.0, 0.0)
     tsax.set_xlim(-9.5, 1.5)
-    tsax.set_ylabel('model age (ka)')
-    tsax.set_xlabel('temperature offset (K)', color='0.75')
+    tsax.set_xlabel('temperature change (°C)', color='0.75')
     tsax.yaxis.tick_right()
     tsax.yaxis.set_label_position('right')
     tsax.tick_params(axis='x', colors='0.75')
@@ -130,7 +128,21 @@ def draw(time):
 
     # set twin axes properties
     twax.set_xlim(-1.5, 9.5)
-    twax.set_xlabel('ice volume (m s.l.e.)')
+    twax.set_xlabel('ice volume (m sea level equivalent)')
+
+    # remove spines
+    tsax.spines['left'].set_visible(False)
+    tsax.spines['right'].set_visible(False)
+    twax.spines['left'].set_visible(False)
+    twax.spines['right'].set_visible(False)
+
+    # add cursor
+    tsax.axhline(-time/1e3, c='0.25', lw=0.5)
+    tsax.set_yticks([120, -time/1e3, 0.1])  # mpl confused with two 0 ticks
+    tsax.set_yticklabels([
+        r'120$\,$000' if time >= -110000 else '',
+        '{:,d}\nyears ago'.format(-time).replace(',', r'$\,$'),
+        '0' if time <= -10000 else ''])
 
     # return figure
     return fig
@@ -140,7 +152,7 @@ def main():
     """Main program for command-line execution."""
 
     # start and end of animation
-    start, end, step = -120000, -0, 10000
+    start, end, step = -120000, -0, 5000
 
     # output frame directories
     outdir = os.path.join(os.environ['HOME'], 'anim', 'anim_cordillera_dual')
