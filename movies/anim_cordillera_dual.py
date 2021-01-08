@@ -73,10 +73,10 @@ def draw(time):
         rundir = rundir.format(rec.lower(), round(offset*100))
 
         # plot extra data
-        # FIXME port alps util open_subdataset
+        # FIXME port alps util open_visual
         # FIXME port alps util shaded_relief
-        with pismx.open.mfdataset(rundir+'ex.???????.nc') as ds:
-            ds = ds.sel(age=-time/1e3)
+        with pismx.open.subdataset(
+                rundir+'ex.{:07.0f}.nc', time, shift=120000) as ds:
             ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
                 ax=ax, cmap='Greys', vmin=0e3, vmax=3e3, add_colorbar=False,
