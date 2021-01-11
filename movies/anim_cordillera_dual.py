@@ -119,7 +119,7 @@ def draw(time):
         # plot ice volume time series
         with pismx.open.mfdataset(rundir+'/ts.???????.nc') as ds:
             data = ds.slvol[ds.age >= -time/1e3]
-            twax.plot(data, data.age, color=color)
+            twax.plot(data, data.age, color=color, label=rec)
             twax.text(data[-1], -time/1e3, '{:.1f} m'.format(float(data[-1])),
                       ha='center', va='bottom', clip_on=True, color=color)
 
@@ -136,6 +136,10 @@ def draw(time):
     twax.set_xlim(-1.5, 9.5)
     twax.set_xlabel('ice volume (m sea level equivalent)')
 
+    # legend appears after a bit
+    if time >= -105000:
+        twax.legend(loc='lower right')
+
     # remove spines
     tsax.spines['left'].set_visible(False)
     tsax.spines['right'].set_visible(False)
@@ -144,7 +148,7 @@ def draw(time):
 
     # add cursor
     tsax.axhline(-time/1e3, c='0.25', lw=0.5)
-    tsax.set_yticks([120, -time/1e3, 0.1])  # mpl confused with two 0 ticks
+    tsax.set_yticks([120, -(time+1)/1e3, 0])  # mpl confused with two 0 ticks
     tsax.set_yticklabels([
         r'120$\,$000' if time >= -110000 else '',
         '{:,d}\nyears ago'.format(-time).replace(',', r'$\,$'),
