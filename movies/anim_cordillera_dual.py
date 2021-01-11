@@ -73,23 +73,29 @@ def draw(time):
         rundir = rundir.format(rec.lower(), round(offset*100))
 
         # plot extra data
-        # FIXME port alps util open_visual
+        # FIXME prepare 1km hires file and 4K vid?
         # FIXME port alps util shaded_relief
-        with pismx.open.subdataset(
-                rundir+'ex.{:07.0f}.nc', time, shift=120000) as ds:
+        with pismx.open.visual(
+                rundir+'ex.{:07.0f}.nc',
+                '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
+                '~/pism/input/boot/cordillera.etopo1bed.hus12.3km.nc',
+                time=time, shift=120000) as ds:
             ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
                 ax=ax, cmap='Greys', vmin=0e3, vmax=3e3, add_colorbar=False,
                 zorder=-1)
-            ds.usurf.where(ds.thk >= 1.0).plot.contour(
+            ds.topg.plot.contour(
+                ax=ax, colors='0.25', levels=[0],
+                linestyles=['dashed'], linewidths=0.25)
+            ds.usurf.plot.contour(
                 levels=[lev for lev in range(0, 5000, 200) if lev % 1000 == 0],
                 ax=ax, colors=['0.25'], linewidths=0.25)
-            ds.usurf.where(ds.thk >= 1.0).plot.contour(
+            ds.usurf.plot.contour(
                 levels=[lev for lev in range(0, 5000, 200) if lev % 1000 != 0],
                 ax=ax, colors=['0.25'], linewidths=0.1)
-            ds.thk.plot.contour(
-                ax=ax, colors=['0.25'], levels=[1.0], linewidths=0.25)
-            ds.velsurf_mag.where(ds.thk >= 1.0).plot.imshow(
+            ds.velsurf_mag.notnull().plot.contour(
+                ax=ax, colors=['0.25'], levels=[0.5], linewidths=0.25)
+            ds.velsurf_mag.plot.imshow(
                 ax=ax, cmap='Blues', norm=mcolors.LogNorm(1e1, 1e3),
                 alpha=0.75, cbar_ax=cax, cbar_kwargs=dict(
                     orientation='horizontal',
