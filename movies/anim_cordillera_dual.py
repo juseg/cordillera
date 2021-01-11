@@ -49,19 +49,19 @@ def draw(time):
     # initialize figure (108*1500/2700=60)
     fig, grid = apl.subplots_mm(
         ncols=2, nrows=1, sharex=True, sharey=True, figsize=(192, 108),
-        gridspec_kw=dict(left=0, right=192-120, bottom=0, top=0, wspace=0),
+        gridspec_kw=dict(left=0, right=0, bottom=0, top=0, wspace=192-135),
         subplot_kw=dict(projection=ccrs.LambertConformal(
             central_longitude=-95, central_latitude=49,
             standard_parallels=(49, 77))))
-    cax = fig.add_axes_mm([120+5, 15, 192-120-20, 5])
-    tsax = fig.add_axes_mm([120+5, 30, 192-120-20, 108-40])
+    cax = fig.add_axes_mm([135/2+10, 108-10, 192-135-20, 5])
+    tsax = fig.add_axes_mm([135/2+5, 10, 192-135-20, 108-40])
     twax = tsax.twiny()
 
     # prepare map axes
     for i, ax in enumerate(grid):
-        ax.set_extent([-2500e3, -1000e3, 150e3, 2850e3], crs=ax.projection)
+        ax.set_extent([-2500e3, -1000e3, 100e3, 2500e3], crs=ax.projection)
         ax.spines['geo'].set_ec('none')
-        fig.lines.append(plt.Line2D([1, 1], [0, 1], transform=ax.transAxes))
+        ax.plot([1-i, 1-i], [0, 1], transform=ax.transAxes, color='k', lw=2)
 
     # for each record
     for i, rec in enumerate(['GRIP', 'EPICA']):
@@ -100,7 +100,7 @@ def draw(time):
         cne.add_lakes(ax=ax, edgecolor='0.25', facecolor='0.95', zorder=0,
                       scale='50m')
         cne.add_coastline(ax=ax, edgecolor='0.25', zorder=0, scale='50m')
-        cde.add_subfig_label(rec, ax=ax, loc='nw')
+        cde.add_subfig_label(rec, ax=ax, loc='ne')
 
         # plot temperature forcing
         with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
