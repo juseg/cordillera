@@ -10,8 +10,10 @@ import multiprocessing as mp
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import cartopy.crs as ccrs
+import cartowik.conventions as ccv
 import cartowik.decorations as cde
 import cartowik.naturalearth as cne
+import cartowik.shadedrelief as csr
 import absplots as apl
 import pismx.open
 
@@ -73,8 +75,10 @@ def draw(time):
         rundir = rundir.format(rec.lower(), round(offset*100))
 
         # plot extra data
-        # FIXME prepare 1km hires file and 4K vid?
-        # FIXME port alps util shaded_relief
+        # FIXME make csr._compute_multishade public?
+        # FIXME use axes coords to save time?
+        # FIXME time-dependent sea-level
+        mode = 'gs'
         with pismx.open.visual(
                 rundir+'ex.{:07.0f}.nc',
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
@@ -82,11 +86,15 @@ def draw(time):
                 time=time, shift=120000) as ds:
             ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
-                ax=ax, cmap='Greys', vmin=0e3, vmax=3e3, add_colorbar=False,
-                zorder=-1)
+                ax=ax, add_colorbar=False, zorder=-1,
+                cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
+                vmin=(-4500 if mode == 'co' else 0), vmax=4500)
+            csr._compute_multishade(ds.topg.where(ds.topg >= 0)).plot.imshow(
+                ax=ax, add_colorbar=False, cmap=ccv.SHINES,
+                vmin=-1.0, vmax=1.0, zorder=-1)
             ds.topg.plot.contour(
-                ax=ax, colors='0.25', levels=[0],
-                linestyles=['dashed'], linewidths=0.25)
+                ax=ax, colors=('#0978ab' if mode == 'co' else '0.25'),
+                levels=[0], linestyles=['dashed'], linewidths=0.25, zorder=0)
             ds.usurf.plot.contour(
                 levels=[lev for lev in range(0, 5000, 200) if lev % 1000 == 0],
                 ax=ax, colors=['0.25'], linewidths=0.25)
