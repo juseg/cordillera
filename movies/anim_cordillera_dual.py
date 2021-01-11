@@ -82,7 +82,7 @@ def draw(time):
         with pismx.open.visual(
                 rundir+'ex.{:07.0f}.nc',
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
-                '~/pism/input/boot/cordillera.etopo1bed.hus12.3km.nc',
+                '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
                 time=time, shift=120000) as ds:
             ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
