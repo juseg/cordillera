@@ -65,6 +65,10 @@ def draw(time):
         ax.spines['geo'].set_ec('none')
         ax.plot([1-i, 1-i], [0, 1], transform=ax.transAxes, color='k', lw=2)
 
+    # get interpolated sea level
+    with pismx.open.dataset('~/pism/input/dsl/specmap.nc') as ds:
+        dsl = ds.delta_SL.interp(age=-time/1e3, method='linear')
+
     # for each record
     for i, rec in enumerate(['GRIP', 'EPICA']):
         ax = grid[i]
@@ -77,24 +81,23 @@ def draw(time):
         # plot extra data
         # FIXME make csr._compute_multishade public?
         # FIXME use axes coords to save time?
-        # FIXME time-dependent sea-level
         mode = 'gs'
         with pismx.open.visual(
                 rundir+'ex.{:07.0f}.nc',
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
-                time=time, shift=120000) as ds:
+                ax=ax, time=time, shift=120000) as ds:
             ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
                 ax=ax, add_colorbar=False, zorder=-1,
                 cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
                 vmin=(-4500 if mode == 'co' else 0), vmax=4500)
-            csr._compute_multishade(ds.topg.where(ds.topg >= 0)).plot.imshow(
+            csr._compute_multishade(ds.topg.where(ds.topg >= dsl)-dsl).plot.imshow(
                 ax=ax, add_colorbar=False, cmap=ccv.SHINES,
                 vmin=-1.0, vmax=1.0, zorder=-1)
             ds.topg.plot.contour(
                 ax=ax, colors=('#0978ab' if mode == 'co' else '0.25'),
-                levels=[0], linestyles=['dashed'], linewidths=0.25, zorder=0)
+                levels=[dsl], linestyles='solid', linewidths=0.25, zorder=0)
             ds.usurf.plot.contour(
                 levels=[lev for lev in range(0, 5000, 200) if lev % 1000 == 0],
                 ax=ax, colors=['0.25'], linewidths=0.25)
@@ -113,7 +116,8 @@ def draw(time):
         cne.add_rivers(ax=ax, edgecolor='0.25', zorder=0, scale='50m')
         cne.add_lakes(ax=ax, edgecolor='0.25', facecolor='0.95', zorder=0,
                       scale='50m')
-        cne.add_coastline(ax=ax, edgecolor='0.25', zorder=0, scale='50m')
+        cne.add_coastline(ax=ax, edgecolor='0.25', linestyles='dashed',
+                          zorder=0, scale='50m')
         cde.add_subfig_label(rec, ax=ax, loc='ne')
 
         # plot temperature forcing
