@@ -85,7 +85,6 @@ def draw(time):
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
                 '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
                 ax=ax, time=time, shift=120000) as ds:
-            ds = ds.transpose(..., 'x')  # FIXME in pismx?
             ds.topg.plot.imshow(
                 ax=ax, add_colorbar=False, zorder=-1,
                 cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
