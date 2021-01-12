@@ -79,8 +79,6 @@ def draw(time):
         rundir = rundir.format(rec.lower(), round(offset*100))
 
         # plot extra data
-        # FIXME make csr._compute_multishade public?
-        # FIXME use axes coords to save time?
         mode = 'gs'
         with pismx.open.visual(
                 rundir+'ex.{:07.0f}.nc',
@@ -92,9 +90,9 @@ def draw(time):
                 ax=ax, add_colorbar=False, zorder=-1,
                 cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
                 vmin=(-4500 if mode == 'co' else 0), vmax=4500)
-            csr._compute_multishade(ds.topg.where(ds.topg >= dsl)-dsl).plot.imshow(
-                ax=ax, add_colorbar=False, cmap=ccv.SHINES,
-                vmin=-1.0, vmax=1.0, zorder=-1)
+            csr.add_multishade(
+                ds.topg.where(ds.topg >= dsl)-dsl,
+                ax=ax, add_colorbar=False, zorder=-1)
             ds.topg.plot.contour(
                 ax=ax, colors=('#0978ab' if mode == 'co' else '0.25'),
                 levels=[dsl], linestyles='solid', linewidths=0.25, zorder=0)
