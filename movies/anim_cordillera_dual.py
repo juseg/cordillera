@@ -25,25 +25,80 @@ import pismx.open
 plt.rc('axes', prop_cycle=plt.cycler(color=plt.get_cmap('Paired').colors))
 
 
-# Figure saving
-# -------------
+# Plotting methods
+# ----------------
 
-def save_animation_frame(func, outdir, time, *args, **kwargs):
-    """Save figure produced by func as animation frame if missing."""
-
-    # check if file exists
-    fname = os.path.join(outdir, '{:06d}.png').format(time+120000)
-    if not os.path.isfile(fname):
-
-        # assemble figure and save
-        print('plotting {:s} ...'.format(fname))
-        fig = func(time, *args, **kwargs)
-        fig.savefig(fname)
-        plt.close(fig)
+def draw_natural_earth(ax, mode='gs'):
+    """Add Natural Earth geographic data vectors."""
+    edgecolor = '#0978ab' if mode == 'co' else '0.25'
+    facecolor = '#c6ecff' if mode == 'co' else '0.95'
+    kwargs = dict(ax=ax, scale='50m', zorder=0)
+    cne.add_rivers(edgecolor=edgecolor, **kwargs)
+    cne.add_lakes(edgecolor=edgecolor, facecolor=facecolor, **kwargs)
+    cne.add_coastline(edgecolor=edgecolor, linestyle='dashed', **kwargs)
 
 
-# Main visual
-# -----------
+def plot_visual(ax, run, time, mode='gs'):
+    """Plot interpolated map-plane model output."""
+
+    # get interpolated sea level
+    with pismx.open.dataset('~/pism/input/dsl/specmap.nc') as ds:
+        dsl = ds.delta_SL.interp(age=-time/1e3, method='linear')
+
+    # plot interpolated model output
+    with pismx.open.visual(
+            run+'/ex.{:07.0f}.nc',
+            '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
+            '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
+            ax=ax, time=time, shift=120000) as ds:
+        ds.topg.plot.imshow(
+            ax=ax, add_colorbar=False, zorder=-1,
+            cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
+            vmin=(-4500 if mode == 'co' else 0), vmax=4500)
+        csr.add_multishade(
+            ds.topg.where(ds.topg >= dsl)-dsl,
+            ax=ax, add_colorbar=False, zorder=-1)
+        ds.topg.plot.contour(
+            ax=ax, colors=('#0978ab' if mode == 'co' else '0.25'),
+            levels=[dsl], linestyles='solid', linewidths=0.25, zorder=0)
+        ds.usurf.plot.contour(
+            levels=[lev for lev in range(0, 5000, 200) if lev % 1000 == 0],
+            ax=ax, colors=['0.25'], linewidths=0.25)
+        ds.usurf.plot.contour(
+            levels=[lev for lev in range(0, 5000, 200) if lev % 1000 != 0],
+            ax=ax, colors=['0.25'], linewidths=0.1)
+        ds.velsurf_mag.notnull().plot.contour(
+            ax=ax, colors=['0.25'], levels=[0.5], linewidths=0.25)
+        mappable = ds.velsurf_mag.plot.imshow(
+            ax=ax, add_colorbar=False, cmap='Blues',
+            norm=mcolors.LogNorm(1e1, 1e3), alpha=0.75)
+
+    # return mappable for unique colorbar
+    return mappable
+
+
+def plot_series(tsax, twax, run, time):
+    """Plot model output time series."""
+
+    rec = run.split('.')[-2].upper()
+    dtfile = '.3222.'.join(run.split('.')[-2:])
+    color = 'C1' if 'grip' in run else 'C5'
+
+    # plot temperature forcing
+    with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
+        data = ds.delta_T[ds.time <= time]
+        tsax.plot(data, data.age, color=color, alpha=0.25)
+        tsax.text(data[-1], -time/1e3, '{:.1f}°C'.format(float(data[-1])),
+                  ha='center', va='bottom', clip_on=True, color=color,
+                  alpha=0.25)
+
+    # plot ice volume time series
+    with pismx.open.mfdataset(run+'/ts.???????.nc') as ds:
+        data = ds.slvol[ds.age >= -time/1e3]
+        twax.plot(data, data.age, color=color, label=rec)
+        twax.text(data[-1], -time/1e3, '{:.1f} m'.format(float(data[-1])),
+                  ha='center', va='bottom', clip_on=True, color=color)
+
 
 def draw(time):
     """Plot complete figure for given time."""
@@ -65,72 +120,24 @@ def draw(time):
         ax.spines['geo'].set_ec('none')
         ax.plot([1-i, 1-i], [0, 1], transform=ax.transAxes, color='k', lw=2)
 
-    # get interpolated sea level
-    with pismx.open.dataset('~/pism/input/dsl/specmap.nc') as ds:
-        dsl = ds.delta_SL.interp(age=-time/1e3, method='linear')
-
     # for each record
     for i, rec in enumerate(['GRIP', 'EPICA']):
         ax = grid[i]
-        color = ['C1', 'C5'][i]
         offset = [6.2, 5.9][i]
-        dtfile = '{:s}.3222.{:04d}'.format(rec.lower(), round(offset*100))
-        rundir = '~/pism/output/0.7.2-craypetsc/ciscyc4.5km.{:s}.{:04d}/'
-        rundir = rundir.format(rec.lower(), round(offset*100))
+        run = '~/pism/output/0.7.2-craypetsc/ciscyc4.5km.{:s}.{:04d}'
+        run = run.format(rec.lower(), round(offset*100))
 
-        # plot extra data
-        mode = 'gs'
-        with pismx.open.visual(
-                rundir+'ex.{:07.0f}.nc',
-                '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
-                '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
-                ax=ax, time=time, shift=120000) as ds:
-            ds.topg.plot.imshow(
-                ax=ax, add_colorbar=False, zorder=-1,
-                cmap=(ccv.ELEVATIONAL if mode == 'co' else 'Greys'),
-                vmin=(-4500 if mode == 'co' else 0), vmax=4500)
-            csr.add_multishade(
-                ds.topg.where(ds.topg >= dsl)-dsl,
-                ax=ax, add_colorbar=False, zorder=-1)
-            ds.topg.plot.contour(
-                ax=ax, colors=('#0978ab' if mode == 'co' else '0.25'),
-                levels=[dsl], linestyles='solid', linewidths=0.25, zorder=0)
-            ds.usurf.plot.contour(
-                levels=[lev for lev in range(0, 5000, 200) if lev % 1000 == 0],
-                ax=ax, colors=['0.25'], linewidths=0.25)
-            ds.usurf.plot.contour(
-                levels=[lev for lev in range(0, 5000, 200) if lev % 1000 != 0],
-                ax=ax, colors=['0.25'], linewidths=0.1)
-            ds.velsurf_mag.notnull().plot.contour(
-                ax=ax, colors=['0.25'], levels=[0.5], linewidths=0.25)
-            ds.velsurf_mag.plot.imshow(
-                ax=ax, cmap='Blues', norm=mcolors.LogNorm(1e1, 1e3),
-                alpha=0.75, cbar_ax=cax, cbar_kwargs=dict(
-                    orientation='horizontal',
-                    label=r'surface velocity ($m\,a^{-1}$)'))
+        # plot model output
+        mappable = plot_visual(ax, run, time)
+        plot_series(tsax, twax, run, time)
 
         # add map elements
-        cne.add_rivers(ax=ax, edgecolor='0.25', zorder=0, scale='50m')
-        cne.add_lakes(ax=ax, edgecolor='0.25', facecolor='0.95', zorder=0,
-                      scale='50m')
-        cne.add_coastline(ax=ax, edgecolor='0.25', linestyles='dashed',
-                          zorder=0, scale='50m')
+        draw_natural_earth(ax)
         cde.add_subfig_label(rec, ax=ax, loc='ne')
 
-        # plot temperature forcing
-        with pismx.open.dataset('~/pism/input/dt/'+dtfile+'.nc') as ds:
-            data = ds.delta_T[ds.time <= time]
-            tsax.plot(data, data.age, color=color, alpha=0.25)
-            tsax.text(data[-1], -time/1e3, '{:.1f}°C'.format(float(data[-1])),
-                      ha='center', va='bottom', clip_on=True, color=color,
-                      alpha=0.25)
-
-        # plot ice volume time series
-        with pismx.open.mfdataset(rundir+'/ts.???????.nc') as ds:
-            data = ds.slvol[ds.age >= -time/1e3]
-            twax.plot(data, data.age, color=color, label=rec)
-            twax.text(data[-1], -time/1e3, '{:.1f} m'.format(float(data[-1])),
-                      ha='center', va='bottom', clip_on=True, color=color)
+    # add unique colorbar
+    fig.colorbar(mappable, cax=cax, format='%g', orientation='horizontal',
+                 label=r'surface velocity ($m\,a^{-1}$)', extend='both')
 
     # set time series axes properties
     tsax.set_ylim(120.0, 0.0)
@@ -167,11 +174,31 @@ def draw(time):
     return fig
 
 
+# Figure saving
+# -------------
+
+def save_animation_frame(func, outdir, time, *args, **kwargs):
+    """Save figure produced by func as animation frame if missing."""
+
+    # check if file exists
+    fname = os.path.join(outdir, '{:06d}.png').format(time+120000)
+    if not os.path.isfile(fname):
+
+        # assemble figure and save
+        print('plotting {:s} ...'.format(fname))
+        fig = func(time, *args, **kwargs)
+        fig.savefig(fname)
+        plt.close(fig)
+
+
+# Main program
+# ------------
+
 def main():
     """Main program for command-line execution."""
 
     # start and end of animation
-    start, end, step = -120000, -0, 5000
+    start, end, step = -120000, -0, 100
 
     # output frame directories
     outdir = os.path.join(os.environ['HOME'], 'anim', 'anim_cordillera_dual')
