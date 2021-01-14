@@ -1,0 +1,59 @@
+---  # Cordillera English animation metadata
+# Copyright (c) 2021, Julien Seguinot (juseg.github.io)
+# Creative Commons Attribution-ShareAlike 4.0 International License
+# (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
+
+Title: |-  # |- means formatted text
+   The Cordilleran ice sheet through the last glacial cycle
+
+Author:
+   J. Seguinot, 2021
+
+Credit: |-
+   After: J. Seguinot, I. Rogozhina, A. P. Stroeven, M. Margold, and J. Kleman.
+   Numerical simulations of the Cordilleran ice sheet through the last glacial
+   cycle. $\it{The\ Cryosphere}$, 10(2), 639-664, 2016.
+
+Abstract:
+   During the last glacial cycle, local ice caps from the mountain ranges of the North American Cordillera eventually coalesced to form an ice mass the size of Greenland, the Cordilleran ice sheet. Because of the irregular arrangement of valleys and ridges that forms the ice sheet’s floor, ice moved along tortuous and intertwined pathways, sometimes following the major topographical troughs, and sometimes flowing across them. The complexity of regional climate adds to the complexity of topography. Strong differences in seasonality and timing of precipitation exist, for instance, between the rain-drenched coastal areas, and the dry interior (https://doi.org/10.5194/tc-8-1087-2014).
+
+   The animation uses a computer model that contains knowledge on glacier physics based on modern observations of Greenland and Antarctica and laboratory experiments on ice, and was calibrated with help from traces left by glaciers on the landscape, and ran one of the fastest computers in the world. It is an attempt to reconstruct the multiple phases of advance and retreat of the former Cordilleran ice sheet from 120000 years ago to today. Two different climate scenarios are presented, none of them fully capturing the complexity of geologic evidence left by ice in the Cordillera (https://doi.org/10.5194/tc-10-639-2016).
+
+Labels:
+   - "{:,d} years ago"
+   - "temperature change (°C)"
+   - "ice volume (m sea level equivalent)"
+
+References:
+   Software:
+      - PISM, matplotlib, xarray, ffmpeg, etc.
+   Resources:
+      - Stockholm University                             (SU)
+      - Swiss Federal Institute of Technology in Zurich  (ETHZ)
+      - Swiss National Supercomputing Centre             (CSCS)
+      - Swiss National Science Foundation                (SNSF)
+      - Swedish National Infrastructure for Computing    (SNIC)
+      - Swedish Research Council                         (VR)
+      - German Academic Exchange Service                 (DAAD)
+      - Knut and Alice Wallenberg Foundation
+   Input data:
+      - ETOPO1 topography       (Amante and Eakins, 2009)
+      - GRIP ice-core record    (Dansgaard et al., 1993)
+      - SPECMAP past sea level  (Imbrie et al., 1989)
+      - EPICA ice-core record   (Jouzel et al., 2007)
+      - N. Am. Reg. Reanalysis  (Mesinger et al., 2006)
+      - Natural Earth Data      (Patterson and Kelso, 2016)
+   # Inputs for the new results
+   #   - Geothermal heat flux    (Goutorbe et al., 2011)
+   #   - Modern ice thickness    (Huss and Farinotti, 2012)
+
+Disclaimer: |-
+   This animation uses results from numerical modelling.
+   Our knowledge on Cordilleran climate and glacier history is limited.
+   The reality was almost certainly different.
+
+License text:
+   This work is licensed under
+
+License link:
+   http://creativecommons.org/licenses/by-sa/4.0/
