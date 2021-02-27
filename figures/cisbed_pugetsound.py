@@ -13,7 +13,7 @@ import cartowik.decorations as cde
 import cartowik.naturalearth as cne
 import cartowik.shadedrelief as csr
 import absplots as apl
-import pismx.open
+import hyoga.open
 
 
 def main():
@@ -36,17 +36,20 @@ def main():
         ax.set_extent([-2175e3, -1875e3, 225e3, 525e3], crs=ax.projection)
 
         # get interpolated sea level
-        with pismx.open.dataset('~/pism/input/dsl/specmap.nc') as ds:
+        with hyoga.open.dataset('~/pism/input/dsl/specmap.nc') as ds:
             dsl = ds.delta_SL.interp(age=age, method='linear')
 
         # plot interpolated model output
-        with pismx.open.visual(
+        with hyoga.open.subdataset(
                 ('~/pism/output/0.7.2-craypetsc/'
                  'ciscyc4.5km.epica.0590/ex.{:07.0f}.nc'),
-                '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc',
-                '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc',
-                ax=ax, time=-age*1e3, shift=120000,
-                variables=['uvelsurf', 'vvelsurf']) as ds:
+                time=-age*1e3, shift=120000) as ds:
+
+            # get isostasy, mask and interpolate
+            ds = ds.hyoga.assign_isostasy(
+                '~/pism/input/boot/cordillera.etopo1bed.hus12.5km.nc')
+            ds = ds.hyoga.interp(
+                '~/pism/input/boot/cordillera.etopo1bed.hus12.1km.nc', ax=ax)
 
             # shaded relief and coastline
             (ds.topg-dsl).plot.imshow(
@@ -62,9 +65,9 @@ def main():
                 levels=[dsl], linestyles='solid', linewidths=0.25, zorder=0)
 
             # ice margin and contour levels
-            ds.icy.plot.contour(
+            ds.thk.notnull().plot.contour(
                 ax=ax, colors=['0.25'], levels=[0.5], linewidths=0.25)
-            ds.icy.plot.contourf(
+            ds.thk.notnull().plot.contourf(
                 ax=ax, add_colorbar=False, alpha=0.75, colors='w',
                 extend='neither', levels=[0.5, 1.5])
             ds.usurf.plot.contour(
