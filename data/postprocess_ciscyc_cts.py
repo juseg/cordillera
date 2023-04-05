@@ -38,7 +38,7 @@ def postprocess_extra(run):
 
         # select extra variables and ages
         ts = ex[['timestamp']]
-        ex = ex[masked_vars+nomask_vars].isel(age=slice(9, None, 10))
+        ex = ex[masked_vars+nomask_vars]
         ex = ex.transpose('age', 'y', 'x')
 
         # apply mask where needed
@@ -48,7 +48,7 @@ def postprocess_extra(run):
         # assign attributes and export compressed file
         ex.attrs.update(history=attributes['command']+ex.history, **attributes)
         ex.attrs.update(title=ex.title + ' spatial diagnostics')
-        ex.to_netcdf(prefix + '.ex.1ka.nc', encoding={var: dict(
+        ex.to_netcdf(prefix + '.ex.100a.nc', encoding={var: dict(
             zlib=True, shuffle=True, complevel=1) for var in ex.variables})
 
         # assign attributes and export compressed file
