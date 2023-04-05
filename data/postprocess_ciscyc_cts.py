@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2020, Julien Seguinot <seguinot@vaw.baug.ethz.ch>
+# Copyright (c) 2020-2023, Julien Seguinot (juseg.dev)
 # Creative Commons Attribution-ShareAlike 4.0 International License
 # (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -8,7 +8,7 @@
 import os
 import sys
 import datetime
-import pismx.open
+import hyoga.open
 
 
 def postprocess_extra(run):
@@ -34,11 +34,11 @@ def postprocess_extra(run):
 
     # postprocess spatial diagnostics and time stamps
     print("postprocessing " + prefix + "...")
-    with pismx.open.mfdataset(run+'/ex.???????.nc') as ex:
+    with hyoga.open.mfdataset(run+'/ex.???????.nc') as ex:
 
         # select extra variables and ages
         ts = ex[['timestamp']]
-        ex = ex[masked_vars+nomask_vars].isel(age=slice(9, None, 10))
+        ex = ex[masked_vars+nomask_vars]
         ex = ex.transpose('age', 'y', 'x')
 
         # apply mask where needed
@@ -48,7 +48,7 @@ def postprocess_extra(run):
         # assign attributes and export compressed file
         ex.attrs.update(history=attributes['command']+ex.history, **attributes)
         ex.attrs.update(title=ex.title + ' spatial diagnostics')
-        ex.to_netcdf(prefix + '.ex.1ka.nc', encoding={var: dict(
+        ex.to_netcdf(prefix + '.ex.100a.nc', encoding={var: dict(
             zlib=True, shuffle=True, complevel=1) for var in ex.variables})
 
         # assign attributes and export compressed file
@@ -58,7 +58,7 @@ def postprocess_extra(run):
             zlib=True, shuffle=True, complevel=1) for var in ts.variables})
 
     # postprocess scalar time series
-    with pismx.open.mfdataset(run+'/ts.???????.nc') as ts:
+    with hyoga.open.mfdataset(run+'/ts.???????.nc') as ts:
 
         # assign attributes and export compressed file
         ts.attrs.update(history=attributes['command']+ts.history, **attributes)
