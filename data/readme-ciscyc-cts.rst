@@ -3,20 +3,28 @@ Cordilleran ice sheet glacial cycle simulations continuous variables
 
 Files [required]::
 
+   ciscyc4.10km.epica.0590.ex.100a.nc
    ciscyc4.10km.epica.0590.ex.1ka.nc
    ciscyc4.10km.epica.0590.ts.10a.nc
+   ciscyc4.10km.grip.0620.ex.100a.nc
    ciscyc4.10km.grip.0620.ex.1ka.nc
    ciscyc4.10km.grip.0620.ts.10a.nc
+   ciscyc4.10km.ngrip.0660.ex.100a.nc
    ciscyc4.10km.ngrip.0660.ex.1ka.nc
    ciscyc4.10km.ngrip.0660.ts.10a.nc
+   ciscyc4.10km.odp1012.0615.ex.100a.nc
    ciscyc4.10km.odp1012.0615.ex.1ka.nc
    ciscyc4.10km.odp1012.0615.ts.10a.nc
+   ciscyc4.10km.odp1020.0605.ex.100a.nc
    ciscyc4.10km.odp1020.0605.ex.1ka.nc
    ciscyc4.10km.odp1020.0605.ts.10a.nc
+   ciscyc4.10km.vostok.0595.ex.100a.nc
    ciscyc4.10km.vostok.0595.ex.1ka.nc
    ciscyc4.10km.vostok.0595.ts.10a.nc
+   ciscyc4.5km.epica.0590.ex.100a.nc
    ciscyc4.5km.epica.0590.ex.1ka.nc
    ciscyc4.5km.epica.0590.ts.10a.nc
+   ciscyc4.5km.grip.0620.ex.100a.nc
    ciscyc4.5km.grip.0620.ex.1ka.nc
    ciscyc4.5km.grip.0620.ts.10a.nc
 
@@ -53,7 +61,7 @@ Basic information [required]
 
       **File names**::
 
-         ciscyc4.{10km|5km}.{forcing}.{ex.1ka|ts.10a}.nc
+         ciscyc4.{10km|5km}.{forcing}.{ex.100a|ex.1ka|ts.10a}.nc
 
       * Horizontal resolution:
 
@@ -71,13 +79,14 @@ Basic information [required]
 
       * Variable types:
 
+        - *ex.100a*: spatial diagnostics every hundred years
         - *ex.1ka*: spatial diagnostics every thousand years
         - *ts.10a*: scalar time-series every ten years
 
       **Data format**:
 
       The data use compressed netCDF format. For quick inspection I recommend
-      ncview. Spatial diagnostics (*\*.ex.1ka.nc*) can be converted to
+      ncview. Spatial diagnostics (*\*.ex.\*.nc*) can be converted to
       GeoTIFF (and other GIS formats) e.g. using GDAL::
 
          gdal_translate NETCDF:filename.nc:variable -b band filename.variable.band.tif
@@ -91,6 +100,15 @@ Basic information [required]
       Variable long names, units, PISM configuration parametres and additional
       information are contained within the netCDF metadata.
 
+      **Changelog:**
+
+      * Version 2:
+
+         - Add spatial diagnostics every hundred years (*\*.ex.100a.nc*)
+
+      * Version 1:
+
+         - Initial version.
 
    Version
       --
