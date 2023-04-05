@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2020, Julien Seguinot <seguinot@vaw.baug.ethz.ch>
+# Copyright (c) 2020-2023, Julien Seguinot (juseg.dev)
 # Creative Commons Attribution-ShareAlike 4.0 International License
 # (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -8,7 +8,7 @@
 import os
 import sys
 import datetime
-import pismx.open
+import hyoga.open
 
 
 def postprocess_extra(run):
@@ -34,7 +34,7 @@ def postprocess_extra(run):
 
     # postprocess spatial diagnostics and time stamps
     print("postprocessing " + prefix + "...")
-    with pismx.open.mfdataset(run+'/ex.???????.nc') as ex:
+    with hyoga.open.mfdataset(run+'/ex.???????.nc') as ex:
 
         # select extra variables and ages
         ts = ex[['timestamp']]
@@ -58,7 +58,7 @@ def postprocess_extra(run):
             zlib=True, shuffle=True, complevel=1) for var in ts.variables})
 
     # postprocess scalar time series
-    with pismx.open.mfdataset(run+'/ts.???????.nc') as ts:
+    with hyoga.open.mfdataset(run+'/ts.???????.nc') as ts:
 
         # assign attributes and export compressed file
         ts.attrs.update(history=attributes['command']+ts.history, **attributes)
