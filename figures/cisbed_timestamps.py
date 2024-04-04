@@ -1,12 +1,12 @@
-#!/usr/bin/env python
-# Copyright (c) 2015-2021, Julien Seguinot (juseg.github.io)
+#!/usr/bin/python
+# Copyright (c) 2015-2023, Julien Seguinot (juseg.dev)
 # Creative Commons Attribution-ShareAlike 4.0 International License
 # (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
 """Cordillera bedrock computing time stamps."""
 
 import absplots as apl
-import pismx.open
+import hyoga.open
 
 
 def main():
@@ -28,8 +28,7 @@ def main():
                 'cisbed4.3km.epica.0590.gou11simi.num1e21']:
 
         # open extra output
-        print(run)
-        with pismx.open.mfdataset(
+        with hyoga.open.mfdataset(
                 '~/pism/output/1.1.3/{}/ex.*.nc'.format(run),
                 coords='minimal', compat='override') as ds:
             diff = ds.timestamp.diff('age')
