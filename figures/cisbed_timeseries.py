@@ -1,69 +1,56 @@
-#!/usr/bin/env python2
-# coding: utf-8
+#!/usr/bin/python
+# Copyright (c) 2019-2023, Julien Seguinot (juseg.dev)
+# Creative Commons Attribution-ShareAlike 4.0 International License
+# (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
-import util as ut
-import numpy as np
-from matplotlib.animation import FuncAnimation
+"""Cordillera bedrock ice volume time series."""
 
-# initialize figure
-fig, tsax = ut.pl.subplots_mm(1, 1, figsize=(170.0, 60.0),
-                              left=10.0, right=10.0, bottom=7.5, top=2.5,
-                              hspace=2.5, wspace=2.5)
-twax = tsax.twinx()
+import absplots as apl
+import hyoga.open
 
-# load boot topo
-filepath = 'input/boot/cordillera-etopo1bed+thk+gou11simi-10km.nc'
-nc = ut.io.load(filepath)
-zref = nc.variables['topg'][:].T
-nc.close()
 
-# for each record
-for i, rec in enumerate(ut.cisbed_records):
-    c = ut.cisbed_colours[i]
-    dt = ut.cisbed_offsets[i]
-    dt_file = '%s3222cool%04d' % (rec.lower(), round(dt*100))
+def main():
+    """Main program called during execution."""
 
-    # for each configuration
-    cisbed_configs = ['', '+num1e21']  # FIXME move to util
-    cisbed_lstyles = ['-', ':']  # FIXME move to util
-    for j, conf in enumerate(cisbed_configs):
-        ls = cisbed_lstyles[j]
-        run_dir = ('output/e9d2d1f/cordillera-narr-10km/'
-                   '%s+cisbed2%s+till1545'% (dt_file, conf))
+    # initialize figure
+    fig, ax = apl.subplots_mm(figsize=(170, 60), gridspec_kw=dict(
+        left=10, right=10, bottom=7.5, top=2.5, hspace=2.5, wspace=2.5))
 
-        # load ice volume time series
-        nc = ut.io.load(run_dir + '/y???????-ts.nc')
-        age = -nc.variables['time'][:]/(1e3*365*24*60*60)
-        vol = nc.variables['slvol'][:]
-        nc.close()
+    # select runs that are not broken
+    # FIXME cisbed4.5km.epica.590.gou11simi.num1e21 has non-increasing times
+    # FIXME cisbed4.3km.grip.0620.gou11simi.num1e21 has different pism_config?!
+    # FIXME cisbed4.3km.epica.0620.gou11simi.num1e21 has different mappings?!
+    for run in [
+        '0.7.2-craypetsc/ciscyc4.10km.grip.0620',
+        '1.1.3/cisbed4.10km.grip.0620.ghf70',
+        '1.1.3/cisbed4.3km.grip.0620.gou11simi.num1e21',
+        '0.7.2-craypetsc/ciscyc4.10km.epica.0590',
+        '1.1.3/cisbed4.10km.epica.0590.ghf70',
+        '1.1.3/cisbed4.3km.epica.0590.gou11simi.num1e21']:
 
-        # plot ice volume time series
-        tsax.plot(age, vol, c=c, ls=ls, alpha=0.25)
+        # open ts output
+        with hyoga.open.mfdataset('~/pism/output/'+run+'/ts.*.nc') as ds:
 
-        # load bedrock topography
-        nc = ut.io.load(run_dir + '/y???????-extra.nc')
-        x = nc.variables['x'][:]
-        y = nc.variables['y'][:]
-        z = nc.variables['topg'][:]
-        age = -nc.variables['time'][:]/(1e3*365*24*60*60)
+            # plot ice volume time series
+            ds.get('sea_level_rise_potential', ds.get('slvol')).plot(
+                ax=ax, alpha=1 if 'cisbed' in run else 0.5,
+                color='tab:blue' if 'grip' in run else 'tab:red',
+                ls=':' if '3km' in run else '-',
+                label=', '.join([
+                    'EPICA' if 'epica' in run else 'GRIP',
+                    'old' if 'ciscyc' in run else
+                    'fixed' if 'ghf70' in run else 'improved']))
 
-        # plot bedrock depression time series
-        dx = x[1] - x[0]
-        dy = y[1] - y[0]
-        dep = (zref-z).sum(axis=(1, 2))*dx*dy*1e-12
-        twax.plot(age, dep, c=c, ls=ls)
+    # set axes properies
+    ax.grid(axis='y')
+    ax.legend(loc='best')
+    ax.set_xlabel('model age (ka)', labelpad=2)
+    ax.set_xlim(30, 0)
+    ax.set_ylabel('ice volume (m s.l.e.)')
 
-# set time series axes properties
-tsax.set_xlim(120.0, 0.0)
-tsax.set_ylim(-0.5, 9.5)
-tsax.set_xlabel('model age (ka)')
-tsax.set_ylabel('ice volume (m s.l.e.)', color='0.75')
-tsax.tick_params(axis='y', colors='0.75')
-tsax.grid(axis='y')
+    # save
+    fig.savefig(__file__[:-3])
 
-# set twin axes properties
-twax.set_ylim(-50.0, 950.0)
-twax.set_ylabel('volumic depression ($10^{3}\,km^{3}$)')
 
-# save preview
-ut.pl.savefig(fig)
+if __name__ == '__main__':
+    main()
