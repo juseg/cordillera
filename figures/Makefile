@@ -9,9 +9,9 @@
 EXT = pdf
 
 # python executable
-PY = PYTHONPATH=iceplotlib python2
+PY = python
 
-# all python figures (broken: ciscyc_lr_ts_diff ciscyc_lr_ts_scaling ciskap_plot_sdeffect)
+# old python 2 figures
 PY_FIGS = $(addprefix cisbed_, relaxtime timeseries \
             $(addprefix lr_, glacareas)) \
           $(addprefix ciscyc_, locmap \
@@ -29,6 +29,14 @@ PY_FIGS = $(addprefix cisbed_, relaxtime timeseries \
             $(addprefix map_, cordillera northamerica) \
             $(addprefix paleo_, glaciation timeseries) \
             $(addprefix plot_, atm cover erosion lastflow lgm sdmap snapshots))
+
+# broken python 3 figures
+PY_FIGS = $(addprefix cisbed_, pugetsound relaxtime)
+
+# new python 3 figures
+PY_FIGS = $(addprefix cisbed_, iodp341 massbalance timestamps timeseries) \
+          $(addprefix ciscyc_, \
+            $(addprefix hr_, deglacshots ))
 PY_FIGS := $(addsuffix .$(EXT), $(PY_FIGS))
 
 # tex executable
@@ -45,6 +53,9 @@ PYTEX_FIGS := $(addsuffix .$(EXT), $(PYTEX_FIGS))
 
 # all figures
 ALL_FIGS = $(PY_FIGS) $(PYTEX_FIGS) $(TEX_FIGS)
+
+# tex and pytex figures are broken
+ALL_FIGS = $(PY_FIGS)
 
 
 # Rules
