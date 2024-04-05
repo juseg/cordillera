@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# Copyright (c) 2020-2023, Julien Seguinot (juseg.dev)
+# Copyright (c) 2020-2024, Julien Seguinot (juseg.dev)
 # Creative Commons Attribution-ShareAlike 4.0 International License
 # (CC BY-SA 4.0, http://creativecommons.org/licenses/by-sa/4.0/)
 
@@ -21,16 +21,16 @@ def postprocess_extra(run):
 
     # global attributes
     _, res, rec, _ = os.path.basename(run).split('.')
-    prefix = 'ciscyc.{}.{}'.format(res, rec)
+    prefix = f'ciscyc.{res}.{rec}'
+    cmd = ' '.join(sys.argv)
+    time = datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')
     attributes = {
         'author':       'Julien Seguinot',
         'title':        'Cordilleran ice sheet glacial cycle simulations',
-        'subtitle':     '{} {} simulation'.format(res, rec.upper()),
+        'subtitle':     f'{res} {rec.upper()} simulation',
         'institution':  'Stockholm University, Sweden and '
                         'ETH Zürich, Switzerland',
-        'command':      '{user}@{host} {time}: {cmdl}\n'.format(
-            user=os.getlogin(), host=os.uname()[1], cmdl=' '.join(sys.argv),
-            time=datetime.datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC'))}
+        'command':      f'{os.getlogin()}@{os.uname()[1]} {time}: {cmd}\n'}
 
     # postprocess spatial diagnostics and time stamps
     print("postprocessing " + prefix + "...")
@@ -48,14 +48,14 @@ def postprocess_extra(run):
         # assign attributes and export compressed file
         ex.attrs.update(history=attributes['command']+ex.history, **attributes)
         ex.attrs.update(title=ex.title + ' spatial diagnostics')
-        ex.to_netcdf(prefix + '.ex.100a.nc', encoding={var: dict(
-            zlib=True, shuffle=True, complevel=1) for var in ex.variables})
+        ex.to_netcdf(prefix + '.ex.100a.nc', encoding={
+            var: {'zlib': True} for var in ex.variables})
 
         # assign attributes and export compressed file
         ts.attrs.update(history=attributes['command']+ex.history, **attributes)
         ts.attrs.update(title=ex.title + ' time stamps')
-        ts.to_netcdf(prefix + '.tms.nc', encoding={var: dict(
-            zlib=True, shuffle=True, complevel=1) for var in ts.variables})
+        ts.to_netcdf(prefix + '.tms.nc', encoding={
+            var: {'zlib': True} for var in ts.variables})
 
     # postprocess scalar time series
     with hyoga.open.mfdataset(run+'/ts.???????.nc') as ts:
@@ -63,8 +63,8 @@ def postprocess_extra(run):
         # assign attributes and export compressed file
         ts.attrs.update(history=attributes['command']+ts.history, **attributes)
         ts.attrs.update(title=ex.title + ' scalar time series')
-        ts.to_netcdf(prefix + '.ts.10a.nc', encoding={var: dict(
-            zlib=True, shuffle=True, complevel=1) for var in ts.variables})
+        ts.to_netcdf(prefix + '.ts.10a.nc', encoding={
+            var: {'zlib': True} for var in ts.variables})
 
 
 def main():
