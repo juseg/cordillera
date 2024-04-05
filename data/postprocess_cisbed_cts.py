@@ -15,7 +15,8 @@ def postprocess(run):
     """Postprocess spatial diagnostics and timeseries for one run."""
 
     # variables to mask and not
-    masked_vars = ['tempicethk_basal', 'temppabase', 'thk',
+    masked_vars = ['bmelt', 'surface_accumulation_flux', 'surface_runoff_flux',
+                   'tempicethk_basal', 'temppabase', 'thk', 'tillwat',
                    'uvelbase', 'uvelsurf', 'vvelbase', 'vvelsurf']
     nomask_vars = ['lon', 'lat', 'mapping', 'pism_config', 'topg']
 
