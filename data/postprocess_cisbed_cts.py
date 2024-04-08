@@ -25,7 +25,7 @@ def postprocess(run):
 
     # variables to mask and not
     masked_vars = ['bmelt', 'surface_accumulation_flux', 'surface_runoff_flux',
-                   'tempicethk_basal', 'temppabase', 'thk', 'tillwat',
+                   'tempicethk_basal', 'temppabase', 'thk',
                    'uvelbase', 'uvelsurf', 'vvelbase', 'vvelsurf']
     nomask_vars = ['lon', 'lat', 'mapping', 'pism_config', 'topg']
 
@@ -87,8 +87,22 @@ def main():
 
     # postprocess selected runs
     for run in [
-            'cisbed4.10km.epica.0590.ghf70', 'cisbed4.10km.grip.0620.ghf70',
-            'cisbed4.5km.epica.0590.ghf70', 'cisbed4.5km.grip.0620.ghf70',
+            'cisbed4.10km.epica.0590.dav13',
+            'cisbed4.10km.epica.0590.ghf70',
+            'cisbed4.10km.epica.0590.gou11comb',
+            'cisbed4.10km.epica.0590.gou11simi',
+            'cisbed4.10km.epica.0590.gou11simi.eet30km',
+            'cisbed4.10km.epica.0590.gou11simi.num1e21',
+            'cisbed4.10km.epica.0590.sha04',
+            'cisbed4.10km.grip.0620.dav13',
+            'cisbed4.10km.grip.0620.ghf70',
+            'cisbed4.10km.grip.0620.gou11comb',
+            'cisbed4.10km.grip.0620.gou11simi',
+            'cisbed4.10km.grip.0620.gou11simi.eet30km',
+            'cisbed4.10km.grip.0620.gou11simi.num1e21',
+            'cisbed4.10km.grip.0620.sha04',
+            'cisbed4.5km.epica.0590.ghf70',
+            'cisbed4.5km.grip.0620.ghf70',
             'cisbed4.3km.epica.0590.gou11simi.num1e21',
             'cisbed4.3km.grip.0620.gou11simi.num1e21']:
         postprocess('~/pism/output/1.1.3/' + run)
