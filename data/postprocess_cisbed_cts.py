@@ -11,6 +11,15 @@ import datetime
 import hyoga.open
 
 
+def cleanup(ds):
+    """Homogenize dummy data in buggy 3km datasets."""
+    if '3km' in ds.encoding['source']:
+        ds.mapping.data = 0
+        ds.run_stats.data = 0
+        ds.pism_config.data = 0
+    return ds
+
+
 def postprocess(run):
     """Postprocess spatial diagnostics and timeseries for one run."""
 
@@ -37,7 +46,7 @@ def postprocess(run):
 
     # postprocess spatial diagnostics and time stamps
     print("postprocessing " + prefix + "...")
-    with hyoga.open.mfdataset(run+'/ex.???????.nc') as ex:
+    with hyoga.open.mfdataset(run+'/ex.???????.nc', preprocess=cleanup) as ex:
 
         # select extra variables and ages
         ts = ex[['timestamp']]
@@ -79,7 +88,9 @@ def main():
     # postprocess selected runs
     for run in [
             'cisbed4.10km.epica.0590.ghf70', 'cisbed4.10km.grip.0620.ghf70',
-            'cisbed4.5km.epica.0590.ghf70', 'cisbed4.5km.grip.0620.ghf70']:
+            'cisbed4.5km.epica.0590.ghf70', 'cisbed4.5km.grip.0620.ghf70',
+            'cisbed4.3km.epica.0590.gou11simi.num1e21',
+            'cisbed4.3km.grip.0620.gou11simi.num1e21']:
         postprocess('~/pism/output/1.1.3/' + run)
 
 
